@@ -1,0 +1,9 @@
+nstall Linux version with commands below:
+
+sudo add-apt-repository ppa:amaurycarvalho/nmsxtiles
+sudo apt-get update
+sudo apt-get install nmsxtiles
+
+Use it with command:
+
+nMSXtiles

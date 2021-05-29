@@ -1,0 +1,30 @@
+Open cmd and type echo %QT_PLUGIN_PATH% if it's not empty then delete it (just google: delete environmental variable windows #, where # is your windows version)
+
+Open cmd and type echo %PATH% and press enter. You'll see a list separated by ; of folder paths. Go line by line and make sure they do not point to a folder that contains a platforms folder that has qwindows.dll in it. If you find such a path edit the PATH variable and remove it (just google: edit environmental variable windows #, where # is your windows version)
+
+"La mort n'est rien, mais vivre vaincu et sans gloire, c'est mourir tous les jours"
+~Napoleon Bonaparte
+
+On a crusade to banish setItemWidget() from the holy land of Qt
+If you think my answers are wrong, please downvote me
+2
+JKSH Moderators 8 months ago
+
+What version of MiKTeX are you using?
+
+@jrmmuller said in "could not find or load the Qt platform plugin "windows" in "",:
+
+    If you could help me with the steps, that would be great!
+
+    Download ListDLLs from https://docs.microsoft.com/en-us/sysinternals/downloads/listdlls
+    Extract the contents of the zip file into C:\ListDLLs
+    Try to launch MiKTeX. When the error dialog appears ("Could not find or load..."), leave it open; don't close the dialog.
+    Press Windows+R (this launches the "Run" window)
+    Type "cmd" into the "Run" window and press Enter (this launches the Command Line, cmd, that @VRonin mentioned)
+    In cmd, type cd C:\ListDLLs and press Enter
+    In cmd, type ListDLLs.exe miktex and press Enter. You should see a long list of DLLs.
+    In cmd, type ListDLLs.exe miktex > output.txt and press Enter. You should see a new text file.
+    Open C:\ListDLLs\output.txt and copy+paste its contents here.
+    You can close the error dialog now.
+    In cmd, type echo %QT_PLUGIN_PATH% and press Enter. What gets shown after that? Write it here. (this is related to @VRonin's suggestion)
+

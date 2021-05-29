@@ -1,0 +1,601 @@
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.05.18 - 22:39:56]
+
+t3.asm
+Errors: 0
+
+       1   00:0000                      	OUTPUT	"t3.bin"
+       2   00:8200                      
+       3   00:8200                      ;;ETIQUETAS/CONSTANTES BIOS TECLADO
+       4   00:8200  (00:009F)           CHGET	equ		#009F	;lee de teclado
+       5   00:8200  (00:00A2)           CHPUT	equ		#00A2	;escribe en pantalla screen 0
+       6   00:8200  (00:00C6)           POSIT	equ		#00C6	;locate en screen 0
+       7   00:8200  (00:00B1)           INLIN	equ		#00B1	;almacena tecla pulsada en bufrer
+       8   00:8200  (00:00D8)           GTTRIG	equ		#00D8	;Returns current trigger status
+       9   00:8200  (00:00D5)           GTSTCK	equ		#00D5	;Returns the joystick/cursors status
+      10   00:8200  (00:F3DB)           CLIKSW	equ		#F3DB	;deshabilita el sonido de clic cuando se pulsa una tecla
+      11   00:8200                      
+      12   00:8200                      ;;ETIQUETAS/CONSTANTES BIOS VDP
+      13   00:8200  (00:013E)           RDVDP	equ		#013E	;lee registro status VDP
+      14   00:8200  (00:0047)           WRTVDP	equ		#0047	;escribe registros del VDP
+      15   00:8200  (00:005C)           LDIRVM	equ		#005C	;RAM/ROM -> VRAM
+      16   00:8200  (00:0059)           LDIRMV	equ		#0059	;VRAM -> RAM
+      17   00:8200  (00:005F)           CHGMOD	equ		#005F	;cambia modo pantalla (screen mode)
+      18   00:8200  (00:0041)           DISSCR  equ		#0041	;desactiva pantanlla
+      19   00:8200  (00:0044)           ENASCR  equ		#0044	;activa pantalla
+      20   00:8200  (00:0062)           CHGCLR  equ		#0062	;cambia color de pantalla (toca A y direcciones)
+      21   00:8200  (00:F3E9)           FORCLR	equ		#F3E9	;zona memoria color foreground
+      22   00:8200  (00:F3EA)           BAKCLR  equ		#F3EA	;zona memoria color background
+      23   00:8200  (00:F3EB)           BDRCLR 	equ		#F3EB	;zona memoria bordercolor
+      24   00:8200  (00:00C3)           CLS		equ		#00C3	;limpia pantalla (necesita A=0)
+      25   00:8200                      ;borrar tras verificar
+      26   00:8200  (00:008A)           GSPSIZ	equ		#008A	;borrar tras verificar que pinta correctamente 8x8
+      27   00:8200                      
+      28   00:8200                      
+      29   00:8200                      ;;ETIQUETAS/CONSTANTES REGISTROS VDP
+      30   00:8200  (00:F3DF)           RG0SAV	equ		#F3DF	;Mirror of VDP register 0 (Basic: VDP(0))
+      31   00:8200  (00:F3E0)           RG1SAV	equ		#F3E0	;Mirror of VDP register 1 (Basic: VDP(1))
+      32   00:8200  (00:F3E1)           RG2SAV	equ		#F3E1	;Mirror of VDP register 2 (Basic: VDP(2))
+      33   00:8200  (00:F3E2)           RG3SAV	equ		#F3E2	;Mirror of VDP register 3 (Basic: VDP(3))
+      34   00:8200  (00:F3E3)           RG4SAV	equ		#F3E3	;Mirror of VDP register 4 (Basic: VDP(4))
+      35   00:8200  (00:F3E4)           RG5SAV	equ		#F3E4	;Mirror of VDP register 5 (Basic: VDP(5))
+      36   00:8200  (00:F3E5)           RG6SAV	equ		#F3E5	;Mirror of VDP register 6 (Basic: VDP(6))
+      37   00:8200  (00:F3E6)           RG7SAV	equ		#F3E6	;Mirror of VDP register 7 (Basic: VDP(7))
+      38   00:8200  (00:F3E7)           STATFL	equ		#F3E7	;Mirror of VDP(8) status register (S#0)
+      39   00:8200                      
+      40   00:8200                      ;;ETIQUETAS/CONSTANTES DE PROGRAMA
+      41   00:8200  (00:0064)           INIPMX	equ		100
+      42   00:8200  (00:0032)           INIPMY	equ		50
+      43   00:8200  (00:0005)           INIPMCOL equ	5
+      44   00:8200                      
+      45   00:8200                      
+      46   00:8200                      ;;CABECERA FICHERO BIN
+      47   00:8200  FE                  	DB	#FE
+      48   00:8201  00 82               	DW	START
+      49   00:8203  10 B7               	DW	END
+      50   00:8205  00 82               	DW	START
+      51   00:8207                      ;;INICIO CÓDIGO PROGRAMA	
+      52   00:8207                      	ORG	#8200
+      53   00:8200                      	
+      54   00:8200                      START:
+      55   00:8200                      	;toca A
+      56   00:8200  CD 32 82            	CALL		elimina_clic		;desabiliata el sonido de clic al pulsar una tecla
+      57   00:8203                      	;toca A
+      58   00:8203  CD 4F 82            	CALL		prepara_pantalla	;prepara screen 2 y color 6,1,1
+      59   00:8206  CD 25 82            	CALL		carga_patrones_sprites;
+      60   00:8209                      	
+      61   00:8209                      	;toca AF y BC
+      62   00:8209  CD 41 00            	CALL		DISSCR 				;desactiva pantalla	
+      63   00:820C                      	
+      64   00:820C  CD 68 82            	CALL		carga_pantalla		;carga pantalla de fondo screen 2
+      65   00:820F                      	
+      66   00:820F                      	;toca AF y BC
+      67   00:820F  CD 44 00            	CALL		ENASCR				;activa pantalla
+      68   00:8212                      
+      69   00:8212                      loop_principal:
+      70   00:8212                      
+      71   00:8212  76                  	HALT							;espera VBLANK y sincroniza
+      72   00:8213  CD A8 82            	CALL 	volcado_atributos_sprites_a_VRAM
+      73   00:8216  CD B5 82            	CALL	mira_teclado_actualiza_posiciones
+      74   00:8219  CD 8D 82            	CALL	actualiza_atributos_sprite
+      75   00:821C                      	
+      76   00:821C  C3 12 82            	JP		loop_principal		
+      77   00:821F                      ;	RET		;vuelta al basic (no necesario ya que no sale del loop)
+      78   00:821F                      ;;
+      79   00:821F                      ;;	FIN PROGRAMA
+      80   00:821F                      ;;
+      81   00:821F                      
+      82   00:821F                      
+      83   00:821F                      ;*********************************************
+      84   00:821F                      ;retardo
+      85   00:821F                      ;entrada:
+      86   00:821F                      ;salida/modifica:
+      87   00:821F                      ;	. B que termina en 0
+      88   00:821F                      ;*********************************************
+      89   00:821F                      retardo:
+      90   00:821F  06 FA               	LD	B,250
+      91   00:8221                      retardo_loop:
+      92   00:8221  00                  	NOP
+      93   00:8222  10 FD               	DJNZ	retardo_loop
+      94   00:8224  C9                  	RET
+      95   00:8225                      
+      96   00:8225                      
+      97   00:8225                      
+      98   00:8225                      
+      99   00:8225                      
+     100   00:8225                      
+     101   00:8225                      
+     102   00:8225                      ;*********************************************
+     103   00:8225                      ;carga_patrones_sprites
+     104   00:8225                      ;carga datos de los patrones
+     105   00:8225                      ;salida/modifica:
+     106   00:8225                      ;	. A = 0 (o flag Z activo)
+     107   00:8225                      ;*********************************************
+     108   00:8225                      carga_patrones_sprites:
+     109   00:8225                      	;sprite punto de mira
+     110   00:8225  21 84 B6            	LD		HL,sprites_pantantalla
+     111   00:8228  11 00 38            	LD		DE,#3800
+     112   00:822B  01 80 00            	LD		BC,32 * 4 			;32 bytes * 4 sprites definidos
+     113   00:822E  CD 5C 00            	CALL	LDIRVM
+     114   00:8231                      	
+     115   00:8231                      	;sprite serpiente
+     116   00:8231                      	
+     117   00:8231                      fin_carga_patrones_sprites:
+     118   00:8231  C9                  	RET
+     119   00:8232                      
+     120   00:8232                      
+     121   00:8232                      	
+     122   00:8232                      ;*********************************************
+     123   00:8232                      ;elimina_clic
+     124   00:8232                      ;desabiliata el sonido de clic al pulsar una tecla
+     125   00:8232                      ;salida/modifica:
+     126   00:8232                      ;	. A = 0 (o flag Z activo)
+     127   00:8232                      ;*********************************************	
+     128   00:8232                      elimina_clic;
+     129   00:8232  AF                  	XOR		 A
+     130   00:8233  32 DB F3            	LD		(CLIKSW),A
+     131   00:8236                      fin_elimina_clic:
+     132   00:8236  C9                  	RET
+     133   00:8237                      	
+     134   00:8237                      
+     135   00:8237                      ;*********************************************
+     136   00:8237                      ;limpia_pantalla
+     137   00:8237                      ;entrada:
+     138   00:8237                      ;salida/modifica:
+     139   00:8237                      ;	. A = 0 (o flag Z activo)
+     140   00:8237                      ;*********************************************
+     141   00:8237                      limpia_pantalla:
+     142   00:8237  AF                  	XOR			A
+     143   00:8238  CD C3 00            	CALL 		CLS
+     144   00:823B                      fin_limpia_pantalla:
+     145   00:823B  C9                  	RET
+     146   00:823C                      
+     147   00:823C                      
+     148   00:823C                      ;*********************************************
+     149   00:823C                      ;set_color
+     150   00:823C                      ;Establezca el color de primer plano en el modo de pantalla FORCLR (F3E9H), el color de fondo en
+     151   00:823C                      ;BAKCLR (F3EAH) y el color periférico en BDRCLR (F3EBH) antes de llamar.
+     152   00:823C                      ;entrada:
+     153   00:823C                      ;salida/modifica:
+     154   00:823C                      ;	. A
+     155   00:823C                      ;*********************************************
+     156   00:823C                      set_color:
+     157   00:823C  3E 02               	LD		 A,2				;verde oscuro
+     158   00:823E  32 E9 F3            	LD 		(FORCLR),A
+     159   00:8241  3E 01               	LD		 A,1				;negro
+     160   00:8243  32 EA F3            	LD 		(BAKCLR),A
+     161   00:8246  3E 01               	LD		 A,1				;negro
+     162   00:8248  32 EB F3            	LD 		(BDRCLR),A
+     163   00:824B  CD 62 00            	CALL	CHGCLR  
+     164   00:824E                      fin_set_color:
+     165   00:824E  C9                  	RET
+     166   00:824F                      
+     167   00:824F                      
+     168   00:824F                      ;*********************************************
+     169   00:824F                      ;prepara_pantalla
+     170   00:824F                      ;pone screen 2,2 + color verdeoscuro,negro,negro
+     171   00:824F                      ;entrada:
+     172   00:824F                      ;salida/modifica:
+     173   00:824F                      ;	. A
+     174   00:824F                      ;*********************************************
+     175   00:824F                      prepara_pantalla:
+     176   00:824F                      	;toca A
+     177   00:824F  CD 37 82            	CALL		limpia_pantalla		;limpiamos pantalla
+     178   00:8252                      	;toca A y direcciones #F3E9/#F3EA/#F3EB
+     179   00:8252  CD 3C 82            	CALL		set_color			;ponemos color de fondo de pantalla y texto
+     180   00:8255                      	
+     181   00:8255                      	;cambiamos a SCREEN 2,2 del BASIC
+     182   00:8255                      	;toca A
+     183   00:8255  3E 02               	LD		 A,2
+     184   00:8257  CD 5F 00            	CALL	CHGMOD			;selecciona screen 2
+     185   00:825A                      	
+     186   00:825A  3A E0 F3            	LD		 A,(RG1SAV)
+     187   00:825D  F6 02               	OR		00000010b		;fuerza sprites de 16x16
+     188   00:825F  32 E0 F3            	LD		(RG1SAV),A		; ;no lo guardamos en la copia de variables del sistema
+     189   00:8262  47                  	LD		 B,A
+     190   00:8263  0E 01               	LD		 C,1
+     191   00:8265  C3 47 00            	JP		WRTVDP			;opción alternativa de escribir las tres lineas siguientes
+     192   00:8268                      	;~ CALL	WRTVDP			;lo escribe en el registro 1 del VDP
+     193   00:8268                      ;~ fin_prepara_pantalla:
+     194   00:8268                      	;~ RET
+     195   00:8268                      
+     196   00:8268                      
+     197   00:8268                      ;*********************************************
+     198   00:8268                      ;carga_pantalla
+     199   00:8268                      ;entrada:
+     200   00:8268                      ;salida/modifica:
+     201   00:8268                      ;	. HL,DE,BC
+     202   00:8268                      ;*********************************************
+     203   00:8268                      carga_pantalla:
+     204   00:8268                      	;cargamos los patrones
+     205   00:8268  21 84 83            	LD		HL,tiles_patrones_pantalla
+     206   00:826B  11 00 00            	LD		DE,#0000
+     207   00:826E  01 00 18            	LD		BC,256*8*3
+     208   00:8271  CD 5C 00            	CALL	LDIRVM		
+     209   00:8274                      	
+     210   00:8274                      	;cargamos mapa de pantalla
+     211   00:8274  21 84 B3            	LD		HL,tiles_mapa_pantalla
+     212   00:8277  11 00 18            	LD		DE,#1800
+     213   00:827A  01 00 03            	LD		BC,256*3
+     214   00:827D  CD 5C 00            	CALL	LDIRVM
+     215   00:8280                      	
+     216   00:8280                      	;cargamos los colores de los patrones
+     217   00:8280  21 84 9B            	LD		HL,tiles_color_pantalla
+     218   00:8283  11 00 20            	LD		DE,#2000
+     219   00:8286  01 00 18            	LD		BC,256*8*3
+     220   00:8289  CD 5C 00            	CALL	LDIRVM
+     221   00:828C                      fin_carga_pantalla:
+     222   00:828C  C9                  	RET
+     223   00:828D                      	
+     224   00:828D                      
+     225   00:828D                      ;*********************************************
+     226   00:828D                      ;actualiza_atributos_sprite
+     227   00:828D                      ;entrada:
+     228   00:828D                      ;salida/modifica:
+     229   00:828D                      ;	. HL,DE,BC
+     230   00:828D                      ;*********************************************
+     231   00:828D                      actualiza_atributos_sprite:
+     232   00:828D                      	;carga datos de atributos de sprites punto mira
+     233   00:828D  DD 21 0E B7         	LD		IX,atributos_sprite_pm
+     234   00:8291  3A 05 B7            	LD		 A,(punto_mira.posy)
+     235   00:8294  DD 77 00            	LD		(IX+0),A
+     236   00:8297  3A 04 B7            	LD		 A,(punto_mira.posx)
+     237   00:829A  DD 77 01            	LD		(IX+1),A
+     238   00:829D  AF                  	XOR		 A
+     239   00:829E  DD 77 02            	LD		(IX+2),A					;plano 0
+     240   00:82A1  3A 06 B7            	LD		 A,(punto_mira.color)
+     241   00:82A4  DD 77 03            	LD		(IX+3),A
+     242   00:82A7                      fin_actualiza_atributos_sprite:
+     243   00:82A7  C9                  	RET
+     244   00:82A8                      
+     245   00:82A8                      
+     246   00:82A8                      ;*********************************************
+     247   00:82A8                      ;volcado_atributos_sprites_a_VRAM
+     248   00:82A8                      ;entrada:
+     249   00:82A8                      ;salida/modifica:
+     250   00:82A8                      ;	. HL,DE,BC
+     251   00:82A8                      ;*********************************************
+     252   00:82A8                      volcado_atributos_sprites_a_VRAM:
+     253   00:82A8  21 0E B7            	LD		HL,atributos_sprite_pm
+     254   00:82AB  11 00 1B            	LD		DE,#1B00
+     255   00:82AE  01 08 00            	LD		BC,4 * 2				; 4 atributos por 2 sprites a la vez en pantalla
+     256   00:82B1  CD 5C 00            	CALL	LDIRVM
+     257   00:82B4                      fin_volcado_atributos_sprites_a_VRAM:
+     258   00:82B4  C9                  	RET
+     259   00:82B5                      
+     260   00:82B5                      
+     261   00:82B5                      ;*********************************************
+     262   00:82B5                      ;mira_teclado_actualiza_posiciones
+     263   00:82B5                      ;entrada:
+     264   00:82B5                      ;salida/modifica:
+     265   00:82B5                      ;	. HL,DE,BC
+     266   00:82B5                      ;*********************************************
+     267   00:82B5                      mira_teclado_actualiza_posiciones:
+     268   00:82B5  AF                  	XOR		 A						;mirar cursores (a=0)
+     269   00:82B6                      	; toca todos los registros
+     270   00:82B6  CD D5 00            	CALL	GTSTCK					;llamada a BIOS resultado se almacena en A
+     271   00:82B9                      	
+     272   00:82B9  FE 01               	CP		1
+     273   00:82BB  CA E2 82            	JP		Z,arriba
+     274   00:82BE  FE 02               	CP		2
+     275   00:82C0  CA F0 82            	JP		Z,arribaderecha
+     276   00:82C3  FE 03               	CP		3
+     277   00:82C5  CA 0A 83            	JP		Z,derecha
+     278   00:82C8  FE 04               	CP		4
+     279   00:82CA  CA 19 83            	JP		Z,derechaabajo
+     280   00:82CD  FE 05               	CP		5
+     281   00:82CF  CA 34 83            	JP		Z,abajo
+     282   00:82D2  FE 06               	CP		6
+     283   00:82D4  CA 43 83            	JP		Z,abajoizquierda
+     284   00:82D7  FE 07               	CP		7
+     285   00:82D9  CA 5D 83            	JP		Z,izquierda
+     286   00:82DC  FE 08               	CP		8
+     287   00:82DE  CA 6B 83            	JP		Z,izquierdaarriba
+     288   00:82E1                      	
+     289   00:82E1                      fin_mira_teclado_actualiza_posiciones:
+     290   00:82E1  C9                  	RET	
+     291   00:82E2                      
+     292   00:82E2                      
+     293   00:82E2                      
+     294   00:82E2                      ;*********************************************
+     295   00:82E2                      ;listado de funciones apuntadas en el array tabla_mover_direccion_puntomira
+     296   00:82E2                      ;
+     297   00:82E2                      ;*********************************************
+     298   00:82E2                      arriba:
+     299   00:82E2  3A 05 B7            	LD		 A,(punto_mira.posy)
+     300   00:82E5  B7                  	OR		 A ; reviso limite izquierdo
+     301   00:82E6  CA E1 82            	JP		 Z,fin_mira_teclado_actualiza_posiciones ; se ha llegado a lim izq y no hace nada
+     302   00:82E9  3D                  	DEC		 A ; no se ha lledado al límite izq y decremento x
+     303   00:82EA  32 05 B7            	LD		(punto_mira.posy),A
+     304   00:82ED  C3 E1 82            	JP		fin_mira_teclado_actualiza_posiciones
+     305   00:82F0                      arribaderecha:
+     306   00:82F0  3A 05 B7            	LD		 A,(punto_mira.posy)
+     307   00:82F3  B7                  	OR		 A ; reviso limite izquierdo
+     308   00:82F4  CA FB 82            	JP		 Z,M22
+     309   00:82F7  3D                  	DEC		 A ; no se ha lledado al límite izq y decremento x
+     310   00:82F8  32 05 B7            	LD		(punto_mira.posy),A
+     311   00:82FB  3A 04 B7            M22:LD		 A,(punto_mira.posx)
+     312   00:82FE  FE F0               	CP		256-16 ; reviso limite derecho - bits del sprite
+     313   00:8300  CA E1 82            	JP		 Z,fin_mira_teclado_actualiza_posiciones ; se ha llegado a lim izq y no hace nada
+     314   00:8303  3C                  	INC		 A ; no se ha lledado al límite izq y decremento x
+     315   00:8304  32 04 B7            	LD		(punto_mira.posx),A
+     316   00:8307  C3 E1 82            	JP		fin_mira_teclado_actualiza_posiciones
+     317   00:830A                      derecha:
+     318   00:830A  3A 04 B7            	LD		 A,(punto_mira.posx)
+     319   00:830D  FE F0               	CP		256-16 ; reviso limite derecho - bits del sprite
+     320   00:830F  CA E1 82            	JP		 Z,fin_mira_teclado_actualiza_posiciones ; se ha llegado a lim izq y no hace nada
+     321   00:8312  3C                  	INC		 A ; no se ha lledado al límite izq y decremento x
+     322   00:8313  32 04 B7            	LD		(punto_mira.posx),A
+     323   00:8316  C3 E1 82            	JP		fin_mira_teclado_actualiza_posiciones
+     324   00:8319                      derechaabajo:
+     325   00:8319  3A 04 B7            	LD		 A,(punto_mira.posx)
+     326   00:831C  FE F0               	CP		256-16 ; reviso limite derecho - bits del sprite
+     327   00:831E  CA 25 83            	JP		 Z,M42
+     328   00:8321  3C                  	INC		 A ; no se ha lledado al límite izq y decremento x
+     329   00:8322  32 04 B7            	LD		(punto_mira.posx),A
+     330   00:8325  3A 05 B7            M42:LD		 A,(punto_mira.posy)
+     331   00:8328  FE 70               	CP		 192-8*8-16 ; reviso limite inferior (hasta el 2º tercio)
+     332   00:832A  CA E1 82            	JP		 Z,fin_mira_teclado_actualiza_posiciones ; se ha llegado a lim izq y no hace nada
+     333   00:832D  3C                  	INC		 A ; no se ha lledado al límite izq y decremento x
+     334   00:832E  32 05 B7            	LD		(punto_mira.posy),A
+     335   00:8331  C3 E1 82            	JP		fin_mira_teclado_actualiza_posiciones
+     336   00:8334                      abajo:
+     337   00:8334  3A 05 B7            	LD		 A,(punto_mira.posy)
+     338   00:8337  FE 70               	CP		 192-8*8-16 ; reviso limite inferior (hasta el 2º tercio)
+     339   00:8339  CA E1 82            	JP		 Z,fin_mira_teclado_actualiza_posiciones ; se ha llegado a lim izq y no hace nada
+     340   00:833C  3C                  	INC		 A ; no se ha lledado al límite izq y decremento x
+     341   00:833D  32 05 B7            	LD		(punto_mira.posy),A
+     342   00:8340  C3 E1 82            	JP		fin_mira_teclado_actualiza_posiciones
+     343   00:8343                      abajoizquierda:
+     344   00:8343  3A 05 B7            	LD		 A,(punto_mira.posy)
+     345   00:8346  FE 70               	CP		 192-8*8-16 ; reviso limite inferior (hasta el 2º tercio)
+     346   00:8348  CA 4F 83            	JP		 Z,M62 ; se ha llegado a lim izq y no hace nada
+     347   00:834B  3C                  	INC		 A ; no se ha lledado al límite izq y decremento x
+     348   00:834C  32 05 B7            	LD		(punto_mira.posy),A
+     349   00:834F  3A 04 B7            M62:LD		 A,(punto_mira.posx)
+     350   00:8352  B7                  	OR		 A ; reviso limite izquierdo
+     351   00:8353  CA E1 82            	JP		 Z,fin_mira_teclado_actualiza_posiciones ; se ha llegado a lim izq y no hace nada
+     352   00:8356  3D                  	DEC		 A ; no se ha lledado al límite izq y decremento x
+     353   00:8357  32 04 B7            	LD		(punto_mira.posx),A
+     354   00:835A  C3 E1 82            	JP		fin_mira_teclado_actualiza_posiciones
+     355   00:835D                      izquierda:
+     356   00:835D  3A 04 B7            	LD		 A,(punto_mira.posx)
+     357   00:8360  B7                  	OR		 A ; reviso limite izquierdo
+     358   00:8361  CA E1 82            	JP		 Z,fin_mira_teclado_actualiza_posiciones ; se ha llegado a lim izq y no hace nada
+     359   00:8364  3D                  	DEC		 A ; no se ha lledado al límite izq y decremento x
+     360   00:8365  32 04 B7            	LD		(punto_mira.posx),A
+     361   00:8368  C3 E1 82            	JP		fin_mira_teclado_actualiza_posiciones
+     362   00:836B                      izquierdaarriba:
+     363   00:836B  3A 04 B7            	LD		 A,(punto_mira.posx)
+     364   00:836E  B7                  	OR		 A ; reviso limite izquierdo
+     365   00:836F  CA 76 83            	JP		 Z,M82
+     366   00:8372  3D                  	DEC		 A ; no se ha lledado al límite izq y decremento x
+     367   00:8373  32 04 B7            	LD		(punto_mira.posx),A
+     368   00:8376  3A 05 B7            M82:LD		 A,(punto_mira.posy)
+     369   00:8379  B7                  	OR		 A
+     370   00:837A  CA E1 82            	JP		 Z,fin_mira_teclado_actualiza_posiciones
+     371   00:837D  3D                  	DEC		 A ; no se ha lledado al límite izq y decremento x
+     372   00:837E  32 05 B7            	LD		(punto_mira.posy),A
+     373   00:8381  C3 E1 82            	JP		fin_mira_teclado_actualiza_posiciones
+     374   00:8384                      
+     375   00:8384                      
+     376   00:8384                      
+     377   00:8384                      
+     378   00:8384                      ; DEFINICION DE VARIABLES
+     379   00:8384                      
+     380   00:8384                      ;;=====================================================
+     381   00:8384                      ;;DEFINICIÓN DE ESTRUCTURAS
+     382   00:8384                      ;;=====================================================
+     383   00:8384                      	STRUCT ESTRUCTURA_PUNTOMIRA
+     384   00:8384                    < posx		DB		INIPMX
+     385   00:8384                    < posy		DB		INIPMY
+     386   00:8384                    < color		DB		INIPMCOL
+     387   00:8384                    < retardo		DB		0
+     388   00:8384                    < 	ENDSTRUCT;ESTRUCTURA_PUNTOMIRA
+     389   00:8384                      	
+     390   00:8384                      	STRUCT ESTRUCTURA_ENEMIGO
+     391   00:8384                    < tipo		DB		0			;(0 serpiente)
+     392   00:8384                    < posx		DB		50
+     393   00:8384                    < posy		DB		50
+     394   00:8384                    < color		DB		5
+     395   00:8384                    < paso		DB		0			;paso 0 o 1 (2 escenas)
+     396   00:8384                    < retardo		DB		0			;entre 0 y 9
+     397   00:8384                    < 	ENDSTRUCT;ESTRUCTURA_PUNTOMIRAA
+     398   00:8384                      
+     399   00:8384                      ;;=====================================================
+     400   00:8384                      ;;DEFINICIÓN DE CONSTANTES DE PROGRAMA
+     401   00:8384                      ;;=====================================================	
+     402   00:8384  (1800)              tiles_patrones_pantalla:	incbin "tiles.bin.chr"
+     403   00:9B84  (1800)              tiles_color_pantalla:		incbin "tiles.bin.clr"
+     404   00:B384  (0300)              tiles_mapa_pantalla:		incbin "mapa.map"
+     405   00:B684                      
+     406   00:B684                      
+     407   00:B684                      ;;=====================================================
+     408   00:B684                      ;;DEFINICIÓN DE SPRITES
+     409   00:B684                      ;;=====================================================	
+     410   00:B684                      sprites_pantantalla:
+     411   00:B684                      
+     412   00:B684                      sprite_punto_mira:
+     413   00:B684                      	db  #00,#01,#0F,#11,#20,#24,#20,#71
+     413   00:B684  00 01 0F 11 20 24 20 71 
+     414   00:B68C                      	db  #71,#20,#24,#20,#11,#0F,#01,#00
+     414   00:B68C  71 20 24 20 11 0F 01 00 
+     415   00:B694                      	db  #00,#80,#F0,#88,#04,#24,#04,#8E
+     415   00:B694  00 80 F0 88 04 24 04 8E 
+     416   00:B69C                      	db  #8E,#04,#24,#04,#88,#F0,#80,#00
+     416   00:B69C  8E 04 24 04 88 F0 80 00 
+     417   00:B6A4                      	
+     418   00:B6A4                      sprite_punto_mira_disp:
+     419   00:B6A4                      	DB  #00,#00,#00,#00,#00,#00,#00,#00
+     419   00:B6A4  00 00 00 00 00 00 00 00 
+     420   00:B6AC                      	DB  #00,#00,#00,#00,#00,#00,#00,#00
+     420   00:B6AC  00 00 00 00 00 00 00 00 
+     421   00:B6B4                      	DB  #00,#00,#00,#00,#00,#00,#00,#00
+     421   00:B6B4  00 00 00 00 00 00 00 00 
+     422   00:B6BC                      	DB  #00,#00,#00,#00,#00,#00,#00,#00
+     422   00:B6BC  00 00 00 00 00 00 00 00 
+     423   00:B6C4                      	
+     424   00:B6C4                      serpiente1:
+     425   00:B6C4                      	DB #00,#00,#00,#00,#00,#00,#00,#10
+     425   00:B6C4  00 00 00 00 00 00 00 10 
+     426   00:B6CC                      	DB #30,#20,#60,#70,#38,#1C,#1F,#0F
+     426   00:B6CC  30 20 60 70 38 1C 1F 0F 
+     427   00:B6D4                      	DB #00,#38,#7C,#76,#7E,#7C,#FA,#C1
+     427   00:B6D4  00 38 7C 76 7E 7C FA C1 
+     428   00:B6DC                      	DB #E0,#60,#70,#78,#3C,#1C,#F8,#F8
+     428   00:B6DC  E0 60 70 78 3C 1C F8 F8 
+     429   00:B6E4                      
+     430   00:B6E4                      serpiente2:
+     431   00:B6E4                      	DB #00,#00,#00,#00,#00,#00,#01,#05
+     431   00:B6E4  00 00 00 00 00 00 01 05 
+     432   00:B6EC                      	DB #1C,#30,#30,#30,#38,#1C,#1F,#0F
+     432   00:B6EC  1C 30 30 30 38 1C 1F 0F 
+     433   00:B6F4                      	DB #00,#70,#F8,#EC,#FC,#F8,#F5,#C2
+     433   00:B6F4  00 70 F8 EC FC F8 F5 C2 
+     434   00:B6FC                      	DB #E0,#60,#70,#38,#18,#1C,#F8,#F0
+     434   00:B6FC  E0 60 70 38 18 1C F8 F0 
+     435   00:B704                      	
+     436   00:B704                      ;;=====================================================
+     437   00:B704                      ;;DEFINICIÓN DE VARIABLES DE PROGRAMA
+     438   00:B704                      ;;=====================================================	
+     439   00:B704  64 32 05 00         punto_mira:				ESTRUCTURA_PUNTOMIRA
+     440   00:B708  00 32 32 05 00 00   enemigo1:				ESTRUCTURA_ENEMIGO
+     441   00:B70E                      atributos_sprite_pm:	
+     442   00:B70E  08 00               	DB	4*2,0		;X,Y, patrón, color sprite n (2 sprites actualmente)
+     443   00:B710                      
+     444   00:B710                      END:
+     445   00:B710                      	
+     446   00:B710                      	
+     447   00:B710                      	
+     448   00:B710                      	
+     449   00:B710                      	
+     450   00:B710                      	
+     451   00:B710                      	
+     452   00:B710                      	
+     453   00:B710                      	
+     454   00:B710                      	
+     455   00:B710                      	
+     456   00:B710                      	
+     457   00:B710                      	
+     458   00:B710                      	
+     459   00:B710                      	
+     460   00:B710                      	
+
+    LABELS
+-------------------------------------------------
+00:0000009F X CHGET
+00:000000A2 X CHPUT
+00:000000C6 X POSIT
+00:000000B1 X INLIN
+00:000000D8 X GTTRIG
+00:000000D5   GTSTCK
+00:0000F3DB   CLIKSW
+00:0000013E X RDVDP
+00:00000047   WRTVDP
+00:0000005C   LDIRVM
+00:00000059 X LDIRMV
+00:0000005F   CHGMOD
+00:00000041   DISSCR
+00:00000044   ENASCR
+00:00000062   CHGCLR
+00:0000F3E9   FORCLR
+00:0000F3EA   BAKCLR
+00:0000F3EB   BDRCLR
+00:000000C3   CLS
+00:0000008A X GSPSIZ
+00:0000F3DF X RG0SAV
+00:0000F3E0   RG1SAV
+00:0000F3E1 X RG2SAV
+00:0000F3E2 X RG3SAV
+00:0000F3E3 X RG4SAV
+00:0000F3E4 X RG5SAV
+00:0000F3E5 X RG6SAV
+00:0000F3E6 X RG7SAV
+00:0000F3E7 X STATFL
+00:00000064 X INIPMX
+00:00000032 X INIPMY
+00:00000005 X INIPMCOL
+00:00008200   START
+00:00008212   loop_principal
+00:0000821F X retardo
+00:00008221   retardo_loop
+00:00008225   carga_patrones_sprites
+00:00008231 X fin_carga_patrones_sprites
+00:00008232   elimina_clic
+00:00008236 X fin_elimina_clic
+00:00008237   limpia_pantalla
+00:0000823B X fin_limpia_pantalla
+00:0000823C   set_color
+00:0000824E X fin_set_color
+00:0000824F   prepara_pantalla
+00:00008268   carga_pantalla
+00:0000828C X fin_carga_pantalla
+00:0000828D   actualiza_atributos_sprite
+00:000082A7 X fin_actualiza_atributos_sprite
+00:000082A8   volcado_atributos_sprites_a_VRAM
+00:000082B4 X fin_volcado_atributos_sprites_a_VRAM
+00:000082B5   mira_teclado_actualiza_posiciones
+00:000082E1   fin_mira_teclado_actualiza_posiciones
+00:000082E2   arriba
+00:000082F0   arribaderecha
+00:000082FB   M22
+00:0000830A   derecha
+00:00008319   derechaabajo
+00:00008325   M42
+00:00008334   abajo
+00:00008343   abajoizquierda
+00:0000834F   M62
+00:0000835D   izquierda
+00:0000836B   izquierdaarriba
+00:00008376   M82
+00:00000000 X ESTRUCTURA_PUNTOMIRA.posx
+00:00000001 X ESTRUCTURA_PUNTOMIRA.posy
+00:00000002 X ESTRUCTURA_PUNTOMIRA.color
+00:00000003 X ESTRUCTURA_PUNTOMIRA.retardo
+00:00000004 X ESTRUCTURA_PUNTOMIRA
+00:00000000 X ESTRUCTURA_ENEMIGO.tipo
+00:00000001 X ESTRUCTURA_ENEMIGO.posx
+00:00000002 X ESTRUCTURA_ENEMIGO.posy
+00:00000003 X ESTRUCTURA_ENEMIGO.color
+00:00000004 X ESTRUCTURA_ENEMIGO.paso
+00:00000005 X ESTRUCTURA_ENEMIGO.retardo
+00:00000006 X ESTRUCTURA_ENEMIGO
+00:00008384   tiles_patrones_pantalla
+00:00009B84   tiles_color_pantalla
+00:0000B384   tiles_mapa_pantalla
+00:0000B684   sprites_pantantalla
+00:0000B684 X sprite_punto_mira
+00:0000B6A4 X sprite_punto_mira_disp
+00:0000B6C4 X serpiente1
+00:0000B6E4 X serpiente2
+00:0000B704 X punto_mira
+00:0000B704   punto_mira.posx
+00:0000B705   punto_mira.posy
+00:0000B706   punto_mira.color
+00:0000B707 X punto_mira.retardo
+00:0000B708 X enemigo1
+00:0000B708 X enemigo1.tipo
+00:0000B709 X enemigo1.posx
+00:0000B70A X enemigo1.posy
+00:0000B70B X enemigo1.color
+00:0000B70C X enemigo1.paso
+00:0000B70D X enemigo1.retardo
+00:0000B70E   atributos_sprite_pm
+00:0000B710   END
+
+
+ Output: t3.out
+-------------------------------------------------
+
+ Page: 00
+  Org: 00008200  Size: *  Used: 00000000
+
+    No output
+
+ Output: t3.bin
+-------------------------------------------------
+
+ Page: 00
+  Org: 00008200  Size: *  Used: 00003517
+
+   Address   Length Align   Label
+   00008200   13591         START

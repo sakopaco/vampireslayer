@@ -1,0 +1,73 @@
+A= 0001 0011
+     21  UDLR    
+  
+
+rutina:
+---------------------------
+  XOR     A
+  CALL  GTSTCK
+  srl    a
+  
+  or    a
+  jp    z,up
+
+  dec    a
+  jp    z,right
+
+  dec    a
+  jp    z,down
+
+  dec    a
+  jp    z,left
+  ret
+
+
+up:
+right:
+down:
+left:
+  ret
+
+
+
+
+  XOR     A
+  CALL  GTSTCK
+  ;A= 1,3,5,7      001    011    101    111
+  ;          00      01      10      11
+  srl    a
+    call    mueve_segun_direccion
+    
+
+
+;A - rutina pepe numero A
+mueve_segun_direccion:
+    ld      de,tabla_mover_direccion
+    sla     a               ;x2
+    ld      h,0
+    ld      l,a
+    add     hl,de    
+
+    ld      a,(hl)
+    inc     hl
+    ld      h,(hl)
+    ld      l,a
+
+    jp      (hl)
+
+
+tabla_mover_direccion:
+    dw  arriba
+    dw  derecha
+    dw  abajo
+    dw  izquierda
+
+
+
+
+
+arriba:
+derecha:
+abajo:
+izquierda:
+    ret
