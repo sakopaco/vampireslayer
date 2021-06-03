@@ -1,0 +1,102 @@
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.06.03 - 22:14:36]
+
+t4.asm
+Errors: 0
+
+       1   00:0000                      	OUTPUT	"t4.bin"
+       2   00:8200                      	
+       3   00:8200                      ;;=====================================================
+       4   00:8200                      ;;DEFINICIÓN DE CONSTANTES
+       5   00:8200                      ;;=====================================================	
+       6   00:8200                      
+       7   00:8200                      	include "constantes.asm"
+       1.  00:8200                      ;;=====================================================
+       2.  00:8200                      ;; FICHERO constantes.asm
+       3.  00:8200                      ;;=====================================================
+       4.  00:8200                      
+       5.  00:8200                      ;;ETIQUETAS/CONSTANTES BIOS TECLADO
+       6.  00:8200  (00:00D8)           GTTRIG	equ		#00D8	;Returns current trigger status
+       7.  00:8200  (00:00D5)           GTSTCK	equ		#00D5	;Returns the joystick/cursors status
+       8.  00:8200  (00:F3DB)           CLIKSW	equ		#F3DB	;deshabilita el sonido de clic cuando se pulsa una tecla
+       9.  00:8200                      
+      10.  00:8200                      ;;ETIQUETAS/CONSTANTES BIOS VDP
+      11.  00:8200  (00:013E)           RDVDP	equ		#013E	;lee registro status VDP
+      12.  00:8200  (00:0047)           WRTVDP	equ		#0047	;escribe registros del VDP
+      13.  00:8200  (00:005C)           LDIRVM	equ		#005C	;RAM/ROM -> VRAM
+      14.  00:8200  (00:0059)           LDIRMV	equ		#0059	;VRAM -> RAM
+      15.  00:8200  (00:005F)           CHGMOD	equ		#005F	;cambia modo pantalla (screen mode)
+      16.  00:8200  (00:0041)           DISSCR  equ		#0041	;desactiva pantanlla
+      17.  00:8200  (00:0044)           ENASCR  equ		#0044	;activa pantalla
+      18.  00:8200  (00:0062)           CHGCLR  equ		#0062	;cambia color de pantalla (toca A y direcciones)
+      19.  00:8200  (00:F3E9)           FORCLR	equ		#F3E9	;zona memoria color foreground
+      20.  00:8200  (00:F3EA)           BAKCLR  equ		#F3EA	;zona memoria color background
+      21.  00:8200  (00:F3EB)           BDRCLR 	equ		#F3EB	;zona memoria bordercolor
+      22.  00:8200  (00:00C3)           CLS		equ		#00C3	;limpia pantalla (necesita A=0)
+      23.  00:8200                      
+      24.  00:8200                      
+      25.  00:8200  (00:00C0)           BEEP	equ		#00C0	;toca todos los registros
+      26.  00:8200                      
+       8   00:8200                      	
+       9   00:8200                      	include "cabecerabin.asm"
+       1.  00:8200                      ;;=====================================================
+       2.  00:8200                      ;; FICHERO cabecera.asm
+       3.  00:8200                      ;;=====================================================
+       4.  00:8200                      
+       5.  00:8200                      ;;CABECERA FICHERO BIN
+       6.  00:8200  FE                  	DB	#FE
+       7.  00:8201  00 82               	DW	START
+       8.  00:8203  08 82               	DW	END
+       9.  00:8205  00 82               	DW	START
+      10.  00:8207                      
+      11.  00:8207                      ;;INICIO CÓDIGO PROGRAMA	
+      12.  00:8207                      	ORG	#8200
+      13.  00:8200                      	
+      10   00:8200                      	
+      11   00:8200                      START:
+      12   00:8200  06 FA               	LD		 B,250
+      13   00:8202                      loop_principal:
+      14   00:8202  CD C0 00            	CALL	BEEP
+      15   00:8205  10 FB               	DJNZ	loop_principal
+      16   00:8207                      	
+      17   00:8207  C9                  	RET
+      18   00:8208                      END:
+
+    LABELS
+-------------------------------------------------
+00:000000D8 X GTTRIG
+00:000000D5 X GTSTCK
+00:0000F3DB X CLIKSW
+00:0000013E X RDVDP
+00:00000047 X WRTVDP
+00:0000005C X LDIRVM
+00:00000059 X LDIRMV
+00:0000005F X CHGMOD
+00:00000041 X DISSCR
+00:00000044 X ENASCR
+00:00000062 X CHGCLR
+00:0000F3E9 X FORCLR
+00:0000F3EA X BAKCLR
+00:0000F3EB X BDRCLR
+00:000000C3 X CLS
+00:000000C0   BEEP
+00:00008200   START
+00:00008202   loop_principal
+00:00008208   END
+
+
+ Output: t4.out
+-------------------------------------------------
+
+ Page: 00
+  Org: 00008200  Size: *  Used: 00000000
+
+    No output
+
+ Output: t4.bin
+-------------------------------------------------
+
+ Page: 00
+  Org: 00008200  Size: *  Used: 0000000F
+
+   Address   Length Align   Label
+   00008200      15         START
