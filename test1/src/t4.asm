@@ -3,9 +3,11 @@
 ;;=====================================================
 ;;DEFINICIÓN DE CONSTANTES
 ;;=====================================================	
-
 	include "constantes.asm"
-	
+
+;;=====================================================
+;;DEFINICIÓN DE CABECERA DE ARCHIVO BIN
+;;=====================================================		
 	include "cabecerabin.asm"
 	
 START:
@@ -15,4 +17,18 @@ loop_principal:
 	DJNZ	loop_principal
 	
 	RET
+	
+;;=====================================================
+;;DEFINICIÓN DE ESTRUCTURAS
+;;=====================================================		
+	include "estructuras.asm"
+	
+;;=====================================================
+;;DEFINICIÓN DE VARIABLES
+;;=====================================================		
+	include "sprites.asm"
+	
+	include "habitaciones.asm"
+	
+
 END:
