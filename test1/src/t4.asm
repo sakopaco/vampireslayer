@@ -12,26 +12,11 @@
 	
 START:
 	
-		;toca A
-limpia_pantalla:
-	XOR			A
-	CALL 		CLS
-fin_limpia_pantalla:
-	;toca A y direcciones #F3E9/#F3EA/#F3EB
-set_color:
-	LD		 A,2				;verde oscuro
-	LD 		(FORCLR),A
-	LD		 A,1				;negro
-	LD 		(BAKCLR),A
-	LD		 A,1				;negro
-	LD 		(BDRCLR),A
-	CALL	CHGCLR  
-fin_set_color:
+	;inicializa pantalla y entonrno
+	CALL	sub_preparapantalla
 	
-	;cambiamos a SCREEN 2,2 del BASIC
-	;toca A
-	LD		 A,2
-	CALL	CHGMOD			;selecciona screen 2
+	;inicializa variables para parametrizar funciones y que lo que se muestre sea variable (nº vidas, mapa, puertas, pantalla, etc...)
+	
 	
 		;cargamos los patrones
 	LD		HL,tiles_patrones_pantalla
@@ -58,6 +43,12 @@ loop_principal:
 	JP		loop_principal
 	
 	RET
+
+;;=====================================================
+;;DEFINICIÓN DE SUBRUTINAS
+;;=====================================================		
+	include "subrutinas.asm"
+	
 	
 ;;=====================================================
 ;;DEFINICIÓN DE ESTRUCTURAS
@@ -71,12 +62,17 @@ loop_principal:
 	
 	include "habitaciones.asm"
 	
+nivel:		DB		0
+pos_nivel:	DB		0	;como es una matriz de 8x8 (aunque sólo use 7x7) se usa el bytealto para fila y el byte bajo para columna
+vidas:		DB		0
+reliquias:	DB		0
+
+	
 ;;=====================================================
 ;;DEFINICIÓN DE PANTALLAS
 ;;=====================================================		
-tiles_patrones_pantalla:	incbin "pan1_23.til.bank0.bin.chr"
-tiles_color_pantalla:		incbin "pan1_23.til.bank0.bin.clr"
-tiles_mapa_pantalla:		incbin "pan1_23.map.bank0.bin"
+	include "pantallas.asm"
 	
+
 
 END:

@@ -21,6 +21,17 @@ BAKCLR  equ		#F3EA	;zona memoria color background
 BDRCLR 	equ		#F3EB	;zona memoria bordercolor
 CLS		equ		#00C3	;limpia pantalla (necesita A=0)
 
+;;ETIQUETAS/CONSTANTES REGISTROS VDP
+RG0SAV	equ		#F3DF	;Mirror of VDP register 0 (Basic: VDP(0))
+RG1SAV	equ		#F3E0	;Mirror of VDP register 1 (Basic: VDP(1))
+RG2SAV	equ		#F3E1	;Mirror of VDP register 2 (Basic: VDP(2))
+RG3SAV	equ		#F3E2	;Mirror of VDP register 3 (Basic: VDP(3))
+RG4SAV	equ		#F3E3	;Mirror of VDP register 4 (Basic: VDP(4))
+RG5SAV	equ		#F3E4	;Mirror of VDP register 5 (Basic: VDP(5))
+RG6SAV	equ		#F3E5	;Mirror of VDP register 6 (Basic: VDP(6))
+RG7SAV	equ		#F3E6	;Mirror of VDP register 7 (Basic: VDP(7))
+STATFL	equ		#F3E7	;Mirror of VDP(8) status register (S#0)
 
+;; PTRAS LLAMADAS A LA BIOS
 BEEP	equ		#00C0	;toca todos los registros
 
