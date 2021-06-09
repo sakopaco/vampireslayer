@@ -34,8 +34,7 @@
       1111 (vidas 0-8) y 0000 reliquas (0-8)
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1622145631148" ID="ID_810795369" MODIFIED="1622912441371" TEXT="n_reliquias">
 <richcontent TYPE="NOTE"><html>
@@ -53,8 +52,7 @@
       1111 (vidas 0-8) y 0000 reliquas (0-8)
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1622145751512" ID="ID_1911242454" MODIFIED="1622145755171" TEXT="energia"/>
 <node CREATED="1622488180299" ID="ID_1508061501" MODIFIED="1622488182804" TEXT="nivel"/>
@@ -92,8 +90,7 @@
       1 - es pantalla final?
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1622911829423" ID="ID_1886966464" MODIFIED="1622911842112" TEXT="array_nivel1"/>
 <node CREATED="1622911844095" ID="ID_364906659" MODIFIED="1622911846760" TEXT="array_nivel2"/>
 <node CREATED="1622911847673" ID="ID_1975537452" MODIFIED="1622911850650" TEXT="array_nivel3"/>
@@ -113,18 +110,15 @@
       En caso de conseguir matar al jefe hay que salir en un tiempo
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1622912768584" ID="ID_428752042" MODIFIED="1622912771963" TEXT="minutos"/>
 <node CREATED="1622912773210" ID="ID_31313294" MODIFIED="1622912776821" TEXT="segundos"/>
 </node>
 </node>
 <node CREATED="1622145781074" HGAP="19" ID="ID_359756947" MODIFIED="1622487985197" POSITION="right" TEXT="inicializa_pantalla" VSHIFT="-28">
-<node CREATED="1622145894271" ID="ID_1007433247" MODIFIED="1622145907985" TEXT="desactiva_pantalla"/>
-<node CREATED="1622145910407" ID="ID_961971324" MODIFIED="1622145914213" TEXT="screen2,2"/>
 <node CREATED="1622146803620" ID="ID_608256326" MODIFIED="1622146810549" TEXT="limpia_pantalla"/>
 <node CREATED="1622145918561" ID="ID_318152453" MODIFIED="1622145923392" TEXT="colores"/>
-<node CREATED="1622145951856" ID="ID_1790154559" MODIFIED="1622145960072" TEXT="activa_pantalla"/>
+<node CREATED="1622145910407" ID="ID_961971324" MODIFIED="1623262168059" TEXT="screen2,2"/>
 </node>
 <node CREATED="1622488445657" ID="ID_1010346842" MODIFIED="1622488458646" POSITION="right" TEXT="inicializa variables para pruebas">
 <node CREATED="1622488461050" ID="ID_82185990" MODIFIED="1622488464402" TEXT="nivel"/>
@@ -142,9 +136,11 @@
 </node>
 <node CREATED="1622488375255" ID="ID_618587182" MODIFIED="1622488418724" TEXT="examina_matriz_fase_posicion">
 <node CREATED="1622145924766" ID="ID_1593287003" MODIFIED="1622912976735" TEXT="carga_fondo">
+<node CREATED="1623262087949" ID="ID_1655529083" MODIFIED="1623262096223" TEXT="desactiva_pantalla"/>
 <node CREATED="1622146176211" ID="ID_940567344" MODIFIED="1622146198112" TEXT="carga_patrones"/>
 <node CREATED="1622146184890" ID="ID_1057578605" MODIFIED="1622146190423" TEXT="carga_colores"/>
 <node CREATED="1622146201158" ID="ID_811163035" MODIFIED="1622146209176" TEXT="carga_mapa"/>
+<node CREATED="1623262077962" ID="ID_626178406" MODIFIED="1623262084674" TEXT="activa_pantalla"/>
 </node>
 </node>
 </node>
