@@ -7,6 +7,12 @@ posx		DB		0
 posy		DB		0
 color		DB		0
 retardo		DB		0
+; al final he decidido (ya que el punto de mira es el prota) que lo relacionado con el prota vaya en esta estructura
+nivel		DB		0
+pos_nivel	DB		0	;como es una matriz de 8x8 (aunque sólo use 7x7) se usa el bytealto para fila y el byte bajo para columna
+vidas		DB		3
+energia		DB		250
+reliquias	DB		3
 	ENDSTRUCT;ESTRUCTURA_PUNTOMIRA
 	
 	STRUCT ESTRUCTURA_ENEMIGO

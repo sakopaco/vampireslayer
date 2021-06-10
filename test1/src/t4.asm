@@ -16,7 +16,7 @@ START:
 	CALL	sub_preparapantalla
 	
 	;inicializa variables para parametrizar funciones y que lo que se muestre sea variable (nº vidas, mapa, puertas, pantalla, etc...)
-	
+	CALL	inicializa_variables_pruebas
 	
 		;cargamos los patrones
 	LD		HL,tiles_patrones_pantalla
@@ -49,6 +49,30 @@ loop_principal:
 ;;=====================================================		
 	include "subrutinas.asm"
 	
+inicializa_variables_pruebas:
+	LD		 A,3
+	LD		(prota.vidas),A
+
+	LD		 A,3
+	LD		(prota.reliquias),A
+
+	LD		 A,250
+	LD		(prota.energia),A
+
+	XOR		 A
+	LD		(prota.nivel),A
+	
+	LD		 A,#04		;fila 0 columna 4
+	LD		(prota.pos_nivel),A
+
+;	CALL	pinta_vidas
+;	CALL	pinta_reliquias
+;	CALL	pinta_energía
+;	CALL	pinta_pantalla -> CALL pinta_puertas
+	
+fin_inicializa_variables_pruebas:
+	RET
+	
 	
 ;;=====================================================
 ;;DEFINICIÓN DE ESTRUCTURAS
@@ -61,11 +85,9 @@ loop_principal:
 	include "sprites.asm"
 	
 	include "habitaciones.asm"
-	
-nivel:		DB		0
-pos_nivel:	DB		0	;como es una matriz de 8x8 (aunque sólo use 7x7) se usa el bytealto para fila y el byte bajo para columna
-vidas:		DB		0
-reliquias:	DB		0
+;definicion de variable del prota usando la estructura del punto de mira
+prota:		ESTRUCTURA_PUNTOMIRA
+
 
 	
 ;;=====================================================
