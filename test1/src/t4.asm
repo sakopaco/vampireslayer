@@ -19,19 +19,19 @@ START:
 	CALL	inicializa_variables_pruebas
 	
 		;cargamos los patrones
-	LD		HL,tiles_patrones_pantalla
+	LD		HL,tiles_patrones_pantalla11
 	LD		DE,#0000
 	LD		BC,256*8*1
 	CALL	LDIRVM		
 	
 	;cargamos mapa de pantalla
-	LD		HL,tiles_mapa_pantalla
+	LD		HL,tiles_mapa_pantalla11
 	LD		DE,#1800
 	LD		BC,256*1
 	CALL	LDIRVM
 	
 	;cargamos los colores de los patrones
-	LD		HL,tiles_color_pantalla
+	LD		HL,tiles_color_pantalla11
 	LD		DE,#2000
 	LD		BC,256*8*1
 	CALL	LDIRVM

@@ -79,7 +79,13 @@ prota.pos_nivel: equ 0000860Ah
 prota.vidas: equ 0000860Bh
 prota.energia: equ 0000860Ch
 prota.reliquias: equ 0000860Dh
-tiles_patrones_pantalla: equ 0000860Eh
-tiles_color_pantalla: equ 00008E0Eh
-tiles_mapa_pantalla: equ 0000960Eh
-END: equ 0000970Eh
+tiles_patrones_pantalla11: equ 0000860Eh
+tiles_color_pantalla11: equ 00008E0Eh
+tiles_mapa_pantalla11: equ 0000960Eh
+tiles_patrones_pantalla12: equ 0000970Eh
+tiles_color_pantalla12: equ 00009F0Eh
+tiles_mapa_pantalla12: equ 0000A70Eh
+tiles_patrones_pantalla13: equ 0000A80Eh
+tiles_color_pantalla13: equ 0000B00Eh
+tiles_mapa_pantalla13: equ 0000B80Eh
+END: equ 0000B90Eh

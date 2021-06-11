@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.06.10 - 20:57:32]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.06.11 - 19:20:45]
 
 t4.asm
 Errors: 0
@@ -58,7 +58,7 @@ Errors: 0
        5.  00:8200                      ;;CABECERA FICHERO BIN
        6.  00:8200  FE                  	DB	#FE
        7.  00:8201  00 82               	DW	START
-       8.  00:8203  0E 97               	DW	END
+       8.  00:8203  0E B9               	DW	END
        9.  00:8205  00 82               	DW	START
       10.  00:8207                      
       11.  00:8207                      ;;INICIO CÓDIGO PROGRAMA	
@@ -74,19 +74,19 @@ Errors: 0
       19   00:8203  CD 5C 82            	CALL	inicializa_variables_pruebas
       20   00:8206                      	
       21   00:8206                      		;cargamos los patrones
-      22   00:8206  21 0E 86            	LD		HL,tiles_patrones_pantalla
+      22   00:8206  21 0E 86            	LD		HL,tiles_patrones_pantalla11
       23   00:8209  11 00 00            	LD		DE,#0000
       24   00:820C  01 00 08            	LD		BC,256*8*1
       25   00:820F  CD 5C 00            	CALL	LDIRVM		
       26   00:8212                      	
       27   00:8212                      	;cargamos mapa de pantalla
-      28   00:8212  21 0E 96            	LD		HL,tiles_mapa_pantalla
+      28   00:8212  21 0E 96            	LD		HL,tiles_mapa_pantalla11
       29   00:8215  11 00 18            	LD		DE,#1800
       30   00:8218  01 00 01            	LD		BC,256*1
       31   00:821B  CD 5C 00            	CALL	LDIRVM
       32   00:821E                      	
       33   00:821E                      	;cargamos los colores de los patrones
-      34   00:821E  21 0E 8E            	LD		HL,tiles_color_pantalla
+      34   00:821E  21 0E 8E            	LD		HL,tiles_color_pantalla11
       35   00:8221  11 00 20            	LD		DE,#2000
       36   00:8224  01 00 08            	LD		BC,256*8*1
       37   00:8227  CD 5C 00            	CALL	LDIRVM
@@ -406,13 +406,23 @@ Errors: 0
        1.  00:860E                      ;;=====================================================
        2.  00:860E                      ;;DEFINICIÓN DE PANTALLAS
        3.  00:860E                      ;;=====================================================		
-       4.  00:860E  (0800)              tiles_patrones_pantalla:	incbin "pan1_23.til.bank0.bin.chr"
-       5.  00:8E0E  (0800)              tiles_color_pantalla:		incbin "pan1_23.til.bank0.bin.clr"
-       6.  00:960E  (0100)              tiles_mapa_pantalla:		incbin "pan1_23.map.bank0.bin"
-      97   00:970E                      	
-      98   00:970E                      
-      99   00:970E                      
-     100   00:970E                      END:
+       4.  00:860E                      
+       5.  00:860E                      ; bancos 1 y de pantalla 1 (en realidad es una pantalla de pruebas)
+       6.  00:860E  (0800)              tiles_patrones_pantalla11:	incbin "pan1_23.bank0.bin.chr"
+       7.  00:8E0E  (0800)              tiles_color_pantalla11:		incbin "pan1_23.bank0.bin.clr"
+       8.  00:960E  (0100)              tiles_mapa_pantalla11:		incbin "pan1_23.bank0.bin.map"
+       9.  00:970E  (0800)              tiles_patrones_pantalla12:	incbin "pan1_23.bank1.bin.chr"
+      10.  00:9F0E  (0800)              tiles_color_pantalla12:		incbin "pan1_23.bank1.bin.clr"
+      11.  00:A70E  (0100)              tiles_mapa_pantalla12:		incbin "pan1_23.bank1.bin.map"
+      12.  00:A80E                      
+      13.  00:A80E                      ; 3º banco que es la parte de puntos, vidas, mapas, etc... es común
+      14.  00:A80E  (0800)              tiles_patrones_pantalla13:	incbin "pan_33.bin.chr"
+      15.  00:B00E  (0800)              tiles_color_pantalla13:		incbin "pan_33.bin.clr"
+      16.  00:B80E  (0100)              tiles_mapa_pantalla13:		incbin "pan_33.bin.map"
+      97   00:B90E                      	
+      98   00:B90E                      
+      99   00:B90E                      
+     100   00:B90E                      END:
 
     LABELS
 -------------------------------------------------
@@ -497,10 +507,16 @@ Errors: 0
 00:0000860B   prota.vidas
 00:0000860C   prota.energia
 00:0000860D   prota.reliquias
-00:0000860E   tiles_patrones_pantalla
-00:00008E0E   tiles_color_pantalla
-00:0000960E   tiles_mapa_pantalla
-00:0000970E   END
+00:0000860E   tiles_patrones_pantalla11
+00:00008E0E   tiles_color_pantalla11
+00:0000960E   tiles_mapa_pantalla11
+00:0000970E X tiles_patrones_pantalla12
+00:00009F0E X tiles_color_pantalla12
+00:0000A70E X tiles_mapa_pantalla12
+00:0000A80E X tiles_patrones_pantalla13
+00:0000B00E X tiles_color_pantalla13
+00:0000B80E X tiles_mapa_pantalla13
+00:0000B90E   END
 
 
  Output: t4.out
@@ -515,7 +531,7 @@ Errors: 0
 -------------------------------------------------
 
  Page: 00
-  Org: 00008200  Size: *  Used: 00001515
+  Org: 00008200  Size: *  Used: 00003715
 
    Address   Length Align   Label
-   00008200    5397         START
+   00008200   14101         START
