@@ -1,0 +1,14 @@
+
+
+pinta_parte_superior_pantalla:
+-> elegir qué imagen de nivel mostrar
+-> actualizar puertas
+
+pinta_parte_inferior_pantalla:
+-> actualiza_vidas
+-> actualiza_energia
+-> actualiza_reliquias
+-> actualiza_nivel
+-> actualiza_tiempo
+-> actualiza_mapa
+-> actualiza_posición

@@ -11,6 +11,6 @@ tiles_color_pantalla12:		incbin "pan1_23.bank1.bin.clr"
 tiles_mapa_pantalla12:		incbin "pan1_23.bank1.bin.map"
 
 ; 3º banco que es la parte de puntos, vidas, mapas, etc... es común
-tiles_patrones_pantalla13:	incbin "pan_33.bin.chr"
-tiles_color_pantalla13:		incbin "pan_33.bin.clr"
-tiles_mapa_pantalla13:		incbin "pan_33.bin.map"
+tiles_patrones_pantalla3:	incbin "pan_33.bin.chr"
+tiles_color_pantalla3:		incbin "pan_33.bin.clr"
+tiles_mapa_pantalla3:		incbin "pan_33.bin.map"

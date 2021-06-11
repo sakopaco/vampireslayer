@@ -18,23 +18,8 @@ START:
 	;inicializa variables para parametrizar funciones y que lo que se muestre sea variable (nº vidas, mapa, puertas, pantalla, etc...)
 	CALL	inicializa_variables_pruebas
 	
-		;cargamos los patrones
-	LD		HL,tiles_patrones_pantalla11
-	LD		DE,#0000
-	LD		BC,256*8*1
-	CALL	LDIRVM		
-	
-	;cargamos mapa de pantalla
-	LD		HL,tiles_mapa_pantalla11
-	LD		DE,#1800
-	LD		BC,256*1
-	CALL	LDIRVM
-	
-	;cargamos los colores de los patrones
-	LD		HL,tiles_color_pantalla11
-	LD		DE,#2000
-	LD		BC,256*8*1
-	CALL	LDIRVM
+	;pinta la pantalla (la primera o algunas especiales se pintan completamente)
+	CALL	pinta_pantalla_completa
 	
 loop_principal:
 	
@@ -46,11 +31,11 @@ loop_principal:
 
 ;;=====================================================
 ;;DEFINICIÓN DE SUBRUTINAS
-;;=====================================================		
+;;=====================================================
 	include "subrutinas.asm"
 	
 inicializa_variables_pruebas:
-	LD		 A,3
+	LD		 A,2			;hay vida cero y se pinta como una vida para facilitar cálculos
 	LD		(prota.vidas),A
 
 	LD		 A,3
@@ -62,7 +47,7 @@ inicializa_variables_pruebas:
 	XOR		 A
 	LD		(prota.nivel),A
 	
-	LD		 A,#04		;fila 0 columna 4
+	LD		 A,#04			;fila 0 columna 4
 	LD		(prota.pos_nivel),A
 
 ;	CALL	pinta_vidas
@@ -72,6 +57,16 @@ inicializa_variables_pruebas:
 	
 fin_inicializa_variables_pruebas:
 	RET
+
+;;=====================================================
+;;PINTA_VIDAS
+;;=====================================================	
+pinta_vidas:
+	
+fin_pinta_vidas:
+	RET
+	
+	
 	
 	
 ;;=====================================================
@@ -85,16 +80,14 @@ fin_inicializa_variables_pruebas:
 	include "sprites.asm"
 	
 	include "habitaciones.asm"
+; pasar a fichero aparte
 ;definicion de variable del prota usando la estructura del punto de mira
 prota:		ESTRUCTURA_PUNTOMIRA
 
 
-	
 ;;=====================================================
 ;;DEFINICIÓN DE PANTALLAS
 ;;=====================================================		
 	include "pantallas.asm"
 	
-
-
 END:
