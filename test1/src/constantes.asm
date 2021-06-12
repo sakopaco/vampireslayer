@@ -32,6 +32,13 @@ RG6SAV	equ		#F3E5	;Mirror of VDP register 6 (Basic: VDP(6))
 RG7SAV	equ		#F3E6	;Mirror of VDP register 7 (Basic: VDP(7))
 STATFL	equ		#F3E7	;Mirror of VDP(8) status register (S#0)
 
-;; PTRAS LLAMADAS A LA BIOS
+;;ETIQUETAS DE ZONAS DE MEMORIA DE LA VPD (MSX1)
+SC2MAP	equ		#1800
+
+;; OTRAS LLAMADAS A LA BIOS
 BEEP	equ		#00C0	;toca todos los registros
+
+;;ETIQUETAS PARA DAR MÁS CLARIDAD AL CODIGO
+SI		equ		#0001
+NO		equ		#0000
 
