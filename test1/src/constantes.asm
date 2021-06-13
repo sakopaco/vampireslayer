@@ -48,3 +48,5 @@ NMAXVIDREL	equ		#0008	;el número máximo de vidas y de reliquias es de 8
 ;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (relacionadas con posiciones en mapa vdp)
 POSCARAMAP	equ		#000D
 POSVIDAS	equ		#0248
+POSRELIMAP	equ		#0011
+POSRELIQ	equ		#02C8

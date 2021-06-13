@@ -24,6 +24,7 @@ START:
 	;funciones que modificarian el marcador si se produce un evento cuando toque y cuando se pinta la pantalla ya se mira
 	; una variable para ver si el array hay que actualizarlo en pantalla o no
 	CALL	actualiza_marcador_vidas
+	CALL	actualiza_marcador_reliquias
 	
 	
 loop_principal:
@@ -33,8 +34,14 @@ mira_pinta_vidas:
 	OR		 A
 	JR		 Z,fin_mira_pinta_vidas
 	CALL	pinta_vidas
-fin_mira_pinta_vidas:		
-	
+fin_mira_pinta_vidas:	
+
+mira_pinta_reliquias:
+	LD		 A,(actualiza_reliquias_sn)
+	OR		 A
+	JR		 Z,fin_mira_pinta_reliquias
+	CALL	pinta_reliquias
+fin_mira_pinta_reliquias:
 	
 	NOP
 		
@@ -54,8 +61,11 @@ inicializa_variables_pruebas:
 	LD		 A,SI	
 	LD		(actualiza_vidas_sn),A	;actualizo la variable para que pinte vidas 1 sí / 0 no
 
-	LD		 A,3
+	LD		 A,4
 	LD		(prota.reliquias),A
+	
+	LD		 A,SI	
+	LD		(actualiza_reliquias_sn),A	;actualizo la variable para que pinte vidas 1 sí / 0 no
 
 	LD		 A,250
 	LD		(prota.energia),A
@@ -74,54 +84,6 @@ inicializa_variables_pruebas:
 fin_inicializa_variables_pruebas:
 	RET
 
-;;=====================================================
-;;ACTUALIZA_MARCADOR_VIDAS
-;;=====================================================	
-; función: 	pinta la parte inferior del escenario que es común
-; entrada: 	prota.vidas
-; salida: 	array_aux_vidas
-; toca:		A,B,HL
-actualiza_marcador_vidas:
-	;para no andar restando pongo todos los huecos a negro y luego en otro bucle las caras
-	;1-pinto todo en blanco
-	LD		HL,array_aux_vidas
-	LD		 B,NMAXVIDREL
-loop_marcador_caras_negro:	;asignar espacios en negro
-	LD		(HL),0			;0 posición mapa tiles para nada (es transparente pero el fondo es negro)
-	INC		HL
-	DJNZ	loop_marcador_caras_negro
-fin_loop_marcador_caras_negro:
-	;2-pinto las caras según el n de vidas
-	LD		HL,array_aux_vidas
-	LD		 A,(prota.vidas)
-	LD		 B,A
-loop_marcador_caras: ;asignar caras
-	LD		(HL),POSCARAMAP	;13 posición mapa tiles para cara
-	INC		HL
-	DJNZ	loop_marcador_caras
-fin_loop_marcador_caras:
-fin_actualiza_marcador_vidas:
-	RET
-
-
-;;=====================================================
-;;PINTA_VIDAS
-;;=====================================================	
-; función: 	actualiza el mapa de tiles para queen el próximo refresco se pinten y actualiza_vidas_sn a 0
-; entrada: 	array_aux_vidas
-; salida: 	actualiza_vidas_sn
-; toca:		B,HL
-pinta_vidas:
-	LD		HL,array_aux_vidas
-	LD		DE,SC2MAP + POSVIDAS 	;inicio posición en en mapa de tiles de las vidas
-	LD		BC,NMAXVIDREL			;hay 8 posiciones para vidas o espacios en negro si no tiene 8 vidas
-	CALL	LDIRVM
-	
-	;una vez quer está pintada ya no se actualizará a menos que perdamos/ganemos una vida
-	XOR		 A
-	LD		(actualiza_vidas_sn),A
-fin_pinta_vidas:
-	RET
 	
 	
 ;;=====================================================
@@ -135,23 +97,14 @@ fin_pinta_vidas:
 	include "sprites.asm"
 	
 	include "habitaciones.asm"
+	
+	include "variables.asm"
+	
 ; pasar a fichero aparte
 ;definicion de variable del prota usando la estructura del punto de mira
 prota:		ESTRUCTURA_PUNTOMIRA
 
-array_aux_vidas: 		;array para pintar de golpe el marcador de vidas
-			DB		POSCARAMAP,POSCARAMAP,POSCARAMAP,POSCARAMAP,POSCARAMAP,POSCARAMAP,POSCARAMAP,POSCARAMAP
-fin_array_aux_vidas:
-actualiza_vidas_sn:
-			DB		0 ;valor que indica si hay que actualizar el marcador de vidas 1 ó no 0
-fin_actualiza_vidas_sn:
 
-array_aux_reliquias: 		;array para pintar de golpe el marcador de reliquias
-			DB		#0E,#0E,#00,#00,#00,#00,#00,#00 
-fin_array_aux_reliquias:
-actualiza_reliquias_sn:
-			DB		0 ;valor que indica si hay que actualizar el marcador de reliquias 1 ó no 0
-fin_actualiza_reliquias_sn:
 
 array_aux_energia:	;array para pintar de golpe el marcador de energía
 			DB		#00,#00,#00,#00,#00,#00,#00,#00 
