@@ -21,10 +21,23 @@ START:
 	;pinta la pantalla (la primera o algunas especiales se pintan completamente)
 	CALL	pinta_pantalla_completa
 	
+	;funciones que modificarian el marcador si se produce un evento cuando toque y cuando se pinta la pantalla ya se mira
+	; una variable para ver si el array hay que actualizarlo en pantalla o no
+	CALL	actualiza_marcador_vidas
+	
+	
 loop_principal:
 	HALT							;espera VBLANK y sincroniza
+mira_pinta_vidas:
+	LD		 A,(actualiza_vidas_sn)
+	OR		 A
+	JR		 Z,fin_mira_pinta_vidas
+	CALL	pinta_vidas
+fin_mira_pinta_vidas:		
 	
 	
+	NOP
+		
 	JP		loop_principal
 	
 	RET
@@ -69,24 +82,24 @@ fin_inicializa_variables_pruebas:
 ; salida: 	array_aux_vidas
 ; toca:		A,B,HL
 actualiza_marcador_vidas:
+	;para no andar restando pongo todos los huecos a negro y luego en otro bucle las caras
+	;1-pinto todo en blanco
+	LD		HL,array_aux_vidas
+	LD		 B,NMAXVIDREL
+loop_marcador_caras_negro:	;asignar espacios en negro
+	LD		(HL),0			;0 posición mapa tiles para nada (es transparente pero el fondo es negro)
+	INC		HL
+	DJNZ	loop_marcador_caras_negro
+fin_loop_marcador_caras_negro:
+	;2-pinto las caras según el n de vidas
 	LD		HL,array_aux_vidas
 	LD		 A,(prota.vidas)
 	LD		 B,A
 loop_marcador_caras: ;asignar caras
-	LD		(HL),13			;13 posición mapa tiles para cara
+	LD		(HL),POSCARAMAP	;13 posición mapa tiles para cara
 	INC		HL
 	DJNZ	loop_marcador_caras
 fin_loop_marcador_caras:
-
-	LD		 B,A
-	SUB		 A,8
-	LD		 B,A	
-loop_marcador_caras_negro:	;asignar espacios en negro
-	LD		(HL),0			;0 posición mapa tiles para nada (es transparente pero el fondo es negro)
-	INC		HL
-	DJNZ	loop_marcador_caras
-fin_loop_marcador_caras_negro:
-
 fin_actualiza_marcador_vidas:
 	RET
 
@@ -100,8 +113,8 @@ fin_actualiza_marcador_vidas:
 ; toca:		B,HL
 pinta_vidas:
 	LD		HL,array_aux_vidas
-	LD		DE,SC2MAP + #0249;
-	LD		BC,8	;hay 8 posiciones para vidas o espacios en negro si no tiene 8 vidas
+	LD		DE,SC2MAP + POSVIDAS 	;inicio posición en en mapa de tiles de las vidas
+	LD		BC,NMAXVIDREL			;hay 8 posiciones para vidas o espacios en negro si no tiene 8 vidas
 	CALL	LDIRVM
 	
 	;una vez quer está pintada ya no se actualizará a menos que perdamos/ganemos una vida
@@ -127,21 +140,21 @@ fin_pinta_vidas:
 prota:		ESTRUCTURA_PUNTOMIRA
 
 array_aux_vidas: 		;array para pintar de golpe el marcador de vidas
-			DB		#00,#00,#00,#00,#00,#00,#00,#00 ;
+			DB		POSCARAMAP,POSCARAMAP,POSCARAMAP,POSCARAMAP,POSCARAMAP,POSCARAMAP,POSCARAMAP,POSCARAMAP
 fin_array_aux_vidas:
 actualiza_vidas_sn:
 			DB		0 ;valor que indica si hay que actualizar el marcador de vidas 1 ó no 0
 fin_actualiza_vidas_sn:
 
 array_aux_reliquias: 		;array para pintar de golpe el marcador de reliquias
-			DB		#00,#00,#00,#00,#00,#00,#00,#00 ;
+			DB		#0E,#0E,#00,#00,#00,#00,#00,#00 
 fin_array_aux_reliquias:
 actualiza_reliquias_sn:
 			DB		0 ;valor que indica si hay que actualizar el marcador de reliquias 1 ó no 0
 fin_actualiza_reliquias_sn:
 
 array_aux_energia:	;array para pintar de golpe el marcador de energía
-			DB		#00,#00,#00,#00,#00,#00,#00,#00 ;
+			DB		#00,#00,#00,#00,#00,#00,#00,#00 
 fin_array_aux_energia:
 ;(no sé si es útil) actualiza_vidas_sn:
 ;			DB		0 ;valor que indica si hay que actualizar el marcador de energía 1 ó no 0

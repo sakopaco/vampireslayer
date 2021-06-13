@@ -142,10 +142,7 @@ pinta_parte_inferior_pantalla:
 	LD		BC,256*8*1
 	CALL	LDIRVM
 	
-	LD		 A,(actualiza_vidas_sn)
-	JR		 Z,fin_mira_pinta_vidas
-	CALL	actualiza_marcador_vidas
-fin_mira_pinta_vidas:
+
 
 	;CALL	actualiza_vidas
 	;CALL	actualiza_energia
