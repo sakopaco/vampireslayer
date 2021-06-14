@@ -193,8 +193,8 @@ fin_actualiza_marcador_vidas:
 ; toca:		B,HL
 pinta_vidas:
 	LD		HL,array_aux_vidas
-	LD		DE,SC2MAP + POSVIDAS 	;inicio posición en en mapa de tiles de las vidas
-	LD		BC,NMAXVIDREL			;hay 8 posiciones para vidas o espacios en negro si no tiene 8 vidas
+	LD		DE,SC2MAP + POSVIDAS 	;inicio posición en el mapa de tiles de las vidas
+	LD		BC,NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
 	CALL	LDIRVM
 	
 	;una vez quer está pintada ya no se actualizará a menos que perdamos/ganemos una vida
@@ -205,53 +205,28 @@ fin_pinta_vidas:
 	
 
 
-;;=====================================================
-;;ACTUALIZA_MARCADOR_RELIQUIAS
-;;=====================================================	
-; función: 	actualiza buffer de reliquias
-; entrada: 	prota.reliquias
-; salida: 	array_aux_reliquias
-; toca:		A,B,HL
-actualiza_marcador_reliquias:
-	;para no andar restando pongo todos los huecos a negro y luego en otro bucle las reliquias
-	;1-pinto todo en blanco
-	LD		HL,array_aux_reliquias
-	LD		 B,NMAXVIDREL
-loop_marcador_reliquias_negro:	;asignar espacios en negro
-	LD		(HL),0			;0 posición mapa tiles para nada (es transparente pero el fondo es negro)
-	INC		HL
-	DJNZ	loop_marcador_reliquias_negro
-fin_loop_marcador_reliquias_negro:
-	;2-pinto las cruces según el n de reliquias
-	LD		HL,array_aux_reliquias
-	LD		 A,(prota.reliquias)
-	LD		 B,A
-loop_marcador_reliquias: ;asignar reliquias
-	LD		(HL),POSRELIMAP	;17 posición mapa tiles para reliquia
-	INC		HL
-	DJNZ	loop_marcador_reliquias
-fin_loop_marcador_reliquias:
-fin_actualiza_marcador_reliquias:
-	RET
 
-
+	
 ;;=====================================================
-;;PINTA_RELIQUIAS
+;;PINTA_NIVEL
 ;;=====================================================	
-; función: 	actualiza el mapa de tiles para que en el próximo refresco se pinten y actualiza_reliquias
-; entrada: 	array_aux_reliquias
-; salida: 	actualiza_reliquias_sn
-; toca:		B,HL
-pinta_reliquias:
-	LD		HL,array_aux_reliquias
-	LD		DE,SC2MAP + POSRELIQ 	;inicio posición en en mapa de tiles de las vidas
-	LD		BC,NMAXVIDREL			;hay 8 posiciones para vidas o espacios en negro si no tiene 8 vidas
+; función: 	actualiza el nivel en la parte de puntuación
+; entrada: 	prota.nivel
+; salida: 	-
+; toca:		HL,DE,BC
+pinta_nivel:	
+	LD		  A,(prota.nivel)
+	ADD		 '0'					;posición base ascii de 0 que coincide con la pos de 0 en el banco 3 de los tiles
+
+	LD		(HL),A	
+	LD		DE,SC2MAP + POSNIVEL	;posición en el mapa del tile del nivel
+	LD		BC,1
 	CALL	LDIRVM
 	
-	;una vez quer está pintada ya no se actualizará a menos que perdamos/ganemos una vida
-	XOR		 A
-	LD		(actualiza_reliquias_sn),A
-fin_pinta_reliquias:
-	RET
 	
+	;modificar para no llamar a la bios
+	
+fin_pinta_nivel:
+	RET
+
 	

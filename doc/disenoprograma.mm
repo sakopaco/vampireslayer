@@ -9,7 +9,19 @@
 </node>
 <node CREATED="1622145520900" ID="ID_367554799" MODIFIED="1622145530277" POSITION="left" TEXT="Estructuras">
 <node CREATED="1622283276642" ID="ID_1662225890" MODIFIED="1622283285530" TEXT="punto_mira">
-<node CREATED="1622488180299" HGAP="29" ID="ID_1508061501" MODIFIED="1623351141476" TEXT="nivel" VSHIFT="13"/>
+<node CREATED="1622488180299" HGAP="29" ID="ID_1508061501" MODIFIED="1623688154681" TEXT="nivel" VSHIFT="13">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      empieza en 0 para usar las posiciones del mapa
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
 <node CREATED="1622145751512" ID="ID_1911242454" MODIFIED="1622145755171" TEXT="energia"/>
 <node CREATED="1622145746998" ID="ID_537221061" MODIFIED="1623434939166" TEXT="n_vidas">
 <richcontent TYPE="NOTE"><html>
@@ -33,8 +45,7 @@
       importante: las vidas van de 0 a 7 =&gt; 8 vidas (y se pinta en pantalla la vida 0)
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1622145631148" ID="ID_810795369" MODIFIED="1623434891691" TEXT="n_reliquias">
 <richcontent TYPE="NOTE"><html>
@@ -52,8 +63,7 @@
       1111 (vidas 0-8) y 0000 reliquas (0-8)
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 <node CREATED="1622283302264" ID="ID_1754584915" MODIFIED="1622283305694" TEXT="enemigo"/>
