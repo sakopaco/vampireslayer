@@ -5,9 +5,7 @@ pinta_parte_superior_pantalla:
 -> actualizar puertas
 
 pinta_parte_inferior_pantalla:
--> actualiza_energia
--> actualiza_reliquias
--> actualiza_nivel
+-> actualiza_nivel <-- modificar para no usar bios
 -> actualiza_tiempo
 -> actualiza_mapa
 -> actualiza_posición
