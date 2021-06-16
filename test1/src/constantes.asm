@@ -32,6 +32,9 @@ RG6SAV		equ		#F3E5	;Mirror of VDP register 6 (Basic: VDP(6))
 RG7SAV		equ		#F3E6	;Mirror of VDP register 7 (Basic: VDP(7))
 STATFL		equ		#F3E7	;Mirror of VDP(8) status register (S#0)
 
+REGEST		equ		#0099	;registro de estado para escribir directamente en VRAM
+REGESCVDP	equ		#0098	;registro donde escribir valor para VRAM
+
 ;;ETIQUETAS DE ZONAS DE MEMORIA DE LA VPD (MSX1)
 SC2MAP		equ		#1800
 
