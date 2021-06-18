@@ -78,12 +78,44 @@ inicializa_variables_pruebas:
 	LD		 A,#04			;fila 0 columna 4
 	LD		(prota.pos_nivel),A
 
-;	CALL	pinta_vidas
-;	CALL	pinta_reliquias
 ;	CALL	pinta_energía
 ;	CALL	pinta_pantalla -> CALL pinta_puertas
 	
 fin_inicializa_variables_pruebas:
+	RET
+
+
+
+
+;;=====================================================
+;;PINTA ENERGIA
+;;=====================================================	
+; función: 	actualiza el nivel de energia en la parte de puntuación
+; nota:		el cuadrado más bajo de ejergía siempre estará pintado... se obviará
+; entrada: 	prota.energia, array_aux_energia
+; salida: 	-
+; toca:		HL,DE,BC
+pinta_energia:
+	PUSH	HL						;por si acaso guardo el contenido de HL (si veo que no es necesario guardarlo lo quito)
+	LD		 A,(prota.energia)
+	LD		 B,A
+	
+	LD		HL,ultimo_pos_array_aux_energia	;coloco puntero en array e iré incrementando
+
+pinta_ener:	
+pinta_ener_8:
+	AND		11110000b
+	CP		11110000b
+	JR		NZ,pinta_ener_8_no	
+pinta_ener_8_si:
+	LD		(HL),14					;tile banco 3 color verde
+	JR		pinta_ener_7
+pinta_ener_8_no:
+
+
+fin_pinta_ener:	
+	POP		HL
+fin_pinta_energia:
 	RET
 
 
