@@ -9,3 +9,325 @@ pinta_parte_inferior_pantalla:
 -> actualiza_tiempo
 -> actualiza_mapa
 -> actualiza_posición
+
+
+EX	1 ciclo
+push/pop 2 ciclos
+
+set 2 ciclos
+add 1 ciclo
+
+
+
+https://wikiti.brandonw.net/index.php?title=Z80_Instruction_Set
+Reference
+Instruction:A 	Opcode 	Time 	S 	Z 	X 	H 	Y 	P 	N 	C 	Effect
+adc a,R 	10001rrr 	4 	+ 	+ 	+ 	+ 	+ 	V 	0 	+ 	a += R + cf
+adc a,J 	11i11101 1000110b 	8 	+ 	+ 	+ 	+ 	+ 	V 	0 	+ 	a += J + cf
+adc a,N 	11001110 nnnnnnnn 	7 	+ 	+ 	+ 	+ 	+ 	V 	0 	+ 	a += N + cf
+adc a,(hl) 	10001110 	7 	+ 	+ 	+ 	+ 	+ 	V 	0 	+ 	a += (hl) + cf
+adc a,(I+D) 	11i11101 10001110 dddddddd 	19 	+ 	+ 	+ 	+ 	+ 	V 	0 	+ 	a += (I+D) + cf
+adc hl,Q 	11101101 01qq1010 	15 	+ 	+ 	+ 	+ 	+ 	V 	0 	+ 	hl += Q + cf
+add a,R 	10000rrr 	4 	+ 	+ 	+ 	+ 	+ 	V 	0 	+ 	a += R
+add a,J 	11i11101 1000010b 	8 	+ 	+ 	+ 	+ 	+ 	V 	0 	+ 	a += J
+add a,N 	11000110 nnnnnnnn 	7 	+ 	+ 	+ 	+ 	+ 	V 	0 	+ 	a += N
+add a,(hl) 	10000110 	7 	+ 	+ 	+ 	+ 	+ 	V 	0 	+ 	a += (hl)
+add a,(I+D) 	11i11101 10000110 dddddddd 	19 	+ 	+ 	+ 	+ 	+ 	V 	0 	+ 	a += (I+D)
+add hl,Q 	00qq1001 	11 	- 	- 	+ 	+ 	+ 	- 	0 	+ 	hl += Q
+add I,Q 	11i11101 00qq1001 	15 	- 	- 	+ 	+ 	+ 	- 	0 	+ 	I += Q
+and R 	10100rrr 	4 	+ 	+ 	+ 	1 	+ 	P 	0 	0 	a := a AND R
+and J 	11i11101 1010010b 	8 	+ 	+ 	+ 	1 	+ 	P 	0 	0 	a := a AND J
+and N 	11100110 nnnnnnnn 	7 	+ 	+ 	+ 	1 	+ 	P 	0 	0 	a := a AND N
+and (hl) 	10100110 	7 	+ 	+ 	+ 	1 	+ 	P 	0 	0 	a := a AND (hl)
+and (I+D) 	11i11101 10100110 dddddddd 	19 	+ 	+ 	+ 	1 	+ 	P 	0 	0 	a := a AND (I+D)
+Instruction:B 	Opcode 	Time 	S 	Z 	X 	H 	Y 	P 	N 	C 	Effect
+bit B,R 	11001011 01bbbrrr 	8 	+ 	+ 	+ 	1 	+ 	P 	0 	- 	tmp := R AND [1 << B]
+bit B,(hl) 	11001011 01bbb110 	12 	+ 	+ 	X 	1 	X 	P 	0 	- 	tmp := (hl) AND [1 << B],
+xf := memptr.13, yf := memptr.11
+bit B,(I+D) 	11i11101 11001011 dddddddd 01bbb*** 	20 	+ 	+ 	X 	1 	X 	P 	0 	- 	tmp := (I+D) AND [1 << B],
+xf := [I+D].13, yf := [I+D].11
+Instruction:C 	Opcode 	Time 	S 	Z 	X 	H 	Y 	P 	N 	C 	Effect
+call A 	11001101 alalalal ahahahah 	17 	- 	- 	- 	- 	- 	- 	- 	- 	sp -= 2, (sp) := pc, pc := A
+call C,A 	11ccc100 alalalal ahahahah 	17/10 	- 	- 	- 	- 	- 	- 	- 	- 	if C then sp -= 2, (sp) := pc, pc := A
+ccf 	00111111 	4 	- 	- 	A 	X 	A 	- 	0 	X 	hf := cf, cf := ~cf
+cp R 	10111rrr 	4 	+ 	+ 	X 	+ 	X 	V 	1 	+ 	tmp := a - R, xf := R.5, yf = R.3
+cp J 	11i11101 1011110b 	8 	+ 	+ 	X 	+ 	X 	V 	1 	+ 	tmp := a - J, xf := J.5, yf = J.3
+cp N 	11111110 nnnnnnnn 	7 	+ 	+ 	X 	+ 	X 	V 	1 	+ 	tmp := a - N, xf := N.5, yf = N.3
+cp (hl) 	10111110 	7 	+ 	+ 	X 	+ 	X 	V 	1 	+ 	tmp := a - (hl), xf := (hl).5, yf = (hl).3
+cp (I+D) 	11i11101 10111110 dddddddd 	19 	+ 	+ 	X 	+ 	X 	V 	1 	+ 	tmp := a - (I+D), xf := (I+D).5, yf = (I+D).3
+cpd 	11101101 10101001 	16 	+ 	+ 	X 	+ 	X 	C 	1 	- 	tmp := a - (hl) => flags, bc -= 1, hl -= 1,
+xf := [tmp - hf].1, yf = [tmp - hf].3
+cpdr 	11101101 10111001 	21/16 	+ 	+ 	X 	+ 	X 	C 	1 	- 	cpd, if bc <> 0 and nz then pc -= 2
+cpi 	11101101 10100001 	16 	+ 	+ 	X 	+ 	X 	C 	1 	- 	tmp := a - (hl) => flags, bc -= 1, hl += 1,
+xf := [tmp - hf].1, yf = [tmp - hf].3
+cpir 	11101101 10110001 	21/16 	+ 	+ 	X 	+ 	X 	C 	1 	- 	cpi, if bc <> 0 and nz then pc -= 2
+cpl 	00101111 	4 	- 	- 	+ 	1 	+ 	- 	1 	- 	a := ~a
+Instruction:D 	Opcode 	Time 	S 	Z 	X 	H 	Y 	P 	N 	C 	Effect
+daa 	00100111 	4 	+ 	+ 	+ 	X 	+ 	P 	- 	X 	tmp := a,
+if nf then
+ if hf or [a AND 0x0f > 9] then tmp -= 0x06
+ if cf or [a > 0x99] then tmp -= 0x60
+else
+ if hf or [a AND 0x0f > 9] then tmp += 0x06
+ if cf or [a > 0x99] then tmp += 0x60
+endif,
+tmp => flags, cf := cf OR [a > 0x99],
+hf := a.4 XOR tmp.4, a := tmp
+dec R 	00rrr101 	4 	+ 	+ 	+ 	+ 	+ 	V 	1 	- 	R -= 1
+dec J 	11i11101 0010b101 	8 	+ 	+ 	+ 	+ 	+ 	V 	1 	- 	J -= 1
+dec (hl) 	00110101 	11 	+ 	+ 	+ 	+ 	+ 	V 	1 	- 	(hl) -= 1
+dec (I+D) 	11i11101 00110101 dddddddd 	19 	+ 	+ 	+ 	+ 	+ 	V 	1 	- 	(I+D) -= 1
+dec Q 	00qq1011 	6 	- 	- 	- 	- 	- 	- 	- 	- 	Q -= 1
+dec I 	11i11101 00101011 	10 	- 	- 	- 	- 	- 	- 	- 	- 	I -= 1
+di 	11110011 	4 	- 	- 	- 	- 	- 	- 	- 	- 	iff1 := 0, iff2 := 0
+djnz E 	00010000 dddddddd 	13/8 	- 	- 	- 	- 	- 	- 	- 	- 	b -= 1, if b <> 0 then pc := E
+Instruction:E 	Opcode 	Time 	S 	Z 	X 	H 	Y 	P 	N 	C 	Effect
+ei 	11111011 	4 	- 	- 	- 	- 	- 	- 	- 	- 	iff1 := 1, iff2 := 1 after the next instruction
+ex (sp),hl 	11100011 	19 	- 	- 	- 	- 	- 	- 	- 	- 	(sp) <=> hl
+ex (sp),I 	11i11101 11100011 	23 	- 	- 	- 	- 	- 	- 	- 	- 	(sp) <=> I
+ex af,af' 	00001000 	4 	X 	X 	X 	X 	X 	X 	X 	X 	af <=> af'
+ex de,hl 	11101011 	4 	- 	- 	- 	- 	- 	- 	- 	- 	de <=> hl
+exx 	11011001 	4 	- 	- 	- 	- 	- 	- 	- 	- 	bc, de, hl <=> bc', de', hl'
+Instruction:H 	Opcode 	Time 	S 	Z 	X 	H 	Y 	P 	N 	C 	Effect
+halt 	01110110 	4 	- 	- 	- 	- 	- 	- 	- 	- 	wait for interrupt
+Instruction:I 	Opcode 	Time 	S 	Z 	X 	H 	Y 	P 	N 	C 	Effect
+im 0 	11101101 01*0*110 	8 	- 	- 	- 	- 	- 	- 	- 	- 	mode 0: execute instruction on bus
+im 1 	11101101 01*10110 	8 	- 	- 	- 	- 	- 	- 	- 	- 	mode 1: execute rst $38
+im 2 	11101101 01*11110 	8 	- 	- 	- 	- 	- 	- 	- 	- 	mode 2: call (i * 256 + byte on bus)
+in a,(N) 	11011011 nnnnnnnn 	11 	- 	- 	- 	- 	- 	- 	- 	- 	a := ((N))
+in R,(c) 	11101101 01rrr000 	12 	+ 	+ 	+ 	0 	+ 	P 	0 	- 	R := ((c))
+in f,(c) 	11101101 01110000 	12 	+ 	+ 	+ 	0 	+ 	P 	0 	- 	tmp := ((c))
+inc R 	00rrr100 	4 	+ 	+ 	+ 	+ 	+ 	V 	0 	- 	R += 1
+inc J 	11i11101 0010b100 	8 	+ 	+ 	+ 	+ 	+ 	V 	0 	- 	J += 1
+inc (hl) 	00110100 	11 	+ 	+ 	+ 	+ 	+ 	V 	0 	- 	(hl) += 1
+inc (I+D) 	11i11101 00110100 dddddddd 	23 	+ 	+ 	+ 	+ 	+ 	V 	0 	- 	(I+D) += 1
+inc Q 	00qq0011 	6 	- 	- 	- 	- 	- 	- 	- 	- 	Q += 1
+inc I 	11i11101 00100011 	10 	- 	- 	- 	- 	- 	- 	- 	- 	I += 1
+ind 	11101101 10101010 	16 	+ 	+ 	+ 	X 	+ 	X 	X 	X 	tmp := ((c)), (hl) := tmp, hl -= 1,
+b -= 1 => flags, nf := tmp.7,
+tmp2 = tmp + [[c - 1] AND 0xff],
+pf := parity of [[tmp2 AND 0x07] XOR b],
+hf := cf := tmp2 > 255
+indr 	11101101 10111010 	21/16 	+ 	+ 	+ 	X 	+ 	X 	X 	X 	ind, if b <> 0 then pc -= 2
+ini 	11101101 10100010 	16 	+ 	+ 	+ 	X 	+ 	X 	X 	X 	tmp := ((c)), (hl) := tmp, hl += 1,
+b -= 1 => flags, nf := tmp.7,
+tmp2 := tmp + [[c + 1] AND 0xff],
+pf := parity of [[tmp2 AND 0x07] XOR b],
+hf := cf := tmp2 > 255
+inir 	11101101 10110010 	21/16 	+ 	+ 	+ 	X 	+ 	X 	X 	X 	ini, if b <> 0 then pc -= 2
+Instruction:J 	Opcode 	Time 	S 	Z 	X 	H 	Y 	P 	N 	C 	Effect
+jp A 	11000011 alalalal ahahahah 	10 	- 	- 	- 	- 	- 	- 	- 	- 	pc := A
+jp (hl) 	11101001 	4 	- 	- 	- 	- 	- 	- 	- 	- 	pc := hl
+jp (I) 	11i11101 11101001 	8 	- 	- 	- 	- 	- 	- 	- 	- 	pc := I
+jp C,A 	11ccc010 alalalal ahahahah 	10 	- 	- 	- 	- 	- 	- 	- 	- 	if C then pc := A
+jr E 	00011000 dddddddd 	12 	- 	- 	- 	- 	- 	- 	- 	- 	pc := E
+jr nz,E 	00100000 dddddddd 	12/7 	- 	- 	- 	- 	- 	- 	- 	- 	if nz then pc := E
+jr z,E 	00101000 dddddddd 	12/7 	- 	- 	- 	- 	- 	- 	- 	- 	if zf then pc := E
+jr nc,E 	00110000 dddddddd 	12/7 	- 	- 	- 	- 	- 	- 	- 	- 	if nc then pc := E
+jr c,E 	00111000 dddddddd 	12/7 	- 	- 	- 	- 	- 	- 	- 	- 	if cf then pc := E
+Instruction:L 	Opcode 	Time 	S 	Z 	X 	H 	Y 	P 	N 	C 	Effect
+ld R1,R2 	01rrrsss 	4 	- 	- 	- 	- 	- 	- 	- 	- 	R1 := R2
+ld R,J 	11i11101 01rrr10b 	8 	- 	- 	- 	- 	- 	- 	- 	- 	R := J
+ld J,R 	11i11101 0110brrr 	8 	- 	- 	- 	- 	- 	- 	- 	- 	J := R
+ld ixh,ixl 	11011101 01100101 	8 	- 	- 	- 	- 	- 	- 	- 	- 	ixh := ixl
+ld ixl,ixh 	11011101 01101100 	8 	- 	- 	- 	- 	- 	- 	- 	- 	ixl := ixh
+ld iyh,iyl 	11111101 01100101 	8 	- 	- 	- 	- 	- 	- 	- 	- 	iyh := iyl
+ld iyl,iyh 	11111101 01101100 	8 	- 	- 	- 	- 	- 	- 	- 	- 	iyl := iyh
+ld R,N 	00rrr110 nnnnnnnn 	7 	- 	- 	- 	- 	- 	- 	- 	- 	R := N
+ld R,(hl) 	01rrr110 	7 	- 	- 	- 	- 	- 	- 	- 	- 	R := (hl)
+ld R,(I+D) 	11i11101 01rrr110 dddddddd 	19 	- 	- 	- 	- 	- 	- 	- 	- 	R := (I+D)
+ld (hl),R 	01110rrr 	7 	- 	- 	- 	- 	- 	- 	- 	- 	(hl) := R
+ld (hl),N 	00110110 nnnnnnnn 	10 	- 	- 	- 	- 	- 	- 	- 	- 	(hl) := N
+ld (I+D),R 	11i11101 01110rrr dddddddd 	19 	- 	- 	- 	- 	- 	- 	- 	- 	(I+D) := R
+ld (I+D),N 	11i11101 00110110 dddddddd nnnnnnnn 	19 	- 	- 	- 	- 	- 	- 	- 	- 	(I+D) := N
+ld a,(bc) 	00001010 	7 	- 	- 	- 	- 	- 	- 	- 	- 	a := (bc)
+ld a,(de) 	00011010 	7 	- 	- 	- 	- 	- 	- 	- 	- 	a := (de)
+ld a,(A) 	00111010 alalalal ahahahah 	13 	- 	- 	- 	- 	- 	- 	- 	- 	a := (A)
+ld (bc),a 	00000010 	7 	- 	- 	- 	- 	- 	- 	- 	- 	(bc) := a
+ld (de),a 	00010010 	7 	- 	- 	- 	- 	- 	- 	- 	- 	(de) := a
+ld (A),a 	00110010 alalalal ahahahah 	13 	- 	- 	- 	- 	- 	- 	- 	- 	(A) := a
+ld i,a 	11101101 01000111 	9 	- 	- 	- 	- 	- 	- 	- 	- 	i := a
+ld r,a 	11101101 01001111 	9 	- 	- 	- 	- 	- 	- 	- 	- 	r := a
+ld a,i 	11101101 01010111 	9 	+ 	+ 	+ 	0 	+ 	X 	0 	- 	a := i, pf := iff2
+ld a,r 	11101101 01011111 	9 	+ 	+ 	+ 	0 	+ 	X 	0 	- 	a := r, pf := iff2
+ld Q,A 	00qq0001 alalalal ahahahah 	10 	- 	- 	- 	- 	- 	- 	- 	- 	Q := A
+ld I,A 	11i11101 00100001 alalalal ahahahah 	14 	- 	- 	- 	- 	- 	- 	- 	- 	I := A
+ld Q,(A) 	11101101 01qq1011 alalalal ahahahah 	20 	- 	- 	- 	- 	- 	- 	- 	- 	Q := (A) [ld hl,(A) has a faster non-prefixed duplicate, see below.]
+ld hl,(A) 	00101010 alalalal ahahahah 	16 	- 	- 	- 	- 	- 	- 	- 	- 	hl := (A)
+ld I,(A) 	11i11101 00101010 alalalal ahahahah 	20 	- 	- 	- 	- 	- 	- 	- 	- 	I := (A)
+ld (A),Q 	11101101 01qq0011 alalalal ahahahah 	20 	- 	- 	- 	- 	- 	- 	- 	- 	(A) := Q [ld (A),hl has a faster non-prefixed duplicate, see below.]
+ld (A),hl 	00100010 alalalal ahahahah 	16 	- 	- 	- 	- 	- 	- 	- 	- 	(A) := hl
+ld (A),I 	11i11101 00100010 alalalal ahahahah 	20 	- 	- 	- 	- 	- 	- 	- 	- 	(A) := I
+ld sp,hl 	11111001 	6 	- 	- 	- 	- 	- 	- 	- 	- 	sp := hl
+ld sp,I 	11i11101 11111001 	10 	- 	- 	- 	- 	- 	- 	- 	- 	sp := I
+ldd 	11101101 10101000 	16 	- 	- 	X 	0 	X 	C 	0 	- 	tmp := (hl), (de) := tmp, de -= 1, hl -= 1,
+bc -= 1, xf := [tmp + a].1, yf = [tmp + a].3
+lddr 	11101101 10111000 	21/16 	- 	- 	X 	0 	X 	C 	0 	- 	ldd, if bc <> 0 then pc -= 2
+ldi 	11101101 10100000 	16 	- 	- 	X 	0 	X 	C 	0 	- 	tmp := (hl), (de) := tmp, de += 1, hl += 1,
+bc -= 1, xf := [tmp + a].1, yf = [tmp + a].3
+ldir 	11101101 10110000 	21/16 	- 	- 	X 	0 	X 	C 	0 	- 	ldi, if bc <> 0 then pc -= 2
+Instruction:N 	Opcode 	Time 	S 	Z 	X 	H 	Y 	P 	N 	C 	Effect
+neg 	11101101 01***100 	8 	+ 	+ 	+ 	+ 	+ 	V 	1 	+ 	a := 0 - a
+nop 	00000000 	4 	- 	- 	- 	- 	- 	- 	- 	- 	nothing
+Instruction:O 	Opcode 	Time 	S 	Z 	X 	H 	Y 	P 	N 	C 	Effect
+or R 	10110rrr 	4 	+ 	+ 	+ 	0 	+ 	P 	0 	0 	a := a OR R
+or J 	11i11101 1011010b 	8 	+ 	+ 	+ 	0 	+ 	P 	0 	0 	a := a OR J
+or N 	11110110 nnnnnnnn 	7 	+ 	+ 	+ 	0 	+ 	P 	0 	0 	a := a OR N
+or (hl) 	10110110 	7 	+ 	+ 	+ 	0 	+ 	P 	0 	0 	a := a OR (hl)
+or (I+D) 	11i11101 10110110 dddddddd 	19 	+ 	+ 	+ 	0 	+ 	P 	0 	0 	a := a OR (I+D)
+out (N),a 	11010011 nnnnnnnn 	11 	- 	- 	- 	- 	- 	- 	- 	- 	((N)) := a
+out (c),R 	11101101 01rrr001 	12 	- 	- 	- 	- 	- 	- 	- 	- 	((c)) := R
+out (c),0 	11101101 01110001 	12 	- 	- 	- 	- 	- 	- 	- 	- 	((c)) := ? (seems to vary with CPU)
+outd 	11101101 10101011 	16 	+ 	+ 	+ 	X 	+ 	X 	X 	X 	tmp := (hl), ((c)) := tmp, hl -= 1,
+b -= 1 => flags, nf := tmp.7, tmp2 = tmp + l,
+pf := parity of [[tmp2 AND 0x07] XOR b],
+hf := cf := tmp2 > 255
+otdr 	11101101 10111011 	21/16 	+ 	+ 	+ 	X 	+ 	X 	X 	X 	outd, if b <> 0 then pc -= 2
+outi 	11101101 10100011 	16 	+ 	+ 	+ 	X 	+ 	X 	X 	X 	tmp := (hl), ((c)) := tmp, hl += 1,
+b -= 1 => flags, nf := tmp.7, tmp2 = tmp + l,
+pf := parity of [[tmp2 AND 0x07] XOR b],
+hf := cf := tmp2 > 255
+otir 	11101101 10110011 	21/16 	+ 	+ 	+ 	X 	+ 	X 	X 	X 	outi, if b <> 0 then pc -= 2
+Instruction:P 	Opcode 	Time 	S 	Z 	X 	H 	Y 	P 	N 	C 	Effect
+pop P 	11pp0001 	10 	- 	- 	- 	- 	- 	- 	- 	- 	P := (sp), sp += 2
+pop I 	11i11101 11100001 	14 	- 	- 	- 	- 	- 	- 	- 	- 	I := (sp), sp += 2
+push P 	11pp0101 	11 	- 	- 	- 	- 	- 	- 	- 	- 	sp -= 2, (sp) := P
+push I 	11i11101 11100101 	15 	- 	- 	- 	- 	- 	- 	- 	- 	sp -= 2, (sp) := I
+Instruction:R 	Opcode 	Time 	S 	Z 	X 	H 	Y 	P 	N 	C 	Effect
+res B,R 	11001011 10bbbrrr 	8 	- 	- 	- 	- 	- 	- 	- 	- 	R := R AND ~[1 << B]
+res B,(hl) 	11001011 10bbb110 	15 	- 	- 	- 	- 	- 	- 	- 	- 	(hl) := (hl) AND ~[1 << B]
+res B,(I+D) 	11i11101 11001011 dddddddd 10bbb110 	23 	- 	- 	- 	- 	- 	- 	- 	- 	(I+D) := (I+D) AND ~[1 << B]
+res B,(I+D)->R 	11i11101 11001011 dddddddd 10bbbrrr 	23 	- 	- 	- 	- 	- 	- 	- 	- 	(I+D) := R := (I+D) AND ~[1 << B]
+ret 	11001001 	10 	- 	- 	- 	- 	- 	- 	- 	- 	pc := (sp), sp += 2
+ret C 	11ccc000 	11/5 	- 	- 	- 	- 	- 	- 	- 	- 	if C then pc := (sp), sp += 2
+reti 	11101101 01**1101 	14 	- 	- 	- 	- 	- 	- 	- 	- 	pc := (sp), sp += 2, iff1 := iff2
+retn 	11101101 01**0101 	14 	- 	- 	- 	- 	- 	- 	- 	- 	pc := (sp), sp += 2, iff1 := iff2
+rla 	00010111 	4 	- 	- 	+ 	0 	+ 	- 	0 	X 	ocf := cf, cf := a.7, a := [a << 1] + ocf
+rl R 	11001011 00010rrr 	8 	+ 	+ 	+ 	0 	+ 	P 	0 	X 	ocf := cf, cf := R.7, R := [R << 1] + ocf
+rl (hl) 	11001011 00010110 	15 	+ 	+ 	+ 	0 	+ 	P 	0 	X 	ocf := cf, cf := (hl).7, (hl) := [(hl) << 1] + ocf
+rl (I+D) 	11i11101 11001011 dddddddd 00010110 	23 	+ 	+ 	+ 	0 	+ 	P 	0 	X 	ocf := cf, cf := (I+D).7,
+(I+D) := [(I+D) << 1] + ocf
+rl (I+D)->R 	11i11101 11001011 dddddddd 00010rrr 	23 	+ 	+ 	+ 	0 	+ 	P 	0 	X 	ocf := cf, cf := (I+D).7,
+(I+D) := R := [(I+D) << 1] + ocf
+rlca 	00000111 	4 	- 	- 	+ 	0 	+ 	- 	0 	X 	cf := a.7, a := [a << 1] + cf
+rlc R 	11001011 00000rrr 	8 	+ 	+ 	+ 	0 	+ 	P 	0 	X 	cf := R.7, R := [R << 1] + cf
+rlc (hl) 	11001011 00000110 	15 	+ 	+ 	+ 	0 	+ 	P 	0 	X 	cf := (hl).7, (hl) := [(hl) << 1] + cf
+rlc (I+D) 	11i11101 11001011 dddddddd 00000110 	23 	+ 	+ 	+ 	0 	+ 	P 	0 	X 	cf := (I+D).7, (I+D) := [(I+D) << 1] + cf
+rlc (I+D)->R 	11i11101 11001011 dddddddd 00000rrr 	23 	+ 	+ 	+ 	0 	+ 	P 	0 	X 	cf := (I+D).7, (I+D) := R := [(I+D) << 1] + cf
+rld 	11101101 01101111 	18 	+ 	+ 	+ 	0 	+ 	P 	0 	- 	tmp := [(hl) << 4] + [a AND 0x0f], (hl) := tmp,
+a := [a AND 0xf0] + [tmp >> 8] => flags
+rra 	00011111 	4 	- 	- 	+ 	0 	+ 	- 	0 	X 	ocf := cf, cf := a.0, a := [a >> 1] + [ocf << 7]
+rr R 	11001011 00011rrr 	8 	+ 	+ 	+ 	0 	+ 	P 	0 	X 	ocf := cf, cf := R.0, R := [R >> 1] + [ocf << 7]
+rr (hl) 	11001011 00011110 	15 	+ 	+ 	+ 	0 	+ 	P 	0 	X 	ocf := cf, cf := (hl).0,
+(hl) := [(hl) >> 1] + [ocf << 7]
+rr (I+D) 	11i11101 11001011 dddddddd 00011110 	23 	+ 	+ 	+ 	0 	+ 	P 	0 	X 	ocf := cf, cf := (I+D).0,
+(I+D) := [(I+D) >> 1] + [ocf << 7]
+rr (I+D)->R 	11i11101 11001011 dddddddd 00011rrr 	23 	+ 	+ 	+ 	0 	+ 	P 	0 	X 	ocf := cf, cf := (I+D).0,
+(I+D) := R := [(I+D) >> 1] + [ocf << 7]
+rrca 	00001111 	4 	- 	- 	+ 	0 	+ 	- 	0 	X 	cf := a.0, a := [a >> 1] + [cf << 7]
+rrc R 	11001011 00001rrr 	8 	+ 	+ 	+ 	0 	+ 	P 	0 	X 	cf := R.0, R := [R >> 1] + [cf << 7]
+rrc (hl) 	11001011 00001110 	15 	+ 	+ 	+ 	0 	+ 	P 	0 	X 	cf := (hl).0, (hl) := [(hl) >> 1] + [cf << 7]
+rrc (I+D) 	11i11101 11001011 dddddddd 00001110 	23 	+ 	+ 	+ 	0 	+ 	P 	0 	X 	cf := (I+D).0, (I+D) := [(I+D) >> 1] + [cf << 7]
+rrc (I+D)->R 	11i11101 11001011 dddddddd 00001rrr 	23 	+ 	+ 	+ 	0 	+ 	P 	0 	X 	cf := (I+D).0,
+(I+D) := R := [(I+D) >> 1] + [cf << 7]
+rrd 	11101101 01100111 	18 	+ 	+ 	+ 	0 	+ 	P 	0 	- 	tmp := (hl),
+(hl) := [tmp >> 4] + [[a AND 0x0f] << 4],
+a := [a AND 0xf0] + [tmp AND 0x0f] => flags
+rst S 	11sss111 	11 	- 	- 	- 	- 	- 	- 	- 	- 	sp -= 2, (sp) := pc, pc := S
+Instruction:S 	Opcode 	Time 	S 	Z 	X 	H 	Y 	P 	N 	C 	Effect
+sbc a,R 	10011rrr 	4 	+ 	+ 	+ 	+ 	+ 	V 	1 	+ 	a -= R + cf
+sbc a,J 	11i11101 1001110b 	8 	+ 	+ 	+ 	+ 	+ 	V 	1 	+ 	a -= J + cf
+sbc a,N 	11011110 nnnnnnnn 	7 	+ 	+ 	+ 	+ 	+ 	V 	1 	+ 	a -= N + cf
+sbc a,(hl) 	10011110 	7 	+ 	+ 	+ 	+ 	+ 	V 	1 	+ 	a -= (hl) + cf
+sbc a,(I+D) 	11i11101 10011110 dddddddd 	19 	+ 	+ 	+ 	+ 	+ 	V 	1 	+ 	a -= (I+D) + cf
+sbc hl,Q 	11101101 01qq0010 	15 	+ 	+ 	+ 	+ 	+ 	V 	1 	+ 	hl -= Q + cf
+scf 	00110111 	4 	- 	- 	A 	0 	A 	- 	0 	1 	nothing else
+set B,R 	11001011 11bbbrrr 	8 	- 	- 	- 	- 	- 	- 	- 	- 	R := R OR [1 << B]
+set B,(hl) 	11001011 11bbb110 	15 	- 	- 	- 	- 	- 	- 	- 	- 	(hl) := (hl) OR [1 << B]
+set B,(I+D) 	11i11101 11001011 dddddddd 11bbb110 	23 	- 	- 	- 	- 	- 	- 	- 	- 	(I+D) := (I+D) OR [1 << B]
+set B,(I+D)->R 	11i11101 11001011 dddddddd 11bbbrrr 	23 	- 	- 	- 	- 	- 	- 	- 	- 	(I+D) := R := (I+D) OR [1 << B]
+sla R 	11001011 00100rrr 	8 	+ 	+ 	+ 	0 	+ 	P 	0 	X 	cf := R.7, R := R << 1
+sla (hl) 	11001011 00100110 	15 	+ 	+ 	+ 	0 	+ 	P 	0 	X 	cf := (hl).7, (hl) := (hl) << 1
+sla (I+D) 	11i11101 11001011 dddddddd 00100110 	23 	+ 	+ 	+ 	0 	+ 	P 	0 	X 	cf := (I+D).7, (I+D) := (I+D) << 1
+sla (I+D)->R 	11i11101 11001011 dddddddd 00100rrr 	23 	+ 	+ 	+ 	0 	+ 	P 	0 	X 	cf := (I+D).7, (I+D) := R := (I+D) << 1
+sra R 	11001011 00101rrr 	8 	+ 	+ 	+ 	0 	+ 	P 	0 	X 	cf := R.0, R := R >> 1, R.7 := R.6
+sra (hl) 	11001011 00101110 	15 	+ 	+ 	+ 	0 	+ 	P 	0 	X 	cf := (hl).0, (hl) := (hl) >> 1, (hl).7 := (hl).6
+sra (I+D) 	11i11101 11001011 dddddddd 00101110 	23 	+ 	+ 	+ 	0 	+ 	P 	0 	X 	cf := (I+D).0,
+(I+D) := (I+D) >> 1, (I+D).7 := (I+D).6
+sra (I+D)->R 	11i11101 11001011 dddddddd 00101rrr 	23 	+ 	+ 	+ 	0 	+ 	P 	0 	X 	cf := (I+D).0,
+tmp := (I+D) >> 1, tmp.7 := tmp.6
+(I+D) := R := tmp
+sll R 	11001011 00110rrr 	8 	+ 	+ 	+ 	0 	+ 	P 	0 	X 	cf := R.7, R := [R << 1] + 1
+sll (hl) 	11001011 00110110 	15 	+ 	+ 	+ 	0 	+ 	P 	0 	X 	cf := (hl).7, (hl) := [(hl) << 1] + 1
+sll (I+D) 	11i11101 11001011 dddddddd 00110110 	23 	+ 	+ 	+ 	0 	+ 	P 	0 	X 	cf := (I+D).7, (I+D) := [(I+D) << 1] + 1
+sll (I+D)->R 	11i11101 11001011 dddddddd 00110rrr 	23 	+ 	+ 	+ 	0 	+ 	P 	0 	X 	cf := (I+D).7, (I+D) := R := [(I+D) << 1] + 1
+srl R 	11001011 00111rrr 	8 	0 	+ 	+ 	0 	+ 	P 	0 	X 	cf := R.0, R := R >> 1
+srl (hl) 	11001011 00111110 	15 	0 	+ 	+ 	0 	+ 	P 	0 	X 	cf := (hl).0, (hl) := (hl) >> 1
+srl (I+D) 	11i11101 11001011 dddddddd 00111110 	23 	0 	+ 	+ 	0 	+ 	P 	0 	X 	cf := (I+D).0, (I+D) := (I+D) >> 1
+srl (I+D)->R 	11i11101 11001011 dddddddd 00111rrr 	23 	0 	+ 	+ 	0 	+ 	P 	0 	X 	cf := (I+D).0, (I+D) := R := (I+D) >> 1
+sub R 	10010rrr 	4 	+ 	+ 	+ 	+ 	+ 	V 	1 	+ 	a -= R
+sub J 	11i11101 1001010b 	8 	+ 	+ 	+ 	+ 	+ 	V 	1 	+ 	a -= J
+sub N 	11010110 nnnnnnnn 	7 	+ 	+ 	+ 	+ 	+ 	V 	1 	+ 	a -= N
+sub (hl) 	10010110 	7 	+ 	+ 	+ 	+ 	+ 	V 	1 	+ 	a -= (hl)
+sub (I+D) 	11i11101 10010110 dddddddd 	19 	+ 	+ 	+ 	+ 	+ 	V 	1 	+ 	a -= (I+D)
+Instruction:X 	Opcode 	Time 	S 	Z 	X 	H 	Y 	P 	N 	C 	Effect
+xor R 	10101rrr 	4 	+ 	+ 	+ 	0 	+ 	P 	0 	0 	a := a XOR R
+xor J 	11i11101 1010110b 	8 	+ 	+ 	+ 	0 	+ 	P 	0 	0 	a := a XOR J
+xor N 	11101110 nnnnnnnn 	7 	+ 	+ 	+ 	0 	+ 	P 	0 	0 	a := a XOR N
+xor (hl) 	10101110 	7 	+ 	+ 	+ 	0 	+ 	P 	0 	0 	a := a XOR (hl)
+xor (I+D) 	11i11101 10101110 dddddddd 	19 	+ 	+ 	+ 	0 	+ 	P 	0 	0 	a := a XOR (I+D)
+English Language Explanations
+Data Movement
+
+EX Three possible arguments:
+
+EX DE, HL Swaps H with D and L with E
+
+EX AF, AF' Swaps AF with its shadow
+
+EX (SP), HL Swaps (SP) with L and (SP+1) with H. Index registers are also valid
+
+
+EXX Swap BC, DE and HL with their shadows
+
+
+LD Four main arguments:
+
+LD reg, # Sets the eight or 16 bit contents of reg to #
+
+LD reg2, reg1 Copies the contents of 8 bit reg1 to reg2
+
+LD (imm16), reg Copies the value of 8 or 16 bit reg to 16 bit memory address imm16. Programmers should remember that 16 bit values are stored little-endian.
+
+LD reg, (imm16) Does the opposite of LD (imm16), reg
+
+
+LDIR Copies a byte from (HL) to (DE), increments DE and HL, then decrements BC. The instruction is repeated if BC is not 0. Interrupts are allowed to trigger while this instruction is running.
+
+
+PUSH Used as PUSH reg16 where reg16 is a register pair or index register. Decrements SP, copies regMSB to (SP), decrements SP again, then copies regLSB to (SP).
+
+
+POP Same syntax as PUSH. Copies (SP) to regLSB, increments SP, copies (SP) to regMSB, then increments SP again.
+
+
+Control
+
+JP JP imm16 Imm16 is copied to PC, causing execution to jump there. Can also be conditional with Z, NZ, C, NC, PO, PE, P, or M as additional arguments such as JP Z, imm16. (HL) may be substituted for imm16 to have the current value of HL copied to PC
+
+
+JR JR imm8 The signed 8 bit value imm8 is added to PC, allowing a jump within 128 bytes of the instruction. May also be conditional, but only with Z, NZ, C, and NC arguments.
+
+
+CALL CALL imm16 The current value of PC+3 is PUSHed, then imm16 is loaded into PC. May be conditional with the same syntax and arguments as JP, although (HL) is not valid.
+
+
+RET RET The top stack value is POPed into PC. It may be conditional with the same arguments and syntax as JP. This is usually used to return from a CALL instruction.
+
+
+RST RST imm8 PC+1 is PUSHed and PC is loaded with 00imm8. This opcode is only 1 byte, so it is an alternative to CALLing routines that are mapped into the beginning of memory. However, it may only be used for the following values of imm8: 00h, 08h, 18h, 20h, 28h, 30h, and 38h. Imm8 must also be in -h suffix format.
+
+DJNZ DJNZ imm8 B is decremented and if is 0, the rest of the instruction is skipped. Otherwise, the signed 8 bit value imm8 is added to PC. This instruction is usually used like a For( loop in BASIC.
+
+
+NOP NOP As the name implies, it is "no operation". The CPU does nothing for four clock cycles. 

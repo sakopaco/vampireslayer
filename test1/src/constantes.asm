@@ -47,10 +47,20 @@ NO			equ		#0000
 
 ;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (relacionadas con posiciones en mapa vdp)
 NMAXVIDREL	equ		#0008	;el número máximo de vidas y de reliquias es de 8
+MAXENERGIA  equ		248
+TILEENERG8  equ		217
+TILEENERG7  equ		186
+TILEENERG6  equ		155
+TILEENERG5  equ		124
+TILEENERG4  equ		93
+TILEENERG3  equ		62
+TILEENERG2  equ		31
+
 
 ;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (relacionadas con posiciones en mapa vdp)
 POSCARAMAP	equ		#000D
 POSVIDAS	equ		#0248
 POSRELIMAP	equ		#0011
 POSRELIQ	equ		#02C8
+POSENERG	equ		#0288
 POSNIVEL	equ		#02B4
