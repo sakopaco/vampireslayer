@@ -162,7 +162,8 @@ fin_pinta_parte_inferior_pantalla:
 ; salida: 	array_aux_vidas
 ; toca:		A,B,HL
 actualiza_marcador_vidas:
-	PUSH	HL
+	;PUSH	HL
+	EXX
 
 	;para no andar restando pongo todos los huecos a negro y luego en otro bucle las caras
 	;1-pinto todo en blanco
@@ -182,7 +183,8 @@ loop_marcador_caras: ;asignar caras
 	INC		HL
 	DJNZ	loop_marcador_caras
 fin_loop_marcador_caras:
-	POP		HL
+	;POP		HL
+	EXX
 fin_actualiza_marcador_vidas:
 	RET
 
@@ -195,9 +197,10 @@ fin_actualiza_marcador_vidas:
 ; salida: 	actualiza_vidas_sn
 ; toca:		B,HL
 pinta_vidas:
-	PUSH	HL
-	PUSH	DE
-	PUSH	BC
+	;PUSH	HL
+	;PUSH	DE
+	;PUSH	BC
+	EXX
 	
 	LD		HL,array_aux_vidas
 	LD		DE,SC2MAP + POSVIDAS 	;inicio posición en el mapa de tiles de las vidas
@@ -208,9 +211,10 @@ pinta_vidas:
 	XOR		 A
 	LD		(actualiza_vidas_sn),A
 	
-	POP		BC
-	POP		DE
-	POP		HL
+	;POP		BC
+	;POP		DE
+	;POP		HL
+	EXX
 fin_pinta_vidas:
 	RET
 	
@@ -256,9 +260,10 @@ fin_actualiza_marcador_reliquias:
 ; salida: 	actualiza_reliquias_sn
 ; toca:		BC,HL,DE
 pinta_reliquias:
-	PUSH	HL
-	PUSH	DE
-	PUSH	BC
+	;PUSH	HL
+	;PUSH	DE
+	;PUSH	BC
+	EXX
 	
 	LD		HL,array_aux_reliquias
 	LD		DE,SC2MAP + POSRELIQ 	;inicio posición en el mapa de tiles de las vidas
@@ -269,9 +274,10 @@ pinta_reliquias:
 	XOR		 A
 	LD		(actualiza_reliquias_sn),A
 	
-	POP		BC
-	POP		DE
-	POP		HL
+	;POP		BC
+	;POP		DE
+	;POP		HL
+	EXX
 fin_pinta_reliquias:
 	RET
 	
