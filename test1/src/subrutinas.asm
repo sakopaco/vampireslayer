@@ -322,3 +322,124 @@ fin_pinta_nivel:
 	RET
 
 	
+
+
+
+;;=====================================================
+;;MIRA_PINTA ENERGIA
+;;=====================================================	
+; función: 	actualiza el nivel de energia en la parte de puntuación
+; nota:		el cuadrado más bajo de ejergía siempre estará pintado... se obviará
+; entrada: 	prota.energia, array_aux_energia
+; salida: 	-
+; toca:		ninguno porque usa EXX
+
+; nota importante... lo mismo interesa hacer esto con un array para comparar y un bucle
+
+
+mira_pinta_energia:
+	EXX							;por si acaso guardo el contenido de HL (si veo que no es necesario guardarlo lo quito) uso esto en vez de push por el nº ciclos
+	
+	LD		 A,(prota.energia) 	;para las comparaciones A variable (actual) y B fijo (limites)
+
+	LD		 C,0				;para agilizar asignaciones
+pinta_ener:
+pinta_ener_tile_8:
+	LD		HL,ultimo_pos_array_aux_energia	;coloco puntero en array e iré decrementando
+	LD		 B,TILEENERG8
+	CP		 B
+	JR		C,pinta_ener_tile_8_negro
+	LD		(HL),14
+	JR		pinta_ener_tile_7
+pinta_ener_tile_8_negro:
+	LD		(HL),C
+
+pinta_ener_tile_7:
+	DEC		HL
+	LD		 B,TILEENERG7
+	CP		 B
+	JR		C,pinta_ener_tile_7_negro
+	LD		(HL),14
+	JR		pinta_ener_tile_6
+pinta_ener_tile_7_negro:
+	LD		(HL),C
+
+pinta_ener_tile_6:
+	DEC		HL
+	LD		 B,TILEENERG6
+	CP		 B
+	JR		C,pinta_ener_tile_6_negro
+	LD		(HL),14
+	JR		pinta_ener_tile_5
+pinta_ener_tile_6_negro:
+	LD		(HL),C
+
+pinta_ener_tile_5:
+	DEC		HL
+	LD		 B,TILEENERG5
+	CP		 B
+	JR		C,pinta_ener_tile_5_negro
+	LD		(HL),14
+	JR		pinta_ener_tile_4
+pinta_ener_tile_5_negro:
+	LD		(HL),C
+
+pinta_ener_tile_4:
+	DEC		HL
+	LD		 B,TILEENERG4
+	CP		 B
+	JR		C,pinta_ener_tile_4_negro
+	LD		(HL),15
+	JR		pinta_ener_tile_3
+pinta_ener_tile_4_negro:
+	LD		(HL),C
+	
+pinta_ener_tile_3:
+	DEC		HL
+	LD		 B,TILEENERG3
+	CP		 B
+	JR		C,pinta_ener_tile_3_negro
+	LD		(HL),15
+	JR		pinta_ener_tile_2
+pinta_ener_tile_3_negro:
+	LD		(HL),C
+
+pinta_ener_tile_2:
+	DEC		HL
+	LD		 B,TILEENERG2
+	CP		 B
+	JR		C,pinta_ener_tile_2_negro
+	LD		(HL),16
+	JR		fin_mira_pinta_energia		;siempre estará pintado el cuadro mínimo
+pinta_ener_tile_2_negro:
+	LD		(HL),C
+
+fin_mira_pinta_energia:
+	EXX
+	RET
+
+
+;;=====================================================
+;;PINTA_ENERGIA
+;;=====================================================	
+; función: 	actualiza el mapa de tiles para que en el próximo refresco se pinte la barra de energia actual
+; entrada: 	array_aux_energia
+; toca:		nada porque usa EXX
+pinta_energia:
+	;PUSH	HL
+	;PUSH	DE
+	;PUSH	BC
+	EXX
+	
+	LD		HL,array_aux_energia
+	LD		DE,SC2MAP + POSENERG 	;inicio posición en el mapa de tiles de las vidas
+	LD		BC,NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
+	CALL	LDIRVM
+		
+	;POP		BC
+	;POP		DE
+	;POP		HL
+	EXX
+fin_pinta_energia:
+	RET
+
