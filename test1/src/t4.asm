@@ -26,6 +26,7 @@ START:
 	CALL	actualiza_marcador_vidas
 	CALL	actualiza_marcador_reliquias
 	CALL	pinta_nivel
+	CALL	borra_mapa
 	
 	
 loop_principal:
@@ -84,11 +85,17 @@ inicializa_variables_pruebas:
 	LD		 A,#04			;fila 0 columna 4
 	LD		(prota.pos_nivel),A
 
-;	CALL	pinta_energía
+
 ;	CALL	pinta_pantalla -> CALL pinta_puertas
+;	CALL	borra_mapa
 	
 fin_inicializa_variables_pruebas:
 	RET
+
+
+
+
+
 
 
 	

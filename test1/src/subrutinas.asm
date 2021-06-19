@@ -443,3 +443,51 @@ pinta_energia:
 fin_pinta_energia:
 	RET
 
+
+;;=====================================================
+;;BORRA_MAPA
+;;=====================================================	
+; función: 	pone todas las habitaciones del mapa a negro (los tiles del mapa los rellena con un array a 0 - caracter en negro)
+; entrada: 	array_aux_mapa_limpiar
+; salida: 	-
+; toca:		- porque usa EXX
+borra_mapa:
+	EXX
+	
+	LD		HL,array_aux_mapa_limpiar
+	LD		DE,SC2MAP + POSMAPLIN1 	;inicio posición en el mapa de tiles de la primera fila del mapa
+	LD		BC,NHABNIVEL			;cada nivel son 7 filas con 7 habitaciones "posibles"
+	CALL	LDIRVM
+	
+	LD		HL,array_aux_mapa_limpiar
+	LD		DE,SC2MAP + POSMAPLIN2
+	LD		BC,NHABNIVEL
+	CALL	LDIRVM
+
+	LD		HL,array_aux_mapa_limpiar
+	LD		DE,SC2MAP + POSMAPLIN3
+	LD		BC,NHABNIVEL
+	CALL	LDIRVM
+
+	LD		HL,array_aux_mapa_limpiar	
+	LD		DE,SC2MAP + POSMAPLIN4
+	LD		BC,NHABNIVEL
+	CALL	LDIRVM
+
+	LD		HL,array_aux_mapa_limpiar	
+	LD		DE,SC2MAP + POSMAPLIN5
+	LD		BC,NHABNIVEL
+	CALL	LDIRVM
+
+	LD		HL,array_aux_mapa_limpiar	
+	LD		DE,SC2MAP + POSMAPLIN6
+	LD		BC,NHABNIVEL
+	CALL	LDIRVM
+
+	LD		HL,array_aux_mapa_limpiar	
+	LD		DE,SC2MAP + POSMAPLIN7
+	LD		BC,NHABNIVEL
+	CALL	LDIRVM
+fin_borra_mapa:
+	EXX
+	RET
