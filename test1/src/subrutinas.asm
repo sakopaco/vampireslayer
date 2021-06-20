@@ -292,22 +292,26 @@ fin_pinta_reliquias:
 ; salida: 	-
 ; toca:		HL,DE,BC
 pinta_nivel:	
-	;forma 1 más básica con llamada a la BIOS
-	;~ LD		 A,(prota.nivel)
-	;~ PUSH	 AF							;quedarima mejor EX AF,AF' ???????????????? ***********+ preguntar Fernando
-	;~ LD		 A,(prota.nivel)
-	;~ ADD		48
-	;~ LD 		(prota.nivel),A
-	;~ LD		HL,prota.nivel
-	;~ LD		DE,SC2MAP + POSNIVEL	;posición en el mapa del tile del nivel (48 es la posición de 0 en ascii)
-	;~ LD		BC,1
-	;~ CALL	LDIRVM
-	;~ POP		 AF
-	;~ LD 		(prota.nivel),A
-	
 	;forma más avanzada sin llamada a la bios
 	LD		BC,SC2MAP + POSNIVEL ;posición en el mapa de tiles del tile de nivel
+	LD		 A,(prota.nivel)	;seleccionando la pos del banco de tiles a poner en el mapa
+	ADD		'0'	
+	LD		 D,A
 	
+	CALL	pinta_tile_suelto	;nota ... un call+ret se debe poder sustiruir por un jp
+fin_pinta_nivel:
+	RET
+
+
+
+;;=====================================================
+;;PINTA_TILE_SUELTO
+;;=====================================================	
+; función: 	pinta al tile que digamos en D, en la posición BC
+; entrada: 	BC,D
+; salida: 	-
+; toca:		-
+pinta_tile_suelto:	
 	IN		 A,(REGEST)		;leer registro de estado (recomendado)
 	LD		 A,C			;primero byte bajo	
 	OUT		(REGEST),A
@@ -315,13 +319,10 @@ pinta_nivel:
 	OR		1000000b		;+64
 	OUT		(REGEST),A
 	
-	LD		A,(prota.nivel)	;seleccionando la pos del banco de tiles a poner en el mapa
-	ADD		'0'				;posición base de 0 en ascii (truco para poner nº más fácilmente usando base ascii)
+	LD		A,D
 	OUT		(REGESCVDP),A	;escribe A en VRAM en la posición indicada por los dos OUT anteriores
-fin_pinta_nivel:
+fin_pinta_tile_suelto:
 	RET
-
-	
 
 
 

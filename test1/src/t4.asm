@@ -28,6 +28,10 @@ START:
 	CALL	pinta_nivel
 	CALL	borra_mapa
 	
+	LD		 D,00110011b		;3,3 => habitación 4,4 empezando por arriba
+	LD		 E,0				;0 => celda porla que se ha pasado / 1 => celda en la que se está (tile de un muñeco)
+	CALL	posiciona_en_mapa
+	
 	
 loop_principal:
 	HALT							;espera VBLANK y sincroniza
@@ -95,7 +99,19 @@ fin_inicializa_variables_pruebas:
 
 
 
-
+;;=====================================================
+;;POSICIONA_EN_MAPA
+;;=====================================================	
+; función: 	en el mapa de marcadores de la derecha/abajo marca un cuadro en gris o con un muñeco
+;			según el valor de prota.posición pinta entrá un muñeco y por donde vaya pasando el prota
+;			quedará en gris
+; entrada: 	D (nible alto fila, nible bajo columna),E (tipo 0 gris 1 - tile 0,muñeco - tile 19)
+; salida: 	-
+; toca:		- porque usa EXX
+posiciona_en_mapa:
+	
+fin_posiciona_en_mapa:
+	RET
 
 
 	
