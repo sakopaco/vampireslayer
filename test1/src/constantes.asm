@@ -46,7 +46,34 @@ SI			equ		#0001
 NO			equ		#0000
 
 ;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (relacionadas con posiciones en mapa vdp)
+POSMAPLIN1  equ		#02F8
+POSMAPLIN2  equ		#02D8
+POSMAPLIN3  equ		#02B8
+POSMAPLIN4  equ		#0298
+POSMAPLIN5  equ		#0278
+POSMAPLIN6  equ		#0258
+POSMAPLIN7  equ		#0238
+
+POSCARAMAP	equ		#000D
+POSVIDAS	equ		#0248
+POSRELIMAP	equ		#0011
+POSRELIQ	equ		#02C8
+POSENERG	equ		#0288
+POSNIVEL	equ		#02B4
+POSMAPA		equ 	#0238
+
+
+;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (relacionadas con posiciones en en el banco de memoria)
+TILEMAPPROT equ		19
+TILEMAPVACI	equ		9
+TILEMAPROJO equ		16
+TILEMAPAMAR equ		15
+TILEMAPVERD equ		14
+
+
+;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (generales)
 NMAXVIDREL	equ		#0008	;el número máximo de vidas y de reliquias es de 8
+NHABNIVEL	equ		#0007
 MAXENERGIA  equ		248
 TILEENERG8  equ		217
 TILEENERG7  equ		186
@@ -55,22 +82,8 @@ TILEENERG5  equ		124
 TILEENERG4  equ		93
 TILEENERG3  equ		62
 TILEENERG2  equ		31
+TILENEGRO	equ		0
 
-
-;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (relacionadas con posiciones en mapa vdp)
-POSCARAMAP	equ		#000D
-POSVIDAS	equ		#0248
-POSRELIMAP	equ		#0011
-POSRELIQ	equ		#02C8
-POSENERG	equ		#0288
-POSNIVEL	equ		#02B4
-
-
-POSMAPLIN1  equ		#02F8
-POSMAPLIN2  equ		#02D8
-POSMAPLIN3  equ		#02B8
-POSMAPLIN4  equ		#0298
-POSMAPLIN5  equ		#0278
-POSMAPLIN6  equ		#0258
-POSMAPLIN7  equ		#0238
-NHABNIVEL	equ		#0007
+;matriz de 7x7 empieza en 0, y fila y x col, cuento desde esquina sup izq
+BASEMAPY	equ		6
+BASEMAPX	equ		3

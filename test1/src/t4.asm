@@ -28,8 +28,11 @@ START:
 	CALL	pinta_nivel
 	CALL	borra_mapa
 	
-	LD		 D,00110011b		;3,3 => habitación 4,4 empezando por arriba
-	LD		 E,0				;0 => celda porla que se ha pasado / 1 => celda en la que se está (tile de un muñeco)
+	LD 		 A,1
+	LD		(prota.pos_mapx),A
+	LD 		 A,6
+	LD		(prota.pos_mapy),A
+	LD		 A,1
 	CALL	posiciona_en_mapa
 	
 	
@@ -51,11 +54,9 @@ mira_pinta_reliquias:
 	CALL	pinta_reliquias
 fin_mira_pinta_reliquias:
 	
-	
 	CALL	mira_pinta_energia		;actualiza el array de energia
 	
 	NOP
-		
 		
 	JP		loop_principal
 	
@@ -86,8 +87,11 @@ inicializa_variables_pruebas:
 	LD		 A,5
 	LD		(prota.nivel),A		; nivel empieza en 0 para usar las posiciones ascii
 	
-	LD		 A,#04			;fila 0 columna 4
-	LD		(prota.pos_nivel),A
+	;~ LD 		 A,3
+	;~ LD		(prota.pos_mapx),A
+	;~ LD 		 A,3
+	;~ LD		(prota.pos_mapy),A
+	;~ XOR		 A				;0 => celda por la que se ha pasado / 1 => celda en la que se está (tile de un muñeco)
 
 
 ;	CALL	pinta_pantalla -> CALL pinta_puertas
@@ -105,11 +109,43 @@ fin_inicializa_variables_pruebas:
 ; función: 	en el mapa de marcadores de la derecha/abajo marca un cuadro en gris o con un muñeco
 ;			según el valor de prota.posición pinta entrá un muñeco y por donde vaya pasando el prota
 ;			quedará en gris
-; entrada: 	D (nible alto fila, nible bajo columna),E (tipo 0 gris 1 - tile 0,muñeco - tile 19)
+; entrada: 	A (tipo 0 gris 1 - tile 0,muñeco - tile 19) *********** no sé si sería bueno usar PUSH A y aquí POP A
 ; salida: 	-
-; toca:		- porque usa EXX
+; toca:		- A
 posiciona_en_mapa:
+	PUSH	 AF		;almacenamos el tipo a pintar para cuando terminemos de calcular la coordenada
 	
+	;#0238 es la posición en mapa de tiles de la esquina superior izquierda del mapa (569 en decimal)
+	LD		HL,SC2MAP + POSMAPA ;pos inicial
+	;~ ;ahora se le suma la fila * 32 + columna
+
+	;sumar fila
+	LD		DE,32	;32 ancho del mapa de tiles de una pantalla
+	LD 		 A,(prota.pos_mapy)
+	LD		 B,A
+prod_coloca_fila:	
+	ADD		HL,DE
+	DJNZ	prod_coloca_fila
+	
+	;suma columna
+	LD		DE,#0003
+	ADD		HL,DE
+	
+	;resultado en BC
+	LD		 B,H
+	LD		 C,L
+	
+	;terminado de fijar la coordenada recuperamos a para ver el tipo
+	POP		 AF
+	OR		 A
+	JP		 Z,pinta_pos_mapa_vacio
+	LD		 D,TILEMAPPROT
+	JP		fin_pinta_pos_mapa
+pinta_pos_mapa_vacio:
+	LD		 D,TILEMAPVACI
+
+fin_pinta_pos_mapa:
+	CALL	pinta_tile_suelto
 fin_posiciona_en_mapa:
 	RET
 
@@ -129,11 +165,6 @@ fin_posiciona_en_mapa:
 	
 	include "variables.asm"
 	
-; pasar a fichero aparte
-;definicion de variable del prota usando la estructura del punto de mira
-prota:		ESTRUCTURA_PUNTOMIRA
-
-
 ;;=====================================================
 ;;DEFINICIÓN DE PANTALLAS
 ;;=====================================================		

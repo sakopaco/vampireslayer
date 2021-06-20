@@ -1,6 +1,9 @@
 ;;=====================================================
 ;;DEFINICIÓN DE VARIABLES
 ;;=====================================================	
+;definicion de variable del prota usando la estructura del punto de mira
+prota:		ESTRUCTURA_PUNTOMIRA
+
 array_aux_vidas: 		;array para pintar de golpe el marcador de vidas
 			DB		0,0,0,0,0,0,0,0
 actualiza_vidas_sn:

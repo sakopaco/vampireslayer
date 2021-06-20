@@ -343,14 +343,14 @@ mira_pinta_energia:
 	
 	LD		 A,(prota.energia) 	;para las comparaciones A variable (actual) y B fijo (limites)
 
-	LD		 C,0				;para agilizar asignaciones
+	LD		 C,TILENEGRO		;para agilizar asignaciones en vez de un valor cte uso otro registro
 pinta_ener:
 pinta_ener_tile_8:
 	LD		HL,ultimo_pos_array_aux_energia	;coloco puntero en array e iré decrementando
 	LD		 B,TILEENERG8
 	CP		 B
 	JR		C,pinta_ener_tile_8_negro
-	LD		(HL),14
+	LD		(HL),TILEMAPVERD
 	JR		pinta_ener_tile_7
 pinta_ener_tile_8_negro:
 	LD		(HL),C
@@ -360,7 +360,7 @@ pinta_ener_tile_7:
 	LD		 B,TILEENERG7
 	CP		 B
 	JR		C,pinta_ener_tile_7_negro
-	LD		(HL),14
+	LD		(HL),TILEMAPVERD
 	JR		pinta_ener_tile_6
 pinta_ener_tile_7_negro:
 	LD		(HL),C
@@ -380,7 +380,7 @@ pinta_ener_tile_5:
 	LD		 B,TILEENERG5
 	CP		 B
 	JR		C,pinta_ener_tile_5_negro
-	LD		(HL),14
+	LD		(HL),TILEMAPVERD
 	JR		pinta_ener_tile_4
 pinta_ener_tile_5_negro:
 	LD		(HL),C
@@ -390,7 +390,7 @@ pinta_ener_tile_4:
 	LD		 B,TILEENERG4
 	CP		 B
 	JR		C,pinta_ener_tile_4_negro
-	LD		(HL),15
+	LD		(HL),TILEMAPAMAR
 	JR		pinta_ener_tile_3
 pinta_ener_tile_4_negro:
 	LD		(HL),C
@@ -400,7 +400,7 @@ pinta_ener_tile_3:
 	LD		 B,TILEENERG3
 	CP		 B
 	JR		C,pinta_ener_tile_3_negro
-	LD		(HL),15
+	LD		(HL),TILEMAPAMAR
 	JR		pinta_ener_tile_2
 pinta_ener_tile_3_negro:
 	LD		(HL),C
@@ -410,7 +410,7 @@ pinta_ener_tile_2:
 	LD		 B,TILEENERG2
 	CP		 B
 	JR		C,pinta_ener_tile_2_negro
-	LD		(HL),16
+	LD		(HL),TILEMAPROJO
 	JR		fin_mira_pinta_energia		;siempre estará pintado el cuadro mínimo
 pinta_ener_tile_2_negro:
 	LD		(HL),C
