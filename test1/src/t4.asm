@@ -39,6 +39,17 @@ START:
 loop_principal:
 	HALT							;espera VBLANK y sincroniza
 	CALL	pinta_energia			;pinta la energia en pantalla
+
+mira_pinta_puertas:
+	LD		 A,(actualiza_puertas_sn)
+	OR		 A
+	JR		 Z,fin_mira_pinta_puertas
+	
+	;aquí se buscaría de la posición del usuario en la matriz de niveles y se saca el valor de A
+	;suponermos que pinta (debajo)
+	LD		 A,00001110b
+	CALL	pinta_puertas
+fin_mira_pinta_puertas:
 	
 mira_pinta_vidas:
 	LD		 A,(actualiza_vidas_sn)
@@ -54,7 +65,7 @@ mira_pinta_reliquias:
 	CALL	pinta_reliquias
 fin_mira_pinta_reliquias:
 	
-	CALL	mira_pinta_energia		;actualiza el array de energia
+	CALL	mira_pinta_energia		;actualiza el array de energia siempre
 	
 	NOP
 		
@@ -93,61 +104,74 @@ inicializa_variables_pruebas:
 	;~ LD		(prota.pos_mapy),A
 	;~ XOR		 A				;0 => celda por la que se ha pasado / 1 => celda en la que se está (tile de un muñeco)
 
-
-;	CALL	pinta_pantalla -> CALL pinta_puertas
-;	CALL	borra_mapa
+	;LD			 A,1
+	;LD			(actualiza_puertas_sn,A (1 actualiza y 0 no actualiza puertas)
 	
 fin_inicializa_variables_pruebas:
 	RET
 
 
 
-
 ;;=====================================================
-;;POSICIONA_EN_MAPA
+;;PINTA_PUERTAS
 ;;=====================================================	
-; función: 	en el mapa de marcadores de la derecha/abajo marca un cuadro en gris o con un muñeco
-;			según el valor de prota.posición pinta entrá un muñeco y por donde vaya pasando el prota
-;			quedará en gris
-; entrada: 	A (tipo 0 gris 1 - tile 0,muñeco - tile 19) *********** no sé si sería bueno usar PUSH A y aquí POP A
+; función: 	examina A y mira si tiene que pintar puertas de los lados, arriba o abrajo o las escaleras (o no)
+; entrada: 	A (se miran los 5 bits más bajos) 1 escalera 1 puerta arriba 1 pu der 1 pu aba 1 pu izq (si es 0 pinta pared)
 ; salida: 	-
 ; toca:		- A
-posiciona_en_mapa:
-	PUSH	 AF		;almacenamos el tipo a pintar para cuando terminemos de calcular la coordenada
-	
-	;#0238 es la posición en mapa de tiles de la esquina superior izquierda del mapa (569 en decimal)
-	LD		HL,SC2MAP + POSMAPA ;pos inicial
-	;~ ;ahora se le suma la fila * 32 + columna
+pinta_puertas:
 
-	;sumar fila
-	LD		DE,32	;32 ancho del mapa de tiles de una pantalla
-	LD 		 A,(prota.pos_mapy)
-	LD		 B,A
-prod_coloca_fila:	
-	ADD		HL,DE
-	DJNZ	prod_coloca_fila
-	
-	;suma columna
-	LD		DE,#0003
-	ADD		HL,DE
-	
-	;resultado en BC
-	LD		 B,H
-	LD		 C,L
-	
-	;terminado de fijar la coordenada recuperamos a para ver el tipo
-	POP		 AF
-	OR		 A
-	JP		 Z,pinta_pos_mapa_vacio
-	LD		 D,TILEMAPPROT
-	JP		fin_pinta_pos_mapa
-pinta_pos_mapa_vacio:
-	LD		 D,TILEMAPVACI
+	BIT		0,A
+	CALL	z,pinta_puerta_izq
 
-fin_pinta_pos_mapa:
-	CALL	pinta_tile_suelto
-fin_posiciona_en_mapa:
+	BIT		1,A
+	CALL	z,pinta_puerta_aba
+
+	BIT		2,A
+	CALL	z,pinta_puerta_der
+	
+	BIT		3,A
+	CALL	z,pinta_puerta_arr
+
+	;~ LD		 B,A
+
+;~ mira_escalera:
+;~ no_pinta_escalera:
+;~ fin_mira_escalera:
+
+;~ mira_puerta_1:
+;~ no_pinta_puerta_1:
+;~ fin_mira_puerta_1:
+
+;~ mira_puerta_2:
+;~ no_pinta_puerta_2:
+;~ fin_mira_puerta_2:
+
+;~ mira_puerta_3:
+	;~ AND		00000010b
+	;~ JP		Z,no_pinta_puerta_3
+;~ no_pinta_puerta_3:
+;~ fin_mira_puerta_4:
+
+;~ mira_puerta_4:
+;~ no_pinta_puerta_4:
+;~ fin_mira_puerta_4:
+
+	;~ XOR		 A
+	;~ LD		actualiza_puertas_sn,A 	;como ya se ha actualizado se pone a 0 (se volverá a poner a 1 al cambiar de pantalla)
+fin_pinta_puertas:
 	RET
+
+
+pinta_puerta_arr:
+	PUSH	AF
+	
+	
+	
+	POP		AF
+fin_pinta_puerta_arr:
+	RET
+
 
 
 	

@@ -19,8 +19,7 @@
       empieza en 0 para usar las posiciones del mapa
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1622145751512" ID="ID_1911242454" MODIFIED="1622145755171" TEXT="energia"/>
 <node CREATED="1622145746998" ID="ID_537221061" MODIFIED="1623434939166" TEXT="n_vidas">
@@ -77,7 +76,7 @@
 <node CREATED="1622488318931" ID="ID_320421743" MODIFIED="1622488322194" TEXT="arrays">
 <node CREATED="1622146240680" ID="ID_1431594522" MODIFIED="1622146256903" TEXT="array_sprites_pantalla"/>
 <node CREATED="1622488340578" ID="ID_1554144761" MODIFIED="1622911933283" TEXT="array_enemigos_pantalla"/>
-<node CREATED="1622911805264" ID="ID_1421647868" MODIFIED="1622912696575" TEXT="array_niveles">
+<node CREATED="1622911805264" ID="ID_1421647868" MODIFIED="1624301363956" TEXT="array_niveles">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -93,6 +92,9 @@
       0000 - n&#186; puertas 1 arriba 1 derecha 1 abajo 1 izquierda
     </p>
     <p>
+      1 - es pantalla final? (implica que pintar&#225; unas escaleras en la puerta superior)
+    </p>
+    <p>
       1 - hay reliquia?
     </p>
     <p>
@@ -104,11 +106,9 @@
     <p>
       1 - hay energ&#237;a? (sobran bits ... se puede usar otro como carga energ&#237;a +)
     </p>
-    <p>
-      1 - es pantalla final?
-    </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 <node CREATED="1622911829423" ID="ID_1886966464" MODIFIED="1622911842112" TEXT="array_nivel1"/>
 <node CREATED="1622911844095" ID="ID_364906659" MODIFIED="1622911846760" TEXT="array_nivel2"/>
 <node CREATED="1622911847673" ID="ID_1975537452" MODIFIED="1622911850650" TEXT="array_nivel3"/>

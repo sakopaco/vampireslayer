@@ -1,0 +1,176 @@
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.06.23 - 20:43:55]
+
+pm.asm
+Errors: 0
+
+       1   00:0000                      	output "pm.bin"
+       2   00:8200                      	
+       3   00:8200                      	
+       4   00:8200  (00:009F)           CHGET	equ		#009F
+       5   00:8200  (00:00A2)           CHPUT	equ		#00A2
+       6   00:8200  (00:00C6)           POSIT	equ		#00C6
+       7   00:8200  (00:00B1)           INLIN   equ		#00B1
+       8   00:8200  (00:00D8)           GTTRIG	equ		#00D8
+       9   00:8200                      
+      10   00:8200  (00:013E)           RDVDP	equ		#013E
+      11   00:8200  (00:0047)           WRTVDP	equ		#0047
+      12   00:8200  (00:005C)           LDIRVM	equ		#005C
+      13   00:8200  (00:0059)           LDIRMV	equ		#0059
+      14   00:8200  (00:005F)           CHGMOD	equ		#005F
+      15   00:8200                      
+      16   00:8200  (00:F3DF)           RG0SAV	equ		#F3DF
+      17   00:8200  (00:F3E0)           RG1SAV	equ		#F3E0
+      18   00:8200  (00:F3E1)           RG2SAV	equ		#F3E1
+      19   00:8200  (00:F3E2)           RG3SAV	equ		#F3E2
+      20   00:8200  (00:F3E3)           RG4SAV	equ		#F3E3
+      21   00:8200  (00:F3E4)           RG5SAV	equ		#F3E4
+      22   00:8200  (00:F3E5)           RG6SAV	equ		#F3E5
+      23   00:8200  (00:F3E6)           RG7SAV	equ		#F3E6
+      24   00:8200  (00:F3E7)           STATFL	equ		#F3E7
+      25   00:8200                      
+      26   00:8200                      
+      27   00:8200  FE                  	db	#FE
+      28   00:8201  00 82               	dw	START
+      29   00:8203  80 82               	dw	END
+      30   00:8205  00 82               	dw	START
+      31   00:8207                      	
+      32   00:8207                      	
+      33   00:8207                      	ORG	#8200
+      34   00:8200                      	
+      35   00:8200                      	
+      36   00:8200                      START:
+      37   00:8200                      	;ponemos screen 2
+      38   00:8200  3E 02               	LD	 	A,2
+      39   00:8202  CD 5F 00            	CALL 	CHGMOD
+      40   00:8205                      	
+      41   00:8205                      	;cargando los tiles (voy a cargar el vacio y el lleno)
+      42   00:8205                      	;tercio 1
+      43   00:8205  21 5D 82            	LD		HL,tilevacio
+      44   00:8208  11 00 00            	LD		DE,#0000
+      45   00:820B  01 10 00            	LD		BC,2 * 8
+      46   00:820E  CD 5C 00            	CALL	LDIRVM
+      47   00:8211                      	;tercio 2
+      48   00:8211  21 5D 82            	LD		HL,tilevacio
+      49   00:8214  11 00 08            	LD		DE,#0800
+      50   00:8217  01 10 00            	LD		BC,2 * 8
+      51   00:821A  CD 5C 00            	CALL	LDIRVM
+      52   00:821D                      	;tercio 3
+      53   00:821D  21 5D 82            	LD		HL,tilevacio
+      54   00:8220  11 00 10            	LD		DE,#1000
+      55   00:8223  01 10 00            	LD		BC,2 * 8
+      56   00:8226  CD 5C 00            	CALL	LDIRVM
+      57   00:8229                      	
+      58   00:8229                      	
+      59   00:8229                      	
+      60   00:8229                      	
+      61   00:8229                      	;cargando los colores de los tiles
+      62   00:8229                      	;tercio 1
+      63   00:8229  21 6D 82            	LD		HL,coltilevacio
+      64   00:822C  11 00 20            	LD		DE,#2000
+      65   00:822F  01 10 00            	LD		BC,2 * 8
+      66   00:8232  CD 5C 00            	CALL	LDIRVM
+      67   00:8235                      	
+      68   00:8235                      	;tercio 2
+      69   00:8235  21 6D 82            	LD		HL,coltilevacio
+      70   00:8238  11 00 28            	LD		DE,#2800
+      71   00:823B  01 10 00            	LD		BC,2 * 8
+      72   00:823E  CD 5C 00            	CALL	LDIRVM
+      73   00:8241                      	
+      74   00:8241                      	;tercio 3
+      75   00:8241  21 6D 82            	LD		HL,coltilevacio
+      76   00:8244  11 00 30            	LD		DE,#3000
+      77   00:8247  01 10 00            	LD		BC,2 * 8
+      78   00:824A  CD 5C 00            	CALL	LDIRVM
+      79   00:824D                      	
+      80   00:824D                      	
+      81   00:824D                      	;cargando los posiciones de los patrones de los tiles
+      82   00:824D                      	;tercio 1
+      83   00:824D  21 7D 82            	LD		HL,pattiles
+      84   00:8250  11 00 18            	LD		DE,#1800
+      85   00:8253  01 02 00            	LD		BC,2
+      86   00:8256  CD 5C 00            	CALL	LDIRVM
+      87   00:8259                      	
+      88   00:8259                      	;esperamos que se pulse tecla
+      89   00:8259  CD 9F 00            	CALL	CHGET
+      90   00:825C                      	
+      91   00:825C  C9                  	RET
+      92   00:825D                      
+      93   00:825D                      tilevacio:
+      94   00:825D                      	DB	0,0,0,0,0,0,0,0
+      94   00:825D  00 00 00 00 00 00 00 00 
+      95   00:8265                      
+      96   00:8265                      tilelleno:
+      97   00:8265                      	DB	#FF,#FE,#FF,#FE,#FF,#FE,#FF,#FE
+      97   00:8265  FF FE FF FE FF FE FF FE 
+      98   00:826D                      	
+      99   00:826D                      coltilevacio:
+     100   00:826D                      	DB	0,0,0,0,0,0,0,0
+     100   00:826D  00 00 00 00 00 00 00 00 
+     101   00:8275                      
+     102   00:8275                      coltilelleno:
+     103   00:8275                      	DB	#FE,#FF,#FE,#FF,#FE,#FF,#FE,#FF
+     103   00:8275  FE FF FE FF FE FF FE FF 
+     104   00:827D                      
+     105   00:827D                      pattiles:
+     106   00:827D  00 01 02            	DB	#0000,#0001,#0002
+     107   00:8280                      
+     108   00:8280                      END:
+     109   00:8280                      	
+     110   00:8280                      	
+     111   00:8280                      	
+     112   00:8280                      	
+     113   00:8280                      	
+     114   00:8280                      	
+     115   00:8280                      	
+     116   00:8280                      	
+     117   00:8280                      	
+     118   00:8280                      	
+     119   00:8280                      	
+     120   00:8280                      	
+
+    LABELS
+-------------------------------------------------
+00:0000009F   CHGET
+00:000000A2 X CHPUT
+00:000000C6 X POSIT
+00:000000B1 X INLIN
+00:000000D8 X GTTRIG
+00:0000013E X RDVDP
+00:00000047 X WRTVDP
+00:0000005C   LDIRVM
+00:00000059 X LDIRMV
+00:0000005F   CHGMOD
+00:0000F3DF X RG0SAV
+00:0000F3E0 X RG1SAV
+00:0000F3E1 X RG2SAV
+00:0000F3E2 X RG3SAV
+00:0000F3E3 X RG4SAV
+00:0000F3E4 X RG5SAV
+00:0000F3E5 X RG6SAV
+00:0000F3E6 X RG7SAV
+00:0000F3E7 X STATFL
+00:00008200   START
+00:0000825D   tilevacio
+00:00008265 X tilelleno
+00:0000826D   coltilevacio
+00:00008275 X coltilelleno
+00:0000827D   pattiles
+00:00008280   END
+
+
+ Output: pm.out
+-------------------------------------------------
+
+ Page: 00
+  Org: 00008200  Size: *  Used: 00000000
+
+    No output
+
+ Output: pm.bin
+-------------------------------------------------
+
+ Page: 00
+  Org: 00008200  Size: *  Used: 00000087
+
+   Address   Length Align   Label
+   00008200     135         START
