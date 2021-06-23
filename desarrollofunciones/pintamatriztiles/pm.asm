@@ -23,6 +23,9 @@ RG6SAV	equ		#F3E5
 RG7SAV	equ		#F3E6
 STATFL	equ		#F3E7
 
+REGEST		equ		#0099	;registro de estado para escribir directamente en VRAM
+REGESCVDP	equ		#0098	;registro donde escribir valor para VRAM
+
 SC2MAP  equ		#1800
 
 
@@ -85,6 +88,10 @@ START:
 	LD		BC,2
 	CALL	LDIRVM
 	
+	;~ LD		BC,384
+	;~ LD		(aux_pinta_array),BC
+	CALL	pinta_array
+	
 	;esperamos que se pulse tecla
 	CALL	CHGET
 	
@@ -94,31 +101,45 @@ START:
 ;;subrutina pinta array
 ;;***************************************************
 ;;funcion:  se le pasa un array con posiciones de tiles y coordenadas x e y y los pinta en screen 2
-;;entrada:	array_posiciones HL, posy B, posx C, filas D, columnas E
+;;entrada:	array_tiles HL, aux_pinta_array (posy,posx,filas,columnas)
 ;;salida:	-
 pinta_array:
-	
-	;opciones que barajo
-	;a) pintar por filas
-	LD		HL,array_aux_vidas
-	LD		DE,SC2MAP + POSVIDAS 	;inicio posición en el mapa de tiles de las vidas
-	LD		BC,NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
-	CALL	LDIRVM
-	
-	
-	;b) pintar cada tile individualmente
+	;inicializa
 	IN		 A,(REGEST)		;leer registro de estado (recomendado)
+	
+	LD		BC,SC2MAP + 400
+	LD		(aux_pinta_array),BC
+	
+	;coloca coordenadas en BC
+	;~ LD		HL,aux_pinta_array
+	;~ LD		B,(HL)
+	;~ INC		HL
+	;~ LD		C,(HL)
+	
+	;coloca puntero para pintar tile según BC
 	LD		 A,C			;primero byte bajo	
 	OUT		(REGEST),A
 	LD		 A,B			;después byte alto  ********************** preguntar a Fernando cómo que byte bajo es B
 	OR		1000000b		;+64
 	OUT		(REGEST),A
+
 	
-	LD		A,D
+	LD		HL,array_tiles
+	LD		A,(HL)
 	OUT		(REGESCVDP),A	;escribe A en VRAM en la posición indicada por los dos OUT anteriores
+	INC		HL
+	LD		A,(HL)
+	OUT		(REGESCVDP),A
+	INC		HL
+	LD		A,(HL)
+	OUT		(REGESCVDP),A
 	
 fin_pinta_array:
 	RET
+
+aux_pinta_array:
+	DW	0,0
+
 
 tilevacio:
 	DB	0,0,0,0,0,0,0,0
@@ -135,13 +156,30 @@ coltilelleno:
 pattiles:
 	DB	#0000,#0001,#0002
 	
-array_posiciones:
-	DB	1,1,1,1,1,1,1,1
+array_tiles:
+	DB	1,0,1,1,1,1,1,1
 
 END:
 	
 	
+	;~ ;opciones que barajo
+	;~ ;a) pintar por filas
+	;~ LD		HL,array_aux_vidas
+	;~ LD		DE,SC2MAP + POSVIDAS 	;inicio posición en el mapa de tiles de las vidas
+	;~ LD		BC,NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
+	;~ CALL	LDIRVM
 	
+	
+	;~ ;b) pintar cada tile individualmente
+	;~ IN		 A,(REGEST)		;leer registro de estado (recomendado)
+	;~ LD		 A,C			;primero byte bajo	
+	;~ OUT		(REGEST),A
+	;~ LD		 A,B			;después byte alto  ********************** preguntar a Fernando cómo que byte bajo es B
+	;~ OR		1000000b		;+64
+	;~ OUT		(REGEST),A
+	
+	;~ LD		A,D
+	;~ OUT		(REGESCVDP),A	;escribe A en VRAM en la posición indicada por los dos OUT anteriores
 	
 	
 	

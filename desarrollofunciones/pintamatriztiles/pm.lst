@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.06.23 - 20:43:55]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.06.23 - 22:58:53]
 
 pm.asm
 Errors: 0
@@ -28,105 +28,177 @@ Errors: 0
       23   00:8200  (00:F3E6)           RG7SAV	equ		#F3E6
       24   00:8200  (00:F3E7)           STATFL	equ		#F3E7
       25   00:8200                      
-      26   00:8200                      
-      27   00:8200  FE                  	db	#FE
-      28   00:8201  00 82               	dw	START
-      29   00:8203  80 82               	dw	END
-      30   00:8205  00 82               	dw	START
-      31   00:8207                      	
-      32   00:8207                      	
-      33   00:8207                      	ORG	#8200
-      34   00:8200                      	
-      35   00:8200                      	
-      36   00:8200                      START:
-      37   00:8200                      	;ponemos screen 2
-      38   00:8200  3E 02               	LD	 	A,2
-      39   00:8202  CD 5F 00            	CALL 	CHGMOD
-      40   00:8205                      	
-      41   00:8205                      	;cargando los tiles (voy a cargar el vacio y el lleno)
-      42   00:8205                      	;tercio 1
-      43   00:8205  21 5D 82            	LD		HL,tilevacio
-      44   00:8208  11 00 00            	LD		DE,#0000
-      45   00:820B  01 10 00            	LD		BC,2 * 8
-      46   00:820E  CD 5C 00            	CALL	LDIRVM
-      47   00:8211                      	;tercio 2
-      48   00:8211  21 5D 82            	LD		HL,tilevacio
-      49   00:8214  11 00 08            	LD		DE,#0800
-      50   00:8217  01 10 00            	LD		BC,2 * 8
-      51   00:821A  CD 5C 00            	CALL	LDIRVM
-      52   00:821D                      	;tercio 3
-      53   00:821D  21 5D 82            	LD		HL,tilevacio
-      54   00:8220  11 00 10            	LD		DE,#1000
-      55   00:8223  01 10 00            	LD		BC,2 * 8
-      56   00:8226  CD 5C 00            	CALL	LDIRVM
-      57   00:8229                      	
-      58   00:8229                      	
-      59   00:8229                      	
-      60   00:8229                      	
-      61   00:8229                      	;cargando los colores de los tiles
-      62   00:8229                      	;tercio 1
-      63   00:8229  21 6D 82            	LD		HL,coltilevacio
-      64   00:822C  11 00 20            	LD		DE,#2000
-      65   00:822F  01 10 00            	LD		BC,2 * 8
-      66   00:8232  CD 5C 00            	CALL	LDIRVM
-      67   00:8235                      	
-      68   00:8235                      	;tercio 2
-      69   00:8235  21 6D 82            	LD		HL,coltilevacio
-      70   00:8238  11 00 28            	LD		DE,#2800
-      71   00:823B  01 10 00            	LD		BC,2 * 8
-      72   00:823E  CD 5C 00            	CALL	LDIRVM
-      73   00:8241                      	
-      74   00:8241                      	;tercio 3
-      75   00:8241  21 6D 82            	LD		HL,coltilevacio
-      76   00:8244  11 00 30            	LD		DE,#3000
-      77   00:8247  01 10 00            	LD		BC,2 * 8
-      78   00:824A  CD 5C 00            	CALL	LDIRVM
-      79   00:824D                      	
-      80   00:824D                      	
-      81   00:824D                      	;cargando los posiciones de los patrones de los tiles
-      82   00:824D                      	;tercio 1
-      83   00:824D  21 7D 82            	LD		HL,pattiles
-      84   00:8250  11 00 18            	LD		DE,#1800
-      85   00:8253  01 02 00            	LD		BC,2
-      86   00:8256  CD 5C 00            	CALL	LDIRVM
-      87   00:8259                      	
-      88   00:8259                      	;esperamos que se pulse tecla
-      89   00:8259  CD 9F 00            	CALL	CHGET
-      90   00:825C                      	
-      91   00:825C  C9                  	RET
-      92   00:825D                      
-      93   00:825D                      tilevacio:
-      94   00:825D                      	DB	0,0,0,0,0,0,0,0
-      94   00:825D  00 00 00 00 00 00 00 00 
-      95   00:8265                      
-      96   00:8265                      tilelleno:
-      97   00:8265                      	DB	#FF,#FE,#FF,#FE,#FF,#FE,#FF,#FE
-      97   00:8265  FF FE FF FE FF FE FF FE 
-      98   00:826D                      	
-      99   00:826D                      coltilevacio:
-     100   00:826D                      	DB	0,0,0,0,0,0,0,0
-     100   00:826D  00 00 00 00 00 00 00 00 
-     101   00:8275                      
-     102   00:8275                      coltilelleno:
-     103   00:8275                      	DB	#FE,#FF,#FE,#FF,#FE,#FF,#FE,#FF
-     103   00:8275  FE FF FE FF FE FF FE FF 
-     104   00:827D                      
-     105   00:827D                      pattiles:
-     106   00:827D  00 01 02            	DB	#0000,#0001,#0002
-     107   00:8280                      
-     108   00:8280                      END:
-     109   00:8280                      	
-     110   00:8280                      	
-     111   00:8280                      	
-     112   00:8280                      	
-     113   00:8280                      	
-     114   00:8280                      	
-     115   00:8280                      	
-     116   00:8280                      	
-     117   00:8280                      	
-     118   00:8280                      	
-     119   00:8280                      	
-     120   00:8280                      	
+      26   00:8200  (00:0099)           REGEST		equ		#0099	;registro de estado para escribir directamente en VRAM
+      27   00:8200  (00:0098)           REGESCVDP	equ		#0098	;registro donde escribir valor para VRAM
+      28   00:8200                      
+      29   00:8200  (00:1800)           SC2MAP  equ		#1800
+      30   00:8200                      
+      31   00:8200                      
+      32   00:8200  FE                  	db	#FE
+      33   00:8201  00 82               	dw	START
+      34   00:8203  AF 82               	dw	END
+      35   00:8205  00 82               	dw	START
+      36   00:8207                      	
+      37   00:8207                      	
+      38   00:8207                      	ORG	#8200
+      39   00:8200                      	
+      40   00:8200                      	
+      41   00:8200                      START:
+      42   00:8200                      	;ponemos screen 2
+      43   00:8200  3E 02               	LD	 	A,2
+      44   00:8202  CD 5F 00            	CALL 	CHGMOD
+      45   00:8205                      	
+      46   00:8205                      	;cargando los tiles (voy a cargar el vacio y el lleno)
+      47   00:8205                      	;tercio 1
+      48   00:8205  21 84 82            	LD		HL,tilevacio
+      49   00:8208  11 00 00            	LD		DE,#0000
+      50   00:820B  01 10 00            	LD		BC,2 * 8
+      51   00:820E  CD 5C 00            	CALL	LDIRVM
+      52   00:8211                      	;tercio 2
+      53   00:8211  21 84 82            	LD		HL,tilevacio
+      54   00:8214  11 00 08            	LD		DE,#0800
+      55   00:8217  01 10 00            	LD		BC,2 * 8
+      56   00:821A  CD 5C 00            	CALL	LDIRVM
+      57   00:821D                      	;tercio 3
+      58   00:821D  21 84 82            	LD		HL,tilevacio
+      59   00:8220  11 00 10            	LD		DE,#1000
+      60   00:8223  01 10 00            	LD		BC,2 * 8
+      61   00:8226  CD 5C 00            	CALL	LDIRVM
+      62   00:8229                      	
+      63   00:8229                      	
+      64   00:8229                      	;cargando los colores de los tiles
+      65   00:8229                      	;tercio 1
+      66   00:8229  21 94 82            	LD		HL,coltilevacio
+      67   00:822C  11 00 20            	LD		DE,#2000
+      68   00:822F  01 10 00            	LD		BC,2 * 8
+      69   00:8232  CD 5C 00            	CALL	LDIRVM
+      70   00:8235                      	
+      71   00:8235                      	;tercio 2
+      72   00:8235  21 94 82            	LD		HL,coltilevacio
+      73   00:8238  11 00 28            	LD		DE,#2800
+      74   00:823B  01 10 00            	LD		BC,2 * 8
+      75   00:823E  CD 5C 00            	CALL	LDIRVM
+      76   00:8241                      	
+      77   00:8241                      	;tercio 3
+      78   00:8241  21 94 82            	LD		HL,coltilevacio
+      79   00:8244  11 00 30            	LD		DE,#3000
+      80   00:8247  01 10 00            	LD		BC,2 * 8
+      81   00:824A  CD 5C 00            	CALL	LDIRVM
+      82   00:824D                      	
+      83   00:824D                      	
+      84   00:824D                      	;cargando los posiciones de los patrones de los tiles
+      85   00:824D                      	;tercio 1
+      86   00:824D  21 A4 82            	LD		HL,pattiles
+      87   00:8250  11 00 18            	LD		DE,#1800
+      88   00:8253  01 02 00            	LD		BC,2
+      89   00:8256  CD 5C 00            	CALL	LDIRVM
+      90   00:8259                      	
+      91   00:8259                      	;~ LD		BC,384
+      92   00:8259                      	;~ LD		(aux_pinta_array),BC
+      93   00:8259  CD 60 82            	CALL	pinta_array
+      94   00:825C                      	
+      95   00:825C                      	;esperamos que se pulse tecla
+      96   00:825C  CD 9F 00            	CALL	CHGET
+      97   00:825F                      	
+      98   00:825F  C9                  	RET
+      99   00:8260                      	
+     100   00:8260                      ;;***************************************************
+     101   00:8260                      ;;subrutina pinta array
+     102   00:8260                      ;;***************************************************
+     103   00:8260                      ;;funcion:  se le pasa un array con posiciones de tiles y coordenadas x e y y los pinta en screen 2
+     104   00:8260                      ;;entrada:	array_tiles HL, aux_pinta_array (posy,posx,filas,columnas)
+     105   00:8260                      ;;salida:	-
+     106   00:8260                      pinta_array:
+     107   00:8260                      	;inicializa
+     108   00:8260  DB 99               	IN		 A,(REGEST)		;leer registro de estado (recomendado)
+     109   00:8262                      	
+     110   00:8262  01 90 19            	LD		BC,SC2MAP + 400
+     111   00:8265  ED 43 80 82         	LD		(aux_pinta_array),BC
+     112   00:8269                      	
+     113   00:8269                      	;coloca coordenadas en BC
+     114   00:8269                      	;~ LD		HL,aux_pinta_array
+     115   00:8269                      	;~ LD		B,(HL)
+     116   00:8269                      	;~ INC		HL
+     117   00:8269                      	;~ LD		C,(HL)
+     118   00:8269                      	
+     119   00:8269                      	;coloca puntero para pintar tile según BC
+     120   00:8269  79                  	LD		 A,C			;primero byte bajo	
+     121   00:826A  D3 99               	OUT		(REGEST),A
+     122   00:826C  78                  	LD		 A,B			;después byte alto  ********************** preguntar a Fernando cómo que byte bajo es B
+     123   00:826D  F6 40               	OR		1000000b		;+64
+     124   00:826F  D3 99               	OUT		(REGEST),A
+     125   00:8271                      
+     126   00:8271                      	
+     127   00:8271  21 A7 82            	LD		HL,array_tiles
+     128   00:8274  7E                  	LD		A,(HL)
+     129   00:8275  D3 98               	OUT		(REGESCVDP),A	;escribe A en VRAM en la posición indicada por los dos OUT anteriores
+     130   00:8277  23                  	INC		HL
+     131   00:8278  7E                  	LD		A,(HL)
+     132   00:8279  D3 98               	OUT		(REGESCVDP),A
+     133   00:827B  23                  	INC		HL
+     134   00:827C  7E                  	LD		A,(HL)
+     135   00:827D  D3 98               	OUT		(REGESCVDP),A
+     136   00:827F                      	
+     137   00:827F                      fin_pinta_array:
+     138   00:827F  C9                  	RET
+     139   00:8280                      
+     140   00:8280                      aux_pinta_array:
+     141   00:8280  00 00 00 00         	DW	0,0
+     142   00:8284                      
+     143   00:8284                      
+     144   00:8284                      tilevacio:
+     145   00:8284                      	DB	0,0,0,0,0,0,0,0
+     145   00:8284  00 00 00 00 00 00 00 00 
+     146   00:828C                      
+     147   00:828C                      tilelleno:
+     148   00:828C                      	DB	#FF,#FE,#FF,#FE,#FF,#FE,#FF,#FE
+     148   00:828C  FF FE FF FE FF FE FF FE 
+     149   00:8294                      	
+     150   00:8294                      coltilevacio:
+     151   00:8294                      	DB	0,0,0,0,0,0,0,0
+     151   00:8294  00 00 00 00 00 00 00 00 
+     152   00:829C                      
+     153   00:829C                      coltilelleno:
+     154   00:829C                      	DB	#FE,#FF,#FE,#FF,#FE,#FF,#FE,#FF
+     154   00:829C  FE FF FE FF FE FF FE FF 
+     155   00:82A4                      
+     156   00:82A4                      pattiles:
+     157   00:82A4  00 01 02            	DB	#0000,#0001,#0002
+     158   00:82A7                      	
+     159   00:82A7                      array_tiles:
+     160   00:82A7                      	DB	1,0,1,1,1,1,1,1
+     160   00:82A7  01 00 01 01 01 01 01 01 
+     161   00:82AF                      
+     162   00:82AF                      END:
+     163   00:82AF                      	
+     164   00:82AF                      	
+     165   00:82AF                      	;~ ;opciones que barajo
+     166   00:82AF                      	;~ ;a) pintar por filas
+     167   00:82AF                      	;~ LD		HL,array_aux_vidas
+     168   00:82AF                      	;~ LD		DE,SC2MAP + POSVIDAS 	;inicio posición en el mapa de tiles de las vidas
+     169   00:82AF                      	;~ LD		BC,NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
+     170   00:82AF                      	;~ CALL	LDIRVM
+     171   00:82AF                      	
+     172   00:82AF                      	
+     173   00:82AF                      	;~ ;b) pintar cada tile individualmente
+     174   00:82AF                      	;~ IN		 A,(REGEST)		;leer registro de estado (recomendado)
+     175   00:82AF                      	;~ LD		 A,C			;primero byte bajo	
+     176   00:82AF                      	;~ OUT		(REGEST),A
+     177   00:82AF                      	;~ LD		 A,B			;después byte alto  ********************** preguntar a Fernando cómo que byte bajo es B
+     178   00:82AF                      	;~ OR		1000000b		;+64
+     179   00:82AF                      	;~ OUT		(REGEST),A
+     180   00:82AF                      	
+     181   00:82AF                      	;~ LD		A,D
+     182   00:82AF                      	;~ OUT		(REGESCVDP),A	;escribe A en VRAM en la posición indicada por los dos OUT anteriores
+     183   00:82AF                      	
+     184   00:82AF                      	
+     185   00:82AF                      	
+     186   00:82AF                      	
+     187   00:82AF                      	
+     188   00:82AF                      	
+     189   00:82AF                      	
+     190   00:82AF                      	
+     191   00:82AF                      	
 
     LABELS
 -------------------------------------------------
@@ -149,13 +221,20 @@ Errors: 0
 00:0000F3E5 X RG6SAV
 00:0000F3E6 X RG7SAV
 00:0000F3E7 X STATFL
+00:00000099   REGEST
+00:00000098   REGESCVDP
+00:00001800   SC2MAP
 00:00008200   START
-00:0000825D   tilevacio
-00:00008265 X tilelleno
-00:0000826D   coltilevacio
-00:00008275 X coltilelleno
-00:0000827D   pattiles
-00:00008280   END
+00:00008260   pinta_array
+00:0000827F X fin_pinta_array
+00:00008280   aux_pinta_array
+00:00008284   tilevacio
+00:0000828C X tilelleno
+00:00008294   coltilevacio
+00:0000829C X coltilelleno
+00:000082A4   pattiles
+00:000082A7   array_tiles
+00:000082AF   END
 
 
  Output: pm.out
@@ -170,7 +249,7 @@ Errors: 0
 -------------------------------------------------
 
  Page: 00
-  Org: 00008200  Size: *  Used: 00000087
+  Org: 00008200  Size: *  Used: 000000B6
 
    Address   Length Align   Label
-   00008200     135         START
+   00008200     182         START
