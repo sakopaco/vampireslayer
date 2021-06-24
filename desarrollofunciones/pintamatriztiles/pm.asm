@@ -88,9 +88,17 @@ START:
 	LD		BC,2
 	CALL	LDIRVM
 	
-	;~ LD		BC,384
-	;~ LD		(aux_pinta_array),BC
+	
+	
+	
+	LD		HL,SC2MAP + 256
+	LD		(wordaux1),HL
+	LD		B,H
+	LD		C,L
+	LD		D,2
+	LD		E,4
 	CALL	pinta_array
+
 	
 	;esperamos que se pulse tecla
 	CALL	CHGET
@@ -101,20 +109,14 @@ START:
 ;;subrutina pinta array
 ;;***************************************************
 ;;funcion:  se le pasa un array con posiciones de tiles y coordenadas x e y y los pinta en screen 2
-;;entrada:	array_tiles HL, aux_pinta_array (posy,posx,filas,columnas)
+;;entrada:	array_tiles HL, BC (posición en tilemap) , D filas y E columnas
 ;;salida:	-
+;;guardar BC
 pinta_array:
+	;contamos con que la posición "global" en el tilemap está ya en BC
+	
 	;inicializa
 	IN		 A,(REGEST)		;leer registro de estado (recomendado)
-	
-	LD		BC,SC2MAP + 400
-	LD		(aux_pinta_array),BC
-	
-	;coloca coordenadas en BC
-	;~ LD		HL,aux_pinta_array
-	;~ LD		B,(HL)
-	;~ INC		HL
-	;~ LD		C,(HL)
 	
 	;coloca puntero para pintar tile según BC
 	LD		 A,C			;primero byte bajo	
@@ -125,21 +127,49 @@ pinta_array:
 
 	
 	LD		HL,array_tiles
-	LD		A,(HL)
+.pa_pinta_fila:
+	LD		 B,E
+.pa_pinta_columnas: ;finta la fila (pintando las columnas)
+	LD		 A,(HL)
 	OUT		(REGESCVDP),A	;escribe A en VRAM en la posición indicada por los dos OUT anteriores
 	INC		HL
-	LD		A,(HL)
-	OUT		(REGESCVDP),A
-	INC		HL
-	LD		A,(HL)
-	OUT		(REGESCVDP),A
+	DJNZ	.pa_pinta_columnas
+	
+	;no es una solución elegante lo de repetir código pero queda claro
+	;por si hay otra fila
+	PUSH	HL
+	LD		HL,(wordaux1)
+	LD		BC,32
+	ADD		HL,BC
+	LD		(wordaux1),HL
+	LD		B,H
+	LD		C,L
+	POP		HL
+	
+	LD		 A,C			;primero byte bajo	
+	OUT		(REGEST),A
+	LD		 A,B			;después byte alto  ********************** preguntar a Fernando cómo que byte bajo es B
+	OR		1000000b		;+64
+	OUT		(REGEST),A
+	
+	;si hay otra fila repite
+	DEC		 D
+	LD		 A,D		;¿hay otra fila?
+	OR		 A
+	JP		NZ,.pa_pinta_fila
+	
 	
 fin_pinta_array:
 	RET
 
-aux_pinta_array:
-	DW	0,0
-
+byteaux1:
+	DB	0
+byteaux2:
+	DB	0
+wordaux1:
+	DW	0
+wordaux2:
+	DW	0
 
 tilevacio:
 	DB	0,0,0,0,0,0,0,0
