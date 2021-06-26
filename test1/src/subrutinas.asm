@@ -564,6 +564,8 @@ fin_posiciona_en_mapa:
 	;~ CALL	pinta_array
 
 pinta_array:
+	PUSH	AF
+	
 	;contamos con que la posición "global" en el tilemap está ya en BC
 	;y el puntero al array a pintar en wordaux2 y la posición en tilemap sc2 en wordaux1
 	;inicializa
@@ -609,10 +611,122 @@ pinta_array:
 	OR		 A
 	JP		NZ,.pa_pinta_fila
 	
+	POP		AF
+	
 fin_pinta_array:
 	RET
 ;;variables asocidas a la función (no sé si dejarlo aquí y encapsularlo todo o hacerla reutilizable)
 ;; por de pronto la dejo aquí
-wordaux1:		DW	0	;almacena la posición en el tilemap 0-7 y pico ;)
+wordaux1:		DW	0	;almacena la posición en el tilemap 0 al 675
 wordaux2:		DW	0	;almacena puntero a array de tiles (posiciones en realidad) a pintar (posiciones repetidas en los 3 bancos)
+
+
+
+
+
+;;=====================================================
+;;PINTA_PUERTAS
+;;=====================================================	
+; función: 	examina A y mira si tiene que pintar puertas de los lados, arriba o abrajo o las escaleras (o no)
+; entrada: 	A (se miran los 5 bits más bajos) 1 escalera 1 puerta arriba 1 pu der 1 pu aba 1 pu izq (si es 0 pinta pared)
+; salida: 	-
+; toca:		- A
+pinta_puertas:
+	BIT		2,A
+	CALL	nz,pinta_puerta_der
+
+	BIT		3,A
+	CALL	nz,pinta_puerta_arr
+
+	BIT		1,A
+	CALL	nz,pinta_puerta_aba
+	
+	BIT		0,A
+	CALL	nz,pinta_puerta_izq
+	
+	XOR		 A
+	LD		(actualiza_puertas_sn),A ;(1 actualiza y 0 no actualiza puertas) se pone a 0 para que no actualice todo el tiempo (ya se ha actualizado)
+fin_pinta_puertas:
+	RET
+
+;;=====================================================
+;;PINTA_PUERTA_ABA
+;;=====================================================	
+; función: 	pinta la puerta de abajo
+; entrada: 	array_puerta_abajo, wordaux2, wordaux1
+; salida: 	-
+; toca:		HL,BC, DE
+pinta_puerta_aba:
+	LD		HL,array_puerta_abajo			;guardo puntero al array a pintar (como psar por referencia)
+	LD		(wordaux2),HL					;en la variable wordaux2
+	LD		HL,SC2MAP + POSPUERABAJ			;calcula posición en tilemap
+	LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
+	LD		B,H								;coloca posición tilemap BC
+	LD		C,L
+	LD		D,1								;nº de filas
+	LD		E,4								;nº de columnas
+	CALL	pinta_array
+fin_pinta_puerta_aba:
+	RET
+
+;;=====================================================
+;;PINTA_PUERTA_ARR
+;;=====================================================	
+; función: 	pinta la puerta de arriba
+; entrada: 	array_puerta_arriba, wordaux2, wordaux1
+; salida: 	-
+; toca:		HL,BC, DE
+pinta_puerta_arr:
+	LD		HL,array_puerta_arriba			;guardo puntero al array a pintar (como psar por referencia)
+	LD		(wordaux2),HL					;en la variable wordaux2
+	LD		HL,SC2MAP + POSPUERARRI			;calcula posición en tilemap
+	LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
+	LD		B,H								;coloca posición tilemap BC
+	LD		C,L
+	LD		D,5								;nº de filas
+	LD		E,4								;nº de columnas
+	CALL	pinta_array
+fin_pinta_puerta_arr:
+	RET
+
+;;=====================================================
+;;PINTA_PUERTA_DER
+;;=====================================================	
+; función: 	pinta la puerta de la derecha
+; entrada: 	array_puerta_derecha, wordaux2, wordaux1
+; salida: 	-
+; toca:		HL,BC, DE
+pinta_puerta_der:
+	LD		HL,array_puerta_derecha			;guardo puntero al array a pintar (como psar por referencia)
+	LD		(wordaux2),HL					;en la variable wordaux2
+	LD		HL,SC2MAP + POSPUERDERE			;calcula posición en tilemap
+	LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
+	LD		B,H								;coloca posición tilemap BC
+	LD		C,L
+	LD		D,7								;nº de filas
+	LD		E,3								;nº de columnas
+	CALL	pinta_array
+fin_pinta_puerta_der:
+	RET
+	
+;;=====================================================
+;;PINTA_PUERTA_IZQ
+;;=====================================================	
+; función: 	pinta la puerta de la izquierda
+; entrada: 	array_puerta_izquierda, wordaux2, wordaux1
+; salida: 	-
+; toca:		HL,BC, DE
+pinta_puerta_izq:
+	LD		HL,array_puerta_izquierda		;guardo puntero al array a pintar (como psar por referencia)
+	LD		(wordaux2),HL					;en la variable wordaux2
+	LD		HL,SC2MAP + POSPUERIZQU			;calcula posición en tilemap
+	LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
+	LD		B,H								;coloca posición tilemap BC
+	LD		C,L
+	LD		D,7								;nº de filas
+	LD		E,3								;nº de columnas
+	CALL	pinta_array
+fin_pinta_puerta_izq:
+	RET
+
 

@@ -44,12 +44,12 @@ mira_pinta_puertas:
 	OR		 A
 	JR		 Z,fin_mira_pinta_puertas
 	
-	;primero pretaro la pantalla como si no hubiera puertas
-;	CALL 	pinta_parte_inferior_pantalla
+	;primero preparo la pantalla como si no hubiera puertas
+	CALL 	pinta_parte_superior_pantalla
 	
 	;aquí se buscaría de la posición del usuario en la matriz de niveles y se saca el valor de A
 	;suponermos que pinta (debajo)
-	LD		 A,00001110b
+	LD		 A,00001111b
 	CALL	pinta_puertas
 fin_mira_pinta_puertas:
 	
@@ -112,47 +112,6 @@ fin_inicializa_variables_pruebas:
 	RET
 
 
-
-;;=====================================================
-;;PINTA_PUERTAS
-;;=====================================================	
-; función: 	examina A y mira si tiene que pintar puertas de los lados, arriba o abrajo o las escaleras (o no)
-; entrada: 	A (se miran los 5 bits más bajos) 1 escalera 1 puerta arriba 1 pu der 1 pu aba 1 pu izq (si es 0 pinta pared)
-; salida: 	-
-; toca:		- A
-pinta_puertas:
-	;~ BIT		0,A
-	;~ CALL	z,pinta_puerta_izq
-
-	BIT		1,A
-	CALL	nz,pinta_puerta_aba
-
-	;~ BIT		2,A
-	;~ CALL	z,pinta_puerta_der
-	
-	;~ BIT		3,A
-	;~ CALL	z,pinta_puerta_arr
-	
-	XOR		 A
-	LD		(actualiza_puertas_sn),A ;(1 actualiza y 0 no actualiza puertas)
-fin_pinta_puerta_arr:
-	RET
-	
-pinta_puerta_aba:
-	LD		HL,array_puerta_abajo			;guardo puntero al array a pintar (como psar por referencia)
-	LD		(wordaux2),HL					;en la variable wordaux2
-	LD		HL,SC2MAP + POSPUERABAJ			;calcula posición en tilemap
-	LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
-	LD		B,H								;coloca posición tilemap BC
-	LD		C,L
-	LD		D,1								;nº de filas
-	LD		E,4								;nº de columnas
-	CALL	pinta_array
-fin_pinta_puerta_aba:
-	RET
-
-
-
 	
 ;;=====================================================
 ;;DEFINICIÓN DE ESTRUCTURAS
@@ -167,9 +126,8 @@ fin_pinta_puerta_aba:
 	include "habitaciones.asm"
 	
 	include "variables.asm"
-	
-array_puerta_abajo:
-	DB	1,1,1,1
+
+
 	
 ;;=====================================================
 ;;DEFINICIÓN DE PANTALLAS
