@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.06.24 - 18:24:33]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.06.26 - 12:19:00]
 
 pm.asm
 Errors: 0
@@ -36,7 +36,7 @@ Errors: 0
       31   00:8200                      
       32   00:8200  FE                  	db	#FE
       33   00:8201  00 82               	dw	START
-      34   00:8203  CE 82               	dw	END
+      34   00:8203  EA 82               	dw	END
       35   00:8205  00 82               	dw	START
       36   00:8207                      	
       37   00:8207                      	
@@ -50,17 +50,17 @@ Errors: 0
       45   00:8205                      	
       46   00:8205                      	;cargando los tiles (voy a cargar el vacio y el lleno)
       47   00:8205                      	;tercio 1
-      48   00:8205  21 A3 82            	LD		HL,tilevacio
+      48   00:8205  21 BF 82            	LD		HL,tilevacio
       49   00:8208  11 00 00            	LD		DE,#0000
       50   00:820B  01 10 00            	LD		BC,2 * 8
       51   00:820E  CD 5C 00            	CALL	LDIRVM
       52   00:8211                      	;tercio 2
-      53   00:8211  21 A3 82            	LD		HL,tilevacio
+      53   00:8211  21 BF 82            	LD		HL,tilevacio
       54   00:8214  11 00 08            	LD		DE,#0800
       55   00:8217  01 10 00            	LD		BC,2 * 8
       56   00:821A  CD 5C 00            	CALL	LDIRVM
       57   00:821D                      	;tercio 3
-      58   00:821D  21 A3 82            	LD		HL,tilevacio
+      58   00:821D  21 BF 82            	LD		HL,tilevacio
       59   00:8220  11 00 10            	LD		DE,#1000
       60   00:8223  01 10 00            	LD		BC,2 * 8
       61   00:8226  CD 5C 00            	CALL	LDIRVM
@@ -68,19 +68,19 @@ Errors: 0
       63   00:8229                      	
       64   00:8229                      	;cargando los colores de los tiles
       65   00:8229                      	;tercio 1
-      66   00:8229  21 B3 82            	LD		HL,coltilevacio
+      66   00:8229  21 CF 82            	LD		HL,coltilevacio
       67   00:822C  11 00 20            	LD		DE,#2000
       68   00:822F  01 10 00            	LD		BC,2 * 8
       69   00:8232  CD 5C 00            	CALL	LDIRVM
       70   00:8235                      	
       71   00:8235                      	;tercio 2
-      72   00:8235  21 B3 82            	LD		HL,coltilevacio
+      72   00:8235  21 CF 82            	LD		HL,coltilevacio
       73   00:8238  11 00 28            	LD		DE,#2800
       74   00:823B  01 10 00            	LD		BC,2 * 8
       75   00:823E  CD 5C 00            	CALL	LDIRVM
       76   00:8241                      	
       77   00:8241                      	;tercio 3
-      78   00:8241  21 B3 82            	LD		HL,coltilevacio
+      78   00:8241  21 CF 82            	LD		HL,coltilevacio
       79   00:8244  11 00 30            	LD		DE,#3000
       80   00:8247  01 10 00            	LD		BC,2 * 8
       81   00:824A  CD 5C 00            	CALL	LDIRVM
@@ -88,147 +88,272 @@ Errors: 0
       83   00:824D                      	
       84   00:824D                      	;cargando los posiciones de los patrones de los tiles
       85   00:824D                      	;tercio 1
-      86   00:824D  21 C3 82            	LD		HL,pattiles
+      86   00:824D  21 DF 82            	LD		HL,pattiles
       87   00:8250  11 00 18            	LD		DE,#1800
       88   00:8253  01 02 00            	LD		BC,2
       89   00:8256  CD 5C 00            	CALL	LDIRVM
       90   00:8259                      	
       91   00:8259                      	
-      92   00:8259                      	
+      92   00:8259                      	;; llamadas de ejemplo con versión 1
       93   00:8259                      	
-      94   00:8259  21 00 19            	LD		HL,SC2MAP + 256
-      95   00:825C  22 9F 82            	LD		(wordaux1),HL
-      96   00:825F  44                  	LD		B,H
-      97   00:8260  4D                  	LD		C,L
-      98   00:8261  16 02               	LD		D,2
-      99   00:8263  1E 04               	LD		E,4
-     100   00:8265  CD 6C 82            	CALL	pinta_array
-     101   00:8268                      
-     102   00:8268                      	
-     103   00:8268                      	;esperamos que se pulse tecla
-     104   00:8268  CD 9F 00            	CALL	CHGET
-     105   00:826B                      	
-     106   00:826B  C9                  	RET
-     107   00:826C                      	
-     108   00:826C                      ;;***************************************************
-     109   00:826C                      ;;subrutina pinta array
-     110   00:826C                      ;;***************************************************
-     111   00:826C                      ;;funcion:  se le pasa un array con posiciones de tiles y coordenadas x e y y los pinta en screen 2
-     112   00:826C                      ;;entrada:	array_tiles HL, BC (posición en tilemap) , D filas y E columnas
-     113   00:826C                      ;;salida:	-
-     114   00:826C                      ;;guardar BC
-     115   00:826C                      pinta_array:
-     116   00:826C                      	;contamos con que la posición "global" en el tilemap está ya en BC
-     117   00:826C                      	
-     118   00:826C                      	;inicializa
-     119   00:826C  DB 99               	IN		 A,(REGEST)		;leer registro de estado (recomendado)
-     120   00:826E                      	
-     121   00:826E                      	;coloca puntero para pintar tile según BC
-     122   00:826E  79                  	LD		 A,C			;primero byte bajo	
-     123   00:826F  D3 99               	OUT		(REGEST),A
-     124   00:8271  78                  	LD		 A,B			;después byte alto  ********************** preguntar a Fernando cómo que byte bajo es B
-     125   00:8272  F6 40               	OR		1000000b		;+64
-     126   00:8274  D3 99               	OUT		(REGEST),A
-     127   00:8276                      
-     128   00:8276                      	
-     129   00:8276  21 C6 82            	LD		HL,array_tiles
-     130   00:8279                      .pa_pinta_fila:
-     131   00:8279  43                  	LD		 B,E
-     132   00:827A                      .pa_pinta_columnas: ;finta la fila (pintando las columnas)
-     133   00:827A  7E                  	LD		 A,(HL)
-     134   00:827B  D3 98               	OUT		(REGESCVDP),A	;escribe A en VRAM en la posición indicada por los dos OUT anteriores
-     135   00:827D  23                  	INC		HL
-     136   00:827E  10 FA               	DJNZ	.pa_pinta_columnas
-     137   00:8280                      	
-     138   00:8280                      	;no es una solución elegante lo de repetir código pero queda claro
-     139   00:8280                      	;por si hay otra fila
-     140   00:8280  E5                  	PUSH	HL
-     141   00:8281  2A 9F 82            	LD		HL,(wordaux1)
-     142   00:8284  01 20 00            	LD		BC,32
-     143   00:8287  09                  	ADD		HL,BC
-     144   00:8288  22 9F 82            	LD		(wordaux1),HL
-     145   00:828B  44                  	LD		B,H
-     146   00:828C  4D                  	LD		C,L
-     147   00:828D  E1                  	POP		HL
-     148   00:828E                      	
-     149   00:828E  79                  	LD		 A,C			;primero byte bajo	
-     150   00:828F  D3 99               	OUT		(REGEST),A
-     151   00:8291  78                  	LD		 A,B			;después byte alto  ********************** preguntar a Fernando cómo que byte bajo es B
-     152   00:8292  F6 40               	OR		1000000b		;+64
-     153   00:8294  D3 99               	OUT		(REGEST),A
-     154   00:8296                      	
-     155   00:8296                      	;si hay otra fila repite
-     156   00:8296  15                  	DEC		 D
-     157   00:8297  7A                  	LD		 A,D		;¿hay otra fila?
-     158   00:8298  B7                  	OR		 A
-     159   00:8299  C2 79 82            	JP		NZ,.pa_pinta_fila
-     160   00:829C                      	
-     161   00:829C                      	
-     162   00:829C                      fin_pinta_array:
-     163   00:829C  C9                  	RET
-     164   00:829D                      
-     165   00:829D                      byteaux1:
-     166   00:829D  00                  	DB	0
-     167   00:829E                      byteaux2:
-     168   00:829E  00                  	DB	0
-     169   00:829F                      wordaux1:
-     170   00:829F  00 00               	DW	0
-     171   00:82A1                      wordaux2:
-     172   00:82A1  00 00               	DW	0
-     173   00:82A3                      
-     174   00:82A3                      tilevacio:
-     175   00:82A3                      	DB	0,0,0,0,0,0,0,0
-     175   00:82A3  00 00 00 00 00 00 00 00 
-     176   00:82AB                      
-     177   00:82AB                      tilelleno:
-     178   00:82AB                      	DB	#FF,#FE,#FF,#FE,#FF,#FE,#FF,#FE
-     178   00:82AB  FF FE FF FE FF FE FF FE 
-     179   00:82B3                      	
-     180   00:82B3                      coltilevacio:
-     181   00:82B3                      	DB	0,0,0,0,0,0,0,0
-     181   00:82B3  00 00 00 00 00 00 00 00 
-     182   00:82BB                      
-     183   00:82BB                      coltilelleno:
-     184   00:82BB                      	DB	#FE,#FF,#FE,#FF,#FE,#FF,#FE,#FF
-     184   00:82BB  FE FF FE FF FE FF FE FF 
-     185   00:82C3                      
-     186   00:82C3                      pattiles:
-     187   00:82C3  00 01 02            	DB	#0000,#0001,#0002
-     188   00:82C6                      	
-     189   00:82C6                      array_tiles:
-     190   00:82C6                      	DB	1,0,1,1,1,1,1,1
-     190   00:82C6  01 00 01 01 01 01 01 01 
-     191   00:82CE                      
-     192   00:82CE                      END:
-     193   00:82CE                      	
-     194   00:82CE                      	
-     195   00:82CE                      	;~ ;opciones que barajo
-     196   00:82CE                      	;~ ;a) pintar por filas
-     197   00:82CE                      	;~ LD		HL,array_aux_vidas
-     198   00:82CE                      	;~ LD		DE,SC2MAP + POSVIDAS 	;inicio posición en el mapa de tiles de las vidas
-     199   00:82CE                      	;~ LD		BC,NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
-     200   00:82CE                      	;~ CALL	LDIRVM
-     201   00:82CE                      	
-     202   00:82CE                      	
-     203   00:82CE                      	;~ ;b) pintar cada tile individualmente
-     204   00:82CE                      	;~ IN		 A,(REGEST)		;leer registro de estado (recomendado)
-     205   00:82CE                      	;~ LD		 A,C			;primero byte bajo	
-     206   00:82CE                      	;~ OUT		(REGEST),A
-     207   00:82CE                      	;~ LD		 A,B			;después byte alto  ********************** preguntar a Fernando cómo que byte bajo es B
-     208   00:82CE                      	;~ OR		1000000b		;+64
-     209   00:82CE                      	;~ OUT		(REGEST),A
-     210   00:82CE                      	
-     211   00:82CE                      	;~ LD		A,D
-     212   00:82CE                      	;~ OUT		(REGESCVDP),A	;escribe A en VRAM en la posición indicada por los dos OUT anteriores
-     213   00:82CE                      	
-     214   00:82CE                      	
-     215   00:82CE                      	
-     216   00:82CE                      	
-     217   00:82CE                      	
-     218   00:82CE                      	
-     219   00:82CE                      	
-     220   00:82CE                      	
-     221   00:82CE                      	
+      94   00:8259                      	;~ LD		HL,SC2MAP + 256
+      95   00:8259                      	;~ LD		(wordaux1),HL
+      96   00:8259                      	;~ LD		B,H
+      97   00:8259                      	;~ LD		C,L
+      98   00:8259                      	;~ LD		D,2
+      99   00:8259                      	;~ LD		E,4
+     100   00:8259                      	;~ CALL	pinta_array
+     101   00:8259                      
+     102   00:8259                      
+     103   00:8259                      	;~ LD		HL,SC2MAP + 256 + 16
+     104   00:8259                      	;~ LD		(wordaux1),HL
+     105   00:8259                      	;~ LD		B,H
+     106   00:8259                      	;~ LD		C,L
+     107   00:8259                      	;~ LD		D,1
+     108   00:8259                      	;~ LD		E,8
+     109   00:8259                      	;~ CALL	pinta_array
+     110   00:8259                      	
+     111   00:8259                      	;~ LD		HL,SC2MAP + 256 + 16 + 32 + 32	;calcula posición en tilemap
+     112   00:8259                      	;~ LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
+     113   00:8259                      	;~ LD		B,H								;coloca posición tilemap BC
+     114   00:8259                      	;~ LD		C,L
+     115   00:8259                      	;~ LD		D,8								;nº de filas
+     116   00:8259                      	;~ LD		E,1								;nº de columnas
+     117   00:8259                      	;~ CALL	pinta_array
+     118   00:8259                      
+     119   00:8259                      
+     120   00:8259                      	;; llamadas de ejemplo con versión 2
+     121   00:8259  21 E2 82            	LD		HL,array_tiles
+     122   00:825C  22 BD 82            	LD		(wordaux2),HL
+     123   00:825F                      	
+     124   00:825F  21 50 19            	LD		HL,SC2MAP + 256 + 16 + 32 + 32	;calcula posición en tilemap
+     125   00:8262  22 BB 82            	LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
+     126   00:8265  44                  	LD		B,H								;coloca posición tilemap BC
+     127   00:8266  4D                  	LD		C,L
+     128   00:8267  16 08               	LD		D,8								;nº de filas
+     129   00:8269  1E 01               	LD		E,1								;nº de columnas
+     130   00:826B  CD 88 82            	CALL	pinta_array2
+     131   00:826E                      	
+     132   00:826E                      	
+     133   00:826E  21 E2 82            	LD		HL,array_tiles					;guardo puntero al array a pintar (como psar por referencia)
+     134   00:8271  22 BD 82            	LD		(wordaux2),HL					;en la variable wordaux2
+     135   00:8274  21 20 19            	LD		HL,SC2MAP + 256 + 32			;calcula posición en tilemap
+     136   00:8277  22 BB 82            	LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
+     137   00:827A  44                  	LD		B,H								;coloca posición tilemap BC
+     138   00:827B  4D                  	LD		C,L
+     139   00:827C  16 02               	LD		D,2								;nº de filas
+     140   00:827E  1E 03               	LD		E,3								;nº de columnas
+     141   00:8280  CD 88 82            	CALL	pinta_array2
+     142   00:8283                      	
+     143   00:8283                      	
+     144   00:8283                      	;esperamos que se pulse tecla
+     145   00:8283  CD 9F 00            	CALL	CHGET
+     146   00:8286                      	
+     147   00:8286  C9                  	RET
+     148   00:8287                      	
+     149   00:8287                      	
+     150   00:8287                      	
+     151   00:8287                      	
+     152   00:8287                      	
+     153   00:8287                      	
+     154   00:8287                      ;;***************************************************
+     155   00:8287                      ;;subrutina pinta array
+     156   00:8287                      ;;***************************************************
+     157   00:8287                      ;;funcion:  se le pasa un array con posiciones de tiles y coordenadas x e y y los pinta en screen 2
+     158   00:8287                      ;;entrada:	array_tiles HL, BC (posición en tilemap) , D filas y E columnas
+     159   00:8287                      ;;salida:	-
+     160   00:8287                      ;;importante: necesita de una variable wordaux1 tipo WD (wordaux1: 	DW	0)
+     161   00:8287                      ;; ejemplo llamada:
+     162   00:8287                      	;~ LD		HL,SC2MAP + 256 + 16 + 32 + 32	;calcula posición en tilemap
+     163   00:8287                      	;~ LD		(wordaux1),HL					;guarda valor en wordaux1
+     164   00:8287                      	;~ LD		B,H								;coloca posición tilemap BC
+     165   00:8287                      	;~ LD		C,L
+     166   00:8287                      	;~ LD		D,8								;nº de filas
+     167   00:8287                      	;~ LD		E,1								;nº de columnas
+     168   00:8287                      	;~ CALL	pinta_array
+     169   00:8287                      
+     170   00:8287                      pinta_array:
+     171   00:8287                      	;contamos con que la posición "global" en el tilemap está ya en BC
+     172   00:8287                      	
+     173   00:8287                      	;~ ;inicializa
+     174   00:8287                      	;~ IN		 A,(REGEST)		;leer registro de estado (recomendado)
+     175   00:8287                      	
+     176   00:8287                      	;~ ;coloca puntero para pintar tile según BC
+     177   00:8287                      	;~ LD		 A,C			;primero byte bajo	
+     178   00:8287                      	;~ OUT		(REGEST),A
+     179   00:8287                      	;~ LD		 A,B			;después byte alto  ********************** preguntar a Fernando cómo que byte bajo es B
+     180   00:8287                      	;~ OR		1000000b		;+64
+     181   00:8287                      	;~ OUT		(REGEST),A
+     182   00:8287                      
+     183   00:8287                      	
+     184   00:8287                      	;~ LD		HL,array_tiles
+     185   00:8287                      ;~ .pa_pinta_fila:
+     186   00:8287                      	;~ LD		 B,E
+     187   00:8287                      ;~ .pa_pinta_columnas: ;finta la fila (pintando las columnas)
+     188   00:8287                      	;~ LD		 A,(HL)
+     189   00:8287                      	;~ OUT		(REGESCVDP),A	;escribe A en VRAM en la posición indicada por los dos OUT anteriores
+     190   00:8287                      	;~ INC		HL
+     191   00:8287                      	;~ DJNZ	.pa_pinta_columnas
+     192   00:8287                      	
+     193   00:8287                      	;~ ;no es una solución elegante lo de repetir código pero queda claro
+     194   00:8287                      	;~ ;por si hay otra fila
+     195   00:8287                      	;~ PUSH	HL
+     196   00:8287                      	;~ LD		HL,(wordaux1)
+     197   00:8287                      	;~ LD		BC,32
+     198   00:8287                      	;~ ADD		HL,BC
+     199   00:8287                      	;~ LD		(wordaux1),HL
+     200   00:8287                      	;~ LD		B,H
+     201   00:8287                      	;~ LD		C,L
+     202   00:8287                      	;~ POP		HL
+     203   00:8287                      	
+     204   00:8287                      	;~ LD		 A,C			;primero byte bajo	
+     205   00:8287                      	;~ OUT		(REGEST),A
+     206   00:8287                      	;~ LD		 A,B			;después byte alto  ********************** preguntar a Fernando cómo que byte bajo es B
+     207   00:8287                      	;~ OR		1000000b		;+64
+     208   00:8287                      	;~ OUT		(REGEST),A
+     209   00:8287                      	
+     210   00:8287                      	;~ ;si hay otra fila repite
+     211   00:8287                      	;~ DEC		 D
+     212   00:8287                      	;~ LD		 A,D		;¿hay otra fila?
+     213   00:8287                      	;~ OR		 A
+     214   00:8287                      	;~ JP		NZ,.pa_pinta_fila
+     215   00:8287                      	
+     216   00:8287                      	
+     217   00:8287                      fin_pinta_array:
+     218   00:8287  C9                  	RET
+     219   00:8288                      	
+     220   00:8288                      	
+     221   00:8288                      ;;***************************************************
+     222   00:8288                      ;;subrutina pinta array2
+     223   00:8288                      ;;***************************************************
+     224   00:8288                      ;;funcion:  se le pasa un array con posiciones de tiles y coordenadas x e y y los pinta en screen 2
+     225   00:8288                      ;;entrada:	array_tiles HL, BC (posición en tilemap) , D filas y E columnas
+     226   00:8288                      ;;salida:	-
+     227   00:8288                      ;;importante: necesita de una variable wordaux1 tipo WD (wordaux1: 	DW	0)
+     228   00:8288                      ;; ejemplo llamada:
+     229   00:8288                      	;~ LD		HL,array_tiles					;guardo puntero al array a pintar (como psar por referencia)
+     230   00:8288                      	;~ LD		(wordaux2),HL					;en la variable wordaux2
+     231   00:8288                      	;~ LD		HL,SC2MAP + 256 + 32			;calcula posición en tilemap
+     232   00:8288                      	;~ LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
+     233   00:8288                      	;~ LD		B,H								;coloca posición tilemap BC
+     234   00:8288                      	;~ LD		C,L
+     235   00:8288                      	;~ LD		D,2								;nº de filas
+     236   00:8288                      	;~ LD		E,3								;nº de columnas
+     237   00:8288                      	;~ CALL	pinta_array2
+     238   00:8288                      	
+     239   00:8288                      
+     240   00:8288                      pinta_array2:
+     241   00:8288                      	;contamos con que la posición "global" en el tilemap está ya en BC
+     242   00:8288                      	
+     243   00:8288                      	;inicializa
+     244   00:8288  DB 99               	IN		 A,(REGEST)		;leer registro de estado (recomendado)
+     245   00:828A                      	
+     246   00:828A                      	;coloca puntero para pintar tile según BC
+     247   00:828A  79                  	LD		 A,C			;primero byte bajo	
+     248   00:828B  D3 99               	OUT		(REGEST),A
+     249   00:828D  78                  	LD		 A,B			;después byte alto  ********************** preguntar a Fernando cómo que byte bajo es B
+     250   00:828E  F6 40               	OR		1000000b		;+64
+     251   00:8290  D3 99               	OUT		(REGEST),A
+     252   00:8292                      
+     253   00:8292                      	
+     254   00:8292  2A BD 82            	LD		HL,(wordaux2)
+     255   00:8295                      .pa_pinta_fila:
+     256   00:8295  43                  	LD		 B,E
+     257   00:8296                      .pa_pinta_columnas: ;finta la fila (pintando las columnas)
+     258   00:8296  7E                  	LD		 A,(HL)
+     259   00:8297  D3 98               	OUT		(REGESCVDP),A	;escribe A en VRAM en la posición indicada por los dos OUT anteriores
+     260   00:8299  23                  	INC		HL
+     261   00:829A  10 FA               	DJNZ	.pa_pinta_columnas
+     262   00:829C                      	
+     263   00:829C                      	;no es una solución elegante lo de repetir código pero queda claro
+     264   00:829C                      	;por si hay otra fila
+     265   00:829C  E5                  	PUSH	HL
+     266   00:829D  2A BB 82            	LD		HL,(wordaux1)
+     267   00:82A0  01 20 00            	LD		BC,32
+     268   00:82A3  09                  	ADD		HL,BC
+     269   00:82A4  22 BB 82            	LD		(wordaux1),HL
+     270   00:82A7  44                  	LD		B,H
+     271   00:82A8  4D                  	LD		C,L
+     272   00:82A9  E1                  	POP		HL
+     273   00:82AA                      	
+     274   00:82AA  79                  	LD		 A,C			;primero byte bajo	
+     275   00:82AB  D3 99               	OUT		(REGEST),A
+     276   00:82AD  78                  	LD		 A,B			;después byte alto  ********************** preguntar a Fernando cómo que byte bajo es B
+     277   00:82AE  F6 40               	OR		1000000b		;+64
+     278   00:82B0  D3 99               	OUT		(REGEST),A
+     279   00:82B2                      	
+     280   00:82B2                      	;si hay otra fila repite
+     281   00:82B2  15                  	DEC		 D
+     282   00:82B3  7A                  	LD		 A,D		;¿hay otra fila?
+     283   00:82B4  B7                  	OR		 A
+     284   00:82B5  C2 95 82            	JP		NZ,.pa_pinta_fila
+     285   00:82B8                      	
+     286   00:82B8                      fin_pinta_array2:
+     287   00:82B8  C9                  	RET
+     288   00:82B9                      	
+     289   00:82B9                      
+     290   00:82B9                      byteaux1:
+     291   00:82B9  00                  	DB	0
+     292   00:82BA                      byteaux2:
+     293   00:82BA  00                  	DB	0
+     294   00:82BB                      wordaux1:
+     295   00:82BB  00 00               	DW	0
+     296   00:82BD                      wordaux2:
+     297   00:82BD  00 00               	DW	0
+     298   00:82BF                      
+     299   00:82BF                      tilevacio:
+     300   00:82BF                      	DB	0,0,0,0,0,0,0,0
+     300   00:82BF  00 00 00 00 00 00 00 00 
+     301   00:82C7                      
+     302   00:82C7                      tilelleno:
+     303   00:82C7                      	DB	#FF,#FE,#FF,#FE,#FF,#FE,#FF,#FE
+     303   00:82C7  FF FE FF FE FF FE FF FE 
+     304   00:82CF                      	
+     305   00:82CF                      coltilevacio:
+     306   00:82CF                      	DB	0,0,0,0,0,0,0,0
+     306   00:82CF  00 00 00 00 00 00 00 00 
+     307   00:82D7                      
+     308   00:82D7                      coltilelleno:
+     309   00:82D7                      	DB	#FE,#FF,#FE,#FF,#FE,#FF,#FE,#FF
+     309   00:82D7  FE FF FE FF FE FF FE FF 
+     310   00:82DF                      
+     311   00:82DF                      pattiles:
+     312   00:82DF  00 01 02            	DB	#0000,#0001,#0002
+     313   00:82E2                      	
+     314   00:82E2                      array_tiles:
+     315   00:82E2                      	DB	1,0,1,1,1,1,1,1
+     315   00:82E2  01 00 01 01 01 01 01 01 
+     316   00:82EA                      
+     317   00:82EA                      END:
+     318   00:82EA                      	
+     319   00:82EA                      	
+     320   00:82EA                      	;~ ;opciones que barajo
+     321   00:82EA                      	;~ ;a) pintar por filas
+     322   00:82EA                      	;~ LD		HL,array_aux_vidas
+     323   00:82EA                      	;~ LD		DE,SC2MAP + POSVIDAS 	;inicio posición en el mapa de tiles de las vidas
+     324   00:82EA                      	;~ LD		BC,NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
+     325   00:82EA                      	;~ CALL	LDIRVM
+     326   00:82EA                      	
+     327   00:82EA                      	
+     328   00:82EA                      	;~ ;b) pintar cada tile individualmente
+     329   00:82EA                      	;~ IN		 A,(REGEST)		;leer registro de estado (recomendado)
+     330   00:82EA                      	;~ LD		 A,C			;primero byte bajo	
+     331   00:82EA                      	;~ OUT		(REGEST),A
+     332   00:82EA                      	;~ LD		 A,B			;después byte alto  ********************** preguntar a Fernando cómo que byte bajo es B
+     333   00:82EA                      	;~ OR		1000000b		;+64
+     334   00:82EA                      	;~ OUT		(REGEST),A
+     335   00:82EA                      	
+     336   00:82EA                      	;~ LD		A,D
+     337   00:82EA                      	;~ OUT		(REGESCVDP),A	;escribe A en VRAM en la posición indicada por los dos OUT anteriores
+     338   00:82EA                      	
+     339   00:82EA                      	
+     340   00:82EA                      	
+     341   00:82EA                      	
+     342   00:82EA                      	
+     343   00:82EA                      	
+     344   00:82EA                      	
+     345   00:82EA                      	
+     346   00:82EA                      	
 
     LABELS
 -------------------------------------------------
@@ -255,21 +380,23 @@ Errors: 0
 00:00000098   REGESCVDP
 00:00001800   SC2MAP
 00:00008200   START
-00:0000826C   pinta_array
-00:00008279   pinta_array.pa_pinta_fila
-00:0000827A   pinta_array.pa_pinta_columnas
-00:0000829C X fin_pinta_array
-00:0000829D X byteaux1
-00:0000829E X byteaux2
-00:0000829F   wordaux1
-00:000082A1 X wordaux2
-00:000082A3   tilevacio
-00:000082AB X tilelleno
-00:000082B3   coltilevacio
-00:000082BB X coltilelleno
-00:000082C3   pattiles
-00:000082C6   array_tiles
-00:000082CE   END
+00:00008287 X pinta_array
+00:00008287 X fin_pinta_array
+00:00008288   pinta_array2
+00:00008295   pinta_array2.pa_pinta_fila
+00:00008296   pinta_array2.pa_pinta_columnas
+00:000082B8 X fin_pinta_array2
+00:000082B9 X byteaux1
+00:000082BA X byteaux2
+00:000082BB   wordaux1
+00:000082BD   wordaux2
+00:000082BF   tilevacio
+00:000082C7 X tilelleno
+00:000082CF   coltilevacio
+00:000082D7 X coltilelleno
+00:000082DF   pattiles
+00:000082E2   array_tiles
+00:000082EA   END
 
 
  Output: pm.out
@@ -284,7 +411,7 @@ Errors: 0
 -------------------------------------------------
 
  Page: 00
-  Org: 00008200  Size: *  Used: 000000D5
+  Org: 00008200  Size: *  Used: 000000F1
 
    Address   Length Align   Label
-   00008200     213         START
+   00008200     241         START
