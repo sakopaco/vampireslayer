@@ -61,6 +61,7 @@ POSRELIQ	equ		#02C8
 POSENERG	equ		#0288
 POSNIVEL	equ		#02B4
 POSMAPA		equ 	#0238
+POSPUERABAJ equ		#01EE
 
 
 ;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (relacionadas con posiciones en en el banco de memoria)

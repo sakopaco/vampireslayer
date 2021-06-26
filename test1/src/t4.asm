@@ -22,7 +22,7 @@ START:
 	CALL	pinta_pantalla_completa
 	
 	;funciones que modificarian el marcador si se produce un evento cuando toque y cuando se pinta la pantalla ya se mira
-	; una variable para ver si el array hay que actualizarlo en pantalla o no
+	;una variable para ver si el array hay que actualizarlo en pantalla o no
 	CALL	actualiza_marcador_vidas
 	CALL	actualiza_marcador_reliquias
 	CALL	pinta_nivel
@@ -33,8 +33,7 @@ START:
 	LD 		 A,6
 	LD		(prota.pos_mapy),A
 	LD		 A,1
-	CALL	posiciona_en_mapa
-	
+	CALL	posiciona_en_mapa	
 	
 loop_principal:
 	HALT							;espera VBLANK y sincroniza
@@ -44,6 +43,9 @@ mira_pinta_puertas:
 	LD		 A,(actualiza_puertas_sn)
 	OR		 A
 	JR		 Z,fin_mira_pinta_puertas
+	
+	;primero pretaro la pantalla como si no hubiera puertas
+;	CALL 	pinta_parte_inferior_pantalla
 	
 	;aquí se buscaría de la posición del usuario en la matriz de niveles y se saca el valor de A
 	;suponermos que pinta (debajo)
@@ -104,9 +106,8 @@ inicializa_variables_pruebas:
 	;~ LD		(prota.pos_mapy),A
 	;~ XOR		 A				;0 => celda por la que se ha pasado / 1 => celda en la que se está (tile de un muñeco)
 
-	;LD			 A,1
-	;LD			(actualiza_puertas_sn,A (1 actualiza y 0 no actualiza puertas)
-	
+	LD			 A,1
+	LD			(actualiza_puertas_sn),A ;(1 actualiza y 0 no actualiza puertas)
 fin_inicializa_variables_pruebas:
 	RET
 
@@ -120,56 +121,34 @@ fin_inicializa_variables_pruebas:
 ; salida: 	-
 ; toca:		- A
 pinta_puertas:
-
-	BIT		0,A
-	CALL	z,pinta_puerta_izq
+	;~ BIT		0,A
+	;~ CALL	z,pinta_puerta_izq
 
 	BIT		1,A
-	CALL	z,pinta_puerta_aba
+	CALL	nz,pinta_puerta_aba
 
-	BIT		2,A
-	CALL	z,pinta_puerta_der
+	;~ BIT		2,A
+	;~ CALL	z,pinta_puerta_der
 	
-	BIT		3,A
-	CALL	z,pinta_puerta_arr
-
-	;~ LD		 B,A
-
-;~ mira_escalera:
-;~ no_pinta_escalera:
-;~ fin_mira_escalera:
-
-;~ mira_puerta_1:
-;~ no_pinta_puerta_1:
-;~ fin_mira_puerta_1:
-
-;~ mira_puerta_2:
-;~ no_pinta_puerta_2:
-;~ fin_mira_puerta_2:
-
-;~ mira_puerta_3:
-	;~ AND		00000010b
-	;~ JP		Z,no_pinta_puerta_3
-;~ no_pinta_puerta_3:
-;~ fin_mira_puerta_4:
-
-;~ mira_puerta_4:
-;~ no_pinta_puerta_4:
-;~ fin_mira_puerta_4:
-
-	;~ XOR		 A
-	;~ LD		actualiza_puertas_sn,A 	;como ya se ha actualizado se pone a 0 (se volverá a poner a 1 al cambiar de pantalla)
-fin_pinta_puertas:
-	RET
-
-
-pinta_puerta_arr:
-	PUSH	AF
+	;~ BIT		3,A
+	;~ CALL	z,pinta_puerta_arr
 	
-	
-	
-	POP		AF
+	XOR		 A
+	LD		(actualiza_puertas_sn),A ;(1 actualiza y 0 no actualiza puertas)
 fin_pinta_puerta_arr:
+	RET
+	
+pinta_puerta_aba:
+	LD		HL,array_puerta_abajo			;guardo puntero al array a pintar (como psar por referencia)
+	LD		(wordaux2),HL					;en la variable wordaux2
+	LD		HL,SC2MAP + POSPUERABAJ			;calcula posición en tilemap
+	LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
+	LD		B,H								;coloca posición tilemap BC
+	LD		C,L
+	LD		D,1								;nº de filas
+	LD		E,4								;nº de columnas
+	CALL	pinta_array
+fin_pinta_puerta_aba:
 	RET
 
 
@@ -188,6 +167,9 @@ fin_pinta_puerta_arr:
 	include "habitaciones.asm"
 	
 	include "variables.asm"
+	
+array_puerta_abajo:
+	DB	1,1,1,1
 	
 ;;=====================================================
 ;;DEFINICIÓN DE PANTALLAS
