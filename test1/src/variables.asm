@@ -26,8 +26,30 @@ actualiza_puertas_sn:	;0 no 1 sí (se pone a 1 cuando se cambia de habitación y
 			DB		0 	;valor que indica si hay que actualizar las puertas de una pantalla (se crea porque sólo hay que actualizar si se cambia a de hab)
 			
 ;; nota importante: cada vez que se cambie de nivel se actualizará el contenido
-			
-array_puerta3_no:
-			DB		0,0,0,0
-array_puerta3_si:
-			DB		1,1,1,1			
+;; arrays con mapa de tiles de las puertas
+array_puerta_arriba:
+array_puerta_arriba1:		DB	3,1,1,3
+array_puerta_arriba2:		DB	1,1,1,1
+array_puerta_arriba3:		DB	1,1,1,1
+array_puerta_arriba4:		DB	1,1,1,1
+array_puerta_arriba5:		DB	1,1,1,1
+
+array_puerta_derecha:
+array_puerta_derecha1:		DB	1,3,3
+array_puerta_derecha2:		DB	1,1,3
+array_puerta_derecha3:		DB	1,1,1
+array_puerta_derecha4:		DB	1,1,1
+array_puerta_derecha5:		DB	1,1,1
+array_puerta_derecha6:		DB	2,1,1
+array_puerta_derecha7:		DB	4,2,1
+	
+array_puerta_abajo:			DB	1,1,1,1
+
+array_puerta_izquierda:
+array_puerta_izquierda1:	DB	3,3,1
+array_puerta_izquierda2:	DB	3,1,1
+array_puerta_izquierda3:	DB	1,1,1
+array_puerta_izquierda4:	DB	1,1,1
+array_puerta_izquierda5:	DB	1,1,1
+array_puerta_izquierda6:	DB	1,1,2
+array_puerta_izquierda7:	DB	1,2,4
