@@ -1,14 +1,6 @@
 
 
-pinta_parte_superior_pantalla:
--> elegir qué imagen de nivel mostrar
--> actualizar puertas
-
-pinta_parte_inferior_pantalla:
--> actualiza_nivel <-- modificar para no usar bios
--> actualiza_tiempo
--> actualiza_mapa
--> actualiza_posición
+actualiza con ldir las habitaciones con la plantilla de habitaciones
 
 
 EX	1 ciclo
