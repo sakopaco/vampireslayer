@@ -53,3 +53,37 @@ array_puerta_izquierda4:	DB	1,1,1
 array_puerta_izquierda5:	DB	1,1,1
 array_puerta_izquierda6:	DB	1,1,2
 array_puerta_izquierda7:	DB	1,2,4
+
+array_sprites:			;array de 4 bytes x 32 sprites posibles en pantalla que sobreescribirá la tabla de sprites actualizando
+sprite_pos1:				DB 0,0,0,0
+sprite_pos2:				DB 0,0,0,0
+sprite_pos3:				DB 0,0,0,0
+sprite_pos4:				DB 0,0,0,0
+sprite_pos5:				DB 0,0,0,0
+sprite_pos6:				DB 0,0,0,0
+sprite_pos7:				DB 0,0,0,0
+sprite_pos8:				DB 0,0,0,0
+sprite_pos9:				DB 0,0,0,0
+sprite_pos10:				DB 0,0,0,0
+sprite_pos11:				DB 0,0,0,0
+sprite_pos12:				DB 0,0,0,0
+sprite_pos13:				DB 0,0,0,0
+sprite_pos14:				DB 0,0,0,0
+sprite_pos15:				DB 0,0,0,0
+sprite_pos16:				DB 0,0,0,0
+sprite_pos17:				DB 0,0,0,0
+sprite_pos18:				DB 0,0,0,0
+sprite_pos19:				DB 0,0,0,0
+sprite_pos20:				DB 0,0,0,0
+sprite_pos21:				DB 0,0,0,0
+sprite_pos22:				DB 0,0,0,0
+sprite_pos23:				DB 0,0,0,0
+sprite_pos24:				DB 0,0,0,0
+sprite_pos25:				DB 0,0,0,0
+sprite_pos26:				DB 0,0,0,0
+sprite_pos27:				DB 0,0,0,0
+sprite_pos28:				DB 0,0,0,0
+sprite_pos29:				DB 0,0,0,0
+sprite_pos30:				DB 0,0,0,0
+sprite_pos31:				DB 0,0,0,0
+sprite_pos32:				DB 0,0,0,0
