@@ -4,6 +4,30 @@
 
 
 ;;=====================================================
+;;INICIALIZA_NIVELES
+;;=====================================================	
+; función: 	copia la plantilla de niveles (habitaciones_plantilla) en los niveles de trabajo para el juego (habitaciones_juego)
+; entrada: 	habitaciones_plantilla
+; salida: 	habitaciones_juego
+; toca: 	nada se usa push y pop
+iniciliza_niveles:
+	PUSH	AF
+	PUSH	BC
+	PUSH	HL
+
+	LD 		HL, habitaciones_plantilla
+	LD 		DE, habitaciones_juego
+	LD 		BC, 392			;8 bytes por subnivel x 7 subniveles x 7 niveles
+	LDIR
+	
+	POP		HL
+	POP		BC
+	POP		AF
+fin_iniciliza_niveles:
+	RET
+
+
+;;=====================================================
 ;;PREPARAPANTALLA
 ;;=====================================================	
 ; función: elimina clic cuando se pulsa tecla, cls, screen 2,2

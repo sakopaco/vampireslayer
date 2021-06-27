@@ -89,7 +89,7 @@ habitaciones_nivel7:
 habitaciones_plantilla:
 habitaciones_plantilla_nivel1:
 ;--------------------* habitación inicial
-	dw  #00,#00,#00,#1F,#00,#00,#00,#00 ;(primera fila)
+	dw  #1F,#2F,#3F,#1F,#00,#00,#00,#00 ;(primera fila)
 	dw  #00,#00,#00,#00,#00,#00,#00,#00
 	dw  #00,#00,#00,#00,#00,#00,#00,#00
 	dw  #00,#00,#00,#00,#00,#00,#00,#00

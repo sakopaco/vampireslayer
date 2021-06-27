@@ -18,6 +18,9 @@ START:
 	;inicializa variables para parametrizar funciones y que lo que se muestre sea variable (nº vidas, mapa, puertas, pantalla, etc...)
 	CALL	inicializa_variables_pruebas
 	
+	;inicializa los niveles por partida
+	CALL	iniciliza_niveles
+	
 	;pinta la pantalla (la primera o algunas especiales se pintan completamente)
 	CALL	pinta_pantalla_completa
 	
@@ -74,6 +77,34 @@ fin_mira_pinta_reliquias:
 	JP		loop_principal
 	
 	RET
+	
+	
+	
+	
+;;=====================================================
+;;INICIALIZA_NIVELES
+;;=====================================================	
+; función: 	copia la plantilla de niveles (habitaciones_plantilla) en los niveles de trabajo para el juego (habitaciones_juego)
+; entrada: 	habitaciones_plantilla
+; salida: 	habitaciones_juego
+; toca: 	nada se usa push y pop
+iniciliza_niveles:
+	PUSH	AF
+	PUSH	BC
+	PUSH	HL
+
+	LD 		HL, habitaciones_plantilla
+	LD 		DE, habitaciones_juego
+	LD 		BC, 392			;8 bytes por subnivel x 7 subniveles x 7 niveles
+	LDIR
+	
+	POP		HL
+	POP		BC
+	POP		AF
+fin_iniciliza_niveles:
+	RET
+	
+	
 
 ;;=====================================================
 ;;DEFINICIÓN DE SUBRUTINAS
@@ -110,6 +141,9 @@ inicializa_variables_pruebas:
 	LD			(actualiza_puertas_sn),A ;(1 actualiza y 0 no actualiza puertas)
 fin_inicializa_variables_pruebas:
 	RET
+
+
+
 
 
 	
