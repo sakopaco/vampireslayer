@@ -3,26 +3,102 @@
 ;;=====================================================	
 sprites_pantantalla:
 
-sprite_punto_mira:
-	db  #00,#01,#0F,#11,#20,#24,#20,#71
-	db  #71,#20,#24,#20,#11,#0F,#01,#00
-	db  #00,#80,#F0,#88,#04,#24,#04,#8E
-	db  #8E,#04,#24,#04,#88,#F0,#80,#00
+sprite_punto_mira_1:
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	
-sprite_punto_mira_disp:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+sprite_punto_mira_2:
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	
-serpiente_paso1:
-	DB #00,#00,#00,#00,#00,#00,#00,#10
-	DB #30,#20,#60,#70,#38,#1C,#1F,#0F
-	DB #00,#38,#7C,#76,#7E,#7C,#FA,#C1
-	DB #E0,#60,#70,#78,#3C,#1C,#F8,#F8
+sprite_punto_mira_1_mejorado:
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 
-serpiente_paso2:
-	DB #00,#00,#00,#00,#00,#00,#01,#05
-	DB #1C,#30,#30,#30,#38,#1C,#1F,#0F
-	DB #00,#70,#F8,#EC,#FC,#F8,#F5,#C2
-	DB #E0,#60,#70,#38,#18,#1C,#F8,#F0
+sprite_punto_mira_2_mejorado:
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_reliquia:
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_vida_extra:
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_planta:
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_ballesta_mejorada:
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
+	
+sprite_ciempies1:
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_ciempies2:
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_arana1:
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_arana2:
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_serpiente1:
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_serpiente2:
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_murcielago1:
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_murcielago2:
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
+	
+	
+	
+	
