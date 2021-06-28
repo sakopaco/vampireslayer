@@ -10,7 +10,7 @@
 ; entrada: 	habitaciones_plantilla
 ; salida: 	habitaciones_juego
 ; toca: 	nada se usa push y pop
-iniciliza_niveles:
+inicializa_niveles:
 	PUSH	AF
 	PUSH	BC
 	PUSH	HL
@@ -99,7 +99,7 @@ fin_pinta_pantalla_completa:
 ; toca: si no son todos los regristros, casi todos
 pinta_parte_superior_pantalla:
 
-;aquí deberíamos ver qué habitación es (por el nº de puertas, enemigos, si es final y teine escalera, etc) dentro de qué nivel
+************** preguntar cómo parametrizar esto
 
 	;cangando banco 1
 	;cargamos los patrones
@@ -135,8 +135,7 @@ pinta_parte_superior_pantalla:
 	LD		BC,256*8*1
 	CALL	LDIRVM
 	
-	;actualiza numero de puertas
-	;CALL	actualiza_puertas
+
 fin_pinta_parte_superior_pantalla:
 	RET
 
@@ -165,14 +164,6 @@ pinta_parte_inferior_pantalla:
 	LD		DE,#3000
 	LD		BC,256*8*1
 	CALL	LDIRVM
-	
-
-	;CALL	actualiza_energia
-	;CALL	actualiza_reliquias
-	;CALL	actualiza_nivel
-	;CALL	actualiza_tiempo
-	;CALL	actualiza_mapa
-	;CALL	actualiza_posición
 fin_pinta_parte_inferior_pantalla:
 	RET
 
@@ -219,11 +210,8 @@ fin_actualiza_marcador_vidas:
 ; función: 	actualiza el mapa de tiles para que en el próximo refresco se pinten y actualiza_vidas
 ; entrada: 	array_aux_vidas
 ; salida: 	actualiza_vidas_sn
-; toca:		B,HL
+; toca:		AF
 pinta_vidas:
-	;PUSH	HL
-	;PUSH	DE
-	;PUSH	BC
 	EXX
 	
 	LD		HL,array_aux_vidas
@@ -234,10 +222,7 @@ pinta_vidas:
 	;una vez quer está pintada ya no se actualizará a menos que perdamos/ganemos una vida
 	XOR		 A
 	LD		(actualiza_vidas_sn),A
-	
-	;POP		BC
-	;POP		DE
-	;POP		HL
+
 	EXX
 fin_pinta_vidas:
 	RET
@@ -282,11 +267,8 @@ fin_actualiza_marcador_reliquias:
 ; función: 	actualiza el mapa de tiles para que en el próximo refresco se pinten y actualiza_reliquias
 ; entrada: 	array_aux_reliquias
 ; salida: 	actualiza_reliquias_sn
-; toca:		BC,HL,DE
+; toca:		AF
 pinta_reliquias:
-	;PUSH	HL
-	;PUSH	DE
-	;PUSH	BC
 	EXX
 	
 	LD		HL,array_aux_reliquias
@@ -297,10 +279,7 @@ pinta_reliquias:
 	;una vez quer está pintada ya no se actualizará a menos que ganemos/gastemos una reliquia
 	XOR		 A
 	LD		(actualiza_reliquias_sn),A
-	
-	;POP		BC
-	;POP		DE
-	;POP		HL
+
 	EXX
 fin_pinta_reliquias:
 	RET
@@ -449,11 +428,8 @@ fin_mira_pinta_energia:
 ;;=====================================================	
 ; función: 	actualiza el mapa de tiles para que en el próximo refresco se pinte la barra de energia actual
 ; entrada: 	array_aux_energia
-; toca:		nada porque usa EXX
+; toca:		AF
 pinta_energia:
-	;PUSH	HL
-	;PUSH	DE
-	;PUSH	BC
 	EXX
 	
 	LD		HL,array_aux_energia
@@ -461,9 +437,6 @@ pinta_energia:
 	LD		BC,NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
 	CALL	LDIRVM
 		
-	;POP		BC
-	;POP		DE
-	;POP		HL
 	EXX
 fin_pinta_energia:
 	RET
@@ -475,7 +448,7 @@ fin_pinta_energia:
 ; función: 	pone todas las habitaciones del mapa a negro (los tiles del mapa los rellena con un array a 0 - caracter en negro)
 ; entrada: 	array_aux_mapa_limpiar
 ; salida: 	-
-; toca:		- porque usa EXX
+; toca:		AF
 borra_mapa:
 	EXX
 	
@@ -513,8 +486,9 @@ borra_mapa:
 	LD		DE,SC2MAP + POSMAPLIN7
 	LD		BC,NHABNIVEL
 	CALL	LDIRVM
+	
+	EX
 fin_borra_mapa:
-	EXX
 	RET
 
 
@@ -529,7 +503,7 @@ fin_borra_mapa:
 ;			quedará en gris
 ; entrada: 	A (tipo 0 gris 1 - tile 0,muñeco - tile 19) *********** no sé si sería bueno usar PUSH A y aquí POP A
 ; salida: 	-
-; toca:		- A
+; toca:		todos
 posiciona_en_mapa:
 	PUSH	 AF		;almacenamos el tipo a pintar para cuando terminemos de calcular la coordenada
 	
