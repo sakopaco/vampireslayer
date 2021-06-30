@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.06.27 - 22:49:15]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.06.30 - 19:32:26]
 
 t4.asm
 Errors: 0
@@ -115,7 +115,7 @@ Errors: 0
        5.  00:8200                      ;;CABECERA FICHERO BIN
        6.  00:8200  FE                  	DB	#FE
        7.  00:8201  00 82               	DW	START
-       8.  00:8203  33 C1               	DW	END
+       8.  00:8203  33 B1               	DW	END
        9.  00:8205  00 82               	DW	START
       10.  00:8207                      
       11.  00:8207                      ;;INICIO CÓDIGO PROGRAMA	
@@ -131,529 +131,506 @@ Errors: 0
       19   00:8203  CD 01 85            	CALL	inicializa_variables_pruebas
       20   00:8206                      	
       21   00:8206                      	;inicializa los niveles por partida
-      22   00:8206  CD 53 82            	CALL	iniciliza_niveles
+      22   00:8206  CD 53 82            	CALL	inicializa_niveles			;no es necesario parametrizarlo según el nivel del usuario ya que se cargan todos
       23   00:8209                      	
       24   00:8209                      	;pinta la pantalla (la primera o algunas especiales se pintan completamente)
-      25   00:8209  CD 92 82            	CALL	pinta_pantalla_completa
+      25   00:8209  CD 92 82            	CALL	pinta_pantalla_completa 
       26   00:820C                      	
-      27   00:820C                      	;funciones que modificarian el marcador si se produce un evento cuando toque y cuando se pinta la pantalla ya se mira
-      28   00:820C                      	;una variable para ver si el array hay que actualizarlo en pantalla o no
-      29   00:820C  CD 07 83            	CALL	actualiza_marcador_vidas
-      30   00:820F  CD 33 83            	CALL	actualiza_marcador_reliquias
-      31   00:8212  CD 5D 83            	CALL	pinta_nivel
-      32   00:8215  CD DE 83            	CALL	borra_mapa
-      33   00:8218                      	
-      34   00:8218  3E 01               	LD 		 A,1
-      35   00:821A  32 4A 8D            	LD		(prota.pos_mapx),A
-      36   00:821D  3E 06               	LD 		 A,6
-      37   00:821F  32 4B 8D            	LD		(prota.pos_mapy),A
-      38   00:8222  3E 01               	LD		 A,1
-      39   00:8224  CD 35 84            	CALL	posiciona_en_mapa	
-      40   00:8227                      	
-      41   00:8227                      loop_principal:
-      42   00:8227  76                  	HALT							;espera VBLANK y sincroniza
-      43   00:8228  CD CF 83            	CALL	pinta_energia			;pinta la energia en pantalla
-      44   00:822B                      
-      45   00:822B                      mira_pinta_puertas:
-      46   00:822B  3A 70 8D            	LD		 A,(actualiza_puertas_sn)
-      47   00:822E  B7                  	OR		 A
-      48   00:822F  28 08               	JR		 Z,fin_mira_pinta_puertas
-      49   00:8231                      	
-      50   00:8231                      	;primero preparo la pantalla como si no hubiera puertas
-      51   00:8231  CD 99 82            	CALL 	pinta_parte_superior_pantalla
-      52   00:8234                      	
-      53   00:8234                      	;aquí se buscaría de la posición del usuario en la matriz de niveles y se saca el valor de A
-      54   00:8234                      	;suponermos que pinta (debajo)
-      55   00:8234  3E 0F               	LD		 A,00001111b
-      56   00:8236  CD 90 84            	CALL	pinta_puertas
-      57   00:8239                      fin_mira_pinta_puertas:
-      58   00:8239                      	
-      59   00:8239                      mira_pinta_vidas:
-      60   00:8239  3A 57 8D            	LD		 A,(actualiza_vidas_sn)
-      61   00:823C  B7                  	OR		 A
-      62   00:823D  28 03               	JR		 Z,fin_mira_pinta_vidas
-      63   00:823F  CD 20 83            	CALL	pinta_vidas
-      64   00:8242                      fin_mira_pinta_vidas:	
-      65   00:8242                      
-      66   00:8242                      mira_pinta_reliquias:
-      67   00:8242  3A 60 8D            	LD		 A,(actualiza_reliquias_sn)
-      68   00:8245  B7                  	OR		 A
-      69   00:8246  28 03               	JR		 Z,fin_mira_pinta_reliquias
-      70   00:8248  CD 4A 83            	CALL	pinta_reliquias
-      71   00:824B                      fin_mira_pinta_reliquias:
-      72   00:824B                      	
-      73   00:824B  CD 78 83            	CALL	mira_pinta_energia		;actualiza el array de energia siempre
-      74   00:824E                      	
-      75   00:824E  00                  	NOP
-      76   00:824F                      		
-      77   00:824F  C3 27 82            	JP		loop_principal
-      78   00:8252                      	
-      79   00:8252  C9                  	RET
-      80   00:8253                      	
-      81   00:8253                      	
-      82   00:8253                      	
+      27   00:820C                      ;	;carga sprites en memoria (SE HA RETRASADO HASTA PARAMETRIZAR LA CARGA DE PANTALLAS)
+      28   00:820C                      ;	CALL 	carga_patrones_sprites
+      29   00:820C                      	
+      30   00:820C                      	;funciones que modificarian el marcador si se produce un evento cuando toque y cuando se pinta la pantalla ya se mira
+      31   00:820C                      	;una variable para ver si el array hay que actualizarlo en pantalla o no
+      32   00:820C  CD 07 83            	CALL	actualiza_marcador_vidas
+      33   00:820F  CD 33 83            	CALL	actualiza_marcador_reliquias
+      34   00:8212  CD 5D 83            	CALL	pinta_nivel
+      35   00:8215  CD DE 83            	CALL	borra_mapa
+      36   00:8218                      	
+      37   00:8218  3E 01               	LD 		 A,1
+      38   00:821A  32 4A 8D            	LD		(prota.pos_mapx),A
+      39   00:821D  3E 06               	LD 		 A,6
+      40   00:821F  32 4B 8D            	LD		(prota.pos_mapy),A
+      41   00:8222  3E 01               	LD		 A,1
+      42   00:8224  CD 35 84            	CALL	posiciona_en_mapa	
+      43   00:8227                      	
+      44   00:8227                      loop_principal:
+      45   00:8227  76                  	HALT							;espera VBLANK y sincroniza
+      46   00:8228  CD CF 83            	CALL	pinta_energia			;pinta la energia en pantalla
+      47   00:822B                      
+      48   00:822B                      mira_pinta_puertas:
+      49   00:822B  3A 70 8D            	LD		 A,(actualiza_puertas_sn)
+      50   00:822E  B7                  	OR		 A
+      51   00:822F  28 08               	JR		 Z,fin_mira_pinta_puertas
+      52   00:8231                      	
+      53   00:8231                      	;primero preparo la pantalla como si no hubiera puertas
+      54   00:8231  CD 99 82            	CALL 	pinta_parte_superior_pantalla
+      55   00:8234                      	
+      56   00:8234                      	;aquí se buscaría de la posición del usuario en la matriz de niveles y se saca el valor de A
+      57   00:8234                      	;suponermos que pinta (debajo)
+      58   00:8234  3E 0F               	LD		 A,00001111b
+      59   00:8236  CD 90 84            	CALL	pinta_puertas
+      60   00:8239                      fin_mira_pinta_puertas:
+      61   00:8239                      	
+      62   00:8239                      mira_pinta_vidas:
+      63   00:8239  3A 57 8D            	LD		 A,(actualiza_vidas_sn)
+      64   00:823C  B7                  	OR		 A
+      65   00:823D  28 03               	JR		 Z,fin_mira_pinta_vidas
+      66   00:823F  CD 20 83            	CALL	pinta_vidas
+      67   00:8242                      fin_mira_pinta_vidas:	
+      68   00:8242                      
+      69   00:8242                      mira_pinta_reliquias:
+      70   00:8242  3A 60 8D            	LD		 A,(actualiza_reliquias_sn)
+      71   00:8245  B7                  	OR		 A
+      72   00:8246  28 03               	JR		 Z,fin_mira_pinta_reliquias
+      73   00:8248  CD 4A 83            	CALL	pinta_reliquias
+      74   00:824B                      fin_mira_pinta_reliquias:
+      75   00:824B                      	
+      76   00:824B  CD 78 83            	CALL	mira_pinta_energia		;actualiza el array de energia siempre
+      77   00:824E                      	
+      78   00:824E  00                  	NOP
+      79   00:824F                      		
+      80   00:824F  C3 27 82            	JP		loop_principal
+      81   00:8252                      fin_programa_principal:
+      82   00:8252  C9                  	RET
       83   00:8253                      	
-      84   00:8253                      ;;=====================================================
-      85   00:8253                      ;;INICIALIZA_NIVELES
-      86   00:8253                      ;;=====================================================	
-      87   00:8253                      ; función: 	copia la plantilla de niveles (habitaciones_plantilla) en los niveles de trabajo para el juego (habitaciones_juego)
-      88   00:8253                      ; entrada: 	habitaciones_plantilla
-      89   00:8253                      ; salida: 	habitaciones_juego
-      90   00:8253                      ; toca: 	nada se usa push y pop
-      91   00:8253                      iniciliza_niveles:
-      92   00:8253  F5                  	PUSH	AF
-      93   00:8254  C5                  	PUSH	BC
-      94   00:8255  E5                  	PUSH	HL
-      95   00:8256                      
-      96   00:8256  21 35 8A            	LD 		HL, habitaciones_plantilla
-      97   00:8259  11 25 87            	LD 		DE, habitaciones_juego
-      98   00:825C  01 88 01            	LD 		BC, 392			;8 bytes por subnivel x 7 subniveles x 7 niveles
-      99   00:825F  ED B0               	LDIR
-     100   00:8261                      	
-     101   00:8261  E1                  	POP		HL
-     102   00:8262  C1                  	POP		BC
-     103   00:8263  F1                  	POP		AF
-     104   00:8264                      fin_iniciliza_niveles:
-     105   00:8264  C9                  	RET
-     106   00:8265                      	
-     107   00:8265                      	
-     108   00:8265                      
-     109   00:8265                      ;;=====================================================
-     110   00:8265                      ;;DEFINICIÓN DE SUBRUTINAS
-     111   00:8265                      ;;=====================================================
-     112   00:8265                      	include "subrutinas.asm"
-       1.  00:8265                      ;;=====================================================
-       2.  00:8265                      ;;DEFINICIÓN DE SUBRUTINAS
-       3.  00:8265                      ;;=====================================================	
-       4.  00:8265                      
-       5.  00:8265                      
-       6.  00:8265                      ;;=====================================================
-       7.  00:8265                      ;;PREPARAPANTALLA
-       8.  00:8265                      ;;=====================================================	
-       9.  00:8265                      ; función: elimina clic cuando se pulsa tecla, cls, screen 2,2
-      10.  00:8265                      ; entrada: -
-      11.  00:8265                      ; salida: -
-      12.  00:8265                      ; toca: si no son todos los regristros, casi todos
-      13.  00:8265                      sub_preparapantalla:
-      14.  00:8265                      	;toca A y Z
-      15.  00:8265                      elimina_clic;
-      16.  00:8265  AF                  	XOR		 A
-      17.  00:8266  32 DB F3            	LD		(CLIKSW),A
-      18.  00:8269                      fin_elimina_clic:
-      19.  00:8269                      
-      20.  00:8269                      	;toca A
-      21.  00:8269                      limpia_pantalla:
-      22.  00:8269  AF                  	XOR			A
-      23.  00:826A  CD C3 00            	CALL 		CLS
-      24.  00:826D                      fin_limpia_pantalla:
-      25.  00:826D                      
-      26.  00:826D                      	;toca A y direcciones #F3E9/#F3EA/#F3EB
-      27.  00:826D                      set_color:
-      28.  00:826D  3E 02               	LD		 A,2				;verde oscuro
-      29.  00:826F  32 E9 F3            	LD 		(FORCLR),A
-      30.  00:8272  3E 01               	LD		 A,1				;negro
-      31.  00:8274  32 EA F3            	LD 		(BAKCLR),A
-      32.  00:8277  3E 01               	LD		 A,1				;negro
-      33.  00:8279  32 EB F3            	LD 		(BDRCLR),A
-      34.  00:827C  CD 62 00            	CALL	CHGCLR  
-      35.  00:827F                      fin_set_color:
-      36.  00:827F                      	
-      37.  00:827F                      	;cambiamos a SCREEN 2,2 del BASIC
-      38.  00:827F                      	;toca A
-      39.  00:827F                      screen2:
-      40.  00:827F  3E 02               	LD		 A,2
-      41.  00:8281  CD 5F 00            	CALL	CHGMOD			;selecciona screen 2
-      42.  00:8284                      sprites_16_16:
-      43.  00:8284  3A E0 F3            	LD		 A,(RG1SAV)
-      44.  00:8287  F6 02               	OR		00000010b		;fuerza sprites de 16x16
-      45.  00:8289  32 E0 F3            	LD		(RG1SAV),A		;no lo guardamos en la copia de variables del sistema
-      46.  00:828C  47                  	LD		 B,A
-      47.  00:828D  0E 01               	LD		 C,1
-      48.  00:828F  C3 47 00            	JP		WRTVDP			;opción alternativa de escribir las tres lineas siguientes
-      49.  00:8292                      	;~ CALL	WRTVDP			;lo escribe en el registro 1 del VDP
-      50.  00:8292                      	;~ RET
-      51.  00:8292                      fin_sub_preparapantalla:
-      52.  00:8292                      	
-      53.  00:8292                      
-      54.  00:8292                      ;;=====================================================
-      55.  00:8292                      ;;PINTA_PANTALLA_COMPLETA
-      56.  00:8292                      ;;=====================================================	
-      57.  00:8292                      ; función: pinta el escenario, las 3 partes
-      58.  00:8292                      ; entrada: -
-      59.  00:8292                      ; salida: -
-      60.  00:8292                      ; toca: si no son todos los regristros, casi todos
-      61.  00:8292                      pinta_pantalla_completa:
-      62.  00:8292  CD 99 82            	CALL 	pinta_parte_superior_pantalla
-      63.  00:8295                      	
-      64.  00:8295  CD E2 82            	CALL 	pinta_parte_inferior_pantalla
-      65.  00:8298                      fin_pinta_pantalla_completa:
-      66.  00:8298  C9                  	RET
-      67.  00:8299                      
-      68.  00:8299                      
-      69.  00:8299                      ;;=====================================================
-      70.  00:8299                      ;;PINTA_PARTE_SUPERIOR_PANTALLA
-      71.  00:8299                      ;;=====================================================	
-      72.  00:8299                      ; función: pinta el escenario, las 2 partes superiores y actualiza puertas
-      73.  00:8299                      ; entrada: -
-      74.  00:8299                      ; salida: -
-      75.  00:8299                      ; toca: si no son todos los regristros, casi todos
-      76.  00:8299                      pinta_parte_superior_pantalla:
-      77.  00:8299                      
-      78.  00:8299                      ;aquí deberíamos ver qué habitación es (por el nº de puertas, enemigos, si es final y teine escalera, etc) dentro de qué nivel
-      79.  00:8299                      
-      80.  00:8299                      	;cangando banco 1
-      81.  00:8299                      	;cargamos los patrones
-      82.  00:8299  21 33 8E            	LD		HL,tiles_patrones_pantalla11
-      83.  00:829C  11 00 00            	LD		DE,#0000
-      84.  00:829F  01 00 08            	LD		BC,256*8*1
-      85.  00:82A2  CD 5C 00            	CALL	LDIRVM		
-      86.  00:82A5                      	;cargamos mapa de pantalla
-      87.  00:82A5  21 33 9E            	LD		HL,tiles_mapa_pantalla11
-      88.  00:82A8  11 00 18            	LD		DE,#1800
-      89.  00:82AB  01 00 01            	LD		BC,256*1
-      90.  00:82AE  CD 5C 00            	CALL	LDIRVM
-      91.  00:82B1                      	;cargamos los colores de los patrones
-      92.  00:82B1  21 33 96            	LD		HL,tiles_color_pantalla11
-      93.  00:82B4  11 00 20            	LD		DE,#2000
-      94.  00:82B7  01 00 08            	LD		BC,256*8*1
-      95.  00:82BA  CD 5C 00            	CALL	LDIRVM
-      96.  00:82BD                      	
-      97.  00:82BD                      	;cangando banco 2
-      98.  00:82BD                      	;cargamos los patrones
-      99.  00:82BD  21 33 9F            	LD		HL,tiles_patrones_pantalla12
-     100.  00:82C0  11 00 08            	LD		DE,#0800
-     101.  00:82C3  01 00 08            	LD		BC,256*8*1
-     102.  00:82C6  CD 5C 00            	CALL	LDIRVM		
-     103.  00:82C9                      	;cargamos mapa de pantalla
-     104.  00:82C9  21 33 AF            	LD		HL,tiles_mapa_pantalla12
-     105.  00:82CC  11 00 19            	LD		DE,#1900
-     106.  00:82CF  01 00 01            	LD		BC,256*1
-     107.  00:82D2  CD 5C 00            	CALL	LDIRVM
-     108.  00:82D5                      	;cargamos los colores de los patrones
-     109.  00:82D5  21 33 A7            	LD		HL,tiles_color_pantalla12
-     110.  00:82D8  11 00 28            	LD		DE,#2800
-     111.  00:82DB  01 00 08            	LD		BC,256*8*1
-     112.  00:82DE  CD 5C 00            	CALL	LDIRVM
-     113.  00:82E1                      	
-     114.  00:82E1                      	;actualiza numero de puertas
-     115.  00:82E1                      	;CALL	actualiza_puertas
-     116.  00:82E1                      fin_pinta_parte_superior_pantalla:
-     117.  00:82E1  C9                  	RET
-     118.  00:82E2                      
-     119.  00:82E2                      
-     120.  00:82E2                      ;;=====================================================
-     121.  00:82E2                      ;;PINTA_PARTE_INFERIOR_PANTALLA
-     122.  00:82E2                      ;;=====================================================	
-     123.  00:82E2                      ; función: pinta la parte inferior del escenario que es común
-     124.  00:82E2                      ; entrada: -
-     125.  00:82E2                      ; salida: -
-     126.  00:82E2                      ; toca: si no son todos los regristros, casi todos
-     127.  00:82E2                      pinta_parte_inferior_pantalla:
-     128.  00:82E2                      	;cangando banco 3
-     129.  00:82E2                      	;cargamos los patrones
-     130.  00:82E2  21 33 B0            	LD		HL,tiles_patrones_pantalla3
-     131.  00:82E5  11 00 10            	LD		DE,#1000
-     132.  00:82E8  01 00 08            	LD		BC,256*8*1
-     133.  00:82EB  CD 5C 00            	CALL	LDIRVM		
-     134.  00:82EE                      	;cargamos mapa de pantalla
-     135.  00:82EE  21 33 C0            	LD		HL,tiles_mapa_pantalla3
-     136.  00:82F1  11 00 1A            	LD		DE,#1A00
-     137.  00:82F4  01 00 01            	LD		BC,256*1
-     138.  00:82F7  CD 5C 00            	CALL	LDIRVM
-     139.  00:82FA                      	;cargamos los colores de los patrones
-     140.  00:82FA  21 33 B8            	LD		HL,tiles_color_pantalla3
-     141.  00:82FD  11 00 30            	LD		DE,#3000
-     142.  00:8300  01 00 08            	LD		BC,256*8*1
-     143.  00:8303  CD 5C 00            	CALL	LDIRVM
-     144.  00:8306                      	
-     145.  00:8306                      
-     146.  00:8306                      	;CALL	actualiza_energia
-     147.  00:8306                      	;CALL	actualiza_reliquias
-     148.  00:8306                      	;CALL	actualiza_nivel
-     149.  00:8306                      	;CALL	actualiza_tiempo
-     150.  00:8306                      	;CALL	actualiza_mapa
-     151.  00:8306                      	;CALL	actualiza_posición
-     152.  00:8306                      fin_pinta_parte_inferior_pantalla:
-     153.  00:8306  C9                  	RET
-     154.  00:8307                      
-     155.  00:8307                      
-     156.  00:8307                      
-     157.  00:8307                      ;;=====================================================
-     158.  00:8307                      ;;ACTUALIZA_MARCADOR_VIDAS
-     159.  00:8307                      ;;=====================================================	
-     160.  00:8307                      ; función:  actualiza el buffer de vidas
-     161.  00:8307                      ; entrada: 	prota.vidas
-     162.  00:8307                      ; salida: 	array_aux_vidas
-     163.  00:8307                      ; toca:		A,B,HL
-     164.  00:8307                      actualiza_marcador_vidas:
-     165.  00:8307                      	;PUSH	HL
-     166.  00:8307  D9                  	EXX
-     167.  00:8308                      
-     168.  00:8308                      	;para no andar restando pongo todos los huecos a negro y luego en otro bucle las caras
-     169.  00:8308                      	;1-pinto todo en blanco
-     170.  00:8308  21 4F 8D            	LD		HL,array_aux_vidas
-     171.  00:830B  06 08               	LD		 B,NMAXVIDREL
-     172.  00:830D                      loop_marcador_caras_negro:	;asignar espacios en negro
-     173.  00:830D  36 00               	LD		(HL),0			;0 posición mapa tiles para nada (es transparente pero el fondo es negro)
-     174.  00:830F  23                  	INC		HL
-     175.  00:8310  10 FB               	DJNZ	loop_marcador_caras_negro
-     176.  00:8312                      fin_loop_marcador_caras_negro:
-     177.  00:8312                      	;2-pinto las caras según el n de vidas
-     178.  00:8312  21 4F 8D            	LD		HL,array_aux_vidas
-     179.  00:8315  3A 4C 8D            	LD		 A,(prota.vidas)
-     180.  00:8318  47                  	LD		 B,A
-     181.  00:8319                      loop_marcador_caras: ;asignar caras
-     182.  00:8319  36 0D               	LD		(HL),POSCARAMAP	;13 posición mapa tiles para cara
-     183.  00:831B  23                  	INC		HL
-     184.  00:831C  10 FB               	DJNZ	loop_marcador_caras
-     185.  00:831E                      fin_loop_marcador_caras:
-     186.  00:831E                      	;POP		HL
-     187.  00:831E  D9                  	EXX
-     188.  00:831F                      fin_actualiza_marcador_vidas:
-     189.  00:831F  C9                  	RET
-     190.  00:8320                      
-     191.  00:8320                      
-     192.  00:8320                      ;;=====================================================
-     193.  00:8320                      ;;PINTA_VIDAS
-     194.  00:8320                      ;;=====================================================	
-     195.  00:8320                      ; función: 	actualiza el mapa de tiles para que en el próximo refresco se pinten y actualiza_vidas
-     196.  00:8320                      ; entrada: 	array_aux_vidas
-     197.  00:8320                      ; salida: 	actualiza_vidas_sn
-     198.  00:8320                      ; toca:		B,HL
-     199.  00:8320                      pinta_vidas:
-     200.  00:8320                      	;PUSH	HL
-     201.  00:8320                      	;PUSH	DE
-     202.  00:8320                      	;PUSH	BC
-     203.  00:8320  D9                  	EXX
-     204.  00:8321                      	
-     205.  00:8321  21 4F 8D            	LD		HL,array_aux_vidas
-     206.  00:8324  11 48 1A            	LD		DE,SC2MAP + POSVIDAS 	;inicio posición en el mapa de tiles de las vidas
-     207.  00:8327  01 08 00            	LD		BC,NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
-     208.  00:832A  CD 5C 00            	CALL	LDIRVM
-     209.  00:832D                      	
-     210.  00:832D                      	;una vez quer está pintada ya no se actualizará a menos que perdamos/ganemos una vida
-     211.  00:832D  AF                  	XOR		 A
-     212.  00:832E  32 57 8D            	LD		(actualiza_vidas_sn),A
-     213.  00:8331                      	
-     214.  00:8331                      	;POP		BC
-     215.  00:8331                      	;POP		DE
-     216.  00:8331                      	;POP		HL
-     217.  00:8331  D9                  	EXX
-     218.  00:8332                      fin_pinta_vidas:
-     219.  00:8332  C9                  	RET
-     220.  00:8333                      	
-     221.  00:8333                      
-     222.  00:8333                      
-     223.  00:8333                      
-     224.  00:8333                      ;;=====================================================
-     225.  00:8333                      ;;ACTUALIZA_MARCADOR_RELIQUIAS
-     226.  00:8333                      ;;=====================================================	
-     227.  00:8333                      ; función: 	actualiza buffer de reliquias
-     228.  00:8333                      ; entrada: 	prota.reliquias
-     229.  00:8333                      ; salida: 	array_aux_reliquias
-     230.  00:8333                      ; toca:		A,B,HL
-     231.  00:8333                      actualiza_marcador_reliquias:
-     232.  00:8333                      	;para no andar restando pongo todos los huecos a negro y luego en otro bucle las reliquias
-     233.  00:8333                      	;1-pinto todo en blanco
-     234.  00:8333  21 58 8D            	LD		HL,array_aux_reliquias
-     235.  00:8336  06 08               	LD		 B,NMAXVIDREL
-     236.  00:8338                      loop_marcador_reliquias_negro:	;asignar espacios en negro
-     237.  00:8338  36 00               	LD		(HL),0			;0 posición mapa tiles para nada (es transparente pero el fondo es negro)
-     238.  00:833A  23                  	INC		HL
-     239.  00:833B  10 FB               	DJNZ	loop_marcador_reliquias_negro
-     240.  00:833D                      fin_loop_marcador_reliquias_negro:
-     241.  00:833D                      	;2-pinto las cruces según el n de reliquias
-     242.  00:833D  21 58 8D            	LD		HL,array_aux_reliquias
-     243.  00:8340  3A 4E 8D            	LD		 A,(prota.reliquias)
-     244.  00:8343  47                  	LD		 B,A
-     245.  00:8344                      loop_marcador_reliquias: ;asignar reliquias
-     246.  00:8344  36 11               	LD		(HL),POSRELIMAP	;17 posición mapa tiles para reliquia
-     247.  00:8346  23                  	INC		HL
-     248.  00:8347  10 FB               	DJNZ	loop_marcador_reliquias
-     249.  00:8349                      fin_loop_marcador_reliquias:
-     250.  00:8349                      fin_actualiza_marcador_reliquias:
-     251.  00:8349  C9                  	RET
-     252.  00:834A                      
-     253.  00:834A                      
-     254.  00:834A                      
-     255.  00:834A                      ;;=====================================================
-     256.  00:834A                      ;;PINTA_RELIQUIAS
-     257.  00:834A                      ;;=====================================================	
-     258.  00:834A                      ; función: 	actualiza el mapa de tiles para que en el próximo refresco se pinten y actualiza_reliquias
-     259.  00:834A                      ; entrada: 	array_aux_reliquias
-     260.  00:834A                      ; salida: 	actualiza_reliquias_sn
-     261.  00:834A                      ; toca:		BC,HL,DE
-     262.  00:834A                      pinta_reliquias:
-     263.  00:834A                      	;PUSH	HL
-     264.  00:834A                      	;PUSH	DE
-     265.  00:834A                      	;PUSH	BC
-     266.  00:834A  D9                  	EXX
-     267.  00:834B                      	
-     268.  00:834B  21 58 8D            	LD		HL,array_aux_reliquias
-     269.  00:834E  11 C8 1A            	LD		DE,SC2MAP + POSRELIQ 	;inicio posición en el mapa de tiles de las vidas
-     270.  00:8351  01 08 00            	LD		BC,NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
-     271.  00:8354  CD 5C 00            	CALL	LDIRVM
-     272.  00:8357                      	
-     273.  00:8357                      	;una vez quer está pintada ya no se actualizará a menos que ganemos/gastemos una reliquia
-     274.  00:8357  AF                  	XOR		 A
-     275.  00:8358  32 60 8D            	LD		(actualiza_reliquias_sn),A
-     276.  00:835B                      	
-     277.  00:835B                      	;POP		BC
-     278.  00:835B                      	;POP		DE
-     279.  00:835B                      	;POP		HL
-     280.  00:835B  D9                  	EXX
-     281.  00:835C                      fin_pinta_reliquias:
-     282.  00:835C  C9                  	RET
-     283.  00:835D                      	
-     284.  00:835D                      
-     285.  00:835D                      
+      84   00:8253                      
+      85   00:8253                      
+      86   00:8253                      ;;=====================================================
+      87   00:8253                      ;;DEFINICIÓN DE SUBRUTINAS
+      88   00:8253                      ;;=====================================================
+      89   00:8253                      	include "subrutinas.asm"
+       1.  00:8253                      ;;=====================================================
+       2.  00:8253                      ;;DEFINICIÓN DE SUBRUTINAS
+       3.  00:8253                      ;;=====================================================	
+       4.  00:8253                      
+       5.  00:8253                      
+       6.  00:8253                      ;;=====================================================
+       7.  00:8253                      ;;INICIALIZA_NIVELES
+       8.  00:8253                      ;;=====================================================	
+       9.  00:8253                      ; función: 	copia la plantilla de niveles (habitaciones_plantilla) en los niveles de trabajo para el juego (habitaciones_juego)
+      10.  00:8253                      ; entrada: 	habitaciones_plantilla
+      11.  00:8253                      ; salida: 	habitaciones_juego
+      12.  00:8253                      ; toca: 	nada se usa push y pop
+      13.  00:8253                      inicializa_niveles:
+      14.  00:8253  F5                  	PUSH	AF
+      15.  00:8254  C5                  	PUSH	BC
+      16.  00:8255  E5                  	PUSH	HL
+      17.  00:8256                      
+      18.  00:8256  21 35 8A            	LD 		HL, habitaciones_plantilla
+      19.  00:8259  11 25 87            	LD 		DE, habitaciones_juego
+      20.  00:825C  01 88 01            	LD 		BC, 392			;8 bytes por subnivel x 7 subniveles x 7 niveles
+      21.  00:825F  ED B0               	LDIR
+      22.  00:8261                      	
+      23.  00:8261  E1                  	POP		HL
+      24.  00:8262  C1                  	POP		BC
+      25.  00:8263  F1                  	POP		AF
+      26.  00:8264                      fin_iniciliza_niveles:
+      27.  00:8264  C9                  	RET
+      28.  00:8265                      
+      29.  00:8265                      
+      30.  00:8265                      ;;=====================================================
+      31.  00:8265                      ;;PREPARAPANTALLA
+      32.  00:8265                      ;;=====================================================	
+      33.  00:8265                      ; función: elimina clic cuando se pulsa tecla, cls, screen 2,2
+      34.  00:8265                      ; entrada: -
+      35.  00:8265                      ; salida: -
+      36.  00:8265                      ; toca: si no son todos los regristros, casi todos
+      37.  00:8265                      sub_preparapantalla:
+      38.  00:8265                      	;toca A y Z
+      39.  00:8265                      elimina_clic;
+      40.  00:8265  AF                  	XOR		 A
+      41.  00:8266  32 DB F3            	LD		(CLIKSW),A
+      42.  00:8269                      fin_elimina_clic:
+      43.  00:8269                      
+      44.  00:8269                      	;toca A
+      45.  00:8269                      limpia_pantalla:
+      46.  00:8269  AF                  	XOR			A
+      47.  00:826A  CD C3 00            	CALL 		CLS
+      48.  00:826D                      fin_limpia_pantalla:
+      49.  00:826D                      
+      50.  00:826D                      	;toca A y direcciones #F3E9/#F3EA/#F3EB
+      51.  00:826D                      set_color:
+      52.  00:826D  3E 02               	LD		 A,2				;verde oscuro
+      53.  00:826F  32 E9 F3            	LD 		(FORCLR),A
+      54.  00:8272  3E 01               	LD		 A,1				;negro
+      55.  00:8274  32 EA F3            	LD 		(BAKCLR),A
+      56.  00:8277  3E 01               	LD		 A,1				;negro
+      57.  00:8279  32 EB F3            	LD 		(BDRCLR),A
+      58.  00:827C  CD 62 00            	CALL	CHGCLR  
+      59.  00:827F                      fin_set_color:
+      60.  00:827F                      	
+      61.  00:827F                      	;cambiamos a SCREEN 2,2 del BASIC
+      62.  00:827F                      	;toca A
+      63.  00:827F                      screen2:
+      64.  00:827F  3E 02               	LD		 A,2
+      65.  00:8281  CD 5F 00            	CALL	CHGMOD			;selecciona screen 2
+      66.  00:8284                      sprites_16_16:
+      67.  00:8284  3A E0 F3            	LD		 A,(RG1SAV)
+      68.  00:8287  F6 02               	OR		00000010b		;fuerza sprites de 16x16
+      69.  00:8289  32 E0 F3            	LD		(RG1SAV),A		;no lo guardamos en la copia de variables del sistema
+      70.  00:828C  47                  	LD		 B,A
+      71.  00:828D  0E 01               	LD		 C,1
+      72.  00:828F  C3 47 00            	JP		WRTVDP			;opción alternativa de escribir las tres lineas siguientes
+      73.  00:8292                      	;~ CALL	WRTVDP			;lo escribe en el registro 1 del VDP
+      74.  00:8292                      	;~ RET
+      75.  00:8292                      fin_sub_preparapantalla:
+      76.  00:8292                      	
+      77.  00:8292                      
+      78.  00:8292                      ;;=====================================================
+      79.  00:8292                      ;;PINTA_PANTALLA_COMPLETA
+      80.  00:8292                      ;;=====================================================	
+      81.  00:8292                      ; función: pinta el escenario, las 3 partes
+      82.  00:8292                      ; entrada: -
+      83.  00:8292                      ; salida: -
+      84.  00:8292                      ; toca: si no son todos los regristros, casi todos
+      85.  00:8292                      pinta_pantalla_completa:
+      86.  00:8292  CD 99 82            	CALL 	pinta_parte_superior_pantalla
+      87.  00:8295                      	
+      88.  00:8295  CD E2 82            	CALL 	pinta_parte_inferior_pantalla
+      89.  00:8298                      fin_pinta_pantalla_completa:
+      90.  00:8298  C9                  	RET
+      91.  00:8299                      
+      92.  00:8299                      
+      93.  00:8299                      ;;=====================================================
+      94.  00:8299                      ;;PINTA_PARTE_SUPERIOR_PANTALLA
+      95.  00:8299                      ;;=====================================================	
+      96.  00:8299                      ; función: pinta el escenario, las 2 partes superiores y actualiza puertas
+      97.  00:8299                      ; entrada: -
+      98.  00:8299                      ; salida: -
+      99.  00:8299                      ; toca: si no son todos los regristros, casi todos
+     100.  00:8299                      pinta_parte_superior_pantalla:
+     101.  00:8299                      
+     102.  00:8299                      ;************** preguntar cómo parametrizar esto
+     103.  00:8299                      
+     104.  00:8299                      	;cangando banco 1
+     105.  00:8299                      	;cargamos los patrones
+     106.  00:8299  21 33 8E            	LD		HL,tiles_patrones_pantalla11
+     107.  00:829C  11 00 00            	LD		DE,#0000
+     108.  00:829F  01 00 08            	LD		BC,256*8*1
+     109.  00:82A2  CD 5C 00            	CALL	LDIRVM		
+     110.  00:82A5                      	;cargamos mapa de pantalla
+     111.  00:82A5  21 33 9E            	LD		HL,tiles_mapa_pantalla11
+     112.  00:82A8  11 00 18            	LD		DE,#1800
+     113.  00:82AB  01 00 01            	LD		BC,256*1
+     114.  00:82AE  CD 5C 00            	CALL	LDIRVM
+     115.  00:82B1                      	;cargamos los colores de los patrones
+     116.  00:82B1  21 33 96            	LD		HL,tiles_color_pantalla11
+     117.  00:82B4  11 00 20            	LD		DE,#2000
+     118.  00:82B7  01 00 08            	LD		BC,256*8*1
+     119.  00:82BA  CD 5C 00            	CALL	LDIRVM
+     120.  00:82BD                      	
+     121.  00:82BD                      	;cangando banco 2
+     122.  00:82BD                      	;cargamos los patrones
+     123.  00:82BD  21 33 8E            	LD		HL,tiles_patrones_pantalla12
+     124.  00:82C0  11 00 08            	LD		DE,#0800
+     125.  00:82C3  01 00 08            	LD		BC,256*8*1
+     126.  00:82C6  CD 5C 00            	CALL	LDIRVM		
+     127.  00:82C9                      	;cargamos mapa de pantalla
+     128.  00:82C9  21 33 9F            	LD		HL,tiles_mapa_pantalla12
+     129.  00:82CC  11 00 19            	LD		DE,#1900
+     130.  00:82CF  01 00 01            	LD		BC,256*1
+     131.  00:82D2  CD 5C 00            	CALL	LDIRVM
+     132.  00:82D5                      	;cargamos los colores de los patrones
+     133.  00:82D5  21 33 96            	LD		HL,tiles_color_pantalla12
+     134.  00:82D8  11 00 28            	LD		DE,#2800
+     135.  00:82DB  01 00 08            	LD		BC,256*8*1
+     136.  00:82DE  CD 5C 00            	CALL	LDIRVM
+     137.  00:82E1                      	
+     138.  00:82E1                      
+     139.  00:82E1                      fin_pinta_parte_superior_pantalla:
+     140.  00:82E1  C9                  	RET
+     141.  00:82E2                      
+     142.  00:82E2                      
+     143.  00:82E2                      ;;=====================================================
+     144.  00:82E2                      ;;PINTA_PARTE_INFERIOR_PANTALLA
+     145.  00:82E2                      ;;=====================================================	
+     146.  00:82E2                      ; función: pinta la parte inferior del escenario que es común
+     147.  00:82E2                      ; entrada: -
+     148.  00:82E2                      ; salida: -
+     149.  00:82E2                      ; toca: si no son todos los regristros, casi todos
+     150.  00:82E2                      pinta_parte_inferior_pantalla:
+     151.  00:82E2                      	;cangando banco 3
+     152.  00:82E2                      	;cargamos los patrones
+     153.  00:82E2  21 33 A0            	LD		HL,tiles_patrones_pantalla3
+     154.  00:82E5  11 00 10            	LD		DE,#1000
+     155.  00:82E8  01 00 08            	LD		BC,256*8*1
+     156.  00:82EB  CD 5C 00            	CALL	LDIRVM		
+     157.  00:82EE                      	;cargamos mapa de pantalla
+     158.  00:82EE  21 33 B0            	LD		HL,tiles_mapa_pantalla3
+     159.  00:82F1  11 00 1A            	LD		DE,#1A00
+     160.  00:82F4  01 00 01            	LD		BC,256*1
+     161.  00:82F7  CD 5C 00            	CALL	LDIRVM
+     162.  00:82FA                      	;cargamos los colores de los patrones
+     163.  00:82FA  21 33 A8            	LD		HL,tiles_color_pantalla3
+     164.  00:82FD  11 00 30            	LD		DE,#3000
+     165.  00:8300  01 00 08            	LD		BC,256*8*1
+     166.  00:8303  CD 5C 00            	CALL	LDIRVM
+     167.  00:8306                      fin_pinta_parte_inferior_pantalla:
+     168.  00:8306  C9                  	RET
+     169.  00:8307                      
+     170.  00:8307                      
+     171.  00:8307                      
+     172.  00:8307                      ;;=====================================================
+     173.  00:8307                      ;;ACTUALIZA_MARCADOR_VIDAS
+     174.  00:8307                      ;;=====================================================	
+     175.  00:8307                      ; función:  actualiza el buffer de vidas
+     176.  00:8307                      ; entrada: 	prota.vidas
+     177.  00:8307                      ; salida: 	array_aux_vidas
+     178.  00:8307                      ; toca:		A,B,HL
+     179.  00:8307                      actualiza_marcador_vidas:
+     180.  00:8307                      	;PUSH	HL
+     181.  00:8307  D9                  	EXX
+     182.  00:8308                      
+     183.  00:8308                      	;para no andar restando pongo todos los huecos a negro y luego en otro bucle las caras
+     184.  00:8308                      	;1-pinto todo en blanco
+     185.  00:8308  21 4F 8D            	LD		HL,array_aux_vidas
+     186.  00:830B  06 08               	LD		 B,NMAXVIDREL
+     187.  00:830D                      loop_marcador_caras_negro:	;asignar espacios en negro
+     188.  00:830D  36 00               	LD		(HL),0			;0 posición mapa tiles para nada (es transparente pero el fondo es negro)
+     189.  00:830F  23                  	INC		HL
+     190.  00:8310  10 FB               	DJNZ	loop_marcador_caras_negro
+     191.  00:8312                      fin_loop_marcador_caras_negro:
+     192.  00:8312                      	;2-pinto las caras según el n de vidas
+     193.  00:8312  21 4F 8D            	LD		HL,array_aux_vidas
+     194.  00:8315  3A 4C 8D            	LD		 A,(prota.vidas)
+     195.  00:8318  47                  	LD		 B,A
+     196.  00:8319                      loop_marcador_caras: ;asignar caras
+     197.  00:8319  36 0D               	LD		(HL),POSCARAMAP	;13 posición mapa tiles para cara
+     198.  00:831B  23                  	INC		HL
+     199.  00:831C  10 FB               	DJNZ	loop_marcador_caras
+     200.  00:831E                      fin_loop_marcador_caras:
+     201.  00:831E                      	;POP		HL
+     202.  00:831E  D9                  	EXX
+     203.  00:831F                      fin_actualiza_marcador_vidas:
+     204.  00:831F  C9                  	RET
+     205.  00:8320                      
+     206.  00:8320                      
+     207.  00:8320                      ;;=====================================================
+     208.  00:8320                      ;;PINTA_VIDAS
+     209.  00:8320                      ;;=====================================================	
+     210.  00:8320                      ; función: 	actualiza el mapa de tiles para que en el próximo refresco se pinten y actualiza_vidas
+     211.  00:8320                      ; entrada: 	array_aux_vidas
+     212.  00:8320                      ; salida: 	actualiza_vidas_sn
+     213.  00:8320                      ; toca:		AF
+     214.  00:8320                      pinta_vidas:
+     215.  00:8320  D9                  	EXX
+     216.  00:8321                      	
+     217.  00:8321  21 4F 8D            	LD		HL,array_aux_vidas
+     218.  00:8324  11 48 1A            	LD		DE,SC2MAP + POSVIDAS 	;inicio posición en el mapa de tiles de las vidas
+     219.  00:8327  01 08 00            	LD		BC,NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
+     220.  00:832A  CD 5C 00            	CALL	LDIRVM
+     221.  00:832D                      	
+     222.  00:832D                      	;una vez quer está pintada ya no se actualizará a menos que perdamos/ganemos una vida
+     223.  00:832D  AF                  	XOR		 A
+     224.  00:832E  32 57 8D            	LD		(actualiza_vidas_sn),A
+     225.  00:8331                      
+     226.  00:8331  D9                  	EXX
+     227.  00:8332                      fin_pinta_vidas:
+     228.  00:8332  C9                  	RET
+     229.  00:8333                      	
+     230.  00:8333                      
+     231.  00:8333                      
+     232.  00:8333                      
+     233.  00:8333                      ;;=====================================================
+     234.  00:8333                      ;;ACTUALIZA_MARCADOR_RELIQUIAS
+     235.  00:8333                      ;;=====================================================	
+     236.  00:8333                      ; función: 	actualiza buffer de reliquias
+     237.  00:8333                      ; entrada: 	prota.reliquias
+     238.  00:8333                      ; salida: 	array_aux_reliquias
+     239.  00:8333                      ; toca:		A,B,HL
+     240.  00:8333                      actualiza_marcador_reliquias:
+     241.  00:8333                      	;para no andar restando pongo todos los huecos a negro y luego en otro bucle las reliquias
+     242.  00:8333                      	;1-pinto todo en blanco
+     243.  00:8333  21 58 8D            	LD		HL,array_aux_reliquias
+     244.  00:8336  06 08               	LD		 B,NMAXVIDREL
+     245.  00:8338                      loop_marcador_reliquias_negro:	;asignar espacios en negro
+     246.  00:8338  36 00               	LD		(HL),0			;0 posición mapa tiles para nada (es transparente pero el fondo es negro)
+     247.  00:833A  23                  	INC		HL
+     248.  00:833B  10 FB               	DJNZ	loop_marcador_reliquias_negro
+     249.  00:833D                      fin_loop_marcador_reliquias_negro:
+     250.  00:833D                      	;2-pinto las cruces según el n de reliquias
+     251.  00:833D  21 58 8D            	LD		HL,array_aux_reliquias
+     252.  00:8340  3A 4E 8D            	LD		 A,(prota.reliquias)
+     253.  00:8343  47                  	LD		 B,A
+     254.  00:8344                      loop_marcador_reliquias: ;asignar reliquias
+     255.  00:8344  36 11               	LD		(HL),POSRELIMAP	;17 posición mapa tiles para reliquia
+     256.  00:8346  23                  	INC		HL
+     257.  00:8347  10 FB               	DJNZ	loop_marcador_reliquias
+     258.  00:8349                      fin_loop_marcador_reliquias:
+     259.  00:8349                      fin_actualiza_marcador_reliquias:
+     260.  00:8349  C9                  	RET
+     261.  00:834A                      
+     262.  00:834A                      
+     263.  00:834A                      
+     264.  00:834A                      ;;=====================================================
+     265.  00:834A                      ;;PINTA_RELIQUIAS
+     266.  00:834A                      ;;=====================================================	
+     267.  00:834A                      ; función: 	actualiza el mapa de tiles para que en el próximo refresco se pinten y actualiza_reliquias
+     268.  00:834A                      ; entrada: 	array_aux_reliquias
+     269.  00:834A                      ; salida: 	actualiza_reliquias_sn
+     270.  00:834A                      ; toca:		AF
+     271.  00:834A                      pinta_reliquias:
+     272.  00:834A  D9                  	EXX
+     273.  00:834B                      	
+     274.  00:834B  21 58 8D            	LD		HL,array_aux_reliquias
+     275.  00:834E  11 C8 1A            	LD		DE,SC2MAP + POSRELIQ 	;inicio posición en el mapa de tiles de las vidas
+     276.  00:8351  01 08 00            	LD		BC,NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
+     277.  00:8354  CD 5C 00            	CALL	LDIRVM
+     278.  00:8357                      	
+     279.  00:8357                      	;una vez quer está pintada ya no se actualizará a menos que ganemos/gastemos una reliquia
+     280.  00:8357  AF                  	XOR		 A
+     281.  00:8358  32 60 8D            	LD		(actualiza_reliquias_sn),A
+     282.  00:835B                      
+     283.  00:835B  D9                  	EXX
+     284.  00:835C                      fin_pinta_reliquias:
+     285.  00:835C  C9                  	RET
      286.  00:835D                      	
-     287.  00:835D                      ;;=====================================================
-     288.  00:835D                      ;;PINTA_NIVEL
-     289.  00:835D                      ;;=====================================================	
-     290.  00:835D                      ; función: 	actualiza el nivel en la parte de puntuación
-     291.  00:835D                      ; entrada: 	prota.nivel
-     292.  00:835D                      ; salida: 	-
-     293.  00:835D                      ; toca:		HL,DE,BC
-     294.  00:835D                      pinta_nivel:	
-     295.  00:835D                      	;forma más avanzada sin llamada a la bios
-     296.  00:835D  01 B4 1A            	LD		BC,SC2MAP + POSNIVEL ;posición en el mapa de tiles del tile de nivel
-     297.  00:8360  3A 49 8D            	LD		 A,(prota.nivel)	;seleccionando la pos del banco de tiles a poner en el mapa
-     298.  00:8363  C6 30               	ADD		'0'	
-     299.  00:8365  57                  	LD		 D,A
-     300.  00:8366                      	
-     301.  00:8366  CD 6A 83            	CALL	pinta_tile_suelto	;nota ... un call+ret se debe poder sustiruir por un jp
-     302.  00:8369                      fin_pinta_nivel:
-     303.  00:8369  C9                  	RET
-     304.  00:836A                      
-     305.  00:836A                      
-     306.  00:836A                      
-     307.  00:836A                      ;;=====================================================
-     308.  00:836A                      ;;PINTA_TILE_SUELTO
-     309.  00:836A                      ;;=====================================================	
-     310.  00:836A                      ; función: 	pinta al tile que digamos en D, en la posición BC
-     311.  00:836A                      ; entrada: 	BC,D
-     312.  00:836A                      ; salida: 	-
-     313.  00:836A                      ; toca:		-
-     314.  00:836A                      pinta_tile_suelto:	
-     315.  00:836A  DB 99               	IN		 A,(REGEST)		;leer registro de estado (recomendado)
-     316.  00:836C  79                  	LD		 A,C			;primero byte bajo	
-     317.  00:836D  D3 99               	OUT		(REGEST),A
-     318.  00:836F  78                  	LD		 A,B			;después byte alto  ********************** preguntar a Fernando cómo que byte bajo es B
-     319.  00:8370  F6 40               	OR		1000000b		;+64
-     320.  00:8372  D3 99               	OUT		(REGEST),A
-     321.  00:8374                      	
-     322.  00:8374  7A                  	LD		A,D
-     323.  00:8375  D3 98               	OUT		(REGESCVDP),A	;escribe A en VRAM en la posición indicada por los dos OUT anteriores
-     324.  00:8377                      fin_pinta_tile_suelto:
-     325.  00:8377  C9                  	RET
-     326.  00:8378                      
-     327.  00:8378                      
-     328.  00:8378                      
-     329.  00:8378                      ;;=====================================================
-     330.  00:8378                      ;;MIRA_PINTA ENERGIA
-     331.  00:8378                      ;;=====================================================	
-     332.  00:8378                      ; función: 	actualiza el nivel de energia en la parte de puntuación
-     333.  00:8378                      ; nota:		el cuadrado más bajo de ejergía siempre estará pintado... se obviará
-     334.  00:8378                      ; entrada: 	prota.energia, array_aux_energia
-     335.  00:8378                      ; salida: 	-
-     336.  00:8378                      ; toca:		ninguno porque usa EXX
-     337.  00:8378                      
-     338.  00:8378                      ; nota importante... lo mismo interesa hacer esto con un array para comparar y un bucle
-     339.  00:8378                      
+     287.  00:835D                      
+     288.  00:835D                      
+     289.  00:835D                      	
+     290.  00:835D                      ;;=====================================================
+     291.  00:835D                      ;;PINTA_NIVEL
+     292.  00:835D                      ;;=====================================================	
+     293.  00:835D                      ; función: 	actualiza el nivel en la parte de puntuación
+     294.  00:835D                      ; entrada: 	prota.nivel
+     295.  00:835D                      ; salida: 	-
+     296.  00:835D                      ; toca:		HL,DE,BC
+     297.  00:835D                      pinta_nivel:	
+     298.  00:835D                      	;forma más avanzada sin llamada a la bios
+     299.  00:835D  01 B4 1A            	LD		BC,SC2MAP + POSNIVEL ;posición en el mapa de tiles del tile de nivel
+     300.  00:8360  3A 49 8D            	LD		 A,(prota.nivel)	;seleccionando la pos del banco de tiles a poner en el mapa
+     301.  00:8363  C6 30               	ADD		'0'	
+     302.  00:8365  57                  	LD		 D,A
+     303.  00:8366                      	
+     304.  00:8366  CD 6A 83            	CALL	pinta_tile_suelto	;nota ... un call+ret se debe poder sustiruir por un jp
+     305.  00:8369                      fin_pinta_nivel:
+     306.  00:8369  C9                  	RET
+     307.  00:836A                      
+     308.  00:836A                      
+     309.  00:836A                      
+     310.  00:836A                      ;;=====================================================
+     311.  00:836A                      ;;PINTA_TILE_SUELTO
+     312.  00:836A                      ;;=====================================================	
+     313.  00:836A                      ; función: 	pinta al tile que digamos en D, en la posición BC
+     314.  00:836A                      ; entrada: 	BC,D
+     315.  00:836A                      ; salida: 	-
+     316.  00:836A                      ; toca:		-
+     317.  00:836A                      pinta_tile_suelto:	
+     318.  00:836A  DB 99               	IN		 A,(REGEST)		;leer registro de estado (recomendado)
+     319.  00:836C  79                  	LD		 A,C			;primero byte bajo	
+     320.  00:836D  D3 99               	OUT		(REGEST),A
+     321.  00:836F  78                  	LD		 A,B			;después byte alto  ********************** preguntar a Fernando cómo que byte bajo es B
+     322.  00:8370  F6 40               	OR		1000000b		;+64
+     323.  00:8372  D3 99               	OUT		(REGEST),A
+     324.  00:8374                      	
+     325.  00:8374  7A                  	LD		A,D
+     326.  00:8375  D3 98               	OUT		(REGESCVDP),A	;escribe A en VRAM en la posición indicada por los dos OUT anteriores
+     327.  00:8377                      fin_pinta_tile_suelto:
+     328.  00:8377  C9                  	RET
+     329.  00:8378                      
+     330.  00:8378                      
+     331.  00:8378                      
+     332.  00:8378                      ;;=====================================================
+     333.  00:8378                      ;;MIRA_PINTA ENERGIA
+     334.  00:8378                      ;;=====================================================	
+     335.  00:8378                      ; función: 	actualiza el nivel de energia en la parte de puntuación
+     336.  00:8378                      ; nota:		el cuadrado más bajo de ejergía siempre estará pintado... se obviará
+     337.  00:8378                      ; entrada: 	prota.energia, array_aux_energia
+     338.  00:8378                      ; salida: 	-
+     339.  00:8378                      ; toca:		ninguno porque usa EXX
      340.  00:8378                      
-     341.  00:8378                      mira_pinta_energia:
-     342.  00:8378  D9                  	EXX							;por si acaso guardo el contenido de HL (si veo que no es necesario guardarlo lo quito) uso esto en vez de push por el nº ciclos
-     343.  00:8379                      	
-     344.  00:8379  3A 4D 8D            	LD		 A,(prota.energia) 	;para las comparaciones A variable (actual) y B fijo (limites)
-     345.  00:837C                      
-     346.  00:837C  0E 00               	LD		 C,TILENEGRO		;para agilizar asignaciones en vez de un valor cte uso otro registro
-     347.  00:837E                      pinta_ener:
-     348.  00:837E                      pinta_ener_tile_8:
-     349.  00:837E  21 68 8D            	LD		HL,ultimo_pos_array_aux_energia	;coloco puntero en array e iré decrementando
-     350.  00:8381  06 D9               	LD		 B,TILEENERG8
-     351.  00:8383  B8                  	CP		 B
-     352.  00:8384  38 04               	JR		C,pinta_ener_tile_8_negro
-     353.  00:8386  36 0E               	LD		(HL),TILEMAPVERD
-     354.  00:8388  18 01               	JR		pinta_ener_tile_7
-     355.  00:838A                      pinta_ener_tile_8_negro:
-     356.  00:838A  71                  	LD		(HL),C
-     357.  00:838B                      
-     358.  00:838B                      pinta_ener_tile_7:
-     359.  00:838B  2B                  	DEC		HL
-     360.  00:838C  06 BA               	LD		 B,TILEENERG7
-     361.  00:838E  B8                  	CP		 B
-     362.  00:838F  38 04               	JR		C,pinta_ener_tile_7_negro
-     363.  00:8391  36 0E               	LD		(HL),TILEMAPVERD
-     364.  00:8393  18 01               	JR		pinta_ener_tile_6
-     365.  00:8395                      pinta_ener_tile_7_negro:
-     366.  00:8395  71                  	LD		(HL),C
-     367.  00:8396                      
-     368.  00:8396                      pinta_ener_tile_6:
-     369.  00:8396  2B                  	DEC		HL
-     370.  00:8397  06 9B               	LD		 B,TILEENERG6
-     371.  00:8399  B8                  	CP		 B
-     372.  00:839A  38 04               	JR		C,pinta_ener_tile_6_negro
-     373.  00:839C  36 0E               	LD		(HL),14
-     374.  00:839E  18 01               	JR		pinta_ener_tile_5
-     375.  00:83A0                      pinta_ener_tile_6_negro:
-     376.  00:83A0  71                  	LD		(HL),C
-     377.  00:83A1                      
-     378.  00:83A1                      pinta_ener_tile_5:
-     379.  00:83A1  2B                  	DEC		HL
-     380.  00:83A2  06 7C               	LD		 B,TILEENERG5
-     381.  00:83A4  B8                  	CP		 B
-     382.  00:83A5  38 04               	JR		C,pinta_ener_tile_5_negro
-     383.  00:83A7  36 0E               	LD		(HL),TILEMAPVERD
-     384.  00:83A9  18 01               	JR		pinta_ener_tile_4
-     385.  00:83AB                      pinta_ener_tile_5_negro:
-     386.  00:83AB  71                  	LD		(HL),C
-     387.  00:83AC                      
-     388.  00:83AC                      pinta_ener_tile_4:
-     389.  00:83AC  2B                  	DEC		HL
-     390.  00:83AD  06 5D               	LD		 B,TILEENERG4
-     391.  00:83AF  B8                  	CP		 B
-     392.  00:83B0  38 04               	JR		C,pinta_ener_tile_4_negro
-     393.  00:83B2  36 0F               	LD		(HL),TILEMAPAMAR
-     394.  00:83B4  18 01               	JR		pinta_ener_tile_3
-     395.  00:83B6                      pinta_ener_tile_4_negro:
-     396.  00:83B6  71                  	LD		(HL),C
-     397.  00:83B7                      	
-     398.  00:83B7                      pinta_ener_tile_3:
-     399.  00:83B7  2B                  	DEC		HL
-     400.  00:83B8  06 3E               	LD		 B,TILEENERG3
-     401.  00:83BA  B8                  	CP		 B
-     402.  00:83BB  38 04               	JR		C,pinta_ener_tile_3_negro
-     403.  00:83BD  36 0F               	LD		(HL),TILEMAPAMAR
-     404.  00:83BF  18 01               	JR		pinta_ener_tile_2
-     405.  00:83C1                      pinta_ener_tile_3_negro:
-     406.  00:83C1  71                  	LD		(HL),C
-     407.  00:83C2                      
-     408.  00:83C2                      pinta_ener_tile_2:
-     409.  00:83C2  2B                  	DEC		HL
-     410.  00:83C3  06 1F               	LD		 B,TILEENERG2
-     411.  00:83C5  B8                  	CP		 B
-     412.  00:83C6  38 04               	JR		C,pinta_ener_tile_2_negro
-     413.  00:83C8  36 10               	LD		(HL),TILEMAPROJO
-     414.  00:83CA  18 01               	JR		fin_mira_pinta_energia		;siempre estará pintado el cuadro mínimo
-     415.  00:83CC                      pinta_ener_tile_2_negro:
-     416.  00:83CC  71                  	LD		(HL),C
-     417.  00:83CD                      
-     418.  00:83CD                      fin_mira_pinta_energia:
-     419.  00:83CD  D9                  	EXX
-     420.  00:83CE  C9                  	RET
-     421.  00:83CF                      
-     422.  00:83CF                      
-     423.  00:83CF                      ;;=====================================================
-     424.  00:83CF                      ;;PINTA_ENERGIA
-     425.  00:83CF                      ;;=====================================================	
-     426.  00:83CF                      ; función: 	actualiza el mapa de tiles para que en el próximo refresco se pinte la barra de energia actual
-     427.  00:83CF                      ; entrada: 	array_aux_energia
-     428.  00:83CF                      ; toca:		nada porque usa EXX
-     429.  00:83CF                      pinta_energia:
-     430.  00:83CF                      	;PUSH	HL
-     431.  00:83CF                      	;PUSH	DE
-     432.  00:83CF                      	;PUSH	BC
+     341.  00:8378                      ; nota importante... lo mismo interesa hacer esto con un array para comparar y un bucle
+     342.  00:8378                      
+     343.  00:8378                      
+     344.  00:8378                      mira_pinta_energia:
+     345.  00:8378  D9                  	EXX							;por si acaso guardo el contenido de HL (si veo que no es necesario guardarlo lo quito) uso esto en vez de push por el nº ciclos
+     346.  00:8379                      	
+     347.  00:8379  3A 4D 8D            	LD		 A,(prota.energia) 	;para las comparaciones A variable (actual) y B fijo (limites)
+     348.  00:837C                      
+     349.  00:837C  0E 00               	LD		 C,TILENEGRO		;para agilizar asignaciones en vez de un valor cte uso otro registro
+     350.  00:837E                      pinta_ener:
+     351.  00:837E                      pinta_ener_tile_8:
+     352.  00:837E  21 68 8D            	LD		HL,ultimo_pos_array_aux_energia	;coloco puntero en array e iré decrementando
+     353.  00:8381  06 D9               	LD		 B,TILEENERG8
+     354.  00:8383  B8                  	CP		 B
+     355.  00:8384  38 04               	JR		C,pinta_ener_tile_8_negro
+     356.  00:8386  36 0E               	LD		(HL),TILEMAPVERD
+     357.  00:8388  18 01               	JR		pinta_ener_tile_7
+     358.  00:838A                      pinta_ener_tile_8_negro:
+     359.  00:838A  71                  	LD		(HL),C
+     360.  00:838B                      
+     361.  00:838B                      pinta_ener_tile_7:
+     362.  00:838B  2B                  	DEC		HL
+     363.  00:838C  06 BA               	LD		 B,TILEENERG7
+     364.  00:838E  B8                  	CP		 B
+     365.  00:838F  38 04               	JR		C,pinta_ener_tile_7_negro
+     366.  00:8391  36 0E               	LD		(HL),TILEMAPVERD
+     367.  00:8393  18 01               	JR		pinta_ener_tile_6
+     368.  00:8395                      pinta_ener_tile_7_negro:
+     369.  00:8395  71                  	LD		(HL),C
+     370.  00:8396                      
+     371.  00:8396                      pinta_ener_tile_6:
+     372.  00:8396  2B                  	DEC		HL
+     373.  00:8397  06 9B               	LD		 B,TILEENERG6
+     374.  00:8399  B8                  	CP		 B
+     375.  00:839A  38 04               	JR		C,pinta_ener_tile_6_negro
+     376.  00:839C  36 0E               	LD		(HL),14
+     377.  00:839E  18 01               	JR		pinta_ener_tile_5
+     378.  00:83A0                      pinta_ener_tile_6_negro:
+     379.  00:83A0  71                  	LD		(HL),C
+     380.  00:83A1                      
+     381.  00:83A1                      pinta_ener_tile_5:
+     382.  00:83A1  2B                  	DEC		HL
+     383.  00:83A2  06 7C               	LD		 B,TILEENERG5
+     384.  00:83A4  B8                  	CP		 B
+     385.  00:83A5  38 04               	JR		C,pinta_ener_tile_5_negro
+     386.  00:83A7  36 0E               	LD		(HL),TILEMAPVERD
+     387.  00:83A9  18 01               	JR		pinta_ener_tile_4
+     388.  00:83AB                      pinta_ener_tile_5_negro:
+     389.  00:83AB  71                  	LD		(HL),C
+     390.  00:83AC                      
+     391.  00:83AC                      pinta_ener_tile_4:
+     392.  00:83AC  2B                  	DEC		HL
+     393.  00:83AD  06 5D               	LD		 B,TILEENERG4
+     394.  00:83AF  B8                  	CP		 B
+     395.  00:83B0  38 04               	JR		C,pinta_ener_tile_4_negro
+     396.  00:83B2  36 0F               	LD		(HL),TILEMAPAMAR
+     397.  00:83B4  18 01               	JR		pinta_ener_tile_3
+     398.  00:83B6                      pinta_ener_tile_4_negro:
+     399.  00:83B6  71                  	LD		(HL),C
+     400.  00:83B7                      	
+     401.  00:83B7                      pinta_ener_tile_3:
+     402.  00:83B7  2B                  	DEC		HL
+     403.  00:83B8  06 3E               	LD		 B,TILEENERG3
+     404.  00:83BA  B8                  	CP		 B
+     405.  00:83BB  38 04               	JR		C,pinta_ener_tile_3_negro
+     406.  00:83BD  36 0F               	LD		(HL),TILEMAPAMAR
+     407.  00:83BF  18 01               	JR		pinta_ener_tile_2
+     408.  00:83C1                      pinta_ener_tile_3_negro:
+     409.  00:83C1  71                  	LD		(HL),C
+     410.  00:83C2                      
+     411.  00:83C2                      pinta_ener_tile_2:
+     412.  00:83C2  2B                  	DEC		HL
+     413.  00:83C3  06 1F               	LD		 B,TILEENERG2
+     414.  00:83C5  B8                  	CP		 B
+     415.  00:83C6  38 04               	JR		C,pinta_ener_tile_2_negro
+     416.  00:83C8  36 10               	LD		(HL),TILEMAPROJO
+     417.  00:83CA  18 01               	JR		fin_mira_pinta_energia		;siempre estará pintado el cuadro mínimo
+     418.  00:83CC                      pinta_ener_tile_2_negro:
+     419.  00:83CC  71                  	LD		(HL),C
+     420.  00:83CD                      
+     421.  00:83CD                      fin_mira_pinta_energia:
+     422.  00:83CD  D9                  	EXX
+     423.  00:83CE  C9                  	RET
+     424.  00:83CF                      
+     425.  00:83CF                      
+     426.  00:83CF                      ;;=====================================================
+     427.  00:83CF                      ;;PINTA_ENERGIA
+     428.  00:83CF                      ;;=====================================================	
+     429.  00:83CF                      ; función: 	actualiza el mapa de tiles para que en el próximo refresco se pinte la barra de energia actual
+     430.  00:83CF                      ; entrada: 	array_aux_energia
+     431.  00:83CF                      ; toca:		AF
+     432.  00:83CF                      pinta_energia:
      433.  00:83CF  D9                  	EXX
      434.  00:83D0                      	
      435.  00:83D0  21 61 8D            	LD		HL,array_aux_energia
@@ -661,340 +638,338 @@ Errors: 0
      437.  00:83D6  01 08 00            	LD		BC,NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
      438.  00:83D9  CD 5C 00            	CALL	LDIRVM
      439.  00:83DC                      		
-     440.  00:83DC                      	;POP		BC
-     441.  00:83DC                      	;POP		DE
-     442.  00:83DC                      	;POP		HL
-     443.  00:83DC  D9                  	EXX
-     444.  00:83DD                      fin_pinta_energia:
-     445.  00:83DD  C9                  	RET
-     446.  00:83DE                      
-     447.  00:83DE                      
-     448.  00:83DE                      ;;=====================================================
-     449.  00:83DE                      ;;BORRA_MAPA
-     450.  00:83DE                      ;;=====================================================	
-     451.  00:83DE                      ; función: 	pone todas las habitaciones del mapa a negro (los tiles del mapa los rellena con un array a 0 - caracter en negro)
-     452.  00:83DE                      ; entrada: 	array_aux_mapa_limpiar
-     453.  00:83DE                      ; salida: 	-
-     454.  00:83DE                      ; toca:		- porque usa EXX
-     455.  00:83DE                      borra_mapa:
-     456.  00:83DE  D9                  	EXX
-     457.  00:83DF                      	
-     458.  00:83DF  21 69 8D            	LD		HL,array_aux_mapa_limpiar
-     459.  00:83E2  11 F8 1A            	LD		DE,SC2MAP + POSMAPLIN1 	;inicio posición en el mapa de tiles de la primera fila del mapa
-     460.  00:83E5  01 07 00            	LD		BC,NHABNIVEL			;cada nivel son 7 filas con 7 habitaciones "posibles"
-     461.  00:83E8  CD 5C 00            	CALL	LDIRVM
-     462.  00:83EB                      	
-     463.  00:83EB  21 69 8D            	LD		HL,array_aux_mapa_limpiar
-     464.  00:83EE  11 D8 1A            	LD		DE,SC2MAP + POSMAPLIN2
-     465.  00:83F1  01 07 00            	LD		BC,NHABNIVEL
-     466.  00:83F4  CD 5C 00            	CALL	LDIRVM
-     467.  00:83F7                      
-     468.  00:83F7  21 69 8D            	LD		HL,array_aux_mapa_limpiar
-     469.  00:83FA  11 B8 1A            	LD		DE,SC2MAP + POSMAPLIN3
-     470.  00:83FD  01 07 00            	LD		BC,NHABNIVEL
-     471.  00:8400  CD 5C 00            	CALL	LDIRVM
-     472.  00:8403                      
-     473.  00:8403  21 69 8D            	LD		HL,array_aux_mapa_limpiar	
-     474.  00:8406  11 98 1A            	LD		DE,SC2MAP + POSMAPLIN4
-     475.  00:8409  01 07 00            	LD		BC,NHABNIVEL
-     476.  00:840C  CD 5C 00            	CALL	LDIRVM
-     477.  00:840F                      
-     478.  00:840F  21 69 8D            	LD		HL,array_aux_mapa_limpiar	
-     479.  00:8412  11 78 1A            	LD		DE,SC2MAP + POSMAPLIN5
-     480.  00:8415  01 07 00            	LD		BC,NHABNIVEL
-     481.  00:8418  CD 5C 00            	CALL	LDIRVM
-     482.  00:841B                      
-     483.  00:841B  21 69 8D            	LD		HL,array_aux_mapa_limpiar	
-     484.  00:841E  11 58 1A            	LD		DE,SC2MAP + POSMAPLIN6
-     485.  00:8421  01 07 00            	LD		BC,NHABNIVEL
-     486.  00:8424  CD 5C 00            	CALL	LDIRVM
-     487.  00:8427                      
-     488.  00:8427  21 69 8D            	LD		HL,array_aux_mapa_limpiar	
-     489.  00:842A  11 38 1A            	LD		DE,SC2MAP + POSMAPLIN7
-     490.  00:842D  01 07 00            	LD		BC,NHABNIVEL
-     491.  00:8430  CD 5C 00            	CALL	LDIRVM
-     492.  00:8433                      fin_borra_mapa:
-     493.  00:8433  D9                  	EXX
-     494.  00:8434  C9                  	RET
+     440.  00:83DC  D9                  	EXX
+     441.  00:83DD                      fin_pinta_energia:
+     442.  00:83DD  C9                  	RET
+     443.  00:83DE                      
+     444.  00:83DE                      
+     445.  00:83DE                      ;;=====================================================
+     446.  00:83DE                      ;;BORRA_MAPA
+     447.  00:83DE                      ;;=====================================================	
+     448.  00:83DE                      ; función: 	pone todas las habitaciones del mapa a negro (los tiles del mapa los rellena con un array a 0 - caracter en negro)
+     449.  00:83DE                      ; entrada: 	array_aux_mapa_limpiar
+     450.  00:83DE                      ; salida: 	-
+     451.  00:83DE                      ; toca:		AF
+     452.  00:83DE                      borra_mapa:
+     453.  00:83DE  D9                  	EXX
+     454.  00:83DF                      	
+     455.  00:83DF  21 69 8D            	LD		HL,array_aux_mapa_limpiar
+     456.  00:83E2  11 F8 1A            	LD		DE,SC2MAP + POSMAPLIN1 	;inicio posición en el mapa de tiles de la primera fila del mapa
+     457.  00:83E5  01 07 00            	LD		BC,NHABNIVEL			;cada nivel son 7 filas con 7 habitaciones "posibles"
+     458.  00:83E8  CD 5C 00            	CALL	LDIRVM
+     459.  00:83EB                      	
+     460.  00:83EB  21 69 8D            	LD		HL,array_aux_mapa_limpiar
+     461.  00:83EE  11 D8 1A            	LD		DE,SC2MAP + POSMAPLIN2
+     462.  00:83F1  01 07 00            	LD		BC,NHABNIVEL
+     463.  00:83F4  CD 5C 00            	CALL	LDIRVM
+     464.  00:83F7                      
+     465.  00:83F7  21 69 8D            	LD		HL,array_aux_mapa_limpiar
+     466.  00:83FA  11 B8 1A            	LD		DE,SC2MAP + POSMAPLIN3
+     467.  00:83FD  01 07 00            	LD		BC,NHABNIVEL
+     468.  00:8400  CD 5C 00            	CALL	LDIRVM
+     469.  00:8403                      
+     470.  00:8403  21 69 8D            	LD		HL,array_aux_mapa_limpiar	
+     471.  00:8406  11 98 1A            	LD		DE,SC2MAP + POSMAPLIN4
+     472.  00:8409  01 07 00            	LD		BC,NHABNIVEL
+     473.  00:840C  CD 5C 00            	CALL	LDIRVM
+     474.  00:840F                      
+     475.  00:840F  21 69 8D            	LD		HL,array_aux_mapa_limpiar	
+     476.  00:8412  11 78 1A            	LD		DE,SC2MAP + POSMAPLIN5
+     477.  00:8415  01 07 00            	LD		BC,NHABNIVEL
+     478.  00:8418  CD 5C 00            	CALL	LDIRVM
+     479.  00:841B                      
+     480.  00:841B  21 69 8D            	LD		HL,array_aux_mapa_limpiar	
+     481.  00:841E  11 58 1A            	LD		DE,SC2MAP + POSMAPLIN6
+     482.  00:8421  01 07 00            	LD		BC,NHABNIVEL
+     483.  00:8424  CD 5C 00            	CALL	LDIRVM
+     484.  00:8427                      
+     485.  00:8427  21 69 8D            	LD		HL,array_aux_mapa_limpiar	
+     486.  00:842A  11 38 1A            	LD		DE,SC2MAP + POSMAPLIN7
+     487.  00:842D  01 07 00            	LD		BC,NHABNIVEL
+     488.  00:8430  CD 5C 00            	CALL	LDIRVM
+     489.  00:8433                      	
+     490.  00:8433  D9                  	EXX
+     491.  00:8434                      fin_borra_mapa:
+     492.  00:8434  C9                  	RET
+     493.  00:8435                      
+     494.  00:8435                      
      495.  00:8435                      
      496.  00:8435                      
      497.  00:8435                      
-     498.  00:8435                      
-     499.  00:8435                      
-     500.  00:8435                      ;;=====================================================
-     501.  00:8435                      ;;POSICIONA_EN_MAPA
-     502.  00:8435                      ;;=====================================================	
-     503.  00:8435                      ; función: 	en el mapa de marcadores de la derecha/abajo marca un cuadro en gris o con un muñeco
-     504.  00:8435                      ;			según el valor de prota.posición pinta entrá un muñeco y por donde vaya pasando el prota
-     505.  00:8435                      ;			quedará en gris
-     506.  00:8435                      ; entrada: 	A (tipo 0 gris 1 - tile 0,muñeco - tile 19) *********** no sé si sería bueno usar PUSH A y aquí POP A
-     507.  00:8435                      ; salida: 	-
-     508.  00:8435                      ; toca:		- A
-     509.  00:8435                      posiciona_en_mapa:
-     510.  00:8435  F5                  	PUSH	 AF		;almacenamos el tipo a pintar para cuando terminemos de calcular la coordenada
-     511.  00:8436                      	
-     512.  00:8436                      	;#0238 es la posición en mapa de tiles de la esquina superior izquierda del mapa (569 en decimal)
-     513.  00:8436  21 38 1A            	LD		HL,SC2MAP + POSMAPA ;pos inicial
-     514.  00:8439                      	;~ ;ahora se le suma la fila * 32 + columna
-     515.  00:8439                      
-     516.  00:8439                      	;sumar fila
-     517.  00:8439  11 20 00            	LD		DE,32	;32 ancho del mapa de tiles de una pantalla
-     518.  00:843C  3A 4B 8D            	LD 		 A,(prota.pos_mapy)
-     519.  00:843F  47                  	LD		 B,A
-     520.  00:8440                      prod_coloca_fila:	
-     521.  00:8440  19                  	ADD		HL,DE
-     522.  00:8441  10 FD               	DJNZ	prod_coloca_fila
-     523.  00:8443                      	
-     524.  00:8443                      	;suma columna
-     525.  00:8443  11 03 00            	LD		DE,#0003
-     526.  00:8446  19                  	ADD		HL,DE
-     527.  00:8447                      	
-     528.  00:8447                      	;resultado en BC
-     529.  00:8447  44                  	LD		 B,H
-     530.  00:8448  4D                  	LD		 C,L
-     531.  00:8449                      	
-     532.  00:8449                      	;terminado de fijar la coordenada recuperamos a para ver el tipo
-     533.  00:8449  F1                  	POP		 AF
-     534.  00:844A  B7                  	OR		 A
-     535.  00:844B  CA 53 84            	JP		 Z,pinta_pos_mapa_vacio
-     536.  00:844E  16 13               	LD		 D,TILEMAPPROT
-     537.  00:8450  C3 55 84            	JP		fin_pinta_pos_mapa
-     538.  00:8453                      pinta_pos_mapa_vacio:
-     539.  00:8453  16 09               	LD		 D,TILEMAPVACI				;********************* se puede hacer mejor o está bien usar push y pop
-     540.  00:8455                      
-     541.  00:8455                      fin_pinta_pos_mapa:
-     542.  00:8455  CD 6A 83            	CALL	pinta_tile_suelto
-     543.  00:8458                      fin_posiciona_en_mapa:
-     544.  00:8458  C9                  	RET
+     498.  00:8435                      ;;=====================================================
+     499.  00:8435                      ;;POSICIONA_EN_MAPA
+     500.  00:8435                      ;;=====================================================	
+     501.  00:8435                      ; función: 	en el mapa de marcadores de la derecha/abajo marca un cuadro en gris o con un muñeco
+     502.  00:8435                      ;			según el valor de prota.posición pinta entrá un muñeco y por donde vaya pasando el prota
+     503.  00:8435                      ;			quedará en gris
+     504.  00:8435                      ; entrada: 	A (tipo 0 gris 1 - tile 0,muñeco - tile 19) *********** no sé si sería bueno usar PUSH A y aquí POP A
+     505.  00:8435                      ; salida: 	-
+     506.  00:8435                      ; toca:		todos
+     507.  00:8435                      posiciona_en_mapa:
+     508.  00:8435  F5                  	PUSH	 AF		;almacenamos el tipo a pintar para cuando terminemos de calcular la coordenada
+     509.  00:8436                      	
+     510.  00:8436                      	;#0238 es la posición en mapa de tiles de la esquina superior izquierda del mapa (569 en decimal)
+     511.  00:8436  21 38 1A            	LD		HL,SC2MAP + POSMAPA ;pos inicial
+     512.  00:8439                      	;~ ;ahora se le suma la fila * 32 + columna
+     513.  00:8439                      
+     514.  00:8439                      	;sumar fila
+     515.  00:8439  11 20 00            	LD		DE,32	;32 ancho del mapa de tiles de una pantalla
+     516.  00:843C  3A 4B 8D            	LD 		 A,(prota.pos_mapy)
+     517.  00:843F  47                  	LD		 B,A
+     518.  00:8440                      prod_coloca_fila:	
+     519.  00:8440  19                  	ADD		HL,DE
+     520.  00:8441  10 FD               	DJNZ	prod_coloca_fila
+     521.  00:8443                      	
+     522.  00:8443                      	;suma columna
+     523.  00:8443  11 03 00            	LD		DE,#0003
+     524.  00:8446  19                  	ADD		HL,DE
+     525.  00:8447                      	
+     526.  00:8447                      	;resultado en BC
+     527.  00:8447  44                  	LD		 B,H
+     528.  00:8448  4D                  	LD		 C,L
+     529.  00:8449                      	
+     530.  00:8449                      	;terminado de fijar la coordenada recuperamos a para ver el tipo
+     531.  00:8449  F1                  	POP		 AF
+     532.  00:844A  B7                  	OR		 A
+     533.  00:844B  CA 53 84            	JP		 Z,pinta_pos_mapa_vacio
+     534.  00:844E  16 13               	LD		 D,TILEMAPPROT
+     535.  00:8450  C3 55 84            	JP		fin_pinta_pos_mapa
+     536.  00:8453                      pinta_pos_mapa_vacio:
+     537.  00:8453  16 09               	LD		 D,TILEMAPVACI				;********************* se puede hacer mejor o está bien usar push y pop
+     538.  00:8455                      
+     539.  00:8455                      fin_pinta_pos_mapa:
+     540.  00:8455  CD 6A 83            	CALL	pinta_tile_suelto
+     541.  00:8458                      fin_posiciona_en_mapa:
+     542.  00:8458  C9                  	RET
+     543.  00:8459                      
+     544.  00:8459                      
      545.  00:8459                      
-     546.  00:8459                      
-     547.  00:8459                      
-     548.  00:8459                      ;=====================================================
-     549.  00:8459                      ;;PINTA_ARRAY
-     550.  00:8459                      ;;=====================================================	
-     551.  00:8459                      ;;;funcion:  se le pasa un array con posiciones de tiles y coordenadas x e y y los pinta en screen 2
-     552.  00:8459                      ;;entrada:	wordaux1 (pos inicio sc2 donde pintar) y wordaux2 (puntero al array a pintar), BC (posición en tilemap) , D filas y E columnas
-     553.  00:8459                      ;;salida:	-
-     554.  00:8459                      ;;importante: necesita de una variable wordaux1 tipo WD (wordaux1: 	DW	0)
-     555.  00:8459                      ;; ejemplo llamada:
-     556.  00:8459                      	;~ LD		HL,array_tiles					;guardo puntero al array a pintar (como psar por referencia)
-     557.  00:8459                      	;~ LD		(wordaux2),HL					;en la variable wordaux2
-     558.  00:8459                      	;~ LD		HL,SC2MAP + 256 + 32			;calcula posición en tilemap
-     559.  00:8459                      	;~ LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
-     560.  00:8459                      	;~ LD		B,H								;coloca posición tilemap BC
-     561.  00:8459                      	;~ LD		C,L
-     562.  00:8459                      	;~ LD		D,2								;nº de filas
-     563.  00:8459                      	;~ LD		E,3								;nº de columnas
-     564.  00:8459                      	;~ CALL	pinta_array
-     565.  00:8459                      
-     566.  00:8459                      pinta_array:
-     567.  00:8459  F5                  	PUSH	AF
-     568.  00:845A                      	
-     569.  00:845A                      	;contamos con que la posición "global" en el tilemap está ya en BC
-     570.  00:845A                      	;y el puntero al array a pintar en wordaux2 y la posición en tilemap sc2 en wordaux1
-     571.  00:845A                      	;inicializa
-     572.  00:845A  DB 99               	IN		 A,(REGEST)		;leer registro de estado (recomendado)
-     573.  00:845C                      	
-     574.  00:845C                      	;coloca puntero para pintar tile según BC
-     575.  00:845C  79                  	LD		 A,C			;primero byte bajo	
-     576.  00:845D  D3 99               	OUT		(REGEST),A
-     577.  00:845F  78                  	LD		 A,B			;después byte alto  ********************** preguntar a Fernando cómo que byte bajo es B
-     578.  00:8460  F6 40               	OR		1000000b		;+64
-     579.  00:8462  D3 99               	OUT		(REGEST),A
-     580.  00:8464                      
-     581.  00:8464                      	
-     582.  00:8464  2A 8E 84            	LD		HL,(wordaux2)	;HL es lo que se pintará y le he pasado el puntero del array tilemap a pintar
-     583.  00:8467                      .pa_pinta_fila:
-     584.  00:8467  43                  	LD		 B,E
-     585.  00:8468                      .pa_pinta_columnas: 		;finta la fila (pintando las columnas)
-     586.  00:8468  7E                  	LD		 A,(HL)
-     587.  00:8469  D3 98               	OUT		(REGESCVDP),A	;escribe A en VRAM en la posición indicada por los dos OUT anteriores
-     588.  00:846B  23                  	INC		HL
-     589.  00:846C  10 FA               	DJNZ	.pa_pinta_columnas
-     590.  00:846E                      	
-     591.  00:846E                      	;no es una solución elegante lo de repetir código pero queda claro
-     592.  00:846E                      	;por si hay otra fila
-     593.  00:846E  E5                  	PUSH	HL
-     594.  00:846F  2A 8C 84            	LD		HL,(wordaux1)
-     595.  00:8472  01 20 00            	LD		BC,32
-     596.  00:8475  09                  	ADD		HL,BC
-     597.  00:8476  22 8C 84            	LD		(wordaux1),HL
-     598.  00:8479  44                  	LD		B,H
-     599.  00:847A  4D                  	LD		C,L
-     600.  00:847B  E1                  	POP		HL
-     601.  00:847C                      	
-     602.  00:847C  79                  	LD		 A,C			;primero byte bajo	
-     603.  00:847D  D3 99               	OUT		(REGEST),A
-     604.  00:847F  78                  	LD		 A,B			;después byte alto 
-     605.  00:8480  F6 40               	OR		1000000b		;+64
-     606.  00:8482  D3 99               	OUT		(REGEST),A
-     607.  00:8484                      	
-     608.  00:8484                      	;si hay otra fila repite
-     609.  00:8484  15                  	DEC		 D
-     610.  00:8485  7A                  	LD		 A,D		;¿hay otra fila?
-     611.  00:8486  B7                  	OR		 A
-     612.  00:8487  C2 67 84            	JP		NZ,.pa_pinta_fila
-     613.  00:848A                      	
-     614.  00:848A  F1                  	POP		AF
-     615.  00:848B                      	
-     616.  00:848B                      fin_pinta_array:
-     617.  00:848B  C9                  	RET
-     618.  00:848C                      ;;variables asocidas a la función (no sé si dejarlo aquí y encapsularlo todo o hacerla reutilizable)
-     619.  00:848C                      ;; por de pronto la dejo aquí
-     620.  00:848C  00 00               wordaux1:		DW	0	;almacena la posición en el tilemap 0 al 675
-     621.  00:848E  00 00               wordaux2:		DW	0	;almacena puntero a array de tiles (posiciones en realidad) a pintar (posiciones repetidas en los 3 bancos)
+     546.  00:8459                      ;=====================================================
+     547.  00:8459                      ;;PINTA_ARRAY
+     548.  00:8459                      ;;=====================================================	
+     549.  00:8459                      ;;;funcion:  se le pasa un array con posiciones de tiles y coordenadas x e y y los pinta en screen 2
+     550.  00:8459                      ;;entrada:	wordaux1 (pos inicio sc2 donde pintar) y wordaux2 (puntero al array a pintar), BC (posición en tilemap) , D filas y E columnas
+     551.  00:8459                      ;;salida:	-
+     552.  00:8459                      ;;importante: necesita de una variable wordaux1 tipo WD (wordaux1: 	DW	0)
+     553.  00:8459                      ;; ejemplo llamada:
+     554.  00:8459                      	;~ LD		HL,array_tiles					;guardo puntero al array a pintar (como psar por referencia)
+     555.  00:8459                      	;~ LD		(wordaux2),HL					;en la variable wordaux2
+     556.  00:8459                      	;~ LD		HL,SC2MAP + 256 + 32			;calcula posición en tilemap
+     557.  00:8459                      	;~ LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
+     558.  00:8459                      	;~ LD		B,H								;coloca posición tilemap BC
+     559.  00:8459                      	;~ LD		C,L
+     560.  00:8459                      	;~ LD		D,2								;nº de filas
+     561.  00:8459                      	;~ LD		E,3								;nº de columnas
+     562.  00:8459                      	;~ CALL	pinta_array
+     563.  00:8459                      
+     564.  00:8459                      pinta_array:
+     565.  00:8459  F5                  	PUSH	AF
+     566.  00:845A                      	
+     567.  00:845A                      	;contamos con que la posición "global" en el tilemap está ya en BC
+     568.  00:845A                      	;y el puntero al array a pintar en wordaux2 y la posición en tilemap sc2 en wordaux1
+     569.  00:845A                      	;inicializa
+     570.  00:845A  DB 99               	IN		 A,(REGEST)		;leer registro de estado (recomendado)
+     571.  00:845C                      	
+     572.  00:845C                      	;coloca puntero para pintar tile según BC
+     573.  00:845C  79                  	LD		 A,C			;primero byte bajo	
+     574.  00:845D  D3 99               	OUT		(REGEST),A
+     575.  00:845F  78                  	LD		 A,B			;después byte alto  ********************** preguntar a Fernando cómo que byte bajo es B
+     576.  00:8460  F6 40               	OR		1000000b		;+64
+     577.  00:8462  D3 99               	OUT		(REGEST),A
+     578.  00:8464                      
+     579.  00:8464                      	
+     580.  00:8464  2A 8E 84            	LD		HL,(wordaux2)	;HL es lo que se pintará y le he pasado el puntero del array tilemap a pintar
+     581.  00:8467                      .pa_pinta_fila:
+     582.  00:8467  43                  	LD		 B,E
+     583.  00:8468                      .pa_pinta_columnas: 		;finta la fila (pintando las columnas)
+     584.  00:8468  7E                  	LD		 A,(HL)
+     585.  00:8469  D3 98               	OUT		(REGESCVDP),A	;escribe A en VRAM en la posición indicada por los dos OUT anteriores
+     586.  00:846B  23                  	INC		HL
+     587.  00:846C  10 FA               	DJNZ	.pa_pinta_columnas
+     588.  00:846E                      	
+     589.  00:846E                      	;no es una solución elegante lo de repetir código pero queda claro
+     590.  00:846E                      	;por si hay otra fila
+     591.  00:846E  E5                  	PUSH	HL
+     592.  00:846F  2A 8C 84            	LD		HL,(wordaux1)
+     593.  00:8472  01 20 00            	LD		BC,32
+     594.  00:8475  09                  	ADD		HL,BC
+     595.  00:8476  22 8C 84            	LD		(wordaux1),HL
+     596.  00:8479  44                  	LD		B,H
+     597.  00:847A  4D                  	LD		C,L
+     598.  00:847B  E1                  	POP		HL
+     599.  00:847C                      	
+     600.  00:847C  79                  	LD		 A,C			;primero byte bajo	
+     601.  00:847D  D3 99               	OUT		(REGEST),A
+     602.  00:847F  78                  	LD		 A,B			;después byte alto 
+     603.  00:8480  F6 40               	OR		1000000b		;+64
+     604.  00:8482  D3 99               	OUT		(REGEST),A
+     605.  00:8484                      	
+     606.  00:8484                      	;si hay otra fila repite
+     607.  00:8484  15                  	DEC		 D
+     608.  00:8485  7A                  	LD		 A,D		;¿hay otra fila?
+     609.  00:8486  B7                  	OR		 A
+     610.  00:8487  C2 67 84            	JP		NZ,.pa_pinta_fila
+     611.  00:848A                      	
+     612.  00:848A  F1                  	POP		AF
+     613.  00:848B                      	
+     614.  00:848B                      fin_pinta_array:
+     615.  00:848B  C9                  	RET
+     616.  00:848C                      ;;variables asocidas a la función (no sé si dejarlo aquí y encapsularlo todo o hacerla reutilizable)
+     617.  00:848C                      ;; por de pronto la dejo aquí
+     618.  00:848C  00 00               wordaux1:		DW	0	;almacena la posición en el tilemap 0 al 675
+     619.  00:848E  00 00               wordaux2:		DW	0	;almacena puntero a array de tiles (posiciones en realidad) a pintar (posiciones repetidas en los 3 bancos)
+     620.  00:8490                      
+     621.  00:8490                      
      622.  00:8490                      
      623.  00:8490                      
      624.  00:8490                      
-     625.  00:8490                      
-     626.  00:8490                      
-     627.  00:8490                      ;;=====================================================
-     628.  00:8490                      ;;PINTA_PUERTAS
-     629.  00:8490                      ;;=====================================================	
-     630.  00:8490                      ; función: 	examina A y mira si tiene que pintar puertas de los lados, arriba o abrajo o las escaleras (o no)
-     631.  00:8490                      ; entrada: 	A (se miran los 5 bits más bajos) 1 escalera 1 puerta arriba 1 pu der 1 pu aba 1 pu izq (si es 0 pinta pared)
-     632.  00:8490                      ; salida: 	-
-     633.  00:8490                      ; toca:		- A
-     634.  00:8490                      pinta_puertas:
-     635.  00:8490  CB 57               	BIT		2,A
-     636.  00:8492  C4 D5 84            	CALL	nz,pinta_puerta_der
-     637.  00:8495                      
-     638.  00:8495  CB 5F               	BIT		3,A
-     639.  00:8497  C4 BF 84            	CALL	nz,pinta_puerta_arr
-     640.  00:849A                      
-     641.  00:849A  CB 4F               	BIT		1,A
-     642.  00:849C  C4 A9 84            	CALL	nz,pinta_puerta_aba
-     643.  00:849F                      	
-     644.  00:849F  CB 47               	BIT		0,A
-     645.  00:84A1  C4 EB 84            	CALL	nz,pinta_puerta_izq
-     646.  00:84A4                      	
-     647.  00:84A4  AF                  	XOR		 A
-     648.  00:84A5  32 70 8D            	LD		(actualiza_puertas_sn),A ;(1 actualiza y 0 no actualiza puertas) se pone a 0 para que no actualice todo el tiempo (ya se ha actualizado)
-     649.  00:84A8                      fin_pinta_puertas:
-     650.  00:84A8  C9                  	RET
-     651.  00:84A9                      
-     652.  00:84A9                      ;;=====================================================
-     653.  00:84A9                      ;;PINTA_PUERTA_ABA
-     654.  00:84A9                      ;;=====================================================	
-     655.  00:84A9                      ; función: 	pinta la puerta de abajo
-     656.  00:84A9                      ; entrada: 	array_puerta_abajo, wordaux2, wordaux1
-     657.  00:84A9                      ; salida: 	-
-     658.  00:84A9                      ; toca:		HL,BC, DE
-     659.  00:84A9                      pinta_puerta_aba:
-     660.  00:84A9  21 9A 8D            	LD		HL,array_puerta_abajo			;guardo puntero al array a pintar (como psar por referencia)
-     661.  00:84AC  22 8E 84            	LD		(wordaux2),HL					;en la variable wordaux2
-     662.  00:84AF  21 EE 19            	LD		HL,SC2MAP + POSPUERABAJ			;calcula posición en tilemap
-     663.  00:84B2  22 8C 84            	LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
-     664.  00:84B5  44                  	LD		B,H								;coloca posición tilemap BC
-     665.  00:84B6  4D                  	LD		C,L
-     666.  00:84B7  16 01               	LD		D,1								;nº de filas
-     667.  00:84B9  1E 04               	LD		E,4								;nº de columnas
-     668.  00:84BB  CD 59 84            	CALL	pinta_array
-     669.  00:84BE                      fin_pinta_puerta_aba:
-     670.  00:84BE  C9                  	RET
-     671.  00:84BF                      
-     672.  00:84BF                      ;;=====================================================
-     673.  00:84BF                      ;;PINTA_PUERTA_ARR
-     674.  00:84BF                      ;;=====================================================	
-     675.  00:84BF                      ; función: 	pinta la puerta de arriba
-     676.  00:84BF                      ; entrada: 	array_puerta_arriba, wordaux2, wordaux1
-     677.  00:84BF                      ; salida: 	-
-     678.  00:84BF                      ; toca:		HL,BC, DE
-     679.  00:84BF                      pinta_puerta_arr:
-     680.  00:84BF  21 71 8D            	LD		HL,array_puerta_arriba			;guardo puntero al array a pintar (como psar por referencia)
-     681.  00:84C2  22 8E 84            	LD		(wordaux2),HL					;en la variable wordaux2
-     682.  00:84C5  21 8E 18            	LD		HL,SC2MAP + POSPUERARRI			;calcula posición en tilemap
-     683.  00:84C8  22 8C 84            	LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
-     684.  00:84CB  44                  	LD		B,H								;coloca posición tilemap BC
-     685.  00:84CC  4D                  	LD		C,L
-     686.  00:84CD  16 05               	LD		D,5								;nº de filas
-     687.  00:84CF  1E 04               	LD		E,4								;nº de columnas
-     688.  00:84D1  CD 59 84            	CALL	pinta_array
-     689.  00:84D4                      fin_pinta_puerta_arr:
-     690.  00:84D4  C9                  	RET
-     691.  00:84D5                      
-     692.  00:84D5                      ;;=====================================================
-     693.  00:84D5                      ;;PINTA_PUERTA_DER
-     694.  00:84D5                      ;;=====================================================	
-     695.  00:84D5                      ; función: 	pinta la puerta de la derecha
-     696.  00:84D5                      ; entrada: 	array_puerta_derecha, wordaux2, wordaux1
-     697.  00:84D5                      ; salida: 	-
-     698.  00:84D5                      ; toca:		HL,BC, DE
-     699.  00:84D5                      pinta_puerta_der:
-     700.  00:84D5  21 85 8D            	LD		HL,array_puerta_derecha			;guardo puntero al array a pintar (como psar por referencia)
-     701.  00:84D8  22 8E 84            	LD		(wordaux2),HL					;en la variable wordaux2
-     702.  00:84DB  21 FC 18            	LD		HL,SC2MAP + POSPUERDERE			;calcula posición en tilemap
-     703.  00:84DE  22 8C 84            	LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
-     704.  00:84E1  44                  	LD		B,H								;coloca posición tilemap BC
-     705.  00:84E2  4D                  	LD		C,L
-     706.  00:84E3  16 07               	LD		D,7								;nº de filas
-     707.  00:84E5  1E 03               	LD		E,3								;nº de columnas
-     708.  00:84E7  CD 59 84            	CALL	pinta_array
-     709.  00:84EA                      fin_pinta_puerta_der:
-     710.  00:84EA  C9                  	RET
-     711.  00:84EB                      	
-     712.  00:84EB                      ;;=====================================================
-     713.  00:84EB                      ;;PINTA_PUERTA_IZQ
-     714.  00:84EB                      ;;=====================================================	
-     715.  00:84EB                      ; función: 	pinta la puerta de la izquierda
-     716.  00:84EB                      ; entrada: 	array_puerta_izquierda, wordaux2, wordaux1
-     717.  00:84EB                      ; salida: 	-
-     718.  00:84EB                      ; toca:		HL,BC, DE
-     719.  00:84EB                      pinta_puerta_izq:
-     720.  00:84EB  21 9E 8D            	LD		HL,array_puerta_izquierda		;guardo puntero al array a pintar (como psar por referencia)
-     721.  00:84EE  22 8E 84            	LD		(wordaux2),HL					;en la variable wordaux2
-     722.  00:84F1  21 E1 18            	LD		HL,SC2MAP + POSPUERIZQU			;calcula posición en tilemap
-     723.  00:84F4  22 8C 84            	LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
-     724.  00:84F7  44                  	LD		B,H								;coloca posición tilemap BC
-     725.  00:84F8  4D                  	LD		C,L
-     726.  00:84F9  16 07               	LD		D,7								;nº de filas
-     727.  00:84FB  1E 03               	LD		E,3								;nº de columnas
-     728.  00:84FD  CD 59 84            	CALL	pinta_array
-     729.  00:8500                      fin_pinta_puerta_izq:
-     730.  00:8500  C9                  	RET
-     731.  00:8501                      
-     732.  00:8501                      
-     113   00:8501                      
-     114   00:8501                      ; sólo para hacer pruebas y pinter la parte de las vidas y demás
-     115   00:8501                      inicializa_variables_pruebas:
-     116   00:8501  3E 03               	LD		 A,3
-     117   00:8503  32 4C 8D            	LD		(prota.vidas),A
-     118   00:8506                      
-     119   00:8506  3E 01               	LD		 A,SI	
-     120   00:8508  32 57 8D            	LD		(actualiza_vidas_sn),A	;actualizo la variable para que pinte vidas 1 sí / 0 no
-     121   00:850B                      
-     122   00:850B  3E 02               	LD		 A,2
-     123   00:850D  32 4E 8D            	LD		(prota.reliquias),A
-     124   00:8510                      	
-     125   00:8510  3E 01               	LD		 A,SI	
-     126   00:8512  32 60 8D            	LD		(actualiza_reliquias_sn),A	;actualizo la variable para que pinte vidas 1 sí / 0 no
-     127   00:8515                      
-     128   00:8515  3E 08               	LD		 A,8
-     129   00:8517  32 4D 8D            	LD		(prota.energia),A
-     130   00:851A                      
-     131   00:851A  3E 05               	LD		 A,5
-     132   00:851C  32 49 8D            	LD		(prota.nivel),A		; nivel empieza en 0 para usar las posiciones ascii
-     133   00:851F                      	
-     134   00:851F                      	;~ LD 		 A,3
-     135   00:851F                      	;~ LD		(prota.pos_mapx),A
-     136   00:851F                      	;~ LD 		 A,3
-     137   00:851F                      	;~ LD		(prota.pos_mapy),A
-     138   00:851F                      	;~ XOR		 A				;0 => celda por la que se ha pasado / 1 => celda en la que se está (tile de un muñeco)
-     139   00:851F                      
-     140   00:851F  3E 01               	LD			 A,1
-     141   00:8521  32 70 8D            	LD			(actualiza_puertas_sn),A ;(1 actualiza y 0 no actualiza puertas)
-     142   00:8524                      fin_inicializa_variables_pruebas:
-     143   00:8524  C9                  	RET
-     144   00:8525                      
-     145   00:8525                      
-     146   00:8525                      
-     147   00:8525                      
-     148   00:8525                      
-     149   00:8525                      	
-     150   00:8525                      ;;=====================================================
-     151   00:8525                      ;;DEFINICIÓN DE ESTRUCTURAS
-     152   00:8525                      ;;=====================================================		
-     153   00:8525                      	include "estructuras.asm"
+     625.  00:8490                      ;;=====================================================
+     626.  00:8490                      ;;PINTA_PUERTAS
+     627.  00:8490                      ;;=====================================================	
+     628.  00:8490                      ; función: 	examina A y mira si tiene que pintar puertas de los lados, arriba o abrajo o las escaleras (o no)
+     629.  00:8490                      ; entrada: 	A (se miran los 5 bits más bajos) 1 escalera 1 puerta arriba 1 pu der 1 pu aba 1 pu izq (si es 0 pinta pared)
+     630.  00:8490                      ; salida: 	-
+     631.  00:8490                      ; toca:		- A
+     632.  00:8490                      pinta_puertas:
+     633.  00:8490  CB 57               	BIT		2,A
+     634.  00:8492  C4 D5 84            	CALL	nz,pinta_puerta_der
+     635.  00:8495                      
+     636.  00:8495  CB 5F               	BIT		3,A
+     637.  00:8497  C4 BF 84            	CALL	nz,pinta_puerta_arr
+     638.  00:849A                      
+     639.  00:849A  CB 4F               	BIT		1,A
+     640.  00:849C  C4 A9 84            	CALL	nz,pinta_puerta_aba
+     641.  00:849F                      	
+     642.  00:849F  CB 47               	BIT		0,A
+     643.  00:84A1  C4 EB 84            	CALL	nz,pinta_puerta_izq
+     644.  00:84A4                      	
+     645.  00:84A4  AF                  	XOR		 A
+     646.  00:84A5  32 70 8D            	LD		(actualiza_puertas_sn),A ;(1 actualiza y 0 no actualiza puertas) se pone a 0 para que no actualice todo el tiempo (ya se ha actualizado)
+     647.  00:84A8                      fin_pinta_puertas:
+     648.  00:84A8  C9                  	RET
+     649.  00:84A9                      
+     650.  00:84A9                      ;;=====================================================
+     651.  00:84A9                      ;;PINTA_PUERTA_ABA
+     652.  00:84A9                      ;;=====================================================	
+     653.  00:84A9                      ; función: 	pinta la puerta de abajo
+     654.  00:84A9                      ; entrada: 	array_puerta_abajo, wordaux2, wordaux1
+     655.  00:84A9                      ; salida: 	-
+     656.  00:84A9                      ; toca:		HL,BC, DE
+     657.  00:84A9                      pinta_puerta_aba:
+     658.  00:84A9  21 9A 8D            	LD		HL,array_puerta_abajo			;guardo puntero al array a pintar (como psar por referencia)
+     659.  00:84AC  22 8E 84            	LD		(wordaux2),HL					;en la variable wordaux2
+     660.  00:84AF  21 EE 19            	LD		HL,SC2MAP + POSPUERABAJ			;calcula posición en tilemap
+     661.  00:84B2  22 8C 84            	LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
+     662.  00:84B5  44                  	LD		B,H								;coloca posición tilemap BC
+     663.  00:84B6  4D                  	LD		C,L
+     664.  00:84B7  16 01               	LD		D,1								;nº de filas
+     665.  00:84B9  1E 04               	LD		E,4								;nº de columnas
+     666.  00:84BB  CD 59 84            	CALL	pinta_array
+     667.  00:84BE                      fin_pinta_puerta_aba:
+     668.  00:84BE  C9                  	RET
+     669.  00:84BF                      
+     670.  00:84BF                      ;;=====================================================
+     671.  00:84BF                      ;;PINTA_PUERTA_ARR
+     672.  00:84BF                      ;;=====================================================	
+     673.  00:84BF                      ; función: 	pinta la puerta de arriba
+     674.  00:84BF                      ; entrada: 	array_puerta_arriba, wordaux2, wordaux1
+     675.  00:84BF                      ; salida: 	-
+     676.  00:84BF                      ; toca:		HL,BC, DE
+     677.  00:84BF                      pinta_puerta_arr:
+     678.  00:84BF  21 71 8D            	LD		HL,array_puerta_arriba			;guardo puntero al array a pintar (como psar por referencia)
+     679.  00:84C2  22 8E 84            	LD		(wordaux2),HL					;en la variable wordaux2
+     680.  00:84C5  21 8E 18            	LD		HL,SC2MAP + POSPUERARRI			;calcula posición en tilemap
+     681.  00:84C8  22 8C 84            	LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
+     682.  00:84CB  44                  	LD		B,H								;coloca posición tilemap BC
+     683.  00:84CC  4D                  	LD		C,L
+     684.  00:84CD  16 05               	LD		D,5								;nº de filas
+     685.  00:84CF  1E 04               	LD		E,4								;nº de columnas
+     686.  00:84D1  CD 59 84            	CALL	pinta_array
+     687.  00:84D4                      fin_pinta_puerta_arr:
+     688.  00:84D4  C9                  	RET
+     689.  00:84D5                      
+     690.  00:84D5                      ;;=====================================================
+     691.  00:84D5                      ;;PINTA_PUERTA_DER
+     692.  00:84D5                      ;;=====================================================	
+     693.  00:84D5                      ; función: 	pinta la puerta de la derecha
+     694.  00:84D5                      ; entrada: 	array_puerta_derecha, wordaux2, wordaux1
+     695.  00:84D5                      ; salida: 	-
+     696.  00:84D5                      ; toca:		HL,BC, DE
+     697.  00:84D5                      pinta_puerta_der:
+     698.  00:84D5  21 85 8D            	LD		HL,array_puerta_derecha			;guardo puntero al array a pintar (como psar por referencia)
+     699.  00:84D8  22 8E 84            	LD		(wordaux2),HL					;en la variable wordaux2
+     700.  00:84DB  21 FC 18            	LD		HL,SC2MAP + POSPUERDERE			;calcula posición en tilemap
+     701.  00:84DE  22 8C 84            	LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
+     702.  00:84E1  44                  	LD		B,H								;coloca posición tilemap BC
+     703.  00:84E2  4D                  	LD		C,L
+     704.  00:84E3  16 07               	LD		D,7								;nº de filas
+     705.  00:84E5  1E 03               	LD		E,3								;nº de columnas
+     706.  00:84E7  CD 59 84            	CALL	pinta_array
+     707.  00:84EA                      fin_pinta_puerta_der:
+     708.  00:84EA  C9                  	RET
+     709.  00:84EB                      	
+     710.  00:84EB                      ;;=====================================================
+     711.  00:84EB                      ;;PINTA_PUERTA_IZQ
+     712.  00:84EB                      ;;=====================================================	
+     713.  00:84EB                      ; función: 	pinta la puerta de la izquierda
+     714.  00:84EB                      ; entrada: 	array_puerta_izquierda, wordaux2, wordaux1
+     715.  00:84EB                      ; salida: 	-
+     716.  00:84EB                      ; toca:		HL,BC, DE
+     717.  00:84EB                      pinta_puerta_izq:
+     718.  00:84EB  21 9E 8D            	LD		HL,array_puerta_izquierda		;guardo puntero al array a pintar (como psar por referencia)
+     719.  00:84EE  22 8E 84            	LD		(wordaux2),HL					;en la variable wordaux2
+     720.  00:84F1  21 E1 18            	LD		HL,SC2MAP + POSPUERIZQU			;calcula posición en tilemap
+     721.  00:84F4  22 8C 84            	LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
+     722.  00:84F7  44                  	LD		B,H								;coloca posición tilemap BC
+     723.  00:84F8  4D                  	LD		C,L
+     724.  00:84F9  16 07               	LD		D,7								;nº de filas
+     725.  00:84FB  1E 03               	LD		E,3								;nº de columnas
+     726.  00:84FD  CD 59 84            	CALL	pinta_array
+     727.  00:8500                      fin_pinta_puerta_izq:
+     728.  00:8500  C9                  	RET
+     729.  00:8501                      
+     730.  00:8501                      
+      90   00:8501                      
+      91   00:8501                      ; sólo para hacer pruebas y pinter la parte de las vidas y demás
+      92   00:8501                      inicializa_variables_pruebas:
+      93   00:8501  3E 03               	LD		 A,3
+      94   00:8503  32 4C 8D            	LD		(prota.vidas),A
+      95   00:8506                      
+      96   00:8506  3E 01               	LD		 A,SI	
+      97   00:8508  32 57 8D            	LD		(actualiza_vidas_sn),A	;actualizo la variable para que pinte vidas 1 sí / 0 no
+      98   00:850B                      
+      99   00:850B  3E 02               	LD		 A,2
+     100   00:850D  32 4E 8D            	LD		(prota.reliquias),A
+     101   00:8510                      	
+     102   00:8510  3E 01               	LD		 A,SI	
+     103   00:8512  32 60 8D            	LD		(actualiza_reliquias_sn),A	;actualizo la variable para que pinte vidas 1 sí / 0 no
+     104   00:8515                      
+     105   00:8515  3E 08               	LD		 A,8
+     106   00:8517  32 4D 8D            	LD		(prota.energia),A
+     107   00:851A                      
+     108   00:851A  3E 00               	LD		 A,0
+     109   00:851C  32 49 8D            	LD		(prota.nivel),A		; nivel empieza en 0 para usar las posiciones ascii
+     110   00:851F                      	
+     111   00:851F                      	;~ LD 		 A,3
+     112   00:851F                      	;~ LD		(prota.pos_mapx),A
+     113   00:851F                      	;~ LD 		 A,3
+     114   00:851F                      	;~ LD		(prota.pos_mapy),A
+     115   00:851F                      	;~ XOR		 A				;0 => celda por la que se ha pasado / 1 => celda en la que se está (tile de un muñeco)
+     116   00:851F                      
+     117   00:851F  3E 01               	LD			 A,1
+     118   00:8521  32 70 8D            	LD			(actualiza_puertas_sn),A ;(1 actualiza y 0 no actualiza puertas)
+     119   00:8524                      fin_inicializa_variables_pruebas:
+     120   00:8524  C9                  	RET
+     121   00:8525                      
+     122   00:8525                      
+     123   00:8525                      
+     124   00:8525                      
+     125   00:8525                      
+     126   00:8525                      	
+     127   00:8525                      ;;=====================================================
+     128   00:8525                      ;;DEFINICIÓN DE ESTRUCTURAS
+     129   00:8525                      ;;=====================================================		
+     130   00:8525                      	include "estructuras.asm"
        1.  00:8525                      ;;=====================================================
        2.  00:8525                      ;;DEFINICIÓN DE ESTRUCTURAS
        3.  00:8525                      ;;=====================================================
@@ -1024,11 +999,11 @@ Errors: 0
       27.  00:8525                    < retardo		DB		0			;entre 0 y 9
       28.  00:8525                    < energia		DB		0			;energía del enemigo... si llega a 0 => existe <- 0
       29.  00:8525                    < 	ENDSTRUCT;ESTRUCTURA_PUNTOMIRAA
-     154   00:8525                      	
-     155   00:8525                      ;;=====================================================
-     156   00:8525                      ;;DEFINICIÓN DE VARIABLES
-     157   00:8525                      ;;=====================================================		
-     158   00:8525                      	include "sprites.asm"
+     131   00:8525                      	
+     132   00:8525                      ;;=====================================================
+     133   00:8525                      ;;DEFINICIÓN DE VARIABLES
+     134   00:8525                      ;;=====================================================		
+     135   00:8525                      	include "sprites.asm"
        1.  00:8525                      ;;=====================================================
        2.  00:8525                      ;;DEFINICIÓN DE SPRITES
        3.  00:8525                      ;;=====================================================	
@@ -1197,8 +1172,8 @@ Errors: 0
      102.  00:8725                      	
      103.  00:8725                      	
      104.  00:8725                      	
-     159   00:8725                      	
-     160   00:8725                      	include "habitaciones.asm"
+     136   00:8725                      	
+     137   00:8725                      	include "habitaciones.asm"
        1.  00:8725                      ;;=====================================================
        2.  00:8725                      ;;DEFINICIÓN DE HABITACIONES x NIVEL
        3.  00:8725                      ;;=====================================================	
@@ -1449,8 +1424,8 @@ Errors: 0
      151.  00:8D25  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
      152.  00:8D35                      	dw  #00,#00,#00,#00,#00,#00,#00,#00 ;(última fila)
      152.  00:8D35  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-     161   00:8D45                      	
-     162   00:8D45                      	include "variables.asm"
+     138   00:8D45                      	
+     139   00:8D45                      	include "variables.asm"
        1.  00:8D45                      ;;=====================================================
        2.  00:8D45                      ;;DEFINICIÓN DE VARIABLES
        3.  00:8D45                      ;;=====================================================	
@@ -1545,31 +1520,44 @@ Errors: 0
       87.  00:8E27  00 00 00 00         sprite_pos30:				DB 0,0,0,0
       88.  00:8E2B  00 00 00 00         sprite_pos31:				DB 0,0,0,0
       89.  00:8E2F  00 00 00 00         sprite_pos32:				DB 0,0,0,0
-     163   00:8E33                      
-     164   00:8E33                      
-     165   00:8E33                      	
-     166   00:8E33                      ;;=====================================================
-     167   00:8E33                      ;;DEFINICIÓN DE PANTALLAS
-     168   00:8E33                      ;;=====================================================		
-     169   00:8E33                      	include "pantallas.asm"
+     140   00:8E33                      
+     141   00:8E33                      
+     142   00:8E33                      	
+     143   00:8E33                      ;;=====================================================
+     144   00:8E33                      ;;DEFINICIÓN DE PANTALLAS
+     145   00:8E33                      ;;=====================================================		
+     146   00:8E33                      	include "pantallas.asm"
        1.  00:8E33                      ;;=====================================================
        2.  00:8E33                      ;;DEFINICIÓN DE PANTALLAS
        3.  00:8E33                      ;;=====================================================		
        4.  00:8E33                      
-       5.  00:8E33                      ; bancos 1 y de pantalla 1 (en realidad es una pantalla de pruebas)
-       6.  00:8E33  (0800)              tiles_patrones_pantalla11:	incbin "pan1_23.bank0.bin.chr"
-       7.  00:9633  (0800)              tiles_color_pantalla11:		incbin "pan1_23.bank0.bin.clr"
-       8.  00:9E33  (0100)              tiles_mapa_pantalla11:		incbin "pan1_23.bank0.bin.map"
-       9.  00:9F33  (0800)              tiles_patrones_pantalla12:	incbin "pan1_23.bank1.bin.chr"
-      10.  00:A733  (0800)              tiles_color_pantalla12:		incbin "pan1_23.bank1.bin.clr"
-      11.  00:AF33  (0100)              tiles_mapa_pantalla12:		incbin "pan1_23.bank1.bin.map"
-      12.  00:B033                      
-      13.  00:B033                      ; 3º banco que es la parte de puntos, vidas, mapas, etc... es común
-      14.  00:B033  (0800)              tiles_patrones_pantalla3:	incbin "pan_33.bin.chr"
-      15.  00:B833  (0800)              tiles_color_pantalla3:		incbin "pan_33.bin.clr"
-      16.  00:C033  (0100)              tiles_mapa_pantalla3:		incbin "pan_33.bin.map"
-     170   00:C133                      	
-     171   00:C133                      END:
+       5.  00:8E33                      ; bancos 1 y 2 y de pantalla 1 (en realidad es una pantalla de pruebas)
+       6.  00:8E33                      tiles_patrones_pantalla11:	
+       7.  00:8E33  (0800)              tiles_patrones_pantalla12:	incbin "pan1_23.bank1.bin.chr"
+       8.  00:9633                      tiles_color_pantalla11:		
+       9.  00:9633  (0800)              tiles_color_pantalla12:		incbin "pan1_23.bank1.bin.clr"
+      10.  00:9E33  (0100)              tiles_mapa_pantalla11:		incbin "pan1_23.bank0.bin.map"
+      11.  00:9F33  (0100)              tiles_mapa_pantalla12:		incbin "pan1_23.bank1.bin.map"
+      12.  00:A033                      
+      13.  00:A033                      ;~ ; bancos 1 y 2 y de pantalla 2 (en realidad es una pantalla de pruebas)
+      14.  00:A033                      ;~ tiles_patrones_pantalla21:	incbin "pan1_23.bank0.bin.chr"
+      15.  00:A033                      ;~ tiles_color_pantalla21:		incbin "pan1_23.bank0.bin.clr"
+      16.  00:A033                      ;~ tiles_mapa_pantalla21:		incbin "pan1_23.bank0.bin.map"
+      17.  00:A033                      ;~ tiles_patrones_pantalla22:	incbin "pan1_23.bank1.bin.chr"
+      18.  00:A033                      ;~ tiles_color_pantalla22:		incbin "pan1_23.bank1.bin.clr"
+      19.  00:A033                      ;~ tiles_mapa_pantalla22:		incbin "pan1_23.bank1.bin.map"
+      20.  00:A033                      
+      21.  00:A033                      
+      22.  00:A033                      
+      23.  00:A033                      
+      24.  00:A033                      ; 3º banco que es la parte de puntos, vidas, mapas, etc... es común
+      25.  00:A033  (0800)              tiles_patrones_pantalla3:	incbin "pan_33.bin.chr"
+      26.  00:A833  (0800)              tiles_color_pantalla3:		incbin "pan_33.bin.clr"
+      27.  00:B033  (0100)              tiles_mapa_pantalla3:		incbin "pan_33.bin.map"
+      28.  00:B133                      
+      29.  00:B133                      ;NOTA: FALTARÍAN PANTALLAS ESPECIALES (POR DEFINIR)
+     147   00:B133                      	
+     148   00:B133                      END:
 
     LABELS
 -------------------------------------------------
@@ -1647,7 +1635,8 @@ Errors: 0
 00:00008242   fin_mira_pinta_vidas
 00:00008242 X mira_pinta_reliquias
 00:0000824B   fin_mira_pinta_reliquias
-00:00008253   iniciliza_niveles
+00:00008252 X fin_programa_principal
+00:00008253   inicializa_niveles
 00:00008264 X fin_iniciliza_niveles
 00:00008265   sub_preparapantalla
 00:00008265 X elimina_clic
@@ -1705,7 +1694,7 @@ Errors: 0
 00:000083CF   pinta_energia
 00:000083DD X fin_pinta_energia
 00:000083DE   borra_mapa
-00:00008433 X fin_borra_mapa
+00:00008434 X fin_borra_mapa
 00:00008435   posiciona_en_mapa
 00:00008440   prod_coloca_fila
 00:00008453   pinta_pos_mapa_vacio
@@ -1858,15 +1847,15 @@ Errors: 0
 00:00008E2B X sprite_pos31
 00:00008E2F X sprite_pos32
 00:00008E33   tiles_patrones_pantalla11
+00:00008E33   tiles_patrones_pantalla12
 00:00009633   tiles_color_pantalla11
+00:00009633   tiles_color_pantalla12
 00:00009E33   tiles_mapa_pantalla11
-00:00009F33   tiles_patrones_pantalla12
-00:0000A733   tiles_color_pantalla12
-00:0000AF33   tiles_mapa_pantalla12
-00:0000B033   tiles_patrones_pantalla3
-00:0000B833   tiles_color_pantalla3
-00:0000C033   tiles_mapa_pantalla3
-00:0000C133   END
+00:00009F33   tiles_mapa_pantalla12
+00:0000A033   tiles_patrones_pantalla3
+00:0000A833   tiles_color_pantalla3
+00:0000B033   tiles_mapa_pantalla3
+00:0000B133   END
 
 
  Output: t4.out
@@ -1881,7 +1870,7 @@ Errors: 0
 -------------------------------------------------
 
  Page: 00
-  Org: 00008200  Size: *  Used: 00003F3A
+  Org: 00008200  Size: *  Used: 00002F3A
 
    Address   Length Align   Label
-   00008200   16186         START
+   00008200   12090         START

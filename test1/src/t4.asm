@@ -19,10 +19,13 @@ START:
 	CALL	inicializa_variables_pruebas
 	
 	;inicializa los niveles por partida
-	CALL	iniciliza_niveles
+	CALL	inicializa_niveles			;no es necesario parametrizarlo según el nivel del usuario ya que se cargan todos
 	
 	;pinta la pantalla (la primera o algunas especiales se pintan completamente)
-	CALL	pinta_pantalla_completa
+	CALL	pinta_pantalla_completa 
+	
+;	;carga sprites en memoria (SE HA RETRASADO HASTA PARAMETRIZAR LA CARGA DE PANTALLAS)
+;	CALL 	carga_patrones_sprites
 	
 	;funciones que modificarian el marcador si se produce un evento cuando toque y cuando se pinta la pantalla ya se mira
 	;una variable para ver si el array hay que actualizarlo en pantalla o no
@@ -75,36 +78,10 @@ fin_mira_pinta_reliquias:
 	NOP
 		
 	JP		loop_principal
-	
+fin_programa_principal:
 	RET
 	
-	
-	
-	
-;;=====================================================
-;;INICIALIZA_NIVELES
-;;=====================================================	
-; función: 	copia la plantilla de niveles (habitaciones_plantilla) en los niveles de trabajo para el juego (habitaciones_juego)
-; entrada: 	habitaciones_plantilla
-; salida: 	habitaciones_juego
-; toca: 	nada se usa push y pop
-iniciliza_niveles:
-	PUSH	AF
-	PUSH	BC
-	PUSH	HL
 
-	LD 		HL, habitaciones_plantilla
-	LD 		DE, habitaciones_juego
-	LD 		BC, 392			;8 bytes por subnivel x 7 subniveles x 7 niveles
-	LDIR
-	
-	POP		HL
-	POP		BC
-	POP		AF
-fin_iniciliza_niveles:
-	RET
-	
-	
 
 ;;=====================================================
 ;;DEFINICIÓN DE SUBRUTINAS
@@ -128,7 +105,7 @@ inicializa_variables_pruebas:
 	LD		 A,8
 	LD		(prota.energia),A
 
-	LD		 A,5
+	LD		 A,0
 	LD		(prota.nivel),A		; nivel empieza en 0 para usar las posiciones ascii
 	
 	;~ LD 		 A,3

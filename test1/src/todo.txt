@@ -1,6 +1,16 @@
 
 
-actualiza con ldir las habitaciones con la plantilla de habitaciones
+
+
+poner todo esto parametrizado según el nivel del en el que se encuentre el prota
+
+	
+	;pinta la pantalla (la primera o algunas especiales se pintan completamente)
+	CALL	pinta_pantalla_completa 
+	
+	CALL 	carga_patrones_sprites
+
+
 
 
 EX	1 ciclo

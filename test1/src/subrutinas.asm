@@ -99,7 +99,7 @@ fin_pinta_pantalla_completa:
 ; toca: si no son todos los regristros, casi todos
 pinta_parte_superior_pantalla:
 
-************** preguntar cómo parametrizar esto
+;************** preguntar cómo parametrizar esto **********************************************
 
 	;cangando banco 1
 	;cargamos los patrones
@@ -487,7 +487,7 @@ borra_mapa:
 	LD		BC,NHABNIVEL
 	CALL	LDIRVM
 	
-	EX
+	EXX
 fin_borra_mapa:
 	RET
 
