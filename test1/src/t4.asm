@@ -88,6 +88,12 @@ fin_programa_principal:
 ;;=====================================================
 	include "subrutinas.asm"
 
+;Este include lleva la rutina de descompresión de ROM/RAM a VRAM de pletter
+;Está adaptada de la original a sjasm
+;	HL = RAM/ROM source	; DE = VRAM destination
+depack_VRAM:
+	include "PL_VRAM_Depack_SJASM.asm"
+
 ; sólo para hacer pruebas y pinter la parte de las vidas y demás
 inicializa_variables_pruebas:
 	LD		 A,3
