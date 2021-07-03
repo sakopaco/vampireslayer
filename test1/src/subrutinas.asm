@@ -9,20 +9,30 @@
 ; función: 	copia la plantilla de niveles (habitaciones_plantilla) en los niveles de trabajo para el juego (habitaciones_juego)
 ; entrada: 	habitaciones_plantilla
 ; salida: 	habitaciones_juego
-; toca: 	nada se usa push y pop
+; toca: 	A
 inicializa_niveles:
-	PUSH	AF
-	PUSH	BC
-	PUSH	HL
+	EXX
 
-	LD 		HL, habitaciones_plantilla
-	LD 		DE, habitaciones_juego
-	LD 		BC, 392			;8 bytes por subnivel x 7 subniveles x 7 niveles
-	LDIR
+	;~ LD 		HL, habitaciones_plantilla
+	;~ LD 		DE, habitaciones_juego
+	;~ LD 		BC, 392			;8 bytes por subnivel x 7 subniveles x 7 niveles
+	;~ LDIR
+
+	XOR		 A
+	LD		 B, 7
+	LD		DE,14
+	LD		HL, habitaciones_juego
 	
-	POP		HL
-	POP		BC
-	POP		AF
+	LD		DE, 15
+	ADD		HL, DE
+.bucle_borra_hab:
+	LD		(HL),A
+	INC		HL
+	LD		(HL),A
+	ADD		HL, DE
+	DJNZ	.bucle_borra_hab
+	
+	EXX
 fin_iniciliza_niveles:
 	RET
 
