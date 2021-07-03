@@ -94,6 +94,8 @@ fin_programa_principal:
 depack_VRAM:
 	include "PL_VRAM_Depack_SJASM.asm"
 
+
+
 ; sólo para hacer pruebas y pinter la parte de las vidas y demás
 inicializa_variables_pruebas:
 	LD		 A,3
