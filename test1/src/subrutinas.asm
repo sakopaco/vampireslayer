@@ -12,24 +12,17 @@
 ; toca: 	A
 inicializa_niveles:
 	EXX
-
-	;~ LD 		HL, habitaciones_plantilla
-	;~ LD 		DE, habitaciones_juego
-	;~ LD 		BC, 392			;8 bytes por subnivel x 7 subniveles x 7 niveles
-	;~ LDIR
-
-	XOR		 A
-	LD		 B, 7
-	LD		DE,14
-	LD		HL, habitaciones_juego
 	
-	LD		DE, 15
-	ADD		HL, DE
+	XOR		 A
+	LD		 B, 49				;7 filas por 7 niveles menos el primero que lo hago diera del buble porque se suma 14 y no 16
+	LD		HL, habitaciones_juego;tambíen puntero al primer nivel
+	LD		DE,14
+	ADD		HL,DE
+	LD		(HL),A
+	LD		DE,16				;desde las col 15 de una fila a la siguiente
 .bucle_borra_hab:
+	ADD		HL,DE
 	LD		(HL),A
-	INC		HL
-	LD		(HL),A
-	ADD		HL, DE
 	DJNZ	.bucle_borra_hab
 	
 	EXX
