@@ -24,11 +24,13 @@
 ;importante: el byte de la columna 15 indicará con 1 y 0 habitaciones por las que se haya pasado
 ;cuando se inicie la partida todos se pondrán a 0
 
+habitacion_actual:
+	db  #00,#00		;habitación donde se encuentre el prota. Se mete en una varible par traer todos los datos de golpe y no buscrlos varias veces
 
 habitaciones_juego:
 habitaciones_nivel1:
 ;---------------------------------* habitación inicial
-	db  #00,#00,#00,#00,#00,#00,#03,#00,#00,#00,#00,#00,#00,#00,#FF,#00 ;primera fila
+	db  #00,#00,#00,#00,#00,#00,#01,#00,#00,#00,#00,#00,#00,#00,#FF,#00 ;primera fila
 	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#FF,#00
 	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#FF,#00
 	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#FF,#00
