@@ -54,7 +54,7 @@ array_puerta_izquierda5:	DB	1,1,1
 array_puerta_izquierda6:	DB	1,1,2
 array_puerta_izquierda7:	DB	1,2,4
 
-array_sprites:			;array de 4 bytes x 32 sprites posibles en pantalla que sobreescribirá la tabla de sprites actualizando
+array_sprites:			;array de 4 bytes x 32 sprites posibles en pantalla que sobreescribirá la tabla de sprites actualizando VRAM
 sprite_pos1:				DB 0,0,0,0
 sprite_pos2:				DB 0,0,0,0
 sprite_pos3:				DB 0,0,0,0

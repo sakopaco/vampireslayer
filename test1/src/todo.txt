@@ -8,6 +8,10 @@ poner todo esto parametrizado según el nivel del en el que se encuentre el prot
 	;pinta la pantalla (la primera o algunas especiales se pintan completamente)
 	CALL	pinta_pantalla_completa 
 	
+	
+	
+	************** importante revisar de nuevo el pinta mapa pero ya parametrizado
+	
 	CALL 	carga_patrones_sprites
 
 

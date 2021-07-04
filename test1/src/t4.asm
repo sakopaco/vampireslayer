@@ -53,9 +53,6 @@ mira_pinta_puertas:
 	;primero preparo la pantalla como si no hubiera puertas
 	CALL 	pinta_parte_superior_pantalla
 	
-	;aquí se buscaría de la posición del usuario en la matriz de niveles y se saca el valor de A
-	;suponermos que pinta (debajo)
-	LD		 A,00001111b
 	CALL	pinta_puertas
 fin_mira_pinta_puertas:
 	
@@ -113,14 +110,19 @@ inicializa_variables_pruebas:
 	LD		 A,8
 	LD		(prota.energia),A
 
-	LD		 A,0
-	LD		(prota.nivel),A		; nivel empieza en 0 para usar las posiciones ascii
+	XOR		 A
+	LD		(prota.nivel),A		;nivel empieza en 0 para usar las posiciones ascii
 	
-	;~ LD 		 A,3
-	;~ LD		(prota.pos_mapx),A
-	;~ LD 		 A,3
-	;~ LD		(prota.pos_mapy),A
-	;~ XOR		 A				;0 => celda por la que se ha pasado / 1 => celda en la que se está (tile de un muñeco)
+	;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
+	;será igual la posición inicial en todos los niveles
+	XOR		 A
+	LD		(prota.pos_mapy),A	;pos y dentro del nivel (se empieza en 0)
+	LD		 A,3				;en realidad es la posición 4 pero se empieza a numerar en 0
+	LD		(prota.pos_mapx),A	;pos y dentro del nivel (se empieza en 0)
+
+	
+	;************************************************
+	;importante : revisar pintado de mapa
 
 	LD			 A,1
 	LD			(actualiza_puertas_sn),A ;(1 actualiza y 0 no actualiza puertas)

@@ -620,8 +620,17 @@ wordaux2:		DW	0	;almacena puntero a array de tiles (posiciones en realidad) a pi
 ; función: 	examina A y mira si tiene que pintar puertas de los lados, arriba o abrajo o las escaleras (o no)
 ; entrada: 	A (se miran los 5 bits más bajos) 1 escalera 1 puerta arriba 1 pu der 1 pu aba 1 pu izq (si es 0 pinta pared)
 ; salida: 	-
-; toca:		- A
+; toca:		- AF, HL,BC, DE
 pinta_puertas:
+
+	;aquí se buscaría de la posición del usuario en la matriz de niveles y se saca el valor de A
+	;suponermos que pinta (debajo)
+	CALL	localiza_info_habitacion	;devuelve A
+
+**** esto hay que modificarlo para que saque los dartos de la nueva variable habitacion_actual
+
+
+
 	BIT		2,A
 	CALL	nz,pinta_puerta_der
 
@@ -638,6 +647,66 @@ pinta_puertas:
 	LD		(actualiza_puertas_sn),A ;(1 actualiza y 0 no actualiza puertas) se pone a 0 para que no actualice todo el tiempo (ya se ha actualizado)
 fin_pinta_puertas:
 	RET
+
+
+;;=====================================================
+;;LOCALIZA_INFO_HABITACION
+;;=====================================================	
+; función: 	busca las puertas que hay que pintar egún la posición del usuario y las pone en A
+; entrada: 	prota.pos_mapy, prota.pos_mapx, prota.nivel, habitaciones_juego
+; salida: 	habitacion_actual
+; toca:		A
+;ejemplo: nivel 4, posx 5 y posy 3
+;  (4 x 7) x 16 (se necesitan dos bytes y el prod de 16 es slr 4 veces)
+; +(3 x 16) 	de la fila (se necesita 1 y byte el prod de 16 es slr 4 veces)
+; +5        	de la columna 
+localiza_info_habitacion:
+	EXX
+	
+	LD		 A,(prota.nivel)	;cada nivel tiene 7 subniveles
+	LD		 B,A
+	LD		 A,7
+.primer_prod
+	ADD		 A
+	DJNZ 	.primer_prod	;equivalente al 4x7
+	
+	LD		 L,A			;preparo el registro de 2 bytes HL
+	XOR		 A
+	LD		 H,A
+	
+	LD		 B,16
+	LD		 D,H
+	LD		 L,E
+.seg_prod
+	ADD		HL,DE
+	DJNZ 	.seg_prod		;equivalente al 4x7x16
+	
+	LD		 A,(prota.posy)
+	SRL		 A
+	SRL		 A
+	SRL		 A
+	SRL		 A				;equivalente a 3 x 16
+	
+	LD		 E,A
+	XOR		 A
+	LD		 D,A
+	ADD		HL,DE			;equivale a 4x7x16 (HL) + 3x16 (DE)
+	
+	LD		 A,(prota.posx)
+	LD		 E,A
+	XOR		 A
+	LD		 D,A
+	ADD		HL,DE			;equivale a 4x7x16 (HL) + 3x16 (DE) + 5 (DE)
+	
+	;ahora colocamos resultado en variable habitacion_actual
+	LD		IX,habitacion_actual
+	LD		(IX),L
+	LD		(IX + 1),H
+	
+	EXX
+fin_localiza_info_habitacion:
+	RET
+	
 
 ;;=====================================================
 ;;PINTA_PUERTA_ABA
