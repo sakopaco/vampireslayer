@@ -625,9 +625,9 @@ pinta_puertas:
 
 	;aquí se buscaría de la posición del usuario en la matriz de niveles y se saca el valor de A
 	;suponermos que pinta (debajo)
-	CALL	localiza_info_habitacion	;devuelve A
+	CALL	localiza_info_habitacion	;devuelve habitacion_actual
 
-**** esto hay que modificarlo para que saque los dartos de la nueva variable habitacion_actual
+;***************************************************** esto hay que modificarlo para que saque los datos de la nueva variable habitacion_actual
 
 
 
@@ -663,36 +663,50 @@ fin_pinta_puertas:
 localiza_info_habitacion:
 	EXX
 	
-	LD		 A,(prota.nivel)	;cada nivel tiene 7 subniveles
-	LD		 B,A
-	LD		 A,7
-.primer_prod
-	ADD		 A
-	DJNZ 	.primer_prod	;equivalente al 4x7
-	
-	LD		 L,A			;preparo el registro de 2 bytes HL
+	;inicializo variables a usar
 	XOR		 A
+	LD		 L,A
 	LD		 H,A
-	
-	LD		 B,16
-	LD		 D,H
-	LD		 L,E
-.seg_prod
-	ADD		HL,DE
-	DJNZ 	.seg_prod		;equivalente al 4x7x16
-	
-	LD		 A,(prota.posy)
-	SRL		 A
-	SRL		 A
-	SRL		 A
-	SRL		 A				;equivalente a 3 x 16
-	
-	LD		 E,A
-	XOR		 A
 	LD		 D,A
-	ADD		HL,DE			;equivale a 4x7x16 (HL) + 3x16 (DE)
+	LD		 E,A
 	
-	LD		 A,(prota.posx)
+;~ ;primer sumando	
+	;~ LD		 A,(prota.nivel)	;cada nivel tiene 7 subniveles
+	;~ OR		 A
+	;~ JR		 Z,.fin_seg_prod
+	;~ LD		 B,A
+	;~ LD		 A,7
+;~ .primer_prod
+	;~ ADD		 A
+	;~ DJNZ 	.primer_prod	;equivalente al 4x7
+;~ .fin_primer_prod
+
+	;~ LD		 L,A			;preparo el registro de 2 bytes HL
+	;~ XOR		 A
+	;~ LD		 H,A
+
+	;~ LD		 B,16
+	;~ LD		 D,H
+	;~ LD		 L,E
+;~ .seg_prod
+	;~ ADD		HL,DE
+	;~ DJNZ 	.seg_prod		;equivalente al 4x7x16
+;~ .fin_seg_prod
+
+;~ ;segundo sumando
+	;~ LD		 A,(prota.pos_mapy)
+	;~ SRL		 A
+	;~ SRL		 A
+	;~ SRL		 A
+	;~ SRL		 A				;equivalente a 3 x 16
+
+	;~ LD		 E,A
+	;~ XOR		 A
+	;~ LD		 D,A
+	;~ ADD		HL,DE			;equivale a 4x7x16 (HL) + 3x16 (DE)
+
+;tercer sumando	
+	LD		 A,(prota.pos_mapx)
 	LD		 E,A
 	XOR		 A
 	LD		 D,A

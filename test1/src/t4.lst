@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.07.04 - 20:41:19]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.07.05 - 18:55:52]
 
 t4.asm
 Errors: 0
@@ -121,7 +121,7 @@ Errors: 0
        5.  00:8000                      ;;CABECERA FICHERO BIN
        6.  00:8000  FE                  	DB	#FE
        7.  00:8001  00 80               	DW	START
-       8.  00:8003  95 8C               	DW	END
+       8.  00:8003  78 8C               	DW	END
        9.  00:8005  00 80               	DW	START
       10.  00:8007                      
       11.  00:8007                      ;;INICIO CÓDIGO PROGRAMA	
@@ -134,7 +134,7 @@ Errors: 0
       16   00:8000  CD 66 80            	CALL	sub_preparapantalla
       17   00:8003                      	
       18   00:8003                      	;inicializa variables para parametrizar funciones y que lo que se muestre sea variable (nº vidas, mapa, puertas, pantalla, etc...)
-      19   00:8003  CD 00 84            	CALL	inicializa_variables_pruebas
+      19   00:8003  CD E3 83            	CALL	inicializa_variables_pruebas
       20   00:8006                      	
       21   00:8006                      	;inicializa los niveles por partida
       22   00:8006  CD 51 80            	CALL	inicializa_niveles			;no es necesario parametrizarlo según el nivel del usuario ya que se cargan todos
@@ -153,9 +153,9 @@ Errors: 0
       35   00:8015  CD C4 81            	CALL	borra_mapa
       36   00:8018                      	
       37   00:8018  3E 01               	LD 		 A,1
-      38   00:801A  32 43 89            	LD		(prota.pos_mapx),A
+      38   00:801A  32 26 89            	LD		(prota.pos_mapx),A
       39   00:801D  3E 06               	LD 		 A,6
-      40   00:801F  32 44 89            	LD		(prota.pos_mapy),A
+      40   00:801F  32 27 89            	LD		(prota.pos_mapy),A
       41   00:8022  3E 01               	LD		 A,1
       42   00:8024  CD 1B 82            	CALL	posiciona_en_mapa	
       43   00:8027                      	
@@ -164,7 +164,7 @@ Errors: 0
       46   00:8028  CD B5 81            	CALL	pinta_energia			;pinta la energia en pantalla
       47   00:802B                      
       48   00:802B                      mira_pinta_puertas:
-      49   00:802B  3A 69 89            	LD		 A,(actualiza_puertas_sn)
+      49   00:802B  3A 4C 89            	LD		 A,(actualiza_puertas_sn)
       50   00:802E  B7                  	OR		 A
       51   00:802F  28 06               	JR		 Z,fin_mira_pinta_puertas
       52   00:8031                      	
@@ -175,14 +175,14 @@ Errors: 0
       57   00:8037                      fin_mira_pinta_puertas:
       58   00:8037                      	
       59   00:8037                      mira_pinta_vidas:
-      60   00:8037  3A 50 89            	LD		 A,(actualiza_vidas_sn)
+      60   00:8037  3A 33 89            	LD		 A,(actualiza_vidas_sn)
       61   00:803A  B7                  	OR		 A
       62   00:803B  28 03               	JR		 Z,fin_mira_pinta_vidas
       63   00:803D  CD 06 81            	CALL	pinta_vidas
       64   00:8040                      fin_mira_pinta_vidas:	
       65   00:8040                      
       66   00:8040                      mira_pinta_reliquias:
-      67   00:8040  3A 59 89            	LD		 A,(actualiza_reliquias_sn)
+      67   00:8040  3A 3C 89            	LD		 A,(actualiza_reliquias_sn)
       68   00:8043  B7                  	OR		 A
       69   00:8044  28 03               	JR		 Z,fin_mira_pinta_reliquias
       70   00:8046  CD 30 81            	CALL	pinta_reliquias
@@ -219,7 +219,7 @@ Errors: 0
       15.  00:8052                      	
       16.  00:8052  AF                  	XOR		 A
       17.  00:8053  06 31               	LD		 B, 49				;7 filas por 7 niveles menos el primero que lo hago diera del buble porque se suma 14 y no 16
-      18.  00:8055  21 2E 86            	LD		HL, habitaciones_juego;tambíen puntero al primer nivel
+      18.  00:8055  21 11 86            	LD		HL, habitaciones_juego;tambíen puntero al primer nivel
       19.  00:8058  11 0E 00            	LD		DE,14
       20.  00:805B  19                  	ADD		HL,DE
       21.  00:805C  77                  	LD		(HL),A
@@ -310,31 +310,31 @@ Errors: 0
      106.  00:809A                      
      107.  00:809A                      	;cangando banco 1
      108.  00:809A                      	;cargamos los patrones
-     109.  00:809A  21 2C 8A            	LD		HL,tiles_patrones_pantalla11
+     109.  00:809A  21 0F 8A            	LD		HL,tiles_patrones_pantalla11
      110.  00:809D  11 00 00            	LD		DE,CHRTBL
-     111.  00:80A0  CD 20 83            	CALL	depack_VRAM
+     111.  00:80A0  CD 03 83            	CALL	depack_VRAM
      112.  00:80A3                      	;cargamos mapa de pantalla
-     113.  00:80A3  21 67 8A            	LD		HL,tiles_mapa_pantalla11
+     113.  00:80A3  21 4A 8A            	LD		HL,tiles_mapa_pantalla11
      114.  00:80A6  11 00 18            	LD		DE,NAMTBL
-     115.  00:80A9  CD 20 83            	CALL	depack_VRAM
+     115.  00:80A9  CD 03 83            	CALL	depack_VRAM
      116.  00:80AC                      	;cargamos los colores de los patrones
-     117.  00:80AC  21 4F 8A            	LD		HL,tiles_color_pantalla11
+     117.  00:80AC  21 32 8A            	LD		HL,tiles_color_pantalla11
      118.  00:80AF  11 00 20            	LD		DE,CLRTBL
-     119.  00:80B2  CD 20 83            	CALL	depack_VRAM
+     119.  00:80B2  CD 03 83            	CALL	depack_VRAM
      120.  00:80B5                      	
      121.  00:80B5                      	;cangando banco 2
      122.  00:80B5                      	;cargamos los patrones
-     123.  00:80B5  21 2C 8A            	LD		HL,tiles_patrones_pantalla12
+     123.  00:80B5  21 0F 8A            	LD		HL,tiles_patrones_pantalla12
      124.  00:80B8  11 00 08            	LD		DE,CHRTBL + #0800
-     125.  00:80BB  CD 20 83            	CALL	depack_VRAM	
+     125.  00:80BB  CD 03 83            	CALL	depack_VRAM	
      126.  00:80BE                      	;cargamos mapa de pantalla
-     127.  00:80BE  21 81 8A            	LD		HL,tiles_mapa_pantalla12
+     127.  00:80BE  21 64 8A            	LD		HL,tiles_mapa_pantalla12
      128.  00:80C1  11 00 19            	LD		DE,NAMTBL + #0100
-     129.  00:80C4  CD 20 83            	CALL	depack_VRAM
+     129.  00:80C4  CD 03 83            	CALL	depack_VRAM
      130.  00:80C7                      	;cargamos los colores de los patrones
-     131.  00:80C7  21 4F 8A            	LD		HL,tiles_color_pantalla12
+     131.  00:80C7  21 32 8A            	LD		HL,tiles_color_pantalla12
      132.  00:80CA  11 00 28            	LD		DE,CLRTBL + #0800
-     133.  00:80CD  CD 20 83            	CALL	depack_VRAM
+     133.  00:80CD  CD 03 83            	CALL	depack_VRAM
      134.  00:80D0                      fin_pinta_parte_superior_pantalla:
      135.  00:80D0  C9                  	RET
      136.  00:80D1                      
@@ -349,17 +349,17 @@ Errors: 0
      145.  00:80D1                      pinta_parte_inferior_pantalla:
      146.  00:80D1                      	;cangando banco 3
      147.  00:80D1                      	;cargamos los patrones
-     148.  00:80D1  21 AB 8A            	LD		HL,tiles_patrones_pantalla3
+     148.  00:80D1  21 8E 8A            	LD		HL,tiles_patrones_pantalla3
      149.  00:80D4  11 00 10            	LD		DE,CHRTBL + #1000
-     150.  00:80D7  CD 20 83            	CALL	depack_VRAM	
+     150.  00:80D7  CD 03 83            	CALL	depack_VRAM	
      151.  00:80DA                      	;cargamos mapa de pantalla
-     152.  00:80DA  21 26 8C            	LD		HL,tiles_mapa_pantalla3
+     152.  00:80DA  21 09 8C            	LD		HL,tiles_mapa_pantalla3
      153.  00:80DD  11 00 1A            	LD		DE,NAMTBL + #0200
-     154.  00:80E0  CD 20 83            	CALL	depack_VRAM
+     154.  00:80E0  CD 03 83            	CALL	depack_VRAM
      155.  00:80E3                      	;cargamos los colores de los patrones
-     156.  00:80E3  21 F1 8B            	LD		HL,tiles_color_pantalla3
+     156.  00:80E3  21 D4 8B            	LD		HL,tiles_color_pantalla3
      157.  00:80E6  11 00 30            	LD		DE,CLRTBL + #1000
-     158.  00:80E9  CD 20 83            	CALL	depack_VRAM
+     158.  00:80E9  CD 03 83            	CALL	depack_VRAM
      159.  00:80EC                      fin_pinta_parte_inferior_pantalla:
      160.  00:80EC  C9                  	RET
      161.  00:80ED                      
@@ -378,7 +378,7 @@ Errors: 0
      174.  00:80EE                      
      175.  00:80EE                      	;para no andar restando pongo todos los huecos a negro y luego en otro bucle las caras
      176.  00:80EE                      	;1-pinto todo en blanco
-     177.  00:80EE  21 48 89            	LD		HL,array_aux_vidas
+     177.  00:80EE  21 2B 89            	LD		HL,array_aux_vidas
      178.  00:80F1  06 08               	LD		 B,NMAXVIDREL
      179.  00:80F3                      loop_marcador_caras_negro:	;asignar espacios en negro
      180.  00:80F3  36 00               	LD		(HL),0			;0 posición mapa tiles para nada (es transparente pero el fondo es negro)
@@ -386,8 +386,8 @@ Errors: 0
      182.  00:80F6  10 FB               	DJNZ	loop_marcador_caras_negro
      183.  00:80F8                      fin_loop_marcador_caras_negro:
      184.  00:80F8                      	;2-pinto las caras según el n de vidas
-     185.  00:80F8  21 48 89            	LD		HL,array_aux_vidas
-     186.  00:80FB  3A 45 89            	LD		 A,(prota.vidas)
+     185.  00:80F8  21 2B 89            	LD		HL,array_aux_vidas
+     186.  00:80FB  3A 28 89            	LD		 A,(prota.vidas)
      187.  00:80FE  47                  	LD		 B,A
      188.  00:80FF                      loop_marcador_caras: ;asignar caras
      189.  00:80FF  36 0D               	LD		(HL),POSCARAMAP	;13 posición mapa tiles para cara
@@ -410,14 +410,14 @@ Errors: 0
      206.  00:8106                      pinta_vidas:
      207.  00:8106  D9                  	EXX
      208.  00:8107                      	
-     209.  00:8107  21 48 89            	LD		HL,array_aux_vidas
+     209.  00:8107  21 2B 89            	LD		HL,array_aux_vidas
      210.  00:810A  11 48 1A            	LD		DE,SC2MAP + POSVIDAS 	;inicio posición en el mapa de tiles de las vidas
      211.  00:810D  01 08 00            	LD		BC,NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
      212.  00:8110  CD 5C 00            	CALL	LDIRVM
      213.  00:8113                      	
      214.  00:8113                      	;una vez quer está pintada ya no se actualizará a menos que perdamos/ganemos una vida
      215.  00:8113  AF                  	XOR		 A
-     216.  00:8114  32 50 89            	LD		(actualiza_vidas_sn),A
+     216.  00:8114  32 33 89            	LD		(actualiza_vidas_sn),A
      217.  00:8117                      
      218.  00:8117  D9                  	EXX
      219.  00:8118                      fin_pinta_vidas:
@@ -436,7 +436,7 @@ Errors: 0
      232.  00:8119                      actualiza_marcador_reliquias:
      233.  00:8119                      	;para no andar restando pongo todos los huecos a negro y luego en otro bucle las reliquias
      234.  00:8119                      	;1-pinto todo en blanco
-     235.  00:8119  21 51 89            	LD		HL,array_aux_reliquias
+     235.  00:8119  21 34 89            	LD		HL,array_aux_reliquias
      236.  00:811C  06 08               	LD		 B,NMAXVIDREL
      237.  00:811E                      loop_marcador_reliquias_negro:	;asignar espacios en negro
      238.  00:811E  36 00               	LD		(HL),0			;0 posición mapa tiles para nada (es transparente pero el fondo es negro)
@@ -444,8 +444,8 @@ Errors: 0
      240.  00:8121  10 FB               	DJNZ	loop_marcador_reliquias_negro
      241.  00:8123                      fin_loop_marcador_reliquias_negro:
      242.  00:8123                      	;2-pinto las cruces según el n de reliquias
-     243.  00:8123  21 51 89            	LD		HL,array_aux_reliquias
-     244.  00:8126  3A 47 89            	LD		 A,(prota.reliquias)
+     243.  00:8123  21 34 89            	LD		HL,array_aux_reliquias
+     244.  00:8126  3A 2A 89            	LD		 A,(prota.reliquias)
      245.  00:8129  47                  	LD		 B,A
      246.  00:812A                      loop_marcador_reliquias: ;asignar reliquias
      247.  00:812A  36 11               	LD		(HL),POSRELIMAP	;17 posición mapa tiles para reliquia
@@ -467,14 +467,14 @@ Errors: 0
      263.  00:8130                      pinta_reliquias:
      264.  00:8130  D9                  	EXX
      265.  00:8131                      	
-     266.  00:8131  21 51 89            	LD		HL,array_aux_reliquias
+     266.  00:8131  21 34 89            	LD		HL,array_aux_reliquias
      267.  00:8134  11 C8 1A            	LD		DE,SC2MAP + POSRELIQ 	;inicio posición en el mapa de tiles de las vidas
      268.  00:8137  01 08 00            	LD		BC,NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
      269.  00:813A  CD 5C 00            	CALL	LDIRVM
      270.  00:813D                      	
      271.  00:813D                      	;una vez quer está pintada ya no se actualizará a menos que ganemos/gastemos una reliquia
      272.  00:813D  AF                  	XOR		 A
-     273.  00:813E  32 59 89            	LD		(actualiza_reliquias_sn),A
+     273.  00:813E  32 3C 89            	LD		(actualiza_reliquias_sn),A
      274.  00:8141                      
      275.  00:8141  D9                  	EXX
      276.  00:8142                      fin_pinta_reliquias:
@@ -493,7 +493,7 @@ Errors: 0
      289.  00:8143                      pinta_nivel:	
      290.  00:8143                      	;forma más avanzada sin llamada a la bios
      291.  00:8143  01 B4 1A            	LD		BC,SC2MAP + POSNIVEL ;posición en el mapa de tiles del tile de nivel
-     292.  00:8146  3A 42 89            	LD		 A,(prota.nivel)	;seleccionando la pos del banco de tiles a poner en el mapa
+     292.  00:8146  3A 25 89            	LD		 A,(prota.nivel)	;seleccionando la pos del banco de tiles a poner en el mapa
      293.  00:8149  C6 30               	ADD		'0'	
      294.  00:814B  57                  	LD		 D,A
      295.  00:814C                      	
@@ -540,12 +540,12 @@ Errors: 0
      336.  00:815E                      mira_pinta_energia:
      337.  00:815E  D9                  	EXX							;por si acaso guardo el contenido de HL (si veo que no es necesario guardarlo lo quito) uso esto en vez de push por el nº ciclos
      338.  00:815F                      	
-     339.  00:815F  3A 46 89            	LD		 A,(prota.energia) 	;para las comparaciones A variable (actual) y B fijo (limites)
+     339.  00:815F  3A 29 89            	LD		 A,(prota.energia) 	;para las comparaciones A variable (actual) y B fijo (limites)
      340.  00:8162                      
      341.  00:8162  0E 00               	LD		 C,TILENEGRO		;para agilizar asignaciones en vez de un valor cte uso otro registro
      342.  00:8164                      pinta_ener:
      343.  00:8164                      pinta_ener_tile_8:
-     344.  00:8164  21 61 89            	LD		HL,ultimo_pos_array_aux_energia	;coloco puntero en array e iré decrementando
+     344.  00:8164  21 44 89            	LD		HL,ultimo_pos_array_aux_energia	;coloco puntero en array e iré decrementando
      345.  00:8167  06 D9               	LD		 B,TILEENERG8
      346.  00:8169  B8                  	CP		 B
      347.  00:816A  38 04               	JR		C,pinta_ener_tile_8_negro
@@ -628,7 +628,7 @@ Errors: 0
      424.  00:81B5                      pinta_energia:
      425.  00:81B5  D9                  	EXX
      426.  00:81B6                      	
-     427.  00:81B6  21 5A 89            	LD		HL,array_aux_energia
+     427.  00:81B6  21 3D 89            	LD		HL,array_aux_energia
      428.  00:81B9  11 88 1A            	LD		DE,SC2MAP + POSENERG 	;inicio posición en el mapa de tiles de las vidas
      429.  00:81BC  01 08 00            	LD		BC,NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
      430.  00:81BF  CD 5C 00            	CALL	LDIRVM
@@ -648,37 +648,37 @@ Errors: 0
      444.  00:81C4                      borra_mapa:
      445.  00:81C4  D9                  	EXX
      446.  00:81C5                      	
-     447.  00:81C5  21 62 89            	LD		HL,array_aux_mapa_limpiar
+     447.  00:81C5  21 45 89            	LD		HL,array_aux_mapa_limpiar
      448.  00:81C8  11 F8 1A            	LD		DE,SC2MAP + POSMAPLIN1 	;inicio posición en el mapa de tiles de la primera fila del mapa
      449.  00:81CB  01 07 00            	LD		BC,NHABNIVEL			;cada nivel son 7 filas con 7 habitaciones "posibles"
      450.  00:81CE  CD 5C 00            	CALL	LDIRVM
      451.  00:81D1                      	
-     452.  00:81D1  21 62 89            	LD		HL,array_aux_mapa_limpiar
+     452.  00:81D1  21 45 89            	LD		HL,array_aux_mapa_limpiar
      453.  00:81D4  11 D8 1A            	LD		DE,SC2MAP + POSMAPLIN2
      454.  00:81D7  01 07 00            	LD		BC,NHABNIVEL
      455.  00:81DA  CD 5C 00            	CALL	LDIRVM
      456.  00:81DD                      
-     457.  00:81DD  21 62 89            	LD		HL,array_aux_mapa_limpiar
+     457.  00:81DD  21 45 89            	LD		HL,array_aux_mapa_limpiar
      458.  00:81E0  11 B8 1A            	LD		DE,SC2MAP + POSMAPLIN3
      459.  00:81E3  01 07 00            	LD		BC,NHABNIVEL
      460.  00:81E6  CD 5C 00            	CALL	LDIRVM
      461.  00:81E9                      
-     462.  00:81E9  21 62 89            	LD		HL,array_aux_mapa_limpiar	
+     462.  00:81E9  21 45 89            	LD		HL,array_aux_mapa_limpiar	
      463.  00:81EC  11 98 1A            	LD		DE,SC2MAP + POSMAPLIN4
      464.  00:81EF  01 07 00            	LD		BC,NHABNIVEL
      465.  00:81F2  CD 5C 00            	CALL	LDIRVM
      466.  00:81F5                      
-     467.  00:81F5  21 62 89            	LD		HL,array_aux_mapa_limpiar	
+     467.  00:81F5  21 45 89            	LD		HL,array_aux_mapa_limpiar	
      468.  00:81F8  11 78 1A            	LD		DE,SC2MAP + POSMAPLIN5
      469.  00:81FB  01 07 00            	LD		BC,NHABNIVEL
      470.  00:81FE  CD 5C 00            	CALL	LDIRVM
      471.  00:8201                      
-     472.  00:8201  21 62 89            	LD		HL,array_aux_mapa_limpiar	
+     472.  00:8201  21 45 89            	LD		HL,array_aux_mapa_limpiar	
      473.  00:8204  11 58 1A            	LD		DE,SC2MAP + POSMAPLIN6
      474.  00:8207  01 07 00            	LD		BC,NHABNIVEL
      475.  00:820A  CD 5C 00            	CALL	LDIRVM
      476.  00:820D                      
-     477.  00:820D  21 62 89            	LD		HL,array_aux_mapa_limpiar	
+     477.  00:820D  21 45 89            	LD		HL,array_aux_mapa_limpiar	
      478.  00:8210  11 38 1A            	LD		DE,SC2MAP + POSMAPLIN7
      479.  00:8213  01 07 00            	LD		BC,NHABNIVEL
      480.  00:8216  CD 5C 00            	CALL	LDIRVM
@@ -709,7 +709,7 @@ Errors: 0
      505.  00:821F                      
      506.  00:821F                      	;sumar fila
      507.  00:821F  11 20 00            	LD		DE,32	;32 ancho del mapa de tiles de una pantalla
-     508.  00:8222  3A 44 89            	LD 		 A,(prota.pos_mapy)
+     508.  00:8222  3A 27 89            	LD 		 A,(prota.pos_mapy)
      509.  00:8225  47                  	LD		 B,A
      510.  00:8226                      prod_coloca_fila:	
      511.  00:8226  19                  	ADD		HL,DE
@@ -829,857 +829,873 @@ Errors: 0
      625.  00:8276                      
      626.  00:8276                      	;aquí se buscaría de la posición del usuario en la matriz de niveles y se saca el valor de A
      627.  00:8276                      	;suponermos que pinta (debajo)
-     628.  00:8276  CD 92 82            	CALL	localiza_puertas	;devuelve A
+     628.  00:8276  CD 92 82            	CALL	localiza_info_habitacion	;devuelve habitacion_actual
      629.  00:8279                      
-     630.  00:8279  CB 57               	BIT		2,A
-     631.  00:827B  C4 F4 82            	CALL	nz,pinta_puerta_der
-     632.  00:827E                      
-     633.  00:827E  CB 5F               	BIT		3,A
-     634.  00:8280  C4 DE 82            	CALL	nz,pinta_puerta_arr
-     635.  00:8283                      
-     636.  00:8283  CB 4F               	BIT		1,A
-     637.  00:8285  C4 C8 82            	CALL	nz,pinta_puerta_aba
-     638.  00:8288                      	
-     639.  00:8288  CB 47               	BIT		0,A
-     640.  00:828A  C4 0A 83            	CALL	nz,pinta_puerta_izq
-     641.  00:828D                      	
-     642.  00:828D  AF                  	XOR		 A
-     643.  00:828E  32 69 89            	LD		(actualiza_puertas_sn),A ;(1 actualiza y 0 no actualiza puertas) se pone a 0 para que no actualice todo el tiempo (ya se ha actualizado)
-     644.  00:8291                      fin_pinta_puertas:
-     645.  00:8291  C9                  	RET
-     646.  00:8292                      
-     647.  00:8292                      
-     648.  00:8292                      ;;=====================================================
-     649.  00:8292                      ;;LOCALIZA_PUERTAS
-     650.  00:8292                      ;;=====================================================	
-     651.  00:8292                      ; función: 	busca las puertas que hay que pintar egún la posición del usuario y las pone en A
-     652.  00:8292                      ; entrada: 	prota.pos_mapy, prota.pos_mapx, prota.nivel, habitaciones_juego
-     653.  00:8292                      ; salida: 	habitacion_actual
-     654.  00:8292                      ; toca:		A
-     655.  00:8292                      ;ejemplo: nivel 4, posx 5 y posy 3
-     656.  00:8292                      ;  (4 x 7) x 16 (se necesitan dos bytes y el prod de 16 es slr 4 veces)
-     657.  00:8292                      ; +(3 x 16) 	de la fila (se necesita 1 y byte el prod de 16 es slr 4 veces)
-     658.  00:8292                      ; +5        	de la columna 
-     659.  00:8292                      localiza_puertas:
-     660.  00:8292  D9                  	EXX
-     661.  00:8293                      	
-     662.  00:8293  3A 42 89            	LD		 A,(prota.nivel)	;cada nivel tiene 7 subniveles
-     663.  00:8296  47                  	LD		 B,A
-     664.  00:8297  3E 07               	LD		 A,7
-     665.  00:8299                      .primer_prod
-     666.  00:8299  87                  	ADD		 A
-     667.  00:829A  10 FD               	DJNZ 	.primer_prod	;equivalente al 4x7
-     668.  00:829C                      	
-     669.  00:829C  6F                  	LD		 L,A			;preparo el registro de 2 bytes HL
-     670.  00:829D  AF                  	XOR		 A
-     671.  00:829E  67                  	LD		 H,A
-     672.  00:829F                      	
-     673.  00:829F  06 10               	LD		 B,16
-     674.  00:82A1  54                  	LD		 D,H
-     675.  00:82A2  6B                  	LD		 L,E
-     676.  00:82A3                      .seg_prod
-     677.  00:82A3  19                  	ADD		HL,DE
-     678.  00:82A4  10 FD               	DJNZ 	.seg_prod		;equivalente al 4x7x16
-     679.  00:82A6                      	
-     680.  00:82A6  3A 3F 89            	LD		 A,(prota.posy)
-     681.  00:82A9  CB 3F               	SRL		 A
-     682.  00:82AB  CB 3F               	SRL		 A
-     683.  00:82AD  CB 3F               	SRL		 A
-     684.  00:82AF  CB 3F               	SRL		 A				;equivalente a 3 x 16
-     685.  00:82B1                      	
-     686.  00:82B1  5F                  	LD		 E,A
-     687.  00:82B2  AF                  	XOR		 A
-     688.  00:82B3  57                  	LD		 D,A
-     689.  00:82B4  19                  	ADD		HL,DE			;equivale a 4x7x16 (HL) + 3x16 (DE)
-     690.  00:82B5                      	
-     691.  00:82B5  3A 3E 89            	LD		 A,(prota.posx)
-     692.  00:82B8  5F                  	LD		 E,A
-     693.  00:82B9  AF                  	XOR		 A
-     694.  00:82BA  57                  	LD		 D,A
-     695.  00:82BB  19                  	ADD		HL,DE			;equivale a 4x7x16 (HL) + 3x16 (DE) + 5 (DE)
-     696.  00:82BC                      	
-     697.  00:82BC                      	;ahora colocamos resultado en variable habitacion_actual
-     698.  00:82BC  DD 21 2C 86         	LD		IX,habitacion_actual
-     699.  00:82C0  DD 75 00            	LD		(IX),L
-     700.  00:82C3  DD 74 01            	LD		(IX + 1),H
-     701.  00:82C6                      	
-     702.  00:82C6                      	
-     703.  00:82C6                      	
-     704.  00:82C6  D9                  	EXX
-     705.  00:82C7                      fin_localiza_puertas:
-     706.  00:82C7  C9                  	RET
-     707.  00:82C8                      	
-     708.  00:82C8                      
-     709.  00:82C8                      ;;=====================================================
-     710.  00:82C8                      ;;PINTA_PUERTA_ABA
-     711.  00:82C8                      ;;=====================================================	
-     712.  00:82C8                      ; función: 	pinta la puerta de abajo
-     713.  00:82C8                      ; entrada: 	array_puerta_abajo, wordaux2, wordaux1
-     714.  00:82C8                      ; salida: 	-
-     715.  00:82C8                      ; toca:		HL,BC, DE
-     716.  00:82C8                      pinta_puerta_aba:
-     717.  00:82C8  21 93 89            	LD		HL,array_puerta_abajo			;guardo puntero al array a pintar (como psar por referencia)
-     718.  00:82CB  22 74 82            	LD		(wordaux2),HL					;en la variable wordaux2
-     719.  00:82CE  21 EE 19            	LD		HL,SC2MAP + POSPUERABAJ			;calcula posición en tilemap
-     720.  00:82D1  22 72 82            	LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
-     721.  00:82D4  44                  	LD		B,H								;coloca posición tilemap BC
-     722.  00:82D5  4D                  	LD		C,L
-     723.  00:82D6  16 01               	LD		D,1								;nº de filas
-     724.  00:82D8  1E 04               	LD		E,4								;nº de columnas
-     725.  00:82DA  CD 3F 82            	CALL	pinta_array
-     726.  00:82DD                      fin_pinta_puerta_aba:
-     727.  00:82DD  C9                  	RET
-     728.  00:82DE                      
-     729.  00:82DE                      ;;=====================================================
-     730.  00:82DE                      ;;PINTA_PUERTA_ARR
-     731.  00:82DE                      ;;=====================================================	
-     732.  00:82DE                      ; función: 	pinta la puerta de arriba
-     733.  00:82DE                      ; entrada: 	array_puerta_arriba, wordaux2, wordaux1
-     734.  00:82DE                      ; salida: 	-
-     735.  00:82DE                      ; toca:		HL,BC, DE
-     736.  00:82DE                      pinta_puerta_arr:
-     737.  00:82DE  21 6A 89            	LD		HL,array_puerta_arriba			;guardo puntero al array a pintar (como psar por referencia)
-     738.  00:82E1  22 74 82            	LD		(wordaux2),HL					;en la variable wordaux2
-     739.  00:82E4  21 8E 18            	LD		HL,SC2MAP + POSPUERARRI			;calcula posición en tilemap
-     740.  00:82E7  22 72 82            	LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
-     741.  00:82EA  44                  	LD		B,H								;coloca posición tilemap BC
-     742.  00:82EB  4D                  	LD		C,L
-     743.  00:82EC  16 05               	LD		D,5								;nº de filas
-     744.  00:82EE  1E 04               	LD		E,4								;nº de columnas
-     745.  00:82F0  CD 3F 82            	CALL	pinta_array
-     746.  00:82F3                      fin_pinta_puerta_arr:
-     747.  00:82F3  C9                  	RET
-     748.  00:82F4                      
-     749.  00:82F4                      ;;=====================================================
-     750.  00:82F4                      ;;PINTA_PUERTA_DER
-     751.  00:82F4                      ;;=====================================================	
-     752.  00:82F4                      ; función: 	pinta la puerta de la derecha
-     753.  00:82F4                      ; entrada: 	array_puerta_derecha, wordaux2, wordaux1
-     754.  00:82F4                      ; salida: 	-
-     755.  00:82F4                      ; toca:		HL,BC, DE
-     756.  00:82F4                      pinta_puerta_der:
-     757.  00:82F4  21 7E 89            	LD		HL,array_puerta_derecha			;guardo puntero al array a pintar (como psar por referencia)
-     758.  00:82F7  22 74 82            	LD		(wordaux2),HL					;en la variable wordaux2
-     759.  00:82FA  21 FC 18            	LD		HL,SC2MAP + POSPUERDERE			;calcula posición en tilemap
-     760.  00:82FD  22 72 82            	LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
-     761.  00:8300  44                  	LD		B,H								;coloca posición tilemap BC
-     762.  00:8301  4D                  	LD		C,L
-     763.  00:8302  16 07               	LD		D,7								;nº de filas
-     764.  00:8304  1E 03               	LD		E,3								;nº de columnas
-     765.  00:8306  CD 3F 82            	CALL	pinta_array
-     766.  00:8309                      fin_pinta_puerta_der:
-     767.  00:8309  C9                  	RET
-     768.  00:830A                      	
-     769.  00:830A                      ;;=====================================================
-     770.  00:830A                      ;;PINTA_PUERTA_IZQ
-     771.  00:830A                      ;;=====================================================	
-     772.  00:830A                      ; función: 	pinta la puerta de la izquierda
-     773.  00:830A                      ; entrada: 	array_puerta_izquierda, wordaux2, wordaux1
-     774.  00:830A                      ; salida: 	-
-     775.  00:830A                      ; toca:		HL,BC, DE
-     776.  00:830A                      pinta_puerta_izq:
-     777.  00:830A  21 97 89            	LD		HL,array_puerta_izquierda		;guardo puntero al array a pintar (como psar por referencia)
-     778.  00:830D  22 74 82            	LD		(wordaux2),HL					;en la variable wordaux2
-     779.  00:8310  21 E1 18            	LD		HL,SC2MAP + POSPUERIZQU			;calcula posición en tilemap
-     780.  00:8313  22 72 82            	LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
-     781.  00:8316  44                  	LD		B,H								;coloca posición tilemap BC
-     782.  00:8317  4D                  	LD		C,L
-     783.  00:8318  16 07               	LD		D,7								;nº de filas
-     784.  00:831A  1E 03               	LD		E,3								;nº de columnas
-     785.  00:831C  CD 3F 82            	CALL	pinta_array
-     786.  00:831F                      fin_pinta_puerta_izq:
-     787.  00:831F  C9                  	RET
-     788.  00:8320                      
-     789.  00:8320                      
-      87   00:8320                      
-      88   00:8320                      ;Este include lleva la rutina de descompresión de ROM/RAM a VRAM de pletter
-      89   00:8320                      ;Está adaptada de la original a sjasm
-      90   00:8320                      ;	HL = RAM/ROM source	; DE = VRAM destination
-      91   00:8320                      depack_VRAM:
-      92   00:8320                      	include "PL_VRAM_Depack_SJASM.asm"
-       1.  00:8320                      ;-----------------------------------------------------------
-       2.  00:8320                      ; Pletter v0.5b VRAM Depacker v1.1 - 16Kb version
-       3.  00:8320                      ; HL = RAM/ROM source ; DE = VRAM destination
-       4.  00:8320                      ;-----------------------------------------------------------
-       5.  00:8320  F3                  	di
-       6.  00:8321                      
-       7.  00:8321                      ; VRAM address setup
-       8.  00:8321  7B                  	ld	a,e
-       9.  00:8322  D3 99               	out	[099h],a
-      10.  00:8324  7A                  	ld	a,d
-      11.  00:8325  F6 40               	or	040h
-      12.  00:8327  D3 99               	out	[099h],a
-      13.  00:8329                      
-      14.  00:8329                      ; Initialization
-      15.  00:8329  7E                  	ld	a,[hl]
-      16.  00:832A  23                  	inc	hl
-      17.  00:832B  D9                  	exx
-      18.  00:832C  11 00 00            	ld	de,0
-      19.  00:832F  87                  	add	a,a
-      20.  00:8330  3C                  	inc	a
-      21.  00:8331  CB 13               	rl	e
-      22.  00:8333  87                  	add	a,a
-      23.  00:8334  CB 13               	rl	e
-      24.  00:8336  87                  	add	a,a
-      25.  00:8337  CB 13               	rl	e
-      26.  00:8339  CB 13               	rl	e
-      27.  00:833B  21 F2 83            	ld	hl,modes
-      28.  00:833E  19                  	add	hl,de
-      29.  00:833F  5E                  	ld	e,[hl]
-      30.  00:8340  DD 6B               	ld	ixl,e
-      31.  00:8342  23                  	inc	hl
-      32.  00:8343  5E                  	ld	e,[hl]
-      33.  00:8344  DD 63               	ld	ixh,e
-      34.  00:8346  1E 01               	ld	e,1
-      35.  00:8348  D9                  	exx
-      36.  00:8349  FD 21 52 83         	ld	iy,loop
-      37.  00:834D                      
-      38.  00:834D                      ; Main depack loop
-      39.  00:834D  0E 98               literal:ld	c,098h
-      40.  00:834F  ED A3               	outi
-      41.  00:8351  13                  	inc	de
-      42.  00:8352  87                  loop:	add	a,a
-      43.  00:8353  CC E6 83              	call	z,getbit
-      44.  00:8356  30 F5               	jr	nc,literal
-      45.  00:8358                      
-      46.  00:8358                      ; Compressed data
-      47.  00:8358  D9                  	exx
-      48.  00:8359  62                  	ld	h,d
-      49.  00:835A  6B                  	ld	l,e
-      50.  00:835B  87                  getlen: add	a,a
-      51.  00:835C  CC EA 83            	call	z,getbitexx
-      52.  00:835F  30 1D               	jr	nc,lenok
-      53.  00:8361  87                  lus:	add	a,a
-      54.  00:8362  CC EA 83            	call	z,getbitexx
-      55.  00:8365  ED 6A               	adc	hl,hl
-      56.  00:8367  D8                  	ret	c
-      57.  00:8368  87                  	add	a,a
-      58.  00:8369  CC EA 83            	call	z,getbitexx
-      59.  00:836C  30 10               	jr	nc,lenok
-      60.  00:836E  87                  	add	a,a
-      61.  00:836F  CC EA 83            	call	z,getbitexx
-      62.  00:8372  ED 6A               	adc	hl,hl
-      63.  00:8374  DA F0 83            	jp	c,Depack_out
-      64.  00:8377  87                  	add	a,a
-      65.  00:8378  CC EA 83            	call	z,getbitexx
-      66.  00:837B  DA 61 83            	jp	c,lus
-      67.  00:837E  23                  lenok:  inc	hl
-      68.  00:837F  D9                  	exx
-      69.  00:8380  4E                  	ld	c,[hl]
-      70.  00:8381  23                  	inc	hl
-      71.  00:8382  06 00               	ld	b,0
-      72.  00:8384  CB 79               	bit	7,c
-      73.  00:8386  CA B9 83            	jp	z,offsok
-      74.  00:8389  DD E9               	jp	ix
-      75.  00:838B                      
-      76.  00:838B  87                  mode7:  add	a,a
-      77.  00:838C  CC E6 83              	call	z,getbit
-      78.  00:838F  CB 10               	rl	b
-      79.  00:8391  87                  mode6:	add	a,a
-      80.  00:8392  CC E6 83              	call	z,getbit
-      81.  00:8395  CB 10               	rl	b
-      82.  00:8397  87                  mode5:  add	a,a
-      83.  00:8398  CC E6 83              	call	z,getbit
-      84.  00:839B  CB 10               	rl	b
-      85.  00:839D  87                  mode4:  add	a,a
-      86.  00:839E  CC E6 83              	call	z,getbit
-      87.  00:83A1  CB 10               	rl	b
-      88.  00:83A3  87                  mode3:  add	a,a
-      89.  00:83A4  CC E6 83              	call	z,getbit
-      90.  00:83A7  CB 10               	rl	b
-      91.  00:83A9  87                  mode2:	add	a,a
-      92.  00:83AA  CC E6 83              	call	z,getbit
-      93.  00:83AD  CB 10               	rl	b
-      94.  00:83AF  87                  	add	a,a
-      95.  00:83B0  CC E6 83              	call	z,getbit
-      96.  00:83B3  30 04               	jr	nc,offsok
-      97.  00:83B5  B7                  	or	a
-      98.  00:83B6  04                  	inc	b
-      99.  00:83B7  CB B9               	res	7,c
-     100.  00:83B9  03                  offsok: inc	bc
-     101.  00:83BA  E5                  	push	hl
-     102.  00:83BB  D9                  	exx
-     103.  00:83BC  E5                  	push	hl
-     104.  00:83BD  D9                  	exx
-     105.  00:83BE  6B                  	ld	l,e
-     106.  00:83BF  62                  	ld	h,d
-     107.  00:83C0  ED 42               	sbc	hl,bc
-     108.  00:83C2  C1                  	pop	bc
-     109.  00:83C3  F5                  	push	af
-     110.  00:83C4  7D                  .loop:	ld	a,l
-     111.  00:83C5  D3 99               	out	[099h],a
-     112.  00:83C7  7C                  	ld	a,h
-     113.  00:83C8  00                  	nop                     ; VDP timing
-     114.  00:83C9  D3 99               	out	[099h],a
-     115.  00:83CB  00                  	nop                     ; VDP timing
-     116.  00:83CC  DB 98               	in	a,[098h]
-     117.  00:83CE  08                  	ex	af,af'
-     118.  00:83CF  7B                  	ld	a,e
-     119.  00:83D0  00                  	nop			; VDP timing
-     120.  00:83D1  D3 99               	out	[099h],a
-     121.  00:83D3  7A                  	ld	a,d
-     122.  00:83D4  F6 40               	or	040h
-     123.  00:83D6  D3 99               	out	[099h],a
-     124.  00:83D8  08                  	ex	af,af'
-     125.  00:83D9  00                  	nop			; VDP timing
-     126.  00:83DA  D3 98               	out	[098h],a
-     127.  00:83DC  13                  	inc	de
-     128.  00:83DD  ED A1               	cpi
-     129.  00:83DF  EA C4 83            	jp	pe,.loop
-     130.  00:83E2  F1                  	pop	af
-     131.  00:83E3  E1                  	pop	hl
-     132.  00:83E4  FD E9               	jp	iy
-     133.  00:83E6                      
-     134.  00:83E6  7E                  getbit: ld	a,[hl]
-     135.  00:83E7  23                  	inc	hl
-     136.  00:83E8  17                  	rla
-     137.  00:83E9  C9                  	ret
-     138.  00:83EA                      
-     139.  00:83EA                      getbitexx:
-     140.  00:83EA  D9                  	exx
-     141.  00:83EB  7E                  	ld	a,[hl]
-     142.  00:83EC  23                  	inc	hl
-     143.  00:83ED  D9                  	exx
-     144.  00:83EE  17                  	rla
-     145.  00:83EF  C9                  	ret
-     146.  00:83F0                      
-     147.  00:83F0                      ; Depacker exit
-     148.  00:83F0                      Depack_out:
-     149.  00:83F0  FB                  	ei
-     150.  00:83F1  C9                  	ret
-     151.  00:83F2                      
-     152.  00:83F2                      modes:
-     153.  00:83F2  B9 83               	dw	offsok
-     154.  00:83F4  A9 83               	dw	mode2
-     155.  00:83F6  A3 83               	dw	mode3
-     156.  00:83F8  9D 83               	dw	mode4
-     157.  00:83FA  97 83               	dw	mode5
-     158.  00:83FC  91 83               	dw	mode6
-     159.  00:83FE  8B 83               	dw	mode7
-      93   00:8400                      
-      94   00:8400                      
-      95   00:8400                      
-      96   00:8400                      ; sólo para hacer pruebas y pinter la parte de las vidas y demás
-      97   00:8400                      inicializa_variables_pruebas:
-      98   00:8400  3E 03               	LD		 A,3
-      99   00:8402  32 45 89            	LD		(prota.vidas),A
-     100   00:8405                      
-     101   00:8405  3E 01               	LD		 A,SI	
-     102   00:8407  32 50 89            	LD		(actualiza_vidas_sn),A	;actualizo la variable para que pinte vidas 1 sí / 0 no
-     103   00:840A                      
-     104   00:840A  3E 02               	LD		 A,2
-     105   00:840C  32 47 89            	LD		(prota.reliquias),A
-     106   00:840F                      	
-     107   00:840F  3E 01               	LD		 A,SI	
-     108   00:8411  32 59 89            	LD		(actualiza_reliquias_sn),A	;actualizo la variable para que pinte vidas 1 sí / 0 no
-     109   00:8414                      
-     110   00:8414  3E 08               	LD		 A,8
-     111   00:8416  32 46 89            	LD		(prota.energia),A
-     112   00:8419                      
-     113   00:8419  AF                  	XOR		 A
-     114   00:841A  32 42 89            	LD		(prota.nivel),A		;nivel empieza en 0 para usar las posiciones ascii
-     115   00:841D                      	
-     116   00:841D                      	;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
-     117   00:841D                      	;será igual la posición inicial en todos los niveles
-     118   00:841D  AF                  	XOR		 A
-     119   00:841E  32 44 89            	LD		(prota.pos_mapy),A	;pos y dentro del nivel (se empieza en 0)
-     120   00:8421  3E 03               	LD		 A,3				;en realidad es la posición 4 pero se empieza a numerar en 0
-     121   00:8423  32 43 89            	LD		(prota.pos_mapx),A	;pos y dentro del nivel (se empieza en 0)
-     122   00:8426                      
-     123   00:8426                      	
-     124   00:8426                      	;************************************************
-     125   00:8426                      	;importante : revisar pintado de mapa
-     126   00:8426                      
-     127   00:8426  3E 01               	LD			 A,1
-     128   00:8428  32 69 89            	LD			(actualiza_puertas_sn),A ;(1 actualiza y 0 no actualiza puertas)
-     129   00:842B                      fin_inicializa_variables_pruebas:
-     130   00:842B  C9                  	RET
-     131   00:842C                      
-     132   00:842C                      
-     133   00:842C                      
-     134   00:842C                      
-     135   00:842C                      
-     136   00:842C                      	
-     137   00:842C                      ;;=====================================================
-     138   00:842C                      ;;DEFINICIÓN DE ESTRUCTURAS
-     139   00:842C                      ;;=====================================================		
-     140   00:842C                      	include "estructuras.asm"
-       1.  00:842C                      ;;=====================================================
-       2.  00:842C                      ;;DEFINICIÓN DE ESTRUCTURAS
-       3.  00:842C                      ;;=====================================================
-       4.  00:842C                      
-       5.  00:842C                      	STRUCT ESTRUCTURA_PUNTOMIRA
-       6.  00:842C                    < posx		DB		0
-       7.  00:842C                    < posy		DB		0
-       8.  00:842C                    < color		DB		0
-       9.  00:842C                    < retardo		DB		0
-      10.  00:842C                    < ; al final he decidido (ya que el punto de mira es el prota) que lo relacionado con el prota vaya en esta estructura
-      11.  00:842C                    < nivel		DB		0
-      12.  00:842C                    < ;pos_map	DB		0	;(si hace falta sitio y no afecta a velocidad se puede usar) como es una matriz de 8x8 (aunque sólo use 7x7) se usa el bytealto para fila y el byte bajo para columna
-      13.  00:842C                    < pos_mapx	DB		3	;pos columna
-      14.  00:842C                    < pos_mapy	DB		6	;pos fila
-      15.  00:842C                    < vidas		DB		3
-      16.  00:842C                    < energia		DB		250
-      17.  00:842C                    < reliquias	DB		3
-      18.  00:842C                    < 	ENDSTRUCT;ESTRUCTURA_PUNTOMIRA
-      19.  00:842C                      	
-      20.  00:842C                      	STRUCT ESTRUCTURA_ENEMIGO
-      21.  00:842C                    < existe		DB		0			;0 no existe y 1 existe (así recorro el array y sólo actuo en los enemigos creados no muertos)
-      22.  00:842C                    < tipo		DB		0			;(0 serpiente)
-      23.  00:842C                    < posx		DB		50
-      24.  00:842C                    < posy		DB		50
-      25.  00:842C                    < color		DB		5
-      26.  00:842C                    < paso		DB		0			;paso 0 o 1 (2 escenas)
-      27.  00:842C                    < retardo		DB		0			;entre 0 y 9
-      28.  00:842C                    < energia		DB		0			;energía del enemigo... si llega a 0 => existe <- 0
-      29.  00:842C                    < 	ENDSTRUCT;ESTRUCTURA_PUNTOMIRAA
-     141   00:842C                      	
-     142   00:842C                      ;;=====================================================
-     143   00:842C                      ;;DEFINICIÓN DE VARIABLES
-     144   00:842C                      ;;=====================================================		
-     145   00:842C                      	include "sprites.asm"
-       1.  00:842C                      ;;=====================================================
-       2.  00:842C                      ;;DEFINICIÓN DE SPRITES
-       3.  00:842C                      ;;=====================================================	
-       4.  00:842C                      sprites_pantantalla:
-       5.  00:842C                      
-       6.  00:842C                      sprite_punto_mira_1:
-       7.  00:842C                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-       7.  00:842C  FF FF FF FF FF FF FF FF 
-       8.  00:8434                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-       8.  00:8434  FF FF FF FF FF FF FF FF 
-       9.  00:843C                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-       9.  00:843C  FF FF FF FF FF FF FF FF 
-      10.  00:8444                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      10.  00:8444  FF FF FF FF FF FF FF FF 
-      11.  00:844C                      	
-      12.  00:844C                      sprite_punto_mira_2:
-      13.  00:844C                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      13.  00:844C  FF FF FF FF FF FF FF FF 
-      14.  00:8454                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      14.  00:8454  FF FF FF FF FF FF FF FF 
-      15.  00:845C                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      15.  00:845C  FF FF FF FF FF FF FF FF 
-      16.  00:8464                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      16.  00:8464  FF FF FF FF FF FF FF FF 
-      17.  00:846C                      	
-      18.  00:846C                      sprite_punto_mira_1_mejorado:
-      19.  00:846C                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      19.  00:846C  FF FF FF FF FF FF FF FF 
-      20.  00:8474                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      20.  00:8474  FF FF FF FF FF FF FF FF 
-      21.  00:847C                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      21.  00:847C  FF FF FF FF FF FF FF FF 
-      22.  00:8484                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      22.  00:8484  FF FF FF FF FF FF FF FF 
-      23.  00:848C                      
-      24.  00:848C                      sprite_punto_mira_2_mejorado:
-      25.  00:848C                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      25.  00:848C  FF FF FF FF FF FF FF FF 
-      26.  00:8494                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      26.  00:8494  FF FF FF FF FF FF FF FF 
-      27.  00:849C                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      27.  00:849C  FF FF FF FF FF FF FF FF 
-      28.  00:84A4                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      28.  00:84A4  FF FF FF FF FF FF FF FF 
-      29.  00:84AC                      	
-      30.  00:84AC                      sprite_reliquia:
-      31.  00:84AC                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      31.  00:84AC  FF FF FF FF FF FF FF FF 
-      32.  00:84B4                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      32.  00:84B4  FF FF FF FF FF FF FF FF 
-      33.  00:84BC                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      33.  00:84BC  FF FF FF FF FF FF FF FF 
-      34.  00:84C4                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      34.  00:84C4  FF FF FF FF FF FF FF FF 
-      35.  00:84CC                      	
-      36.  00:84CC                      sprite_vida_extra:
-      37.  00:84CC                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      37.  00:84CC  FF FF FF FF FF FF FF FF 
-      38.  00:84D4                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      38.  00:84D4  FF FF FF FF FF FF FF FF 
-      39.  00:84DC                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      39.  00:84DC  FF FF FF FF FF FF FF FF 
-      40.  00:84E4                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      40.  00:84E4  FF FF FF FF FF FF FF FF 
-      41.  00:84EC                      	
-      42.  00:84EC                      sprite_planta:
-      43.  00:84EC                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      43.  00:84EC  FF FF FF FF FF FF FF FF 
-      44.  00:84F4                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      44.  00:84F4  FF FF FF FF FF FF FF FF 
-      45.  00:84FC                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      45.  00:84FC  FF FF FF FF FF FF FF FF 
-      46.  00:8504                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      46.  00:8504  FF FF FF FF FF FF FF FF 
-      47.  00:850C                      	
-      48.  00:850C                      sprite_ballesta_mejorada:
-      49.  00:850C                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      49.  00:850C  FF FF FF FF FF FF FF FF 
-      50.  00:8514                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      50.  00:8514  FF FF FF FF FF FF FF FF 
-      51.  00:851C                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      51.  00:851C  FF FF FF FF FF FF FF FF 
-      52.  00:8524                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
-      52.  00:8524  FF FF FF FF FF FF FF FF 
-      53.  00:852C                      	
-      54.  00:852C                      sprite_ciempies1:
-      55.  00:852C                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      55.  00:852C  FF FF FF FF FF FF FF FF 
-      56.  00:8534                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      56.  00:8534  FF FF FF FF FF FF FF FF 
-      57.  00:853C                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      57.  00:853C  FF FF FF FF FF FF FF FF 
-      58.  00:8544                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      58.  00:8544  FF FF FF FF FF FF FF FF 
-      59.  00:854C                      	
-      60.  00:854C                      sprite_ciempies2:
-      61.  00:854C                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      61.  00:854C  FF FF FF FF FF FF FF FF 
-      62.  00:8554                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      62.  00:8554  FF FF FF FF FF FF FF FF 
-      63.  00:855C                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      63.  00:855C  FF FF FF FF FF FF FF FF 
-      64.  00:8564                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      64.  00:8564  FF FF FF FF FF FF FF FF 
-      65.  00:856C                      	
-      66.  00:856C                      sprite_arana1:
-      67.  00:856C                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      67.  00:856C  FF FF FF FF FF FF FF FF 
-      68.  00:8574                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      68.  00:8574  FF FF FF FF FF FF FF FF 
-      69.  00:857C                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      69.  00:857C  FF FF FF FF FF FF FF FF 
-      70.  00:8584                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      70.  00:8584  FF FF FF FF FF FF FF FF 
-      71.  00:858C                      	
-      72.  00:858C                      sprite_arana2:
-      73.  00:858C                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      73.  00:858C  FF FF FF FF FF FF FF FF 
-      74.  00:8594                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      74.  00:8594  FF FF FF FF FF FF FF FF 
-      75.  00:859C                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      75.  00:859C  FF FF FF FF FF FF FF FF 
-      76.  00:85A4                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      76.  00:85A4  FF FF FF FF FF FF FF FF 
-      77.  00:85AC                      	
-      78.  00:85AC                      sprite_serpiente1:
-      79.  00:85AC                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      79.  00:85AC  FF FF FF FF FF FF FF FF 
-      80.  00:85B4                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      80.  00:85B4  FF FF FF FF FF FF FF FF 
-      81.  00:85BC                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      81.  00:85BC  FF FF FF FF FF FF FF FF 
-      82.  00:85C4                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      82.  00:85C4  FF FF FF FF FF FF FF FF 
-      83.  00:85CC                      	
-      84.  00:85CC                      sprite_serpiente2:
-      85.  00:85CC                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      85.  00:85CC  FF FF FF FF FF FF FF FF 
-      86.  00:85D4                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      86.  00:85D4  FF FF FF FF FF FF FF FF 
-      87.  00:85DC                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      87.  00:85DC  FF FF FF FF FF FF FF FF 
-      88.  00:85E4                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      88.  00:85E4  FF FF FF FF FF FF FF FF 
-      89.  00:85EC                      	
-      90.  00:85EC                      sprite_murcielago1:
-      91.  00:85EC                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      91.  00:85EC  FF FF FF FF FF FF FF FF 
-      92.  00:85F4                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      92.  00:85F4  FF FF FF FF FF FF FF FF 
-      93.  00:85FC                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      93.  00:85FC  FF FF FF FF FF FF FF FF 
-      94.  00:8604                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      94.  00:8604  FF FF FF FF FF FF FF FF 
-      95.  00:860C                      	
-      96.  00:860C                      sprite_murcielago2:
-      97.  00:860C                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      97.  00:860C  FF FF FF FF FF FF FF FF 
-      98.  00:8614                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      98.  00:8614  FF FF FF FF FF FF FF FF 
-      99.  00:861C                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      99.  00:861C  FF FF FF FF FF FF FF FF 
-     100.  00:8624                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
-     100.  00:8624  FF FF FF FF FF FF FF FF 
-     101.  00:862C                      	
-     102.  00:862C                      	
-     103.  00:862C                      	
-     104.  00:862C                      	
-     146   00:862C                      	
-     147   00:862C                      	include "habitaciones.asm"
-       1.  00:862C                      ;;=====================================================
-       2.  00:862C                      ;;DEFINICIÓN DE HABITACIONES x NIVEL
-       3.  00:862C                      ;;=====================================================	
-       4.  00:862C                      
-       5.  00:862C                      ; sólo voy a usar 7x7 pero como los arrays son lineales y voy a trabajar con matrices
-       6.  00:862C                      ; me interesa que seande  8x8 aunque sólo trabaje con 7x7
-       7.  00:862C                      
-       8.  00:862C                      ; ojo... la primera linea corresponderá a la primera linea del castillo no a la última
-       9.  00:862C                      
-      10.  00:862C                      ;; definición de estructura de bits
-      11.  00:862C                      ;Tipo DB pero serán 2 bytes por habitación byte primero (habitaciones etc) + byte 2º. Los bytes 15 y 16 se usan para información extra
-      12.  00:862C                      ;los 7 primeros bits del byte 15 indican si se ha pasado/limpiado una habitación o no
-      13.  00:862C                      ;~ 0 - lleno o vacío (si ya se ha pasado)
-      14.  00:862C                      ;~ 0000 - nº puertas 1 arriba 1 derecha 1 abajo 1 izquierda
-      15.  00:862C                      ;~ 1 - hay reliquia?
-      16.  00:862C                      ;~ 1 - hay vida extra
-      17.  00:862C                      ;~ 1 - hay arma extra (durará 6 pantallas - sonido distinto)
-      18.  00:862C                      ;~ 1 - hay energía? (sobran bits ... se puede usar otro como carga energía +)
-      19.  00:862C                      ;~ 1 - es pantalla de mostruo fin de fase?
-      20.  00:862C                      ;~ 1 - es pantalla inicial (equivaldría a la puerta de un castillo)?
-      21.  00:862C                      ;~ 1 - es pantalla final?
-      22.  00:862C                      
-      23.  00:862C                      
-      24.  00:862C                      ;importante: el byte de la columna 15 indicará con 1 y 0 habitaciones por las que se haya pasado
-      25.  00:862C                      ;cuando se inicie la partida todos se pondrán a 0
-      26.  00:862C                      
-      27.  00:862C                      habitacion_actual:
-      28.  00:862C  00 00               	db  #00,#00		;habitación donde se encuentre el prota. Se mete en una varible par traer todos los datos de golpe y no buscrlos varias veces
-      29.  00:862E                      
-      30.  00:862E                      habitaciones_juego:
-      31.  00:862E                      habitaciones_nivel1:
-      32.  00:862E                      ;---------------------------------* habitación inicial
-      33.  00:862E                      	db  #00,#00,#00,#00,#00,#00,#01,#00,#00,#00,#00,#00,#00,#00,#FF,#00 ;primera fila
-      33.  00:862E  00 00 00 00 00 00 01 00 00 00 00 00 00 00 FF 00 
-      34.  00:863E                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#FF,#00
-      34.  00:863E  00 00 00 00 00 00 00 00 00 00 00 00 00 00 FF 00 
-      35.  00:864E                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#FF,#00
-      35.  00:864E  00 00 00 00 00 00 00 00 00 00 00 00 00 00 FF 00 
-      36.  00:865E                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#FF,#00
-      36.  00:865E  00 00 00 00 00 00 00 00 00 00 00 00 00 00 FF 00 
-      37.  00:866E                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#FF,#00
-      37.  00:866E  00 00 00 00 00 00 00 00 00 00 00 00 00 00 FF 00 
-      38.  00:867E                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#FF,#00
-      38.  00:867E  00 00 00 00 00 00 00 00 00 00 00 00 00 00 FF 00 
-      39.  00:868E                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#FF,#00	;ultima fila
-      39.  00:868E  00 00 00 00 00 00 00 00 00 00 00 00 00 00 FF 00 
-      40.  00:869E                      	
-      41.  00:869E                      habitaciones_nivel2:
-      42.  00:869E                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00 ;primera fila
-      42.  00:869E  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      43.  00:86AE                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
-      43.  00:86AE  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      44.  00:86BE                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
-      44.  00:86BE  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      45.  00:86CE                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
-      45.  00:86CE  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      46.  00:86DE                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
-      46.  00:86DE  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      47.  00:86EE                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
-      47.  00:86EE  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      48.  00:86FE                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00	;ultima fila
-      48.  00:86FE  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      49.  00:870E                      	
-      50.  00:870E                      habitaciones_nivel3:
-      51.  00:870E                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00 ;primera fila
-      51.  00:870E  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      52.  00:871E                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
-      52.  00:871E  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      53.  00:872E                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
-      53.  00:872E  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      54.  00:873E                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
-      54.  00:873E  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      55.  00:874E                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
-      55.  00:874E  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      56.  00:875E                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
-      56.  00:875E  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      57.  00:876E                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00	;ultima fila
-      57.  00:876E  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      58.  00:877E                      	
-      59.  00:877E                      habitaciones_nivel4:
-      60.  00:877E                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00 ;primera fila
-      60.  00:877E  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      61.  00:878E                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
-      61.  00:878E  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      62.  00:879E                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
-      62.  00:879E  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      63.  00:87AE                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
-      63.  00:87AE  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      64.  00:87BE                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
-      64.  00:87BE  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      65.  00:87CE                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
-      65.  00:87CE  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      66.  00:87DE                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00	;ultima fila
-      66.  00:87DE  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      67.  00:87EE                      	
-      68.  00:87EE                      habitaciones_nivel5:
-      69.  00:87EE                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00 ;primera fila
-      69.  00:87EE  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      70.  00:87FE                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
-      70.  00:87FE  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      71.  00:880E                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
-      71.  00:880E  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      72.  00:881E                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
-      72.  00:881E  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      73.  00:882E                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
-      73.  00:882E  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      74.  00:883E                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
-      74.  00:883E  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      75.  00:884E                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00	;ultima fila
-      75.  00:884E  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      76.  00:885E                      	
-      77.  00:885E                      habitaciones_nivel6:
-      78.  00:885E                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00 ;primera fila
-      78.  00:885E  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      79.  00:886E                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
-      79.  00:886E  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      80.  00:887E                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
-      80.  00:887E  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      81.  00:888E                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
-      81.  00:888E  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      82.  00:889E                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
-      82.  00:889E  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      83.  00:88AE                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
-      83.  00:88AE  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      84.  00:88BE                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00	;ultima fila
-      84.  00:88BE  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      85.  00:88CE                      	
-      86.  00:88CE                      habitaciones_nivel7:
-      87.  00:88CE                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00 ;primera fila
-      87.  00:88CE  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      88.  00:88DE                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
-      88.  00:88DE  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      89.  00:88EE                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
-      89.  00:88EE  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      90.  00:88FE                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
-      90.  00:88FE  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      91.  00:890E                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
-      91.  00:890E  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      92.  00:891E                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
-      92.  00:891E  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      93.  00:892E                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00	;ultima fila
-      93.  00:892E  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-      94.  00:893E                      
-      95.  00:893E                      
-     148   00:893E                      	
-     149   00:893E                      	include "variables.asm"
-       1.  00:893E                      ;;=====================================================
-       2.  00:893E                      ;;DEFINICIÓN DE VARIABLES
-       3.  00:893E                      ;;=====================================================	
-       4.  00:893E                      ;definicion de variable del prota usando la estructura del punto de mira
-       5.  00:893E                      prota:		ESTRUCTURA_PUNTOMIRA
-       5.  00:893E  00 00 00 00 00 03 06 03 FA 03 
-       6.  00:8948                      
-       7.  00:8948                      array_aux_vidas: 		;array para pintar de golpe el marcador de vidas
-       8.  00:8948                      			DB		0,0,0,0,0,0,0,0
-       8.  00:8948  00 00 00 00 00 00 00 00 
-       9.  00:8950                      actualiza_vidas_sn:
-      10.  00:8950  00                  			DB		0 	;valor que indica si hay que actualizar el marcador de vidas 1 ó no 0
-      11.  00:8951                      
-      12.  00:8951                      array_aux_reliquias:	;array para pintar de golpe el marcador de reliquias
-      13.  00:8951                      			DB		0,0,0,0,0,0,0,0
-      13.  00:8951  00 00 00 00 00 00 00 00 
-      14.  00:8959                      actualiza_reliquias_sn:
-      15.  00:8959  00                  			DB		0 	;valor que indica si hay que actualizar el marcador de reliquias 1 ó no 0
-      16.  00:895A                      
-      17.  00:895A                      array_aux_energia:		;array para pintar de golpe el marcador de energía
-      18.  00:895A                      			DB		16,0,0,0,0,0,0 ;el 16 primero es porque siempre estará pintado el cuadro primero rojo
-      18.  00:895A  10 00 00 00 00 00 00 
-      19.  00:8961                      ultimo_pos_array_aux_energia:
-      20.  00:8961  00                  			DB		0			;el array completo es de 8 pero para posicionar sin niecesidad de cálculos  etiqueto este aparte
-      21.  00:8962                      			
-      22.  00:8962                      array_aux_mapa_limpiar:	;es por facilitar el reseteo del mapa (pinto 7 lineas en negro con bios) la otra opción es más larga en código y complicada aunque más rápida
-      23.  00:8962                      			DB		0,0,0,0,0,0,0
-      23.  00:8962  00 00 00 00 00 00 00 
-      24.  00:8969                      
-      25.  00:8969                      actualiza_puertas_sn:	;0 no 1 sí (se pone a 1 cuando se cambia de habitación y al terminar se vuelve a poner a 0)
-      26.  00:8969  00                  			DB		0 	;valor que indica si hay que actualizar las puertas de una pantalla (se crea porque sólo hay que actualizar si se cambia a de hab)
-      27.  00:896A                      			
-      28.  00:896A                      ;; nota importante: cada vez que se cambie de nivel se actualizará el contenido
-      29.  00:896A                      ;; arrays con mapa de tiles de las puertas
-      30.  00:896A                      array_puerta_arriba:
-      31.  00:896A  03 01 01 03         array_puerta_arriba1:		DB	3,1,1,3
-      32.  00:896E  01 01 01 01         array_puerta_arriba2:		DB	1,1,1,1
-      33.  00:8972  01 01 01 01         array_puerta_arriba3:		DB	1,1,1,1
-      34.  00:8976  01 01 01 01         array_puerta_arriba4:		DB	1,1,1,1
-      35.  00:897A  01 01 01 01         array_puerta_arriba5:		DB	1,1,1,1
-      36.  00:897E                      
-      37.  00:897E                      array_puerta_derecha:
-      38.  00:897E  01 03 03            array_puerta_derecha1:		DB	1,3,3
-      39.  00:8981  01 01 03            array_puerta_derecha2:		DB	1,1,3
-      40.  00:8984  01 01 01            array_puerta_derecha3:		DB	1,1,1
-      41.  00:8987  01 01 01            array_puerta_derecha4:		DB	1,1,1
-      42.  00:898A  01 01 01            array_puerta_derecha5:		DB	1,1,1
-      43.  00:898D  02 01 01            array_puerta_derecha6:		DB	2,1,1
-      44.  00:8990  04 02 01            array_puerta_derecha7:		DB	4,2,1
-      45.  00:8993                      	
-      46.  00:8993  01 01 01 01         array_puerta_abajo:			DB	1,1,1,1
-      47.  00:8997                      
-      48.  00:8997                      array_puerta_izquierda:
-      49.  00:8997  03 03 01            array_puerta_izquierda1:	DB	3,3,1
-      50.  00:899A  03 01 01            array_puerta_izquierda2:	DB	3,1,1
-      51.  00:899D  01 01 01            array_puerta_izquierda3:	DB	1,1,1
-      52.  00:89A0  01 01 01            array_puerta_izquierda4:	DB	1,1,1
-      53.  00:89A3  01 01 01            array_puerta_izquierda5:	DB	1,1,1
-      54.  00:89A6  01 01 02            array_puerta_izquierda6:	DB	1,1,2
-      55.  00:89A9  01 02 04            array_puerta_izquierda7:	DB	1,2,4
-      56.  00:89AC                      
-      57.  00:89AC                      array_sprites:			;array de 4 bytes x 32 sprites posibles en pantalla que sobreescribirá la tabla de sprites actualizando VRAM
-      58.  00:89AC  00 00 00 00         sprite_pos1:				DB 0,0,0,0
-      59.  00:89B0  00 00 00 00         sprite_pos2:				DB 0,0,0,0
-      60.  00:89B4  00 00 00 00         sprite_pos3:				DB 0,0,0,0
-      61.  00:89B8  00 00 00 00         sprite_pos4:				DB 0,0,0,0
-      62.  00:89BC  00 00 00 00         sprite_pos5:				DB 0,0,0,0
-      63.  00:89C0  00 00 00 00         sprite_pos6:				DB 0,0,0,0
-      64.  00:89C4  00 00 00 00         sprite_pos7:				DB 0,0,0,0
-      65.  00:89C8  00 00 00 00         sprite_pos8:				DB 0,0,0,0
-      66.  00:89CC  00 00 00 00         sprite_pos9:				DB 0,0,0,0
-      67.  00:89D0  00 00 00 00         sprite_pos10:				DB 0,0,0,0
-      68.  00:89D4  00 00 00 00         sprite_pos11:				DB 0,0,0,0
-      69.  00:89D8  00 00 00 00         sprite_pos12:				DB 0,0,0,0
-      70.  00:89DC  00 00 00 00         sprite_pos13:				DB 0,0,0,0
-      71.  00:89E0  00 00 00 00         sprite_pos14:				DB 0,0,0,0
-      72.  00:89E4  00 00 00 00         sprite_pos15:				DB 0,0,0,0
-      73.  00:89E8  00 00 00 00         sprite_pos16:				DB 0,0,0,0
-      74.  00:89EC  00 00 00 00         sprite_pos17:				DB 0,0,0,0
-      75.  00:89F0  00 00 00 00         sprite_pos18:				DB 0,0,0,0
-      76.  00:89F4  00 00 00 00         sprite_pos19:				DB 0,0,0,0
-      77.  00:89F8  00 00 00 00         sprite_pos20:				DB 0,0,0,0
-      78.  00:89FC  00 00 00 00         sprite_pos21:				DB 0,0,0,0
-      79.  00:8A00  00 00 00 00         sprite_pos22:				DB 0,0,0,0
-      80.  00:8A04  00 00 00 00         sprite_pos23:				DB 0,0,0,0
-      81.  00:8A08  00 00 00 00         sprite_pos24:				DB 0,0,0,0
-      82.  00:8A0C  00 00 00 00         sprite_pos25:				DB 0,0,0,0
-      83.  00:8A10  00 00 00 00         sprite_pos26:				DB 0,0,0,0
-      84.  00:8A14  00 00 00 00         sprite_pos27:				DB 0,0,0,0
-      85.  00:8A18  00 00 00 00         sprite_pos28:				DB 0,0,0,0
-      86.  00:8A1C  00 00 00 00         sprite_pos29:				DB 0,0,0,0
-      87.  00:8A20  00 00 00 00         sprite_pos30:				DB 0,0,0,0
-      88.  00:8A24  00 00 00 00         sprite_pos31:				DB 0,0,0,0
-      89.  00:8A28  00 00 00 00         sprite_pos32:				DB 0,0,0,0
-     150   00:8A2C                      
-     151   00:8A2C                      
-     152   00:8A2C                      	
-     153   00:8A2C                      ;;=====================================================
-     154   00:8A2C                      ;;DEFINICIÓN DE PANTALLAS
-     155   00:8A2C                      ;;=====================================================		
-     156   00:8A2C                      	include "pantallas.asm"
-       1.  00:8A2C                      ;;=====================================================
-       2.  00:8A2C                      ;;DEFINICIÓN DE PANTALLAS
-       3.  00:8A2C                      ;;=====================================================		
-       4.  00:8A2C                      
-       5.  00:8A2C                      ; bancos 1 y 2 y de pantalla 1 (en realidad es una pantalla de pruebas)
-       6.  00:8A2C                      tiles_patrones_pantalla11:	
-       7.  00:8A2C  (0023)              tiles_patrones_pantalla12:	incbin "pan1_23.bank1.bin.chr.pletter"
-       8.  00:8A4F                      tiles_color_pantalla11:		
-       9.  00:8A4F  (0018)              tiles_color_pantalla12:		incbin "pan1_23.bank1.bin.clr.pletter"
-      10.  00:8A67  (001A)              tiles_mapa_pantalla11:		incbin "pan1_23.bank0.bin.map.pletter"
-      11.  00:8A81  (002A)              tiles_mapa_pantalla12:		incbin "pan1_23.bank1.bin.map.pletter"
-      12.  00:8AAB                      
-      13.  00:8AAB                      
-      14.  00:8AAB                      
-      15.  00:8AAB                      
-      16.  00:8AAB                      
-      17.  00:8AAB                      
-      18.  00:8AAB                      ; 3º banco que es la parte de puntos, vidas, mapas, etc... es común
-      19.  00:8AAB  (0146)              tiles_patrones_pantalla3:	incbin "pan_33.bin.chr.pletter"
-      20.  00:8BF1  (0035)              tiles_color_pantalla3:		incbin "pan_33.bin.clr.pletter"
-      21.  00:8C26  (006F)              tiles_mapa_pantalla3:		incbin "pan_33.bin.map.pletter"
-      22.  00:8C95                      
-      23.  00:8C95                      ;NOTA: FALTARÍAN PANTALLAS ESPECIALES (POR DEFINIR)
-     157   00:8C95                      	
-     158   00:8C95                      END:
+     630.  00:8279                      ;***************************************************** esto hay que modificarlo para que saque los datos de la nueva variable habitacion_actual
+     631.  00:8279                      
+     632.  00:8279                      
+     633.  00:8279                      
+     634.  00:8279  CB 57               	BIT		2,A
+     635.  00:827B  C4 D7 82            	CALL	nz,pinta_puerta_der
+     636.  00:827E                      
+     637.  00:827E  CB 5F               	BIT		3,A
+     638.  00:8280  C4 C1 82            	CALL	nz,pinta_puerta_arr
+     639.  00:8283                      
+     640.  00:8283  CB 4F               	BIT		1,A
+     641.  00:8285  C4 AB 82            	CALL	nz,pinta_puerta_aba
+     642.  00:8288                      	
+     643.  00:8288  CB 47               	BIT		0,A
+     644.  00:828A  C4 ED 82            	CALL	nz,pinta_puerta_izq
+     645.  00:828D                      	
+     646.  00:828D  AF                  	XOR		 A
+     647.  00:828E  32 4C 89            	LD		(actualiza_puertas_sn),A ;(1 actualiza y 0 no actualiza puertas) se pone a 0 para que no actualice todo el tiempo (ya se ha actualizado)
+     648.  00:8291                      fin_pinta_puertas:
+     649.  00:8291  C9                  	RET
+     650.  00:8292                      
+     651.  00:8292                      
+     652.  00:8292                      ;;=====================================================
+     653.  00:8292                      ;;LOCALIZA_INFO_HABITACION
+     654.  00:8292                      ;;=====================================================	
+     655.  00:8292                      ; función: 	busca las puertas que hay que pintar egún la posición del usuario y las pone en A
+     656.  00:8292                      ; entrada: 	prota.pos_mapy, prota.pos_mapx, prota.nivel, habitaciones_juego
+     657.  00:8292                      ; salida: 	habitacion_actual
+     658.  00:8292                      ; toca:		A
+     659.  00:8292                      ;ejemplo: nivel 4, posx 5 y posy 3
+     660.  00:8292                      ;  (4 x 7) x 16 (se necesitan dos bytes y el prod de 16 es slr 4 veces)
+     661.  00:8292                      ; +(3 x 16) 	de la fila (se necesita 1 y byte el prod de 16 es slr 4 veces)
+     662.  00:8292                      ; +5        	de la columna 
+     663.  00:8292                      localiza_info_habitacion:
+     664.  00:8292  D9                  	EXX
+     665.  00:8293                      	
+     666.  00:8293                      	;inicializo variables a usar
+     667.  00:8293  AF                  	XOR		 A
+     668.  00:8294  6F                  	LD		 L,A
+     669.  00:8295  67                  	LD		 H,A
+     670.  00:8296  57                  	LD		 D,A
+     671.  00:8297  5F                  	LD		 E,A
+     672.  00:8298                      	
+     673.  00:8298                      ;~ ;primer sumando	
+     674.  00:8298                      	;~ LD		 A,(prota.nivel)	;cada nivel tiene 7 subniveles
+     675.  00:8298                      	;~ OR		 A
+     676.  00:8298                      	;~ JR		 Z,.fin_seg_prod
+     677.  00:8298                      	;~ LD		 B,A
+     678.  00:8298                      	;~ LD		 A,7
+     679.  00:8298                      ;~ .primer_prod
+     680.  00:8298                      	;~ ADD		 A
+     681.  00:8298                      	;~ DJNZ 	.primer_prod	;equivalente al 4x7
+     682.  00:8298                      ;~ .fin_primer_prod
+     683.  00:8298                      
+     684.  00:8298                      	;~ LD		 L,A			;preparo el registro de 2 bytes HL
+     685.  00:8298                      	;~ XOR		 A
+     686.  00:8298                      	;~ LD		 H,A
+     687.  00:8298                      
+     688.  00:8298                      	;~ LD		 B,16
+     689.  00:8298                      	;~ LD		 D,H
+     690.  00:8298                      	;~ LD		 L,E
+     691.  00:8298                      ;~ .seg_prod
+     692.  00:8298                      	;~ ADD		HL,DE
+     693.  00:8298                      	;~ DJNZ 	.seg_prod		;equivalente al 4x7x16
+     694.  00:8298                      ;~ .fin_seg_prod
+     695.  00:8298                      
+     696.  00:8298                      ;~ ;segundo sumando
+     697.  00:8298                      	;~ LD		 A,(prota.pos_mapy)
+     698.  00:8298                      	;~ SRL		 A
+     699.  00:8298                      	;~ SRL		 A
+     700.  00:8298                      	;~ SRL		 A
+     701.  00:8298                      	;~ SRL		 A				;equivalente a 3 x 16
+     702.  00:8298                      
+     703.  00:8298                      	;~ LD		 E,A
+     704.  00:8298                      	;~ XOR		 A
+     705.  00:8298                      	;~ LD		 D,A
+     706.  00:8298                      	;~ ADD		HL,DE			;equivale a 4x7x16 (HL) + 3x16 (DE)
+     707.  00:8298                      
+     708.  00:8298                      ;tercer sumando	
+     709.  00:8298  3A 26 89            	LD		 A,(prota.pos_mapx)
+     710.  00:829B  5F                  	LD		 E,A
+     711.  00:829C  AF                  	XOR		 A
+     712.  00:829D  57                  	LD		 D,A
+     713.  00:829E  19                  	ADD		HL,DE			;equivale a 4x7x16 (HL) + 3x16 (DE) + 5 (DE)
+     714.  00:829F                      	
+     715.  00:829F                      	;ahora colocamos resultado en variable habitacion_actual
+     716.  00:829F  DD 21 0F 86         	LD		IX,habitacion_actual
+     717.  00:82A3  DD 75 00            	LD		(IX),L
+     718.  00:82A6  DD 74 01            	LD		(IX + 1),H
+     719.  00:82A9                      	
+     720.  00:82A9  D9                  	EXX
+     721.  00:82AA                      fin_localiza_info_habitacion:
+     722.  00:82AA  C9                  	RET
+     723.  00:82AB                      	
+     724.  00:82AB                      
+     725.  00:82AB                      ;;=====================================================
+     726.  00:82AB                      ;;PINTA_PUERTA_ABA
+     727.  00:82AB                      ;;=====================================================	
+     728.  00:82AB                      ; función: 	pinta la puerta de abajo
+     729.  00:82AB                      ; entrada: 	array_puerta_abajo, wordaux2, wordaux1
+     730.  00:82AB                      ; salida: 	-
+     731.  00:82AB                      ; toca:		HL,BC, DE
+     732.  00:82AB                      pinta_puerta_aba:
+     733.  00:82AB  21 76 89            	LD		HL,array_puerta_abajo			;guardo puntero al array a pintar (como psar por referencia)
+     734.  00:82AE  22 74 82            	LD		(wordaux2),HL					;en la variable wordaux2
+     735.  00:82B1  21 EE 19            	LD		HL,SC2MAP + POSPUERABAJ			;calcula posición en tilemap
+     736.  00:82B4  22 72 82            	LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
+     737.  00:82B7  44                  	LD		B,H								;coloca posición tilemap BC
+     738.  00:82B8  4D                  	LD		C,L
+     739.  00:82B9  16 01               	LD		D,1								;nº de filas
+     740.  00:82BB  1E 04               	LD		E,4								;nº de columnas
+     741.  00:82BD  CD 3F 82            	CALL	pinta_array
+     742.  00:82C0                      fin_pinta_puerta_aba:
+     743.  00:82C0  C9                  	RET
+     744.  00:82C1                      
+     745.  00:82C1                      ;;=====================================================
+     746.  00:82C1                      ;;PINTA_PUERTA_ARR
+     747.  00:82C1                      ;;=====================================================	
+     748.  00:82C1                      ; función: 	pinta la puerta de arriba
+     749.  00:82C1                      ; entrada: 	array_puerta_arriba, wordaux2, wordaux1
+     750.  00:82C1                      ; salida: 	-
+     751.  00:82C1                      ; toca:		HL,BC, DE
+     752.  00:82C1                      pinta_puerta_arr:
+     753.  00:82C1  21 4D 89            	LD		HL,array_puerta_arriba			;guardo puntero al array a pintar (como psar por referencia)
+     754.  00:82C4  22 74 82            	LD		(wordaux2),HL					;en la variable wordaux2
+     755.  00:82C7  21 8E 18            	LD		HL,SC2MAP + POSPUERARRI			;calcula posición en tilemap
+     756.  00:82CA  22 72 82            	LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
+     757.  00:82CD  44                  	LD		B,H								;coloca posición tilemap BC
+     758.  00:82CE  4D                  	LD		C,L
+     759.  00:82CF  16 05               	LD		D,5								;nº de filas
+     760.  00:82D1  1E 04               	LD		E,4								;nº de columnas
+     761.  00:82D3  CD 3F 82            	CALL	pinta_array
+     762.  00:82D6                      fin_pinta_puerta_arr:
+     763.  00:82D6  C9                  	RET
+     764.  00:82D7                      
+     765.  00:82D7                      ;;=====================================================
+     766.  00:82D7                      ;;PINTA_PUERTA_DER
+     767.  00:82D7                      ;;=====================================================	
+     768.  00:82D7                      ; función: 	pinta la puerta de la derecha
+     769.  00:82D7                      ; entrada: 	array_puerta_derecha, wordaux2, wordaux1
+     770.  00:82D7                      ; salida: 	-
+     771.  00:82D7                      ; toca:		HL,BC, DE
+     772.  00:82D7                      pinta_puerta_der:
+     773.  00:82D7  21 61 89            	LD		HL,array_puerta_derecha			;guardo puntero al array a pintar (como psar por referencia)
+     774.  00:82DA  22 74 82            	LD		(wordaux2),HL					;en la variable wordaux2
+     775.  00:82DD  21 FC 18            	LD		HL,SC2MAP + POSPUERDERE			;calcula posición en tilemap
+     776.  00:82E0  22 72 82            	LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
+     777.  00:82E3  44                  	LD		B,H								;coloca posición tilemap BC
+     778.  00:82E4  4D                  	LD		C,L
+     779.  00:82E5  16 07               	LD		D,7								;nº de filas
+     780.  00:82E7  1E 03               	LD		E,3								;nº de columnas
+     781.  00:82E9  CD 3F 82            	CALL	pinta_array
+     782.  00:82EC                      fin_pinta_puerta_der:
+     783.  00:82EC  C9                  	RET
+     784.  00:82ED                      	
+     785.  00:82ED                      ;;=====================================================
+     786.  00:82ED                      ;;PINTA_PUERTA_IZQ
+     787.  00:82ED                      ;;=====================================================	
+     788.  00:82ED                      ; función: 	pinta la puerta de la izquierda
+     789.  00:82ED                      ; entrada: 	array_puerta_izquierda, wordaux2, wordaux1
+     790.  00:82ED                      ; salida: 	-
+     791.  00:82ED                      ; toca:		HL,BC, DE
+     792.  00:82ED                      pinta_puerta_izq:
+     793.  00:82ED  21 7A 89            	LD		HL,array_puerta_izquierda		;guardo puntero al array a pintar (como psar por referencia)
+     794.  00:82F0  22 74 82            	LD		(wordaux2),HL					;en la variable wordaux2
+     795.  00:82F3  21 E1 18            	LD		HL,SC2MAP + POSPUERIZQU			;calcula posición en tilemap
+     796.  00:82F6  22 72 82            	LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
+     797.  00:82F9  44                  	LD		B,H								;coloca posición tilemap BC
+     798.  00:82FA  4D                  	LD		C,L
+     799.  00:82FB  16 07               	LD		D,7								;nº de filas
+     800.  00:82FD  1E 03               	LD		E,3								;nº de columnas
+     801.  00:82FF  CD 3F 82            	CALL	pinta_array
+     802.  00:8302                      fin_pinta_puerta_izq:
+     803.  00:8302  C9                  	RET
+     804.  00:8303                      
+     805.  00:8303                      
+      87   00:8303                      
+      88   00:8303                      ;Este include lleva la rutina de descompresión de ROM/RAM a VRAM de pletter
+      89   00:8303                      ;Está adaptada de la original a sjasm
+      90   00:8303                      ;	HL = RAM/ROM source	; DE = VRAM destination
+      91   00:8303                      depack_VRAM:
+      92   00:8303                      	include "PL_VRAM_Depack_SJASM.asm"
+       1.  00:8303                      ;-----------------------------------------------------------
+       2.  00:8303                      ; Pletter v0.5b VRAM Depacker v1.1 - 16Kb version
+       3.  00:8303                      ; HL = RAM/ROM source ; DE = VRAM destination
+       4.  00:8303                      ;-----------------------------------------------------------
+       5.  00:8303  F3                  	di
+       6.  00:8304                      
+       7.  00:8304                      ; VRAM address setup
+       8.  00:8304  7B                  	ld	a,e
+       9.  00:8305  D3 99               	out	[099h],a
+      10.  00:8307  7A                  	ld	a,d
+      11.  00:8308  F6 40               	or	040h
+      12.  00:830A  D3 99               	out	[099h],a
+      13.  00:830C                      
+      14.  00:830C                      ; Initialization
+      15.  00:830C  7E                  	ld	a,[hl]
+      16.  00:830D  23                  	inc	hl
+      17.  00:830E  D9                  	exx
+      18.  00:830F  11 00 00            	ld	de,0
+      19.  00:8312  87                  	add	a,a
+      20.  00:8313  3C                  	inc	a
+      21.  00:8314  CB 13               	rl	e
+      22.  00:8316  87                  	add	a,a
+      23.  00:8317  CB 13               	rl	e
+      24.  00:8319  87                  	add	a,a
+      25.  00:831A  CB 13               	rl	e
+      26.  00:831C  CB 13               	rl	e
+      27.  00:831E  21 D5 83            	ld	hl,modes
+      28.  00:8321  19                  	add	hl,de
+      29.  00:8322  5E                  	ld	e,[hl]
+      30.  00:8323  DD 6B               	ld	ixl,e
+      31.  00:8325  23                  	inc	hl
+      32.  00:8326  5E                  	ld	e,[hl]
+      33.  00:8327  DD 63               	ld	ixh,e
+      34.  00:8329  1E 01               	ld	e,1
+      35.  00:832B  D9                  	exx
+      36.  00:832C  FD 21 35 83         	ld	iy,loop
+      37.  00:8330                      
+      38.  00:8330                      ; Main depack loop
+      39.  00:8330  0E 98               literal:ld	c,098h
+      40.  00:8332  ED A3               	outi
+      41.  00:8334  13                  	inc	de
+      42.  00:8335  87                  loop:	add	a,a
+      43.  00:8336  CC C9 83              	call	z,getbit
+      44.  00:8339  30 F5               	jr	nc,literal
+      45.  00:833B                      
+      46.  00:833B                      ; Compressed data
+      47.  00:833B  D9                  	exx
+      48.  00:833C  62                  	ld	h,d
+      49.  00:833D  6B                  	ld	l,e
+      50.  00:833E  87                  getlen: add	a,a
+      51.  00:833F  CC CD 83            	call	z,getbitexx
+      52.  00:8342  30 1D               	jr	nc,lenok
+      53.  00:8344  87                  lus:	add	a,a
+      54.  00:8345  CC CD 83            	call	z,getbitexx
+      55.  00:8348  ED 6A               	adc	hl,hl
+      56.  00:834A  D8                  	ret	c
+      57.  00:834B  87                  	add	a,a
+      58.  00:834C  CC CD 83            	call	z,getbitexx
+      59.  00:834F  30 10               	jr	nc,lenok
+      60.  00:8351  87                  	add	a,a
+      61.  00:8352  CC CD 83            	call	z,getbitexx
+      62.  00:8355  ED 6A               	adc	hl,hl
+      63.  00:8357  DA D3 83            	jp	c,Depack_out
+      64.  00:835A  87                  	add	a,a
+      65.  00:835B  CC CD 83            	call	z,getbitexx
+      66.  00:835E  DA 44 83            	jp	c,lus
+      67.  00:8361  23                  lenok:  inc	hl
+      68.  00:8362  D9                  	exx
+      69.  00:8363  4E                  	ld	c,[hl]
+      70.  00:8364  23                  	inc	hl
+      71.  00:8365  06 00               	ld	b,0
+      72.  00:8367  CB 79               	bit	7,c
+      73.  00:8369  CA 9C 83            	jp	z,offsok
+      74.  00:836C  DD E9               	jp	ix
+      75.  00:836E                      
+      76.  00:836E  87                  mode7:  add	a,a
+      77.  00:836F  CC C9 83              	call	z,getbit
+      78.  00:8372  CB 10               	rl	b
+      79.  00:8374  87                  mode6:	add	a,a
+      80.  00:8375  CC C9 83              	call	z,getbit
+      81.  00:8378  CB 10               	rl	b
+      82.  00:837A  87                  mode5:  add	a,a
+      83.  00:837B  CC C9 83              	call	z,getbit
+      84.  00:837E  CB 10               	rl	b
+      85.  00:8380  87                  mode4:  add	a,a
+      86.  00:8381  CC C9 83              	call	z,getbit
+      87.  00:8384  CB 10               	rl	b
+      88.  00:8386  87                  mode3:  add	a,a
+      89.  00:8387  CC C9 83              	call	z,getbit
+      90.  00:838A  CB 10               	rl	b
+      91.  00:838C  87                  mode2:	add	a,a
+      92.  00:838D  CC C9 83              	call	z,getbit
+      93.  00:8390  CB 10               	rl	b
+      94.  00:8392  87                  	add	a,a
+      95.  00:8393  CC C9 83              	call	z,getbit
+      96.  00:8396  30 04               	jr	nc,offsok
+      97.  00:8398  B7                  	or	a
+      98.  00:8399  04                  	inc	b
+      99.  00:839A  CB B9               	res	7,c
+     100.  00:839C  03                  offsok: inc	bc
+     101.  00:839D  E5                  	push	hl
+     102.  00:839E  D9                  	exx
+     103.  00:839F  E5                  	push	hl
+     104.  00:83A0  D9                  	exx
+     105.  00:83A1  6B                  	ld	l,e
+     106.  00:83A2  62                  	ld	h,d
+     107.  00:83A3  ED 42               	sbc	hl,bc
+     108.  00:83A5  C1                  	pop	bc
+     109.  00:83A6  F5                  	push	af
+     110.  00:83A7  7D                  .loop:	ld	a,l
+     111.  00:83A8  D3 99               	out	[099h],a
+     112.  00:83AA  7C                  	ld	a,h
+     113.  00:83AB  00                  	nop                     ; VDP timing
+     114.  00:83AC  D3 99               	out	[099h],a
+     115.  00:83AE  00                  	nop                     ; VDP timing
+     116.  00:83AF  DB 98               	in	a,[098h]
+     117.  00:83B1  08                  	ex	af,af'
+     118.  00:83B2  7B                  	ld	a,e
+     119.  00:83B3  00                  	nop			; VDP timing
+     120.  00:83B4  D3 99               	out	[099h],a
+     121.  00:83B6  7A                  	ld	a,d
+     122.  00:83B7  F6 40               	or	040h
+     123.  00:83B9  D3 99               	out	[099h],a
+     124.  00:83BB  08                  	ex	af,af'
+     125.  00:83BC  00                  	nop			; VDP timing
+     126.  00:83BD  D3 98               	out	[098h],a
+     127.  00:83BF  13                  	inc	de
+     128.  00:83C0  ED A1               	cpi
+     129.  00:83C2  EA A7 83            	jp	pe,.loop
+     130.  00:83C5  F1                  	pop	af
+     131.  00:83C6  E1                  	pop	hl
+     132.  00:83C7  FD E9               	jp	iy
+     133.  00:83C9                      
+     134.  00:83C9  7E                  getbit: ld	a,[hl]
+     135.  00:83CA  23                  	inc	hl
+     136.  00:83CB  17                  	rla
+     137.  00:83CC  C9                  	ret
+     138.  00:83CD                      
+     139.  00:83CD                      getbitexx:
+     140.  00:83CD  D9                  	exx
+     141.  00:83CE  7E                  	ld	a,[hl]
+     142.  00:83CF  23                  	inc	hl
+     143.  00:83D0  D9                  	exx
+     144.  00:83D1  17                  	rla
+     145.  00:83D2  C9                  	ret
+     146.  00:83D3                      
+     147.  00:83D3                      ; Depacker exit
+     148.  00:83D3                      Depack_out:
+     149.  00:83D3  FB                  	ei
+     150.  00:83D4  C9                  	ret
+     151.  00:83D5                      
+     152.  00:83D5                      modes:
+     153.  00:83D5  9C 83               	dw	offsok
+     154.  00:83D7  8C 83               	dw	mode2
+     155.  00:83D9  86 83               	dw	mode3
+     156.  00:83DB  80 83               	dw	mode4
+     157.  00:83DD  7A 83               	dw	mode5
+     158.  00:83DF  74 83               	dw	mode6
+     159.  00:83E1  6E 83               	dw	mode7
+      93   00:83E3                      
+      94   00:83E3                      
+      95   00:83E3                      
+      96   00:83E3                      ; sólo para hacer pruebas y pinter la parte de las vidas y demás
+      97   00:83E3                      inicializa_variables_pruebas:
+      98   00:83E3  3E 03               	LD		 A,3
+      99   00:83E5  32 28 89            	LD		(prota.vidas),A
+     100   00:83E8                      
+     101   00:83E8  3E 01               	LD		 A,SI	
+     102   00:83EA  32 33 89            	LD		(actualiza_vidas_sn),A	;actualizo la variable para que pinte vidas 1 sí / 0 no
+     103   00:83ED                      
+     104   00:83ED  3E 02               	LD		 A,2
+     105   00:83EF  32 2A 89            	LD		(prota.reliquias),A
+     106   00:83F2                      	
+     107   00:83F2  3E 01               	LD		 A,SI	
+     108   00:83F4  32 3C 89            	LD		(actualiza_reliquias_sn),A	;actualizo la variable para que pinte vidas 1 sí / 0 no
+     109   00:83F7                      
+     110   00:83F7  3E 08               	LD		 A,8
+     111   00:83F9  32 29 89            	LD		(prota.energia),A
+     112   00:83FC                      
+     113   00:83FC  AF                  	XOR		 A
+     114   00:83FD  32 25 89            	LD		(prota.nivel),A		;nivel empieza en 0 para usar las posiciones ascii
+     115   00:8400                      	
+     116   00:8400                      	;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
+     117   00:8400                      	;será igual la posición inicial en todos los niveles
+     118   00:8400  AF                  	XOR		 A
+     119   00:8401  32 27 89            	LD		(prota.pos_mapy),A	;pos y dentro del nivel (se empieza en 0)
+     120   00:8404  3E 03               	LD		 A,3				;en realidad es la posición 4 pero se empieza a numerar en 0
+     121   00:8406  32 26 89            	LD		(prota.pos_mapx),A	;pos y dentro del nivel (se empieza en 0)
+     122   00:8409                      
+     123   00:8409                      	
+     124   00:8409                      	;************************************************
+     125   00:8409                      	;importante : revisar pintado de mapa
+     126   00:8409                      
+     127   00:8409  3E 01               	LD			 A,1
+     128   00:840B  32 4C 89            	LD			(actualiza_puertas_sn),A ;(1 actualiza y 0 no actualiza puertas)
+     129   00:840E                      fin_inicializa_variables_pruebas:
+     130   00:840E  C9                  	RET
+     131   00:840F                      
+     132   00:840F                      
+     133   00:840F                      
+     134   00:840F                      
+     135   00:840F                      
+     136   00:840F                      	
+     137   00:840F                      ;;=====================================================
+     138   00:840F                      ;;DEFINICIÓN DE ESTRUCTURAS
+     139   00:840F                      ;;=====================================================		
+     140   00:840F                      	include "estructuras.asm"
+       1.  00:840F                      ;;=====================================================
+       2.  00:840F                      ;;DEFINICIÓN DE ESTRUCTURAS
+       3.  00:840F                      ;;=====================================================
+       4.  00:840F                      
+       5.  00:840F                      	STRUCT ESTRUCTURA_PUNTOMIRA
+       6.  00:840F                    < posx		DB		0
+       7.  00:840F                    < posy		DB		0
+       8.  00:840F                    < color		DB		0
+       9.  00:840F                    < retardo		DB		0
+      10.  00:840F                    < ; al final he decidido (ya que el punto de mira es el prota) que lo relacionado con el prota vaya en esta estructura
+      11.  00:840F                    < nivel		DB		0
+      12.  00:840F                    < ;pos_map	DB		0	;(si hace falta sitio y no afecta a velocidad se puede usar) como es una matriz de 8x8 (aunque sólo use 7x7) se usa el bytealto para fila y el byte bajo para columna
+      13.  00:840F                    < pos_mapx	DB		3	;pos columna
+      14.  00:840F                    < pos_mapy	DB		6	;pos fila
+      15.  00:840F                    < vidas		DB		3
+      16.  00:840F                    < energia		DB		250
+      17.  00:840F                    < reliquias	DB		3
+      18.  00:840F                    < 	ENDSTRUCT;ESTRUCTURA_PUNTOMIRA
+      19.  00:840F                      	
+      20.  00:840F                      	STRUCT ESTRUCTURA_ENEMIGO
+      21.  00:840F                    < existe		DB		0			;0 no existe y 1 existe (así recorro el array y sólo actuo en los enemigos creados no muertos)
+      22.  00:840F                    < tipo		DB		0			;(0 serpiente)
+      23.  00:840F                    < posx		DB		50
+      24.  00:840F                    < posy		DB		50
+      25.  00:840F                    < color		DB		5
+      26.  00:840F                    < paso		DB		0			;paso 0 o 1 (2 escenas)
+      27.  00:840F                    < retardo		DB		0			;entre 0 y 9
+      28.  00:840F                    < energia		DB		0			;energía del enemigo... si llega a 0 => existe <- 0
+      29.  00:840F                    < 	ENDSTRUCT;ESTRUCTURA_PUNTOMIRAA
+     141   00:840F                      	
+     142   00:840F                      ;;=====================================================
+     143   00:840F                      ;;DEFINICIÓN DE VARIABLES
+     144   00:840F                      ;;=====================================================		
+     145   00:840F                      	include "sprites.asm"
+       1.  00:840F                      ;;=====================================================
+       2.  00:840F                      ;;DEFINICIÓN DE SPRITES
+       3.  00:840F                      ;;=====================================================	
+       4.  00:840F                      sprites_pantantalla:
+       5.  00:840F                      
+       6.  00:840F                      sprite_punto_mira_1:
+       7.  00:840F                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+       7.  00:840F  FF FF FF FF FF FF FF FF 
+       8.  00:8417                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+       8.  00:8417  FF FF FF FF FF FF FF FF 
+       9.  00:841F                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+       9.  00:841F  FF FF FF FF FF FF FF FF 
+      10.  00:8427                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      10.  00:8427  FF FF FF FF FF FF FF FF 
+      11.  00:842F                      	
+      12.  00:842F                      sprite_punto_mira_2:
+      13.  00:842F                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      13.  00:842F  FF FF FF FF FF FF FF FF 
+      14.  00:8437                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      14.  00:8437  FF FF FF FF FF FF FF FF 
+      15.  00:843F                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      15.  00:843F  FF FF FF FF FF FF FF FF 
+      16.  00:8447                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      16.  00:8447  FF FF FF FF FF FF FF FF 
+      17.  00:844F                      	
+      18.  00:844F                      sprite_punto_mira_1_mejorado:
+      19.  00:844F                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      19.  00:844F  FF FF FF FF FF FF FF FF 
+      20.  00:8457                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      20.  00:8457  FF FF FF FF FF FF FF FF 
+      21.  00:845F                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      21.  00:845F  FF FF FF FF FF FF FF FF 
+      22.  00:8467                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      22.  00:8467  FF FF FF FF FF FF FF FF 
+      23.  00:846F                      
+      24.  00:846F                      sprite_punto_mira_2_mejorado:
+      25.  00:846F                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      25.  00:846F  FF FF FF FF FF FF FF FF 
+      26.  00:8477                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      26.  00:8477  FF FF FF FF FF FF FF FF 
+      27.  00:847F                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      27.  00:847F  FF FF FF FF FF FF FF FF 
+      28.  00:8487                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      28.  00:8487  FF FF FF FF FF FF FF FF 
+      29.  00:848F                      	
+      30.  00:848F                      sprite_reliquia:
+      31.  00:848F                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      31.  00:848F  FF FF FF FF FF FF FF FF 
+      32.  00:8497                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      32.  00:8497  FF FF FF FF FF FF FF FF 
+      33.  00:849F                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      33.  00:849F  FF FF FF FF FF FF FF FF 
+      34.  00:84A7                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      34.  00:84A7  FF FF FF FF FF FF FF FF 
+      35.  00:84AF                      	
+      36.  00:84AF                      sprite_vida_extra:
+      37.  00:84AF                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      37.  00:84AF  FF FF FF FF FF FF FF FF 
+      38.  00:84B7                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      38.  00:84B7  FF FF FF FF FF FF FF FF 
+      39.  00:84BF                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      39.  00:84BF  FF FF FF FF FF FF FF FF 
+      40.  00:84C7                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      40.  00:84C7  FF FF FF FF FF FF FF FF 
+      41.  00:84CF                      	
+      42.  00:84CF                      sprite_planta:
+      43.  00:84CF                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      43.  00:84CF  FF FF FF FF FF FF FF FF 
+      44.  00:84D7                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      44.  00:84D7  FF FF FF FF FF FF FF FF 
+      45.  00:84DF                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      45.  00:84DF  FF FF FF FF FF FF FF FF 
+      46.  00:84E7                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      46.  00:84E7  FF FF FF FF FF FF FF FF 
+      47.  00:84EF                      	
+      48.  00:84EF                      sprite_ballesta_mejorada:
+      49.  00:84EF                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      49.  00:84EF  FF FF FF FF FF FF FF FF 
+      50.  00:84F7                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      50.  00:84F7  FF FF FF FF FF FF FF FF 
+      51.  00:84FF                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      51.  00:84FF  FF FF FF FF FF FF FF FF 
+      52.  00:8507                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
+      52.  00:8507  FF FF FF FF FF FF FF FF 
+      53.  00:850F                      	
+      54.  00:850F                      sprite_ciempies1:
+      55.  00:850F                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      55.  00:850F  FF FF FF FF FF FF FF FF 
+      56.  00:8517                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      56.  00:8517  FF FF FF FF FF FF FF FF 
+      57.  00:851F                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      57.  00:851F  FF FF FF FF FF FF FF FF 
+      58.  00:8527                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      58.  00:8527  FF FF FF FF FF FF FF FF 
+      59.  00:852F                      	
+      60.  00:852F                      sprite_ciempies2:
+      61.  00:852F                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      61.  00:852F  FF FF FF FF FF FF FF FF 
+      62.  00:8537                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      62.  00:8537  FF FF FF FF FF FF FF FF 
+      63.  00:853F                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      63.  00:853F  FF FF FF FF FF FF FF FF 
+      64.  00:8547                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      64.  00:8547  FF FF FF FF FF FF FF FF 
+      65.  00:854F                      	
+      66.  00:854F                      sprite_arana1:
+      67.  00:854F                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      67.  00:854F  FF FF FF FF FF FF FF FF 
+      68.  00:8557                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      68.  00:8557  FF FF FF FF FF FF FF FF 
+      69.  00:855F                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      69.  00:855F  FF FF FF FF FF FF FF FF 
+      70.  00:8567                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      70.  00:8567  FF FF FF FF FF FF FF FF 
+      71.  00:856F                      	
+      72.  00:856F                      sprite_arana2:
+      73.  00:856F                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      73.  00:856F  FF FF FF FF FF FF FF FF 
+      74.  00:8577                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      74.  00:8577  FF FF FF FF FF FF FF FF 
+      75.  00:857F                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      75.  00:857F  FF FF FF FF FF FF FF FF 
+      76.  00:8587                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      76.  00:8587  FF FF FF FF FF FF FF FF 
+      77.  00:858F                      	
+      78.  00:858F                      sprite_serpiente1:
+      79.  00:858F                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      79.  00:858F  FF FF FF FF FF FF FF FF 
+      80.  00:8597                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      80.  00:8597  FF FF FF FF FF FF FF FF 
+      81.  00:859F                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      81.  00:859F  FF FF FF FF FF FF FF FF 
+      82.  00:85A7                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      82.  00:85A7  FF FF FF FF FF FF FF FF 
+      83.  00:85AF                      	
+      84.  00:85AF                      sprite_serpiente2:
+      85.  00:85AF                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      85.  00:85AF  FF FF FF FF FF FF FF FF 
+      86.  00:85B7                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      86.  00:85B7  FF FF FF FF FF FF FF FF 
+      87.  00:85BF                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      87.  00:85BF  FF FF FF FF FF FF FF FF 
+      88.  00:85C7                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      88.  00:85C7  FF FF FF FF FF FF FF FF 
+      89.  00:85CF                      	
+      90.  00:85CF                      sprite_murcielago1:
+      91.  00:85CF                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      91.  00:85CF  FF FF FF FF FF FF FF FF 
+      92.  00:85D7                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      92.  00:85D7  FF FF FF FF FF FF FF FF 
+      93.  00:85DF                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      93.  00:85DF  FF FF FF FF FF FF FF FF 
+      94.  00:85E7                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      94.  00:85E7  FF FF FF FF FF FF FF FF 
+      95.  00:85EF                      	
+      96.  00:85EF                      sprite_murcielago2:
+      97.  00:85EF                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      97.  00:85EF  FF FF FF FF FF FF FF FF 
+      98.  00:85F7                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      98.  00:85F7  FF FF FF FF FF FF FF FF 
+      99.  00:85FF                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      99.  00:85FF  FF FF FF FF FF FF FF FF 
+     100.  00:8607                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
+     100.  00:8607  FF FF FF FF FF FF FF FF 
+     101.  00:860F                      	
+     102.  00:860F                      	
+     103.  00:860F                      	
+     104.  00:860F                      	
+     146   00:860F                      	
+     147   00:860F                      	include "habitaciones.asm"
+       1.  00:860F                      ;;=====================================================
+       2.  00:860F                      ;;DEFINICIÓN DE HABITACIONES x NIVEL
+       3.  00:860F                      ;;=====================================================	
+       4.  00:860F                      
+       5.  00:860F                      ; sólo voy a usar 7x7 pero como los arrays son lineales y voy a trabajar con matrices
+       6.  00:860F                      ; me interesa que seande  8x8 aunque sólo trabaje con 7x7
+       7.  00:860F                      
+       8.  00:860F                      ; ojo... la primera linea corresponderá a la primera linea del castillo no a la última
+       9.  00:860F                      
+      10.  00:860F                      ;; definición de estructura de bits
+      11.  00:860F                      ;Tipo DB pero serán 2 bytes por habitación byte primero (habitaciones etc) + byte 2º. Los bytes 15 y 16 se usan para información extra
+      12.  00:860F                      ;los 7 primeros bits del byte 15 indican si se ha pasado/limpiado una habitación o no
+      13.  00:860F                      ;~ 0 - lleno o vacío (si ya se ha pasado)
+      14.  00:860F                      ;~ 0000 - nº puertas 1 arriba 1 derecha 1 abajo 1 izquierda
+      15.  00:860F                      ;~ 1 - hay reliquia?
+      16.  00:860F                      ;~ 1 - hay vida extra
+      17.  00:860F                      ;~ 1 - hay arma extra (durará 6 pantallas - sonido distinto)
+      18.  00:860F                      ;~ 1 - hay energía? (sobran bits ... se puede usar otro como carga energía +)
+      19.  00:860F                      ;~ 1 - es pantalla de mostruo fin de fase?
+      20.  00:860F                      ;~ 1 - es pantalla inicial (equivaldría a la puerta de un castillo)?
+      21.  00:860F                      ;~ 1 - es pantalla final?
+      22.  00:860F                      
+      23.  00:860F                      
+      24.  00:860F                      ;importante: el byte de la columna 15 indicará con 1 y 0 habitaciones por las que se haya pasado
+      25.  00:860F                      ;cuando se inicie la partida todos se pondrán a 0
+      26.  00:860F                      
+      27.  00:860F                      habitacion_actual:
+      28.  00:860F  00 00               	db  #00,#00		;habitación donde se encuentre el prota. Se mete en una varible par traer todos los datos de golpe y no buscrlos varias veces
+      29.  00:8611                      
+      30.  00:8611                      habitaciones_juego:
+      31.  00:8611                      habitaciones_nivel1:
+      32.  00:8611                      ;---------------------------------* habitación inicial
+      33.  00:8611                      	db  #00,#00,#00,#00,#00,#00,#01,#00,#00,#00,#00,#00,#00,#00,#FF,#00 ;primera fila
+      33.  00:8611  00 00 00 00 00 00 01 00 00 00 00 00 00 00 FF 00 
+      34.  00:8621                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#FF,#00
+      34.  00:8621  00 00 00 00 00 00 00 00 00 00 00 00 00 00 FF 00 
+      35.  00:8631                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#FF,#00
+      35.  00:8631  00 00 00 00 00 00 00 00 00 00 00 00 00 00 FF 00 
+      36.  00:8641                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#FF,#00
+      36.  00:8641  00 00 00 00 00 00 00 00 00 00 00 00 00 00 FF 00 
+      37.  00:8651                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#FF,#00
+      37.  00:8651  00 00 00 00 00 00 00 00 00 00 00 00 00 00 FF 00 
+      38.  00:8661                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#FF,#00
+      38.  00:8661  00 00 00 00 00 00 00 00 00 00 00 00 00 00 FF 00 
+      39.  00:8671                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#FF,#00	;ultima fila
+      39.  00:8671  00 00 00 00 00 00 00 00 00 00 00 00 00 00 FF 00 
+      40.  00:8681                      	
+      41.  00:8681                      habitaciones_nivel2:
+      42.  00:8681                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00 ;primera fila
+      42.  00:8681  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      43.  00:8691                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
+      43.  00:8691  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      44.  00:86A1                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
+      44.  00:86A1  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      45.  00:86B1                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
+      45.  00:86B1  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      46.  00:86C1                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
+      46.  00:86C1  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      47.  00:86D1                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
+      47.  00:86D1  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      48.  00:86E1                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00	;ultima fila
+      48.  00:86E1  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      49.  00:86F1                      	
+      50.  00:86F1                      habitaciones_nivel3:
+      51.  00:86F1                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00 ;primera fila
+      51.  00:86F1  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      52.  00:8701                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
+      52.  00:8701  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      53.  00:8711                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
+      53.  00:8711  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      54.  00:8721                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
+      54.  00:8721  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      55.  00:8731                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
+      55.  00:8731  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      56.  00:8741                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
+      56.  00:8741  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      57.  00:8751                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00	;ultima fila
+      57.  00:8751  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      58.  00:8761                      	
+      59.  00:8761                      habitaciones_nivel4:
+      60.  00:8761                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00 ;primera fila
+      60.  00:8761  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      61.  00:8771                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
+      61.  00:8771  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      62.  00:8781                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
+      62.  00:8781  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      63.  00:8791                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
+      63.  00:8791  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      64.  00:87A1                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
+      64.  00:87A1  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      65.  00:87B1                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
+      65.  00:87B1  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      66.  00:87C1                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00	;ultima fila
+      66.  00:87C1  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      67.  00:87D1                      	
+      68.  00:87D1                      habitaciones_nivel5:
+      69.  00:87D1                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00 ;primera fila
+      69.  00:87D1  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      70.  00:87E1                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
+      70.  00:87E1  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      71.  00:87F1                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
+      71.  00:87F1  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      72.  00:8801                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
+      72.  00:8801  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      73.  00:8811                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
+      73.  00:8811  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      74.  00:8821                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
+      74.  00:8821  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      75.  00:8831                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00	;ultima fila
+      75.  00:8831  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      76.  00:8841                      	
+      77.  00:8841                      habitaciones_nivel6:
+      78.  00:8841                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00 ;primera fila
+      78.  00:8841  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      79.  00:8851                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
+      79.  00:8851  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      80.  00:8861                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
+      80.  00:8861  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      81.  00:8871                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
+      81.  00:8871  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      82.  00:8881                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
+      82.  00:8881  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      83.  00:8891                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
+      83.  00:8891  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      84.  00:88A1                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00	;ultima fila
+      84.  00:88A1  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      85.  00:88B1                      	
+      86.  00:88B1                      habitaciones_nivel7:
+      87.  00:88B1                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00 ;primera fila
+      87.  00:88B1  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      88.  00:88C1                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
+      88.  00:88C1  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      89.  00:88D1                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
+      89.  00:88D1  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      90.  00:88E1                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
+      90.  00:88E1  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      91.  00:88F1                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
+      91.  00:88F1  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      92.  00:8901                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
+      92.  00:8901  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      93.  00:8911                      	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00	;ultima fila
+      93.  00:8911  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+      94.  00:8921                      
+      95.  00:8921                      
+     148   00:8921                      	
+     149   00:8921                      	include "variables.asm"
+       1.  00:8921                      ;;=====================================================
+       2.  00:8921                      ;;DEFINICIÓN DE VARIABLES
+       3.  00:8921                      ;;=====================================================	
+       4.  00:8921                      ;definicion de variable del prota usando la estructura del punto de mira
+       5.  00:8921                      prota:		ESTRUCTURA_PUNTOMIRA
+       5.  00:8921  00 00 00 00 00 03 06 03 FA 03 
+       6.  00:892B                      
+       7.  00:892B                      array_aux_vidas: 		;array para pintar de golpe el marcador de vidas
+       8.  00:892B                      			DB		0,0,0,0,0,0,0,0
+       8.  00:892B  00 00 00 00 00 00 00 00 
+       9.  00:8933                      actualiza_vidas_sn:
+      10.  00:8933  00                  			DB		0 	;valor que indica si hay que actualizar el marcador de vidas 1 ó no 0
+      11.  00:8934                      
+      12.  00:8934                      array_aux_reliquias:	;array para pintar de golpe el marcador de reliquias
+      13.  00:8934                      			DB		0,0,0,0,0,0,0,0
+      13.  00:8934  00 00 00 00 00 00 00 00 
+      14.  00:893C                      actualiza_reliquias_sn:
+      15.  00:893C  00                  			DB		0 	;valor que indica si hay que actualizar el marcador de reliquias 1 ó no 0
+      16.  00:893D                      
+      17.  00:893D                      array_aux_energia:		;array para pintar de golpe el marcador de energía
+      18.  00:893D                      			DB		16,0,0,0,0,0,0 ;el 16 primero es porque siempre estará pintado el cuadro primero rojo
+      18.  00:893D  10 00 00 00 00 00 00 
+      19.  00:8944                      ultimo_pos_array_aux_energia:
+      20.  00:8944  00                  			DB		0			;el array completo es de 8 pero para posicionar sin niecesidad de cálculos  etiqueto este aparte
+      21.  00:8945                      			
+      22.  00:8945                      array_aux_mapa_limpiar:	;es por facilitar el reseteo del mapa (pinto 7 lineas en negro con bios) la otra opción es más larga en código y complicada aunque más rápida
+      23.  00:8945                      			DB		0,0,0,0,0,0,0
+      23.  00:8945  00 00 00 00 00 00 00 
+      24.  00:894C                      
+      25.  00:894C                      actualiza_puertas_sn:	;0 no 1 sí (se pone a 1 cuando se cambia de habitación y al terminar se vuelve a poner a 0)
+      26.  00:894C  00                  			DB		0 	;valor que indica si hay que actualizar las puertas de una pantalla (se crea porque sólo hay que actualizar si se cambia a de hab)
+      27.  00:894D                      			
+      28.  00:894D                      ;; nota importante: cada vez que se cambie de nivel se actualizará el contenido
+      29.  00:894D                      ;; arrays con mapa de tiles de las puertas
+      30.  00:894D                      array_puerta_arriba:
+      31.  00:894D  03 01 01 03         array_puerta_arriba1:		DB	3,1,1,3
+      32.  00:8951  01 01 01 01         array_puerta_arriba2:		DB	1,1,1,1
+      33.  00:8955  01 01 01 01         array_puerta_arriba3:		DB	1,1,1,1
+      34.  00:8959  01 01 01 01         array_puerta_arriba4:		DB	1,1,1,1
+      35.  00:895D  01 01 01 01         array_puerta_arriba5:		DB	1,1,1,1
+      36.  00:8961                      
+      37.  00:8961                      array_puerta_derecha:
+      38.  00:8961  01 03 03            array_puerta_derecha1:		DB	1,3,3
+      39.  00:8964  01 01 03            array_puerta_derecha2:		DB	1,1,3
+      40.  00:8967  01 01 01            array_puerta_derecha3:		DB	1,1,1
+      41.  00:896A  01 01 01            array_puerta_derecha4:		DB	1,1,1
+      42.  00:896D  01 01 01            array_puerta_derecha5:		DB	1,1,1
+      43.  00:8970  02 01 01            array_puerta_derecha6:		DB	2,1,1
+      44.  00:8973  04 02 01            array_puerta_derecha7:		DB	4,2,1
+      45.  00:8976                      	
+      46.  00:8976  01 01 01 01         array_puerta_abajo:			DB	1,1,1,1
+      47.  00:897A                      
+      48.  00:897A                      array_puerta_izquierda:
+      49.  00:897A  03 03 01            array_puerta_izquierda1:	DB	3,3,1
+      50.  00:897D  03 01 01            array_puerta_izquierda2:	DB	3,1,1
+      51.  00:8980  01 01 01            array_puerta_izquierda3:	DB	1,1,1
+      52.  00:8983  01 01 01            array_puerta_izquierda4:	DB	1,1,1
+      53.  00:8986  01 01 01            array_puerta_izquierda5:	DB	1,1,1
+      54.  00:8989  01 01 02            array_puerta_izquierda6:	DB	1,1,2
+      55.  00:898C  01 02 04            array_puerta_izquierda7:	DB	1,2,4
+      56.  00:898F                      
+      57.  00:898F                      array_sprites:			;array de 4 bytes x 32 sprites posibles en pantalla que sobreescribirá la tabla de sprites actualizando VRAM
+      58.  00:898F  00 00 00 00         sprite_pos1:				DB 0,0,0,0
+      59.  00:8993  00 00 00 00         sprite_pos2:				DB 0,0,0,0
+      60.  00:8997  00 00 00 00         sprite_pos3:				DB 0,0,0,0
+      61.  00:899B  00 00 00 00         sprite_pos4:				DB 0,0,0,0
+      62.  00:899F  00 00 00 00         sprite_pos5:				DB 0,0,0,0
+      63.  00:89A3  00 00 00 00         sprite_pos6:				DB 0,0,0,0
+      64.  00:89A7  00 00 00 00         sprite_pos7:				DB 0,0,0,0
+      65.  00:89AB  00 00 00 00         sprite_pos8:				DB 0,0,0,0
+      66.  00:89AF  00 00 00 00         sprite_pos9:				DB 0,0,0,0
+      67.  00:89B3  00 00 00 00         sprite_pos10:				DB 0,0,0,0
+      68.  00:89B7  00 00 00 00         sprite_pos11:				DB 0,0,0,0
+      69.  00:89BB  00 00 00 00         sprite_pos12:				DB 0,0,0,0
+      70.  00:89BF  00 00 00 00         sprite_pos13:				DB 0,0,0,0
+      71.  00:89C3  00 00 00 00         sprite_pos14:				DB 0,0,0,0
+      72.  00:89C7  00 00 00 00         sprite_pos15:				DB 0,0,0,0
+      73.  00:89CB  00 00 00 00         sprite_pos16:				DB 0,0,0,0
+      74.  00:89CF  00 00 00 00         sprite_pos17:				DB 0,0,0,0
+      75.  00:89D3  00 00 00 00         sprite_pos18:				DB 0,0,0,0
+      76.  00:89D7  00 00 00 00         sprite_pos19:				DB 0,0,0,0
+      77.  00:89DB  00 00 00 00         sprite_pos20:				DB 0,0,0,0
+      78.  00:89DF  00 00 00 00         sprite_pos21:				DB 0,0,0,0
+      79.  00:89E3  00 00 00 00         sprite_pos22:				DB 0,0,0,0
+      80.  00:89E7  00 00 00 00         sprite_pos23:				DB 0,0,0,0
+      81.  00:89EB  00 00 00 00         sprite_pos24:				DB 0,0,0,0
+      82.  00:89EF  00 00 00 00         sprite_pos25:				DB 0,0,0,0
+      83.  00:89F3  00 00 00 00         sprite_pos26:				DB 0,0,0,0
+      84.  00:89F7  00 00 00 00         sprite_pos27:				DB 0,0,0,0
+      85.  00:89FB  00 00 00 00         sprite_pos28:				DB 0,0,0,0
+      86.  00:89FF  00 00 00 00         sprite_pos29:				DB 0,0,0,0
+      87.  00:8A03  00 00 00 00         sprite_pos30:				DB 0,0,0,0
+      88.  00:8A07  00 00 00 00         sprite_pos31:				DB 0,0,0,0
+      89.  00:8A0B  00 00 00 00         sprite_pos32:				DB 0,0,0,0
+     150   00:8A0F                      
+     151   00:8A0F                      
+     152   00:8A0F                      	
+     153   00:8A0F                      ;;=====================================================
+     154   00:8A0F                      ;;DEFINICIÓN DE PANTALLAS
+     155   00:8A0F                      ;;=====================================================		
+     156   00:8A0F                      	include "pantallas.asm"
+       1.  00:8A0F                      ;;=====================================================
+       2.  00:8A0F                      ;;DEFINICIÓN DE PANTALLAS
+       3.  00:8A0F                      ;;=====================================================		
+       4.  00:8A0F                      
+       5.  00:8A0F                      ; bancos 1 y 2 y de pantalla 1 (en realidad es una pantalla de pruebas)
+       6.  00:8A0F                      tiles_patrones_pantalla11:	
+       7.  00:8A0F  (0023)              tiles_patrones_pantalla12:	incbin "pan1_23.bank1.bin.chr.pletter"
+       8.  00:8A32                      tiles_color_pantalla11:		
+       9.  00:8A32  (0018)              tiles_color_pantalla12:		incbin "pan1_23.bank1.bin.clr.pletter"
+      10.  00:8A4A  (001A)              tiles_mapa_pantalla11:		incbin "pan1_23.bank0.bin.map.pletter"
+      11.  00:8A64  (002A)              tiles_mapa_pantalla12:		incbin "pan1_23.bank1.bin.map.pletter"
+      12.  00:8A8E                      
+      13.  00:8A8E                      
+      14.  00:8A8E                      
+      15.  00:8A8E                      
+      16.  00:8A8E                      
+      17.  00:8A8E                      
+      18.  00:8A8E                      ; 3º banco que es la parte de puntos, vidas, mapas, etc... es común
+      19.  00:8A8E  (0146)              tiles_patrones_pantalla3:	incbin "pan_33.bin.chr.pletter"
+      20.  00:8BD4  (0035)              tiles_color_pantalla3:		incbin "pan_33.bin.clr.pletter"
+      21.  00:8C09  (006F)              tiles_mapa_pantalla3:		incbin "pan_33.bin.map.pletter"
+      22.  00:8C78                      
+      23.  00:8C78                      ;NOTA: FALTARÍAN PANTALLAS ESPECIALES (POR DEFINIR)
+     157   00:8C78                      	
+     158   00:8C78                      END:
 
     LABELS
 -------------------------------------------------
@@ -1836,38 +1852,36 @@ Errors: 0
 00:00008274   wordaux2
 00:00008276   pinta_puertas
 00:00008291 X fin_pinta_puertas
-00:00008292   localiza_puertas
-00:00008299   localiza_puertas.primer_prod
-00:000082A3   localiza_puertas.seg_prod
-00:000082C7 X fin_localiza_puertas
-00:000082C8   pinta_puerta_aba
-00:000082DD X fin_pinta_puerta_aba
-00:000082DE   pinta_puerta_arr
-00:000082F3 X fin_pinta_puerta_arr
-00:000082F4   pinta_puerta_der
-00:00008309 X fin_pinta_puerta_der
-00:0000830A   pinta_puerta_izq
-00:0000831F X fin_pinta_puerta_izq
-00:00008320   depack_VRAM
-00:0000834D   literal
-00:00008352   loop
-00:0000835B X getlen
-00:00008361   lus
-00:0000837E   lenok
-00:0000838B   mode7
-00:00008391   mode6
-00:00008397   mode5
-00:0000839D   mode4
-00:000083A3   mode3
-00:000083A9   mode2
-00:000083B9   offsok
-00:000083C4   offsok.loop
-00:000083E6   getbit
-00:000083EA   getbitexx
-00:000083F0   Depack_out
-00:000083F2   modes
-00:00008400   inicializa_variables_pruebas
-00:0000842B X fin_inicializa_variables_pruebas
+00:00008292   localiza_info_habitacion
+00:000082AA X fin_localiza_info_habitacion
+00:000082AB   pinta_puerta_aba
+00:000082C0 X fin_pinta_puerta_aba
+00:000082C1   pinta_puerta_arr
+00:000082D6 X fin_pinta_puerta_arr
+00:000082D7   pinta_puerta_der
+00:000082EC X fin_pinta_puerta_der
+00:000082ED   pinta_puerta_izq
+00:00008302 X fin_pinta_puerta_izq
+00:00008303   depack_VRAM
+00:00008330   literal
+00:00008335   loop
+00:0000833E X getlen
+00:00008344   lus
+00:00008361   lenok
+00:0000836E   mode7
+00:00008374   mode6
+00:0000837A   mode5
+00:00008380   mode4
+00:00008386   mode3
+00:0000838C   mode2
+00:0000839C   offsok
+00:000083A7   offsok.loop
+00:000083C9   getbit
+00:000083CD   getbitexx
+00:000083D3   Depack_out
+00:000083D5   modes
+00:000083E3   inicializa_variables_pruebas
+00:0000840E X fin_inicializa_variables_pruebas
 00:00000000 X ESTRUCTURA_PUNTOMIRA.posx
 00:00000001 X ESTRUCTURA_PUNTOMIRA.posy
 00:00000002 X ESTRUCTURA_PUNTOMIRA.color
@@ -1888,117 +1902,117 @@ Errors: 0
 00:00000006 X ESTRUCTURA_ENEMIGO.retardo
 00:00000007 X ESTRUCTURA_ENEMIGO.energia
 00:00000008 X ESTRUCTURA_ENEMIGO
-00:0000842C X sprites_pantantalla
-00:0000842C X sprite_punto_mira_1
-00:0000844C X sprite_punto_mira_2
-00:0000846C X sprite_punto_mira_1_mejorado
-00:0000848C X sprite_punto_mira_2_mejorado
-00:000084AC X sprite_reliquia
-00:000084CC X sprite_vida_extra
-00:000084EC X sprite_planta
-00:0000850C X sprite_ballesta_mejorada
-00:0000852C X sprite_ciempies1
-00:0000854C X sprite_ciempies2
-00:0000856C X sprite_arana1
-00:0000858C X sprite_arana2
-00:000085AC X sprite_serpiente1
-00:000085CC X sprite_serpiente2
-00:000085EC X sprite_murcielago1
-00:0000860C X sprite_murcielago2
-00:0000862C   habitacion_actual
-00:0000862E   habitaciones_juego
-00:0000862E X habitaciones_nivel1
-00:0000869E X habitaciones_nivel2
-00:0000870E X habitaciones_nivel3
-00:0000877E X habitaciones_nivel4
-00:000087EE X habitaciones_nivel5
-00:0000885E X habitaciones_nivel6
-00:000088CE X habitaciones_nivel7
-00:0000893E X prota
-00:0000893E   prota.posx
-00:0000893F   prota.posy
-00:00008940 X prota.color
-00:00008941 X prota.retardo
-00:00008942   prota.nivel
-00:00008943   prota.pos_mapx
-00:00008944   prota.pos_mapy
-00:00008945   prota.vidas
-00:00008946   prota.energia
-00:00008947   prota.reliquias
-00:00008948   array_aux_vidas
-00:00008950   actualiza_vidas_sn
-00:00008951   array_aux_reliquias
-00:00008959   actualiza_reliquias_sn
-00:0000895A   array_aux_energia
-00:00008961   ultimo_pos_array_aux_energia
-00:00008962   array_aux_mapa_limpiar
-00:00008969   actualiza_puertas_sn
-00:0000896A   array_puerta_arriba
-00:0000896A X array_puerta_arriba1
-00:0000896E X array_puerta_arriba2
-00:00008972 X array_puerta_arriba3
-00:00008976 X array_puerta_arriba4
-00:0000897A X array_puerta_arriba5
-00:0000897E   array_puerta_derecha
-00:0000897E X array_puerta_derecha1
-00:00008981 X array_puerta_derecha2
-00:00008984 X array_puerta_derecha3
-00:00008987 X array_puerta_derecha4
-00:0000898A X array_puerta_derecha5
-00:0000898D X array_puerta_derecha6
-00:00008990 X array_puerta_derecha7
-00:00008993   array_puerta_abajo
-00:00008997   array_puerta_izquierda
-00:00008997 X array_puerta_izquierda1
-00:0000899A X array_puerta_izquierda2
-00:0000899D X array_puerta_izquierda3
-00:000089A0 X array_puerta_izquierda4
-00:000089A3 X array_puerta_izquierda5
-00:000089A6 X array_puerta_izquierda6
-00:000089A9 X array_puerta_izquierda7
-00:000089AC X array_sprites
-00:000089AC X sprite_pos1
-00:000089B0 X sprite_pos2
-00:000089B4 X sprite_pos3
-00:000089B8 X sprite_pos4
-00:000089BC X sprite_pos5
-00:000089C0 X sprite_pos6
-00:000089C4 X sprite_pos7
-00:000089C8 X sprite_pos8
-00:000089CC X sprite_pos9
-00:000089D0 X sprite_pos10
-00:000089D4 X sprite_pos11
-00:000089D8 X sprite_pos12
-00:000089DC X sprite_pos13
-00:000089E0 X sprite_pos14
-00:000089E4 X sprite_pos15
-00:000089E8 X sprite_pos16
-00:000089EC X sprite_pos17
-00:000089F0 X sprite_pos18
-00:000089F4 X sprite_pos19
-00:000089F8 X sprite_pos20
-00:000089FC X sprite_pos21
-00:00008A00 X sprite_pos22
-00:00008A04 X sprite_pos23
-00:00008A08 X sprite_pos24
-00:00008A0C X sprite_pos25
-00:00008A10 X sprite_pos26
-00:00008A14 X sprite_pos27
-00:00008A18 X sprite_pos28
-00:00008A1C X sprite_pos29
-00:00008A20 X sprite_pos30
-00:00008A24 X sprite_pos31
-00:00008A28 X sprite_pos32
-00:00008A2C   tiles_patrones_pantalla11
-00:00008A2C   tiles_patrones_pantalla12
-00:00008A4F   tiles_color_pantalla11
-00:00008A4F   tiles_color_pantalla12
-00:00008A67   tiles_mapa_pantalla11
-00:00008A81   tiles_mapa_pantalla12
-00:00008AAB   tiles_patrones_pantalla3
-00:00008BF1   tiles_color_pantalla3
-00:00008C26   tiles_mapa_pantalla3
-00:00008C95   END
+00:0000840F X sprites_pantantalla
+00:0000840F X sprite_punto_mira_1
+00:0000842F X sprite_punto_mira_2
+00:0000844F X sprite_punto_mira_1_mejorado
+00:0000846F X sprite_punto_mira_2_mejorado
+00:0000848F X sprite_reliquia
+00:000084AF X sprite_vida_extra
+00:000084CF X sprite_planta
+00:000084EF X sprite_ballesta_mejorada
+00:0000850F X sprite_ciempies1
+00:0000852F X sprite_ciempies2
+00:0000854F X sprite_arana1
+00:0000856F X sprite_arana2
+00:0000858F X sprite_serpiente1
+00:000085AF X sprite_serpiente2
+00:000085CF X sprite_murcielago1
+00:000085EF X sprite_murcielago2
+00:0000860F   habitacion_actual
+00:00008611   habitaciones_juego
+00:00008611 X habitaciones_nivel1
+00:00008681 X habitaciones_nivel2
+00:000086F1 X habitaciones_nivel3
+00:00008761 X habitaciones_nivel4
+00:000087D1 X habitaciones_nivel5
+00:00008841 X habitaciones_nivel6
+00:000088B1 X habitaciones_nivel7
+00:00008921 X prota
+00:00008921 X prota.posx
+00:00008922 X prota.posy
+00:00008923 X prota.color
+00:00008924 X prota.retardo
+00:00008925   prota.nivel
+00:00008926   prota.pos_mapx
+00:00008927   prota.pos_mapy
+00:00008928   prota.vidas
+00:00008929   prota.energia
+00:0000892A   prota.reliquias
+00:0000892B   array_aux_vidas
+00:00008933   actualiza_vidas_sn
+00:00008934   array_aux_reliquias
+00:0000893C   actualiza_reliquias_sn
+00:0000893D   array_aux_energia
+00:00008944   ultimo_pos_array_aux_energia
+00:00008945   array_aux_mapa_limpiar
+00:0000894C   actualiza_puertas_sn
+00:0000894D   array_puerta_arriba
+00:0000894D X array_puerta_arriba1
+00:00008951 X array_puerta_arriba2
+00:00008955 X array_puerta_arriba3
+00:00008959 X array_puerta_arriba4
+00:0000895D X array_puerta_arriba5
+00:00008961   array_puerta_derecha
+00:00008961 X array_puerta_derecha1
+00:00008964 X array_puerta_derecha2
+00:00008967 X array_puerta_derecha3
+00:0000896A X array_puerta_derecha4
+00:0000896D X array_puerta_derecha5
+00:00008970 X array_puerta_derecha6
+00:00008973 X array_puerta_derecha7
+00:00008976   array_puerta_abajo
+00:0000897A   array_puerta_izquierda
+00:0000897A X array_puerta_izquierda1
+00:0000897D X array_puerta_izquierda2
+00:00008980 X array_puerta_izquierda3
+00:00008983 X array_puerta_izquierda4
+00:00008986 X array_puerta_izquierda5
+00:00008989 X array_puerta_izquierda6
+00:0000898C X array_puerta_izquierda7
+00:0000898F X array_sprites
+00:0000898F X sprite_pos1
+00:00008993 X sprite_pos2
+00:00008997 X sprite_pos3
+00:0000899B X sprite_pos4
+00:0000899F X sprite_pos5
+00:000089A3 X sprite_pos6
+00:000089A7 X sprite_pos7
+00:000089AB X sprite_pos8
+00:000089AF X sprite_pos9
+00:000089B3 X sprite_pos10
+00:000089B7 X sprite_pos11
+00:000089BB X sprite_pos12
+00:000089BF X sprite_pos13
+00:000089C3 X sprite_pos14
+00:000089C7 X sprite_pos15
+00:000089CB X sprite_pos16
+00:000089CF X sprite_pos17
+00:000089D3 X sprite_pos18
+00:000089D7 X sprite_pos19
+00:000089DB X sprite_pos20
+00:000089DF X sprite_pos21
+00:000089E3 X sprite_pos22
+00:000089E7 X sprite_pos23
+00:000089EB X sprite_pos24
+00:000089EF X sprite_pos25
+00:000089F3 X sprite_pos26
+00:000089F7 X sprite_pos27
+00:000089FB X sprite_pos28
+00:000089FF X sprite_pos29
+00:00008A03 X sprite_pos30
+00:00008A07 X sprite_pos31
+00:00008A0B X sprite_pos32
+00:00008A0F   tiles_patrones_pantalla11
+00:00008A0F   tiles_patrones_pantalla12
+00:00008A32   tiles_color_pantalla11
+00:00008A32   tiles_color_pantalla12
+00:00008A4A   tiles_mapa_pantalla11
+00:00008A64   tiles_mapa_pantalla12
+00:00008A8E   tiles_patrones_pantalla3
+00:00008BD4   tiles_color_pantalla3
+00:00008C09   tiles_mapa_pantalla3
+00:00008C78   END
 
 
  Output: t4.out
@@ -2013,7 +2027,7 @@ Errors: 0
 -------------------------------------------------
 
  Page: 00
-  Org: 00008000  Size: *  Used: 00000C9C
+  Org: 00008000  Size: *  Used: 00000C7F
 
    Address   Length Align   Label
-   00008000    3228         START
+   00008000    3199         START
