@@ -10,8 +10,8 @@ retardo		DB		0
 ; al final he decidido (ya que el punto de mira es el prota) que lo relacionado con el prota vaya en esta estructura
 nivel		DB		0
 ;pos_map	DB		0	;(si hace falta sitio y no afecta a velocidad se puede usar) como es una matriz de 8x8 (aunque sólo use 7x7) se usa el bytealto para fila y el byte bajo para columna
-pos_mapx	DB		3	;pos columna
-pos_mapy	DB		6	;pos fila
+pos_mapx	DB		0	;pos columna
+pos_mapy	DB		0	;pos fila
 vidas		DB		3
 energia		DB		250
 reliquias	DB		3

@@ -34,12 +34,8 @@ START:
 	CALL	pinta_nivel
 	CALL	borra_mapa
 	
-	LD 		 A,1
-	LD		(prota.pos_mapx),A
-	LD 		 A,6
-	LD		(prota.pos_mapy),A
-	LD		 A,1
-	CALL	posiciona_en_mapa	
+
+;	CALL	posiciona_en_mapa (ha cambiado ahroa usa variable porsiciona mapa depurar) *************************** funcion a actualizar 	
 	
 loop_principal:
 	HALT							;espera VBLANK y sincroniza

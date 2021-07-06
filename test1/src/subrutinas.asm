@@ -493,7 +493,7 @@ fin_borra_mapa:
 ; función: 	en el mapa de marcadores de la derecha/abajo marca un cuadro en gris o con un muñeco
 ;			según el valor de prota.posición pinta entrá un muñeco y por donde vaya pasando el prota
 ;			quedará en gris
-; entrada: 	A (tipo 0 gris 1 - tile 0,muñeco - tile 19) *********** no sé si sería bueno usar PUSH A y aquí POP A
+; entrada: 	A (tipo 0 gris 1 - tile 0,muñeco - tile 19) , var_posiciona_en_mapa (xxxx fila y 0000 columna)
 ; salida: 	-
 ; toca:		todos
 posiciona_en_mapa:
@@ -505,14 +505,18 @@ posiciona_en_mapa:
 
 	;sumar fila
 	LD		DE,32	;32 ancho del mapa de tiles de una pantalla
-	LD 		 A,(prota.pos_mapy)
+	LD 		 A,(var_posiciona_en_mapa)
+[4]	RRA
 	LD		 B,A
 prod_coloca_fila:	
 	ADD		HL,DE
 	DJNZ	prod_coloca_fila
 	
 	;suma columna
-	LD		DE,#0003
+	LD 		 A,(var_posiciona_en_mapa)
+	AND		 A,00001111b
+	LD		 D,0
+	LD		 E,A
 	ADD		HL,DE
 	
 	;resultado en BC
@@ -532,7 +536,8 @@ fin_pinta_pos_mapa:
 	CALL	pinta_tile_suelto
 fin_posiciona_en_mapa:
 	RET
-
+var_posiciona_en_mapa:
+	db		#00;
 
 
 ;=====================================================
@@ -664,11 +669,11 @@ localiza_info_habitacion:
 	EXX
 	
 	;inicializo variables a usar
-	XOR		 A
-	LD		 L,A
-	LD		 H,A
-	LD		 D,A
-	LD		 E,A
+	;~ XOR		 A
+	;~ LD		 L,A
+	;~ LD		 H,A
+	;~ LD		 D,A
+	;~ LD		 E,A
 	
 ;~ ;primer sumando	
 	;~ LD		 A,(prota.nivel)	;cada nivel tiene 7 subniveles
@@ -705,17 +710,38 @@ localiza_info_habitacion:
 	;~ LD		 D,A
 	;~ ADD		HL,DE			;equivale a 4x7x16 (HL) + 3x16 (DE)
 
-;tercer sumando	
+;tercer sumando
+	LD		HL,habitaciones_juego 	;equivale a 4x7x16 (HL) + 3x16 (DE) + 5 (DE)
 	LD		 A,(prota.pos_mapx)
-	LD		 E,A
-	XOR		 A
-	LD		 D,A
-	ADD		HL,DE			;equivale a 4x7x16 (HL) + 3x16 (DE) + 5 (DE)
+	LD		 B,A
+.situa_columna:
+	INC		HL
+	INC		HL
+	DJNZ	.situa_columna
 	
-	;ahora colocamos resultado en variable habitacion_actual
+;colocamos resultado en habitación actual
 	LD		IX,habitacion_actual
-	LD		(IX),L
-	LD		(IX + 1),H
+	LD		 A,(HL)
+	LD		(IX),A
+	INC		HL
+	LD		 A,(HL)
+	LD		(IX+1),A
+
+	
+	
+	
+	;~ LD		IX,habitacion_actual	;colocamos el valor en habitación actual
+	;~ LD		A,(HL)
+	;~ LD		(IX),A
+	;~ INC		HL
+	;~ LD		A,(HL)
+	;~ LD		(IX+1),A
+	
+	;~ LD			IX,habitacion_actual
+	;~ LD			 A,5
+	;~ LD			(IX),A
+	;~ LD			 A,7
+	;~ LD			(IX+1),A
 	
 	EXX
 fin_localiza_info_habitacion:
