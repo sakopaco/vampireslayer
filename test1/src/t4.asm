@@ -136,20 +136,25 @@ localiza_info_habitacion:
 	;~ DJNZ 	.seg_prod		;equivalente al 4x7x16
 ;~ .fin_seg_prod
 
-;~ ;segundo sumando
-	;~ LD		 A,(prota.pos_mapy)
-	;~ SRL		 A
-	;~ SRL		 A
-	;~ SRL		 A
-	;~ SRL		 A				;equivalente a 3 x 16
+	LD		HL, habitaciones_juego 	;equivale a 4x7x16 (HL) + 3x16 (DE) + 5 (DE)
 
-	;~ LD		 E,A
-	;~ XOR		 A
-	;~ LD		 D,A
-	;~ ADD		HL,DE			;equivale a 4x7x16 (HL) + 3x16 (DE)
+
+************** REVISAR PORQUE SUMA UNO DE MÁS
+
+
+;segundo sumando
+	LD		 A,(prota.pos_mapy)
+	SLA		 A
+	SLA		 A
+	SLA		 A
+	SLA		 A				;equivalente a 3 x 16
+
+	LD		 E,A
+	XOR		 A
+	LD		 D,A
+	ADD		HL,DE			;equivale a 4x7x16 (HL) + 3x16 (DE)
 
 ;tercer sumando
-	LD		HL, habitaciones_juego 	;equivale a 4x7x16 (HL) + 3x16 (DE) + 5 (DE)
 	LD		 A, (prota.pos_mapx)
 	LD		 B, A
 .situa_columna:
@@ -164,22 +169,6 @@ localiza_info_habitacion:
 	INC		HL
 	LD		 A, (HL)
 	LD		(IX+1), A
-
-	
-	
-	
-	;~ LD		IX,habitacion_actual	;colocamos el valor en habitación actual
-	;~ LD		A,(HL)
-	;~ LD		(IX),A
-	;~ INC		HL
-	;~ LD		A,(HL)
-	;~ LD		(IX+1),A
-	
-	;~ LD			IX,habitacion_actual
-	;~ LD			 A,5
-	;~ LD			(IX),A
-	;~ LD			 A,7
-	;~ LD			(IX+1),A
 	
 	EXX
 fin_localiza_info_habitacion:
@@ -192,37 +181,37 @@ fin_localiza_info_habitacion:
 
 ; sólo para hacer pruebas y pinter la parte de las vidas y demás
 inicializa_variables_pruebas:
-	LD		 A,3
+	LD		 A, 3
 	LD		(prota.vidas),A
 
-	LD		 A,SI	
-	LD		(actualiza_vidas_sn),A	;actualizo la variable para que pinte vidas 1 sí / 0 no
+	LD		 A, SI	
+	LD		(actualiza_vidas_sn), A	;actualizo la variable para que pinte vidas 1 sí / 0 no
 
-	LD		 A,2
-	LD		(prota.reliquias),A
+	LD		 A, 2
+	LD		(prota.reliquias), A
 	
-	LD		 A,SI	
-	LD		(actualiza_reliquias_sn),A	;actualizo la variable para que pinte vidas 1 sí / 0 no
+	LD		 A, SI	
+	LD		(actualiza_reliquias_sn), A	;actualizo la variable para que pinte vidas 1 sí / 0 no
 
-	LD		 A,8
-	LD		(prota.energia),A
+	LD		 A, 8
+	LD		(prota.energia), A
 
 	XOR		 A
-	LD		(prota.nivel),A		;nivel empieza en 0 para usar las posiciones ascii
+	LD		(prota.nivel), A		;nivel empieza en 0 para usar las posiciones ascii
 	
 	;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
 	;será igual la posición inicial en todos los niveles
-	XOR		 A
-	LD		(prota.pos_mapy),A	;pos y dentro del nivel (se empieza en 0)
-	LD		 A,6				;en realidad es la posición 4 pero se empieza a numerar en 0
-	LD		(prota.pos_mapx),A	;pos y dentro del nivel (se empieza en 0)
+	LD		 A, 3
+	LD		(prota.pos_mapy), A	;pos y dentro del nivel (se empieza en 0)
+	LD		 A, 6				;en realidad es la posición 4 pero se empieza a numerar en 0
+	LD		(prota.pos_mapx), A	;pos y dentro del nivel (se empieza en 0)
 
 	
 	;************************************************
 	;importante : revisar pintado de mapa
 
-	LD			 A,1
-	LD			(actualiza_puertas_sn),A ;(1 actualiza y 0 no actualiza puertas)
+	LD			 A, 1 
+	LD			(actualiza_puertas_sn), A;(1 actualiza y 0 no actualiza puertas)
 fin_inicializa_variables_pruebas:
 	RET
 
