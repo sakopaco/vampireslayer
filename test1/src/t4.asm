@@ -89,6 +89,107 @@ depack_VRAM:
 
 
 
+
+
+
+;;=====================================================
+;;LOCALIZA_INFO_HABITACION
+;;=====================================================	
+; función: 	busca las puertas que hay que pintar egún la posición del usuario y las pone en A
+; entrada: 	prota.pos_mapy, prota.pos_mapx, prota.nivel, habitaciones_juego
+; salida: 	habitacion_actual
+; toca:		A
+;ejemplo: nivel 4, posx 5 y posy 3
+;  (4 x 7) x 16 (se necesitan dos bytes y el prod de 16 es slr 4 veces)
+; +(3 x 16) 	de la fila (se necesita 1 y byte el prod de 16 es slr 4 veces)
+; +5        	de la columna 
+localiza_info_habitacion:
+	EXX
+	
+	;inicializo variables a usar
+	;~ XOR		 A
+	;~ LD		 L,A
+	;~ LD		 H,A
+	;~ LD		 D,A
+	;~ LD		 E,A
+	
+;~ ;primer sumando	
+	;~ LD		 A,(prota.nivel)	;cada nivel tiene 7 subniveles
+	;~ OR		 A
+	;~ JR		 Z,.fin_seg_prod
+	;~ LD		 B,A
+	;~ LD		 A,7
+;~ .primer_prod
+	;~ ADD		 A
+	;~ DJNZ 	.primer_prod	;equivalente al 4x7
+;~ .fin_primer_prod
+
+	;~ LD		 L,A			;preparo el registro de 2 bytes HL
+	;~ XOR		 A
+	;~ LD		 H,A
+
+	;~ LD		 B,16
+	;~ LD		 D,H
+	;~ LD		 L,E
+;~ .seg_prod
+	;~ ADD		HL,DE
+	;~ DJNZ 	.seg_prod		;equivalente al 4x7x16
+;~ .fin_seg_prod
+
+;~ ;segundo sumando
+	;~ LD		 A,(prota.pos_mapy)
+	;~ SRL		 A
+	;~ SRL		 A
+	;~ SRL		 A
+	;~ SRL		 A				;equivalente a 3 x 16
+
+	;~ LD		 E,A
+	;~ XOR		 A
+	;~ LD		 D,A
+	;~ ADD		HL,DE			;equivale a 4x7x16 (HL) + 3x16 (DE)
+
+;tercer sumando
+	LD		HL, habitaciones_juego 	;equivale a 4x7x16 (HL) + 3x16 (DE) + 5 (DE)
+	LD		 A, (prota.pos_mapx)
+	LD		 B, A
+.situa_columna:
+	INC		HL
+	INC		HL
+	DJNZ	.situa_columna
+	
+;colocamos resultado en habitación actual
+	LD		IX, habitacion_actual
+	LD		 A, (HL)
+	LD		(IX), A
+	INC		HL
+	LD		 A, (HL)
+	LD		(IX+1), A
+
+	
+	
+	
+	;~ LD		IX,habitacion_actual	;colocamos el valor en habitación actual
+	;~ LD		A,(HL)
+	;~ LD		(IX),A
+	;~ INC		HL
+	;~ LD		A,(HL)
+	;~ LD		(IX+1),A
+	
+	;~ LD			IX,habitacion_actual
+	;~ LD			 A,5
+	;~ LD			(IX),A
+	;~ LD			 A,7
+	;~ LD			(IX+1),A
+	
+	EXX
+fin_localiza_info_habitacion:
+	RET
+	
+
+
+
+
+
 ; sólo para hacer pruebas y pinter la parte de las vidas y demás
 inicializa_variables_pruebas:
 	LD		 A,3
@@ -113,7 +214,7 @@ inicializa_variables_pruebas:
 	;será igual la posición inicial en todos los niveles
 	XOR		 A
 	LD		(prota.pos_mapy),A	;pos y dentro del nivel (se empieza en 0)
-	LD		 A,3				;en realidad es la posición 4 pero se empieza a numerar en 0
+	LD		 A,6				;en realidad es la posición 4 pero se empieza a numerar en 0
 	LD		(prota.pos_mapx),A	;pos y dentro del nivel (se empieza en 0)
 
 	
