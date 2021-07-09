@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.07.08 - 21:50:49]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.07.09 - 23:05:16]
 
 t4.asm
 Errors: 0
@@ -1159,24 +1159,25 @@ Errors: 0
      138   00:83C6                      
      139   00:83C6  21 1E 86            	LD		HL, habitaciones_juego 	;equivale a 4x7x16 (HL) + 3x16 (DE) + 5 (DE)
      140   00:83C9                      
-     141   00:83C9                      ;segundo sumando
-     142   00:83C9  3A 34 89            	LD		 A,(prota.pos_mapy)
-     143   00:83CC  CB 27               	SLA		 A
-     144   00:83CE  CB 27               	SLA		 A
-     145   00:83D0  CB 27               	SLA		 A
-     146   00:83D2  CB 27               	SLA		 A				;equivalente a 3 x 16
-     147   00:83D4                      
-     148   00:83D4  5F                  	LD		 E,A
-     149   00:83D5  AF                  	XOR		 A
-     150   00:83D6  57                  	LD		 D,A
-     151   00:83D7  19                  	ADD		HL,DE			;equivale a 4x7x16 (HL) + 3x16 (DE)
-     152   00:83D8                      
-     153   00:83D8                      ;tercer sumando
-     154   00:83D8  3A 33 89            	LD		 A, (prota.pos_mapx)
-     155   00:83DB  47                  	LD		 B, A
-     156   00:83DC                      .situa_columna:
-     157   00:83DC  23                  	INC		HL
-     158   00:83DD  23                  	INC		HL
+     141   00:83C9                      
+     142   00:83C9                      ;************** REVISAR PORQUE SUMA UNO DE MÁS
+     143   00:83C9                      
+     144   00:83C9                      
+     145   00:83C9                      ;segundo sumando (en el ejemplo + 3x16)
+     146   00:83C9  3A 34 89            	LD		 A,(prota.pos_mapy)
+     147   00:83CC                      [4]	SLA		 A				;equivalente a 3 x 16			
+     147   00:83CC  CB 27 CB 27 CB 27 CB 27 
+     148   00:83D4                      
+     149   00:83D4  5F                  	LD		 E, A
+     150   00:83D5  AF                  	XOR		 A
+     151   00:83D6  57                  	LD		 D, A
+     152   00:83D7  19                  	ADD		HL, DE			;equivale a 4x7x16 (HL) + 3x16 (DE)
+     153   00:83D8                      
+     154   00:83D8                      ;tercer sumando (en el ejemplo + 5)
+     155   00:83D8  3A 33 89            	LD		 A, (prota.pos_mapx)
+     156   00:83DB  47                  	LD		 B, A
+     157   00:83DC                      .situa_columna:
+     158   00:83DC  23 23               [2]	INC		HL
      159   00:83DE  10 FC               	DJNZ	.situa_columna
      160   00:83E0                      	
      161   00:83E0                      ;colocamos resultado en habitación actual

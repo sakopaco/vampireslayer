@@ -139,27 +139,21 @@ localiza_info_habitacion:
 	LD		HL, habitaciones_juego 	;equivale a 4x7x16 (HL) + 3x16 (DE) + 5 (DE)
 
 
-************** REVISAR PORQUE SUMA UNO DE MÁS
 
-
-;segundo sumando
+;segundo sumando (en el ejemplo + 3x16)
 	LD		 A,(prota.pos_mapy)
-	SLA		 A
-	SLA		 A
-	SLA		 A
-	SLA		 A				;equivalente a 3 x 16
+[4]	SLA		 A				;equivalente a 3 x 16			
 
-	LD		 E,A
+	LD		 E, A
 	XOR		 A
-	LD		 D,A
-	ADD		HL,DE			;equivale a 4x7x16 (HL) + 3x16 (DE)
+	LD		 D, A
+	ADD		HL, DE			;equivale a 4x7x16 (HL) + 3x16 (DE)
 
-;tercer sumando
+;tercer sumando (en el ejemplo + 5)
 	LD		 A, (prota.pos_mapx)
 	LD		 B, A
 .situa_columna:
-	INC		HL
-	INC		HL
+[2]	INC		HL
 	DJNZ	.situa_columna
 	
 ;colocamos resultado en habitación actual
