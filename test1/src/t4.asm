@@ -104,41 +104,44 @@ depack_VRAM:
 ; +(3 x 16) 	de la fila (se necesita 1 y byte el prod de 16 es slr 4 veces)
 ; +5        	de la columna 
 localiza_info_habitacion:
-	EXX
-	
-	;inicializo variables a usar
-	;~ XOR		 A
-	;~ LD		 L,A
-	;~ LD		 H,A
-	;~ LD		 D,A
-	;~ LD		 E,A
-	
-;~ ;primer sumando	
-	;~ LD		 A,(prota.nivel)	;cada nivel tiene 7 subniveles
-	;~ OR		 A
-	;~ JR		 Z,.fin_seg_prod
-	;~ LD		 B,A
-	;~ LD		 A,7
-;~ .primer_prod
-	;~ ADD		 A
-	;~ DJNZ 	.primer_prod	;equivalente al 4x7
-;~ .fin_primer_prod
+		EXX
 
-	;~ LD		 L,A			;preparo el registro de 2 bytes HL
-	;~ XOR		 A
-	;~ LD		 H,A
+;primer sumando	(en el ejemplo + (4x7)x16)
+		LD		HL, habitaciones_juego
+		LD		 A,(prota.nivel)	
+		OR		 A
+		JR		 Z,.no_suma_niveles_previos	;el primero nivel (0) no sumaría ni uno por lo que salto al segundo sumando
+	;sumo 7 veces el nº de nivel si no es cero
+		LD		 D, A
+		LD		 B, 6
+.primer_producto
+		ADD		 A, D
+		DJNZ	 .primer_producto
+		LD		 B, A				;guardo el resultado en B
 
-	;~ LD		 B,16
-	;~ LD		 D,H
-	;~ LD		 L,E
-;~ .seg_prod
-	;~ ADD		HL,DE
-	;~ DJNZ 	.seg_prod		;equivalente al 4x7x16
-;~ .fin_seg_prod
+;el resultado previo está en B. Ahoro hay que multiplicar A x 16, lo guardo en DE y lo sumo en HL
+		;inicializo valores a 0
+		XOR		 A
+		LD		 D, A
+		LD		 E, A
+		LD		 H, A
+		LD		 L, A
 
-	LD		HL, habitaciones_juego 	;equivale a 4x7x16 (HL) + 3x16 (DE) + 5 (DE)
+		LD		 E, B				;pongo el (4x7) en HL (estaba en B)
+		
+		LD		 B, 16
+.segundo_producto
+		ADD		HL, DE				;segundo producto x 16
+		DJNZ	.segundo_producto	
+		
+.fin_seg_prod:
+	;coloco puntero DE al inicio de las habitaciones y le sumo para poner el puntero en el nivel que me interesa
+		LD		DE, habitaciones_juego
+		ADD		HL, DE				;suma el nº de bytes de los niveles previos (4 x 7 x 16)
+.no_suma_niveles_previos:
 
 
+;ya tengo el puntero HL al inicio del nivel que me interesa
 
 ;segundo sumando (en el ejemplo + 3x16)
 	LD		 A,(prota.pos_mapy)
@@ -155,7 +158,9 @@ localiza_info_habitacion:
 .situa_columna:
 [2]	INC		HL
 	DJNZ	.situa_columna
-	
+
+;ya tengo el puntero HL al inicio de la fila que me interesa
+
 ;colocamos resultado en habitación actual
 	LD		IX, habitacion_actual
 	LD		 A, (HL)
@@ -190,7 +195,7 @@ inicializa_variables_pruebas:
 	LD		 A, 8
 	LD		(prota.energia), A
 
-	XOR		 A
+	LD		 A, 6
 	LD		(prota.nivel), A		;nivel empieza en 0 para usar las posiciones ascii
 	
 	;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
