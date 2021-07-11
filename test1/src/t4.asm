@@ -24,7 +24,7 @@ START:
 	;pinta la pantalla (la primera o algunas especiales se pintan completamente)
 	CALL	pinta_pantalla_completa 
 	
-;	;carga sprites en memoria (SE HA RETRASADO HASTA PARAMETRIZAR LA CARGA DE PANTALLAS)
+	;carga sprites en memoria (SE HA RETRASADO HASTA PARAMETRIZAR LA CARGA DE PANTALLAS)
 ;	CALL 	carga_patrones_sprites
 	
 	;funciones que modificarian el marcador si se produce un evento cuando toque y cuando se pinta la pantalla ya se mira
@@ -33,9 +33,11 @@ START:
 	CALL	actualiza_marcador_reliquias
 	CALL	pinta_nivel
 	CALL	borra_mapa
-	
 
-;	CALL	posiciona_en_mapa (ha cambiado ahroa usa variable porsiciona mapa depurar) *************************** funcion a actualizar 	
+	CALL	localiza_info_habitacion	;devuelve variable habitacion_actual 	
+
+	LD		 A,1
+	CALL	posiciona_en_mapa		;se le pasa A 1 está el prota y prota.poxx y posy
 	
 loop_principal:
 	HALT							;espera VBLANK y sincroniza
@@ -66,7 +68,7 @@ mira_pinta_reliquias:
 	CALL	pinta_reliquias
 fin_mira_pinta_reliquias:
 	
-	CALL	mira_pinta_energia		;actualiza el array de energia siempre
+	CALL	mira_pinta_energia		;actualiza el array de energia siempre pero no pinta eso lo hace pinta_energia
 	
 	NOP
 		
@@ -103,7 +105,6 @@ inicializa_variables_pruebas:
 	LD		(prota.pos_mapy), A	;pos y dentro del nivel (se empieza en 0)
 	LD		 A, 3				;en realidad es la posición 4 pero se empieza a numerar en 0
 	LD		(prota.pos_mapx), A	;pos y dentro del nivel (se empieza en 0)
-
 	
 	;************************************************
 	;importante : revisar pintado de mapa

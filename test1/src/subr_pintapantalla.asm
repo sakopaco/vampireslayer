@@ -62,7 +62,7 @@ fin_sub_preparapantalla:
 pinta_pantalla_completa:
 	CALL 	pinta_parte_superior_pantalla
 	
-	CALL 	pinta_parte_inferior_pantalla
+	CALL 	pinta_parte_inferior_pantalla	
 fin_pinta_pantalla_completa:
 	RET
 
@@ -210,7 +210,7 @@ fin_pinta_nivel:
 ;;PINTA_TILE_SUELTO
 ;;=====================================================	
 ; función: 	pinta al tile que digamos en D, en la posición BC
-; entrada: 	BC,D
+; entrada: 	BC (posición a pintar en el mapa),D (qué se va a pintar el esa posición)
 ; salida: 	-
 ; toca:		-
 pinta_tile_suelto:	
@@ -344,6 +344,58 @@ fin_pinta_energia:
 
 
 
+;;=====================================================
+;;BORRA_MAPA
+;;=====================================================	
+; función: 	pone todas las habitaciones del mapa a negro (los tiles del mapa los rellena con un array a 0 - caracter en negro)
+; entrada: 	array_aux_mapa_limpiar
+; salida: 	-
+; toca:		AF
+borra_mapa:
+	EXX
+	
+	LD		HL,array_aux_mapa_limpiar
+	LD		DE,SC2MAP + POSMAPLIN1 	;inicio posición en el mapa de tiles de la primera fila del mapa
+	LD		BC,NHABNIVEL			;cada nivel son 7 filas con 7 habitaciones "posibles"
+	CALL	LDIRVM
+	
+	LD		HL,array_aux_mapa_limpiar
+	LD		DE,SC2MAP + POSMAPLIN2
+	LD		BC,NHABNIVEL
+	CALL	LDIRVM
+
+	LD		HL,array_aux_mapa_limpiar
+	LD		DE,SC2MAP + POSMAPLIN3
+	LD		BC,NHABNIVEL
+	CALL	LDIRVM
+
+	LD		HL,array_aux_mapa_limpiar	
+	LD		DE,SC2MAP + POSMAPLIN4
+	LD		BC,NHABNIVEL
+	CALL	LDIRVM
+
+	LD		HL,array_aux_mapa_limpiar	
+	LD		DE,SC2MAP + POSMAPLIN5
+	LD		BC,NHABNIVEL
+	CALL	LDIRVM
+
+	LD		HL,array_aux_mapa_limpiar	
+	LD		DE,SC2MAP + POSMAPLIN6
+	LD		BC,NHABNIVEL
+	CALL	LDIRVM
+
+	LD		HL,array_aux_mapa_limpiar	
+	LD		DE,SC2MAP + POSMAPLIN7
+	LD		BC,NHABNIVEL
+	CALL	LDIRVM
+	
+	EXX
+fin_borra_mapa:
+	RET
+
+
+
+
 
 ;;=====================================================
 ;;POSICIONA_EN_MAPA
@@ -351,51 +403,50 @@ fin_pinta_energia:
 ; función: 	en el mapa de marcadores de la derecha/abajo marca un cuadro en gris o con un muñeco
 ;			según el valor de prota.posición pinta entrá un muñeco y por donde vaya pasando el prota
 ;			quedará en gris
-; entrada: 	A (tipo 0 gris 1 - tile 0,muñeco - tile 19) , var_posiciona_en_mapa (xxxx fila y 0000 columna)
+; entrada: 	A=0 gris 1 - tile 0, A=1 muñeco - tile 19, prota.pos_mapy,prota.pos_mapx)
 ; salida: 	-
 ; toca:		todos
 posiciona_en_mapa:
-	PUSH	 AF		;almacenamos el tipo a pintar para cuando terminemos de calcular la coordenada
+	PUSH	AF		;almacenamos el tipo a pintar para cuando terminemos de calcular la coordenada
 	
 	;#0238 es la posición en mapa de tiles de la esquina superior izquierda del mapa (569 en decimal)
-	LD		HL,SC2MAP + POSMAPA ;pos inicial
-	;~ ;ahora se le suma la fila * 32 + columna
-
+	LD		HL, SC2MAP + POSMAPA ;pos inicial
+	
+	;ahora se le suma la fila * 32 + columna
+	
 	;sumar fila
-	LD		DE,32	;32 ancho del mapa de tiles de una pantalla
-	LD 		 A,(var_posiciona_en_mapa)
+	LD		DE, 32	;32 ancho del mapa de tiles de una pantalla
+	LD 		 A, (prota.pos_mapy)
 [4]	RRA
-	LD		 B,A
+	LD		 B, A
 prod_coloca_fila:	
-	ADD		HL,DE
+	ADD		HL, DE
 	DJNZ	prod_coloca_fila
 	
 	;suma columna
-	LD 		 A,(var_posiciona_en_mapa)
-	AND		 A,00001111b
-	LD		 D,0
-	LD		 E,A
-	ADD		HL,DE
+	LD 		 A, (prota.pos_mapx)
+	LD		 D, 0
+	LD		 E, A
+	ADD		HL, DE
 	
-	;resultado en BC
-	LD		 B,H
-	LD		 C,L
+	;resultado en BC para usar en la función pinta_tile_suelto
+	LD		 B, H
+	LD		 C, L
 	
 	;terminado de fijar la coordenada recuperamos a para ver el tipo
 	POP		 AF
 	OR		 A
-	JP		 Z,pinta_pos_mapa_vacio
-	LD		 D,TILEMAPPROT
+	JP		 Z, pinta_pos_mapa_vacio
+	LD		 D, TILEMAPPROT
 	JP		fin_pinta_pos_mapa
 pinta_pos_mapa_vacio:
-	LD		 D,TILEMAPVACI				;********************* se puede hacer mejor o está bien usar push y pop
+	LD		 D, TILEMAPVACI				;********************* se puede hacer mejor o está bien usar push y pop
 
 fin_pinta_pos_mapa:
 	CALL	pinta_tile_suelto
 fin_posiciona_en_mapa:
 	RET
-var_posiciona_en_mapa:
-	db		#00;
+
 
 
 ;=====================================================
@@ -481,15 +532,16 @@ wordaux2:		DW	0	;almacena puntero a array de tiles (posiciones en realidad) a pi
 ;;PINTA_PUERTAS
 ;;=====================================================	
 ; función: 	examina A y mira si tiene que pintar puertas de los lados, arriba o abrajo o las escaleras (o no)
-; entrada: 	A (se miran los 5 bits más bajos) 1 escalera 1 puerta arriba 1 pu der 1 pu aba 1 pu izq (si es 0 pinta pared)
+; entrada: 	habitacion_actual 1 escalera 1 puerta arriba 1 pu der 1 pu aba 1 pu izq (si es 0 pinta pared)
 ; salida: 	-
-; toca:		- AF, HL,BC, DE
+; toca:		- uso EXX
 pinta_puertas:
-	;aquí se buscaría de la posición del usuario en la matriz de niveles y se saca el valor de A
-	;suponermos que pinta (debajo)
-	CALL	localiza_info_habitacion	;devuelve habitacion_actual
+	EXX
 	
 	LD		 A, (habitacion_actual)		;se mete en A porque la función pide A y para no buscar el valor 4 veces
+
+;	BIT		 4, A
+;	CALL	nz, pinta_escalera
 
 	BIT		 3, A
 	CALL	nz, pinta_puerta_arr
@@ -505,6 +557,8 @@ pinta_puertas:
 	
 	XOR		 A
 	LD		(actualiza_puertas_sn), A ;(1 actualiza y 0 no actualiza puertas) se pone a 0 para que no actualice todo el tiempo (ya se ha actualizado)... me hubiera gustado poner cte NO pero es más rápido así
+
+	EXX
 fin_pinta_puertas:
 	RET
 
