@@ -1,16 +1,11 @@
 
 
 
+* preguntar fernando la funcion localiza info habitacion
 
-poner todo esto parametrizado según el nivel del en el que se encuentre el prota
+* repasar dibuja mapa
 
-	
-	;pinta la pantalla (la primera o algunas especiales se pintan completamente)
-	CALL	pinta_pantalla_completa 
-	
-	
-	
-	************** importante revisar de nuevo el pinta mapa pero ya parametrizado
+* repasar pinta_puertas
 	
 	CALL 	carga_patrones_sprites
 
