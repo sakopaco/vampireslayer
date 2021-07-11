@@ -30,8 +30,6 @@ fin_iniciliza_niveles:
 	RET
 
 
-
-
 ;;=====================================================
 ;;ACTUALIZA_MARCADOR_VIDAS
 ;;=====================================================	
@@ -66,9 +64,6 @@ fin_actualiza_marcador_vidas:
 	RET
 
 
-
-
-
 ;;=====================================================
 ;;ACTUALIZA_MARCADOR_RELIQUIAS
 ;;=====================================================	
@@ -97,10 +92,6 @@ loop_marcador_reliquias: ;asignar reliquias
 fin_loop_marcador_reliquias:
 fin_actualiza_marcador_reliquias:
 	RET
-
-
-
-
 
 
 
@@ -183,4 +174,7 @@ localiza_info_habitacion:
 	EXX
 fin_localiza_info_habitacion:
 	RET
-	
+
+
+
+

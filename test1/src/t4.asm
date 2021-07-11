@@ -37,7 +37,8 @@ START:
 	CALL	localiza_info_habitacion	;devuelve variable habitacion_actual 	
 
 	LD		 A,1
-	CALL	posiciona_en_mapa		;se le pasa A 1 está el prota y prota.poxx y posy
+	CALL	posiciona_en_mapa		;se le pasa A 1 (tile del prota) está el prota y prota.poxx y posy
+
 	
 loop_principal:
 	HALT							;espera VBLANK y sincroniza
@@ -70,40 +71,139 @@ fin_mira_pinta_reliquias:
 	
 	CALL	mira_pinta_energia		;actualiza el array de energia siempre pero no pinta eso lo hace pinta_energia
 	
-	NOP
-		
 	JP		loop_principal
 fin_programa_principal:
 	RET
+
+
+
+
+
+
+
+;;=====================================================
+;;POSICIONA_EN_MAPA
+;;=====================================================	
+; función: 	en el mapa de marcadores de la derecha/abajo marca un cuadro en gris o con un muñeco
+;			según el valor de prota.posición pinta entrá un muñeco y por donde vaya pasando el prota
+;			quedará en gris
+; entrada: 	A=0 gris 1 - tile 0, A=1 muñeco - tile 19, prota.pos_mapy,prota.pos_mapx)
+; salida: 	-
+; toca:		todos
+posiciona_en_mapa:
+	PUSH	AF		;almacenamos el tipo a pintar para cuando terminemos de calcular la coordenada
 	
+	;#0238 es la posición en mapa de tiles de la esquina superior izquierda del mapa (569 en decimal)
+	LD		HL, SC2MAP + POSMAPA;pos inicial
+	
+	;ahora se le calcula la fila a pintar ya que va de abajo a arriba y no como en el mapa + columna
+	
+.sumar_fila:
+	LD		 A,(prota.pos_mapy)
+	CP		 1
+	JR		 Z, .fila_1
+	LD		 A,(prota.pos_mapy)
+	CP		 2
+	JR		 Z, .fila_2
+	LD		 A,(prota.pos_mapy)
+	CP		 3
+	JR		 Z, .fila_3
+	LD		 A,(prota.pos_mapy)
+	CP		 4
+	JR		 Z, .fila_4
+	LD		 A,(prota.pos_mapy)
+	CP		 5
+	JR		 Z, .fila_5
+	LD		 A,(prota.pos_mapy)
+	CP		 6
+	JR		 Z, .sumar_columna
+	;no consulto la 0 porque si no es ninguna de las anteriores es 0 y por tanto sería un jr fila_0
+	
+.fila_0:
+	LD		DE, 192
+	ADD		HL, DE			;nota: se que repito el ADD pero la otra opción es inicializar DE y ya tarda mucho la funicón (es por velicidad)
+	JP		.sumar_columna
+.fila_1:
+	LD		DE, 160
+	ADD		HL, DE
+	JP		.sumar_columna
+.fila_2:
+	LD		DE, 128
+	ADD		HL, DE
+	JP		.sumar_columna
+.fila_3:
+	LD		DE, 96
+	ADD		HL, DE
+	JP		.sumar_columna
+.fila_4:
+	LD		DE, 64
+	ADD		HL, DE
+	JP		.sumar_columna
+.fila_5:
+	LD		DE, 32
+	ADD		HL, DE
+	JP		.sumar_columna
+.fila_6:
+	;pongo fila_6 por poner ya que si es la fila 6 equiv. a primera fila del mapa y por tanto no suma fila
+	
+	
+.sumar_columna:
+	LD 		 A, (prota.pos_mapx) ;POS X
+	LD		 D, 0
+	LD		 E, A
+	ADD		HL, DE
+	
+	;resultado en BC para usar en la función pinta_tile_suelto
+	LD		 B, H
+	LD		 C, L
+	
+	;	LD		BC,SC2MAP + POSNIVEL + 7;posición en el mapa de tiles del tile de nivel
+	
+	;terminado de fijar la coordenada recuperamos a para ver el tipo
+	POP		 AF
+	OR		 A
+	JP		 Z, pinta_pos_mapa_vacio
+	LD		 D, TILEMAPPROT
+	JP		fin_pinta_pos_mapa
+pinta_pos_mapa_vacio:
+	LD		 D, TILEMAPVACI				;********************* se puede hacer mejor o está bien usar push y pop ¿?¿?¿?
+
+fin_pinta_pos_mapa:
+	CALL	pinta_tile_suelto
+fin_posiciona_en_mapa:
+	RET
+
+
+
+
+
 
 ;;*******************************************************************
-
-; sólo para hacer pruebas y pinter la parte de las vidas y demás
+; sólo para hacer pruebas y pintar la parte de las vidas y demás
 inicializa_variables_pruebas:
-	LD		 A, 3
+	LD		 A, 4
 	LD		(prota.vidas),A
 
 	LD		 A, SI	
 	LD		(actualiza_vidas_sn), A	;actualizo la variable para que pinte vidas 1 sí / 0 no
 
-	LD		 A, 2
+	LD		 A, 5
 	LD		(prota.reliquias), A
 	
 	LD		 A, SI	
 	LD		(actualiza_reliquias_sn), A	;actualizo la variable para que pinte vidas 1 sí / 0 no
 
-	LD		 A, 8
+	LD		 A, 100
 	LD		(prota.energia), A
 
-	LD		 A, 0
+	LD		 A, 1
 	LD		(prota.nivel), A		;nivel empieza en 0 para usar las posiciones ascii
 	
 	;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
 	;será igual la posición inicial en todos los niveles
-	LD		 A, 6
+	LD		 A, 2
 	LD		(prota.pos_mapy), A	;pos y dentro del nivel (se empieza en 0)
-	LD		 A, 3				;en realidad es la posición 4 pero se empieza a numerar en 0
+	LD		 A, 6				;en realidad es la posición 4 pero se empieza a numerar en 0
 	LD		(prota.pos_mapx), A	;pos y dentro del nivel (se empieza en 0)
 	
 	;************************************************

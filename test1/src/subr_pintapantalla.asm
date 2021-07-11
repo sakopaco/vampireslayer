@@ -213,7 +213,7 @@ fin_pinta_nivel:
 ; entrada: 	BC (posición a pintar en el mapa),D (qué se va a pintar el esa posición)
 ; salida: 	-
 ; toca:		-
-pinta_tile_suelto:	
+pinta_tile_suelto:
 	IN		 A,(REGEST)		;leer registro de estado (recomendado)
 	LD		 A,C			;primero byte bajo	
 	OUT		(REGEST),A
@@ -397,55 +397,7 @@ fin_borra_mapa:
 
 
 
-;;=====================================================
-;;POSICIONA_EN_MAPA
-;;=====================================================	
-; función: 	en el mapa de marcadores de la derecha/abajo marca un cuadro en gris o con un muñeco
-;			según el valor de prota.posición pinta entrá un muñeco y por donde vaya pasando el prota
-;			quedará en gris
-; entrada: 	A=0 gris 1 - tile 0, A=1 muñeco - tile 19, prota.pos_mapy,prota.pos_mapx)
-; salida: 	-
-; toca:		todos
-posiciona_en_mapa:
-	PUSH	AF		;almacenamos el tipo a pintar para cuando terminemos de calcular la coordenada
-	
-	;#0238 es la posición en mapa de tiles de la esquina superior izquierda del mapa (569 en decimal)
-	LD		HL, SC2MAP + POSMAPA ;pos inicial
-	
-	;ahora se le suma la fila * 32 + columna
-	
-	;sumar fila
-	LD		DE, 32	;32 ancho del mapa de tiles de una pantalla
-	LD 		 A, (prota.pos_mapy)
-[4]	RRA
-	LD		 B, A
-prod_coloca_fila:	
-	ADD		HL, DE
-	DJNZ	prod_coloca_fila
-	
-	;suma columna
-	LD 		 A, (prota.pos_mapx)
-	LD		 D, 0
-	LD		 E, A
-	ADD		HL, DE
-	
-	;resultado en BC para usar en la función pinta_tile_suelto
-	LD		 B, H
-	LD		 C, L
-	
-	;terminado de fijar la coordenada recuperamos a para ver el tipo
-	POP		 AF
-	OR		 A
-	JP		 Z, pinta_pos_mapa_vacio
-	LD		 D, TILEMAPPROT
-	JP		fin_pinta_pos_mapa
-pinta_pos_mapa_vacio:
-	LD		 D, TILEMAPVACI				;********************* se puede hacer mejor o está bien usar push y pop
 
-fin_pinta_pos_mapa:
-	CALL	pinta_tile_suelto
-fin_posiciona_en_mapa:
-	RET
 
 
 
