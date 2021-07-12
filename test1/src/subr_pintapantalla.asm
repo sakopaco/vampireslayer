@@ -598,3 +598,96 @@ fin_pinta_puerta_izq:
 	RET
 
 
+
+
+
+;;=====================================================
+;;POSICIONA_EN_MAPA
+;;=====================================================	
+; función: 	en el mapa de marcadores de la derecha/abajo marca un cuadro en gris o con un muñeco
+;			según el valor de prota.posición pinta entrá un muñeco y por donde vaya pasando el prota
+;			quedará en gris
+; entrada: 	A=0 gris 1 - tile 0, A=1 muñeco - tile 19, prota.pos_mapy,prota.pos_mapx)
+; salida: 	-
+; toca:		todos
+posiciona_en_mapa:
+	PUSH	AF		;almacenamos el tipo a pintar para cuando terminemos de calcular la coordenada
+	
+	;#0238 es la posición en mapa de tiles de la esquina superior izquierda del mapa (569 en decimal)
+	LD		HL, SC2MAP + POSMAPA;pos inicial
+	
+	;ahora se le calcula la fila a pintar ya que va de abajo a arriba y no como en el mapa + columna
+.sumar_fila:
+	LD		 A,(prota.pos_mapy)
+	CP		 1
+	JR		 Z, .fila_1
+	LD		 A,(prota.pos_mapy)
+	CP		 2
+	JR		 Z, .fila_2
+	LD		 A,(prota.pos_mapy)
+	CP		 3
+	JR		 Z, .fila_3
+	LD		 A,(prota.pos_mapy)
+	CP		 4
+	JR		 Z, .fila_4
+	LD		 A,(prota.pos_mapy)
+	CP		 5
+	JR		 Z, .fila_5
+	LD		 A,(prota.pos_mapy)
+	CP		 6
+	JR		 Z, .sumar_columna
+	;no consulto la 0 porque si no es ninguna de las anteriores es 0 y por tanto sería un jr fila_0
+	
+.fila_0:
+	LD		DE, 192
+	ADD		HL, DE			;nota: se que repito el ADD pero la otra opción es inicializar DE y ya tarda mucho la funicón (es por velicidad)
+	JP		.sumar_columna
+.fila_1:
+	LD		DE, 160
+	ADD		HL, DE
+	JP		.sumar_columna
+.fila_2:
+	LD		DE, 128
+	ADD		HL, DE
+	JP		.sumar_columna
+.fila_3:
+	LD		DE, 96
+	ADD		HL, DE
+	JP		.sumar_columna
+.fila_4:
+	LD		DE, 64
+	ADD		HL, DE
+	JP		.sumar_columna
+.fila_5:
+	LD		DE, 32
+	ADD		HL, DE
+	JP		.sumar_columna
+.fila_6:
+	;pongo fila_6 por poner ya que si es la fila 6 equiv. a primera fila del mapa y por tanto no suma fila
+	
+	
+.sumar_columna:
+	LD 		 A, (prota.pos_mapx) ;POS X
+	LD		 D, 0
+	LD		 E, A
+	ADD		HL, DE
+	
+	;resultado en BC para usar en la función pinta_tile_suelto
+	LD		 B, H
+	LD		 C, L
+	
+	;terminado de fijar la coordenada recuperamos a para ver el tipo
+	POP		 AF
+	OR		 A
+	JP		 Z, pinta_pos_mapa_vacio
+	LD		 D, TILEMAPPROT
+	JP		fin_pinta_pos_mapa
+pinta_pos_mapa_vacio:
+	LD		 D, TILEMAPVACI				;********************* se puede hacer mejor o está bien usar push y pop ¿?¿?¿?
+
+fin_pinta_pos_mapa:
+	CALL	pinta_tile_suelto
+fin_posiciona_en_mapa:
+	RET
+
+
