@@ -3,9 +3,11 @@
 
 * preguntar fernando la funcion localiza info habitacion
 
-* repasar dibuja mapa
+* preguntar fernando mejoras funcion dibuja mapa
 
 * repasar pinta_puertas
+
+* preguntar fernando si está ok la función pintar puertas
 	
 	CALL 	carga_patrones_sprites
 

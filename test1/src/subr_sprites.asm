@@ -13,7 +13,7 @@
 ; función: 	copia los patrones de los sprites que e van a usar en el nivel 1 en vram
 ; entrada: 	-
 ; salida: 	-
-; toca: 	todos los registros excepto los principales en EXX y AF 
+; toca: 	-
 carga_patrones_sprites_nivel1:
 	PUSH	AF					;guardo copia de AF
 	EXX							;guardo copia de BC,DE y HL
@@ -102,6 +102,12 @@ carga_patrones_sprites_nivel1:
 	LD		BC,32				;32 bytes (sprites de 2 x 2)
 	CALL	LDIRVM
 	
+	;sprite sprite_explosion
+	LD		HL,sprite_explosion
+	LD		DE,#3A20
+	LD		BC,32				;32 bytes (sprites de 2 x 2)
+	CALL	LDIRVM
+	
 	EXX							;recupero copia de BC,DE y HL
 	POP		AF					;recupero copia de AF
 fin_carga_patrones_sprites:
@@ -116,5 +122,10 @@ fin_carga_patrones_sprites:
 ; salida: 	-
 ; toca: 	todos los registros. Como me interesa la velocidad, si necesito copiar de algo lo hago fuera
 actualiza_array_sprites_vram:
+	EXX
+	
+	
+	
+	EXX
 fin_actualiza_array_sprites_vram:
 	RET
