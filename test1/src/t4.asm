@@ -25,7 +25,7 @@ START:
 	CALL	pinta_pantalla_completa 
 	
 	;carga sprites en memoria (SE HA RETRASADO HASTA PARAMETRIZAR LA CARGA DE PANTALLAS)
-;	CALL 	carga_patrones_sprites
+	CALL 	carga_patrones_sprites_nivel1
 	
 	;funciones que modificarian el marcador si se produce un evento cuando toque y cuando se pinta la pantalla ya se mira
 	;una variable para ver si el array hay que actualizarlo en pantalla o no
@@ -42,6 +42,9 @@ START:
 	
 loop_principal:
 	HALT							;espera VBLANK y sincroniza
+	
+	CALL	actualiza_array_sprites_vram	;actualiza array de sprites y los pinta en pantalla
+	
 	CALL	pinta_energia			;pinta la energia en pantalla
 
 mira_pinta_puertas:
@@ -71,6 +74,8 @@ fin_mira_pinta_reliquias:
 	
 	CALL	mira_pinta_energia		;actualiza el array de energia siempre pero no pinta eso lo hace pinta_energia
 	
+	CALL	actualiza_array_sprites	;actualiza los datos de los sprites en el array (array_sprites) que luego se pasará a VRAM
+	
 	JP		loop_principal
 fin_programa_principal:
 	RET
@@ -78,7 +83,31 @@ fin_programa_principal:
 
 
 
-
+;;=====================================================
+;;ACTUALIZA_ARRAY_SPRITES_VRAM
+;;=====================================================	
+; función: 	copia el array con los valores de los sprites (pos, color, plano) en VRAM
+; entrada: 	-
+; salida: 	-
+; toca: 	todos los registros. Como me interesa la velocidad, si necesito copiar de algo lo hago fuera
+actualiza_array_sprites:
+	EXX
+	
+	LD		IX,sprite_pos1
+	LD		(IX),100
+	LD		(IX+1),100
+	LD		(IX+2),0
+	LD		(IX+3),8
+	
+	LD		IX,sprite_pos2
+	LD		(IX),100
+	LD		(IX+1),100
+	LD		(IX+2),1
+	LD		(IX+3),15
+	
+	EXX
+fin_actualiza_array_sprites;
+	RET
 
 
 
@@ -137,6 +166,8 @@ fin_inicializa_variables_pruebas:
 	include "subrutinas.asm"
 	
 	include "subr_pintapantalla.asm"
+	
+	include "subr_sprites.asm"
 	
 
 ;Este include lleva la rutina de descompresión de ROM/RAM a VRAM de pletter

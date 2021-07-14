@@ -124,8 +124,15 @@ fin_carga_patrones_sprites:
 actualiza_array_sprites_vram:
 	EXX
 	
-	
+	;volcando el array con toda la info de los sprites a la zona de atributos de sprites
+	LD		HL,array_sprites
+	LD		DE,SPRART
+	LD		BC,4 * 32				;32 sprites x 4 bytes controlando el sprite (Y, X, plano, color)
+	CALL	LDIRVM
 	
 	EXX
 fin_actualiza_array_sprites_vram:
 	RET
+
+
+
