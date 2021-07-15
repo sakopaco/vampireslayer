@@ -93,17 +93,17 @@ fin_programa_principal:
 actualiza_array_sprites:
 	EXX
 	
+	;Como el punto de mira son dos sprites los trato juntos
 	LD		IX,sprite_pos1
 	LD		(IX),100
 	LD		(IX+1),100
 	LD		(IX+2),0
 	LD		(IX+3),8
-	
-	LD		IX,sprite_pos2
-	LD		(IX),100
-	LD		(IX+1),100
-	LD		(IX+2),1
-	LD		(IX+3),15
+	LD		(IX+4),100
+	LD		(IX+5),100
+	LD		(IX+6),4 	;+ 4 bytes del sprite 0
+	LD		(IX+7),15
+
 	
 	EXX
 fin_actualiza_array_sprites;
