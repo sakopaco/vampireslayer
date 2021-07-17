@@ -85,7 +85,7 @@ pinta_parte_superior_pantalla:
 	CALL	depack_VRAM
 	;cargamos mapa de pantalla
 	LD		HL,tiles_mapa_pantalla11
-	LD		DE,NAMTBL
+	LD		DE,TILMAP
 	CALL	depack_VRAM
 	;cargamos los colores de los patrones
 	LD		HL,tiles_color_pantalla11
@@ -99,7 +99,7 @@ pinta_parte_superior_pantalla:
 	CALL	depack_VRAM	
 	;cargamos mapa de pantalla
 	LD		HL,tiles_mapa_pantalla12
-	LD		DE,NAMTBL + #0100
+	LD		DE,TILMAP + #0100
 	CALL	depack_VRAM
 	;cargamos los colores de los patrones
 	LD		HL,tiles_color_pantalla12
@@ -124,7 +124,7 @@ pinta_parte_inferior_pantalla:
 	CALL	depack_VRAM	
 	;cargamos mapa de pantalla
 	LD		HL,tiles_mapa_pantalla3
-	LD		DE,NAMTBL + #0200
+	LD		DE,TILMAP + #0200
 	CALL	depack_VRAM
 	;cargamos los colores de los patrones
 	LD		HL,tiles_color_pantalla3
@@ -146,7 +146,7 @@ pinta_vidas:
 	EXX
 	
 	LD		HL,array_aux_vidas
-	LD		DE,SC2MAP + POSVIDAS 	;inicio posición en el mapa de tiles de las vidas
+	LD		DE,TILMAP + POSVIDAS 	;inicio posición en el mapa de tiles de las vidas
 	LD		BC,NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
 	CALL	LDIRVM
 	
@@ -171,7 +171,7 @@ pinta_reliquias:
 	EXX
 	
 	LD		HL,array_aux_reliquias
-	LD		DE,SC2MAP + POSRELIQ 	;inicio posición en el mapa de tiles de las vidas
+	LD		DE,TILMAP + POSRELIQ 	;inicio posición en el mapa de tiles de las vidas
 	LD		BC,NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
 	CALL	LDIRVM
 	
@@ -195,7 +195,7 @@ fin_pinta_reliquias:
 ; toca:		HL,DE,BC
 pinta_nivel:	
 	;forma más avanzada sin llamada a la bios
-	LD		BC,SC2MAP + POSNIVEL ;posición en el mapa de tiles del tile de nivel
+	LD		BC,TILMAP + POSNIVEL ;posición en el mapa de tiles del tile de nivel
 	LD		 A,(prota.nivel)	;seleccionando la pos del banco de tiles a poner en el mapa
 	ADD		'0'	
 	LD		 D,A
@@ -334,7 +334,7 @@ pinta_energia:
 	EXX
 	
 	LD		HL,array_aux_energia
-	LD		DE,SC2MAP + POSENERG 	;inicio posición en el mapa de tiles de las vidas
+	LD		DE,TILMAP + POSENERG 	;inicio posición en el mapa de tiles de las vidas
 	LD		BC,NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
 	CALL	LDIRVM
 		
@@ -355,37 +355,37 @@ borra_mapa:
 	EXX
 	
 	LD		HL,array_aux_mapa_limpiar
-	LD		DE,SC2MAP + POSMAPLIN1 	;inicio posición en el mapa de tiles de la primera fila del mapa
+	LD		DE,TILMAP + POSMAPLIN1 	;inicio posición en el mapa de tiles de la primera fila del mapa
 	LD		BC,NHABNIVEL			;cada nivel son 7 filas con 7 habitaciones "posibles"
 	CALL	LDIRVM
 	
 	LD		HL,array_aux_mapa_limpiar
-	LD		DE,SC2MAP + POSMAPLIN2
+	LD		DE,TILMAP + POSMAPLIN2
 	LD		BC,NHABNIVEL
 	CALL	LDIRVM
 
 	LD		HL,array_aux_mapa_limpiar
-	LD		DE,SC2MAP + POSMAPLIN3
+	LD		DE,TILMAP + POSMAPLIN3
 	LD		BC,NHABNIVEL
 	CALL	LDIRVM
 
 	LD		HL,array_aux_mapa_limpiar	
-	LD		DE,SC2MAP + POSMAPLIN4
+	LD		DE,TILMAP + POSMAPLIN4
 	LD		BC,NHABNIVEL
 	CALL	LDIRVM
 
 	LD		HL,array_aux_mapa_limpiar	
-	LD		DE,SC2MAP + POSMAPLIN5
+	LD		DE,TILMAP + POSMAPLIN5
 	LD		BC,NHABNIVEL
 	CALL	LDIRVM
 
 	LD		HL,array_aux_mapa_limpiar	
-	LD		DE,SC2MAP + POSMAPLIN6
+	LD		DE,TILMAP + POSMAPLIN6
 	LD		BC,NHABNIVEL
 	CALL	LDIRVM
 
 	LD		HL,array_aux_mapa_limpiar	
-	LD		DE,SC2MAP + POSMAPLIN7
+	LD		DE,TILMAP + POSMAPLIN7
 	LD		BC,NHABNIVEL
 	CALL	LDIRVM
 	
@@ -527,7 +527,7 @@ fin_pinta_puertas:
 pinta_puerta_aba:
 	LD		HL,array_puerta_abajo			;guardo puntero al array a pintar (como psar por referencia)
 	LD		(wordaux2),HL					;en la variable wordaux2
-	LD		HL,SC2MAP + POSPUERABAJ			;calcula posición en tilemap
+	LD		HL,TILMAP + POSPUERABAJ			;calcula posición en tilemap
 	LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
 	LD		B,H								;coloca posición tilemap BC
 	LD		C,L
@@ -547,7 +547,7 @@ fin_pinta_puerta_aba:
 pinta_puerta_arr:
 	LD		HL,array_puerta_arriba			;guardo puntero al array a pintar (como psar por referencia)
 	LD		(wordaux2),HL					;en la variable wordaux2
-	LD		HL,SC2MAP + POSPUERARRI			;calcula posición en tilemap
+	LD		HL,TILMAP + POSPUERARRI			;calcula posición en tilemap
 	LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
 	LD		B,H								;coloca posición tilemap BC
 	LD		C,L
@@ -567,7 +567,7 @@ fin_pinta_puerta_arr:
 pinta_puerta_der:
 	LD		HL,array_puerta_derecha			;guardo puntero al array a pintar (como psar por referencia)
 	LD		(wordaux2),HL					;en la variable wordaux2
-	LD		HL,SC2MAP + POSPUERDERE			;calcula posición en tilemap
+	LD		HL,TILMAP + POSPUERDERE			;calcula posición en tilemap
 	LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
 	LD		B,H								;coloca posición tilemap BC
 	LD		C,L
@@ -587,7 +587,7 @@ fin_pinta_puerta_der:
 pinta_puerta_izq:
 	LD		HL,array_puerta_izquierda		;guardo puntero al array a pintar (como psar por referencia)
 	LD		(wordaux2),HL					;en la variable wordaux2
-	LD		HL,SC2MAP + POSPUERIZQU			;calcula posición en tilemap
+	LD		HL,TILMAP + POSPUERIZQU			;calcula posición en tilemap
 	LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
 	LD		B,H								;coloca posición tilemap BC
 	LD		C,L
@@ -614,7 +614,7 @@ posiciona_en_mapa:
 	PUSH	AF		;almacenamos el tipo a pintar para cuando terminemos de calcular la coordenada
 	
 	;#0238 es la posición en mapa de tiles de la esquina superior izquierda del mapa (569 en decimal)
-	LD		HL, SC2MAP + POSMAPA;pos inicial
+	LD		HL, TILMAP + POSMAPA;pos inicial
 	
 	;ahora se le calcula la fila a pintar ya que va de abajo a arriba y no como en el mapa + columna
 .sumar_fila:

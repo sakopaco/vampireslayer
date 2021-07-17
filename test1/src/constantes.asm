@@ -35,17 +35,17 @@ STATFL		equ		#F3E7	;Mirror of VDP(8) status register (S#0)
 REGEST		equ		#0099	;registro de estado para escribir directamente en VRAM
 REGESCVDP	equ		#0098	;registro donde escribir valor para VRAM
 
-CHRTBL		equ		#0000
-NAMTBL		equ		#1800
-CLRTBL		equ		#2000
-SPRTBL		equ		#3800
-SPRART		equ		#1B00
+
 
 ;;ETIQUETAS DE ZONAS DE MEMORIA DE LA VPD (MSX1)
-SC2MAP		equ		#1800
+CHRTBL		equ		#0000
+TILMAP		equ		#1800
+SPRART		equ		#1B00
+CLRTBL		equ		#2000
+SPRTBL		equ		#3800
 
-;; OTRAS LLAMADAS A LA BIOS
-BEEP		equ		#00C0	;toca todos los registros
+
+
 
 ;;ETIQUETAS ESTANDAR PARA DAR MÁS CLARIDAD AL CODIGO
 SI			equ		#0001
