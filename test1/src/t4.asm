@@ -47,6 +47,11 @@ loop_principal:
 	
 	CALL	pinta_energia			;pinta la energia en pantalla
 
+;; ******************************** tiene que estar en cada loop
+	LD		HL, array_sprites + 8
+	ld		(puntero_array_atrib_array_VRAM), HL
+
+
 mira_pinta_puertas:
 	LD		 A,(actualiza_puertas_sn)
 	OR		 A
@@ -59,16 +64,16 @@ mira_pinta_puertas:
 fin_mira_pinta_puertas:
 	
 mira_pinta_vidas:
-	LD		 A,(actualiza_vidas_sn)
+	LD		 A, (actualiza_vidas_sn)
 	OR		 A
-	JR		 Z,fin_mira_pinta_vidas
+	JR		 Z, fin_mira_pinta_vidas
 	CALL	pinta_vidas
 fin_mira_pinta_vidas:	
 
 mira_pinta_reliquias:
-	LD		 A,(actualiza_reliquias_sn)
+	LD		 A, (actualiza_reliquias_sn)
 	OR		 A
-	JR		 Z,fin_mira_pinta_reliquias
+	JR		 Z, fin_mira_pinta_reliquias
 	CALL	pinta_reliquias
 fin_mira_pinta_reliquias:
 	
@@ -117,13 +122,13 @@ fin_actualiza_array_sprites;
 ; sólo para hacer pruebas y pintar la parte de las vidas y demás
 inicializa_variables_pruebas:
 	LD		 A, 4
-	LD		(prota.vidas),A
+	LD		(prota_vidas),A
 
 	LD		 A, SI	
 	LD		(actualiza_vidas_sn), A	;actualizo la variable para que pinte vidas 1 sí / 0 no
 
 	LD		 A, 5
-	LD		(prota.reliquias), A
+	LD		(prota_reliquias), A
 	
 	LD		 A, SI	
 	LD		(actualiza_reliquias_sn), A	;actualizo la variable para que pinte vidas 1 sí / 0 no
@@ -132,7 +137,7 @@ inicializa_variables_pruebas:
 	LD		(prota.energia), A
 
 	LD		 A, 1
-	LD		(prota.nivel), A		;nivel empieza en 0 para usar las posiciones ascii
+	LD		(prota_nivel), A		;nivel empieza en 0 para usar las posiciones ascii
 	
 	;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
 	;será igual la posición inicial en todos los niveles

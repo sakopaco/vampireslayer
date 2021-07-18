@@ -34,7 +34,7 @@ fin_iniciliza_niveles:
 ;;ACTUALIZA_MARCADOR_VIDAS
 ;;=====================================================	
 ; función:  actualiza el buffer de vidas
-; entrada: 	prota.vidas
+; entrada: 	prota_vidas
 ; salida: 	array_aux_vidas
 ; toca:		A,B,HL
 actualiza_marcador_vidas:
@@ -51,7 +51,7 @@ loop_marcador_caras_negro:	;asignar espacios en negro
 fin_loop_marcador_caras_negro:
 	;2-pinto las caras según el n de vidas
 	LD		HL,array_aux_vidas
-	LD		 A,(prota.vidas)
+	LD		 A,(prota_vidas)
 	LD		 B,A
 loop_marcador_caras: ;asignar caras
 	LD		(HL),POSCARAMAP	;13 posición mapa tiles para cara
@@ -68,25 +68,25 @@ fin_actualiza_marcador_vidas:
 ;;ACTUALIZA_MARCADOR_RELIQUIAS
 ;;=====================================================	
 ; función: 	actualiza buffer de reliquias
-; entrada: 	prota.reliquias
+; entrada: 	prota_reliquias
 ; salida: 	array_aux_reliquias
 ; toca:		A,B,HL
 actualiza_marcador_reliquias:
 	;para no andar restando pongo todos los huecos a negro y luego en otro bucle las reliquias
 	;1-pinto todo en blanco
-	LD		HL,array_aux_reliquias
-	LD		 B,NMAXVIDREL
+	LD		HL, array_aux_reliquias
+	LD		 B, NMAXVIDREL
 loop_marcador_reliquias_negro:	;asignar espacios en negro
-	LD		(HL),0			;0 posición mapa tiles para nada (es transparente pero el fondo es negro)
+	LD		(HL), 0			;0 posición mapa tiles para nada (es transparente pero el fondo es negro)
 	INC		HL
 	DJNZ	loop_marcador_reliquias_negro
 fin_loop_marcador_reliquias_negro:
 	;2-pinto las cruces según el n de reliquias
-	LD		HL,array_aux_reliquias
-	LD		 A,(prota.reliquias)
-	LD		 B,A
+	LD		HL, array_aux_reliquias
+	LD		 A, (prota_reliquias)
+	LD		 B, A
 loop_marcador_reliquias: ;asignar reliquias
-	LD		(HL),POSRELIMAP	;17 posición mapa tiles para reliquia
+	LD		(HL), POSRELIMAP	;17 posición mapa tiles para reliquia
 	INC		HL
 	DJNZ	loop_marcador_reliquias
 fin_loop_marcador_reliquias:
@@ -99,7 +99,7 @@ fin_actualiza_marcador_reliquias:
 ;;LOCALIZA_INFO_HABITACION
 ;;=====================================================	
 ; función: 	busca las puertas que hay que pintar egún la posición del usuario y las pone en A
-; entrada: 	prota.pos_mapy, prota.pos_mapx, prota.nivel, habitaciones_juego
+; entrada: 	prota.pos_mapy, prota.pos_mapx, prota_nivel habitaciones_juego
 ; salida: 	habitacion_actual
 ; toca:		A
 ;ejemplo: nivel 4, posx 5 y posy 3
@@ -111,9 +111,9 @@ localiza_info_habitacion:
 
 ;primer sumando	(en el ejemplo + (4x7)x16)
 		LD		HL, habitaciones_juego
-		LD		 A,(prota.nivel)	
+		LD		 A, (prota_nivel)	
 		OR		 A
-		JR		 Z,.no_suma_niveles_previos	;el primero nivel (0) no sumaría ni uno por lo que salto al segundo sumando
+		JR		 Z, .no_suma_niveles_previos	;el primero nivel (0) no sumaría ni uno por lo que salto al segundo sumando
 	;sumo 7 veces el nº de nivel si no es cero
 		LD		 D, A
 		LD		 B, 6

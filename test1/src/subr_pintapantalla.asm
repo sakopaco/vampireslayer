@@ -80,30 +80,31 @@ pinta_parte_superior_pantalla:
 
 	;cangando banco 1
 	;cargamos los patrones
-	LD		HL,tiles_patrones_pantalla11
-	LD		DE,CHRTBL
+	LD		HL, tiles_patrones_pantalla11
+	LD		DE, CHRTBL
 	CALL	depack_VRAM
 	;cargamos mapa de pantalla
-	LD		HL,tiles_mapa_pantalla11
-	LD		DE,TILMAP
+	LD		HL, tiles_mapa_pantalla11
+	LD		DE, TILMAP
 	CALL	depack_VRAM
 	;cargamos los colores de los patrones
-	LD		HL,tiles_color_pantalla11
-	LD		DE,CLRTBL
+	LD		HL, tiles_color_pantalla11
+	LD		DE, CLRTBL
 	CALL	depack_VRAM
 	
 	;cangando banco 2
 	;cargamos los patrones
-	LD		HL,tiles_patrones_pantalla12
-	LD		DE,CHRTBL + #0800
+	LD		HL, tiles_patrones_pantalla12
+	LD		DE, CHRTBL + #0800
 	CALL	depack_VRAM	
 	;cargamos mapa de pantalla
-	LD		HL,tiles_mapa_pantalla12
-	LD		DE,TILMAP + #0100
+	LD		HL, tiles_mapa_pantalla12
+	LD		DE, TILMAP + #0100
 	CALL	depack_VRAM
 	;cargamos los colores de los patrones
-	LD		HL,tiles_color_pantalla12
-	LD		DE,CLRTBL + #0800
+	LD		HL, tiles_color_pantalla12
+	LD		DE, CLRTBL + #0800
+	;JP		depack_VRAM
 	CALL	depack_VRAM
 fin_pinta_parte_superior_pantalla:
 	RET
@@ -129,9 +130,10 @@ pinta_parte_inferior_pantalla:
 	;cargamos los colores de los patrones
 	LD		HL,tiles_color_pantalla3
 	LD		DE,CLRTBL + #1000
-	CALL	depack_VRAM
+	JP		depack_VRAM
+	;~ CALL	depack_VRAM
 fin_pinta_parte_inferior_pantalla:
-	RET
+	;~ RET
 
 
 
@@ -145,9 +147,9 @@ fin_pinta_parte_inferior_pantalla:
 pinta_vidas:
 	EXX
 	
-	LD		HL,array_aux_vidas
-	LD		DE,TILMAP + POSVIDAS 	;inicio posición en el mapa de tiles de las vidas
-	LD		BC,NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
+	LD		HL, array_aux_vidas
+	LD		DE, TILMAP + POSVIDAS 	;inicio posición en el mapa de tiles de las vidas
+	LD		BC, NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
 	CALL	LDIRVM
 	
 	;una vez quer está pintada ya no se actualizará a menos que perdamos/ganemos una vida
@@ -170,14 +172,14 @@ fin_pinta_vidas:
 pinta_reliquias:
 	EXX
 	
-	LD		HL,array_aux_reliquias
-	LD		DE,TILMAP + POSRELIQ 	;inicio posición en el mapa de tiles de las vidas
-	LD		BC,NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
+	LD		HL, array_aux_reliquias
+	LD		DE, TILMAP + POSRELIQ 	;inicio posición en el mapa de tiles de las vidas
+	LD		BC, NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
 	CALL	LDIRVM
 	
 	;una vez quer está pintada ya no se actualizará a menos que ganemos/gastemos una reliquia
 	XOR		 A
-	LD		(actualiza_reliquias_sn),A
+	LD		(actualiza_reliquias_sn), A
 
 	EXX
 fin_pinta_reliquias:
@@ -190,15 +192,15 @@ fin_pinta_reliquias:
 ;;PINTA_NIVEL
 ;;=====================================================	
 ; función: 	actualiza el nivel en la parte de puntuación
-; entrada: 	prota.nivel
+; entrada: 	prota_nivel
 ; salida: 	-
 ; toca:		HL,DE,BC
 pinta_nivel:	
 	;forma más avanzada sin llamada a la bios
 	LD		BC,TILMAP + POSNIVEL ;posición en el mapa de tiles del tile de nivel
-	LD		 A,(prota.nivel)	;seleccionando la pos del banco de tiles a poner en el mapa
+	LD		 A, (prota_nivel)	;seleccionando la pos del banco de tiles a poner en el mapa
 	ADD		'0'	
-	LD		 D,A
+	LD		 D, A
 	
 	CALL	pinta_tile_suelto	;nota ... un call+ret se debe poder sustiruir por un jp
 fin_pinta_nivel:
@@ -333,9 +335,9 @@ fin_mira_pinta_energia:
 pinta_energia:
 	EXX
 	
-	LD		HL,array_aux_energia
-	LD		DE,TILMAP + POSENERG 	;inicio posición en el mapa de tiles de las vidas
-	LD		BC,NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
+	LD		HL, array_aux_energia
+	LD		DE, TILMAP + POSENERG 	;inicio posición en el mapa de tiles de las vidas
+	LD		BC, NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
 	CALL	LDIRVM
 		
 	EXX
@@ -533,9 +535,10 @@ pinta_puerta_aba:
 	LD		C,L
 	LD		D,1								;nº de filas
 	LD		E,4								;nº de columnas
-	CALL	pinta_array
+	JP		pinta_array
+	;~ CALL	pinta_array
 fin_pinta_puerta_aba:
-	RET
+	;~ RET
 
 ;;=====================================================
 ;;PINTA_PUERTA_ARR
@@ -553,9 +556,10 @@ pinta_puerta_arr:
 	LD		C,L
 	LD		D,5								;nº de filas
 	LD		E,4								;nº de columnas
-	CALL	pinta_array
+	JP		pinta_array
+	;~ CALL	pinta_array
 fin_pinta_puerta_arr:
-	RET
+	;~ RET
 
 ;;=====================================================
 ;;PINTA_PUERTA_DER
@@ -573,9 +577,10 @@ pinta_puerta_der:
 	LD		C,L
 	LD		D,7								;nº de filas
 	LD		E,3								;nº de columnas
-	CALL	pinta_array
+	JP		pinta_array
+	;~ CALL	pinta_array
 fin_pinta_puerta_der:
-	RET
+	;~ RET
 	
 ;;=====================================================
 ;;PINTA_PUERTA_IZQ
@@ -593,9 +598,10 @@ pinta_puerta_izq:
 	LD		C,L
 	LD		D,7								;nº de filas
 	LD		E,3								;nº de columnas
-	CALL	pinta_array
+	JP		pinta_array
+	;~ CALL	pinta_array
 fin_pinta_puerta_izq:
-	RET
+	;~ RET
 
 
 
@@ -686,8 +692,9 @@ pinta_pos_mapa_vacio:
 	LD		 D, TILEMAPVACI				;********************* se puede hacer mejor o está bien usar push y pop ¿?¿?¿?
 
 fin_pinta_pos_mapa:
-	CALL	pinta_tile_suelto
+	JP		pinta_tile_suelto
+	;~ CALL	pinta_tile_suelto
 fin_posiciona_en_mapa:
-	RET
+	;~ RET
 
 
