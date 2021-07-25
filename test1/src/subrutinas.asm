@@ -146,7 +146,7 @@ localiza_info_habitacion:
 ;ya tengo el puntero HL al inicio del nivel que me interesa
 
 ;segundo sumando (en el ejemplo + 3x16)
-	LD		 A,(prota.pos_mapy)
+	LD		 A,(prota_pos_mapy)
 [4]	SLA		 A				;equivalente a 3 x 16			
 
 	LD		 E, A
@@ -155,7 +155,7 @@ localiza_info_habitacion:
 	ADD		HL, DE			;equivale a 4x7x16 (HL) + 3x16 (DE)
 
 ;tercer sumando (en el ejemplo + 5)
-	LD		 A, (prota.pos_mapx)
+	LD		 A, (prota_pos_mapx)
 	LD		 B, A
 .situa_columna:
 [2]	INC		HL

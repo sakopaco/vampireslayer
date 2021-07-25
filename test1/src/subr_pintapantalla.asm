@@ -247,7 +247,7 @@ fin_pinta_tile_suelto:
 mira_pinta_energia:
 	EXX							;por si acaso guardo el contenido de HL (si veo que no es necesario guardarlo lo quito) uso esto en vez de push por el nº ciclos
 	
-	LD		 A,(prota.energia) 	;para las comparaciones A variable (actual) y B fijo (limites)
+	LD		 A,(prota_energia) 	;para las comparaciones A variable (actual) y B fijo (limites)
 
 	LD		 C,TILENEGRO		;para agilizar asignaciones en vez de un valor cte uso otro registro
 pinta_ener:
@@ -624,22 +624,22 @@ posiciona_en_mapa:
 	
 	;ahora se le calcula la fila a pintar ya que va de abajo a arriba y no como en el mapa + columna
 .sumar_fila:
-	LD		 A,(prota.pos_mapy)
+	LD		 A,(prota_pos_mapy)
 	CP		 1
 	JR		 Z, .fila_1
-	LD		 A,(prota.pos_mapy)
+	LD		 A,(prota_pos_mapy)
 	CP		 2
 	JR		 Z, .fila_2
-	LD		 A,(prota.pos_mapy)
+	LD		 A,(prota_pos_mapy)
 	CP		 3
 	JR		 Z, .fila_3
-	LD		 A,(prota.pos_mapy)
+	LD		 A,(prota_pos_mapy)
 	CP		 4
 	JR		 Z, .fila_4
-	LD		 A,(prota.pos_mapy)
+	LD		 A,(prota_pos_mapy)
 	CP		 5
 	JR		 Z, .fila_5
-	LD		 A,(prota.pos_mapy)
+	LD		 A,(prota_pos_mapy)
 	CP		 6
 	JR		 Z, .sumar_columna
 	;no consulto la 0 porque si no es ninguna de las anteriores es 0 y por tanto sería un jr fila_0
@@ -673,7 +673,7 @@ posiciona_en_mapa:
 	
 	
 .sumar_columna:
-	LD 		 A, (prota.pos_mapx) ;POS X
+	LD 		 A, (prota_pos_mapx) ;POS X
 	LD		 D, 0
 	LD		 E, A
 	ADD		HL, DE

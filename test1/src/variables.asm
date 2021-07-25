@@ -57,10 +57,10 @@ array_puerta_izquierda6:	DB	1,1,2
 array_puerta_izquierda7:	DB	1,2,4
 
 
-
-array_sprites:			;array de 4 bytes x 32 sprites posibles en pantalla que sobreescribirá la tabla de sprites actualizando VRAM
-							DS	32 * 4
-
-lista_enemigos:				DS	10 * ESTRUCTURA_ENEMIGO
-puntero_array_atrib_array_VRAM 
-							DW	0	;ARRAYSPTRIES + 8
+;array de 4 bytes x 32 sprites posibles en pantalla que sobreescribirá la tabla de sprites actualizando VRAM
+array_sprites:
+array_sprites_pm:				DS	2 * 4
+array_sprites_enem:				DS	30 * 4
+lista_enemigos:					DS	10 * ESTRUCTURA_ENEMIGO
+; puntero al array a pintar en VRAM
+puntero_array_atrib_array_VRAM: DW	0	;ARRAYSPTRIES + 8

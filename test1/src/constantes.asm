@@ -45,11 +45,28 @@ CLRTBL		equ		#2000
 SPRTBL		equ		#3800
 
 
-
-
 ;;ETIQUETAS ESTANDAR PARA DAR MÁS CLARIDAD AL CODIGO
-SI			equ		#0001
-NO			equ		#0000
+SI			equ		1
+NO			equ		0
+
+COLTRASP	equ		0
+COLNEGRO	equ		1
+COLVERDE	equ		2
+COLVERCLA	equ		3
+COLAZULOSC	equ		4
+COLAZULLA	equ		5
+COLROJOOSC	equ		6
+COLCYAN		equ		7
+COLROJO		equ		8
+COLROJOCLA	equ		9
+COLAMAROSC	equ		10
+COLAMARCLA	equ		11
+COLVERDOSC	equ		12
+COLMAGENTA	equ		13
+COLGRIS		equ		14
+COLBLANCO	equ		15
+
+
 
 ;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (relacionadas con posiciones en mapa vdp)
 POSMAPLIN1  equ		#02F8
@@ -83,8 +100,8 @@ TILEMAPVERD equ		14
 
 
 ;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (generales)
-NMAXVIDREL	equ		#0008	;el número máximo de vidas y de reliquias es de 8
-NHABNIVEL	equ		#0007
+NMAXVIDREL	equ		8		;el número máximo de vidas y de reliquias es de 8
+NHABNIVEL	equ		7
 MAXENERGIA  equ		248
 TILEENERG8  equ		217
 TILEENERG7  equ		186
@@ -94,6 +111,23 @@ TILEENERG4  equ		93
 TILEENERG3  equ		62
 TILEENERG2  equ		31
 TILENEGRO	equ		0
+
+;limites
+LIMPANTIZQ  equ		0
+LIMPANTDER  equ		255
+LIMPANTARR  equ		0
+LIMPANTABA  equ		128
+
+MUEARR  	equ		1
+MUEARRDER	equ		2
+MUEDER  	equ		3
+MUEDERABA  	equ		4
+MUEABA  	equ		5
+MUEABAIZQ  	equ		6
+MUEIZQ  	equ		7
+MUEIZQARR  	equ		8
+
+
 
 ;matriz de 7x7 empieza en 0, y fila y x col, cuento desde esquina sup izq
 BASEMAPY	equ		6

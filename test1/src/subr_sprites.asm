@@ -121,7 +121,7 @@ fin_carga_patrones_sprites:
 ; entrada: 	-
 ; salida: 	-
 ; toca: 	todos los registros. Como me interesa la velocidad, si necesito copiar de algo lo hago fuera
-actualiza_array_sprites_vram:
+render_sprites:
 	;volcando el array con toda la info de los sprites a la zona de atributos de sprites
 	LD		HL,array_sprites
 	LD		DE,SPRART
