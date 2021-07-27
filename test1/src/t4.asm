@@ -95,6 +95,15 @@ check_player:
 	
 	XOR		 A
 	CALL	GTSTCK
+	
+	;pone resultado en variable tecla_pulsada
+	CALL	obtiene_tecla_pulsada
+	;pone resultado en variable accion_joystic
+	CALL	obtiene_accion_joystick
+	;mezcla resultados y ls pone en A
+	CALL	mezcla_calores_tecla_joystick
+	
+	
 	CP		MUEARR
 	CALL	 Z,mueve_arriba
 	CP		MUEARRDER
@@ -111,6 +120,8 @@ check_player:
 	CALL	 Z,mueve_izquierda
 	CP		MUEIZQARR
 	CALL	 Z,mueve_izquierda_arriba
+	
+	;zona par mirar disparo
 
 	CALL	vuelca_resultado_puntomira_array
 
