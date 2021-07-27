@@ -96,12 +96,12 @@ check_player:
 	XOR		 A
 	CALL	GTSTCK
 	
-	;pone resultado en variable tecla_pulsada
-	CALL	obtiene_tecla_pulsada
-	;pone resultado en variable accion_joystic
-	CALL	obtiene_accion_joystick
-	;mezcla resultados y ls pone en A
-	CALL	mezcla_calores_tecla_joystick
+	;~ ;pone resultado en variable tecla_pulsada
+	;~ CALL	obtiene_tecla_pulsada
+	;~ ;pone resultado en variable accion_joystic
+	;~ CALL	obtiene_accion_joystick
+	;~ ;mezcla resultados y ls pone en A
+	;~ CALL	mezcla_calores_tecla_joystick
 	
 	
 	CP		MUEARR
@@ -159,14 +159,12 @@ fin_mueve_arriba:
 ; salida: 	-
 ; toca: 	-
 mueve_arriba_derecha:
-	PUSH		AF
 	
 	CALL		mueve_arriba
-	CALL		mueve_derecha
+	JP			mueve_derecha
 	
-	POP			AF
 fin_mueve_arriba_derecha:
-	RET
+	;RET
 
 
 ;;=====================================================
@@ -198,14 +196,12 @@ fin_mueve_derecha:
 ; salida: 	-
 ; toca: 	-
 mueve_derecha_abajo:
-	PUSH		AF
 	
 	CALL		mueve_derecha
-	CALL		mueve_abajo
+	JP			mueve_abajo
 	
-	POP			AF
 fin_mueve_derecha_abajo:
-	RET
+;	RET
 
 ;;=====================================================
 ;;MUEVE_ABAJO
@@ -237,14 +233,12 @@ fin_mueve_abajo:
 ; salida: 	-
 ; toca: 	-
 mueve_abajo_izquierda:
-	PUSH		AF
 	
 	CALL		mueve_abajo
-	CALL		mueve_izquierda
-	
-	POP			AF
+	JP			mueve_izquierda
+
 fin_mueve_abajo_izquierda:
-	RET
+	;RET
 
 	
 ;;=====================================================
@@ -277,14 +271,12 @@ fin_mueve_izquierda:
 ; salida: 	-
 ; toca: 	-
 mueve_izquierda_arriba:
-	PUSH		AF
-	
+
 	CALL		mueve_izquierda
-	CALL		mueve_arriba
-	
-	POP			AF
+	JP			mueve_arriba
+
 fin_mueve_izquierda_arriba:
-	RET
+	;RET
 
 ;;=====================================================
 ;;VUELCA_RESULTADO_PUNTOMIRA_ARRAY
