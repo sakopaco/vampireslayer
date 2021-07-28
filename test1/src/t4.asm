@@ -94,10 +94,10 @@ check_player:
 	EXX
 	
 	XOR		 A
-	CALL	GTSTCK
+	;~ CALL	GTSTCK
 	
-	;~ ;pone resultado en variable tecla_pulsada
-	;~ CALL	obtiene_tecla_pulsada
+	;pone resultado en variable tecla_pulsada
+	CALL	obtiene_tecla_pulsada
 	;~ ;pone resultado en variable accion_joystic
 	;~ CALL	obtiene_accion_joystick
 	;~ ;mezcla resultados y ls pone en A
@@ -130,186 +130,38 @@ fin_check_player:
 	RET
 
 
+
 ;;=====================================================
-;;MUEVE_ARRIBA
+;;OBTIENE TECLA PULSADA
 ;;=====================================================	
-; función: 	decrementa y si se no sale de los límites el valor del punto de mira a la derecha
+; función: 	devuelve un valor entre 1 y 8 según la dirección de teclas pulsada
 ; entrada: 	-
-; salida: 	-
-; toca: 	-
-mueve_arriba:
-	PUSH		AF
+; salida: 	teclas_pulsadas
+; toca: 	
+obtiene_tecla_pulsada:
+
+	LD		 B, 8	;linea donde están los cursore y espacio
 	
-	LD		 	 A, (prota.posy)
-	DEC			 A
-	JP			 Z,.no_decrementa_y
-	LD			(prota.posy), A
+	IN		 A, (#AA)
+    AND		#F0
+    OR		 B
+    OUT		(#AA), A
+    IN		 A, (#A9)
 	
-.no_decrementa_y:
-	POP			AF
-fin_mueve_arriba:
+	BIT		 5, A
+	JP		 Z, .arriba
+	
 	RET
-	
-	
-;;=====================================================
-;;MUEVE_ARRIBA_DERECHA
-;;=====================================================	
-; función: 	mueve punto de mira en diagonal arriba a la derecha
-; entrada: 	-
-; salida: 	-
-; toca: 	-
-mueve_arriba_derecha:
-	
-	CALL		mueve_arriba
-	JP			mueve_derecha
-	
-fin_mueve_arriba_derecha:
-	;RET
+.arriba:
+	LD		 A, 1
 
 
-;;=====================================================
-;;MUEVE_DERECHA
-;;=====================================================	
-; función: 	incrementa si se no sale de los límites el valor del punto de mira a la derecha
-; entrada: 	-
-; salida: 	-
-; toca: 	-
-mueve_derecha:
-	PUSH		AF
-	
-	LD		 	 A, (prota.posx)
-	INC			 A
-	CP			 A, LIMPANTDER - 16
-	JP			 Z, .no_incrementa_x
-	LD			(prota.posx), A
-	
-.no_incrementa_x:
-	POP			AF
-fin_mueve_derecha:
+.fin:
+
+
+;teclas_pulsadas
+fin_obtiene_tecla_pulsada:
 	RET
-
-;;=====================================================
-;;MUEVE_DERECHA_ABAJO
-;;=====================================================	
-; función: 	mueve punto de mira en diagonal abajo a la derecha
-; entrada: 	-
-; salida: 	-
-; toca: 	-
-mueve_derecha_abajo:
-	
-	CALL		mueve_derecha
-	JP			mueve_abajo
-	
-fin_mueve_derecha_abajo:
-;	RET
-
-;;=====================================================
-;;MUEVE_ABAJO
-;;=====================================================	
-; función: 	incrementa y si se no sale de los límites el valor del punto de mira abajo
-; entrada: 	-
-; salida: 	-
-; toca: 	-
-mueve_abajo:
-	PUSH		AF
-	
-	LD		 	 A, (prota.posy)
-	INC			 A
-	CP			 A, LIMPANTABA - 16
-	JP			 Z,.no_incrementa_y
-	LD			(prota.posy), A
-	
-.no_incrementa_y:
-	POP			AF
-fin_mueve_abajo:
-	RET
-	
-
-;;=====================================================
-;;MUEVE_ABAJO_IZQUIERDA
-;;=====================================================	
-; función: 	mueve punto de mira en diagonal abajo a la izquierda
-; entrada: 	-
-; salida: 	-
-; toca: 	-
-mueve_abajo_izquierda:
-	
-	CALL		mueve_abajo
-	JP			mueve_izquierda
-
-fin_mueve_abajo_izquierda:
-	;RET
-
-	
-;;=====================================================
-;;MUEVE_IZQUIERDA
-;;=====================================================	
-; función: 	decrementa x si se no sale de los límites el valor del punto de mira a la izquierda
-; entrada: 	-
-; salida: 	-
-; toca: 	-
-mueve_izquierda:
-	PUSH		AF
-	
-	LD		 	 A, (prota.posx)
-	DEC			 A
-;	CP			 A, LIMPANTIZQ
-	JP			 Z,.no_decrementa_x
-	LD			(prota.posx), A
-	
-.no_decrementa_x:
-	POP			AF
-fin_mueve_izquierda:
-	RET
-
-
-;;=====================================================
-;;MUEVE_IZQUIERDA_ARRIBA
-;;=====================================================	
-; función: 	mueve punto de mira en diagonal arriba a la izquierda
-; entrada: 	-
-; salida: 	-
-; toca: 	-
-mueve_izquierda_arriba:
-
-	CALL		mueve_izquierda
-	JP			mueve_arriba
-
-fin_mueve_izquierda_arriba:
-	;RET
-
-;;=====================================================
-;;VUELCA_RESULTADO_PUNTOMIRA_ARRAY
-;;=====================================================	
-; función: 	coloca los valores del punto de mira en la variable array_sprites para ser volcados en VRAM
-; entrada: 	-
-; salida: 	-
-; toca: 	-
-vuelca_resultado_puntomira_array:
-	PUSH	AF
-	
-	LD		IX, array_sprites_pm
-	;posición y de los dos sprites que conforman el punto de mira
-	LD		 A, (prota.posy)
-	LD		(IX  ), A
-	LD		(IX+4), A
-	;posición x de los dos sprites que conforman el punto de mira
-	LD		 A, (prota.posx)
-	LD		(IX+1), A
-	LD		(IX+5), A
-	;plano
-	LD		(IX+2), 0
-	LD		(IX+6), 4	;al ser sprites de 16x16 hay que ir de 4 en 4
-	;color
-	LD		(IX+3), COLBLANCO
-	LD		(IX+7), COLROJO
-	
-	POP		AF
-fin_vuelca_resultado_puntomira_array:
-	RET
-
-
-
 
 
 
@@ -368,6 +220,8 @@ fin_inicializa_variables_pruebas:
 	include "subr_pintapantalla.asm"
 	
 	include "subr_sprites.asm"
+	
+	include "subr_teclado_joy.asm"
 	
 
 ;Este include lleva la rutina de descompresión de ROM/RAM a VRAM de pletter

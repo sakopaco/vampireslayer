@@ -4,8 +4,6 @@
 ;definicion de variable del prota usando la estructura del punto de mira
 prota:		ESTRUCTURA_PUNTOMIRA
 
-
-
 array_aux_vidas: 		;array para pintar de golpe el marcador de vidas
 			DB		0,0,0,0,0,0,0,0
 actualiza_vidas_sn:
@@ -55,6 +53,12 @@ array_puerta_izquierda4:	DB	1,1,1
 array_puerta_izquierda5:	DB	1,1,1
 array_puerta_izquierda6:	DB	1,1,2
 array_puerta_izquierda7:	DB	1,2,4
+
+
+;;variables para teclas teclas y joystick (control del punto de mira)
+teclas_pulsadas:			DB	0	;4 bits altos (disparo normal espacio o alternativo shift) 4 bits siguientes movimiento
+accion_joystick:			DB	0	;4 bits altos (disparo normal A o alternativo B) 4 bits siguientes movimiento
+
 
 
 ;array de 4 bytes x 32 sprites posibles en pantalla que sobreescribirá la tabla de sprites actualizando VRAM

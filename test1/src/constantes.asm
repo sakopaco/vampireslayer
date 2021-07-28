@@ -36,7 +36,6 @@ REGEST		equ		#0099	;registro de estado para escribir directamente en VRAM
 REGESCVDP	equ		#0098	;registro donde escribir valor para VRAM
 
 
-
 ;;ETIQUETAS DE ZONAS DE MEMORIA DE LA VPD (MSX1)
 CHRTBL		equ		#0000
 TILMAP		equ		#1800

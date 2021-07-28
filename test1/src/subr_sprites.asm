@@ -133,3 +133,34 @@ fin_actualiza_array_sprites_vram:
 
 
 
+
+;;=====================================================
+;;VUELCA_RESULTADO_PUNTOMIRA_ARRAY
+;;=====================================================	
+; función: 	coloca los valores del punto de mira en la variable array_sprites para ser volcados en VRAM
+; entrada: 	-
+; salida: 	-
+; toca: 	-
+vuelca_resultado_puntomira_array:
+	PUSH	AF
+	
+	LD		IX, array_sprites_pm
+	;posición y de los dos sprites que conforman el punto de mira
+	LD		 A, (prota.posy)
+	LD		(IX  ), A
+	LD		(IX+4), A
+	;posición x de los dos sprites que conforman el punto de mira
+	LD		 A, (prota.posx)
+	LD		(IX+1), A
+	LD		(IX+5), A
+	;plano
+	LD		(IX+2), 0
+	LD		(IX+6), 4	;al ser sprites de 16x16 hay que ir de 4 en 4
+	;color
+	LD		(IX+3), COLBLANCO
+	LD		(IX+7), COLROJO
+	
+	POP		AF
+fin_vuelca_resultado_puntomira_array:
+	RET
+
