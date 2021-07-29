@@ -170,11 +170,30 @@ obtiene_tecla_pulsada:
 	
 	BIT		 0, A					;Se ha pulsado espacio?
 	JP		 NZ, .finsi_pulsado_espacio
-	EX		AF, jajajajAF'
+	EX		AF, AF'					;guardo el valor de A para para actualizar D
 	LD		 A, 00100000b
 	OR		 D
 	LD		 D, A
 	EX		AF, AF'
+	
+	;miramos las pulsaciones de cursores
+[4] SRL		 A						;preparo A que tiene en los 4 primeros bits las pulsaciones de cursores
+
+.mueve_arriba
+	CP		 13						
+	JP		NZ, .mueve_arriba_derecha
+	LD		 A, 1
+	JP		.finsi_pulsado_espacio
+.mueve_arriba_derecha
+	CP		 5					
+	JP		NZ, .mueve_derecha
+	LD		 A, 2
+	JP		.finsi_pulsado_espacio	
+.mueve_derecha
+	CP		 7					
+	JP		NZ, .mueve_derecha_abajo
+	LD		 A, 3
+	JP		.finsi_pulsado_espacio	
 	
 	
 .finsi_pulsado_espacio:
