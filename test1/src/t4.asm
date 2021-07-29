@@ -139,8 +139,14 @@ fin_check_player:
 ; salida: 	teclas_pulsadas
 ; toca: 	
 obtiene_tecla_pulsada:
+	;primero vacio la variable teclas_pulsadas
+	;XXPS para disparo primario  y secundario
+	;DDDD para movimientos 
+	XOR		 A
+	LD		 D, A 					;inicializo D porque guardaré el resultado ahí y luego lo mando a teclas_pulsadas
 
-	LD		 B, 8	;linea donde están los cursore y espacio
+	;segundo examino la fila 6 y bit 0 para ver si se ha pulsado SHIFT en cuyo caso vale 0
+	LD		 B, 6
 	
 	IN		 A, (#AA)
     AND		#F0
@@ -148,10 +154,33 @@ obtiene_tecla_pulsada:
     OUT		(#AA), A
     IN		 A, (#A9)
 	
-	BIT		 5, A
-	JP		 Z, .arriba
+	BIT		 0, A					;Se ha pulsado shift?
+	JP		 NZ, .finsi_pulsado_shift
+	LD		 A, 00010000b
+	LD		D, A					;pongo el bit 5 de la D a 1
+.finsi_pulsado_shift:
+
+	LD		 B, 8					;linea donde están los cursores y espacio
 	
-	RET
+	IN		 A, (#AA)
+    AND		#F0
+    OR		 B
+    OUT		(#AA), A
+    IN		 A, (#A9)
+	
+	BIT		 0, A					;Se ha pulsado espacio?
+	JP		 NZ, .finsi_pulsado_espacio
+	EX		AF, jajajajAF'
+	LD		 A, 00100000b
+	OR		 D
+	LD		 D, A
+	EX		AF, AF'
+	
+	
+.finsi_pulsado_espacio:
+
+
+
 .arriba:
 	LD		 A, 1
 
