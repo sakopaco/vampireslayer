@@ -104,6 +104,7 @@ check_player:
 	;~ CALL	mezcla_calores_tecla_joystick
 	
 	LD		 A, (teclas_pulsadas)
+	RET		 Z						;si no se ha pulsado nada no se necesita mirar nada
 	AND		 A, 00001111b
 	
 	CP		MUEARR
