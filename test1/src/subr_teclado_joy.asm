@@ -148,3 +148,67 @@ mueve_izquierda_arriba:
 fin_mueve_izquierda_arriba:
 	;RET
 
+
+
+
+;;=====================================================
+;;OBTIENE TECLA PULSADA
+;;=====================================================	
+; función: 	devuelve un valor entre 1 y 8 según la dirección de teclas pulsada
+; entrada: 	-
+; salida: 	teclas_pulsadas
+; toca: 	
+obtiene_tecla_pulsada:
+	;primero vacio la variable teclas_pulsadas
+	;XXPS para disparo primario  y secundario
+	;DDDD para movimientos 
+	XOR		 A
+	LD		 D, A 					;inicializo D porque guardaré el resultado ahí y luego lo mando a teclas_pulsadas
+
+	;segundo examino la fila 6 y bit 0 para ver si se ha pulsado SHIFT en cuyo caso vale 0
+	LD		 B, 6
+	
+	IN		 A, (#AA)
+    AND		#F0
+    OR		 B
+    OUT		(#AA), A
+    IN		 A, (#A9)
+	
+	BIT		 0, A					;Se ha pulsado shift?
+	JP		 NZ, .finsi_pulsado_shift
+	LD		 A, 00010000b
+	LD		D, A					;pongo el bit 5 de la D a 1
+.finsi_pulsado_shift:
+
+	LD		 B, 8					;linea donde están los cursores y espacio
+	
+	IN		 A, (#AA)
+    AND		#F0
+    OR		 B
+    OUT		(#AA), A
+    IN		 A, (#A9)
+	
+	BIT		 0, A					;Se ha pulsado espacio?
+	JP		 NZ, .finsi_pulsado_espacio
+	EX		AF, AF'					;guardo el valor de A para para actualizar D
+	LD		 A, 00100000b
+	OR		 D
+	LD		 D, A
+	EX		AF, AF'
+.finsi_pulsado_espacio:
+	
+	;miramos las pulsaciones de cursores
+[4] SRL		 A						;preparo A que tiene en los 4 primeros bits las pulsaciones de cursores
+
+	LD		HL, array_movimientos_cursores
+	LD		 B, 0
+	LD		 C, A
+	ADD		HL, BC
+	
+	LD		 A, (HL)
+	OR		 D
+	
+	LD		(teclas_pulsadas), A
+fin_obtiene_tecla_pulsada:
+	RET
+

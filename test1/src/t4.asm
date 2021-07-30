@@ -94,19 +94,23 @@ check_player:
 	EXX
 	
 	XOR		 A
-	;~ CALL	GTSTCK
 	
 	;pone resultado en variable tecla_pulsada
 	CALL	obtiene_tecla_pulsada
 	;~ ;pone resultado en variable accion_joystic
 	;~ CALL	obtiene_accion_joystick
-	;~ ;mezcla resultados y ls pone en A
-	;~ CALL	mezcla_calores_tecla_joystick
 	
+	;mezcla resultados y ls pone en A
 	LD		 A, (teclas_pulsadas)
-	RET		 Z						;si no se ha pulsado nada no se necesita mirar nada
-	AND		 A, 00001111b
+	LD		 B, A
+	LD		 A, (accion_joystick)
+	OR		 B
 	
+	RET		 Z						;si no se ha pulsado nada no se necesita mirar nada
+	
+	LD		 C, A					;guardo una copia par usar en la subrutina mira_disparo
+	
+	AND		 A, 00001111b
 	CP		MUEARR
 	CALL	 Z,mueve_arriba
 	CP		MUEARRDER
@@ -124,7 +128,8 @@ check_player:
 	CP		MUEIZQARR
 	CALL	 Z,mueve_izquierda_arriba
 	
-	;zona par mirar disparo
+	;zona para mirar disparo
+	CALL	mira_disparo
 
 	CALL	vuelca_resultado_puntomira_array
 
@@ -134,67 +139,39 @@ fin_check_player:
 
 
 
+
 ;;=====================================================
-;;OBTIENE TECLA PULSADA
+;;MIRA_DISPARO
 ;;=====================================================	
-; función: 	devuelve un valor entre 1 y 8 según la dirección de teclas pulsada
-; entrada: 	-
-; salida: 	teclas_pulsadas
+; función: 	Mira si se ha pulsado alguno de los dos disparos
+; entrada: 	C  (bits 5 - botón 1 y 6 - botón 2)
+; salida: 	-
 ; toca: 	
-obtiene_tecla_pulsada:
-	;primero vacio la variable teclas_pulsadas
-	;XXPS para disparo primario  y secundario
-	;DDDD para movimientos 
+mira_disparo:
+	EX		AF,AF'
+	EXX
+.mira_boton_1:
+	BIT		 5, C
+	JP		 NZ, .mira_boton_2
+	;se ha pulsado barra
+	LD		 A, (prota.escena)
+	JP		 NZ, .punto_mira_color_2
+.punto_mira_color_1:
 	XOR		 A
-	LD		 D, A 					;inicializo D porque guardaré el resultado ahí y luego lo mando a teclas_pulsadas
+	LD		(prota.escena), A
+	JP		.fin_punto_mira_color
+.punto_mira_color_2:
+	LD		 A, 1
+	LD		(prota.escena), A
+.fin_punto_mira_color:
 
-	;segundo examino la fila 6 y bit 0 para ver si se ha pulsado SHIFT en cuyo caso vale 0
-	LD		 B, 6
-	
-	IN		 A, (#AA)
-    AND		#F0
-    OR		 B
-    OUT		(#AA), A
-    IN		 A, (#A9)
-	
-	BIT		 0, A					;Se ha pulsado shift?
-	JP		 NZ, .finsi_pulsado_shift
-	LD		 A, 00010000b
-	LD		D, A					;pongo el bit 5 de la D a 1
-.finsi_pulsado_shift:
-
-	LD		 B, 8					;linea donde están los cursores y espacio
-	
-	IN		 A, (#AA)
-    AND		#F0
-    OR		 B
-    OUT		(#AA), A
-    IN		 A, (#A9)
-	
-	BIT		 0, A					;Se ha pulsado espacio?
-	JP		 NZ, .finsi_pulsado_espacio
-	EX		AF, AF'					;guardo el valor de A para para actualizar D
-	LD		 A, 00100000b
-	OR		 D
-	LD		 D, A
-	EX		AF, AF'
-.finsi_pulsado_espacio:
-	
-	;miramos las pulsaciones de cursores
-[4] SRL		 A						;preparo A que tiene en los 4 primeros bits las pulsaciones de cursores
-
-	LD		HL, array_movimientos_cursores
-	LD		 B, 0
-	LD		 C, A
-	ADD		HL, BC
-	
-	LD		 A, (HL)
-	OR		 D
-	
-	LD		(teclas_pulsadas), A
-fin_obtiene_tecla_pulsada:
+.mira_boton_2:
+	;~ BIT		C, 6
+	;~ CP		 Z, fin_mira_disparo
+	EXX
+	EX		AF,AF'
+fin_mira_disparo:
 	RET
-
 
 
 ;;*******************************************************************

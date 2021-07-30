@@ -20,10 +20,11 @@ prota_energia:
 	STRUCT ESTRUCTURA_PUNTOMIRA
 posx			DB		100
 posy			DB		100
-retardo			DB		0	;contador_siguiente_escena
-escena			DB		0
-reset_contador	DB		0
+escena			DB		0	;valores porsibles 0 (blanco+rojo en punto de mira) y 1 (al revés)
 velocidad		DB		0
+color1			DB		15
+color2			DB		8
+boton2_pressed  DB		0
 ; al final he decidido (ya que el punto de mira es el prota) que lo relacionado con el prota vaya en esta estructura
 pm_aux1			DB		0	;para llegar a los 16 campos
 pm_aux2			DB		0	;para llegar a los 16 campos
@@ -34,10 +35,8 @@ pm_aux6			DB		0	;para llegar a los 16 campos
 pm_aux7			DB		0	;para llegar a los 16 campos
 pm_aux8			DB		0	;para llegar a los 16 campos
 pm_aux9			DB		0	;para llegar a los 16 campos
-pm_aux10		DB		0	;para llegar a los 16 campos
-
-
 	ENDSTRUCT;ESTRUCTURA_PUNTOMIRA
+
 	
 	STRUCT ESTRUCTURA_ENEMIGO
 tipo				DB		0	;(0 serpiente por ejemplo) #FF muerto o no existe
