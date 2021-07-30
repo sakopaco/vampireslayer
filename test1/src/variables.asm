@@ -58,7 +58,8 @@ array_puerta_izquierda7:	DB	1,2,4
 ;;variables para teclas teclas y joystick (control del punto de mira)
 teclas_pulsadas:			DB	0	;4 bits altos (disparo normal espacio o alternativo shift) 4 bits siguientes movimiento
 accion_joystick:			DB	0	;4 bits altos (disparo normal A o alternativo B) 4 bits siguientes movimiento
-
+array_movimientos_cursores:			;posiciones que tras mirar teclado y 4srr devuelve y su traducción en movmiento a cursor
+							DB	9,9,9,4,9,2,9,3,9,9,6,5,8,1,7,0
 
 
 ;array de 4 bytes x 32 sprites posibles en pantalla que sobreescribirá la tabla de sprites actualizando VRAM
@@ -68,3 +69,5 @@ array_sprites_enem:				DS	30 * 4
 lista_enemigos:					DS	10 * ESTRUCTURA_ENEMIGO
 ; puntero al array a pintar en VRAM
 puntero_array_atrib_array_VRAM: DW	0	;ARRAYSPTRIES + 8
+
+

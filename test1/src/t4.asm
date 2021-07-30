@@ -103,6 +103,8 @@ check_player:
 	;~ ;mezcla resultados y ls pone en A
 	;~ CALL	mezcla_calores_tecla_joystick
 	
+	LD		 A, (teclas_pulsadas)
+	AND		 A, 00001111b
 	
 	CP		MUEARR
 	CALL	 Z,mueve_arriba
@@ -175,39 +177,20 @@ obtiene_tecla_pulsada:
 	OR		 D
 	LD		 D, A
 	EX		AF, AF'
+.finsi_pulsado_espacio:
 	
 	;miramos las pulsaciones de cursores
 [4] SRL		 A						;preparo A que tiene en los 4 primeros bits las pulsaciones de cursores
 
-.mueve_arriba
-	CP		 13						
-	JP		NZ, .mueve_arriba_derecha
-	LD		 A, 1
-	JP		.finsi_pulsado_espacio
-.mueve_arriba_derecha
-	CP		 5					
-	JP		NZ, .mueve_derecha
-	LD		 A, 2
-	JP		.finsi_pulsado_espacio	
-.mueve_derecha
-	CP		 7					
-	JP		NZ, .mueve_derecha_abajo
-	LD		 A, 3
-	JP		.finsi_pulsado_espacio	
+	LD		HL, array_movimientos_cursores
+	LD		 B, 0
+	LD		 C, A
+	ADD		HL, BC
 	
+	LD		 A, (HL)
+	OR		 D
 	
-.finsi_pulsado_espacio:
-
-
-
-.arriba:
-	LD		 A, 1
-
-
-.fin:
-
-
-;teclas_pulsadas
+	LD		(teclas_pulsadas), A
 fin_obtiene_tecla_pulsada:
 	RET
 
