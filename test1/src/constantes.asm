@@ -127,7 +127,6 @@ MUEIZQ  	equ		7
 MUEIZQARR  	equ		8
 
 
-
 ;matriz de 7x7 empieza en 0, y fila y x col, cuento desde esquina sup izq
 BASEMAPY	equ		6
 BASEMAPX	equ		3

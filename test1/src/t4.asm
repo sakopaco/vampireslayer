@@ -97,8 +97,8 @@ check_player:
 	
 	;pone resultado en variable tecla_pulsada
 	CALL	obtiene_tecla_pulsada
-	;~ ;pone resultado en variable accion_joystic
-	;~ CALL	obtiene_accion_joystick
+	;pone resultado en variable accion_joystic
+	CALL	obtiene_accion_joystick
 	
 	;mezcla resultados y ls pone en A
 	LD		 A, (teclas_pulsadas)
@@ -108,7 +108,7 @@ check_player:
 	
 	RET		 Z						;si no se ha pulsado nada no se necesita mirar nada
 	
-	LD		 (teclas_pulsadas), A					;guardo una copia par usar en la subrutina mira_disparo
+	LD		 (teclas_pulsadas), A	;guardo una copia par usar en la subrutina mira_disparo
 	
 	AND		 A, 00001111b
 	CP		MUEARR
@@ -138,30 +138,6 @@ fin_check_player:
 	RET
 
 
-
-
-;;=====================================================
-;;MIRA_DISPARO
-;;=====================================================	
-; función: 	Mira si se ha pulsado alguno de los dos disparos
-; entrada: 	C  (bits 5 - botón 1 y 6 - botón 2)
-; salida: 	-
-; toca: 	A
-mira_disparo:
-.mira_boton_pulsado1:
-	LD		 A, (teclas_pulsadas)
-	BIT		 5, A
-	JP		 Z, .mira_boton_pulsado2
-	;se ha pulsado barra
-	LD		 A, (prota.escena)
-	CPL		 
-	LD		(prota.escena), A
-
-.mira_boton_pulsado2:
-	;~ BIT		C, 6
-	;~ CP		 Z, fin_mira_disparo
-fin_mira_disparo:
-	RET
 
 
 ;;*******************************************************************

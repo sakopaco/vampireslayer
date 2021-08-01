@@ -212,3 +212,66 @@ obtiene_tecla_pulsada:
 fin_obtiene_tecla_pulsada:
 	RET
 
+
+
+
+;;=====================================================
+;;OBTIENE_ACCION_JOYSTICK
+;;=====================================================	
+; función: 	Mira si se ha pulsado alguno de los dos disparos en el joystick y guarda resultados en accion_joystick
+; entrada: 	-
+; salida: 	-
+; toca: 	A
+obtiene_accion_joystick:
+	;miro movimiento y guardo en nible bajo
+	LD		 A, 1
+	CALL	GTSTCK
+	LD		(accion_joystick), A	;guardado movimiento con joystick en nible bajo de accion_joystick
+	
+	;miro boton 1 joystick
+.mira_boton_1:
+	LD		 A, 1
+	CALL	GTTRIG
+	JP		 Z, .mira_boton_2
+	LD		 A, 00100000b		;botón 1 pulsado
+	JP		.fin_mira_boton
+
+.mira_boton_2:	
+	LD		 A, 3
+	CALL	GTTRIG
+	JP		 Z, .fin_mira_boton
+	LD		 A, 00010000b		;botón 2 pulsado
+.fin_mira_boton:
+
+	
+	;guardo el resultado final en accion_joystick
+	LD		 B, A
+	LD		 A, (accion_joystick)
+	OR		 B
+	LD		(accion_joystick), A
+fin_obtiene_accion_joystick
+	RET
+
+
+;;=====================================================
+;;MIRA_DISPARO
+;;=====================================================	
+; función: 	Mira si se ha pulsado alguno de los dos disparos
+; entrada: 	C  (bits 5 - botón 1 y 6 - botón 2)
+; salida: 	-
+; toca: 	A
+mira_disparo:
+.mira_boton_pulsado1:
+	LD		 A, (teclas_pulsadas)
+	BIT		 5, A
+	JP		 Z, .mira_boton_pulsado2
+	;se ha pulsado barra
+	LD		 A, (prota.escena)
+	CPL		 
+	LD		(prota.escena), A
+
+.mira_boton_pulsado2:
+	;~ BIT		C, 6
+	;~ CP		 Z, fin_mira_disparo
+fin_mira_disparo:
+	RET
