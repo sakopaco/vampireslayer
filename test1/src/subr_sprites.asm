@@ -138,12 +138,10 @@ fin_actualiza_array_sprites_vram:
 ;;VUELCA_RESULTADO_PUNTOMIRA_ARRAY
 ;;=====================================================	
 ; función: 	coloca los valores del punto de mira en la variable array_sprites para ser volcados en VRAM
-; entrada: 	-
+; entrada: 	array_sprites_pm, prota.XXXXX
 ; salida: 	-
 ; toca: 	-
 vuelca_resultado_puntomira_array:
-	PUSH	AF
-	
 	LD		IX, array_sprites_pm
 	;posición y de los dos sprites que conforman el punto de mira
 	LD		 A, (prota.posy)
@@ -158,20 +156,16 @@ vuelca_resultado_puntomira_array:
 	LD		(IX+6), 4	;al ser sprites de 16x16 hay que ir de 4 en 4
 	;color
 	LD		 A, (prota.escena)
+	OR		 A
 	JP		NZ,.codigo_color_2
 .codigo_color_1:
 	LD		(IX+3), COLBLANCO
 	LD		(IX+7), COLROJO
-	LD		 A, 1
-	JP		.fin_codigo_color
+	RET
 .codigo_color_2:
 	LD		(IX+3), COLROJO
 	LD		(IX+7), COLBLANCO
-	XOR		 A
-.fin_codigo_color:
-	LD		(prota.escena), A	;actualiza escena para cambiar de color en la próxima pulsacion
-	
-	POP		AF
-fin_vuelca_resultado_puntomira_array:
 	RET
+fin_vuelca_resultado_puntomira_array:
+
 

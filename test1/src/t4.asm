@@ -89,7 +89,7 @@ fin_programa_principal:
 ; función: 	MIRA EL CONTROL Y APLICA LA LOGICA DE MOVIMIENTO DEL PROTAGONISTA
 ; entrada: 	-
 ; salida: 	-
-; toca: 	
+; toca: 	A
 check_player:
 	EXX
 	
@@ -108,7 +108,7 @@ check_player:
 	
 	RET		 Z						;si no se ha pulsado nada no se necesita mirar nada
 	
-	LD		 C, A					;guardo una copia par usar en la subrutina mira_disparo
+	LD		 (teclas_pulsadas), A					;guardo una copia par usar en la subrutina mira_disparo
 	
 	AND		 A, 00001111b
 	CP		MUEARR
@@ -146,30 +146,20 @@ fin_check_player:
 ; función: 	Mira si se ha pulsado alguno de los dos disparos
 ; entrada: 	C  (bits 5 - botón 1 y 6 - botón 2)
 ; salida: 	-
-; toca: 	
+; toca: 	A
 mira_disparo:
-	EX		AF,AF'
-	EXX
-.mira_boton_1:
-	BIT		 5, C
-	JP		 NZ, .mira_boton_2
+.mira_boton_pulsado1:
+	LD		 A, (teclas_pulsadas)
+	BIT		 5, A
+	JP		 Z, .mira_boton_pulsado2
 	;se ha pulsado barra
 	LD		 A, (prota.escena)
-	JP		 NZ, .punto_mira_color_2
-.punto_mira_color_1:
-	XOR		 A
+	CPL		 
 	LD		(prota.escena), A
-	JP		.fin_punto_mira_color
-.punto_mira_color_2:
-	LD		 A, 1
-	LD		(prota.escena), A
-.fin_punto_mira_color:
 
-.mira_boton_2:
+.mira_boton_pulsado2:
 	;~ BIT		C, 6
 	;~ CP		 Z, fin_mira_disparo
-	EXX
-	EX		AF,AF'
 fin_mira_disparo:
 	RET
 
