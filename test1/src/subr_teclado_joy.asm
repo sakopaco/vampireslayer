@@ -257,21 +257,45 @@ fin_obtiene_accion_joystick
 ;;MIRA_DISPARO
 ;;=====================================================	
 ; función: 	Mira si se ha pulsado alguno de los dos disparos
-; entrada: 	C  (bits 5 - botón 1 y 6 - botón 2)
+; entrada: 	teclas_pulsadas
 ; salida: 	-
-; toca: 	A
+; toca: 	A, C
 mira_disparo:
-.mira_boton_pulsado1:
 	LD		 A, (teclas_pulsadas)
+	LD		 C, A					;ya que estoy hago una copia en C para ahorrar tiempo. no copio de una var sino de un registro y no tengo que consultar una variable sino un registro
+.mira_boton_pulsado1:
+
 	BIT		 5, A
 	JP		 Z, .mira_boton_pulsado2
-	;se ha pulsado barra
+	;se ha pulsado barra o boton 1
 	LD		 A, (prota.escena)
 	CPL		 
 	LD		(prota.escena), A
 
-.mira_boton_pulsado2:
-	;~ BIT		C, 6
-	;~ CP		 Z, fin_mira_disparo
+.mira_boton_pulsado2:	
+	BIT		 6, C
+	RET		 Z
+	;se ha pulsado shift o boton 2
+	
+	LD		 A, (prota_reliquias)	;miro si le quedan reliquias
+	OR		 A
+	RET		 Z
+	
+	JP		usa_reliquia			;actuaciones si se usa la reliquia
 fin_mira_disparo:
+
+
+
+;;=====================================================
+;;MIRA_DISPARO
+;;=====================================================	
+; función: 	Resta vida a enemigos, resta 1 a prota_reliquias, modifica actualiza_reliquias_sn a clp de 0
+; entrada: 	prota_reliquias
+; salida: 	-
+; toca: 	-
+usa_reliquia:
+fin_usa_reliquia:
 	RET
+
+
+

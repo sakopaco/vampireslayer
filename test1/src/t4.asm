@@ -69,6 +69,12 @@ mira_pinta_reliquias:
 	LD		 A, (actualiza_reliquias_sn)
 	OR		 A
 	JR		 Z, fin_mira_pinta_reliquias
+	;1º reseteo actualiza_reliquias_sn para que se pueda pintar reliquias o no de nuevo
+	CPL		 
+	LD		(actualiza_reliquias_sn), A
+	;2º pinto efecto en pantalla de tirar reliquias
+	CALL	efecto_imagen_tira_reliquia
+	;3º actualiza el marcador de reliquias
 	CALL	pinta_reliquias
 fin_mira_pinta_reliquias:
 
