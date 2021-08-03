@@ -35,6 +35,11 @@ STATFL		equ		#F3E7	;Mirror of VDP(8) status register (S#0)
 REGEST		equ		#0099	;registro de estado para escribir directamente en VRAM
 REGESCVDP	equ		#0098	;registro donde escribir valor para VRAM
 
+;;ETIQUETAS/CONSTANTES REGISTROS PSG (PARA JOYSTICK)
+PSG_A  equ  0a0h  ;reg address
+PSG_W  equ  0a1h  ;reg data WR
+PSG_R  equ  0a2h  ;reg data
+
 
 ;;ETIQUETAS DE ZONAS DE MEMORIA DE LA VPD (MSX1)
 CHRTBL		equ		#0000

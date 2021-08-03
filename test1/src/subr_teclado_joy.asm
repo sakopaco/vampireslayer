@@ -151,143 +151,131 @@ fin_mueve_izquierda_arriba:
 
 
 
+;;============================================================
+;;Código de D. Fernando García (BitVision) (al que siempre le estaré agradecido)
+;check_8th_keyboard_row
+;read_joy_0
+;check_8th_keyboard_row
+;check_4th_keyboard_row
+;;============================================================
+;;  usa constantes:
+;PSG_A  equ  0a0h  ;reg address
+;PSG_W  equ  0a1h  ;reg data WR
+;PSG_R  equ  0a2h  ;reg data
+
 ;;=====================================================
-;;OBTIENE TECLA PULSADA
+;;update_controllers_status
 ;;=====================================================	
-; función: 	devuelve un valor entre 1 y 8 según la dirección de teclas pulsada
-; entrada: 	-
-; salida: 	teclas_pulsadas
-; toca: 	
-obtiene_tecla_pulsada:
-	;primero vacio la variable teclas_pulsadas
-	;XXPS para disparo primario  y secundario
-	;DDDD para movimientos 
-	XOR		 A
-	LD		 D, A 					;inicializo D porque guardaré el resultado ahí y luego lo mando a teclas_pulsadas
+;depends on the next rountine
+;  returns
+;  a - 0P2TRLDU
 
-	;segundo examino la fila 6 y bit 0 para ver si se ha pulsado SHIFT en cuyo caso vale 0
-	LD		 B, 6
-	
-	IN		 A, (#AA)
-    AND		#F0
-    OR		 B
-    OUT		(#AA), A
-    IN		 A, (#A9)
-	
-	BIT		 0, A					;Se ha pulsado shift?
-	JP		 NZ, .finsi_pulsado_shift
-	LD		 A, 00010000b
-	LD		D, A					;pongo el bit 5 de la D a 1
-.finsi_pulsado_shift:
+update_controllers_status:
+     call  check_8th_keyboard_row
+[4]  rrc    a
+     ld    b,a    		;save for later  xxxTRDUL
 
-	LD		 B, 8					;linea donde están los cursores y espacio
-	
-	IN		 A, (#AA)
-    AND		#F0
-    OR		 B
-    OUT		(#AA), A
-    IN		 A, (#A9)
-	
-	BIT		 0, A					;Se ha pulsado espacio?
-	JP		 NZ, .finsi_pulsado_espacio
-	EX		AF, AF'					;guardo el valor de A para para actualizar D
-	LD		 A, 00100000b
-	OR		 D
-	LD		 D, A
-	EX		AF, AF'
-.finsi_pulsado_espacio:
-	
-	;miramos las pulsaciones de cursores
-[4] SRL		 A						;preparo A que tiene en los 4 primeros bits las pulsaciones de cursores
+     and    #01    		;save L
+     sla    a
+     sla    a    		;now 00000L00
+     ld    c,a    		;save for later
 
-	LD		HL, array_movimientos_cursores
-	LD		 B, 0
-	LD		 C, A
-	ADD		HL, BC
-	
-	LD		 A, (HL)
-	OR		 D
-	
-	LD		(teclas_pulsadas), A
-fin_obtiene_tecla_pulsada:
-	RET
+     ld    a,b    		;again we've got xxxTRDUL. I am interested on leaving 000000DU on a
+     srl    a
+     and    00000011b
+						;we've got 000000DU on a
+     or    c    		;now we've got 00000LDU
+     ld    c,a    		;save for later
+
+     ld    a,b
+     and    00011000b 	;we've got 000TR000
+     or    c
+     ;finally    000TRLDU
+
+     ;and    00000100   ;preserve just
+     ld    b,a    		;save for later
+     call  check_4th_keyboard_row      ;check M & P
+     push  af
+     and    00000100b	;filter just M
+     add    a
+     add    a
+     add    a           ;shift 3th to 6th bit
+     or    b           	;merge with previous
+     ld    b,a
+
+     call  read_joy_0
+     and    00111111b  	;we want just 002TRLDU  from joystick    (2 is second trigger)
+     or    b      		;added 000TRLDU from keyboard
+     ld    b,a      	;save for later
+     pop    af      	; let's check on P
+
+     and    00100000b
+     add    a      		;P status on 6th bit  ... so 0P2TRLDU
+     or    b
+
+     ret
 
 
+;ret
+;  a -            xx2TRLDU
+read_joy_0:
+       di
+       ld    a,15
+       out    [PSG_A],a
+       in    a,[PSG_R]
+       and    10111111b        ;joy0
+
+       out    [PSG_W],a        ;set joy0
+
+       ld    a,14
+       out    [PSG_A],a
+       in    a,[PSG_R]
+
+       ei
+       cpl
+
+       ret
 
 
-;;=====================================================
-;;OBTIENE_ACCION_JOYSTICK
-;;=====================================================	
-; función: 	Mira si se ha pulsado alguno de los dos disparos en el joystick y guarda resultados en accion_joystick
-; entrada: 	-
-; salida: 	-
-; toca: 	A
-obtiene_accion_joystick:
-	;miro movimiento y guardo en nible bajo
-	LD		 A, 1
-	CALL	GTSTCK
-	LD		(accion_joystick), A	;guardado movimiento con joystick en nible bajo de accion_joystick
-	
-	;miro boton 1 joystick
-.mira_boton_1:
-	LD		 A, 1
-	CALL	GTTRIG
-	JP		 Z, .mira_boton_2
-	LD		 A, 00100000b		;botón 1 pulsado
-	JP		.fin_mira_boton
+;ret
+;  a -      RDULxxxT
+check_8th_keyboard_row:
+     di
+     in    a,(#aa)
+     and    #f0
+     or    8
+     out    (#aa),a
+     in    a,(#a9)
+     ei
+     cpl
 
-.mira_boton_2:	
-	LD		 A, 3
-	CALL	GTTRIG
-	JP		 Z, .fin_mira_boton
-	LD		 A, 00010000b		;botón 2 pulsado
-.fin_mira_boton:
-
-	
-	;guardo el resultado final en accion_joystick
-	LD		 B, A
-	LD		 A, (accion_joystick)
-	OR		 B
-	LD		(accion_joystick), A
-fin_obtiene_accion_joystick
-	RET
+     ret
 
 
-;;=====================================================
-;;MIRA_DISPARO
-;;=====================================================	
-; función: 	Mira si se ha pulsado alguno de los dos disparos
-; entrada: 	teclas_pulsadas
-; salida: 	-
-; toca: 	A, C
-mira_disparo:
-	LD		 A, (teclas_pulsadas)
-	LD		 C, A					;ya que estoy hago una copia en C para ahorrar tiempo. no copio de una var sino de un registro y no tengo que consultar una variable sino un registro
-.mira_boton_pulsado1:
+;ret
+;  a -      xxxxxMxx
+check_4th_keyboard_row:
+     di
+     in    a,(#aa)
+     and    #f0
+     or    4
+     out    (#aa),a
+     in    a,(#a9)
+     ei
+     cpl
 
-	BIT		 5, A
-	JP		 Z, .mira_boton_pulsado2
-	;se ha pulsado barra o boton 1
-	LD		 A, (prota.escena)
-	CPL		 
-	LD		(prota.escena), A
+     ret
 
-.mira_boton_pulsado2:	
-	BIT		 6, C
-	RET		 Z
-	;se ha pulsado shift o boton 2
-	
-	LD		 A, (prota_reliquias)	;miro si le quedan reliquias
-	OR		 A
-	RET		 Z
-	
-	JP		usa_reliquia			;actuaciones si se usa la reliquia
-fin_mira_disparo:
+;--------------------------------------------
+
+
+
+
 
 
 
 ;;=====================================================
-;;MIRA_DISPARO
+;;_USA_RELIQUIA
 ;;=====================================================	
 ; función: 	Resta vida a enemigos, resta 1 a prota_reliquias, modifica actualiza_reliquias_sn a clp de 0
 ; entrada: 	prota_reliquias

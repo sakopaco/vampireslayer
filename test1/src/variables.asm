@@ -58,8 +58,8 @@ array_puerta_izquierda7:	DB	1,2,4
 ;;variables para teclas teclas y joystick (control del punto de mira)
 teclas_pulsadas:			DB	0	;4 bits altos (disparo normal espacio o alternativo shift) 4 bits siguientes movimiento
 accion_joystick:			DB	0	;4 bits altos (disparo normal A o alternativo B) 4 bits siguientes movimiento
-array_movimientos_cursores:			;posiciones que tras mirar teclado y 4srr devuelve y su traducción en movmiento a cursor
-							DB	9,9,9,4,9,2,9,3,9,9,6,5,8,1,7,0
+array_movimientos_cursores:			;posiciones que tras mirar teclado y joystick update_controllers_status devuelve en A (en los bits 0-3)
+							DB	9,1,5,9,7,8,6,9,3,2,4
 
 
 ;array de 4 bytes x 32 sprites posibles en pantalla que sobreescribirá la tabla de sprites actualizando VRAM
