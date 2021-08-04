@@ -122,16 +122,10 @@ LIMPANTDER  equ		255
 LIMPANTARR  equ		0
 LIMPANTABA  equ		128
 
-MUEARR  	equ		1
-MUEARRDER	equ		2
-MUEDER  	equ		3
-MUEDERABA  	equ		4
-MUEABA  	equ		5
-MUEABAIZQ  	equ		6
-MUEIZQ  	equ		7
-MUEIZQARR  	equ		8
-
 
 ;matriz de 7x7 empieza en 0, y fila y x col, cuento desde esquina sup izq
 BASEMAPY	equ		6
 BASEMAPX	equ		3
+
+;para que haga un bucle cuando se use una reliquia
+USARELIQUIA equ		100

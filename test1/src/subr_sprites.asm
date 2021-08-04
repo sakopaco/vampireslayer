@@ -179,49 +179,25 @@ fin_vuelca_resultado_puntomira_array:
 ; salida: 	-
 ; toca: 	A
 check_player:
-	EXX
 	
-	XOR		 A
-	
-	;pone resultado en variable tecla_pulsada
-	CALL	obtiene_tecla_pulsada
-	;pone resultado en variable accion_joystic
-	CALL	obtiene_accion_joystick
-	
-	;mezcla resultados y ls pone en A
-	LD		 A, (teclas_pulsadas)
-	LD		 B, A
-	LD		 A, (accion_joystick)
-	OR		 B
-	
+	CALL	update_controllers_status
+	OR		 A
 	RET		 Z						;si no se ha pulsado nada no se necesita mirar nada
+
+	RR		 A
+	CALL	 C, mueve_arriba
+	RR		 A
+	CALL	 C, mueve_abajo
+	RR		 A
+	CALL	 C, mueve_izquierda
+	RR		 A
+	CALL	 C, mueve_derecha
+
 	
-	LD		 (teclas_pulsadas), A	;guardo una copia par usar en la subrutina mira_disparo
-	
-	AND		 A, 00001111b
-	CP		MUEARR
-	CALL	 Z,mueve_arriba
-	CP		MUEARRDER
-	CALL	 Z,mueve_arriba_derecha
-	CP		MUEDER
-	CALL	 Z,mueve_derecha
-	CP		MUEDERABA
-	CALL	 Z,mueve_derecha_abajo
-	CP		MUEABA
-	CALL	 Z,mueve_abajo
-	CP		MUEABAIZQ
-	CALL	 Z,mueve_abajo_izquierda
-	CP		MUEIZQ
-	CALL	 Z,mueve_izquierda
-	CP		MUEIZQARR
-	CALL	 Z,mueve_izquierda_arriba
-	
-	;zona para mirar disparo
+	;zona para mirar disparo Recibe A que tendrá 0000 0 0 X-letra M X-espacio 
 	CALL	mira_disparo
-
-	CALL	vuelca_resultado_puntomira_array
-
-	EXX
-fin_check_player:
+	
+	JP		vuelca_resultado_puntomira_array
+f;in_check_player:
 	RET
 

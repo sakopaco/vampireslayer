@@ -12,7 +12,7 @@ actualiza_vidas_sn:
 array_aux_reliquias:	;array para pintar de golpe el marcador de reliquias
 			DB		0,0,0,0,0,0,0,0
 actualiza_reliquias_sn:
-			DB		0 	;valor que indica si hay que actualizar el marcador de reliquias 1 ó no 0
+			DB		0 	;valor que indica si hay que actualizar el marcador de reliquias no 0 y el valor 50 que si (luego juego con el 100 para hacer repeticiones)
 
 array_aux_energia:		;array para pintar de golpe el marcador de energía
 			DB		16,0,0,0,0,0,0 ;el 16 primero es porque siempre estará pintado el cuadro primero rojo
@@ -53,13 +53,6 @@ array_puerta_izquierda4:	DB	1,1,1
 array_puerta_izquierda5:	DB	1,1,1
 array_puerta_izquierda6:	DB	1,1,2
 array_puerta_izquierda7:	DB	1,2,4
-
-
-;;variables para teclas teclas y joystick (control del punto de mira)
-teclas_pulsadas:			DB	0	;4 bits altos (disparo normal espacio o alternativo shift) 4 bits siguientes movimiento
-accion_joystick:			DB	0	;4 bits altos (disparo normal A o alternativo B) 4 bits siguientes movimiento
-array_movimientos_cursores:			;posiciones que tras mirar teclado y joystick update_controllers_status devuelve en A (en los bits 0-3)
-							DB	9,1,5,9,7,8,6,9,3,2,4
 
 
 ;array de 4 bytes x 32 sprites posibles en pantalla que sobreescribirá la tabla de sprites actualizando VRAM

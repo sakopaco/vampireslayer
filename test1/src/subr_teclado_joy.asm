@@ -1,4 +1,6 @@
-
+;;=====================================================
+;;SUBRUTINAS QUE CAPTURN EL JOYSTICK Y TECLADO Y MUEVEN PUNTO DE MIRA
+;;=====================================================
 
 ;;=====================================================
 ;;MUEVE_ARRIBA
@@ -19,22 +21,6 @@ mueve_arriba:
 	POP			AF
 fin_mueve_arriba:
 	RET
-	
-	
-;;=====================================================
-;;MUEVE_ARRIBA_DERECHA
-;;=====================================================	
-; función: 	mueve punto de mira en diagonal arriba a la derecha
-; entrada: 	-
-; salida: 	-
-; toca: 	-
-mueve_arriba_derecha:
-	
-	CALL		mueve_arriba
-	JP			mueve_derecha
-	
-fin_mueve_arriba_derecha:
-	;RET
 
 
 ;;=====================================================
@@ -58,20 +44,6 @@ mueve_derecha:
 fin_mueve_derecha:
 	RET
 
-;;=====================================================
-;;MUEVE_DERECHA_ABAJO
-;;=====================================================	
-; función: 	mueve punto de mira en diagonal abajo a la derecha
-; entrada: 	-
-; salida: 	-
-; toca: 	-
-mueve_derecha_abajo:
-	
-	CALL		mueve_derecha
-	JP			mueve_abajo
-	
-fin_mueve_derecha_abajo:
-;	RET
 
 ;;=====================================================
 ;;MUEVE_ABAJO
@@ -94,22 +66,6 @@ mueve_abajo:
 fin_mueve_abajo:
 	RET
 	
-
-;;=====================================================
-;;MUEVE_ABAJO_IZQUIERDA
-;;=====================================================	
-; función: 	mueve punto de mira en diagonal abajo a la izquierda
-; entrada: 	-
-; salida: 	-
-; toca: 	-
-mueve_abajo_izquierda:
-	
-	CALL		mueve_abajo
-	JP			mueve_izquierda
-
-fin_mueve_abajo_izquierda:
-	;RET
-
 	
 ;;=====================================================
 ;;MUEVE_IZQUIERDA
@@ -133,22 +89,40 @@ fin_mueve_izquierda:
 	RET
 
 
+
 ;;=====================================================
-;;MUEVE_IZQUIERDA_ARRIBA
+;;MIRA_DISPARO
 ;;=====================================================	
-; función: 	mueve punto de mira en diagonal arriba a la izquierda
-; entrada: 	-
+; función: 	Mira si se ha pulsado alguno de los dos disparos
+; entrada: 	A que tendrá 0000 0 0 X-letra M X-espacio 
 ; salida: 	-
-; toca: 	-
-mueve_izquierda_arriba:
+; toca: 	A, B
+mira_disparo:
+.mira_boton_pulsado1:
+	RR		 A						;preparo en el carry si se ha pulsado botón 1
+	JP		 NC, .mira_boton_pulsado2					
+	LD		 B, A					;copia A para usarlo después
+	;se ha pulsado barra o boton 1
+	LD		 A, (prota.escena)
+	CPL		 
+	LD		(prota.escena), A
 
-	CALL		mueve_izquierda
-	JP			mueve_arriba
-
-fin_mueve_izquierda_arriba:
-	;RET
-
-
+	LD		 A, B
+.mira_boton_pulsado2:
+	RR		 A
+	RET		 NC
+	;se ha pulsado shift o boton 2
+	
+	LD		 A, (prota_reliquias)	;miro si le quedan reliquias
+	OR		 A
+	RET		 Z
+	
+	;actuaciones si se usa la reliquia botón 2 o M
+	DEC		 A
+	LD		(prota_reliquias), A
+	LD		 A, USARELIQUIA
+	LD		(actualiza_reliquias_sn), A
+fin_mira_disparo:
 
 
 ;;============================================================
@@ -272,18 +246,6 @@ check_4th_keyboard_row:
 
 
 
-
-
-;;=====================================================
-;;_USA_RELIQUIA
-;;=====================================================	
-; función: 	Resta vida a enemigos, resta 1 a prota_reliquias, modifica actualiza_reliquias_sn a clp de 0
-; entrada: 	prota_reliquias
-; salida: 	-
-; toca: 	-
-usa_reliquia:
-fin_usa_reliquia:
-	RET
 
 
 
