@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.08.04 - 20:34:44]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.08.05 - 22:54:31]
 
 t4.asm
 Errors: 0
@@ -244,7 +244,7 @@ Errors: 0
       95   00:8055  3E 01               	LD		 A, SI	
       96   00:8057  32 C8 8B            	LD		(actualiza_vidas_sn), A	;actualizo la variable para que pinte vidas 1 sí / 0 no
       97   00:805A                      
-      98   00:805A  3E 05               	LD		 A, 5
+      98   00:805A  3E 02               	LD		 A, 2
       99   00:805C  32 7A 86            	LD		(prota_reliquias), A
      100   00:805F                      	
      101   00:805F  3E 01               	LD		 A, SI	

@@ -95,7 +95,7 @@ inicializa_variables_pruebas:
 	LD		 A, SI	
 	LD		(actualiza_vidas_sn), A	;actualizo la variable para que pinte vidas 1 sí / 0 no
 
-	LD		 A, 5
+	LD		 A, 2
 	LD		(prota_reliquias), A
 	
 	LD		 A, SI	
