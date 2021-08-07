@@ -132,8 +132,6 @@ fin_actualiza_array_sprites_vram:
 	;~ RET
 
 
-
-
 ;;=====================================================
 ;;VUELCA_RESULTADO_PUNTOMIRA_ARRAY
 ;;=====================================================	
@@ -169,8 +167,6 @@ vuelca_resultado_puntomira_array:
 fin_vuelca_resultado_puntomira_array:
 
 
-
-
 ;;=====================================================
 ;;CHECK_PLAYER
 ;;=====================================================	
@@ -179,7 +175,6 @@ fin_vuelca_resultado_puntomira_array:
 ; salida: 	-
 ; toca: 	A
 check_player:
-	
 	CALL	update_controllers_status
 	OR		 A
 	RET		 Z						;si no se ha pulsado nada no se necesita mirar nada
@@ -192,7 +187,6 @@ check_player:
 	CALL	 C, mueve_izquierda
 	RR		 A
 	CALL	 C, mueve_derecha
-
 	
 	;zona para mirar disparo Recibe A que tendrá 0000 0 0 X-letra M X-espacio 
 	CALL	mira_disparo

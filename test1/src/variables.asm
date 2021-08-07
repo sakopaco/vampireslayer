@@ -1,15 +1,28 @@
 ;;=====================================================
 ;;DEFINICIÓN DE VARIABLES
-;;=====================================================	
+;;=====================================================
+
+;Colores base de la pantalla
+color_base:
+			DB		COLVERDE,COLNEGRO,COLNEGRO
+			
+;colores de pantalla cuando se tira bomba
+color_bomba1:
+			DB		COLROJO,COLROJO,COLROJO
+color_bomba2:
+			DB		COLROJOOSC,COLROJOOSC,COLROJOOSC
+
 ;definicion de variable del prota usando la estructura del punto de mira
 prota:		ESTRUCTURA_PUNTOMIRA
 
-array_aux_vidas: 		;array para pintar de golpe el marcador de vidas
+;array para pintar de golpe el marcador de vidas
+array_aux_vidas: 		
 			DB		0,0,0,0,0,0,0,0
 actualiza_vidas_sn:
 			DB		0 	;valor que indica si hay que actualizar el marcador de vidas 1 ó no 0
 
-array_aux_reliquias:	;array para pintar de golpe el marcador de reliquias
+;array para pintar de golpe el marcador de reliquias
+array_aux_reliquias:	
 			DB		0,0,0,0,0,0,0,0
 actualiza_reliquias_sn:
 			DB		0 	;valor que indica si hay que actualizar el marcador de reliquias no 0 y el valor 50 que si (luego juego con el 100 para hacer repeticiones)

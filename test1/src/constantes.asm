@@ -53,6 +53,7 @@ SPRTBL		equ		#3800
 SI			equ		1
 NO			equ		0
 
+;;PALETA DE COLORES DEL MSX
 COLTRASP	equ		0
 COLNEGRO	equ		1
 COLVERDE	equ		2
@@ -128,4 +129,4 @@ BASEMAPY	equ		6
 BASEMAPX	equ		3
 
 ;para que haga un bucle cuando se use una reliquia
-USARELIQUIA equ		100
+RETARDOREL  equ		1;75

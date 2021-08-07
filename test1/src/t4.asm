@@ -68,10 +68,11 @@ fin_mira_pinta_vidas:
 mira_pinta_reliquias:
 	LD		 A, (actualiza_reliquias_sn)
 	OR		 A
-	;1º creo efecto de tirar reliquia
-	;CALL	efecto_imagen_tira_reliquia
-	;2º actualiza el marcador de reliquias
-	CALL	pinta_reliquias
+	JP		 Z, fin_mira_pinta_reliquias
+	;1º actualiza el marcador de reliquias
+	CALL 	pinta_reliquias
+	;2º creo efecto de tirar reliquia
+	CALL	efecto_imagen_tira_reliquia
 fin_mira_pinta_reliquias:
 
 	CALL	check_player			;MIRA EL CONTROL Y APLICA LA LOGICA DE MOVIMIENTO DEL PROTAGONISTA
@@ -81,6 +82,37 @@ fin_mira_pinta_reliquias:
 	JP		loop_principal
 fin_programa_principal:
 	RET
+
+
+
+;;=====================================================
+;;EFECTO_IMAGEN_TIRA_RELIQUIA
+;;=====================================================	
+; función: 	hace que el fondo de la pantalla parpadee N veces
+; entrada: 	actualiza_reliquias_sn
+; salida: 	-
+; toca: 	A
+efecto_imagen_tira_reliquia:
+	LD		 A, (actualiza_reliquias_sn)
+	DEC		 A
+	LD		(actualiza_reliquias_sn), A
+	JP		NZ, .intercambia_color_fondo
+	;toca A y direcciones #F3E9/#F3EA/#F3EB, poner en HL array con 3 valores
+	LD		HL, color_base
+	JP		color_pantalla
+	;CALL/RET
+	
+.intercambia_color_fondo:
+	BIT		 2, A
+	JP		 Z, .otro_fondo
+	LD		HL, color_bomba1
+	JP		color_pantalla
+.otro_fondo:
+	LD		HL, color_bomba2
+	JP		color_pantalla
+fin_efecto_imagen_tira_reliquia:
+	;CALL/RET
+
 
 
 
@@ -95,10 +127,10 @@ inicializa_variables_pruebas:
 	LD		 A, SI	
 	LD		(actualiza_vidas_sn), A	;actualizo la variable para que pinte vidas 1 sí / 0 no
 
-	LD		 A, 2
+	LD		 A, 3
 	LD		(prota_reliquias), A
 	
-	LD		 A, SI	
+	LD		 A, RETARDOREL	
 	LD		(actualiza_reliquias_sn), A	;actualizo la variable para que pinte vidas 1 sí / 0 no
 
 	LD		 A, 100

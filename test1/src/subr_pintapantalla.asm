@@ -5,6 +5,29 @@
 
 
 ;;=====================================================
+;;COLOR_PANTALLA
+;;=====================================================	
+; función: el equivalente en basic a color 15,1,1
+; entrada: HL	que apunta a un array de bytes con 3 bytes FORCLR, BAKCLR y BDRCLR
+; salida: -
+; toca: 	A, HL
+color_pantalla:
+	LD		 A, (HL)			;FORCLR 
+	LD 		(FORCLR),A
+	INC		HL
+	
+	LD		 A, (HL)			;BAKCLR
+	LD 		(BAKCLR),A
+	INC		HL
+	
+	LD		 A, (HL)
+	LD 		(BDRCLR),A			;BDRCLR
+	CALL	CHGCLR  
+fin_color_pantalla:
+	RET
+
+
+;;=====================================================
 ;;PREPARAPANTALLA
 ;;=====================================================	
 ; función: elimina clic cuando se pulsa tecla, cls, screen 2,2
@@ -20,32 +43,25 @@ fin_elimina_clic:
 
 	;toca A
 limpia_pantalla:
-	XOR			A
-	CALL 		CLS
+	XOR		 A
+	CALL 	CLS
 fin_limpia_pantalla:
 
-	;toca A y direcciones #F3E9/#F3EA/#F3EB
-set_color:
-	LD		 A,2				;verde oscuro
-	LD 		(FORCLR),A
-	LD		 A,1				;negro
-	LD 		(BAKCLR),A
-	LD		 A,1				;negro
-	LD 		(BDRCLR),A
-	CALL	CHGCLR  
-fin_set_color:
+	;toca A y direcciones #F3E9/#F3EA/#F3EB, poner en HL array con 3 valores
+	LD		HL, color_base
+	CALL	color_pantalla
 	
 	;cambiamos a SCREEN 2,2 del BASIC
 	;toca A
 screen2:
-	LD		 A,2
+	LD		 A, 2
 	CALL	CHGMOD			;selecciona screen 2
 sprites_16_16:
-	LD		 A,(RG1SAV)
+	LD		 A, (RG1SAV)
 	OR		00000010b		;fuerza sprites de 16x16
-	LD		(RG1SAV),A		;no lo guardamos en la copia de variables del sistema
-	LD		 B,A
-	LD		 C,1
+	LD		(RG1SAV), A		;no lo guardamos en la copia de variables del sistema
+	LD		 B, A
+	LD		 C, 1
 	JP		WRTVDP			;opción alternativa de escribir las tres lineas siguientes
 	;~ CALL	WRTVDP			;lo escribe en el registro 1 del VDP
 	;~ RET
@@ -176,10 +192,6 @@ pinta_reliquias:
 	LD		DE, TILMAP + POSRELIQ 	;inicio posición en el mapa de tiles de las vidas
 	LD		BC, NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
 	CALL	LDIRVM
-	
-	;una vez quer está pintada ya no se actualizará a menos que ganemos/gastemos una reliquia
-	XOR		 A
-	LD		(actualiza_reliquias_sn), A
 
 	EXX
 fin_pinta_reliquias:

@@ -118,11 +118,13 @@ mira_disparo:
 	RET		 Z
 	
 	;actuaciones si se usa la reliquia botón 2 o M
+	LD		 A, (prota_reliquias)
 	DEC		 A
 	LD		(prota_reliquias), A
-	LD		 A, USARELIQUIA
+	LD		 A, RETARDOREL
 	LD		(actualiza_reliquias_sn), A
 fin_mira_disparo:
+	RET
 
 
 ;;============================================================
