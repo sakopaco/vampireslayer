@@ -51,9 +51,6 @@ mira_pinta_puertas:
 	OR		 A
 	JR		 Z,fin_mira_pinta_puertas
 	
-	;primero preparo la pantalla como si no hubiera puertas
-	CALL 	pinta_parte_superior_pantalla
-	
 	CALL	pinta_puertas
 fin_mira_pinta_puertas:
 

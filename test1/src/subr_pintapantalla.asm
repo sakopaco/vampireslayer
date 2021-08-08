@@ -490,9 +490,9 @@ wordaux2:		DW	0	;almacena puntero a array de tiles (posiciones en realidad) a pi
 ; función: 	examina A y mira si tiene que pintar puertas de los lados, arriba o abrajo o las escaleras (o no)
 ; entrada: 	habitacion_actual 1 escalera 1 puerta arriba 1 pu der 1 pu aba 1 pu izq (si es 0 pinta pared)
 ; salida: 	-
-; toca:		- uso EXX
+; toca:		todo
 pinta_puertas:
-	EXX
+	CALL	pinta_parte_superior_pantalla
 	
 	LD		 A, (habitacion_actual)		;se mete en A porque la función pide A y para no buscar el valor 4 veces
 
@@ -513,8 +513,6 @@ pinta_puertas:
 	
 	XOR		 A
 	LD		(actualiza_puertas_sn), A ;(1 actualiza y 0 no actualiza puertas) se pone a 0 para que no actualice todo el tiempo (ya se ha actualizado)... me hubiera gustado poner cte NO pero es más rápido así
-
-	EXX
 fin_pinta_puertas:
 	RET
 
