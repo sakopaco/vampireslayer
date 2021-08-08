@@ -29,8 +29,8 @@ START:
 	
 	;funciones que modificarian el marcador si se produce un evento cuando toque y cuando se pinta la pantalla ya se mira
 	;una variable para ver si el array hay que actualizarlo en pantalla o no
-	CALL	actualiza_marcador_vidas
-	CALL	actualiza_marcador_reliquias
+	CALL	pinta_vidas
+	CALL 	pinta_reliquias
 	CALL	pinta_nivel
 	CALL	borra_mapa
 
@@ -38,7 +38,6 @@ START:
 
 	LD		 A,1
 	CALL	posiciona_en_mapa		;se le pasa A 1 (tile del prota) está el prota y prota.poxx y posy
-
 	
 loop_principal:
 	HALT							;espera VBLANK y sincroniza
@@ -57,37 +56,14 @@ mira_pinta_puertas:
 	
 	CALL	pinta_puertas
 fin_mira_pinta_puertas:
-	
-mira_pinta_vidas:
-	LD		 A, (actualiza_vidas_sn)
-	OR		 A
-	JR		 Z, fin_mira_pinta_vidas
-	CALL	pinta_vidas
-fin_mira_pinta_vidas:	
-
-mira_pinta_reliquias:
-	LD		 A, (actualiza_reliquias_sn)
-	OR		 A
-	JP		 Z, fin_mira_pinta_reliquias
-	
-	LD		 A, 0
-	LD		(actualiza_reliquias_sn), A
-	
-	;1º actualiza el marcador de reliquias
-	CALL 	pinta_reliquias
-	;2º creo efecto de tirar reliquia
-;	CALL	efecto_imagen_tira_reliquia
-
-
-fin_mira_pinta_reliquias:
 
 	CALL	check_player			;MIRA EL CONTROL Y APLICA LA LOGICA DE MOVIMIENTO DEL PROTAGONISTA
 	
-	CALL	mira_pinta_energia		;actualiza el array de energia siempre pero no pinta eso lo hace pinta_energia
+	CALL	mira_pinta_energia		;meter esto dentro de pinta_energia ;actualiza el array de energia siempre pero no pinta eso lo hace pinta_energia
 	
 	JP		loop_principal
 fin_programa_principal:
-	RET
+	;RET
 
 
 
@@ -97,24 +73,32 @@ fin_programa_principal:
 ; función: 	hace que el fondo de la pantalla parpadee N veces
 ; entrada: 	actualiza_reliquias_sn
 ; salida: 	-
-; toca: 	A
+; toca: 	todo
 efecto_imagen_tira_reliquia:
-	LD		 A, (actualiza_reliquias_sn)
-	DEC		 A
-	LD		(actualiza_reliquias_sn), A
-	JP		NZ, .intercambia_color_fondo
-	;toca A y direcciones #F3E9/#F3EA/#F3EB, poner en HL array con 3 valores
-	LD		HL, color_base
-	JP		color_pantalla
-	;CALL/RET
-	
-.intercambia_color_fondo:
-	BIT		 2, A
-	JP		 Z, .otro_fondo
+	LD		 A, 20;RETARDOREL
+	LD		 B, A
+
+.parpadea_fondo:
+	PUSH	BC
 	LD		HL, color_bomba1
-	JP		color_pantalla
-.otro_fondo:
+	CALL	color_pantalla
+	
+	;~ PUSH	BC
+	;~ LD		 A, 255
+	;~ LD		 B, A
+;~ .bucle_de_espera:
+	;~ NOP
+	;~ DJNZ	 .bucle_de_espera
+	;~ POP		BC
+	HALT
+
+	
 	LD		HL, color_bomba2
+	CALL	color_pantalla
+	POP		BC
+	DJNZ	.parpadea_fondo
+	
+	LD		HL, color_base
 	JP		color_pantalla
 fin_efecto_imagen_tira_reliquia:
 	;CALL/RET
@@ -130,15 +114,8 @@ inicializa_variables_pruebas:
 	LD		 A, 4
 	LD		(prota_vidas),A
 
-	LD		 A, SI	
-	LD		(actualiza_vidas_sn), A	;actualizo la variable para que pinte vidas 1 sí / 0 no
-
 	LD		 A, 4
 	LD		(prota_reliquias), A
-	
-;	LD		 A, RETARDOREL	
-	LD		 A, 1
-	LD		(actualiza_reliquias_sn), A	;actualizo la variable para que pinte vidas 1 sí / 0 no
 
 	LD		 A, 100
 	LD		(prota_energia), A

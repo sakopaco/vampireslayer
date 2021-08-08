@@ -115,17 +115,18 @@ mira_disparo:
 	
 	LD		 A, (prota_reliquias)	;miro si le quedan reliquias
 	OR		 A
-	RET		 Z
+	RET		 Z						;si no le quedan salgo ya
 	
-	;actuaciones si se usa la reliquia botón 2 o M
-	LD		 A, (prota_reliquias)
+	;actuaciones si se usa la reliquia botón 2 o M y quedn reliquias.. (antes ya se puso el valor en A)
+	LD		A, (prota_reliquias)
 	DEC		 A
 	LD		(prota_reliquias), A
-;	LD		 A, RETARDOREL
-	LD		 A, 1
-	LD		(actualiza_reliquias_sn), A
+	
+	CALL 	efecto_imagen_tira_reliquia
+	
+	JP		pinta_reliquias
 fin_mira_disparo:
-	RET
+;	RET		
 
 
 ;;============================================================

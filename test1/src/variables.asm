@@ -4,8 +4,7 @@
 
 ;Colores base de la pantalla
 color_base:
-			DB		COLVERDE,COLNEGRO,COLNEGRO
-			
+			DB		COLNEGRO,COLNEGRO,COLNEGRO	
 ;colores de pantalla cuando se tira bomba
 color_bomba1:
 			DB		COLROJO,COLROJO,COLROJO
@@ -18,14 +17,10 @@ prota:		ESTRUCTURA_PUNTOMIRA
 ;array para pintar de golpe el marcador de vidas
 array_aux_vidas: 		
 			DB		0,0,0,0,0,0,0,0
-actualiza_vidas_sn:
-			DB		0 	;valor que indica si hay que actualizar el marcador de vidas 1 ó no 0
 
 ;array para pintar de golpe el marcador de reliquias
 array_aux_reliquias:	
 			DB		0,0,0,0,0,0,0,0
-actualiza_reliquias_sn:
-			DB		0 	;valor que indica si hay que actualizar el marcador de reliquias no 0 y el valor 50 que si (luego juego con el 100 para hacer repeticiones)
 
 array_aux_energia:		;array para pintar de golpe el marcador de energía
 			DB		16,0,0,0,0,0,0 ;el 16 primero es porque siempre estará pintado el cuadro primero rojo

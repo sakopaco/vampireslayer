@@ -38,8 +38,6 @@ fin_iniciliza_niveles:
 ; salida: 	array_aux_vidas
 ; toca:		A,B,HL
 actualiza_marcador_vidas:
-	EXX
-
 	;para no andar restando pongo todos los huecos a negro y luego en otro bucle las caras
 	;1-pinto todo en blanco
 	LD		HL,array_aux_vidas
@@ -50,47 +48,50 @@ loop_marcador_caras_negro:	;asignar espacios en negro
 	DJNZ	loop_marcador_caras_negro
 fin_loop_marcador_caras_negro:
 	;2-pinto las caras según el n de vidas
-	LD		HL,array_aux_vidas
-	LD		 A,(prota_vidas)
-	LD		 B,A
+	LD		 A, (prota_vidas)
+	OR		 A
+	RET 	 Z
+	LD		 B, A
+	LD		HL, array_aux_vidas
 loop_marcador_caras: ;asignar caras
-	LD		(HL),POSCARAMAP	;13 posición mapa tiles para cara
+	LD		(HL), POSCARAMAP	;13 posición mapa tiles para cara
 	INC		HL
 	DJNZ	loop_marcador_caras
 fin_loop_marcador_caras:
 
-	EXX
 fin_actualiza_marcador_vidas:
 	RET
 
 
 ;;=====================================================
-;;ACTUALIZA_MARCADOR_RELIQUIAS
+;;ACTUALIZA_BUFFER_RELIQUIAS
 ;;=====================================================	
 ; función: 	actualiza buffer de reliquias
 ; entrada: 	prota_reliquias
 ; salida: 	array_aux_reliquias
 ; toca:		A,B,HL
-actualiza_marcador_reliquias:
+actualiza_buffer_reliquias:	
 	;para no andar restando pongo todos los huecos a negro y luego en otro bucle las reliquias
 	;1-pinto todo en blanco
 	LD		HL, array_aux_reliquias
 	LD		 B, NMAXVIDREL
-loop_marcador_reliquias_negro:	;asignar espacios en negro
-	LD		(HL), 0			;0 posición mapa tiles para nada (es transparente pero el fondo es negro)
+	XOR		 A
+loop_buffer_reliquias_negro:	;asignar espacios en negro
+	LD		(HL), A			;0 posición mapa tiles para nada (es transparente pero el fondo es negro)
 	INC		HL
-	DJNZ	loop_marcador_reliquias_negro
-fin_loop_marcador_reliquias_negro:
+	DJNZ	loop_buffer_reliquias_negro
+
 	;2-pinto las cruces según el n de reliquias
 	LD		HL, array_aux_reliquias
 	LD		 A, (prota_reliquias)
+	OR		 A
+	RET		 Z
 	LD		 B, A
-loop_marcador_reliquias: ;asignar reliquias
+loop_buffer_reliquias: ;asignar reliquias
 	LD		(HL), POSRELIMAP	;17 posición mapa tiles para reliquia
 	INC		HL
-	DJNZ	loop_marcador_reliquias
-fin_loop_marcador_reliquias:
-fin_actualiza_marcador_reliquias:
+	DJNZ	loop_buffer_reliquias
+fin_actualiza_buffer_reliquias:
 	RET
 
 

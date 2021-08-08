@@ -7,10 +7,10 @@
 ;;=====================================================
 ;;COLOR_PANTALLA
 ;;=====================================================	
-; función: el equivalente en basic a color 15,1,1
-; entrada: HL	que apunta a un array de bytes con 3 bytes FORCLR, BAKCLR y BDRCLR
-; salida: -
-; toca: 	A, HL
+; función: 	el equivalente en basic a color 15,1,1
+; entrada: 	HL	que apunta a un array de bytes con 3 bytes FORCLR, BAKCLR y BDRCLR
+; salida: 	-
+; toca: 	todo
 color_pantalla:
 	LD		 A, (HL)			;FORCLR 
 	LD 		(FORCLR),A
@@ -22,9 +22,9 @@ color_pantalla:
 	
 	LD		 A, (HL)
 	LD 		(BDRCLR),A			;BDRCLR
-	CALL	CHGCLR  
+	JP		CHGCLR 
 fin_color_pantalla:
-	RET
+	;RET
 
 
 ;;=====================================================
@@ -159,22 +159,16 @@ fin_pinta_parte_inferior_pantalla:
 ; función: 	actualiza el mapa de tiles para que en el próximo refresco se pinten y actualiza_vidas
 ; entrada: 	array_aux_vidas
 ; salida: 	actualiza_vidas_sn
-; toca:		AF
+; toca:		todo
 pinta_vidas:
-	EXX
+	CALL	actualiza_marcador_vidas
 	
 	LD		HL, array_aux_vidas
 	LD		DE, TILMAP + POSVIDAS 	;inicio posición en el mapa de tiles de las vidas
 	LD		BC, NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
-	CALL	LDIRVM
-	
-	;una vez quer está pintada ya no se actualizará a menos que perdamos/ganemos una vida
-	XOR		 A
-	LD		(actualiza_vidas_sn),A
-
-	EXX
+	JP		LDIRVM
 fin_pinta_vidas:
-	RET
+	;RET
 	
 	
 
@@ -183,19 +177,17 @@ fin_pinta_vidas:
 ;;=====================================================	
 ; función: 	actualiza el mapa de tiles para que en el próximo refresco se pinten y actualiza_reliquias
 ; entrada: 	array_aux_reliquias
-; salida: 	actualiza_reliquias_sn
-; toca:		AF
+; salida: 	-
+; toca:		todo
 pinta_reliquias:
-	EXX
+	CALL	actualiza_buffer_reliquias
 	
 	LD		HL, array_aux_reliquias
 	LD		DE, TILMAP + POSRELIQ 	;inicio posición en el mapa de tiles de las vidas
 	LD		BC, NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
-	CALL	LDIRVM
-
-	EXX
+	JP		LDIRVM
 fin_pinta_reliquias:
-	RET
+	;RET
 	
 
 
