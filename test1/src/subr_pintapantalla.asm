@@ -335,18 +335,16 @@ fin_mira_pinta_energia:
 ;;=====================================================	
 ; función: 	actualiza el mapa de tiles para que en el próximo refresco se pinte la barra de energia actual
 ; entrada: 	array_aux_energia
-; toca:		AF
+; toca:		todo
 pinta_energia:
-	EXX
+	CALL	mira_pinta_energia
 	
 	LD		HL, array_aux_energia
 	LD		DE, TILMAP + POSENERG 	;inicio posición en el mapa de tiles de las vidas
 	LD		BC, NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
-	CALL	LDIRVM
-		
-	EXX
+	JP		LDIRVM
 fin_pinta_energia:
-	RET
+	;RET
 
 
 

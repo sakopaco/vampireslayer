@@ -59,8 +59,6 @@ fin_mira_pinta_puertas:
 
 	CALL	check_player			;MIRA EL CONTROL Y APLICA LA LOGICA DE MOVIMIENTO DEL PROTAGONISTA
 	
-	CALL	mira_pinta_energia		;meter esto dentro de pinta_energia ;actualiza el array de energia siempre pero no pinta eso lo hace pinta_energia
-	
 	JP		loop_principal
 fin_programa_principal:
 	;RET
