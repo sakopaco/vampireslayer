@@ -121,7 +121,8 @@ mira_disparo:
 	LD		 A, (prota_reliquias)
 	DEC		 A
 	LD		(prota_reliquias), A
-	LD		 A, RETARDOREL
+;	LD		 A, RETARDOREL
+	LD		 A, 1
 	LD		(actualiza_reliquias_sn), A
 fin_mira_disparo:
 	RET

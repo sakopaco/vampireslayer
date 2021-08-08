@@ -69,10 +69,16 @@ mira_pinta_reliquias:
 	LD		 A, (actualiza_reliquias_sn)
 	OR		 A
 	JP		 Z, fin_mira_pinta_reliquias
+	
+	LD		 A, 0
+	LD		(actualiza_reliquias_sn), A
+	
 	;1º actualiza el marcador de reliquias
 	CALL 	pinta_reliquias
 	;2º creo efecto de tirar reliquia
-	CALL	efecto_imagen_tira_reliquia
+;	CALL	efecto_imagen_tira_reliquia
+
+
 fin_mira_pinta_reliquias:
 
 	CALL	check_player			;MIRA EL CONTROL Y APLICA LA LOGICA DE MOVIMIENTO DEL PROTAGONISTA
@@ -127,10 +133,11 @@ inicializa_variables_pruebas:
 	LD		 A, SI	
 	LD		(actualiza_vidas_sn), A	;actualizo la variable para que pinte vidas 1 sí / 0 no
 
-	LD		 A, 3
+	LD		 A, 4
 	LD		(prota_reliquias), A
 	
-	LD		 A, RETARDOREL	
+;	LD		 A, RETARDOREL	
+	LD		 A, 1
 	LD		(actualiza_reliquias_sn), A	;actualizo la variable para que pinte vidas 1 sí / 0 no
 
 	LD		 A, 100
