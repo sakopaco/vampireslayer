@@ -29,9 +29,6 @@ ultimo_pos_array_aux_energia:
 			
 array_aux_mapa_limpiar:	;es por facilitar el reseteo del mapa (pinto 7 lineas en negro con bios) la otra opción es más larga en código y complicada aunque más rápida
 			DB		0,0,0,0,0,0,0
-
-actualiza_puertas_sn:	;0 no 1 sí (se pone a 1 cuando se cambia de habitación y al terminar se vuelve a poner a 0)
-			DB		0 	;valor que indica si hay que actualizar las puertas de una pantalla (se crea porque sólo hay que actualizar si se cambia a de hab)
 			
 ;; nota importante: cada vez que se cambie de nivel se actualizará el contenido
 ;; arrays con mapa de tiles de las puertas

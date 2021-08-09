@@ -33,8 +33,7 @@ START:
 	CALL 	pinta_reliquias
 	CALL	pinta_nivel
 	CALL	borra_mapa
-
-	CALL	localiza_info_habitacion	;devuelve variable habitacion_actual 	
+	CALL	pinta_puertas	
 
 	LD		 A,1
 	CALL	posiciona_en_mapa		;se le pasa A 1 (tile del prota) está el prota y prota.poxx y posy
@@ -45,14 +44,6 @@ loop_principal:
 	CALL	render_sprites			;actualiza array de sprites y los pinta en pantalla
 	
 	CALL	pinta_energia			;pinta la energia en pantalla
-
-mira_pinta_puertas:
-	LD		 A,(actualiza_puertas_sn)
-	OR		 A
-	JR		 Z,fin_mira_pinta_puertas
-	
-	CALL	pinta_puertas
-fin_mira_pinta_puertas:
 
 	CALL	check_player			;MIRA EL CONTROL Y APLICA LA LOGICA DE MOVIMIENTO DEL PROTAGONISTA
 	
@@ -115,7 +106,7 @@ inicializa_variables_pruebas:
 	LD		 A, 100
 	LD		(prota_energia), A
 
-	LD		 A, 1
+	LD		 A, 0
 	LD		(prota_nivel), A		;nivel empieza en 0 para usar las posiciones ascii
 	
 	;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
@@ -130,8 +121,6 @@ inicializa_variables_pruebas:
 	;************************************************
 	;importante : revisar pintado de mapa
 
-	LD			 A, 1 
-	LD			(actualiza_puertas_sn), A;(1 actualiza y 0 no actualiza puertas)
 fin_inicializa_variables_pruebas:
 	RET
 ;;************************************************************************

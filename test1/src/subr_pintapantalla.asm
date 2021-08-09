@@ -492,9 +492,14 @@ wordaux2:		DW	0	;almacena puntero a array de tiles (posiciones en realidad) a pi
 ; salida: 	-
 ; toca:		todo
 pinta_puertas:
-	CALL	pinta_parte_superior_pantalla
+	CALL	pinta_parte_superior_pantalla	;pinta pasillo y paredes
+
+	CALL	localiza_info_habitacion	;busca qué puertas debe pintar y lo mete en habitación_actual
 	
 	LD		 A, (habitacion_actual)		;se mete en A porque la función pide A y para no buscar el valor 4 veces
+
+;	LD		 A, 00000111b	; para pruebas
+
 
 ;	BIT		 4, A
 ;	CALL	nz, pinta_escalera
@@ -510,9 +515,8 @@ pinta_puertas:
 	
 	BIT		 0, A
 	CALL	nz, pinta_puerta_izq
-	
-	XOR		 A
-	LD		(actualiza_puertas_sn), A ;(1 actualiza y 0 no actualiza puertas) se pone a 0 para que no actualice todo el tiempo (ya se ha actualizado)... me hubiera gustado poner cte NO pero es más rápido así
+
+	;; sustituir el último call por jp *************************************************
 fin_pinta_puertas:
 	RET
 

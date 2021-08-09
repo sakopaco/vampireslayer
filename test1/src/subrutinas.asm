@@ -172,6 +172,12 @@ localiza_info_habitacion:
 	LD		 A, (HL)
 	LD		(IX+1), A
 	
+	
+	
+	
+	;~ LD		a, 00001111b
+	;~ ld		(habitacion_actual), a
+	
 	EXX
 fin_localiza_info_habitacion:
 	RET
