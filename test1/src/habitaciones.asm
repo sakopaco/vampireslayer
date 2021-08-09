@@ -8,9 +8,7 @@
 ; ojo... la primera linea corresponderá a la primera linea del castillo no a la última
 
 ;; definición de estructura de bits
-;Tipo DB pero serán 2 bytes por habitación byte primero (habitaciones etc) + byte 2º. Los bytes 15 y 16 se usan para información extra
-;los 7 primeros bits del byte 15 indican si se ha pasado/limpiado una habitación o no
-;~ 0 - lleno o vacío (si ya se ha pasado)
+;16 bits por habitación
 ;~ 0000 - nº puertas 1 arriba 1 derecha 1 abajo 1 izquierda
 ;~ 1 - hay reliquia?
 ;~ 1 - hay vida extra
@@ -30,13 +28,13 @@ habitacion_actual:
 habitaciones_juego:
 habitaciones_nivel0:
 ;---------------------------------* habitación inicial
-	db  #00,#00,#01,#01,#02,#02,#03,#03,#04,#04,#05,#05,#06,#06,#FF,#00 ;primera fila
+	db  #00,#00,#01,#01,#02,#02,00001111b,#03,#04,#04,#05,#05,#06,#06,#FF,#00 ;primera fila
 	db  #17,#10,#11,#11,#12,#12,#13,#13,#14,#14,#15,#15,#16,#16,#FF,#00
 	db  #20,#20,#21,#21,#22,#22,#23,#23,#24,#24,#25,#25,#26,#26,#FF,#00
 	db  #30,#30,#31,#31,#32,#32,#33,#33,#34,#34,#35,#35,#36,#36,#FF,#00
 	db  #40,#40,#41,#41,#42,#42,#43,#43,#44,#44,#45,#45,#46,#46,#FF,#00
 	db  #50,#50,#51,#51,#52,#52,#53,#53,#54,#54,#55,#55,#56,#56,#FF,#00
-	db  #60,#60,#61,#61,#62,#62,00001111b,#63,#64,#64,#65,#65,#66,#66,#FF,#00	;ultima fila
+	db  #60,#60,#61,#61,#62,#62,00001000b,#63,#64,#64,#65,#65,#66,#66,#FF,#00	;ultima fila
 	
 habitaciones_nivel1:
 	db  #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00 ;primera fila
