@@ -108,13 +108,32 @@ fin_actualiza_buffer_reliquias:
 localiza_info_habitacion:
 ;primera posición: me coloco en la columna correcta
 	LD		HL, habitaciones_juego
-	
+.situo_columna:	
 	LD		 A, (prota_pos_mapx)
-	SLA		 A			;multiplico por dos ya que cada habitación va de dos en dos bytes
+	SLA		 A				;multiplico por dos ya que cada habitación va de dos en dos bytes
 	LD		 B, 0
 	LD		 C, A
 
-	ADD 	HL, BC		;sumo a la posición 0 la columnax2 en la que situarme
+	ADD 	HL, BC			;sumo a la posición 0 la columnax2 en la que situarme
+	
+.situo_fila:
+	LD		A, (prota_pos_mapy)
+	OR	 	A
+	JP		Z, .situo_nivel	;si la fila es 0 no es necesario seguir operando en fila
+	
+	LD		B, A
+	XOR		A
+.loop_suma_fila:
+	ADD		16				;cada fila tiene 16 bytes
+	DJNZ	.loop_suma_fila
+	
+	LD		 B, 0
+	LD		 C, A
+
+	ADD 	HL, BC			;sumo a la columna 16 x filas para situarme en la fila correcta
+
+.situo_nivel:
+	
 	
 	LD		 A, (HL)
 	LD		(habitacion_actual), A

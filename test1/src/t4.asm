@@ -109,18 +109,15 @@ inicializa_variables_pruebas:
 	;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
 	;será igual la posición inicial en todos los niveles
 	
-	LD		 A, 0
-	LD		(prota_nivel), A		;nivel empieza en 0 para usar las posiciones ascii
+	LD		 A, 4				;los niveles son 7 del 0 al 6
+	LD		(prota_nivel), A	;nivel empieza en 0 para usar las posiciones ascii
 
-	LD		 A, 0				;los niveles son 7 del 0 al 6
+	LD		 A, 0				;los subniveles son 7 del 0 al 6
 	LD		(prota_pos_mapy), A	;pos y dentro del nivel (se empieza en 0)
 
-	LD		 A, 6				;columnas 7: del 0 al 6
+	LD		 A, 0				;columnas 7: del 0 al 6
 	LD		(prota_pos_mapx), A	;pos y dentro del nivel (se empieza en 0)
 	
-	;**********************************************************************************************************
-	;importante : revisar pintado de mapa
-
 fin_inicializa_variables_pruebas:
 	RET
 ;;************************************************************************
