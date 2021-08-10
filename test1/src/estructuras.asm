@@ -3,19 +3,6 @@
 ;;=====================================================
 
 ;crear estructura
-;variables globales del prota
-prota_nivel:			;nivel del castillo donde está 0-6
-			DB		0
-prota_vidas:
-			DB		0
-prota_reliquias:
-			DB		3
-prota_pos_mapx:
-			DB		0	;pos columna
-prota_pos_mapy:
-			DB		0	;pos fila
-prota_energia:
-			DB		250
 
 	STRUCT ESTRUCTURA_PUNTOMIRA
 posx			DB		100

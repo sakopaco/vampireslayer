@@ -133,8 +133,24 @@ localiza_info_habitacion:
 	ADD 	HL, BC			;sumo a la columna 16 x filas para situarme en la fila correcta
 
 .situo_nivel:
+	LD		 A, (prota_nivel)
+	OR	 	 A
+	JP		 Z, .actualiza_valiable_habitacion	;si el nivel es 0 al pasar por las anterirores ya estoy situado actualizo la variable y termino
 	
+	PUSH	HL				;guardo el resultado intermedio
 	
+	LD		 B, A			;preparo la varible del bucle
+	LD		DE, 96			;96 son los bytes de cada matriz-nivel
+	LD		HL, 0
+.loop_suma_nivel:
+	ADD		HL,DE
+	DJNZ	.loop_suma_nivel
+	
+	POP		DE				;devuelvo el resultado intermedio en DE que ya no lo necesito
+	
+	ADD		HL,DE			;sumo el resultdo del nivel al resultado intermedio anterior
+
+.actualiza_valiable_habitacion
 	LD		 A, (HL)
 	LD		(habitacion_actual), A
 fin_localiza_info_habitacion:

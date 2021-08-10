@@ -13,6 +13,19 @@ color_bomba2:
 
 ;definicion de variable del prota usando la estructura del punto de mira
 prota:		ESTRUCTURA_PUNTOMIRA
+;variables globales del prota
+prota_nivel:			;nivel del castillo donde está 0-6
+			DB		0
+prota_vidas:
+			DB		0
+prota_reliquias:
+			DB		3
+prota_pos_mapx:
+			DB		0	;pos columna
+prota_pos_mapy:
+			DB		0	;pos fila
+prota_energia:
+			DB		250
 
 ;array para pintar de golpe el marcador de vidas
 array_aux_vidas: 		
