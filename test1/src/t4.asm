@@ -115,7 +115,7 @@ inicializa_variables_pruebas:
 	LD		 A, 0				;los niveles son 7 del 0 al 6
 	LD		(prota_pos_mapy), A	;pos y dentro del nivel (se empieza en 0)
 
-	LD		 A, 3				;columnas 7 del 0 al 6
+	LD		 A, 6				;columnas 7: del 0 al 6
 	LD		(prota_pos_mapx), A	;pos y dentro del nivel (se empieza en 0)
 	
 	;**********************************************************************************************************

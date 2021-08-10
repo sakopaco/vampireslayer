@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.08.09 - 23:02:15]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.08.10 - 18:17:26]
 
 t4.asm
 Errors: 0
@@ -263,7 +263,7 @@ Errors: 0
      115   00:805E  3E 00               	LD		 A, 0				;los niveles son 7 del 0 al 6
      116   00:8060  32 35 86            	LD		(prota_pos_mapy), A	;pos y dentro del nivel (se empieza en 0)
      117   00:8063                      
-     118   00:8063  3E 03               	LD		 A, 3				;columnas 7 del 0 al 6
+     118   00:8063  3E 06               	LD		 A, 6				;columnas 7: del 0 al 6
      119   00:8065  32 34 86            	LD		(prota_pos_mapx), A	;pos y dentro del nivel (se empieza en 0)
      120   00:8068                      	
      121   00:8068                      	;**********************************************************************************************************
@@ -393,25 +393,24 @@ Errors: 0
      106.  00:80B0                      ;ejemplo: nivel 4, posx 5 y posy 3
      107.  00:80B0                      ;3 + 5 x 8 + 4 x 49
      108.  00:80B0                      localiza_info_habitacion:
-     109.  00:80B0                      ;primer sumando	(en el ejemplo + (4x7)x16)
+     109.  00:80B0                      ;primera posición: me coloco en la columna correcta
      110.  00:80B0  21 59 88            	LD		HL, habitaciones_juego
      111.  00:80B3                      	
-     112.  00:80B3  3A 35 86            	LD		 A, (prota_pos_mapy)
-     113.  00:80B6  47                  	LD		 B, A
-     114.  00:80B7  0E 00               	LD		 C, 0
-     115.  00:80B9                      	
-     116.  00:80B9  CB 20               	SLA		B
-     117.  00:80BB  09                  	ADD 	HL, BC
-     118.  00:80BC                      
-     119.  00:80BC                      	
-     120.  00:80BC  7E                  	LD		 A, (HL)
-     121.  00:80BD  32 57 88            	LD		(habitacion_actual), A
-     122.  00:80C0                      fin_localiza_info_habitacion:
-     123.  00:80C0  C9                  	RET
+     112.  00:80B3  3A 34 86            	LD		 A, (prota_pos_mapx)
+     113.  00:80B6  CB 27               	SLA		 A			;multiplico por dos ya que cada habitación va de dos en dos bytes
+     114.  00:80B8  06 00               	LD		 B, 0
+     115.  00:80BA  4F                  	LD		 C, A
+     116.  00:80BB                      
+     117.  00:80BB  09                  	ADD 	HL, BC		;sumo a la posición 0 la columnax2 en la que situarme
+     118.  00:80BC                      	
+     119.  00:80BC  7E                  	LD		 A, (HL)
+     120.  00:80BD  32 57 88            	LD		(habitacion_actual), A
+     121.  00:80C0                      fin_localiza_info_habitacion:
+     122.  00:80C0  C9                  	RET
+     123.  00:80C1                      
      124.  00:80C1                      
      125.  00:80C1                      
      126.  00:80C1                      
-     127.  00:80C1                      
      140   00:80C1                      	
      141   00:80C1                      	include "subr_pintapantalla.asm"
        1.  00:80C1                      ;;=====================================================
@@ -2044,8 +2043,8 @@ Errors: 0
       28.  00:8859                      habitaciones_juego:
       29.  00:8859                      habitaciones_nivel0:
       30.  00:8859                      ;---------------------------------* habitación inicial
-      31.  00:8859                      	db  #00,#00,#01,#01,#02,#02,00001111b,#03,#04,#04,#05,#05,#06,#06,#FF,#00 ;primera fila
-      31.  00:8859  00 00 01 01 02 02 0F 03 04 04 05 05 06 06 FF 00 
+      31.  00:8859                      	db  00000000b,#00,00000001b,#01,00000010b,#02,00000011b,#03,00001000b,#04,00001001b,#05,00001100b,#06,#FF,#00 ;primera fila
+      31.  00:8859  00 00 01 01 02 02 03 03 08 04 09 05 0C 06 FF 00 
       32.  00:8869                      	db  #17,#10,#11,#11,#12,#12,#13,#13,#14,#14,#15,#15,#16,#16,#FF,#00
       32.  00:8869  17 10 11 11 12 12 13 13 14 14 15 15 16 16 FF 00 
       33.  00:8879                      	db  #20,#20,#21,#21,#22,#22,#23,#23,#24,#24,#25,#25,#26,#26,#FF,#00

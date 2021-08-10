@@ -106,17 +106,15 @@ fin_actualiza_buffer_reliquias:
 ;ejemplo: nivel 4, posx 5 y posy 3
 ;3 + 5 x 8 + 4 x 49
 localiza_info_habitacion:
-;primer sumando	(en el ejemplo + (4x7)x16)
+;primera posición: me coloco en la columna correcta
 	LD		HL, habitaciones_juego
 	
-	LD		 A, (prota_pos_mapy)
-	SLA		 A
-	LD		 B, A
-	LD		 C, 0
-	
+	LD		 A, (prota_pos_mapx)
+	SLA		 A			;multiplico por dos ya que cada habitación va de dos en dos bytes
+	LD		 B, 0
+	LD		 C, A
 
-	ADD 	HL, BC
-
+	ADD 	HL, BC		;sumo a la posición 0 la columnax2 en la que situarme
 	
 	LD		 A, (HL)
 	LD		(habitacion_actual), A
