@@ -97,8 +97,8 @@ POSPUERIZQU equ		#00E1
 
 
 ;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (relacionadas con posiciones en en el banco de memoria)
-TILEMAPPROT equ		19
-TILEMAPVACI	equ		9
+TILEPROTAM  equ		19		;tile del prota para pintar en mapa
+TILEGRISM	equ		9		;tile gris que representa vacio (por donde el prota va pasando)
 TILEMAPROJO equ		16
 TILEMAPAMAR equ		15
 TILEMAPVERD equ		14

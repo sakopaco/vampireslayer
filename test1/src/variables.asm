@@ -43,7 +43,7 @@ ultimo_pos_array_aux_energia:
 array_aux_mapa_limpiar:	;es por facilitar el reseteo del mapa (pinto 7 lineas en negro con bios) la otra opción es más larga en código y complicada aunque más rápida
 			DB		0,0,0,0,0,0,0
 elemento_pintar_mapa:
-			DB		0	;TILEPROTA = 19, ;TILEGRIS = 9
+			DB		0	;TILEPROTAM = 19, ;TILEGRISM = 9
 			
 ;; nota importante: cada vez que se cambie de nivel se actualizará el contenido
 ;; arrays con mapa de tiles de las puertas

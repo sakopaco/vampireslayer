@@ -35,8 +35,9 @@ START:
 	CALL	borra_mapa
 	CALL	pinta_puertas	
 
-	LD		 A,1
-	CALL	posiciona_en_mapa		;se le pasa A 1 (tile del prota) está el prota y prota.poxx y posy
+	LD		 A, TILEPROTAM
+	LD		(elemento_pintar_mapa), A
+	CALL	posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.poxx y posy
 	
 loop_principal:
 	HALT							;espera VBLANK y sincroniza

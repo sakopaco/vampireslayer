@@ -614,12 +614,10 @@ fin_pinta_puerta_izq:
 ; función: 	en el mapa de marcadores de la derecha/abajo marca un cuadro en gris o con un muñeco
 ;			según el valor de prota.posición pinta entrá un muñeco y por donde vaya pasando el prota
 ;			quedará en gris
-; entrada: 	A=0 gris 1 - tile 0, A=1 muñeco - tile 19, prota.pos_mapy,prota.pos_mapx)
+; entrada: 	elemento_pintar_mapa, prota_pos_mapy, prota_pos_mapx
 ; salida: 	-
 ; toca:		todos
 posiciona_en_mapa:
-	PUSH	AF		;almacenamos el tipo a pintar para cuando terminemos de calcular la coordenada
-	
 	;#0238 es la posición en mapa de tiles de la esquina superior izquierda del mapa (569 en decimal)
 	LD		HL, TILMAP + POSMAPA;pos inicial
 	
@@ -684,18 +682,17 @@ posiciona_en_mapa:
 	LD		 C, L
 	
 	;terminado de fijar la coordenada recuperamos a para ver el tipo
-	POP		 AF
-	OR		 A
+	LD		 A, (elemento_pintar_mapa)
+	CP		 TILEGRISM
 	JP		 Z, pinta_pos_mapa_vacio
-	LD		 D, TILEMAPPROT
+	LD		 D, TILEPROTAM
 	JP		fin_pinta_pos_mapa
 pinta_pos_mapa_vacio:
-	LD		 D, TILEMAPVACI				;********************* se puede hacer mejor o está bien usar push y pop ¿?¿?¿?
+	LD		 D, TILEGRISM	
 
 fin_pinta_pos_mapa:
 	JP		pinta_tile_suelto
-	;~ CALL	pinta_tile_suelto
 fin_posiciona_en_mapa:
-	;~ RET
+	;~ -CALL/RET
 
 
