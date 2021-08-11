@@ -35,13 +35,15 @@ array_aux_vidas:
 array_aux_reliquias:	
 			DB		0,0,0,0,0,0,0,0
 
-array_aux_energia:		;array para pintar de golpe el marcador de energía
-			DB		16,0,0,0,0,0,0 ;el 16 primero es porque siempre estará pintado el cuadro primero rojo
+array_aux_energia:					;array para pintar de golpe el marcador de energía
+			DB		16,0,0,0,0,0,0 	;el 16 primero es porque siempre estará pintado el cuadro primero rojo
 ultimo_pos_array_aux_energia:
-			DB		0			;el array completo es de 8 pero para posicionar sin niecesidad de cálculos  etiqueto este aparte
+			DB		0				;el array completo es de 8 pero para posicionar sin niecesidad de cálculos  etiqueto este aparte
 			
 array_aux_mapa_limpiar:	;es por facilitar el reseteo del mapa (pinto 7 lineas en negro con bios) la otra opción es más larga en código y complicada aunque más rápida
 			DB		0,0,0,0,0,0,0
+elemento_pintar_mapa:
+			DB		0	;TILEPROTA = 19, ;TILEGRIS = 9
 			
 ;; nota importante: cada vez que se cambie de nivel se actualizará el contenido
 ;; arrays con mapa de tiles de las puertas

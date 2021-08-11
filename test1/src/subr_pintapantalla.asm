@@ -498,9 +498,6 @@ pinta_puertas:
 	
 	LD		 A, (habitacion_actual)		;se mete en A porque la función pide A y para no buscar el valor 4 veces
 
-;	LD		 A, 00000111b	; para pruebas
-
-
 ;	BIT		 4, A
 ;	CALL	nz, pinta_escalera
 

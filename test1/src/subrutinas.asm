@@ -99,11 +99,11 @@ fin_actualiza_buffer_reliquias:
 ;;=====================================================
 ;;LOCALIZA_INFO_HABITACION
 ;;=====================================================	
-; función: 	busca las puertas que hay que pintar egún la posición del usuario y las pone en A
+; función: 	busca las puertas que hay que pintar egún la posición del usuario y las pone en habitacion_actual
 ; entrada: 	prota.pos_mapy, prota.pos_mapx, prota_nivel habitaciones_juego
 ; salida: 	habitacion_actual
 ; toca:		todo
-;ejemplo: nivel 4, posx 5 y posy 3
+;ejemplo: nivel 4, posy 5 y posx 3
 ;3 + 5 x 8 + 4 x 49
 localiza_info_habitacion:
 ;primera posición: me coloco en la columna correcta
@@ -140,7 +140,7 @@ localiza_info_habitacion:
 	PUSH	HL				;guardo el resultado intermedio
 	
 	LD		 B, A			;preparo la varible del bucle
-	LD		DE, 96			;96 son los bytes de cada matriz-nivel
+	LD		DE, 112			;112 = 16x42 son los bytes de cada matriz-nivel
 	LD		HL, 0
 .loop_suma_nivel:
 	ADD		HL,DE
