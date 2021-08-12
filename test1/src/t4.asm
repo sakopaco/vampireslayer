@@ -11,6 +11,9 @@
 	include "cabecerabin.asm"
 	
 START:
+	;incializacion de replayer con interrupciones
+	CALL	inicializa_replayer_efectos_interrupciones
+	
 	
 	;inicializa pantalla y entonrno
 	CALL	sub_preparapantalla			;screen 2,2 sin click al pulsar tecla y color 16,1,1
@@ -55,42 +58,58 @@ fin_programa_principal:
 
 
 ;;=====================================================
-;;EFECTO_IMAGEN_TIRA_RELIQUIA
+;;INICIALIZA_REPLAYER_EFECTOS_INTERRUPCIONES
 ;;=====================================================	
-; función: 	hace que el fondo de la pantalla parpadee N veces
-; entrada: 	actualiza_reliquias_sn
+; función: 	inicializa: replayer de música, player de efectos e interrupciones
+; entrada: 	-
 ; salida: 	-
-; toca: 	todo
-efecto_imagen_tira_reliquia:
-	LD		 A, 20;RETARDOREL
-	LD		 B, A
+; toca: 	HL, A
+inicializa_replayer_efectos_interrupciones:
+	DI
 
-.parpadea_fondo:
-	PUSH	BC
-	LD		HL, color_bomba1
-	CALL	color_pantalla
+	;inicializacion de replayer musical
+	LD		HL, song-99			; hl <- initial address of module - 99
+	CALL	PT3_INIT			; Inits PT3 player
+		
+	;inicializacion del reproductor de efectos sonoros
+	LD		HL, sfx_bank
+	CALL	ayFX_SETUP
+
+	;~ ;salva actual rutina en H.KEYI
+	;~ LD	DE,OLDINT	; get address of old int. hook saved area
+	;~ LD	HL,H.TIMI	; get address of interrupt entry hook
+	;~ LD	BC,5		; lenght of hook is 5 bytes
+	;~ LDIR			; transfer
 	
-	;~ PUSH	BC
-	;~ LD		 A, 255
-	;~ LD		 B, A
-;~ .bucle_de_espera:
-	;~ NOP
-	;~ DJNZ	 .bucle_de_espera
-	;~ POP		BC
-	HALT
-
+	;Engancha nuestra rutina de servicio al gancha que deja preparado la BIOS cuando se termina de pintar la pantalla (50 o 60 veces por segundo)
+	LD		A, #C3
+	LD		[H.TIMI], A
+	LD		HL, nuestra_isr
+	LD		[H.TIMI+1], HL
 	
-	LD		HL, color_bomba2
-	CALL	color_pantalla
-	POP		BC
-	DJNZ	.parpadea_fondo
-	
-	LD		HL, color_base
-	JP		color_pantalla
-fin_efecto_imagen_tira_reliquia:
-	;CALL/RET
+	EI		;optimizacion:
+			;piensa que las dos ultimas lineas podrian haber sido: 
+			;ei						;primero ei
+			;ld		[H.TIMI+1],hl	;luego este ld
+									;PENSAR (y consultar ) PORQUE!!!!
+fin_inicializa_replayer_efectos_interrupciones:
+	RET
 
 
+
+;;=====================================================
+;;NUESTRA_ISR
+;;=====================================================	
+; función: 	envía datos al PSG + toca un trozo de música + toca trozo de 
+; entrada: 	-
+; salida: 	-
+; toca: 	HL, A
+nuestra_isr:
+	CALL	PT3_ROUT			;envia los datos a los registros del PSG
+	CALL	PT3_PLAY			;calcula el siguiente 'trocito' de musica que sera enviado al proxima vez
+	JP		ayFX_PLAY			;calcula el siguiente 'trocito' de efecto especial de sonido que sera enviado la proxima vez
+fin_nuestra_isr:
+	;RET
 
 
 
@@ -143,13 +162,18 @@ fin_inicializa_variables_pruebas:
 	include "subr_teclado_joy.asm"
 	
 
+;;=====================================================
+;;DEFINICIÓN DE SUBRUTINAS DE FERNANDO PARA COMPRESIÓN Y SONIDO
+;;=====================================================
 ;Este include lleva la rutina de descompresión de ROM/RAM a VRAM de pletter
 ;Está adaptada de la original a sjasm
 ;	HL = RAM/ROM source	; DE = VRAM destination
 depack_VRAM:
 	include "PL_VRAM_Depack_SJASM.asm"
 
-
+subrutinas_sonido:
+	include	"PT3-ROM_sjasm.asm"
+	include "ayFX-ROM_sjasm.asm"
 	
 ;;=====================================================
 ;;DEFINICIÓN DE ESTRUCTURAS
@@ -164,12 +188,19 @@ depack_VRAM:
 	include "habitaciones.asm"
 	
 	include "variables.asm"
-
-
 	
 ;;=====================================================
 ;;DEFINICIÓN DE PANTALLAS
 ;;=====================================================		
 	include "pantallas.asm"
+
+;;=====================================================
+;;DEFINICIÓN DE CANTIONES Y EFECTOS DE SONIDO
+;;=====================================================		
+song:
+	incbin "bloodytears_castlevania.99"
+	
+sfx_bank:
+	incbin "demo.afb"
 	
 END:

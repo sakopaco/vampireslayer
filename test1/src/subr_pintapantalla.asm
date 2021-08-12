@@ -696,3 +696,40 @@ fin_posiciona_en_mapa:
 	;~ -CALL/RET
 
 
+
+;;=====================================================
+;;EFECTO_IMAGEN_TIRA_RELIQUIA
+;;=====================================================	
+; función: 	hace que el fondo de la pantalla parpadee N veces
+; entrada: 	actualiza_reliquias_sn
+; salida: 	-
+; toca: 	todo
+efecto_imagen_tira_reliquia:
+	LD		 A, 20;RETARDOREL
+	LD		 B, A
+
+.parpadea_fondo:
+	PUSH	BC
+	LD		HL, color_bomba1
+	CALL	color_pantalla
+	
+	;~ PUSH	BC
+	;~ LD		 A, 255
+	;~ LD		 B, A
+;~ .bucle_de_espera:
+	;~ NOP
+	;~ DJNZ	 .bucle_de_espera
+	;~ POP		BC
+	HALT
+
+	
+	LD		HL, color_bomba2
+	CALL	color_pantalla
+	POP		BC
+	DJNZ	.parpadea_fondo
+	
+	LD		HL, color_base
+	JP		color_pantalla
+fin_efecto_imagen_tira_reliquia:
+	;CALL/RET
+
