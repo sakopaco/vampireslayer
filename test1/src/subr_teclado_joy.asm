@@ -101,13 +101,17 @@ mira_disparo:
 .mira_boton_pulsado1:
 	RR		 A						;preparo en el carry si se ha pulsado botón 1
 	JP		 NC, .mira_boton_pulsado2					
-	LD		 B, A					;copia A para usarlo después
+	PUSH	AF						;copia A para usarlo después
 	;se ha pulsado barra o boton 1
 	LD		 A, (prota.escena)
 	CPL		 
 	LD		(prota.escena), A
-
-	LD		 A, B
+	
+	XOR		 A
+	LD		 C, 1
+	CALL	ayFX_INIT	
+	
+	POP		AF
 .mira_boton_pulsado2:
 	RR		 A
 	RET		 NC
