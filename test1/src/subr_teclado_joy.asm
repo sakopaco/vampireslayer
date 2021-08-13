@@ -103,14 +103,27 @@ mira_disparo:
 	JP		 NC, .mira_boton_pulsado2					
 	PUSH	AF						;copia A para usarlo después
 	;se ha pulsado barra o boton 1
-	LD		 A, (prota.escena)
-	CPL		 
-	LD		(prota.escena), A
-	
-	XOR		 A
-	LD		 C, 1
-	CALL	ayFX_INIT	
-	
+	LD		 A, (prota.cadencia)
+	OR		 A
+	JP		 Z, .efectua_disparo	;toca efectuar disparo realmente porque se ha pulsado lo suficiente el disparo
+.no_efectua_disparo: ;IF
+		DEC		 A
+		LD		(prota.cadencia), A
+		JP		.fin_mira_disparo1
+.efectua_disparo:	;ELSE
+		;cambio colores del sprite
+		LD		 A, (prota.escena)
+		CPL		 
+		LD		(prota.escena), A
+		;reseteo cadencia para el próximo disparo
+		LD		 A, LIMCADENCIA
+		LD		 (prota.cadencia), A
+		;ejecuto sonido
+		XOR		 A
+		LD		 C, 1
+		CALL	ayFX_INIT	
+.fin_mira_disparo1
+
 	POP		AF
 .mira_boton_pulsado2:
 	RR		 A

@@ -52,6 +52,7 @@ SPRTBL		equ		#3800
 ;;ETIQUETAS ESTANDAR PARA DAR MÁS CLARIDAD AL CODIGO
 SI			equ		1
 NO			equ		0
+LIMCADENCIA equ		3	;nº de veces que se ejecutará el disparo antes de ejecutar un disparo real (porque cuando se pulsa la tecl dispara 3 ó 4 veces de rápido que va)
 
 ;;PALETA DE COLORES DEL MSX
 COLTRASP	equ		0
