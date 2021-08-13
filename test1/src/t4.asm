@@ -10,11 +10,7 @@
 ;;=====================================================		
 	include "cabecerabin.asm"
 	
-START:
-	;incializacion de replayer con interrupciones
-	CALL	inicializa_replayer_efectos_interrupciones
-	
-	
+START:	
 	;inicializa pantalla y entonrno
 	CALL	sub_preparapantalla			;screen 2,2 sin click al pulsar tecla y color 16,1,1
 	
@@ -36,11 +32,14 @@ START:
 	CALL 	pinta_reliquias
 	CALL	pinta_nivel
 	CALL	borra_mapa
-	CALL	pinta_puertas	
+	CALL	pinta_puertas
 
 	LD		 A, TILEPROTAM
 	LD		(elemento_pintar_mapa), A
 	CALL	posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.poxx y posy
+	
+	;incializacion de replayer con interrupciones
+	CALL	inicializa_replayer_efectos_interrupciones
 	
 loop_principal:
 	HALT							;espera VBLANK y sincroniza

@@ -126,8 +126,8 @@ mira_disparo:
 	DEC		 A
 	LD		(prota_reliquias), A
 	
-	XOR		 A
-	LD		 C, 2
+	LD		 A, 1
+	LD		 C, 1
 	CALL	ayFX_INIT
 	
 	CALL 	efecto_imagen_tira_reliquia
