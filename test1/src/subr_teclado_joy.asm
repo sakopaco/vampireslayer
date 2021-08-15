@@ -108,7 +108,9 @@ mira_disparo:
 	JP		 Z, .efectua_disparo	;toca efectuar disparo realmente porque se ha pulsado lo suficiente el disparo
 .no_efectua_disparo: ;IF
 		DEC		 A
-		LD		(prota.cadencia), A
+		LD		(prota.cadencia), A	;resto cadencia hasta próximo disparo "real" (no automático por haber pulsado una tecla e ir demasiado rápido)
+		XOR		 A 
+		LD		(prota.escena), A
 		JP		.fin_mira_disparo1
 .efectua_disparo:	;ELSE
 		;cambio colores del sprite
@@ -116,9 +118,9 @@ mira_disparo:
 		CPL		 
 		LD		(prota.escena), A
 		;reseteo cadencia para el próximo disparo
-		LD		 A, LIMCADENCIA
-		LD		 (prota.cadencia), A
-		;ejecuto sonido
+		LD		 A, LIMCADENCIA						;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		LD		 (prota.cadencia), A				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		;ejecuto sonido								;; ajustar cadencia y que cuando el disparo sea efectivo se reseteen los colores
 		XOR		 A
 		LD		 C, 1
 		CALL	ayFX_INIT	
