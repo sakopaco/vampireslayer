@@ -1,6 +1,20 @@
 ;;=====================================================
 ;;DEFINICIÓN DE SPRITES
 ;;=====================================================	
+
+
+;; NOTA:
+;~ sprite_reliquia_oracion: on/off
+;~ sprite_reliquia_cruz: on/off
+;~ sprite_reliquia_agua: on/off
+;~ sprite_peto: on/off
+;~ sprite_planta: on/off
+;~ sprite_vida_extra: on/off
+;~ sprite_ballesta_mejorada: on/off
+
+;~ iban a ser sprites pero por falta de recursos serán tiles
+
+
 sprites_pantantalla:
 
 ;; PARTE 1: SPRITES COMUNES
@@ -29,30 +43,6 @@ sprite_punto_mira_2_mejorado:
 	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-
-sprite_reliquia:
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	
-sprite_vida_extra:
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-
-sprite_planta:
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	
-sprite_ballesta_mejorada:
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
 	
 sprite_explosion_1:
 	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
@@ -69,17 +59,7 @@ fin_sprites_comunes:
 
 ;; PARTE 2: SPRITES NO COMUNES
 
-sprite_ciempies1_1:
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	
-sprite_ciempies1_2:
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+;; ARAÑA
 	
 sprite_arana1_1:
 	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
@@ -92,6 +72,8 @@ sprite_arana1_2:
 	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+
+;; MURCIELAGO
 	
 sprite_murcielago1_1:
 	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF

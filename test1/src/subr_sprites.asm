@@ -21,7 +21,7 @@ carga_patrones_sprites_nivel:
 	CALL 	carga_patrones_nivel_comunes
 	
 	;carga atrones no comunes
-	LD		 A, prota_nivel
+	LD		 A, (prota_nivel)
 	OR		 A
 	JP		 Z, carga_patrones_sprites_nivel1
 	
