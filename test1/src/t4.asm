@@ -24,7 +24,7 @@ START:
 	CALL	pinta_pantalla_completa 
 	
 	;carga sprites en memoria (SE HA RETRASADO HASTA PARAMETRIZAR LA CARGA DE PANTALLAS)
-	CALL 	carga_patrones_sprites_nivel1
+	CALL 	carga_patrones_sprites_nivel
 	
 	;funciones que modificarian el marcador si se produce un evento cuando toque y cuando se pinta la pantalla ya se mira
 	;una variable para ver si el array hay que actualizarlo en pantalla o no

@@ -7,6 +7,46 @@
 ;; PREGUNTAR SI A FERNANDO SI ES MEJOR USAR LISTAS O ALGO PARA AHORRAR CÓDIGO
 
 
+
+
+;;=====================================================
+;;CARGA_PATRONES_SPRITES_NIVEL
+;;=====================================================	
+; función: 	examina el nivel y carga los patrones específicos necesarios
+; entrada: 	-
+; salida: 	-
+; toca: 	-
+carga_patrones_sprites_nivel:
+	PUSH	AF					;guardo copia de AF
+	EXX							;guardo copia de BC,DE y HL
+	
+	CALL 	carga_patrones_nivel_comunes
+	
+	;carga atrones no comunes
+	
+	EXX							;recupero copia de BC,DE y HL
+	POP		AF					;recupero copia de AF
+fin_carga_patrones_sprites_nivel:
+	RET
+	;RET comparo numeros con jp para incluir el RET con lo que el último ret me sobra
+
+;;=====================================================
+;;CARGA_PATRONES_SPRITES_NIVEL_COMUNES
+;;=====================================================	
+; función: 	carga los patrones comunes en todos los niveles
+; entrada: 	-
+; salida: 	-
+; toca: 	-
+carga_patrones_nivel_comunes:	
+	;sprite punto de mira		
+	LD		HL, sprites_comunes
+	LD		DE, SPRTBL
+	LD		BC, fin_sprites_comunes - fin_sprites_comunes
+	JP		LDIRVM
+fin_carga_patrones_nivel_comunes:
+	;RET
+
+
 ;;=====================================================
 ;;CARGA_PATRONES_SPRITES_NIVEL1
 ;;=====================================================	
@@ -15,101 +55,14 @@
 ; salida: 	-
 ; toca: 	-
 carga_patrones_sprites_nivel1:
-	PUSH	AF					;guardo copia de AF
-	EXX							;guardo copia de BC,DE y HL
-	
-	;sprite punto de mira		(este no será necesario cargarlo en ningún otro nivel del juego, sólo el primero)
-	LD		HL,sprite_punto_mira_1
-	LD		DE,#3800
-	LD		BC,32				;32 bytes (sprites de 2 x 2)
-	CALL	LDIRVM
-	LD		HL,sprite_punto_mira_2
-	LD		DE,#3820
-	LD		BC,32				;32 bytes (sprites de 2 x 2)
-	CALL	LDIRVM
-	
-	;sprite sprite_punto_mira_1_mejorado
-	LD		HL,sprite_punto_mira_1_mejorado
-	LD		DE,#3840
-	LD		BC,32				;32 bytes (sprites de 2 x 2)
-	CALL	LDIRVM
-	LD		HL,sprite_punto_mira_2_mejorado
-	LD		DE,#3860
-	LD		BC,32				;32 bytes (sprites de 2 x 2)
-	CALL	LDIRVM
 
-	;sprite sprite_reliquia
-	LD		HL,sprite_reliquia
-	LD		DE,#3880
-	LD		BC,32				;32 bytes (sprites de 2 x 2)
-	CALL	LDIRVM
 
-	;sprite sprite_vida_extra
-	LD		HL,sprite_reliquia
-	LD		DE,#38A0
-	LD		BC,32				;32 bytes (sprites de 2 x 2)
-	CALL	LDIRVM
+	;~ ;sprite sprite_reliquia
+	;~ LD		HL,sprite_reliquia
+	;~ LD		DE,#3880
+	;~ LD		BC,32				;32 bytes (sprites de 2 x 2)
+	;~ CALL	LDIRVM
 
-	;sprite sprite_planta
-	LD		HL,sprite_planta
-	LD		DE,#38C0
-	LD		BC,32				;32 bytes (sprites de 2 x 2)
-	CALL	LDIRVM
-	
-	;sprite sprite_ballesta_mejorada
-	LD		HL,sprite_ballesta_mejorada
-	LD		DE,#38E0
-	LD		BC,32				;32 bytes (sprites de 2 x 2)
-	CALL	LDIRVM
-
-	;sprite sprite_ciempies
-	LD		HL,sprite_ciempies1
-	LD		DE,#3900
-	LD		BC,32				;32 bytes (sprites de 2 x 2)
-	CALL	LDIRVM
-	LD		HL,sprite_ciempies2
-	LD		DE,#3920
-	LD		BC,32				;32 bytes (sprites de 2 x 2)
-	CALL	LDIRVM		
-
-	;sprite sprite_arana
-	LD		HL,sprite_arana1
-	LD		DE,#3940
-	LD		BC,32				;32 bytes (sprites de 2 x 2)
-	CALL	LDIRVM
-	LD		HL,sprite_arana2
-	LD		DE,#3960
-	LD		BC,32				;32 bytes (sprites de 2 x 2)
-	CALL	LDIRVM	
-
-	;sprite sprite_serpiente
-	LD		HL,sprite_serpiente1
-	LD		DE,#3980
-	LD		BC,32				;32 bytes (sprites de 2 x 2)
-	CALL	LDIRVM
-	LD		HL,sprite_serpiente2
-	LD		DE,#39A0
-	LD		BC,32				;32 bytes (sprites de 2 x 2)
-	CALL	LDIRVM	
-
-	;sprite sprite_murcielago
-	LD		HL,sprite_murcielago1
-	LD		DE,#39C0
-	LD		BC,32				;32 bytes (sprites de 2 x 2)
-	CALL	LDIRVM
-	LD		HL,sprite_murcielago2
-	LD		DE,#39E0
-	LD		BC,32				;32 bytes (sprites de 2 x 2)
-	CALL	LDIRVM
-	
-	;sprite sprite_explosion
-	LD		HL,sprite_explosion
-	LD		DE,#3A20
-	LD		BC,32				;32 bytes (sprites de 2 x 2)
-	CALL	LDIRVM
-	
-	EXX							;recupero copia de BC,DE y HL
-	POP		AF					;recupero copia de AF
 fin_carga_patrones_sprites:
 	RET
 
