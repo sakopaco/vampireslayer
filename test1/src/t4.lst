@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.08.27 - 18:54:22]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.08.27 - 20:19:37]
 
 t4.asm
 Errors: 0
@@ -3201,809 +3201,809 @@ Errors: 0
        4.  00:9689                      
        5.  00:9689                      
        6.  00:9689                      ;; NOTA:
-       7.  00:9689                      ;~ sprite_reliquia: on/off
-       8.  00:9689                      ;~ sprite_vida_extra: on/off
-       9.  00:9689                      ;~ sprite_planta: on/off
-      10.  00:9689                      ;~ sprite_ballesta_mejorada: on/off
-      11.  00:9689                      
-      12.  00:9689                      ;~ iban a ser sprites pero por falta de recursos serán tiles
-      13.  00:9689                      
+       7.  00:9689                      ;~ sprite_reliquia_oracion: on/off
+       8.  00:9689                      ;~ sprite_reliquia_cruz: on/off
+       9.  00:9689                      ;~ sprite_reliquia_agua: on/off
+      10.  00:9689                      ;~ sprite_peto: on/off
+      11.  00:9689                      ;~ sprite_planta: on/off
+      12.  00:9689                      ;~ sprite_vida_extra: on/off
+      13.  00:9689                      ;~ sprite_ballesta_mejorada: on/off
       14.  00:9689                      
-      15.  00:9689                      sprites_pantantalla:
+      15.  00:9689                      ;~ iban a ser sprites pero por falta de recursos serán tiles
       16.  00:9689                      
-      17.  00:9689                      ;; PARTE 1: SPRITES COMUNES
-      18.  00:9689                      
-      19.  00:9689                      sprites_comunes:
-      20.  00:9689                      sprite_punto_mira_1:	;color 8
-      21.  00:9689                      	db #FF,#FF,#C0,#C0,#C0,#C0,#C0,#C0
-      21.  00:9689  FF FF C0 C0 C0 C0 C0 C0 
-      22.  00:9691                      	db #C0,#C0,#C0,#C0,#C0,#C0,#FF,#FF
-      22.  00:9691  C0 C0 C0 C0 C0 C0 FF FF 
-      23.  00:9699                      	db #FF,#FF,#03,#03,#03,#03,#03,#03
-      23.  00:9699  FF FF 03 03 03 03 03 03 
-      24.  00:96A1                      	db #03,#03,#03,#03,#03,#03,#FF,#FF
-      24.  00:96A1  03 03 03 03 03 03 FF FF 
-      25.  00:96A9                      	
-      26.  00:96A9                      sprite_punto_mira_2: 	;color 15
-      27.  00:96A9                      	db #00,#00,#00,#00,#0F,#0F,#0C,#0C
-      27.  00:96A9  00 00 00 00 0F 0F 0C 0C 
-      28.  00:96B1                      	db #0C,#0C,#0F,#0F,#00,#00,#00,#00
-      28.  00:96B1  0C 0C 0F 0F 00 00 00 00 
-      29.  00:96B9                      	db #00,#00,#00,#00,#F0,#F0,#30,#30
-      29.  00:96B9  00 00 00 00 F0 F0 30 30 
-      30.  00:96C1                      	db #30,#30,#F0,#F0,#00,#00,#00,#00
-      30.  00:96C1  30 30 F0 F0 00 00 00 00 
-      31.  00:96C9                      	
-      32.  00:96C9                      sprite_punto_mira_1_mejorado:
-      33.  00:96C9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      33.  00:96C9  FF FF FF FF FF FF FF FF 
-      34.  00:96D1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      34.  00:96D1  FF FF FF FF FF FF FF FF 
-      35.  00:96D9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      35.  00:96D9  FF FF FF FF FF FF FF FF 
-      36.  00:96E1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      36.  00:96E1  FF FF FF FF FF FF FF FF 
-      37.  00:96E9                      
-      38.  00:96E9                      sprite_punto_mira_2_mejorado:
-      39.  00:96E9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      39.  00:96E9  FF FF FF FF FF FF FF FF 
-      40.  00:96F1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      40.  00:96F1  FF FF FF FF FF FF FF FF 
-      41.  00:96F9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      41.  00:96F9  FF FF FF FF FF FF FF FF 
-      42.  00:9701                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      42.  00:9701  FF FF FF FF FF FF FF FF 
-      43.  00:9709                      	
-      44.  00:9709                      sprite_explosion_1:
-      45.  00:9709                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      45.  00:9709  FF FF FF FF FF FF FF FF 
-      46.  00:9711                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      46.  00:9711  FF FF FF FF FF FF FF FF 
-      47.  00:9719                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      47.  00:9719  FF FF FF FF FF FF FF FF 
-      48.  00:9721                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
-      48.  00:9721  FF FF FF FF FF FF FF FF 
-      49.  00:9729                      
-      50.  00:9729                      sprite_explosion_2:
-      51.  00:9729                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      51.  00:9729  FF FF FF FF FF FF FF FF 
-      52.  00:9731                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      52.  00:9731  FF FF FF FF FF FF FF FF 
-      53.  00:9739                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      53.  00:9739  FF FF FF FF FF FF FF FF 
-      54.  00:9741                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
-      54.  00:9741  FF FF FF FF FF FF FF FF 
-      55.  00:9749                      fin_sprites_comunes:
-      56.  00:9749                      
-      57.  00:9749                      ;; PARTE 2: SPRITES NO COMUNES
-      58.  00:9749                      
-      59.  00:9749                      ;; ARAÑA
-      60.  00:9749                      	
-      61.  00:9749                      sprite_arana1_1:
-      62.  00:9749                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      62.  00:9749  FF FF FF FF FF FF FF FF 
-      63.  00:9751                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      63.  00:9751  FF FF FF FF FF FF FF FF 
-      64.  00:9759                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      64.  00:9759  FF FF FF FF FF FF FF FF 
-      65.  00:9761                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      65.  00:9761  FF FF FF FF FF FF FF FF 
-      66.  00:9769                      	
-      67.  00:9769                      sprite_arana1_2:
-      68.  00:9769                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      68.  00:9769  FF FF FF FF FF FF FF FF 
-      69.  00:9771                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      69.  00:9771  FF FF FF FF FF FF FF FF 
-      70.  00:9779                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      70.  00:9779  FF FF FF FF FF FF FF FF 
-      71.  00:9781                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      71.  00:9781  FF FF FF FF FF FF FF FF 
-      72.  00:9789                      
-      73.  00:9789                      ;; MURCIELAGO
-      74.  00:9789                      	
-      75.  00:9789                      sprite_murcielago1_1:
-      76.  00:9789                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      76.  00:9789  FF FF FF FF FF FF FF FF 
-      77.  00:9791                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      77.  00:9791  FF FF FF FF FF FF FF FF 
-      78.  00:9799                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      78.  00:9799  FF FF FF FF FF FF FF FF 
-      79.  00:97A1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      79.  00:97A1  FF FF FF FF FF FF FF FF 
-      80.  00:97A9                      	
-      81.  00:97A9                      sprite_murcielago1_2:
-      82.  00:97A9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      82.  00:97A9  FF FF FF FF FF FF FF FF 
-      83.  00:97B1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      83.  00:97B1  FF FF FF FF FF FF FF FF 
-      84.  00:97B9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      84.  00:97B9  FF FF FF FF FF FF FF FF 
-      85.  00:97C1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
-      85.  00:97C1  FF FF FF FF FF FF FF FF 
-      86.  00:97C9                      
-      87.  00:97C9                      ;; SERPIENTE
-      88.  00:97C9                      
-      89.  00:97C9                      sprite_serpiente1_1:
-      90.  00:97C9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      90.  00:97C9  FF FF FF FF FF FF FF FF 
-      91.  00:97D1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      91.  00:97D1  FF FF FF FF FF FF FF FF 
-      92.  00:97D9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      92.  00:97D9  FF FF FF FF FF FF FF FF 
-      93.  00:97E1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      93.  00:97E1  FF FF FF FF FF FF FF FF 
-      94.  00:97E9                      	
-      95.  00:97E9                      sprite_serpiente1_2:
-      96.  00:97E9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      96.  00:97E9  FF FF FF FF FF FF FF FF 
-      97.  00:97F1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      97.  00:97F1  FF FF FF FF FF FF FF FF 
-      98.  00:97F9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      98.  00:97F9  FF FF FF FF FF FF FF FF 
-      99.  00:9801                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      99.  00:9801  FF FF FF FF FF FF FF FF 
-     100.  00:9809                      	
-     101.  00:9809                      sprite_serpiente2_1:
-     102.  00:9809                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     102.  00:9809  FF FF FF FF FF FF FF FF 
-     103.  00:9811                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     103.  00:9811  FF FF FF FF FF FF FF FF 
-     104.  00:9819                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     104.  00:9819  FF FF FF FF FF FF FF FF 
-     105.  00:9821                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     105.  00:9821  FF FF FF FF FF FF FF FF 
-     106.  00:9829                      	
-     107.  00:9829                      sprite_serpiente2_2:
-     108.  00:9829                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     108.  00:9829  FF FF FF FF FF FF FF FF 
-     109.  00:9831                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     109.  00:9831  FF FF FF FF FF FF FF FF 
-     110.  00:9839                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     110.  00:9839  FF FF FF FF FF FF FF FF 
-     111.  00:9841                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     111.  00:9841  FF FF FF FF FF FF FF FF 
-     112.  00:9849                      
-     113.  00:9849                      ;; ZOMBI
-     114.  00:9849                      
-     115.  00:9849                      sprite_zombi1_1_1:
-     116.  00:9849                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     116.  00:9849  FF FF FF FF FF FF FF FF 
-     117.  00:9851                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     117.  00:9851  FF FF FF FF FF FF FF FF 
-     118.  00:9859                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     118.  00:9859  FF FF FF FF FF FF FF FF 
-     119.  00:9861                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     119.  00:9861  FF FF FF FF FF FF FF FF 
-     120.  00:9869                      
-     121.  00:9869                      sprite_zombi1_2_1:
-     122.  00:9869                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     122.  00:9869  FF FF FF FF FF FF FF FF 
-     123.  00:9871                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     123.  00:9871  FF FF FF FF FF FF FF FF 
-     124.  00:9879                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     124.  00:9879  FF FF FF FF FF FF FF FF 
-     125.  00:9881                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     125.  00:9881  FF FF FF FF FF FF FF FF 
-     126.  00:9889                      	
-     127.  00:9889                      sprite_zombi1_3_1:
-     128.  00:9889                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     128.  00:9889  FF FF FF FF FF FF FF FF 
-     129.  00:9891                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     129.  00:9891  FF FF FF FF FF FF FF FF 
-     130.  00:9899                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     130.  00:9899  FF FF FF FF FF FF FF FF 
-     131.  00:98A1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     131.  00:98A1  FF FF FF FF FF FF FF FF 
-     132.  00:98A9                      	
-     133.  00:98A9                      sprite_zombi1_4_1:
-     134.  00:98A9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     134.  00:98A9  FF FF FF FF FF FF FF FF 
-     135.  00:98B1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     135.  00:98B1  FF FF FF FF FF FF FF FF 
-     136.  00:98B9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     136.  00:98B9  FF FF FF FF FF FF FF FF 
-     137.  00:98C1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     137.  00:98C1  FF FF FF FF FF FF FF FF 
-     138.  00:98C9                      	
-     139.  00:98C9                      sprite_zombi1_1_2:
-     140.  00:98C9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     140.  00:98C9  FF FF FF FF FF FF FF FF 
-     141.  00:98D1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     141.  00:98D1  FF FF FF FF FF FF FF FF 
-     142.  00:98D9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     142.  00:98D9  FF FF FF FF FF FF FF FF 
-     143.  00:98E1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     143.  00:98E1  FF FF FF FF FF FF FF FF 
-     144.  00:98E9                      
-     145.  00:98E9                      sprite_zombi1_2_2:
-     146.  00:98E9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     146.  00:98E9  FF FF FF FF FF FF FF FF 
-     147.  00:98F1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     147.  00:98F1  FF FF FF FF FF FF FF FF 
-     148.  00:98F9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     148.  00:98F9  FF FF FF FF FF FF FF FF 
-     149.  00:9901                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     149.  00:9901  FF FF FF FF FF FF FF FF 
-     150.  00:9909                      	
-     151.  00:9909                      sprite_zombi1_3_2:
-     152.  00:9909                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     152.  00:9909  FF FF FF FF FF FF FF FF 
-     153.  00:9911                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     153.  00:9911  FF FF FF FF FF FF FF FF 
-     154.  00:9919                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     154.  00:9919  FF FF FF FF FF FF FF FF 
-     155.  00:9921                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     155.  00:9921  FF FF FF FF FF FF FF FF 
-     156.  00:9929                      	
-     157.  00:9929                      sprite_zombi1_4_2:
-     158.  00:9929                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     158.  00:9929  FF FF FF FF FF FF FF FF 
-     159.  00:9931                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     159.  00:9931  FF FF FF FF FF FF FF FF 
-     160.  00:9939                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     160.  00:9939  FF FF FF FF FF FF FF FF 
-     161.  00:9941                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     161.  00:9941  FF FF FF FF FF FF FF FF 
-     162.  00:9949                      	
-     163.  00:9949                      sprite_zombi2_1_1:
-     164.  00:9949                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     164.  00:9949  FF FF FF FF FF FF FF FF 
-     165.  00:9951                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     165.  00:9951  FF FF FF FF FF FF FF FF 
-     166.  00:9959                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     166.  00:9959  FF FF FF FF FF FF FF FF 
-     167.  00:9961                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     167.  00:9961  FF FF FF FF FF FF FF FF 
-     168.  00:9969                      
-     169.  00:9969                      sprite_zombi2_2_1:
-     170.  00:9969                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     170.  00:9969  FF FF FF FF FF FF FF FF 
-     171.  00:9971                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     171.  00:9971  FF FF FF FF FF FF FF FF 
-     172.  00:9979                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     172.  00:9979  FF FF FF FF FF FF FF FF 
-     173.  00:9981                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     173.  00:9981  FF FF FF FF FF FF FF FF 
-     174.  00:9989                      	
-     175.  00:9989                      sprite_zombi2_3_1:
-     176.  00:9989                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     176.  00:9989  FF FF FF FF FF FF FF FF 
-     177.  00:9991                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     177.  00:9991  FF FF FF FF FF FF FF FF 
-     178.  00:9999                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     178.  00:9999  FF FF FF FF FF FF FF FF 
-     179.  00:99A1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     179.  00:99A1  FF FF FF FF FF FF FF FF 
-     180.  00:99A9                      	
-     181.  00:99A9                      sprite_zombi2_4_1:
-     182.  00:99A9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     182.  00:99A9  FF FF FF FF FF FF FF FF 
-     183.  00:99B1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     183.  00:99B1  FF FF FF FF FF FF FF FF 
-     184.  00:99B9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     184.  00:99B9  FF FF FF FF FF FF FF FF 
-     185.  00:99C1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     185.  00:99C1  FF FF FF FF FF FF FF FF 
-     186.  00:99C9                      	
-     187.  00:99C9                      sprite_zombi2_1_2:
-     188.  00:99C9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     188.  00:99C9  FF FF FF FF FF FF FF FF 
-     189.  00:99D1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     189.  00:99D1  FF FF FF FF FF FF FF FF 
-     190.  00:99D9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     190.  00:99D9  FF FF FF FF FF FF FF FF 
-     191.  00:99E1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     191.  00:99E1  FF FF FF FF FF FF FF FF 
-     192.  00:99E9                      
-     193.  00:99E9                      sprite_zombi2_2_2:
-     194.  00:99E9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     194.  00:99E9  FF FF FF FF FF FF FF FF 
-     195.  00:99F1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     195.  00:99F1  FF FF FF FF FF FF FF FF 
-     196.  00:99F9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     196.  00:99F9  FF FF FF FF FF FF FF FF 
-     197.  00:9A01                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     197.  00:9A01  FF FF FF FF FF FF FF FF 
-     198.  00:9A09                      	
-     199.  00:9A09                      sprite_zombi2_3_2:
-     200.  00:9A09                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     200.  00:9A09  FF FF FF FF FF FF FF FF 
-     201.  00:9A11                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     201.  00:9A11  FF FF FF FF FF FF FF FF 
-     202.  00:9A19                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     202.  00:9A19  FF FF FF FF FF FF FF FF 
-     203.  00:9A21                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     203.  00:9A21  FF FF FF FF FF FF FF FF 
-     204.  00:9A29                      	
-     205.  00:9A29                      sprite_zombi2_4_2:
-     206.  00:9A29                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     206.  00:9A29  FF FF FF FF FF FF FF FF 
-     207.  00:9A31                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     207.  00:9A31  FF FF FF FF FF FF FF FF 
-     208.  00:9A39                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     208.  00:9A39  FF FF FF FF FF FF FF FF 
-     209.  00:9A41                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     209.  00:9A41  FF FF FF FF FF FF FF FF 
-     210.  00:9A49                      	
-     211.  00:9A49                      ;; CABALLERO
-     212.  00:9A49                      
-     213.  00:9A49                      sprite_caballero1_1_1:
-     214.  00:9A49                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     214.  00:9A49  FF FF FF FF FF FF FF FF 
-     215.  00:9A51                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     215.  00:9A51  FF FF FF FF FF FF FF FF 
-     216.  00:9A59                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     216.  00:9A59  FF FF FF FF FF FF FF FF 
-     217.  00:9A61                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     217.  00:9A61  FF FF FF FF FF FF FF FF 
-     218.  00:9A69                      
-     219.  00:9A69                      sprite_caballero1_2_1:
-     220.  00:9A69                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     220.  00:9A69  FF FF FF FF FF FF FF FF 
-     221.  00:9A71                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     221.  00:9A71  FF FF FF FF FF FF FF FF 
-     222.  00:9A79                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     222.  00:9A79  FF FF FF FF FF FF FF FF 
-     223.  00:9A81                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     223.  00:9A81  FF FF FF FF FF FF FF FF 
-     224.  00:9A89                      	
-     225.  00:9A89                      sprite_caballero1_3_1:
-     226.  00:9A89                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     226.  00:9A89  FF FF FF FF FF FF FF FF 
-     227.  00:9A91                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     227.  00:9A91  FF FF FF FF FF FF FF FF 
-     228.  00:9A99                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     228.  00:9A99  FF FF FF FF FF FF FF FF 
-     229.  00:9AA1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     229.  00:9AA1  FF FF FF FF FF FF FF FF 
-     230.  00:9AA9                      	
-     231.  00:9AA9                      sprite_caballero1_4_1:
-     232.  00:9AA9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     232.  00:9AA9  FF FF FF FF FF FF FF FF 
-     233.  00:9AB1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     233.  00:9AB1  FF FF FF FF FF FF FF FF 
-     234.  00:9AB9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     234.  00:9AB9  FF FF FF FF FF FF FF FF 
-     235.  00:9AC1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     235.  00:9AC1  FF FF FF FF FF FF FF FF 
-     236.  00:9AC9                      	
-     237.  00:9AC9                      sprite_caballero1_1_2:
-     238.  00:9AC9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     238.  00:9AC9  FF FF FF FF FF FF FF FF 
-     239.  00:9AD1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     239.  00:9AD1  FF FF FF FF FF FF FF FF 
-     240.  00:9AD9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     240.  00:9AD9  FF FF FF FF FF FF FF FF 
-     241.  00:9AE1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     241.  00:9AE1  FF FF FF FF FF FF FF FF 
-     242.  00:9AE9                      
-     243.  00:9AE9                      sprite_caballero1_2_2:
-     244.  00:9AE9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     244.  00:9AE9  FF FF FF FF FF FF FF FF 
-     245.  00:9AF1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     245.  00:9AF1  FF FF FF FF FF FF FF FF 
-     246.  00:9AF9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     246.  00:9AF9  FF FF FF FF FF FF FF FF 
-     247.  00:9B01                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     247.  00:9B01  FF FF FF FF FF FF FF FF 
-     248.  00:9B09                      	
-     249.  00:9B09                      sprite_caballero1_3_2:
-     250.  00:9B09                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     250.  00:9B09  FF FF FF FF FF FF FF FF 
-     251.  00:9B11                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     251.  00:9B11  FF FF FF FF FF FF FF FF 
-     252.  00:9B19                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     252.  00:9B19  FF FF FF FF FF FF FF FF 
-     253.  00:9B21                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     253.  00:9B21  FF FF FF FF FF FF FF FF 
-     254.  00:9B29                      	
-     255.  00:9B29                      sprite_caballero1_4_2:
-     256.  00:9B29                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     256.  00:9B29  FF FF FF FF FF FF FF FF 
-     257.  00:9B31                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     257.  00:9B31  FF FF FF FF FF FF FF FF 
-     258.  00:9B39                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     258.  00:9B39  FF FF FF FF FF FF FF FF 
-     259.  00:9B41                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     259.  00:9B41  FF FF FF FF FF FF FF FF 
-     260.  00:9B49                      	
-     261.  00:9B49                      sprite_caballero2_1_1:
-     262.  00:9B49                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     262.  00:9B49  FF FF FF FF FF FF FF FF 
-     263.  00:9B51                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     263.  00:9B51  FF FF FF FF FF FF FF FF 
-     264.  00:9B59                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     264.  00:9B59  FF FF FF FF FF FF FF FF 
-     265.  00:9B61                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     265.  00:9B61  FF FF FF FF FF FF FF FF 
-     266.  00:9B69                      
-     267.  00:9B69                      sprite_caballero2_2_1:
-     268.  00:9B69                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     268.  00:9B69  FF FF FF FF FF FF FF FF 
-     269.  00:9B71                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     269.  00:9B71  FF FF FF FF FF FF FF FF 
-     270.  00:9B79                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     270.  00:9B79  FF FF FF FF FF FF FF FF 
-     271.  00:9B81                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     271.  00:9B81  FF FF FF FF FF FF FF FF 
-     272.  00:9B89                      	
-     273.  00:9B89                      sprite_caballero2_3_1:
-     274.  00:9B89                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     274.  00:9B89  FF FF FF FF FF FF FF FF 
-     275.  00:9B91                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     275.  00:9B91  FF FF FF FF FF FF FF FF 
-     276.  00:9B99                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     276.  00:9B99  FF FF FF FF FF FF FF FF 
-     277.  00:9BA1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     277.  00:9BA1  FF FF FF FF FF FF FF FF 
-     278.  00:9BA9                      	
-     279.  00:9BA9                      sprite_caballero2_4_1:
-     280.  00:9BA9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     280.  00:9BA9  FF FF FF FF FF FF FF FF 
-     281.  00:9BB1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     281.  00:9BB1  FF FF FF FF FF FF FF FF 
-     282.  00:9BB9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     282.  00:9BB9  FF FF FF FF FF FF FF FF 
-     283.  00:9BC1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     283.  00:9BC1  FF FF FF FF FF FF FF FF 
-     284.  00:9BC9                      	
-     285.  00:9BC9                      sprite_caballero2_1_2:
-     286.  00:9BC9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     286.  00:9BC9  FF FF FF FF FF FF FF FF 
-     287.  00:9BD1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     287.  00:9BD1  FF FF FF FF FF FF FF FF 
-     288.  00:9BD9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     288.  00:9BD9  FF FF FF FF FF FF FF FF 
-     289.  00:9BE1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     289.  00:9BE1  FF FF FF FF FF FF FF FF 
-     290.  00:9BE9                      
-     291.  00:9BE9                      sprite_caballero2_2_2:
-     292.  00:9BE9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     292.  00:9BE9  FF FF FF FF FF FF FF FF 
-     293.  00:9BF1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     293.  00:9BF1  FF FF FF FF FF FF FF FF 
-     294.  00:9BF9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     294.  00:9BF9  FF FF FF FF FF FF FF FF 
-     295.  00:9C01                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     295.  00:9C01  FF FF FF FF FF FF FF FF 
-     296.  00:9C09                      	
-     297.  00:9C09                      sprite_caballero2_3_2:
-     298.  00:9C09                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     298.  00:9C09  FF FF FF FF FF FF FF FF 
-     299.  00:9C11                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     299.  00:9C11  FF FF FF FF FF FF FF FF 
-     300.  00:9C19                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     300.  00:9C19  FF FF FF FF FF FF FF FF 
-     301.  00:9C21                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     301.  00:9C21  FF FF FF FF FF FF FF FF 
-     302.  00:9C29                      	
-     303.  00:9C29                      sprite_caballero2_4_2:
-     304.  00:9C29                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     304.  00:9C29  FF FF FF FF FF FF FF FF 
-     305.  00:9C31                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     305.  00:9C31  FF FF FF FF FF FF FF FF 
-     306.  00:9C39                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     306.  00:9C39  FF FF FF FF FF FF FF FF 
-     307.  00:9C41                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     307.  00:9C41  FF FF FF FF FF FF FF FF 
-     308.  00:9C49                      	
-     309.  00:9C49                      ;; LLAMA
-     310.  00:9C49                      
-     311.  00:9C49                      sprite_llama1_1:	
-     312.  00:9C49                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     312.  00:9C49  FF FF FF FF FF FF FF FF 
-     313.  00:9C51                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     313.  00:9C51  FF FF FF FF FF FF FF FF 
-     314.  00:9C59                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     314.  00:9C59  FF FF FF FF FF FF FF FF 
-     315.  00:9C61                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     315.  00:9C61  FF FF FF FF FF FF FF FF 
-     316.  00:9C69                      	
-     317.  00:9C69                      sprite_llama2_1:	
-     318.  00:9C69                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     318.  00:9C69  FF FF FF FF FF FF FF FF 
-     319.  00:9C71                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     319.  00:9C71  FF FF FF FF FF FF FF FF 
-     320.  00:9C79                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     320.  00:9C79  FF FF FF FF FF FF FF FF 
-     321.  00:9C81                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
-     321.  00:9C81  FF FF FF FF FF FF FF FF 
-     322.  00:9C89                      	
-     323.  00:9C89                      sprite_llama1_2:	
-     324.  00:9C89                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     324.  00:9C89  FF FF FF FF FF FF FF FF 
-     325.  00:9C91                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     325.  00:9C91  FF FF FF FF FF FF FF FF 
-     326.  00:9C99                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     326.  00:9C99  FF FF FF FF FF FF FF FF 
-     327.  00:9CA1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     327.  00:9CA1  FF FF FF FF FF FF FF FF 
-     328.  00:9CA9                      	
-     329.  00:9CA9                      sprite_llama2_2:	
-     330.  00:9CA9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     330.  00:9CA9  FF FF FF FF FF FF FF FF 
-     331.  00:9CB1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     331.  00:9CB1  FF FF FF FF FF FF FF FF 
-     332.  00:9CB9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     332.  00:9CB9  FF FF FF FF FF FF FF FF 
-     333.  00:9CC1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF			
-     333.  00:9CC1  FF FF FF FF FF FF FF FF 
-     334.  00:9CC9                      	
-     335.  00:9CC9                      ;; FANTASMA
-     336.  00:9CC9                      
-     337.  00:9CC9                      sprite_fantasma1_1:
-     338.  00:9CC9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     338.  00:9CC9  FF FF FF FF FF FF FF FF 
-     339.  00:9CD1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     339.  00:9CD1  FF FF FF FF FF FF FF FF 
-     340.  00:9CD9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     340.  00:9CD9  FF FF FF FF FF FF FF FF 
-     341.  00:9CE1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     341.  00:9CE1  FF FF FF FF FF FF FF FF 
-     342.  00:9CE9                      
-     343.  00:9CE9                      sprite_fantasma2_1:
-     344.  00:9CE9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     344.  00:9CE9  FF FF FF FF FF FF FF FF 
-     345.  00:9CF1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     345.  00:9CF1  FF FF FF FF FF FF FF FF 
-     346.  00:9CF9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     346.  00:9CF9  FF FF FF FF FF FF FF FF 
-     347.  00:9D01                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     347.  00:9D01  FF FF FF FF FF FF FF FF 
-     348.  00:9D09                      
-     349.  00:9D09                      sprite_fantasma1_2:
-     350.  00:9D09                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     350.  00:9D09  FF FF FF FF FF FF FF FF 
-     351.  00:9D11                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     351.  00:9D11  FF FF FF FF FF FF FF FF 
-     352.  00:9D19                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     352.  00:9D19  FF FF FF FF FF FF FF FF 
-     353.  00:9D21                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     353.  00:9D21  FF FF FF FF FF FF FF FF 
-     354.  00:9D29                      
-     355.  00:9D29                      sprite_fantasma2_2:
-     356.  00:9D29                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     356.  00:9D29  FF FF FF FF FF FF FF FF 
-     357.  00:9D31                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     357.  00:9D31  FF FF FF FF FF FF FF FF 
-     358.  00:9D39                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     358.  00:9D39  FF FF FF FF FF FF FF FF 
-     359.  00:9D41                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
-     359.  00:9D41  FF FF FF FF FF FF FF FF 
-     360.  00:9D49                      	
-     361.  00:9D49                      ;; MAGIA
-     362.  00:9D49                      
-     363.  00:9D49                      sprite_magia1_1:
-     364.  00:9D49                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     364.  00:9D49  FF FF FF FF FF FF FF FF 
-     365.  00:9D51                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     365.  00:9D51  FF FF FF FF FF FF FF FF 
-     366.  00:9D59                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     366.  00:9D59  FF FF FF FF FF FF FF FF 
-     367.  00:9D61                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     367.  00:9D61  FF FF FF FF FF FF FF FF 
-     368.  00:9D69                      
-     369.  00:9D69                      sprite_magia2_1:
-     370.  00:9D69                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     370.  00:9D69  FF FF FF FF FF FF FF FF 
-     371.  00:9D71                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     371.  00:9D71  FF FF FF FF FF FF FF FF 
-     372.  00:9D79                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     372.  00:9D79  FF FF FF FF FF FF FF FF 
-     373.  00:9D81                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     373.  00:9D81  FF FF FF FF FF FF FF FF 
-     374.  00:9D89                      
-     375.  00:9D89                      sprite_magia1_2:
-     376.  00:9D89                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     376.  00:9D89  FF FF FF FF FF FF FF FF 
-     377.  00:9D91                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     377.  00:9D91  FF FF FF FF FF FF FF FF 
-     378.  00:9D99                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     378.  00:9D99  FF FF FF FF FF FF FF FF 
-     379.  00:9DA1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     379.  00:9DA1  FF FF FF FF FF FF FF FF 
-     380.  00:9DA9                      
-     381.  00:9DA9                      sprite_magia2_2:
-     382.  00:9DA9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     382.  00:9DA9  FF FF FF FF FF FF FF FF 
-     383.  00:9DB1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     383.  00:9DB1  FF FF FF FF FF FF FF FF 
-     384.  00:9DB9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     384.  00:9DB9  FF FF FF FF FF FF FF FF 
-     385.  00:9DC1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
-     385.  00:9DC1  FF FF FF FF FF FF FF FF 
-     386.  00:9DC9                      	
-     387.  00:9DC9                      	
-     388.  00:9DC9                      ;; BEHOLDER
-     389.  00:9DC9                      
-     390.  00:9DC9                      sprite_beholder1_1:
-     391.  00:9DC9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     391.  00:9DC9  FF FF FF FF FF FF FF FF 
-     392.  00:9DD1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     392.  00:9DD1  FF FF FF FF FF FF FF FF 
-     393.  00:9DD9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     393.  00:9DD9  FF FF FF FF FF FF FF FF 
-     394.  00:9DE1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     394.  00:9DE1  FF FF FF FF FF FF FF FF 
-     395.  00:9DE9                      
-     396.  00:9DE9                      sprite_beholder2_1:
-     397.  00:9DE9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     397.  00:9DE9  FF FF FF FF FF FF FF FF 
-     398.  00:9DF1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     398.  00:9DF1  FF FF FF FF FF FF FF FF 
-     399.  00:9DF9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     399.  00:9DF9  FF FF FF FF FF FF FF FF 
-     400.  00:9E01                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     400.  00:9E01  FF FF FF FF FF FF FF FF 
-     401.  00:9E09                      
-     402.  00:9E09                      sprite_beholder3_1:
-     403.  00:9E09                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     403.  00:9E09  FF FF FF FF FF FF FF FF 
-     404.  00:9E11                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     404.  00:9E11  FF FF FF FF FF FF FF FF 
-     405.  00:9E19                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     405.  00:9E19  FF FF FF FF FF FF FF FF 
-     406.  00:9E21                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     406.  00:9E21  FF FF FF FF FF FF FF FF 
-     407.  00:9E29                      
-     408.  00:9E29                      sprite_beholder4_1:
-     409.  00:9E29                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     409.  00:9E29  FF FF FF FF FF FF FF FF 
-     410.  00:9E31                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     410.  00:9E31  FF FF FF FF FF FF FF FF 
-     411.  00:9E39                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     411.  00:9E39  FF FF FF FF FF FF FF FF 
-     412.  00:9E41                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
-     412.  00:9E41  FF FF FF FF FF FF FF FF 
-     413.  00:9E49                      	
-     414.  00:9E49                      sprite_beholder1_2:
-     415.  00:9E49                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     415.  00:9E49  FF FF FF FF FF FF FF FF 
-     416.  00:9E51                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     416.  00:9E51  FF FF FF FF FF FF FF FF 
-     417.  00:9E59                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     417.  00:9E59  FF FF FF FF FF FF FF FF 
-     418.  00:9E61                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     418.  00:9E61  FF FF FF FF FF FF FF FF 
-     419.  00:9E69                      
-     420.  00:9E69                      sprite_beholder2_2:
-     421.  00:9E69                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     421.  00:9E69  FF FF FF FF FF FF FF FF 
-     422.  00:9E71                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     422.  00:9E71  FF FF FF FF FF FF FF FF 
-     423.  00:9E79                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     423.  00:9E79  FF FF FF FF FF FF FF FF 
-     424.  00:9E81                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     424.  00:9E81  FF FF FF FF FF FF FF FF 
-     425.  00:9E89                      
-     426.  00:9E89                      sprite_beholder3_2:
-     427.  00:9E89                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     427.  00:9E89  FF FF FF FF FF FF FF FF 
-     428.  00:9E91                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     428.  00:9E91  FF FF FF FF FF FF FF FF 
-     429.  00:9E99                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     429.  00:9E99  FF FF FF FF FF FF FF FF 
-     430.  00:9EA1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     430.  00:9EA1  FF FF FF FF FF FF FF FF 
-     431.  00:9EA9                      
-     432.  00:9EA9                      sprite_beholder4_2:
-     433.  00:9EA9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     433.  00:9EA9  FF FF FF FF FF FF FF FF 
-     434.  00:9EB1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     434.  00:9EB1  FF FF FF FF FF FF FF FF 
-     435.  00:9EB9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     435.  00:9EB9  FF FF FF FF FF FF FF FF 
-     436.  00:9EC1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF		
-     436.  00:9EC1  FF FF FF FF FF FF FF FF 
-     437.  00:9EC9                      	
-     438.  00:9EC9                      ;; VAMPIRO
-     439.  00:9EC9                      
-     440.  00:9EC9                      sprite_vampiro1_1:
-     441.  00:9EC9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     441.  00:9EC9  FF FF FF FF FF FF FF FF 
-     442.  00:9ED1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     442.  00:9ED1  FF FF FF FF FF FF FF FF 
-     443.  00:9ED9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     443.  00:9ED9  FF FF FF FF FF FF FF FF 
-     444.  00:9EE1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     444.  00:9EE1  FF FF FF FF FF FF FF FF 
-     445.  00:9EE9                      
-     446.  00:9EE9                      sprite_vampiro2_1:
-     447.  00:9EE9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     447.  00:9EE9  FF FF FF FF FF FF FF FF 
-     448.  00:9EF1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     448.  00:9EF1  FF FF FF FF FF FF FF FF 
-     449.  00:9EF9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     449.  00:9EF9  FF FF FF FF FF FF FF FF 
-     450.  00:9F01                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     450.  00:9F01  FF FF FF FF FF FF FF FF 
-     451.  00:9F09                      
-     452.  00:9F09                      sprite_vampiro1_2:
-     453.  00:9F09                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     453.  00:9F09  FF FF FF FF FF FF FF FF 
-     454.  00:9F11                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     454.  00:9F11  FF FF FF FF FF FF FF FF 
-     455.  00:9F19                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     455.  00:9F19  FF FF FF FF FF FF FF FF 
-     456.  00:9F21                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     456.  00:9F21  FF FF FF FF FF FF FF FF 
-     457.  00:9F29                      
-     458.  00:9F29                      sprite_vampiro2_2:
-     459.  00:9F29                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     459.  00:9F29  FF FF FF FF FF FF FF FF 
-     460.  00:9F31                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     460.  00:9F31  FF FF FF FF FF FF FF FF 
-     461.  00:9F39                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     461.  00:9F39  FF FF FF FF FF FF FF FF 
-     462.  00:9F41                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     462.  00:9F41  FF FF FF FF FF FF FF FF 
-     463.  00:9F49                      	
-     464.  00:9F49                      ;; MANOIZQ
-     465.  00:9F49                      
-     466.  00:9F49                      sprite_manoizq1:
-     467.  00:9F49                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     467.  00:9F49  FF FF FF FF FF FF FF FF 
-     468.  00:9F51                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     468.  00:9F51  FF FF FF FF FF FF FF FF 
-     469.  00:9F59                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     469.  00:9F59  FF FF FF FF FF FF FF FF 
-     470.  00:9F61                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     470.  00:9F61  FF FF FF FF FF FF FF FF 
-     471.  00:9F69                      	
-     472.  00:9F69                      sprite_manoizq2:
-     473.  00:9F69                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     473.  00:9F69  FF FF FF FF FF FF FF FF 
-     474.  00:9F71                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     474.  00:9F71  FF FF FF FF FF FF FF FF 
-     475.  00:9F79                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     475.  00:9F79  FF FF FF FF FF FF FF FF 
-     476.  00:9F81                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     476.  00:9F81  FF FF FF FF FF FF FF FF 
-     477.  00:9F89                      	
-     478.  00:9F89                      sprite_manoizq3:
-     479.  00:9F89                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     479.  00:9F89  FF FF FF FF FF FF FF FF 
-     480.  00:9F91                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     480.  00:9F91  FF FF FF FF FF FF FF FF 
-     481.  00:9F99                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     481.  00:9F99  FF FF FF FF FF FF FF FF 
-     482.  00:9FA1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
-     482.  00:9FA1  FF FF FF FF FF FF FF FF 
-     483.  00:9FA9                      	
-     484.  00:9FA9                      ;; MANODER
-     485.  00:9FA9                      
-     486.  00:9FA9                      sprite_manoder1:
-     487.  00:9FA9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     487.  00:9FA9  FF FF FF FF FF FF FF FF 
-     488.  00:9FB1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     488.  00:9FB1  FF FF FF FF FF FF FF FF 
-     489.  00:9FB9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     489.  00:9FB9  FF FF FF FF FF FF FF FF 
-     490.  00:9FC1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     490.  00:9FC1  FF FF FF FF FF FF FF FF 
-     491.  00:9FC9                      	
-     492.  00:9FC9                      sprite_manoder2:
-     493.  00:9FC9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     493.  00:9FC9  FF FF FF FF FF FF FF FF 
-     494.  00:9FD1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     494.  00:9FD1  FF FF FF FF FF FF FF FF 
-     495.  00:9FD9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     495.  00:9FD9  FF FF FF FF FF FF FF FF 
-     496.  00:9FE1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     496.  00:9FE1  FF FF FF FF FF FF FF FF 
-     497.  00:9FE9                      	
-     498.  00:9FE9                      sprite_manoder3:
-     499.  00:9FE9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     499.  00:9FE9  FF FF FF FF FF FF FF FF 
-     500.  00:9FF1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     500.  00:9FF1  FF FF FF FF FF FF FF FF 
-     501.  00:9FF9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     501.  00:9FF9  FF FF FF FF FF FF FF FF 
-     502.  00:A001                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF		
-     502.  00:A001  FF FF FF FF FF FF FF FF 
-     503.  00:A009                      	
-     504.  00:A009                      	
-     505.  00:A009                      	
+      17.  00:9689                      
+      18.  00:9689                      sprites_pantantalla:
+      19.  00:9689                      
+      20.  00:9689                      ;; PARTE 1: SPRITES COMUNES
+      21.  00:9689                      
+      22.  00:9689                      sprites_comunes:
+      23.  00:9689                      sprite_punto_mira_1:	;color 8
+      24.  00:9689                      	db #FF,#FF,#C0,#C0,#C0,#C0,#C0,#C0
+      24.  00:9689  FF FF C0 C0 C0 C0 C0 C0 
+      25.  00:9691                      	db #C0,#C0,#C0,#C0,#C0,#C0,#FF,#FF
+      25.  00:9691  C0 C0 C0 C0 C0 C0 FF FF 
+      26.  00:9699                      	db #FF,#FF,#03,#03,#03,#03,#03,#03
+      26.  00:9699  FF FF 03 03 03 03 03 03 
+      27.  00:96A1                      	db #03,#03,#03,#03,#03,#03,#FF,#FF
+      27.  00:96A1  03 03 03 03 03 03 FF FF 
+      28.  00:96A9                      	
+      29.  00:96A9                      sprite_punto_mira_2: 	;color 15
+      30.  00:96A9                      	db #00,#00,#00,#00,#0F,#0F,#0C,#0C
+      30.  00:96A9  00 00 00 00 0F 0F 0C 0C 
+      31.  00:96B1                      	db #0C,#0C,#0F,#0F,#00,#00,#00,#00
+      31.  00:96B1  0C 0C 0F 0F 00 00 00 00 
+      32.  00:96B9                      	db #00,#00,#00,#00,#F0,#F0,#30,#30
+      32.  00:96B9  00 00 00 00 F0 F0 30 30 
+      33.  00:96C1                      	db #30,#30,#F0,#F0,#00,#00,#00,#00
+      33.  00:96C1  30 30 F0 F0 00 00 00 00 
+      34.  00:96C9                      	
+      35.  00:96C9                      sprite_punto_mira_1_mejorado:
+      36.  00:96C9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      36.  00:96C9  FF FF FF FF FF FF FF FF 
+      37.  00:96D1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      37.  00:96D1  FF FF FF FF FF FF FF FF 
+      38.  00:96D9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      38.  00:96D9  FF FF FF FF FF FF FF FF 
+      39.  00:96E1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      39.  00:96E1  FF FF FF FF FF FF FF FF 
+      40.  00:96E9                      
+      41.  00:96E9                      sprite_punto_mira_2_mejorado:
+      42.  00:96E9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      42.  00:96E9  FF FF FF FF FF FF FF FF 
+      43.  00:96F1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      43.  00:96F1  FF FF FF FF FF FF FF FF 
+      44.  00:96F9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      44.  00:96F9  FF FF FF FF FF FF FF FF 
+      45.  00:9701                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      45.  00:9701  FF FF FF FF FF FF FF FF 
+      46.  00:9709                      	
+      47.  00:9709                      sprite_explosion_1:
+      48.  00:9709                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      48.  00:9709  FF FF FF FF FF FF FF FF 
+      49.  00:9711                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      49.  00:9711  FF FF FF FF FF FF FF FF 
+      50.  00:9719                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      50.  00:9719  FF FF FF FF FF FF FF FF 
+      51.  00:9721                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
+      51.  00:9721  FF FF FF FF FF FF FF FF 
+      52.  00:9729                      
+      53.  00:9729                      sprite_explosion_2:
+      54.  00:9729                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      54.  00:9729  FF FF FF FF FF FF FF FF 
+      55.  00:9731                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      55.  00:9731  FF FF FF FF FF FF FF FF 
+      56.  00:9739                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      56.  00:9739  FF FF FF FF FF FF FF FF 
+      57.  00:9741                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
+      57.  00:9741  FF FF FF FF FF FF FF FF 
+      58.  00:9749                      fin_sprites_comunes:
+      59.  00:9749                      
+      60.  00:9749                      ;; PARTE 2: SPRITES NO COMUNES
+      61.  00:9749                      
+      62.  00:9749                      ;; ARAÑA
+      63.  00:9749                      	
+      64.  00:9749                      sprite_arana1_1:
+      65.  00:9749                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      65.  00:9749  FF FF FF FF FF FF FF FF 
+      66.  00:9751                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      66.  00:9751  FF FF FF FF FF FF FF FF 
+      67.  00:9759                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      67.  00:9759  FF FF FF FF FF FF FF FF 
+      68.  00:9761                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      68.  00:9761  FF FF FF FF FF FF FF FF 
+      69.  00:9769                      	
+      70.  00:9769                      sprite_arana1_2:
+      71.  00:9769                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      71.  00:9769  FF FF FF FF FF FF FF FF 
+      72.  00:9771                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      72.  00:9771  FF FF FF FF FF FF FF FF 
+      73.  00:9779                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      73.  00:9779  FF FF FF FF FF FF FF FF 
+      74.  00:9781                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      74.  00:9781  FF FF FF FF FF FF FF FF 
+      75.  00:9789                      
+      76.  00:9789                      ;; MURCIELAGO
+      77.  00:9789                      	
+      78.  00:9789                      sprite_murcielago1_1:
+      79.  00:9789                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      79.  00:9789  FF FF FF FF FF FF FF FF 
+      80.  00:9791                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      80.  00:9791  FF FF FF FF FF FF FF FF 
+      81.  00:9799                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      81.  00:9799  FF FF FF FF FF FF FF FF 
+      82.  00:97A1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      82.  00:97A1  FF FF FF FF FF FF FF FF 
+      83.  00:97A9                      	
+      84.  00:97A9                      sprite_murcielago1_2:
+      85.  00:97A9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      85.  00:97A9  FF FF FF FF FF FF FF FF 
+      86.  00:97B1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      86.  00:97B1  FF FF FF FF FF FF FF FF 
+      87.  00:97B9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      87.  00:97B9  FF FF FF FF FF FF FF FF 
+      88.  00:97C1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
+      88.  00:97C1  FF FF FF FF FF FF FF FF 
+      89.  00:97C9                      
+      90.  00:97C9                      ;; SERPIENTE
+      91.  00:97C9                      
+      92.  00:97C9                      sprite_serpiente1_1:
+      93.  00:97C9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      93.  00:97C9  FF FF FF FF FF FF FF FF 
+      94.  00:97D1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      94.  00:97D1  FF FF FF FF FF FF FF FF 
+      95.  00:97D9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      95.  00:97D9  FF FF FF FF FF FF FF FF 
+      96.  00:97E1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      96.  00:97E1  FF FF FF FF FF FF FF FF 
+      97.  00:97E9                      	
+      98.  00:97E9                      sprite_serpiente1_2:
+      99.  00:97E9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      99.  00:97E9  FF FF FF FF FF FF FF FF 
+     100.  00:97F1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     100.  00:97F1  FF FF FF FF FF FF FF FF 
+     101.  00:97F9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     101.  00:97F9  FF FF FF FF FF FF FF FF 
+     102.  00:9801                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     102.  00:9801  FF FF FF FF FF FF FF FF 
+     103.  00:9809                      	
+     104.  00:9809                      sprite_serpiente2_1:
+     105.  00:9809                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     105.  00:9809  FF FF FF FF FF FF FF FF 
+     106.  00:9811                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     106.  00:9811  FF FF FF FF FF FF FF FF 
+     107.  00:9819                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     107.  00:9819  FF FF FF FF FF FF FF FF 
+     108.  00:9821                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     108.  00:9821  FF FF FF FF FF FF FF FF 
+     109.  00:9829                      	
+     110.  00:9829                      sprite_serpiente2_2:
+     111.  00:9829                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     111.  00:9829  FF FF FF FF FF FF FF FF 
+     112.  00:9831                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     112.  00:9831  FF FF FF FF FF FF FF FF 
+     113.  00:9839                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     113.  00:9839  FF FF FF FF FF FF FF FF 
+     114.  00:9841                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     114.  00:9841  FF FF FF FF FF FF FF FF 
+     115.  00:9849                      
+     116.  00:9849                      ;; ZOMBI
+     117.  00:9849                      
+     118.  00:9849                      sprite_zombi1_1_1:
+     119.  00:9849                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     119.  00:9849  FF FF FF FF FF FF FF FF 
+     120.  00:9851                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     120.  00:9851  FF FF FF FF FF FF FF FF 
+     121.  00:9859                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     121.  00:9859  FF FF FF FF FF FF FF FF 
+     122.  00:9861                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     122.  00:9861  FF FF FF FF FF FF FF FF 
+     123.  00:9869                      
+     124.  00:9869                      sprite_zombi1_2_1:
+     125.  00:9869                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     125.  00:9869  FF FF FF FF FF FF FF FF 
+     126.  00:9871                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     126.  00:9871  FF FF FF FF FF FF FF FF 
+     127.  00:9879                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     127.  00:9879  FF FF FF FF FF FF FF FF 
+     128.  00:9881                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     128.  00:9881  FF FF FF FF FF FF FF FF 
+     129.  00:9889                      	
+     130.  00:9889                      sprite_zombi1_3_1:
+     131.  00:9889                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     131.  00:9889  FF FF FF FF FF FF FF FF 
+     132.  00:9891                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     132.  00:9891  FF FF FF FF FF FF FF FF 
+     133.  00:9899                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     133.  00:9899  FF FF FF FF FF FF FF FF 
+     134.  00:98A1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     134.  00:98A1  FF FF FF FF FF FF FF FF 
+     135.  00:98A9                      	
+     136.  00:98A9                      sprite_zombi1_4_1:
+     137.  00:98A9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     137.  00:98A9  FF FF FF FF FF FF FF FF 
+     138.  00:98B1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     138.  00:98B1  FF FF FF FF FF FF FF FF 
+     139.  00:98B9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     139.  00:98B9  FF FF FF FF FF FF FF FF 
+     140.  00:98C1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     140.  00:98C1  FF FF FF FF FF FF FF FF 
+     141.  00:98C9                      	
+     142.  00:98C9                      sprite_zombi1_1_2:
+     143.  00:98C9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     143.  00:98C9  FF FF FF FF FF FF FF FF 
+     144.  00:98D1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     144.  00:98D1  FF FF FF FF FF FF FF FF 
+     145.  00:98D9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     145.  00:98D9  FF FF FF FF FF FF FF FF 
+     146.  00:98E1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     146.  00:98E1  FF FF FF FF FF FF FF FF 
+     147.  00:98E9                      
+     148.  00:98E9                      sprite_zombi1_2_2:
+     149.  00:98E9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     149.  00:98E9  FF FF FF FF FF FF FF FF 
+     150.  00:98F1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     150.  00:98F1  FF FF FF FF FF FF FF FF 
+     151.  00:98F9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     151.  00:98F9  FF FF FF FF FF FF FF FF 
+     152.  00:9901                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     152.  00:9901  FF FF FF FF FF FF FF FF 
+     153.  00:9909                      	
+     154.  00:9909                      sprite_zombi1_3_2:
+     155.  00:9909                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     155.  00:9909  FF FF FF FF FF FF FF FF 
+     156.  00:9911                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     156.  00:9911  FF FF FF FF FF FF FF FF 
+     157.  00:9919                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     157.  00:9919  FF FF FF FF FF FF FF FF 
+     158.  00:9921                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     158.  00:9921  FF FF FF FF FF FF FF FF 
+     159.  00:9929                      	
+     160.  00:9929                      sprite_zombi1_4_2:
+     161.  00:9929                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     161.  00:9929  FF FF FF FF FF FF FF FF 
+     162.  00:9931                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     162.  00:9931  FF FF FF FF FF FF FF FF 
+     163.  00:9939                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     163.  00:9939  FF FF FF FF FF FF FF FF 
+     164.  00:9941                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     164.  00:9941  FF FF FF FF FF FF FF FF 
+     165.  00:9949                      	
+     166.  00:9949                      sprite_zombi2_1_1:
+     167.  00:9949                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     167.  00:9949  FF FF FF FF FF FF FF FF 
+     168.  00:9951                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     168.  00:9951  FF FF FF FF FF FF FF FF 
+     169.  00:9959                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     169.  00:9959  FF FF FF FF FF FF FF FF 
+     170.  00:9961                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     170.  00:9961  FF FF FF FF FF FF FF FF 
+     171.  00:9969                      
+     172.  00:9969                      sprite_zombi2_2_1:
+     173.  00:9969                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     173.  00:9969  FF FF FF FF FF FF FF FF 
+     174.  00:9971                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     174.  00:9971  FF FF FF FF FF FF FF FF 
+     175.  00:9979                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     175.  00:9979  FF FF FF FF FF FF FF FF 
+     176.  00:9981                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     176.  00:9981  FF FF FF FF FF FF FF FF 
+     177.  00:9989                      	
+     178.  00:9989                      sprite_zombi2_3_1:
+     179.  00:9989                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     179.  00:9989  FF FF FF FF FF FF FF FF 
+     180.  00:9991                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     180.  00:9991  FF FF FF FF FF FF FF FF 
+     181.  00:9999                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     181.  00:9999  FF FF FF FF FF FF FF FF 
+     182.  00:99A1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     182.  00:99A1  FF FF FF FF FF FF FF FF 
+     183.  00:99A9                      	
+     184.  00:99A9                      sprite_zombi2_4_1:
+     185.  00:99A9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     185.  00:99A9  FF FF FF FF FF FF FF FF 
+     186.  00:99B1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     186.  00:99B1  FF FF FF FF FF FF FF FF 
+     187.  00:99B9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     187.  00:99B9  FF FF FF FF FF FF FF FF 
+     188.  00:99C1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     188.  00:99C1  FF FF FF FF FF FF FF FF 
+     189.  00:99C9                      	
+     190.  00:99C9                      sprite_zombi2_1_2:
+     191.  00:99C9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     191.  00:99C9  FF FF FF FF FF FF FF FF 
+     192.  00:99D1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     192.  00:99D1  FF FF FF FF FF FF FF FF 
+     193.  00:99D9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     193.  00:99D9  FF FF FF FF FF FF FF FF 
+     194.  00:99E1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     194.  00:99E1  FF FF FF FF FF FF FF FF 
+     195.  00:99E9                      
+     196.  00:99E9                      sprite_zombi2_2_2:
+     197.  00:99E9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     197.  00:99E9  FF FF FF FF FF FF FF FF 
+     198.  00:99F1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     198.  00:99F1  FF FF FF FF FF FF FF FF 
+     199.  00:99F9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     199.  00:99F9  FF FF FF FF FF FF FF FF 
+     200.  00:9A01                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     200.  00:9A01  FF FF FF FF FF FF FF FF 
+     201.  00:9A09                      	
+     202.  00:9A09                      sprite_zombi2_3_2:
+     203.  00:9A09                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     203.  00:9A09  FF FF FF FF FF FF FF FF 
+     204.  00:9A11                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     204.  00:9A11  FF FF FF FF FF FF FF FF 
+     205.  00:9A19                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     205.  00:9A19  FF FF FF FF FF FF FF FF 
+     206.  00:9A21                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     206.  00:9A21  FF FF FF FF FF FF FF FF 
+     207.  00:9A29                      	
+     208.  00:9A29                      sprite_zombi2_4_2:
+     209.  00:9A29                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     209.  00:9A29  FF FF FF FF FF FF FF FF 
+     210.  00:9A31                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     210.  00:9A31  FF FF FF FF FF FF FF FF 
+     211.  00:9A39                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     211.  00:9A39  FF FF FF FF FF FF FF FF 
+     212.  00:9A41                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     212.  00:9A41  FF FF FF FF FF FF FF FF 
+     213.  00:9A49                      	
+     214.  00:9A49                      ;; CABALLERO
+     215.  00:9A49                      
+     216.  00:9A49                      sprite_caballero1_1_1:
+     217.  00:9A49                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     217.  00:9A49  FF FF FF FF FF FF FF FF 
+     218.  00:9A51                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     218.  00:9A51  FF FF FF FF FF FF FF FF 
+     219.  00:9A59                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     219.  00:9A59  FF FF FF FF FF FF FF FF 
+     220.  00:9A61                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     220.  00:9A61  FF FF FF FF FF FF FF FF 
+     221.  00:9A69                      
+     222.  00:9A69                      sprite_caballero1_2_1:
+     223.  00:9A69                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     223.  00:9A69  FF FF FF FF FF FF FF FF 
+     224.  00:9A71                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     224.  00:9A71  FF FF FF FF FF FF FF FF 
+     225.  00:9A79                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     225.  00:9A79  FF FF FF FF FF FF FF FF 
+     226.  00:9A81                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     226.  00:9A81  FF FF FF FF FF FF FF FF 
+     227.  00:9A89                      	
+     228.  00:9A89                      sprite_caballero1_3_1:
+     229.  00:9A89                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     229.  00:9A89  FF FF FF FF FF FF FF FF 
+     230.  00:9A91                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     230.  00:9A91  FF FF FF FF FF FF FF FF 
+     231.  00:9A99                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     231.  00:9A99  FF FF FF FF FF FF FF FF 
+     232.  00:9AA1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     232.  00:9AA1  FF FF FF FF FF FF FF FF 
+     233.  00:9AA9                      	
+     234.  00:9AA9                      sprite_caballero1_4_1:
+     235.  00:9AA9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     235.  00:9AA9  FF FF FF FF FF FF FF FF 
+     236.  00:9AB1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     236.  00:9AB1  FF FF FF FF FF FF FF FF 
+     237.  00:9AB9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     237.  00:9AB9  FF FF FF FF FF FF FF FF 
+     238.  00:9AC1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     238.  00:9AC1  FF FF FF FF FF FF FF FF 
+     239.  00:9AC9                      	
+     240.  00:9AC9                      sprite_caballero1_1_2:
+     241.  00:9AC9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     241.  00:9AC9  FF FF FF FF FF FF FF FF 
+     242.  00:9AD1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     242.  00:9AD1  FF FF FF FF FF FF FF FF 
+     243.  00:9AD9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     243.  00:9AD9  FF FF FF FF FF FF FF FF 
+     244.  00:9AE1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     244.  00:9AE1  FF FF FF FF FF FF FF FF 
+     245.  00:9AE9                      
+     246.  00:9AE9                      sprite_caballero1_2_2:
+     247.  00:9AE9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     247.  00:9AE9  FF FF FF FF FF FF FF FF 
+     248.  00:9AF1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     248.  00:9AF1  FF FF FF FF FF FF FF FF 
+     249.  00:9AF9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     249.  00:9AF9  FF FF FF FF FF FF FF FF 
+     250.  00:9B01                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     250.  00:9B01  FF FF FF FF FF FF FF FF 
+     251.  00:9B09                      	
+     252.  00:9B09                      sprite_caballero1_3_2:
+     253.  00:9B09                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     253.  00:9B09  FF FF FF FF FF FF FF FF 
+     254.  00:9B11                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     254.  00:9B11  FF FF FF FF FF FF FF FF 
+     255.  00:9B19                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     255.  00:9B19  FF FF FF FF FF FF FF FF 
+     256.  00:9B21                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     256.  00:9B21  FF FF FF FF FF FF FF FF 
+     257.  00:9B29                      	
+     258.  00:9B29                      sprite_caballero1_4_2:
+     259.  00:9B29                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     259.  00:9B29  FF FF FF FF FF FF FF FF 
+     260.  00:9B31                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     260.  00:9B31  FF FF FF FF FF FF FF FF 
+     261.  00:9B39                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     261.  00:9B39  FF FF FF FF FF FF FF FF 
+     262.  00:9B41                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     262.  00:9B41  FF FF FF FF FF FF FF FF 
+     263.  00:9B49                      	
+     264.  00:9B49                      sprite_caballero2_1_1:
+     265.  00:9B49                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     265.  00:9B49  FF FF FF FF FF FF FF FF 
+     266.  00:9B51                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     266.  00:9B51  FF FF FF FF FF FF FF FF 
+     267.  00:9B59                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     267.  00:9B59  FF FF FF FF FF FF FF FF 
+     268.  00:9B61                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     268.  00:9B61  FF FF FF FF FF FF FF FF 
+     269.  00:9B69                      
+     270.  00:9B69                      sprite_caballero2_2_1:
+     271.  00:9B69                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     271.  00:9B69  FF FF FF FF FF FF FF FF 
+     272.  00:9B71                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     272.  00:9B71  FF FF FF FF FF FF FF FF 
+     273.  00:9B79                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     273.  00:9B79  FF FF FF FF FF FF FF FF 
+     274.  00:9B81                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     274.  00:9B81  FF FF FF FF FF FF FF FF 
+     275.  00:9B89                      	
+     276.  00:9B89                      sprite_caballero2_3_1:
+     277.  00:9B89                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     277.  00:9B89  FF FF FF FF FF FF FF FF 
+     278.  00:9B91                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     278.  00:9B91  FF FF FF FF FF FF FF FF 
+     279.  00:9B99                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     279.  00:9B99  FF FF FF FF FF FF FF FF 
+     280.  00:9BA1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     280.  00:9BA1  FF FF FF FF FF FF FF FF 
+     281.  00:9BA9                      	
+     282.  00:9BA9                      sprite_caballero2_4_1:
+     283.  00:9BA9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     283.  00:9BA9  FF FF FF FF FF FF FF FF 
+     284.  00:9BB1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     284.  00:9BB1  FF FF FF FF FF FF FF FF 
+     285.  00:9BB9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     285.  00:9BB9  FF FF FF FF FF FF FF FF 
+     286.  00:9BC1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     286.  00:9BC1  FF FF FF FF FF FF FF FF 
+     287.  00:9BC9                      	
+     288.  00:9BC9                      sprite_caballero2_1_2:
+     289.  00:9BC9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     289.  00:9BC9  FF FF FF FF FF FF FF FF 
+     290.  00:9BD1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     290.  00:9BD1  FF FF FF FF FF FF FF FF 
+     291.  00:9BD9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     291.  00:9BD9  FF FF FF FF FF FF FF FF 
+     292.  00:9BE1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     292.  00:9BE1  FF FF FF FF FF FF FF FF 
+     293.  00:9BE9                      
+     294.  00:9BE9                      sprite_caballero2_2_2:
+     295.  00:9BE9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     295.  00:9BE9  FF FF FF FF FF FF FF FF 
+     296.  00:9BF1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     296.  00:9BF1  FF FF FF FF FF FF FF FF 
+     297.  00:9BF9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     297.  00:9BF9  FF FF FF FF FF FF FF FF 
+     298.  00:9C01                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     298.  00:9C01  FF FF FF FF FF FF FF FF 
+     299.  00:9C09                      	
+     300.  00:9C09                      sprite_caballero2_3_2:
+     301.  00:9C09                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     301.  00:9C09  FF FF FF FF FF FF FF FF 
+     302.  00:9C11                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     302.  00:9C11  FF FF FF FF FF FF FF FF 
+     303.  00:9C19                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     303.  00:9C19  FF FF FF FF FF FF FF FF 
+     304.  00:9C21                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     304.  00:9C21  FF FF FF FF FF FF FF FF 
+     305.  00:9C29                      	
+     306.  00:9C29                      sprite_caballero2_4_2:
+     307.  00:9C29                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     307.  00:9C29  FF FF FF FF FF FF FF FF 
+     308.  00:9C31                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     308.  00:9C31  FF FF FF FF FF FF FF FF 
+     309.  00:9C39                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     309.  00:9C39  FF FF FF FF FF FF FF FF 
+     310.  00:9C41                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     310.  00:9C41  FF FF FF FF FF FF FF FF 
+     311.  00:9C49                      	
+     312.  00:9C49                      ;; LLAMA
+     313.  00:9C49                      
+     314.  00:9C49                      sprite_llama1_1:	
+     315.  00:9C49                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     315.  00:9C49  FF FF FF FF FF FF FF FF 
+     316.  00:9C51                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     316.  00:9C51  FF FF FF FF FF FF FF FF 
+     317.  00:9C59                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     317.  00:9C59  FF FF FF FF FF FF FF FF 
+     318.  00:9C61                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     318.  00:9C61  FF FF FF FF FF FF FF FF 
+     319.  00:9C69                      	
+     320.  00:9C69                      sprite_llama2_1:	
+     321.  00:9C69                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     321.  00:9C69  FF FF FF FF FF FF FF FF 
+     322.  00:9C71                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     322.  00:9C71  FF FF FF FF FF FF FF FF 
+     323.  00:9C79                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     323.  00:9C79  FF FF FF FF FF FF FF FF 
+     324.  00:9C81                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
+     324.  00:9C81  FF FF FF FF FF FF FF FF 
+     325.  00:9C89                      	
+     326.  00:9C89                      sprite_llama1_2:	
+     327.  00:9C89                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     327.  00:9C89  FF FF FF FF FF FF FF FF 
+     328.  00:9C91                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     328.  00:9C91  FF FF FF FF FF FF FF FF 
+     329.  00:9C99                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     329.  00:9C99  FF FF FF FF FF FF FF FF 
+     330.  00:9CA1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     330.  00:9CA1  FF FF FF FF FF FF FF FF 
+     331.  00:9CA9                      	
+     332.  00:9CA9                      sprite_llama2_2:	
+     333.  00:9CA9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     333.  00:9CA9  FF FF FF FF FF FF FF FF 
+     334.  00:9CB1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     334.  00:9CB1  FF FF FF FF FF FF FF FF 
+     335.  00:9CB9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     335.  00:9CB9  FF FF FF FF FF FF FF FF 
+     336.  00:9CC1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF			
+     336.  00:9CC1  FF FF FF FF FF FF FF FF 
+     337.  00:9CC9                      	
+     338.  00:9CC9                      ;; FANTASMA
+     339.  00:9CC9                      
+     340.  00:9CC9                      sprite_fantasma1_1:
+     341.  00:9CC9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     341.  00:9CC9  FF FF FF FF FF FF FF FF 
+     342.  00:9CD1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     342.  00:9CD1  FF FF FF FF FF FF FF FF 
+     343.  00:9CD9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     343.  00:9CD9  FF FF FF FF FF FF FF FF 
+     344.  00:9CE1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     344.  00:9CE1  FF FF FF FF FF FF FF FF 
+     345.  00:9CE9                      
+     346.  00:9CE9                      sprite_fantasma2_1:
+     347.  00:9CE9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     347.  00:9CE9  FF FF FF FF FF FF FF FF 
+     348.  00:9CF1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     348.  00:9CF1  FF FF FF FF FF FF FF FF 
+     349.  00:9CF9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     349.  00:9CF9  FF FF FF FF FF FF FF FF 
+     350.  00:9D01                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     350.  00:9D01  FF FF FF FF FF FF FF FF 
+     351.  00:9D09                      
+     352.  00:9D09                      sprite_fantasma1_2:
+     353.  00:9D09                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     353.  00:9D09  FF FF FF FF FF FF FF FF 
+     354.  00:9D11                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     354.  00:9D11  FF FF FF FF FF FF FF FF 
+     355.  00:9D19                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     355.  00:9D19  FF FF FF FF FF FF FF FF 
+     356.  00:9D21                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     356.  00:9D21  FF FF FF FF FF FF FF FF 
+     357.  00:9D29                      
+     358.  00:9D29                      sprite_fantasma2_2:
+     359.  00:9D29                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     359.  00:9D29  FF FF FF FF FF FF FF FF 
+     360.  00:9D31                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     360.  00:9D31  FF FF FF FF FF FF FF FF 
+     361.  00:9D39                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     361.  00:9D39  FF FF FF FF FF FF FF FF 
+     362.  00:9D41                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
+     362.  00:9D41  FF FF FF FF FF FF FF FF 
+     363.  00:9D49                      	
+     364.  00:9D49                      ;; MAGIA
+     365.  00:9D49                      
+     366.  00:9D49                      sprite_magia1_1:
+     367.  00:9D49                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     367.  00:9D49  FF FF FF FF FF FF FF FF 
+     368.  00:9D51                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     368.  00:9D51  FF FF FF FF FF FF FF FF 
+     369.  00:9D59                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     369.  00:9D59  FF FF FF FF FF FF FF FF 
+     370.  00:9D61                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     370.  00:9D61  FF FF FF FF FF FF FF FF 
+     371.  00:9D69                      
+     372.  00:9D69                      sprite_magia2_1:
+     373.  00:9D69                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     373.  00:9D69  FF FF FF FF FF FF FF FF 
+     374.  00:9D71                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     374.  00:9D71  FF FF FF FF FF FF FF FF 
+     375.  00:9D79                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     375.  00:9D79  FF FF FF FF FF FF FF FF 
+     376.  00:9D81                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     376.  00:9D81  FF FF FF FF FF FF FF FF 
+     377.  00:9D89                      
+     378.  00:9D89                      sprite_magia1_2:
+     379.  00:9D89                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     379.  00:9D89  FF FF FF FF FF FF FF FF 
+     380.  00:9D91                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     380.  00:9D91  FF FF FF FF FF FF FF FF 
+     381.  00:9D99                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     381.  00:9D99  FF FF FF FF FF FF FF FF 
+     382.  00:9DA1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     382.  00:9DA1  FF FF FF FF FF FF FF FF 
+     383.  00:9DA9                      
+     384.  00:9DA9                      sprite_magia2_2:
+     385.  00:9DA9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     385.  00:9DA9  FF FF FF FF FF FF FF FF 
+     386.  00:9DB1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     386.  00:9DB1  FF FF FF FF FF FF FF FF 
+     387.  00:9DB9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     387.  00:9DB9  FF FF FF FF FF FF FF FF 
+     388.  00:9DC1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
+     388.  00:9DC1  FF FF FF FF FF FF FF FF 
+     389.  00:9DC9                      	
+     390.  00:9DC9                      	
+     391.  00:9DC9                      ;; BEHOLDER
+     392.  00:9DC9                      
+     393.  00:9DC9                      sprite_beholder1_1:
+     394.  00:9DC9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     394.  00:9DC9  FF FF FF FF FF FF FF FF 
+     395.  00:9DD1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     395.  00:9DD1  FF FF FF FF FF FF FF FF 
+     396.  00:9DD9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     396.  00:9DD9  FF FF FF FF FF FF FF FF 
+     397.  00:9DE1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     397.  00:9DE1  FF FF FF FF FF FF FF FF 
+     398.  00:9DE9                      
+     399.  00:9DE9                      sprite_beholder2_1:
+     400.  00:9DE9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     400.  00:9DE9  FF FF FF FF FF FF FF FF 
+     401.  00:9DF1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     401.  00:9DF1  FF FF FF FF FF FF FF FF 
+     402.  00:9DF9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     402.  00:9DF9  FF FF FF FF FF FF FF FF 
+     403.  00:9E01                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     403.  00:9E01  FF FF FF FF FF FF FF FF 
+     404.  00:9E09                      
+     405.  00:9E09                      sprite_beholder3_1:
+     406.  00:9E09                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     406.  00:9E09  FF FF FF FF FF FF FF FF 
+     407.  00:9E11                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     407.  00:9E11  FF FF FF FF FF FF FF FF 
+     408.  00:9E19                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     408.  00:9E19  FF FF FF FF FF FF FF FF 
+     409.  00:9E21                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     409.  00:9E21  FF FF FF FF FF FF FF FF 
+     410.  00:9E29                      
+     411.  00:9E29                      sprite_beholder4_1:
+     412.  00:9E29                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     412.  00:9E29  FF FF FF FF FF FF FF FF 
+     413.  00:9E31                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     413.  00:9E31  FF FF FF FF FF FF FF FF 
+     414.  00:9E39                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     414.  00:9E39  FF FF FF FF FF FF FF FF 
+     415.  00:9E41                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
+     415.  00:9E41  FF FF FF FF FF FF FF FF 
+     416.  00:9E49                      	
+     417.  00:9E49                      sprite_beholder1_2:
+     418.  00:9E49                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     418.  00:9E49  FF FF FF FF FF FF FF FF 
+     419.  00:9E51                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     419.  00:9E51  FF FF FF FF FF FF FF FF 
+     420.  00:9E59                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     420.  00:9E59  FF FF FF FF FF FF FF FF 
+     421.  00:9E61                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     421.  00:9E61  FF FF FF FF FF FF FF FF 
+     422.  00:9E69                      
+     423.  00:9E69                      sprite_beholder2_2:
+     424.  00:9E69                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     424.  00:9E69  FF FF FF FF FF FF FF FF 
+     425.  00:9E71                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     425.  00:9E71  FF FF FF FF FF FF FF FF 
+     426.  00:9E79                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     426.  00:9E79  FF FF FF FF FF FF FF FF 
+     427.  00:9E81                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     427.  00:9E81  FF FF FF FF FF FF FF FF 
+     428.  00:9E89                      
+     429.  00:9E89                      sprite_beholder3_2:
+     430.  00:9E89                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     430.  00:9E89  FF FF FF FF FF FF FF FF 
+     431.  00:9E91                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     431.  00:9E91  FF FF FF FF FF FF FF FF 
+     432.  00:9E99                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     432.  00:9E99  FF FF FF FF FF FF FF FF 
+     433.  00:9EA1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     433.  00:9EA1  FF FF FF FF FF FF FF FF 
+     434.  00:9EA9                      
+     435.  00:9EA9                      sprite_beholder4_2:
+     436.  00:9EA9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     436.  00:9EA9  FF FF FF FF FF FF FF FF 
+     437.  00:9EB1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     437.  00:9EB1  FF FF FF FF FF FF FF FF 
+     438.  00:9EB9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     438.  00:9EB9  FF FF FF FF FF FF FF FF 
+     439.  00:9EC1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF		
+     439.  00:9EC1  FF FF FF FF FF FF FF FF 
+     440.  00:9EC9                      	
+     441.  00:9EC9                      ;; VAMPIRO
+     442.  00:9EC9                      
+     443.  00:9EC9                      sprite_vampiro1_1:
+     444.  00:9EC9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     444.  00:9EC9  FF FF FF FF FF FF FF FF 
+     445.  00:9ED1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     445.  00:9ED1  FF FF FF FF FF FF FF FF 
+     446.  00:9ED9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     446.  00:9ED9  FF FF FF FF FF FF FF FF 
+     447.  00:9EE1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     447.  00:9EE1  FF FF FF FF FF FF FF FF 
+     448.  00:9EE9                      
+     449.  00:9EE9                      sprite_vampiro2_1:
+     450.  00:9EE9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     450.  00:9EE9  FF FF FF FF FF FF FF FF 
+     451.  00:9EF1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     451.  00:9EF1  FF FF FF FF FF FF FF FF 
+     452.  00:9EF9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     452.  00:9EF9  FF FF FF FF FF FF FF FF 
+     453.  00:9F01                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     453.  00:9F01  FF FF FF FF FF FF FF FF 
+     454.  00:9F09                      
+     455.  00:9F09                      sprite_vampiro1_2:
+     456.  00:9F09                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     456.  00:9F09  FF FF FF FF FF FF FF FF 
+     457.  00:9F11                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     457.  00:9F11  FF FF FF FF FF FF FF FF 
+     458.  00:9F19                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     458.  00:9F19  FF FF FF FF FF FF FF FF 
+     459.  00:9F21                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     459.  00:9F21  FF FF FF FF FF FF FF FF 
+     460.  00:9F29                      
+     461.  00:9F29                      sprite_vampiro2_2:
+     462.  00:9F29                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     462.  00:9F29  FF FF FF FF FF FF FF FF 
+     463.  00:9F31                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     463.  00:9F31  FF FF FF FF FF FF FF FF 
+     464.  00:9F39                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     464.  00:9F39  FF FF FF FF FF FF FF FF 
+     465.  00:9F41                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     465.  00:9F41  FF FF FF FF FF FF FF FF 
+     466.  00:9F49                      	
+     467.  00:9F49                      ;; MANOIZQ
+     468.  00:9F49                      
+     469.  00:9F49                      sprite_manoizq1:
+     470.  00:9F49                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     470.  00:9F49  FF FF FF FF FF FF FF FF 
+     471.  00:9F51                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     471.  00:9F51  FF FF FF FF FF FF FF FF 
+     472.  00:9F59                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     472.  00:9F59  FF FF FF FF FF FF FF FF 
+     473.  00:9F61                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     473.  00:9F61  FF FF FF FF FF FF FF FF 
+     474.  00:9F69                      	
+     475.  00:9F69                      sprite_manoizq2:
+     476.  00:9F69                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     476.  00:9F69  FF FF FF FF FF FF FF FF 
+     477.  00:9F71                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     477.  00:9F71  FF FF FF FF FF FF FF FF 
+     478.  00:9F79                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     478.  00:9F79  FF FF FF FF FF FF FF FF 
+     479.  00:9F81                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     479.  00:9F81  FF FF FF FF FF FF FF FF 
+     480.  00:9F89                      	
+     481.  00:9F89                      sprite_manoizq3:
+     482.  00:9F89                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     482.  00:9F89  FF FF FF FF FF FF FF FF 
+     483.  00:9F91                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     483.  00:9F91  FF FF FF FF FF FF FF FF 
+     484.  00:9F99                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     484.  00:9F99  FF FF FF FF FF FF FF FF 
+     485.  00:9FA1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
+     485.  00:9FA1  FF FF FF FF FF FF FF FF 
+     486.  00:9FA9                      	
+     487.  00:9FA9                      ;; MANODER
+     488.  00:9FA9                      
+     489.  00:9FA9                      sprite_manoder1:
+     490.  00:9FA9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     490.  00:9FA9  FF FF FF FF FF FF FF FF 
+     491.  00:9FB1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     491.  00:9FB1  FF FF FF FF FF FF FF FF 
+     492.  00:9FB9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     492.  00:9FB9  FF FF FF FF FF FF FF FF 
+     493.  00:9FC1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     493.  00:9FC1  FF FF FF FF FF FF FF FF 
+     494.  00:9FC9                      	
+     495.  00:9FC9                      sprite_manoder2:
+     496.  00:9FC9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     496.  00:9FC9  FF FF FF FF FF FF FF FF 
+     497.  00:9FD1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     497.  00:9FD1  FF FF FF FF FF FF FF FF 
+     498.  00:9FD9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     498.  00:9FD9  FF FF FF FF FF FF FF FF 
+     499.  00:9FE1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     499.  00:9FE1  FF FF FF FF FF FF FF FF 
+     500.  00:9FE9                      	
+     501.  00:9FE9                      sprite_manoder3:
+     502.  00:9FE9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     502.  00:9FE9  FF FF FF FF FF FF FF FF 
+     503.  00:9FF1                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     503.  00:9FF1  FF FF FF FF FF FF FF FF 
+     504.  00:9FF9                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     504.  00:9FF9  FF FF FF FF FF FF FF FF 
+     505.  00:A001                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF		
+     505.  00:A001  FF FF FF FF FF FF FF FF 
      506.  00:A009                      	
      507.  00:A009                      	
      508.  00:A009                      	
@@ -4024,6 +4024,9 @@ Errors: 0
      523.  00:A009                      	
      524.  00:A009                      	
      525.  00:A009                      	
+     526.  00:A009                      	
+     527.  00:A009                      	
+     528.  00:A009                      	
      133   00:A009                      	
      134   00:A009                      	include "habitaciones.asm"
        1.  00:A009                      ;;=====================================================
