@@ -24,7 +24,7 @@ START:
 	CALL	pinta_pantalla_completa 
 	
 	;carga sprites en memoria (SE HA RETRASADO HASTA PARAMETRIZAR LA CARGA DE PANTALLAS)
-	CALL 	carga_patrones_sprites_nivel
+	CALL 	carga_patrones_sprites_nivel1
 	
 	;funciones que modificarian el marcador si se produce un evento cuando toque y cuando se pinta la pantalla ya se mira
 	;una variable para ver si el array hay que actualizarlo en pantalla o no
@@ -39,7 +39,7 @@ START:
 	CALL	posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.poxx y posy
 	
 	;incializacion de replayer con interrupciones
-;	CALL	inicializa_replayer_efectos_interrupciones
+	CALL	inicializa_replayer_efectos_interrupciones
 	
 loop_principal:
 	HALT							;espera VBLANK y sincroniza

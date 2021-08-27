@@ -29,7 +29,7 @@ sprite_punto_mira_2_mejorado:
 	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	
+
 sprite_reliquia:
 	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
@@ -41,7 +41,7 @@ sprite_vida_extra:
 	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	
+
 sprite_planta:
 	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
