@@ -344,7 +344,6 @@ pinta_energia:
 	LD		BC, NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
 	JP		LDIRVM
 fin_pinta_energia:
-	;RET
 
 
 
@@ -512,8 +511,6 @@ pinta_puertas:
 	
 	BIT		 0, A
 	CALL	nz, pinta_puerta_izq
-
-	;; sustituir el último call por jp *************************************************
 fin_pinta_puertas:
 	RET
 
@@ -537,9 +534,7 @@ pinta_puerta_aba:
 	LD		D,1								;nº de filas
 	LD		E,4								;nº de columnas
 	JP		pinta_array
-	;~ CALL	pinta_array
 fin_pinta_puerta_aba:
-	;~ RET
 
 ;;=====================================================
 ;;PINTA_PUERTA_ARR
@@ -558,9 +553,8 @@ pinta_puerta_arr:
 	LD		D,5								;nº de filas
 	LD		E,4								;nº de columnas
 	JP		pinta_array
-	;~ CALL	pinta_array
 fin_pinta_puerta_arr:
-	;~ RET
+
 
 ;;=====================================================
 ;;PINTA_PUERTA_DER
@@ -579,9 +573,7 @@ pinta_puerta_der:
 	LD		D,7								;nº de filas
 	LD		E,3								;nº de columnas
 	JP		pinta_array
-	;~ CALL	pinta_array
 fin_pinta_puerta_der:
-	;~ RET
 	
 ;;=====================================================
 ;;PINTA_PUERTA_IZQ
@@ -600,10 +592,7 @@ pinta_puerta_izq:
 	LD		D,7								;nº de filas
 	LD		E,3								;nº de columnas
 	JP		pinta_array
-	;~ CALL	pinta_array
 fin_pinta_puerta_izq:
-	;~ RET
-
 
 
 

@@ -74,6 +74,9 @@ array_puerta_izquierda5:	DB	1,1,1
 array_puerta_izquierda6:	DB	1,1,2
 array_puerta_izquierda7:	DB	1,2,4
 
+;array con posiciones pseudoaleatorias de ayudas y extras (qué valor se escogerá con R 0-127 + and 00001111)
+pos_ayudas:					DB	0,4,18,23,45,69,73,82,90,152,171,180,190,192,198,208
+
 
 ;array de 4 bytes x 32 sprites posibles en pantalla que sobreescribirá la tabla de sprites actualizando VRAM
 array_sprites:

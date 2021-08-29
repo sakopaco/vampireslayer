@@ -99,6 +99,22 @@ POSPUERARRI equ		#008E
 POSPUERDERE equ		#00FC
 POSPUERIZQU equ		#00E1
 
+;TILESAYUDAS
+ORACIONON	equ		200
+ORACIONOFF  equ		204
+CRUZON		equ		208
+CRUZOFF		equ		212
+AGUAON		equ		216
+AGUAOFF		equ		220
+ARMADON		equ		224
+ARMADOFF	equ		228
+PLANTAON	equ		232
+PLANTAOFF	equ		236
+VIDAEXTON	equ		240
+VIDAEXTOFF	equ		244
+BALLESON	equ		248
+BALLESOFF	equ		252
+
 
 ;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (relacionadas con posiciones en en el banco de memoria)
 TILEPROTAM  equ		19		;tile del prota para pintar en mapa
