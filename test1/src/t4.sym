@@ -667,6 +667,6 @@ tiles_color_pantalla12: equ 0000A4DDh
 tiles_mapa_pantalla11: equ 0000A4F5h
 tiles_mapa_pantalla12: equ 0000A50Fh
 tiles_patrones_pantalla3: equ 0000A539h
-tiles_color_pantalla3: equ 0000A67Fh
-tiles_mapa_pantalla3: equ 0000A6B4h
-END: equ 0000A723h
+tiles_color_pantalla3: equ 0000A67Eh
+tiles_mapa_pantalla3: equ 0000A6B0h
+END: equ 0000A712h

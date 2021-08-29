@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.08.29 - 13:44:06]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.08.29 - 22:37:16]
 
 t4.asm
 Errors: 0
@@ -258,7 +258,7 @@ Errors: 0
        5.  00:8000                      ;;CABECERA FICHERO BIN
        6.  00:8000  FE                  	DB	#FE
        7.  00:8001  00 80               	DW	START
-       8.  00:8003  23 A7               	DW	END
+       8.  00:8003  12 A7               	DW	END
        9.  00:8005  00 80               	DW	START
       10.  00:8007                      
       11.  00:8007                      ;;INICIO CÓDIGO PROGRAMA	
@@ -660,11 +660,11 @@ Errors: 0
      140.  00:8146  11 00 10            	LD		DE,CHRTBL + #1000
      141.  00:8149  CD A9 95            	CALL	depack_VRAM	
      142.  00:814C                      	;cargamos mapa de pantalla
-     143.  00:814C  21 B4 A6            	LD		HL,tiles_mapa_pantalla3
+     143.  00:814C  21 B0 A6            	LD		HL,tiles_mapa_pantalla3
      144.  00:814F  11 00 1A            	LD		DE,TILMAP + #0200
      145.  00:8152  CD A9 95            	CALL	depack_VRAM
      146.  00:8155                      	;cargamos los colores de los patrones
-     147.  00:8155  21 7F A6            	LD		HL,tiles_color_pantalla3
+     147.  00:8155  21 7E A6            	LD		HL,tiles_color_pantalla3
      148.  00:8158  11 00 30            	LD		DE,CLRTBL + #1000
      149.  00:815B  C3 A9 95            	JP		depack_VRAM
      150.  00:815E                      	;~ CALL	depack_VRAM
@@ -4296,15 +4296,19 @@ Errors: 0
       16.  00:A539                      
       17.  00:A539                      
       18.  00:A539                      ; 3º banco que es la parte de puntos, vidas, mapas, etc... es común
-      19.  00:A539  (0146)              tiles_patrones_pantalla3:	incbin "pan_33.bin.chr.pletter"
-      20.  00:A67F  (0035)              tiles_color_pantalla3:		incbin "pan_33.bin.clr.pletter"
-      21.  00:A6B4  (006F)              tiles_mapa_pantalla3:		incbin "pan_33.bin.map.pletter"
-      22.  00:A723                      
-      23.  00:A723                      ;NOTA: FALTARÍAN PANTALLAS ESPECIALES (POR DEFINIR)
-     142   00:A723                      
-     143   00:A723                      
-     144   00:A723                      	
-     145   00:A723                      END:
+      19.  00:A539                      ;~ tiles_patrones_pantalla3:	incbin "pan_33.bin.chr.pletter"
+      20.  00:A539                      ;~ tiles_color_pantalla3:		incbin "pan_33.bin.clr.pletter"
+      21.  00:A539                      ;~ tiles_mapa_pantalla3:		incbin "pan_33.bin.map.pletter"
+      22.  00:A539                      
+      23.  00:A539  (0145)              tiles_patrones_pantalla3:	incbin "pan1.bank2.bin.chr.plet5"
+      24.  00:A67E  (0032)              tiles_color_pantalla3:		incbin "pan1.bank2.bin.clr.plet5"
+      25.  00:A6B0  (0062)              tiles_mapa_pantalla3:		incbin "pan1.bank2.bin.map.plet5"
+      26.  00:A712                      
+      27.  00:A712                      ;NOTA: FALTARÍAN PANTALLAS ESPECIALES (POR DEFINIR)
+     142   00:A712                      
+     143   00:A712                      
+     144   00:A712                      	
+     145   00:A712                      END:
 
     LABELS
 -------------------------------------------------
@@ -4977,9 +4981,9 @@ Errors: 0
 00:0000A4F5   tiles_mapa_pantalla11
 00:0000A50F   tiles_mapa_pantalla12
 00:0000A539   tiles_patrones_pantalla3
-00:0000A67F   tiles_color_pantalla3
-00:0000A6B4   tiles_mapa_pantalla3
-00:0000A723   END
+00:0000A67E   tiles_color_pantalla3
+00:0000A6B0   tiles_mapa_pantalla3
+00:0000A712   END
 
 
  Output: t4.out
@@ -4994,7 +4998,7 @@ Errors: 0
 -------------------------------------------------
 
  Page: 00
-  Org: 00008000  Size: *  Used: 0000272A
+  Org: 00008000  Size: *  Used: 00002719
 
    Address   Length Align   Label
-   00008000   10026         START
+   00008000   10009         START

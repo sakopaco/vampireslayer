@@ -16,8 +16,12 @@ tiles_mapa_pantalla12:		incbin "pan1_23.bank1.bin.map.pletter"
 
 
 ; 3º banco que es la parte de puntos, vidas, mapas, etc... es común
-tiles_patrones_pantalla3:	incbin "pan_33.bin.chr.pletter"
-tiles_color_pantalla3:		incbin "pan_33.bin.clr.pletter"
-tiles_mapa_pantalla3:		incbin "pan_33.bin.map.pletter"
+;~ tiles_patrones_pantalla3:	incbin "pan_33.bin.chr.pletter"
+;~ tiles_color_pantalla3:		incbin "pan_33.bin.clr.pletter"
+;~ tiles_mapa_pantalla3:		incbin "pan_33.bin.map.pletter"
+
+tiles_patrones_pantalla3:	incbin "pan1.bank2.bin.chr.plet5"
+tiles_color_pantalla3:		incbin "pan1.bank2.bin.clr.plet5"
+tiles_mapa_pantalla3:		incbin "pan1.bank2.bin.map.plet5"
 
 ;NOTA: FALTARÍAN PANTALLAS ESPECIALES (POR DEFINIR)
