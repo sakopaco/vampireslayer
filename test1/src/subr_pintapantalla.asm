@@ -136,18 +136,17 @@ fin_pinta_parte_superior_pantalla:
 pinta_parte_inferior_pantalla:
 	;cangando banco 3
 	;cargamos los patrones
-	LD		HL,tiles_patrones_pantalla3
+	LD		HL,tiles_patrones_marcador
 	LD		DE,CHRTBL + #1000
 	CALL	depack_VRAM	
 	;cargamos mapa de pantalla
-	LD		HL,tiles_mapa_pantalla3
+	LD		HL,tiles_mapa_marcador
 	LD		DE,TILMAP + #0200
 	CALL	depack_VRAM
 	;cargamos los colores de los patrones
-	LD		HL,tiles_color_pantalla3
+	LD		HL,tiles_color_marcador
 	LD		DE,CLRTBL + #1000
 	JP		depack_VRAM
-	;~ CALL	depack_VRAM
 fin_pinta_parte_inferior_pantalla:
 	;~ RET
 
