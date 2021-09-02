@@ -96,34 +96,29 @@ pinta_parte_superior_pantalla:
 
 	;cangando banco 1
 	;cargamos los patrones
-	LD		HL, tiles_patrones_pantalla11
+	LD		HL, tiles_patrones_nivel0
 	LD		DE, CHRTBL
 	CALL	depack_VRAM
-	;cargamos mapa de pantalla
-	LD		HL, tiles_mapa_pantalla11
-	LD		DE, TILMAP
-	CALL	depack_VRAM
 	;cargamos los colores de los patrones
-	LD		HL, tiles_color_pantalla11
+	LD		HL, tiles_color_nivel0
 	LD		DE, CLRTBL
 	CALL	depack_VRAM
 	
 	;cangando banco 2
 	;cargamos los patrones
-	LD		HL, tiles_patrones_pantalla12
+	LD		HL, tiles_patrones_nivel0
 	LD		DE, CHRTBL + #0800
 	CALL	depack_VRAM	
-	;cargamos mapa de pantalla
-	LD		HL, tiles_mapa_pantalla12
-	LD		DE, TILMAP + #0100
-	CALL	depack_VRAM
 	;cargamos los colores de los patrones
-	LD		HL, tiles_color_pantalla12
+	LD		HL, tiles_color_nivel0
 	LD		DE, CLRTBL + #0800
-	;JP		depack_VRAM
 	CALL	depack_VRAM
+	
+	;cargamos mapa de pantalla
+	LD		HL, tiles_mapa_nivel0
+	LD		DE, TILMAP
+	JP		depack_VRAM
 fin_pinta_parte_superior_pantalla:
-	RET
 
 
 ;;=====================================================
@@ -148,7 +143,6 @@ pinta_parte_inferior_pantalla:
 	LD		DE,CLRTBL + #1000
 	JP		depack_VRAM
 fin_pinta_parte_inferior_pantalla:
-	;~ RET
 
 
 
