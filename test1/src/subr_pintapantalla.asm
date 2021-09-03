@@ -24,7 +24,6 @@ color_pantalla:
 	LD 		(BDRCLR),A			;BDRCLR
 	JP		CHGCLR 
 fin_color_pantalla:
-	;RET
 
 
 ;;=====================================================
@@ -63,8 +62,6 @@ sprites_16_16:
 	LD		 B, A
 	LD		 C, 1
 	JP		WRTVDP			;opción alternativa de escribir las tres lineas siguientes
-	;~ CALL	WRTVDP			;lo escribe en el registro 1 del VDP
-	;~ RET
 fin_sub_preparapantalla:
 	
 
@@ -261,7 +258,6 @@ pinta_vidas:
 	LD		BC, NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
 	JP		LDIRVM
 fin_pinta_vidas:
-	;RET
 	
 	
 
@@ -280,7 +276,6 @@ pinta_reliquias:
 	LD		BC, NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
 	JP		LDIRVM
 fin_pinta_reliquias:
-	;RET
 	
 
 
@@ -299,9 +294,8 @@ pinta_nivel:
 	ADD		'0'	
 	LD		 D, A
 	
-	CALL	pinta_tile_suelto	;nota ... un call+ret se debe poder sustiruir por un jp
+	JP		pinta_tile_suelto
 fin_pinta_nivel:
-	RET
 
 
 
@@ -813,13 +807,27 @@ fin_efecto_imagen_tira_reliquia:
 
 
 ;;=====================================================
-;;PINTA_OBJ_CUADRADO
+;;PINTA_OBJ_AYUDA
 ;;=====================================================	
-; función: 	pinta objetos en pantalla de 2x2
+; función: 	pinta objetos en pantalla de 2x2 según están en map (ojo están en el orden de los sprites de 2x2)
 ; entrada: 	
 ; salida: 	-
 ; toca:		
-pinta_obj_cuadrado:
+pinta_obj_ayuda:
+	;pinta_tile_suelto: 	BC (posición a pintar en el mapa),D (qué se va a pintar el esa posición)
+	LD		BC, TILMAP + 256
+	
+	LD		 A, 152		;en A posición dentro del banco 1 aleatoria donde irá el objeto (en realidad aleatoria dentro de la variable pos_ayudas)
+	
+	;suma 16 bits
+	ADD		 C
+	LD		 C, A
+	ADC		 B
+	SUB		 C
+	LD		 B, A
 
-fin_pinta_obj_cuadrado:
+	LD		 D, ORACIONON
+	PUSH	 
+	CALL	pinta_tile_suelto
+fin_pinta_obj_ayuda:
 

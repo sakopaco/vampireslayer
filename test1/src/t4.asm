@@ -41,6 +41,9 @@ START:
 	;incializacion de replayer con interrupciones
 ;	CALL	inicializa_replayer_efectos_interrupciones
 	
+	
+	CALL	pinta_obj_ayuda
+	
 loop_principal:
 	HALT							;espera VBLANK y sincroniza
 	
