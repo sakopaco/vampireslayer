@@ -86,15 +86,12 @@ fin_pinta_pantalla_completa:
 ;;=====================================================
 ;;PINTA_PARTE_SUPERIOR_PANTALLA
 ;;=====================================================	
-; función: pinta el escenario, las 2 partes superiores y actualiza puertas
+; función: pinta el escenario, los dos bancos superiores
 ; entrada: -
 ; salida: -
 ; toca: si no son todos los regristros, casi todos
 pinta_parte_superior_pantalla:
-
-;************** preguntar cómo parametrizar esto **********************************************
-
-	;cangando banco 1
+	;cargando banco 1
 	;cargamos los patrones
 	LD		HL, tiles_patrones_nivel0
 	LD		DE, CHRTBL
@@ -104,7 +101,7 @@ pinta_parte_superior_pantalla:
 	LD		DE, CLRTBL
 	CALL	depack_VRAM
 	
-	;cangando banco 2
+	;cargando banco 2
 	;cargamos los patrones
 	LD		HL, tiles_patrones_nivel0
 	LD		DE, CHRTBL + #0800
@@ -114,11 +111,14 @@ pinta_parte_superior_pantalla:
 	LD		DE, CLRTBL + #0800
 	CALL	depack_VRAM
 	
-	;cargamos mapa de pantalla
+	;cargamos mapa de pantalla banco 1 y 2
 	LD		HL, tiles_mapa_nivel0
 	LD		DE, TILMAP
 	JP		depack_VRAM
 fin_pinta_parte_superior_pantalla:
+tiles_patrones:		DW	0
+tiles_color:		DW	0
+tiles_mapa:			DW	0
 
 
 ;;=====================================================
