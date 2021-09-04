@@ -122,68 +122,68 @@ pinta_parte_superior_pantalla:
 	JP		.fin_carga_niveles
 
 .carga_nivel_1:
-	LD		HL, tiles_patrones_nivel0
+	LD		HL, tiles_patrones_nivel1
 	LD		(tiles_patrones), HL
-	LD		HL, tiles_color_nivel0
+	LD		HL, tiles_color_nivel1
 	LD		(tiles_colores), HL
-	LD		HL, tiles_patrones_nivel0
+	LD		HL, tiles_patrones_nivel1
 	LD		(tiles_patrones), HL
-	LD		HL, tiles_mapa_nivel0
+	LD		HL, tiles_mapa_nivel1
 	LD		(tiles_mapa), HL
 	JP		.fin_carga_niveles
 	
 .carga_nivel_2:
-	LD		HL, tiles_patrones_nivel0
+	LD		HL, tiles_patrones_nivel2
 	LD		(tiles_patrones), HL
-	LD		HL, tiles_color_nivel0
+	LD		HL, tiles_color_nivel2
 	LD		(tiles_colores), HL
-	LD		HL, tiles_patrones_nivel0
+	LD		HL, tiles_patrones_nivel2
 	LD		(tiles_patrones), HL
-	LD		HL, tiles_mapa_nivel0
+	LD		HL, tiles_mapa_nivel2
 	LD		(tiles_mapa), HL
 	JP		.fin_carga_niveles
 	
 .carga_nivel_3:
-	LD		HL, tiles_patrones_nivel0
+	LD		HL, tiles_patrones_nivel3
 	LD		(tiles_patrones), HL
-	LD		HL, tiles_color_nivel0
+	LD		HL, tiles_color_nivel3
 	LD		(tiles_colores), HL
-	LD		HL, tiles_patrones_nivel0
+	LD		HL, tiles_patrones_nivel3
 	LD		(tiles_patrones), HL
-	LD		HL, tiles_mapa_nivel0
+	LD		HL, tiles_mapa_nivel3
 	LD		(tiles_mapa), HL
 	JP		.fin_carga_niveles
 	
 .carga_nivel_4:
-	LD		HL, tiles_patrones_nivel0
+	LD		HL, tiles_patrones_nivel4
 	LD		(tiles_patrones), HL
-	LD		HL, tiles_color_nivel0
+	LD		HL, tiles_color_nivel4
 	LD		(tiles_colores), HL
-	LD		HL, tiles_patrones_nivel0
+	LD		HL, tiles_patrones_nivel4
 	LD		(tiles_patrones), HL
-	LD		HL, tiles_mapa_nivel0
+	LD		HL, tiles_mapa_nivel4
 	LD		(tiles_mapa), HL
 	JP		.fin_carga_niveles
 	
 .carga_nivel_5:
-	LD		HL, tiles_patrones_nivel0
+	LD		HL, tiles_patrones_nivel5
 	LD		(tiles_patrones), HL
-	LD		HL, tiles_color_nivel0
+	LD		HL, tiles_color_nivel5
 	LD		(tiles_colores), HL
-	LD		HL, tiles_patrones_nivel0
+	LD		HL, tiles_patrones_nivel5
 	LD		(tiles_patrones), HL
-	LD		HL, tiles_mapa_nivel0
+	LD		HL, tiles_mapa_nivel5
 	LD		(tiles_mapa), HL
 	JP		.fin_carga_niveles
 	
 .carga_nivel_6:
-	LD		HL, tiles_patrones_nivel0
+	LD		HL, tiles_patrones_nivel6
 	LD		(tiles_patrones), HL
-	LD		HL, tiles_color_nivel0
+	LD		HL, tiles_color_nivel6
 	LD		(tiles_colores), HL
-	LD		HL, tiles_patrones_nivel0
+	LD		HL, tiles_patrones_nivel6
 	LD		(tiles_patrones), HL
-	LD		HL, tiles_mapa_nivel0
+	LD		HL, tiles_mapa_nivel6
 	LD		(tiles_mapa), HL
 ;	JP		.fin_carga niveles			;no necesario
 .fin_carga_niveles:
@@ -815,19 +815,81 @@ fin_efecto_imagen_tira_reliquia:
 ; toca:		
 pinta_obj_ayuda:
 	;pinta_tile_suelto: 	BC (posición a pintar en el mapa),D (qué se va a pintar el esa posición)
-	LD		BC, TILMAP + 256
+	LD		BC, TILMAPBANK1
 	
+	;esto lo hará una función
 	LD		 A, 152		;en A posición dentro del banco 1 aleatoria donde irá el objeto (en realidad aleatoria dentro de la variable pos_ayudas)
 	
-	;suma 16 bits
+	;suma 16 bits (pongo en BC la posición a pintar)
+	CALL		suma_A_BC
+
+	LD		 D, ORACIONOFF	;esto se sustituirá por una función con parámetro de qué hay que mostrar
+
+	;guardo resultado
+	LD		(aux_BC), BC
+	LD		 A, D
+	LD		(aux_D), A
+	
+	CALL	pinta_tile_suelto
+	
+	;recupero D y BC
+	LD		BC, (aux_BC)
+	LD		 A, (aux_D)
+	LD		 D, A
+	
+	LD		 A, 32
+	CALL	suma_A_BC
+	INC		D
+	
+	CALL	pinta_tile_suelto ;pinto 00
+	
+	;guardo resultado
+	LD		(aux_BC), BC
+	LD		 A, D
+	LD		(aux_D), A
+	
+	;recupero D y BC
+	LD		BC, (aux_BC)
+	LD		 A, (aux_D)
+	LD		 D, A
+	
+	LD		 A, 32
+	CALL	suma_A_BC
+	INC		D
+	
+	CALL	pinta_tile_suelto ;pinto 10
+	
+	;recupero D y BC
+	LD		BC, (aux_BC)
+	LD		 A, (aux_D)
+	LD		 D, A
+	
+	LD		 A, 1
+	CALL	suma_A_BC
+[2]	INC		D
+	
+	CALL	pinta_tile_suelto ;pinto 01
+	
+	;recupero D y BC
+	LD		BC, (aux_BC)
+	LD		 A, (aux_D)
+	LD		 D, A
+	
+	LD		 A, 33
+	CALL	suma_A_BC
+[3]	INC		D
+	
+	CALL	pinta_tile_suelto ;pinto 11
+	
+fin_pinta_obj_ayuda:
+aux_BC:		DW		0
+aux_D:		DB		0
+
+suma_A_BC:
 	ADD		 C
 	LD		 C, A
 	ADC		 B
 	SUB		 C
 	LD		 B, A
-
-	LD		 D, ORACIONON
-	PUSH	 
-	CALL	pinta_tile_suelto
-fin_pinta_obj_ayuda:
-
+fin_suma_A_BC:
+	RET
