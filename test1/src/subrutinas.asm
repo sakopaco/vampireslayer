@@ -9,25 +9,21 @@
 ; función: 	copia la plantilla de niveles (habitaciones_plantilla) en los niveles de trabajo para el juego (habitaciones_juego)
 ; entrada: 	habitaciones_plantilla
 ; salida: 	habitaciones_juego
-; toca: 	A
+; toca: 	A, B, HL, DE
 inicializa_niveles:
-	EXX
-	
-	XOR		 A
-	LD		 B, 49				;7 filas por 7 niveles menos el primero que lo hago diera del buble porque se suma 14 y no 16
-	LD		HL, habitaciones_juego;tambíen puntero al primer nivel
-	LD		DE,14
-	ADD		HL,DE
-	LD		(HL),A
-	LD		DE,16				;desde las col 15 de una fila a la siguiente
+		XOR		 A
+		LD		 B,   49				;7 filas por 7 niveles menos el primero que lo hago fuera del buble
+		LD		HL,   habitaciones_juego;tambíen puntero a la primera fila del primer nivel
+		LD		DE,   14				;14 bytes de habitaciones y 2 extras
+		ADD		HL,   DE				;puntero al primero de los bytes extras
+		LD		(HL), A					;0000000Xb si X=0 no se ha pasado por allí y si es 1 sí
+		LD		DE,   16				;desde las col 15 de una fila a la siguiente
 .bucle_borra_hab:
-	ADD		HL,DE
-	LD		(HL),A
-	DJNZ	.bucle_borra_hab
-	
-	EXX
+		ADD		HL,   DE				;situo el puntero 16 bytes siguientes
+		LD		(HL), A					;pongo su contenido a 0
+		DJNZ	.bucle_borra_hab		;repito para poner todos a 0
 fin_iniciliza_niveles:
-	RET
+		RET
 
 
 ;;=====================================================
@@ -148,8 +144,8 @@ localiza_info_habitacion:
 	
 	POP		DE				;devuelvo el resultado intermedio en DE que ya no lo necesito
 	
-	ADD		HL,DE			;sumo el resultdo del nivel al resultado intermedio anterior
-
+	ADD		HL, DE			;sumo el resultado del nivel al resultado intermedio anterior
+	
 .actualiza_valiable_habitacion
 	LD		 A, (HL)
 	LD		(habitacion_actual), A
