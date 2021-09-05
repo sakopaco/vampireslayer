@@ -76,7 +76,7 @@ array_puerta_izquierda7:	DB	1,2,4
 
 ;array con posiciones pseudoaleatorias de ayudas y extras (qué valor se escogerá con R 0-127 + and 00001111)
 ;+256 porque aparecerán todas en el banco1
-pos_ayudas:					DW	256,260,274,279,301,325,329,338,346,408,427,436,446,448,454,464
+pos_ayudas:					DB	0,4,18,23,45,69,73,82,90,152,171,180,190,192,198,208
 
 ;array de ayudas
 array_ayudas:

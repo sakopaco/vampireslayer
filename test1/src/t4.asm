@@ -36,14 +36,14 @@ START:
 
 	LD		 A, TILEPROTAM
 	LD		(elemento_pintar_mapa), A
-;	CALL	posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.poxx y posy
+	CALL	posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.poxx y posy
+	
+	LD		 A, AGUAOFF
+	CALL	pinta_obj_ayuda
 	
 	;incializacion de replayer con interrupciones
 ;	CALL	inicializa_replayer_efectos_interrupciones
-	
-	
-	CALL	pinta_obj_ayuda
-	
+
 loop_principal:
 	HALT							;espera VBLANK y sincroniza
 	
