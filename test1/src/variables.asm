@@ -75,7 +75,39 @@ array_puerta_izquierda6:	DB	1,1,2
 array_puerta_izquierda7:	DB	1,2,4
 
 ;array con posiciones pseudoaleatorias de ayudas y extras (qué valor se escogerá con R 0-127 + and 00001111)
-pos_ayudas:					DB	0,4,18,23,45,69,73,82,90,152,171,180,190,192,198,208
+;+256 porque aparecerán todas en el banco1
+pos_ayudas:					DW	256,260,274,279,301,325,329,338,346,408,427,436,446,448,454,464
+
+;array de ayudas
+array_ayudas:
+array_oracionon:			DB	200,202
+array_oracionon1:			DB	202,203
+array_oracionoff:			DB	204,206
+array_oracionoff1:			DB	205,207
+array_cruzon:				DB	208,210
+array_cruzon1:				DB	209,211
+array_cruzoff:				DB	212,214
+array_cruzoff1:				DB	213,215
+array_aguaon:				DB	216,218
+array_aguaon1:				DB	217,219
+array_aguaoff:				DB	220,222
+array_aguaoff1:				DB	221,223
+array_armaduraon:			DB	224,226
+array_armaduraon1:			DB	225,227
+array_armaduraoff:			DB	228,230
+array_armaduraoff1:			DB	229,231
+array_plantaon:				DB	232,234
+array_plantaon1:			DB	233,235
+array_plantaoff:			DB	236,238
+array_plantaoff1:			DB	237,239
+array_extraon:				DB	240,242
+array_extraon1:				DB	241,243
+array_extraoff:				DB	244,246
+array_extraoff1:			DB	245,247
+array_ballestaon:			DB	248,250
+array_ballestaon1:			DB	249,251
+array_ballestaoff:			DB	252,254
+array_ballestaoff1:			DB	253,255
 
 
 ;array de 4 bytes x 32 sprites posibles en pantalla que sobreescribirá la tabla de sprites actualizando VRAM

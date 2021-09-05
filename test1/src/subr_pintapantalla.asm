@@ -507,6 +507,10 @@ fin_borra_mapa:
 pinta_array:
 	PUSH	AF
 	
+	LD		HL, (wordaux1)
+	LD		B, H							;coloca posición tilemap BC
+	LD		C, L
+	
 	;contamos con que la posición "global" en el tilemap está ya en BC
 	;y el puntero al array a pintar en wordaux2 y la posición en tilemap sc2 en wordaux1
 	;inicializa
@@ -607,14 +611,12 @@ fin_pinta_puertas:
 ; salida: 	-
 ; toca:		HL,BC, DE
 pinta_puerta_aba:
-	LD		HL,array_puerta_abajo			;guardo puntero al array a pintar (como psar por referencia)
-	LD		(wordaux2),HL					;en la variable wordaux2
-	LD		HL,TILMAP + POSPUERABAJ			;calcula posición en tilemap
-	LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
-	LD		B,H								;coloca posición tilemap BC
-	LD		C,L
-	LD		D,1								;nº de filas
-	LD		E,4								;nº de columnas
+	LD		HL, array_puerta_abajo			;guardo puntero al array a pintar (como pasar por referencia)
+	LD		(wordaux2), HL					;en la variable wordaux2
+	LD		HL, TILMAP + POSPUERABAJ		;calcula posición en tilemap
+	LD		(wordaux1), HL					;guarda valor pos tilemap en wordaux1
+	LD		D, 1							;nº de filas
+	LD		E, 4							;nº de columnas
 	JP		pinta_array
 fin_pinta_puerta_aba:
 
@@ -626,14 +628,12 @@ fin_pinta_puerta_aba:
 ; salida: 	-
 ; toca:		HL,BC, DE
 pinta_puerta_arr:
-	LD		HL,array_puerta_arriba			;guardo puntero al array a pintar (como psar por referencia)
-	LD		(wordaux2),HL					;en la variable wordaux2
-	LD		HL,TILMAP + POSPUERARRI			;calcula posición en tilemap
-	LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
-	LD		B,H								;coloca posición tilemap BC
-	LD		C,L
-	LD		D,5								;nº de filas
-	LD		E,4								;nº de columnas
+	LD		HL, array_puerta_arriba			;guardo puntero al array a pintar (como pasar por referencia)
+	LD		(wordaux2), HL					;en la variable wordaux2
+	LD		HL, TILMAP + POSPUERARRI		;calcula posición en tilemap
+	LD		(wordaux1), HL					;guarda valor pos tilemap en wordaux1
+	LD		D, 5							;nº de filas
+	LD		E, 4							;nº de columnas
 	JP		pinta_array
 fin_pinta_puerta_arr:
 
@@ -646,14 +646,12 @@ fin_pinta_puerta_arr:
 ; salida: 	-
 ; toca:		HL,BC, DE
 pinta_puerta_der:
-	LD		HL,array_puerta_derecha			;guardo puntero al array a pintar (como psar por referencia)
-	LD		(wordaux2),HL					;en la variable wordaux2
-	LD		HL,TILMAP + POSPUERDERE			;calcula posición en tilemap
-	LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
-	LD		B,H								;coloca posición tilemap BC
-	LD		C,L
-	LD		D,7								;nº de filas
-	LD		E,3								;nº de columnas
+	LD		HL, array_puerta_derecha		;guardo puntero al array a pintar (como pasar por referencia)
+	LD		(wordaux2), HL					;en la variable wordaux2
+	LD		HL, TILMAP + POSPUERDERE		;calcula posición en tilemap
+	LD		(wordaux1), HL					;guarda valor pos tilemap en wordaux1
+	LD		D, 7							;nº de filas
+	LD		E, 3							;nº de columnas
 	JP		pinta_array
 fin_pinta_puerta_der:
 	
@@ -665,14 +663,12 @@ fin_pinta_puerta_der:
 ; salida: 	-
 ; toca:		HL,BC, DE
 pinta_puerta_izq:
-	LD		HL,array_puerta_izquierda		;guardo puntero al array a pintar (como pasar por referencia)
-	LD		(wordaux2),HL					;en la variable wordaux2
-	LD		HL,TILMAP + POSPUERIZQU			;calcula posición en tilemap
-	LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
-	LD		B,H								;coloca posición tilemap BC
-	LD		C,L
-	LD		D,7								;nº de filas
-	LD		E,3								;nº de columnas
+	LD		HL, array_puerta_izquierda		;guardo puntero al array a pintar (como pasar por referencia)
+	LD		(wordaux2), HL					;en la variable wordaux2
+	LD		HL, TILMAP + POSPUERIZQU		;calcula posición en tilemap
+	LD		(wordaux1), HL					;guarda valor pos tilemap en wordaux1
+	LD		D, 7							;nº de filas
+	LD		E, 3							;nº de columnas
 	JP		pinta_array
 fin_pinta_puerta_izq:
 
@@ -694,22 +690,22 @@ posiciona_en_mapa:
 	
 	;ahora se le calcula la fila a pintar ya que va de abajo a arriba y no como en el mapa + columna
 .sumar_fila:
-	LD		 A,(prota_pos_mapy)
+	LD		 A, (prota_pos_mapy)
 	CP		 1
 	JR		 Z, .fila_1
-	LD		 A,(prota_pos_mapy)
+	LD		 A, (prota_pos_mapy)
 	CP		 2
 	JR		 Z, .fila_2
-	LD		 A,(prota_pos_mapy)
+	LD		 A, (prota_pos_mapy)
 	CP		 3
 	JR		 Z, .fila_3
-	LD		 A,(prota_pos_mapy)
+	LD		 A, (prota_pos_mapy)
 	CP		 4
 	JR		 Z, .fila_4
-	LD		 A,(prota_pos_mapy)
+	LD		 A, (prota_pos_mapy)
 	CP		 5
 	JR		 Z, .fila_5
-	LD		 A,(prota_pos_mapy)
+	LD		 A, (prota_pos_mapy)
 	CP		 6
 	JR		 Z, .sumar_columna
 	;no consulto la 0 porque si no es ninguna de las anteriores es 0 y por tanto sería un jr fila_0
@@ -809,87 +805,33 @@ fin_efecto_imagen_tira_reliquia:
 ;;=====================================================
 ;;PINTA_OBJ_AYUDA
 ;;=====================================================	
-; función: 	pinta objetos en pantalla de 2x2 según están en map (ojo están en el orden de los sprites de 2x2)
-; entrada: 	
+; función: 	
+; entrada: 	A - objeto a mostrar
 ; salida: 	-
-; toca:		
+; toca:		AF, HL, BC, DE
 pinta_obj_ayuda:
-	;pinta_tile_suelto: 	BC (posición a pintar en el mapa),D (qué se va a pintar el esa posición)
-	LD		BC, TILMAPBANK1
+	;se recibe objeto an A
+	LD		 A, CRUZOFF
+	LD		BC, array_ayudas
+	CALL 	suma_A_BC
 	
-	;esto lo hará una función
-	LD		 A, 152		;en A posición dentro del banco 1 aleatoria donde irá el objeto (en realidad aleatoria dentro de la variable pos_ayudas)
-	
-	;suma 16 bits (pongo en BC la posición a pintar)
-	CALL		suma_A_BC
-
-	LD		 D, ORACIONOFF	;esto se sustituirá por una función con parámetro de qué hay que mostrar
-
-	;guardo resultado
-	LD		(aux_BC), BC
-	LD		 A, D
-	LD		(aux_D), A
-	
-	CALL	pinta_tile_suelto
-	
-	;recupero D y BC
-	LD		BC, (aux_BC)
-	LD		 A, (aux_D)
-	LD		 D, A
+	;coloca pos array objeto a pintar en 
+	LD		(wordaux2), BC
 	
 	LD		 A, 32
-	CALL	suma_A_BC
-	INC		D
+	LD		BC, pos_ayudas
+	CALL 	suma_A_BC
 	
-	CALL	pinta_tile_suelto ;pinto 00
+	LD		(wordaux1), BC
 	
-	;guardo resultado
-	LD		(aux_BC), BC
-	LD		 A, D
-	LD		(aux_D), A
-	
-	;recupero D y BC
-	LD		BC, (aux_BC)
-	LD		 A, (aux_D)
-	LD		 D, A
-	
-	LD		 A, 32
-	CALL	suma_A_BC
-	INC		D
-	
-	CALL	pinta_tile_suelto ;pinto 10
-	
-	;recupero D y BC
-	LD		BC, (aux_BC)
-	LD		 A, (aux_D)
-	LD		 D, A
-	
-	LD		 A, 1
-	CALL	suma_A_BC
-[2]	INC		D
-	
-	CALL	pinta_tile_suelto ;pinto 01
-	
-	;recupero D y BC
-	LD		BC, (aux_BC)
-	LD		 A, (aux_D)
-	LD		 D, A
-	
-	LD		 A, 33
-	CALL	suma_A_BC
-[3]	INC		D
-	
-	CALL	pinta_tile_suelto ;pinto 11
-	
+	;~ LD		HL, (BC)		;calcula posición en tilemap
+	;~ LD		(wordaux1), HL					;guarda valor pos tilemap en wordaux1
+
+	LD		D, 2							;nº de filas
+	LD		E, 2							;nº de columnas
+	JP		pinta_array
 fin_pinta_obj_ayuda:
-aux_BC:		DW		0
-aux_D:		DB		0
 
-suma_A_BC:
-	ADD		 C
-	LD		 C, A
-	ADC		 B
-	SUB		 C
-	LD		 B, A
-fin_suma_A_BC:
-	RET
+
+
+

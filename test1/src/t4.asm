@@ -36,7 +36,7 @@ START:
 
 	LD		 A, TILEPROTAM
 	LD		(elemento_pintar_mapa), A
-	CALL	posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.poxx y posy
+;	CALL	posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.poxx y posy
 	
 	;incializacion de replayer con interrupciones
 ;	CALL	inicializa_replayer_efectos_interrupciones
@@ -103,6 +103,8 @@ fin_inicializa_variables_pruebas:
 ;;DEFINICIÓN DE SUBRUTINAS
 ;;=====================================================
 	include "subrutinas.asm"
+	
+	include "subr_general.asm"
 	
 	include "subr_pintapantalla.asm"
 	
