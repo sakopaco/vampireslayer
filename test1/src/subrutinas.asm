@@ -139,7 +139,7 @@ localiza_info_habitacion:
 	LD		DE, 112			;112 = 16x42 son los bytes de cada matriz-nivel
 	LD		HL, 0
 .loop_suma_nivel:
-	ADD		HL,DE
+	ADD		HL, DE
 	DJNZ	.loop_suma_nivel
 	
 	POP		DE				;devuelvo el resultado intermedio en DE que ya no lo necesito
@@ -149,9 +149,27 @@ localiza_info_habitacion:
 .actualiza_valiable_habitacion
 	LD		 A, (HL)
 	LD		(habitacion_actual), A
+	INC		HL				;el byte de los extras está antes de donde se especifican las puertas
+	LD		 A, (HL)
+	LD		(habitacion_extras), A
 fin_localiza_info_habitacion:
 	RET
 
 
+;;=====================================================
+;;ACTUALIZA_AYUDAS
+;;=====================================================	
+; función: 	
+; entrada: 	A - objeto a mostrar
+; salida: 	-
+actualiza_ayudas:
+	;busca objetos a incluir
+	
+	;recorre
+	;	pinta
+	;	actualiza estructura
 
-
+	LD		 A, AGUAOFF
+	CALL	pinta_obj_ayuda
+fin_actualiza_ayudas:
+	RET

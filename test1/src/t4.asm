@@ -38,11 +38,12 @@ START:
 	LD		(elemento_pintar_mapa), A
 	CALL	posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.poxx y posy
 	
-	LD		 A, AGUAOFF
-	CALL	pinta_obj_ayuda
+	CALL	actualiza_ayudas
+	
+
 	
 	;incializacion de replayer con interrupciones
-	CALL	inicializa_replayer_efectos_interrupciones
+;	CALL	inicializa_replayer_efectos_interrupciones
 
 loop_principal:
 	HALT							;espera VBLANK y sincroniza
@@ -76,10 +77,10 @@ inicializa_variables_pruebas:
 	;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
 	;será igual la posición inicial en todos los niveles
 	
-	LD		 A, 4				;los niveles (matrices) son 7 del 0 al 6
+	LD		 A, 0				;los niveles (matrices) son 7 del 0 al 6
 	LD		(prota_nivel), A	;nivel empieza en 0 para usar las posiciones ascii
 
-	LD		 A, 6				;los subniveles (filas) son 7 del 0 al 6
+	LD		 A, 0				;los subniveles (filas) son 7 del 0 al 6
 	LD		(prota_pos_mapy), A	;pos Y dentro del nivel (se empieza en 0)
 
 	LD		 A, 2				;columnas 7: del 0 al 6
