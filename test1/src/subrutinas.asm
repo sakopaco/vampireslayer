@@ -156,14 +156,28 @@ fin_localiza_info_habitacion:
 	RET
 
 
+
+;;=====================================================
+;;INICIALIZA AYUDAS
+;;=====================================================	
+; función: 	
+; entrada: 	
+; salida: 	-
+inicializa_ayudas:
+fin_inicializa_ayudas:
+	RET
+
+
+
 ;;=====================================================
 ;;ACTUALIZA_AYUDAS
 ;;=====================================================	
 ; función: 	
-; entrada: 	A - objeto a mostrar
+; entrada: 	
 ; salida: 	-
 actualiza_ayudas:
 	;busca objetos a incluir
+	LD		 A, (habitacion_extras)
 	
 	;recorre
 	;	pinta
@@ -171,5 +185,11 @@ actualiza_ayudas:
 
 	LD		 A, AGUAOFF
 	CALL	pinta_obj_ayuda
+
 fin_actualiza_ayudas:
 	RET
+	
+	
+	
+	
+	

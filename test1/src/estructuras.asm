@@ -42,24 +42,15 @@ en_aux3				DB		0
 en_aux4				DB		0
 	ENDSTRUCT;ESTRUCTURA_ENEMIGO
 	
-	STRUCT ESTRUCTURA_EXTRA		;vidas extra, plantas de curación de energía, reliquias	
-tipo				DB		0	;#FF muerto/usado o no existe
-posx				DB		50
-posy				DB		50
-color				DB		5
-contador			DB		0	;por si doy dos reliquias en vez de una, por ejemplo
-en_aux1				DB		0	;para llegar a los 16 campos
-en_aux2				DB		0
-en_aux3				DB		0
-en_aux4				DB		0
-en_aux5				DB		0
-en_aux6				DB		0
-en_aux7				DB		0
-en_aux8				DB		0
-en_aux9				DB		0
-en_aux10			DB		0
-en_aux11			DB		0
-	ENDSTRUCT;ESTRUCTURA_EXTRA
+	STRUCT ESTRUCTURA_AYUDA		;vidas extra, plantas de curación de energía, reliquias	
+activo				DB		0	;0 no activo <>0 activo 
+tipo				DB		0	;ver constantes 
+tipousado			DB		0	;es tipo + 4
+postile				DB		0	;como tiene algo de aleatoriedad se guarda para dibujar los tiles de usado
+posx				DB		0
+posy				DB		0
+sub_accion			DW		0	;subrutina que indica la acción si se dispara en el objeto
+	ENDSTRUCT;ESTRUCTURA_AYUDA
 
 
 

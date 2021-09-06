@@ -109,6 +109,8 @@ array_ballestaon1:			DB	249,251
 array_ballestaoff:			DB	252,254
 array_ballestaoff1:			DB	253,255
 
+lista_ayudas:				DS	7 * ESTRUCTURA_AYUDA ; 7 ayudas posibles
+
 
 ;array de 4 bytes x 32 sprites posibles en pantalla que sobreescribirá la tabla de sprites actualizando VRAM
 array_sprites:

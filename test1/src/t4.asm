@@ -20,6 +20,8 @@ START:
 	;inicializa los niveles por partida
 	CALL	inicializa_niveles			;no es necesario parametrizarlo según el nivel del usuario ya que se cargan todos
 	
+	CALL	inicializa_ayudas
+	
 	;pinta la pantalla (la primera o algunas especiales se pintan completamente)
 	CALL	pinta_pantalla_completa 
 	
