@@ -164,6 +164,15 @@ fin_localiza_info_habitacion:
 ; entrada: 	
 ; salida: 	-
 inicializa_ayudas:
+	LD		IX, lista_ayudas
+	
+	LD		(IX + 0), INACTIVO
+	LD		(IX + 1), ORACIONON
+	LD		(IX + 2), ORACIONOFF
+	LD		HL, accion_agua
+	LD		(IX + 6), H
+	LD		(IX + 7), L
+	
 fin_inicializa_ayudas:
 	RET
 

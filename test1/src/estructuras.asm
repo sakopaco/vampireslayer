@@ -49,7 +49,7 @@ tipousado			DB		0	;es tipo + 4
 postile				DB		0	;como tiene algo de aleatoriedad se guarda para dibujar los tiles de usado
 posx				DB		0
 posy				DB		0
-sub_accion			DW		0	;subrutina que indica la acción si se dispara en el objeto
+puntero_accion		DW		0	;subrutina que indica la acción si se dispara en el objeto
 	ENDSTRUCT;ESTRUCTURA_AYUDA
 
 

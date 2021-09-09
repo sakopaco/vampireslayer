@@ -117,6 +117,8 @@ fin_inicializa_variables_pruebas:
 	
 	include "subr_sonido.asm"
 	
+	include "subr_accionesayudas.asm"
+	
 
 ;;=====================================================
 ;;DEFINICIÓN DE SUBRUTINAS DE FERNANDO PARA COMPRESIÓN Y SONIDO
