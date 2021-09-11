@@ -121,3 +121,11 @@ lista_enemigos:					DS	10 * ESTRUCTURA_ENEMIGO
 puntero_array_atrib_array_VRAM: DW	0	;ARRAYSPTRIES + 8
 
 
+
+
+;;variables asocidas a la función pinta_array2
+;; por de pronto la dejo aquí
+wordaux1:		DW	0	;almacena la posición en el tilemap 0 al 675
+wordaux2:		DW	0	;almacena puntero a array de tiles (posiciones en realidad) a pintar (posiciones repetidas en los 3 bancos)
+byteaux1:		DB	0	;nº filas Registro D
+byteaux2:		DB	0	;nº columnas Registro E

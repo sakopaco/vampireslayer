@@ -54,7 +54,6 @@ loop_marcador_caras: ;asignar caras
 	INC		HL
 	DJNZ	loop_marcador_caras
 fin_loop_marcador_caras:
-
 fin_actualiza_marcador_vidas:
 	RET
 
@@ -226,12 +225,12 @@ fin_inicializa_ayudas:
 ; entrada: 	
 ; salida: 	-
 actualiza_ayudas:
-	;busca objetos a incluir
-	LD		 A, (habitacion_extras)
+	;~ ;busca objetos a incluir
+	;~ LD		 A, (habitacion_extras)
 	
-	;recorre
-	;	pinta
-	;	actualiza estructura
+	;~ ;recorre
+	;~ ;	pinta
+	;~ ;	actualiza estructura
 
 	LD		 A, AGUAOFF
 	CALL	pinta_obj_ayuda
