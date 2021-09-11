@@ -218,25 +218,6 @@ fin_inicializa_ayudas:
 
 
 
-;;=====================================================
-;;ACTUALIZA_AYUDAS
-;;=====================================================	
-; función: 	
-; entrada: 	
-; salida: 	-
-actualiza_ayudas:
-	;~ ;busca objetos a incluir
-	;~ LD		 A, (habitacion_extras)
-	
-	;~ ;recorre
-	;~ ;	pinta
-	;~ ;	actualiza estructura
-
-	LD		 A, AGUAOFF
-	CALL	pinta_obj_ayuda
-
-fin_actualiza_ayudas:
-	RET
 	
 	
 	

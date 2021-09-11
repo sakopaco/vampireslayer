@@ -755,7 +755,7 @@ fin_efecto_imagen_tira_reliquia:
 ; salida: 	-
 ; toca:		AF, HL, BC, DE
 pinta_obj_ayuda:
-	PUSH	AF
+	;PUSH	AF
 	
 	;se recibe objeto an A desde fuera, por ejmplo LD		 A, CRUZOFF
 	LD		BC, array_ayudas
@@ -777,18 +777,18 @@ pinta_obj_ayuda:
 	ADD		HL, DE				;le sumo a HL la posción de inicio de tilemap + 256 + dónde colocar el objeto
 
 	LD		(wordaux1), HL		;pongo el valor en wordaux1
-
-	LD		D, 2				;nº de filas
-	LD		 A, 2
-	LD		(byteaux1), A
-	LD		E, 2				;nº de columnas
-	LD		 A, 2
+		
+	LD		 A, 2				;nº de filas
+	LD		(byteaux1), A	
+	LD		 A, 2				;nº de columnas
 	LD		(byteaux2), A
 	
-	POP		AF
+	;POP		AF
 	
 	JP		pinta_array
 fin_pinta_obj_ayuda:
+objeto_pintar:		DB		0
+	
 
 
 ;=====================================================
@@ -876,3 +876,46 @@ wordaux1:		DW	0	;almacena la posición en el tilemap 0 al 675
 wordaux2:		DW	0	;almacena puntero a array de tiles (posiciones en realidad) a pintar (posiciones repetidas en los 3 bancos)
 byteaux1:		DB	0	;nº filas Registro D
 byteaux2:		DB	0	;nº columnas Registro E
+
+
+
+;;=====================================================
+;;ACTUALIZA_AYUDAS
+;;=====================================================	
+; función: 	actualiza las estructuras de las ayudas y pinta los objetos
+; entrada: 	
+; salida: 	-
+actualiza_ayudas:
+	LD		IY, lista_ayudas
+
+	;busca objetos a incluir
+	LD		 A, (habitacion_extras)
+.examina_ayudas:
+.examina_ballesta:
+	BIT		 7, A
+	CALL	 Z, .examina_vidaextra
+	LD		IX, IY+40
+	CALL	actualiza_estructura_ayuda
+.examina_vidaextra:
+	BIT		 6, A
+	CALL	 Z, .examina_armadura
+.examina_armadura:
+	BIT		 5, A
+	CALL	 Z, .examina_agua
+.examina_agua:
+	BIT		 4, A
+	CALL	 Z, .examina_cruz
+.examina_cruz:
+	BIT		 3, A
+	CALL	 Z, pinta_oracion
+.examina_oracion:
+	BIT		 2, A
+	CALL	 Z, .fin_examina_ayudas
+.fin_examina_ayudas:	
+
+
+	LD		 A, ORACIONON
+	CALL	pinta_obj_ayuda
+
+fin_actualiza_ayudas:
+	RET
