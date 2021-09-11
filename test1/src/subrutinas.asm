@@ -160,19 +160,60 @@ fin_localiza_info_habitacion:
 ;;=====================================================
 ;;INICIALIZA AYUDAS
 ;;=====================================================	
-; función: 	
-; entrada: 	
-; salida: 	-
+; función: 	inicializa las variables de estructuras de ayuda del array lista_ayudas
+; entrada: 	lista_ayudas
+; salida: 	lista_ayudas
 inicializa_ayudas:
 	LD		IX, lista_ayudas
 	
 	LD		(IX + 0), INACTIVO
 	LD		(IX + 1), ORACIONON
 	LD		(IX + 2), ORACIONOFF
+	LD		HL, accion_oracion
+	LD		(IX + 6), H
+	LD		(IX + 7), L
+	
+	LD		(IX + 8), INACTIVO
+	LD		(IX + 9), CRUZON
+	LD		(IX + 10), CRUZOFF
+	LD		HL, accion_cruz
+	LD		(IX + 14), H
+	LD		(IX + 15), L
+	
+	LD		(IX + 0), INACTIVO
+	LD		(IX + 1), AGUAON
+	LD		(IX + 2), AGUAOFF
 	LD		HL, accion_agua
 	LD		(IX + 6), H
 	LD		(IX + 7), L
 	
+	LD		(IX + 16), INACTIVO
+	LD		(IX + 17), ARMADON
+	LD		(IX + 18), ARMADOFF
+	LD		HL, accion_agua
+	LD		(IX + 22), H
+	LD		(IX + 23), L
+	
+	LD		(IX + 24), INACTIVO
+	LD		(IX + 25), PLANTAON
+	LD		(IX + 26), PLANTAOFF
+	LD		HL, accion_planta
+	LD		(IX + 30), H
+	LD		(IX + 31), L
+
+	LD		(IX + 32), INACTIVO
+	LD		(IX + 33), VIDAEXTON
+	LD		(IX + 34), VIDAEXTOFF
+	LD		HL, accion_vidaextra
+	LD		(IX + 38), H
+	LD		(IX + 39), L
+	
+	LD		(IX + 40), INACTIVO
+	LD		(IX + 41), BALLESON
+	LD		(IX + 42), BALLESOFF
+	LD		HL, accion_ballesta
+	LD		(IX + 46), H
+	LD		(IX + 47), L	
 fin_inicializa_ayudas:
 	RET
 
