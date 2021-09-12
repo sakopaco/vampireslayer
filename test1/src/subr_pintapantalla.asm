@@ -747,50 +747,6 @@ fin_efecto_imagen_tira_reliquia:
 
 
 
-;;=====================================================
-;;PINTA_OBJ_AYUDA
-;;=====================================================	
-; función: 	
-; entrada: 	A - objeto a mostrar
-; salida: 	-
-; toca:		AF, HL, BC, DE
-pinta_obj_ayuda:
-	;PUSH	AF
-	
-	;se recibe objeto an A desde fuera, por ejmplo LD		 A, CRUZOFF
-	LD		BC, array_ayudas
-	CALL 	suma_A_BC
-	
-	;coloca pos array objeto a pintar en 
-	LD		(wordaux2), BC
-	
-	LD		HL, TILMAP + 256	;calcula posición en tilemap + 256 por colocarse siempre en bank1
-	
-	LD		 A, R				;obtengo un valor "random" entre 0 y 255
-	AND		00001111b			;me quedo con los 4 bits menos signif. y obtengo entre 0 y 15 (tamaño del array pos_ayudas)
-	LD		BC, pos_ayudas		;puntero a inicio de array pos_ayudas
-	CALL 	suma_A_BC			;tengo en BC la pos de memoria de pos_ayudas
-	
-	LD		 A, (BC)			;tengo en A la posición dentro del bank1 
-	LD		 D, 0
-	LD		 E, A
-	ADD		HL, DE				;le sumo a HL la posción de inicio de tilemap + 256 + dónde colocar el objeto
-
-	LD		(wordaux1), HL		;pongo el valor en wordaux1
-		
-	LD		 A, 2				;nº de filas
-	LD		(byteaux1), A	
-	LD		 A, 2				;nº de columnas
-	LD		(byteaux2), A
-	
-	;POP		AF
-	
-	JP		pinta_array
-fin_pinta_obj_ayuda:
-objeto_pintar:		DB		0
-	
-
-
 ;=====================================================
 ;;PINTA_ARRAY
 ;;=====================================================	
@@ -865,7 +821,7 @@ pinta_array:
 	DEC		 D
 	LD		 A,D		;¿hay otra fila?
 	OR		 A
-	JP		NZ,.pa_pinta_fila
+	CALL	NZ,.pa_pinta_fila
 	
 	EX		AF, AF'
 fin_pinta_array:
@@ -878,44 +834,3 @@ byteaux1:		DB	0	;nº filas Registro D
 byteaux2:		DB	0	;nº columnas Registro E
 
 
-
-;;=====================================================
-;;ACTUALIZA_AYUDAS
-;;=====================================================	
-; función: 	actualiza las estructuras de las ayudas y pinta los objetos
-; entrada: 	
-; salida: 	-
-actualiza_ayudas:
-	LD		IY, lista_ayudas
-
-	;busca objetos a incluir
-	LD		 A, (habitacion_extras)
-.examina_ayudas:
-.examina_ballesta:
-	BIT		 7, A
-	CALL	 Z, .examina_vidaextra
-	LD		IX, IY+40
-	CALL	actualiza_estructura_ayuda
-.examina_vidaextra:
-	BIT		 6, A
-	CALL	 Z, .examina_armadura
-.examina_armadura:
-	BIT		 5, A
-	CALL	 Z, .examina_agua
-.examina_agua:
-	BIT		 4, A
-	CALL	 Z, .examina_cruz
-.examina_cruz:
-	BIT		 3, A
-	CALL	 Z, pinta_oracion
-.examina_oracion:
-	BIT		 2, A
-	CALL	 Z, .fin_examina_ayudas
-.fin_examina_ayudas:	
-
-
-	LD		 A, ORACIONON
-	CALL	pinta_obj_ayuda
-
-fin_actualiza_ayudas:
-	RET

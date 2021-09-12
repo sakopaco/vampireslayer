@@ -20,7 +20,8 @@ START:
 	;inicializa los niveles por partida
 	CALL	inicializa_niveles			;no es necesario parametrizarlo según el nivel del usuario ya que se cargan todos
 	
-	CALL	inicializa_ayudas
+	;inicializa las estructuras de forma particular según ayua pero sin poner valores de posición
+	CALL	resetea_ayudas
 	
 	;pinta la pantalla (la primera o algunas especiales se pintan completamente)
 	CALL	pinta_pantalla_completa 
@@ -40,7 +41,7 @@ START:
 	LD		(elemento_pintar_mapa), A
 	CALL	posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.poxx y posy
 	
-	CALL	actualiza_ayudas
+	CALL	inicializa_ayudas
 	
 
 	
@@ -117,7 +118,7 @@ fin_inicializa_variables_pruebas:
 	
 	include "subr_sonido.asm"
 	
-	include "subr_accionesayudas.asm"
+	include "subr_ayudas.asm"
 	
 
 ;;=====================================================

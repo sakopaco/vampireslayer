@@ -16,13 +16,13 @@
 ;~ 4 - sin asignar
 ;~ 0,1,2,3 - nº puertas 1 arriba 1 derecha 1 abajo 1 izquierda
 
-;~ 15 - ballesta
-;~ 14 - vida extra
-;~ 13 - planta
+;~ 15 - oracion
+;~ 14 - cruz
+;~ 13 - agua bendita
 ;~ 12 - armadura
-;~ 11 - agua
-;~ 10 - cruz
-;~ 9  - oración
+;~ 11 - planta
+;~ 10 - vida extra
+;~ 9  - ballesta
 ;~ 8  - sin asignar
 
 ;importante: el byte de la columna 15 indicará con 1 y 0 habitaciones por las que se haya pasado
