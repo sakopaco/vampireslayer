@@ -46,10 +46,17 @@ en_aux4				DB		0
 activo				DB		0	;0 no activo <>0 activo 
 tipo				DB		0	;ver constantes 
 tipousado			DB		0	;es tipo + 4
-postile				DB		0	;como tiene algo de aleatoriedad se guarda para dibujar los tiles de usado
+postile				DW		0	;como tiene algo de aleatoriedad se guarda para dibujar los tiles de usado ;almacena la posición en el tilemap 0 al 675
 posx				DB		0
 posy				DB		0
 puntero_accion		DW		0	;subrutina que indica la acción si se dispara en el objeto
+ayu_aux1			DB		0	;relleno
+ayu_aux2			DB		0	;relleno
+ayu_aux3			DB		0	;relleno
+ayu_aux4			DB		0	;relleno
+ayu_aux5			DB		0	;relleno
+ayu_aux6			DB		0	;relleno
+ayu_aux7			DB		0	;relleno
 	ENDSTRUCT;ESTRUCTURA_AYUDA
 
 

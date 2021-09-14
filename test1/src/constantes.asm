@@ -115,6 +115,7 @@ VIDAEXTOFF	equ		44
 BALLESON	equ		48
 BALLESOFF	equ		52
 INACTIVO	equ		0
+ACTIVO		equ		1
 
 ;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (relacionadas con posiciones en en el banco de memoria)
 TILEPROTAM  equ		19		;tile del prota para pintar en mapa

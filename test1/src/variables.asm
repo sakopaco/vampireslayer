@@ -79,9 +79,10 @@ array_puerta_izquierda7:	DB	1,2,4
 pos_ayudas:					DB	0,4,18,23,45,69,73,82,90,152,171,180,190,192,198,208
 
 ;array de ayudas
+;posición dentro del bank1 (o 0 que son iguales) de los tiles de la ayuda (cómo en los sprites de 2x2)
 array_ayudas:
 array_oracionon:			DB	200,202
-array_oracionon1:			DB	202,203
+array_oracionon1:			DB	201,203
 array_oracionoff:			DB	204,206
 array_oracionoff1:			DB	205,207
 array_cruzon:				DB	208,210

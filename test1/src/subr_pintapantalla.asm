@@ -829,7 +829,7 @@ fin_pinta_array:
 ;;variables asocidas a la función pinta_array
 ;; por de pronto la dejo aquí
 wordaux1:		DW	0	;almacena la posición en el tilemap 0 al 675
-wordaux2:		DW	0	;almacena puntero a array de tiles (posiciones en realidad) a pintar (posiciones repetidas en los 3 bancos)
+wordaux2:		DW	0	;almacena puntero a array de tiles (posiciones en realidad) a pintar (posiciones repetidas en los 2 primeros bancos)
 byteaux1:		DB	0	;nº filas Registro D
 byteaux2:		DB	0	;nº columnas Registro E
 
