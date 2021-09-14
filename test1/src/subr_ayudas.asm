@@ -15,50 +15,50 @@ resetea_ayudas:
 	LD		(IX + 1), ORACIONON
 	LD		(IX + 2), ORACIONOFF
 	LD		HL, accion_oracion
-	LD		(IX + 8), H
-	LD		(IX + 9), L
+	LD		(IX + 10), H
+	LD		(IX + 11), L
 	;cruz
-	LD		(IX + 16), INACTIVO			********************** actualizar posiciones
+	LD		(IX + 16), INACTIVO
 	LD		(IX + 17), CRUZON
 	LD		(IX + 18), CRUZOFF
 	LD		HL, accion_cruz
-	LD		(IX + 14), H
-	LD		(IX + 15), L
+	LD		(IX + 24), H
+	LD		(IX + 25), L
 	;agua bendita
-	LD		(IX + 16), INACTIVO
-	LD		(IX + 17), AGUAON
-	LD		(IX + 18), AGUAOFF
-	LD		HL, accion_agua
-	LD		(IX + 22), H
-	LD		(IX + 23), L
-	;armadura
-	LD		(IX + 24), INACTIVO
-	LD		(IX + 25), ARMADON
-	LD		(IX + 26), ARMADOFF
-	LD		HL, accion_agua
-	LD		(IX + 30), H
-	LD		(IX + 31), L
-	;planta
 	LD		(IX + 32), INACTIVO
-	LD		(IX + 33), PLANTAON
-	LD		(IX + 34), PLANTAOFF
-	LD		HL, accion_planta
-	LD		(IX + 38), H
-	LD		(IX + 39), L
-	;vida extra
-	LD		(IX + 40), INACTIVO
-	LD		(IX + 41), VIDAEXTON
-	LD		(IX + 42), VIDAEXTOFF
-	LD		HL, accion_vidaextra
-	LD		(IX + 46), H
-	LD		(IX + 47), L
-	;ballesta
+	LD		(IX + 33), AGUAON
+	LD		(IX + 34), AGUAOFF
+	LD		HL, accion_agua
+	LD		(IX + 41), H
+	LD		(IX + 42), L
+	;armadura
 	LD		(IX + 48), INACTIVO
-	LD		(IX + 49), BALLESON
-	LD		(IX + 50), BALLESOFF
+	LD		(IX + 49), ARMADON
+	LD		(IX + 50), ARMADOFF
+	LD		HL, accion_agua
+	LD		(IX + 57), H
+	LD		(IX + 58), L
+	;planta
+	LD		(IX + 64), INACTIVO
+	LD		(IX + 65), PLANTAON
+	LD		(IX + 66), PLANTAOFF
+	LD		HL, accion_planta
+	LD		(IX + 73), H
+	LD		(IX + 74), L
+	;vida extra
+	LD		(IX + 80), INACTIVO
+	LD		(IX + 81), VIDAEXTON
+	LD		(IX + 82), VIDAEXTOFF
+	LD		HL, accion_vidaextra
+	LD		(IX + 89), H
+	LD		(IX + 90), L
+	;ballesta
+	LD		(IX + 96), INACTIVO
+	LD		(IX + 97), BALLESON
+	LD		(IX + 98), BALLESOFF
 	LD		HL, accion_ballesta
-	LD		(IX + 54), H
-	LD		(IX + 55), L	
+	LD		(IX + 105), H
+	LD		(IX + 106), L	
 fin_resetea_ayudas:
 	RET
 
@@ -127,24 +127,48 @@ fin_inicializa_ayudas:
 	RET
 
 
-
 ;;=====================================================
 ;;CALCULA_POSICION_AYUDA
 ;;=====================================================	
 ; función: 	actualiza los valores de la estructura (pos_tile, posx y posy)
-; entrada: 	
+; entrada: 	B, constante a sumar al array_ayudas que indica 1º tile de ayuda a pintar
 ; salida: 	-
 calcula_posicion_ayuda:
-
 	LD		(IX), ACTIVO		;activa el objeto con un valor distinto de 0
 	
+	;1) se busca en la VRAM la primera pos de los tiles a pintar
 	;se recibe objeto an A desde fuera, por ejmplo LD		 A, CRUZOFF
 	LD		A, B
 	LD		BC, array_ayudas
 	CALL 	suma_A_BC
 	
-	;coloca pos array objeto a pintar en 
-	LD		(wordaux2), BC
+	;coloca pos array objeto a pintar en la variable de la estructura
+	LD		(IX + 3), B
+	LD		(IX + 4), C
+	
+	;2) ahora se calcula la posición dentro del tilemap en la pantalla
+	
+	LD		HL, TILMAP + 256	;calcula posición en tilemap + 256 por colocarse siempre en bank1
+	
+	LD		 A, R				;obtengo un valor "random" entre 0 y 255
+	AND		00001111b			;me quedo con los 4 bits menos signif. y obtengo entre 0 y 15 (tamaño del array pos_ayudas)
+	LD		BC, pos_ayudas		;puntero a inicio de array pos_ayudas
+	CALL 	suma_A_BC			;tengo en BC la pos de memoria de pos_ayudas
+	
+	LD		 A, (BC)			;tengo en A la posición dentro del bank1 
+	LD		 D, 0
+	LD		 E, A
+	ADD		HL, DE				;le sumo a HL la posción de inicio de tilemap + 256 + dónde colocar el objeto
+	
+	LD		(IX + 5), H
+	LD		(IX + 6), L
+	
+	
+	;3) ahora hay que colocar la posición del pixel x e y
+	
+	 
+	
+	
 ;	LD		 A, ORACIONON
 	CALL	pinta_obj_ayuda
 
@@ -169,19 +193,7 @@ fin_calcula_posicion_ayuda:
 pinta_obj_ayuda:
 
 	
-	LD		HL, TILMAP + 256	;calcula posición en tilemap + 256 por colocarse siempre en bank1
-	
-	LD		 A, R				;obtengo un valor "random" entre 0 y 255
-	AND		00001111b			;me quedo con los 4 bits menos signif. y obtengo entre 0 y 15 (tamaño del array pos_ayudas)
-	LD		BC, pos_ayudas		;puntero a inicio de array pos_ayudas
-	CALL 	suma_A_BC			;tengo en BC la pos de memoria de pos_ayudas
-	
-	LD		 A, (BC)			;tengo en A la posición dentro del bank1 
-	LD		 D, 0
-	LD		 E, A
-	ADD		HL, DE				;le sumo a HL la posción de inicio de tilemap + 256 + dónde colocar el objeto
 
-	LD		(wordaux1), HL		;pongo el valor en wordaux1
 		
 	LD		 A, 2				;nº de filas
 	LD		(byteaux1), A	
@@ -193,6 +205,42 @@ fin_pinta_obj_ayuda:
 	RET
 objeto_pintar:		DB		0
 	
+
+
+
+
+;~ pinta_obj_ayuda:
+	;~ ;se recibe objeto an A desde fuera, por ejmplo LD		 A, CRUZOFF
+	;~ LD		BC, array_ayudas
+	;~ CALL 	suma_A_BC
+	
+	;~ ;coloca pos array objeto a pintar en 
+	;~ LD		(wordaux2), BC
+	
+	;~ LD		HL, TILMAP + 256	;calcula posición en tilemap + 256 por colocarse siempre en bank1
+	
+	;~ LD		 A, R				;obtengo un valor "random" entre 0 y 255
+	;~ AND		00001111b			;me quedo con los 4 bits menos signif. y obtengo entre 0 y 15 (tamaño del array pos_ayudas)
+	;~ LD		BC, pos_ayudas		;puntero a inicio de array pos_ayudas
+	;~ CALL 	suma_A_BC			;tengo en BC la pos de memoria de pos_ayudas
+	
+	;~ LD		 A, (BC)			;tengo en A la posición dentro del bank1 
+	;~ LD		 D, 0
+	;~ LD		 E, A
+	;~ ADD		HL, DE				;le sumo a HL la posción de inicio de tilemap + 256 + dónde colocar el objeto
+
+	;~ LD		(wordaux1), HL		;pongo el valor en wordaux1
+		
+	;~ LD		 A, 2				;nº de filas
+	;~ LD		(byteaux1), A	
+	;~ LD		 A, 2				;nº de columnas
+	;~ LD		(byteaux2), A
+
+	;~ JP		pinta_array
+;~ fin_pinta_obj_ayuda:
+	;~ RET
+;~ objeto_pintar:		DB		0
+
 
 
 
