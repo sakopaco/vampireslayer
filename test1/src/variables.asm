@@ -77,6 +77,9 @@ array_puerta_izquierda7:	DB	1,2,4
 ;array con posiciones pseudoaleatorias de ayudas y extras (qué valor se escogerá con R 0-127 + and 00001111)
 ;+256 porque aparecerán todas en el banco1
 pos_ayudas:					DB	0,4,18,23,45,69,73,82,90,152,171,180,190,192,198,208
+pos_ayudas_y:				DB	64,64,64,64,72,80,80,80,80,96,104,104,104,112,112,112
+pos_ayudas_x:				DB	0,32,144,184,104,40,72,144,208,192,88,160,240,0,48,128
+
 
 ;array de ayudas
 ;posición dentro del bank1 (o 0 que son iguales) de los tiles de la ayuda (cómo en los sprites de 2x2)

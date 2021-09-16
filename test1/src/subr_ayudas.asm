@@ -146,12 +146,14 @@ calcula_posicion_ayuda:
 	LD		(IX + 3), B
 	LD		(IX + 4), C
 	
-	;2) ahora se calcula la posición dentro del tilemap en la pantalla
+	;2) ahora se calcula la posición dentro del tilemap en la pantalla y las posiciones x e y
 	
 	LD		HL, TILMAP + 256	;calcula posición en tilemap + 256 por colocarse siempre en bank1
 	
 	LD		 A, R				;obtengo un valor "random" entre 0 y 255
 	AND		00001111b			;me quedo con los 4 bits menos signif. y obtengo entre 0 y 15 (tamaño del array pos_ayudas)
+	LD		 E, A				;copia de seguridad de A
+	PUSH	DE
 	LD		BC, pos_ayudas		;puntero a inicio de array pos_ayudas
 	CALL 	suma_A_BC			;tengo en BC la pos de memoria de pos_ayudas
 	
@@ -163,10 +165,19 @@ calcula_posicion_ayuda:
 	LD		(IX + 5), H
 	LD		(IX + 6), L
 	
+	;recuperamos el valor de A (posición en el array)
+	POP		DE
 	
-	;3) ahora hay que colocar la posición del pixel x e y
-	
-	 
+	; obtenemos el valor dentro del array pos_ayudas_y
+	LD		HL, pos_ayudas_y
+	ADD		HL, DE
+	LD		 A, (HL)
+	LD		(IX + 7), A
+	; obtenemos el valor dentro del array pos_ayudas_x
+	LD		HL, pos_ayudas_x
+	ADD		HL, DE
+	LD		 A, (HL)
+	LD		(IX + 8), A	
 	
 	
 ;	LD		 A, ORACIONON
