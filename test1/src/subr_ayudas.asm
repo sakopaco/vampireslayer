@@ -179,8 +179,16 @@ calcula_posicion_ayuda:
 	LD		 A, (HL)
 	LD		(IX + 8), A	
 	
-	
-;	LD		 A, ORACIONON
+	; Esta sería la forma de pintar aunque no lo pinta... hay que depurar
+	LD		 H, (IX + 3)
+	LD		 L, (IX + 4)
+	LD		(wordaux2), HL
+	LD		 H, (IX + 7)
+	LD		 L, (IX + 8)
+	LD		(wordaux1), HL
+	LD		 A, 2
+	LD		(byteaux1), A
+	LD		(byteaux2), A
 	CALL	pinta_obj_ayuda
 
 fin_calcula_posicion_ayuda:
