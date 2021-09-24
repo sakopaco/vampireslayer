@@ -81,60 +81,60 @@ inicializa_ayudas:
 	LD		IX, ayuda_ballesta
 	LD		 B, BALLESON
 	EX		AF, AF'
-	CALL	calcula_posicion_ayuda
+	CALL	activaycalcula_posicion_ayuda
 	EX		AF, AF'
 .examina_vidaextra:
 	BIT		 6, A
 	JP		 Z, .examina_armadura
 	LD		IX, ayuda_vidaextra
 	EX		AF, AF'
-	CALL	calcula_posicion_ayuda
+	CALL	activaycalcula_posicion_ayuda
 	EX		AF, AF'
 .examina_planta:
 	BIT		 5, A
 	JP		 Z, .examina_armadura
 	LD		IX, ayuda_planta
-	CALL	calcula_posicion_ayuda
+	CALL	activaycalcula_posicion_ayuda
 .examina_armadura:
 	BIT		 5, A
 	CALL	 Z, .examina_agua
 	LD		IX, ayuda_armadura
 	EX		AF, AF'
-	CALL	calcula_posicion_ayuda
+	CALL	activaycalcula_posicion_ayuda
 	EX		AF, AF'
 .examina_agua:
 	BIT		 4, A
 	JP		 Z, .examina_cruz
 	LD		IX, ayuda_aguabendita
 	EX		AF, AF'
-	CALL	calcula_posicion_ayuda
+	CALL	activaycalcula_posicion_ayuda
 	EX		AF, AF'
 .examina_cruz:
 	BIT		 3, A
 	JP		 Z, .examina_oracion
 	LD		IX, ayuda_cruz
 	EX		AF, AF'
-	CALL	calcula_posicion_ayuda
+	CALL	activaycalcula_posicion_ayuda
 	EX		AF, AF'
 .examina_oracion:
 	BIT		 2, A
 	JP		 Z, .fin_examina_ayudas
 	LD		IX, ayuda_oracion
 	;EX		AF, AF'					;no se necesita preservar ya que es la última
-	JP		calcula_posicion_ayuda	;no se necesita un CALL ya que es la última
+	JP		activaycalcula_posicion_ayuda	;no se necesita un CALL ya que es la última
 .fin_examina_ayudas:	
 fin_inicializa_ayudas:
 	RET
 
 
 ;;=====================================================
-;;CALCULA_POSICION_AYUDA
+;;ACTIVA Y CALCULA_POSICION_AYUDA
 ;;=====================================================	
 ; función: 	actualiza los valores de la estructura (pos_tile, posx y posy)
 ; entrada: 	B, constante a sumar al array_ayudas que indica 1º tile de ayuda a pintar
 ; salida: 	-
-calcula_posicion_ayuda:
-	LD		(IX), ACTIVO		;activa el objeto con un valor distinto de 0
+activaycalcula_posicion_ayuda:
+	LD		(IX), ACTIVO
 	
 	;1) se busca en la VRAM la primera pos de los tiles a pintar
 	;se recibe objeto an A desde fuera, por ejmplo LD		 A, CRUZOFF
@@ -191,7 +191,7 @@ calcula_posicion_ayuda:
 	LD		(byteaux2), A
 	CALL	pinta_obj_ayuda
 
-fin_calcula_posicion_ayuda:
+fin_activaycalcula_posicion_ayuda:
 	RET
 ;; por de pronto la dejo aquí
 ;~ wordaux1:		DW	0	;almacena la posición en el tilemap 0 al 675
@@ -205,29 +205,27 @@ fin_calcula_posicion_ayuda:
 ;;=====================================================
 ;;PINTA_OBJ_AYUDA
 ;;=====================================================	
-; función: 	
-; entrada: 	A - objeto a mostrar
+; función: 	pinta un objeto de tipo ayuda que se le pase por referencia IX
+; entrada: 	IX - puntero a objeto a mostrar
 ; salida: 	-
 ; toca:		AF, HL, BC, DE
 pinta_obj_ayuda:
-
+	LD		 H, (IX+3)
+	LD		 L, (IX+4)
+	LD		(wordaux1), HL
 	
-
+	LD		 H, (IX+5)
+	LD		 L, (IX+6)
+	LD		(wordaux1), HL
 		
-	LD		 A, 2				;nº de filas
-	LD		(byteaux1), A	
-	LD		 A, 2				;nº de columnas
-	LD		(byteaux2), A
+	LD		 A, 2			;no se guarda en la estructura (siempre son de 2x2)
+	LD		(byteaux1), A	;nº de filas
+	LD		(byteaux2), A	;nº de columnas
 
 	JP		pinta_array
 fin_pinta_obj_ayuda:
-	RET
-objeto_pintar:		DB		0
+
 	
-
-
-
-
 ;~ pinta_obj_ayuda:
 	;~ ;se recibe objeto an A desde fuera, por ejmplo LD		 A, CRUZOFF
 	;~ LD		BC, array_ayudas

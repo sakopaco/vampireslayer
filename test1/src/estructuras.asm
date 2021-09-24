@@ -46,8 +46,8 @@ en_aux4				DB		0
 activo				DB		0	;0 no activo <>0 activo 
 tipo				DB		0	;ver constantes 
 tipousado			DB		0	;es tipo + 4
-postile				DW		0	;como tiene algo de aleatoriedad se guarda para dibujar los tiles de usado ;almacena la posición en el tilemap 0 al 675
-pospantalla			DW		0	;pos dentro de la pantalla (en el banco 1)
+postile				DW		0	;(wordaux1)como tiene algo de aleatoriedad se guarda para dibujar los tiles de usado ;almacena la posición en el tilemap 0 al 675
+pospantalla			DW		0	;(wordaux2)pos dentro de la pantalla (en el banco 1)
 posx				DB		0
 posy				DB		0
 puntero_accion		DW		0	;subrutina que indica la acción si se dispara en el objeto

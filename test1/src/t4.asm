@@ -41,10 +41,18 @@ START:
 	LD		(elemento_pintar_mapa), A
 	CALL	posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.poxx y posy
 	
+
+
 	CALL	inicializa_ayudas
-	
 
 	
+	LD		IX, ayuda_oracion
+	CALL	pinta_obj_ayuda
+	
+
+
+;CALL	actualiza_ayudas
+
 	;incializacion de replayer con interrupciones
 ;	CALL	inicializa_replayer_efectos_interrupciones
 
