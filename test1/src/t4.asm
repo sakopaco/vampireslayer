@@ -46,9 +46,6 @@ START:
 	CALL	inicializa_ayudas
 
 	
-	LD		IX, ayuda_oracion
-	CALL	activaycalcula_posicion_ayuda
-	
 
 
 ;CALL	actualiza_ayudas
