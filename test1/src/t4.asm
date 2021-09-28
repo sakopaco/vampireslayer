@@ -21,7 +21,7 @@ START:
 	CALL	inicializa_niveles			;no es necesario parametrizarlo según el nivel del usuario ya que se cargan todos
 	
 	;inicializa las estructuras de forma particular según ayua pero sin poner valores de posición
-	CALL	resetea_ayudas
+	CALL	inicializa_ayudas
 	
 	;pinta la pantalla (la primera o algunas especiales se pintan completamente)
 	CALL	pinta_pantalla_completa 
@@ -43,12 +43,8 @@ START:
 	
 
 
-	CALL	inicializa_ayudas
+	CALL	pinta_obj_ayuda
 
-	
-
-
-;CALL	actualiza_ayudas
 
 	;incializacion de replayer con interrupciones
 ;	CALL	inicializa_replayer_efectos_interrupciones

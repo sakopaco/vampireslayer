@@ -100,7 +100,7 @@ POSPUERARRI equ		#008E
 POSPUERDERE equ		#00FC
 POSPUERIZQU equ		#00E1
 
-ORACIONON	equ		0
+ORACIONON	equ		0 cambiar por la posición en memoria
 ORACIONOFF  equ		4
 CRUZON		equ		8
 CRUZOFF		equ		12
