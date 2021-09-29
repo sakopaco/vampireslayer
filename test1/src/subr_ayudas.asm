@@ -11,86 +11,115 @@
 inicializa_ayudas:
 	;oración
 	LD		IX, ayuda_oracion
-	LD		(IX), INACTIVO			;Inactivo vale 0
-	LD		(IX + 1), ORACIONON
-	LD		(IX + 2), ORACIONOFF
-	LD		(IX + 3), 160			;se le sumará 256 ya que siempre se dibuja en el banco 1
-	LD		(IX + 4), 32			;posición x pero del centro de los 4 tiles => + 8 desde la esquina
-	LD		(IX + 5), 32			;posición y pero del centro de los 4 tiles => + 8 desde la esquina (como es cte. se puede eliminar pero como no gasto demasiada memoria, por lo pronto , se deja)
+	LD		(IX), INACTIVA			
+	LD		HL, array_oracionon
+	LD		(IX + 1), H
+	LD		(IX + 2), L
+	LD		HL, array_oracionoff
+	LD		(IX + 3), H
+	LD		(IX + 4), L
+	LD		(IX + 5), POSORACION
+	LD		(IX + 6), POSORACIONX
+;	LD		(IX + 7), POSAYUDASY	;como es constante y no se cambia se puede inicializar la estructura con el valor y ahorramos tiempo
 	LD		HL, accion_oracion
-	LD		(IX + 9), H
-	LD		(IX + 10), L
+	LD		(IX + 8), H
+	LD		(IX + 9), L
 	
 	;cruz
 	LD		IX, ayuda_cruz
-	LD		(IX), INACTIVO
-	LD		(IX + 1), CRUZON
-	LD		(IX + 2), CRUZOFF
-	LD		(IX + 3), 164
-	LD		(IX + 4), 64
-	LD		(IX + 5), 32
+	LD		(IX), INACTIVA			
+	LD		HL, array_cruzon
+	LD		(IX + 1), H
+	LD		(IX + 2), L
+	LD		HL, array_cruzoff
+	LD		(IX + 3), H
+	LD		(IX + 4), L
+	LD		(IX + 5), POSCRUZ
+	LD		(IX + 6), POSCRUZX
+;	LD		(IX + 7), POSAYUDASY	;como es constante y no se cambia se puede inicializar la estructura con el valor y ahorramos tiempo
 	LD		HL, accion_cruz
-	LD		(IX + 9), H
-	LD		(IX + 10), L
+	LD		(IX + 8), H
+	LD		(IX + 9), L
 	
 	;agua bendita
 	LD		IX, ayuda_aguabendita
-	LD		(IX), INACTIVO
-	LD		(IX + 1), AGUAON
-	LD		(IX + 2), AGUAOFF
-	LD		(IX + 3), 168
-	LD		(IX + 4), 96
+	LD		(IX), INACTIVA			
+	LD		HL, array_aguaon
+	LD		(IX + 1), H
+	LD		(IX + 2), L
+	LD		HL, array_aguaoff
+	LD		(IX + 3), H
+	LD		(IX + 4), L
+	LD		(IX + 5), POSAGUA
+	LD		(IX + 6), POSAGUAX
+;	LD		(IX + 7), POSAYUDASY	;como es constante y no se cambia se puede inicializar la estructura con el valor y ahorramos tiempo
 	LD		HL, accion_agua
-	LD		(IX + 9), H
-	LD		(IX + 10), L
+	LD		(IX + 8), H
+	LD		(IX + 9), L
 	
 	;armadura
 	LD		IX, ayuda_armadura
-	LD		(IX), INACTIVO
-	LD		(IX + 1), ARMADON
-	LD		(IX + 2), ARMADOFF
-	LD		(IX + 3), 172
-	LD		(IX + 4), 128
-	LD		(IX + 5), 32
-	LD		HL, accion_agua
-	LD		(IX + 9), H
-	LD		(IX + 10), L
+	LD		(IX), INACTIVA			
+	LD		HL, array_armaduraon
+	LD		(IX + 1), H
+	LD		(IX + 2), L
+	LD		HL, array_armaduraoff
+	LD		(IX + 3), H
+	LD		(IX + 4), L
+	LD		(IX + 5), POSARMAD
+	LD		(IX + 6), POSARMADX
+;	LD		(IX + 7), POSAYUDASY	;como es constante y no se cambia se puede inicializar la estructura con el valor y ahorramos tiempo
+	LD		HL, accion_armadura
+	LD		(IX + 8), H
+	LD		(IX + 9), L
 	
 	;planta
 	LD		IX, ayuda_planta
-	LD		(IX), INACTIVO
-	LD		(IX + 1), PLANTAON
-	LD		(IX + 2), PLANTAOFF
-	LD		(IX + 3), 176
-	LD		(IX + 4), 160
-	LD		(IX + 5), 32
+	LD		(IX), INACTIVA			
+	LD		HL, array_plantaon
+	LD		(IX + 1), H
+	LD		(IX + 2), L
+	LD		HL, array_plantaoff
+	LD		(IX + 3), H
+	LD		(IX + 4), L
+	LD		(IX + 5), POSPLANTA
+	LD		(IX + 6), POSPLANTAX
+;	LD		(IX + 7), POSAYUDASY	;como es constante y no se cambia se puede inicializar la estructura con el valor y ahorramos tiempo
 	LD		HL, accion_planta
-	LD		(IX + 9), H
-	LD		(IX + 10), L
+	LD		(IX + 8), H
+	LD		(IX + 9), L
 	
 	;vida extra
 	LD		IX, ayuda_vidaextra
-	LD		(IX), INACTIVO
-	LD		(IX + 1), VIDAEXTON
-	LD		(IX + 2), VIDAEXTOFF
-	LD		(IX + 3), 180
-	LD		(IX + 4), 192
-	LD		(IX + 5), 32
+	LD		(IX), INACTIVA			
+	LD		HL, array_extraon
+	LD		(IX + 1), H
+	LD		(IX + 2), L
+	LD		HL, array_extraoff
+	LD		(IX + 3), H
+	LD		(IX + 4), L
+	LD		(IX + 5), POSVIDAEXT
+	LD		(IX + 6), POSVIDAEXTX
+;	LD		(IX + 7), POSAYUDASY	;como es constante y no se cambia se puede inicializar la estructura con el valor y ahorramos tiempo
 	LD		HL, accion_vidaextra
-	LD		(IX + 9), H
-	LD		(IX + 10), L
+	LD		(IX + 8), H
+	LD		(IX + 9), L
 	
 	;ballesta
 	LD		IX, ayuda_ballesta
-	LD		(IX), INACTIVO
-	LD		(IX + 1), BALLESON
-	LD		(IX + 2), BALLESOFF
-	LD		(IX + 3), 184
-	LD		(IX + 4), 224
-	LD		(IX + 5), 32
+	LD		(IX), INACTIVA			
+	LD		HL, array_ballestaon
+	LD		(IX + 1), H
+	LD		(IX + 2), L
+	LD		HL, array_ballestaoff
+	LD		(IX + 3), H
+	LD		(IX + 4), L
+	LD		(IX + 5), POSBALLES
+	LD		(IX + 6), POSBALLES
+;	LD		(IX + 7), POSAYUDASY	;como es constante y no se cambia se puede inicializar la estructura con el valor y ahorramos tiempo
 	LD		HL, accion_ballesta
-	LD		(IX + 9), H
-	LD		(IX + 10), L	
+	LD		(IX + 8), H
+	LD		(IX + 9), L
 fin_resetea_ayudas:
 	RET
 
@@ -245,4 +274,5 @@ fin_accion_vidaextra:
 accion_ballesta:
 fin_accion_ballesta:
 	RET
+
 

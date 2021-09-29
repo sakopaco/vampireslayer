@@ -42,21 +42,21 @@ en_aux3				DB		0
 en_aux4				DB		0
 	ENDSTRUCT;ESTRUCTURA_ENEMIGO
 	
-	STRUCT ESTRUCTURA_AYUDA		;vidas extra, plantas de curación de energía, reliquias	
-activo				DB		0	;0 no activo <>0 activo 
-tipo				DB		0	;ver constantes 
-tipousado			DB		0	;es tipo + 4
-postile				DB		0	;(wordaux1) posición en memoria
-pospantalla			DB		0	;(wordaux2) pos dentro de la pantalla (en el banco 1)
-posx				DB		0
-posy				DB		0
-puntero_accion		DW		0	;subrutina que indica la acción si se dispara en el objeto
+	STRUCT ESTRUCTURA_AYUDA		;vidas extra, plantas de curación de energía, reliquias				
+activo				DB		0	;0 no activo <>0 activo 											0
+postilemem_nousado	DW		0	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)	1,2
+postilemem_usado	DW		0	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)	3,4
+pospantalla			DB		0	;pos en pantalla (en el banco 1 - ya se le sumará 256) (wordaux1)	5
+posx				DB		0	;pos del pixel central (esquina superior + 8x)						6
+posy				DB		112	;pos del pixel central (esquina superior + 8y) (para toas igual)	7
+puntero_accion		DW		0	;subrutina que indica la acción si se dispara en el objeto			8,9
 ayu_aux1			DB		0	;relleno
 ayu_aux2			DB		0	;relleno
 ayu_aux3			DB		0	;relleno
 ayu_aux4			DB		0	;relleno
 ayu_aux5			DB		0	;relleno
 ayu_aux6			DB		0	;relleno
+ayu_aux7			DB		0	;relleno
 	ENDSTRUCT;ESTRUCTURA_AYUDA
 
 
