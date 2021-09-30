@@ -17,3 +17,19 @@ suma_A_BC:
 	LD		 B, A
 fin_suma_A_BC:
 	RET
+	
+;;=====================================================
+;;SUMA_A_HL
+;;=====================================================	
+; función: 	suma A a BC por si da más de 255
+; entrada: 	A, HL
+; salida: 	A + HL
+; toca:		A, HL
+suma_A_HL:
+	ADD		 L
+	LD		 L, A
+	ADC		 H
+	SUB		 L
+	LD		 H, A
+fin_suma_A_HL:
+	RET
