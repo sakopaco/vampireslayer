@@ -46,7 +46,7 @@ en_aux4				DB		0
 activo				DB		0	;0 no activo <>0 activo 											0
 postilemem_nousado	DW		0	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)	1,2
 postilemem_usado	DW		0	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)	3,4
-pospantalla			DB		0	;pos en pantalla (en el banco 1 - ya se le sumará 256) (wordaux1)	5
+pospantalla			DB		0	;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
 posx				DB		0	;pos del pixel central (esquina superior + 8x)						6
 posy				DB		112	;pos del pixel central (esquina superior + 8y) (para toas igual)	7
 puntero_accion		DW		0	;subrutina que indica la acción si se dispara en el objeto			8,9

@@ -125,75 +125,45 @@ fin_resetea_ayudas:
 
 
 
+
+;ahora hay que hacer un examina ayudas que pinte en función delas ayudas que toquen en panatlla
+
+
 ;;=====================================================
 ;;PINTA_OBJ_AYUDA
 ;;=====================================================	
-; función: 	pinta un objeto de tipo ayuda que se le pase por referencia IX
-; entrada: 	IX - puntero a objeto a mostrar
+; función: 	pinta un objeto de tipo ayuda que se le pase por referencia IX y el tipo en A
+; entrada: 	IX - puntero a objeto a mostrar, A - si está on u off
 ; salida: 	-
 ; toca:		AF, HL, BC, DE
 pinta_obj_ayuda:
-	LD		IX, ayuda_oracion
+	;se recibe objeto desde fuera, por ejmplo LD IX, ayuda_oracion
 
-	;se recibe objeto an A desde fuera, por ejmplo LD		 A, CRUZOFF
-	LD		 A, (IX + 1)
-	LD		BC, array_ayudas
-	CALL 	suma_A_BC
-	;coloca pos array objeto a pintar en 
-	LD		(wordaux2), BC
-	
-	XOR		 A
-	LD		 H, A
-	LD		 L, (IX+6)
-	
-	LD		 E, A
-	INC		 A
-	LD		 D, A
-	
-	
-	ADD		HL, DE
-	LD		(wordaux1), HL
-		
-	INC		 A				;equivale a LD	A,2 porque A ya valía 1
+	OR		 A
+	JP		 Z,.dibujooff
+.dibujoon:	
+	LD		 H, (IX + 1)
+	LD		 L, (IX + 2)
+	LD		(wordaux2), HL
+	JP		.param_wordaux2
+.dibujooff:
+	LD		 H, (IX + 3)
+	LD		 L, (IX + 4)
+	LD		(wordaux2), HL
+
+.param_wordaux2:	
+	LD		HL, TILMAP + 256	;calcula posición en tilemap + 256 por colocarse siempre en bank1
+	LD		 A, (IX + 5)
+	CALL	suma_A_HL
+	LD		(wordaux1), HL		;pongo el valor en wordaux1
+
+.filasycols:
+	LD		 A, 2				;equivale a LD	A,2 porque A ya valía 1
 	LD		(byteaux1), A	;nº de filas
 	LD		(byteaux2), A	;nº de columnas
-
+	
 	JP		pinta_array
 fin_pinta_obj_ayuda:
-
-	
-;~ pinta_obj_ayuda:
-	;~ ;se recibe objeto an A desde fuera, por ejmplo LD		 A, CRUZOFF
-	;~ LD		BC, array_ayudas
-	;~ CALL 	suma_A_BC
-	
-	;~ ;coloca pos array objeto a pintar en 
-	;~ LD		(wordaux2), BC
-	
-	;~ LD		HL, TILMAP + 256	;calcula posición en tilemap + 256 por colocarse siempre en bank1
-	
-	;~ LD		 A, R				;obtengo un valor "random" entre 0 y 255
-	;~ AND		00001111b			;me quedo con los 4 bits menos signif. y obtengo entre 0 y 15 (tamaño del array pos_ayudas)
-	;~ LD		BC, pos_ayudas		;puntero a inicio de array pos_ayudas
-	;~ CALL 	suma_A_BC			;tengo en BC la pos de memoria de pos_ayudas
-	
-	;~ LD		 A, (BC)			;tengo en A la posición dentro del bank1 
-	;~ LD		 D, 0
-	;~ LD		 E, A
-	;~ ADD		HL, DE				;le sumo a HL la posción de inicio de tilemap + 256 + dónde colocar el objeto
-
-	;~ LD		(wordaux1), HL		;pongo el valor en wordaux1
-		
-	;~ LD		 A, 2				;nº de filas
-	;~ LD		(byteaux1), A	
-	;~ LD		 A, 2				;nº de columnas
-	;~ LD		(byteaux2), A
-
-	;~ JP		pinta_array
-;~ fin_pinta_obj_ayuda:
-	;~ RET
-;~ objeto_pintar:		DB		0
-
 
 
 
