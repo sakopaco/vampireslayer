@@ -39,12 +39,9 @@ START:
 
 	LD		 A, TILEPROTAM
 	LD		(elemento_pintar_mapa), A
-	CALL	posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.poxx y posy
-	
-
-	LD		IX, ayuda_ballesta
-	LD		A, INACTIVA				;INACTIVA equivale a poner 0
-	CALL	pinta_obj_ayuda
+	CALL	posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.posx y posy
+		
+	CALL	pinta_ayudas_habitacion
 
 
 	;incializacion de replayer con interrupciones

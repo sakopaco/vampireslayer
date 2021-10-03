@@ -166,6 +166,69 @@ pinta_obj_ayuda:
 fin_pinta_obj_ayuda:
 
 
+;;=====================================================
+;;PINTA_AYUDAS_HABITACIÓN
+;;=====================================================	
+; función: 	examina el byte con las ayudas y pinta las que estén seleccionadas según variable habitacion_extras
+; entrada: 	habitacion_extras
+; salida: 	-
+pinta_ayudas_habitacion:
+.examina_oracion:
+	LD		 A, (habitacion_extras)
+	BIT		 7,A
+	JP		 Z,.examina_cruz
+	LD		IX, ayuda_oracion
+	LD		 A, ACTIVA
+	CALL	pinta_obj_ayuda
+.examina_cruz:
+	LD		 A, (habitacion_extras)
+	BIT		 6,A
+	JP		 Z,.examina_aguabendita
+	LD		IX, ayuda_cruz
+	LD		 A, ACTIVA
+	CALL	pinta_obj_ayuda
+.examina_aguabendita:
+	LD		 A, (habitacion_extras)
+	BIT		 5,A
+	JP		 Z,.examina_armadura
+	LD		IX, ayuda_aguabendita
+	LD		 A, ACTIVA
+	CALL	pinta_obj_ayuda
+.examina_armadura:
+	LD		 A, (habitacion_extras)
+	BIT		 4,A
+	JP		 Z,.examina_planta
+	LD		IX, ayuda_armadura
+	LD		 A, ACTIVA
+	CALL	pinta_obj_ayuda
+.examina_planta:
+	LD		 A, (habitacion_extras)
+	BIT		 3,A
+	JP		 Z,.examina_vidaextra
+	LD		IX, ayuda_planta
+	LD		 A, ACTIVA
+	CALL	pinta_obj_ayuda
+.examina_vidaextra:
+	LD		 A, (habitacion_extras)
+	BIT		 2,A
+	JP		 Z,.examina_ballesta
+	LD		IX, ayuda_vidaextra
+	LD		 A, ACTIVA
+	CALL	pinta_obj_ayuda
+.examina_ballesta:
+	LD		 A, (habitacion_extras)
+	BIT		 1,A
+	RET		 Z
+	LD		IX, ayuda_ballesta
+	LD		 A, ACTIVA
+	CALL	pinta_obj_ayuda
+	
+;aquí irá el detalle de los esqueletos ********************************************
+	
+fin_pinta_ayudas_habitacion:
+	RET
+
+
 
 ;;=====================================================
 ;;ACCION_ORACION
@@ -231,8 +294,6 @@ fin_accion_planta:
 accion_vidaextra:
 fin_accion_vidaextra:
 	RET
-
-
 
 
 ;;=====================================================
