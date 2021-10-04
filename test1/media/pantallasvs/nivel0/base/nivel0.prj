@@ -1,9 +1,9 @@
 PROJECT
 SCREEN
-C:/users/paco/Mis Documentos/pantallasvs/completas/pantalla1/pan1.scr
+pan1.scr
 TILES
-C:/users/paco/Mis Documentos/proyectosgit/vampireslayer/test1/media/pantallasvs/nivel0/base/pantalla0.til
+pantalla0.til
 ALLBANKS
 PALETTE
-C:/users/paco/Mis Documentos/proyectosgit/vampireslayer/test1/media/pantallasvs/proyecto_pruebas/base/paleta_base.pal
+paleta_base.pal
 END
