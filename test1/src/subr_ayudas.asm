@@ -3,7 +3,7 @@
 ;;=====================================================	
 
 ;;=====================================================
-;;RESETEA AYUDAS
+;;INICIALIZA_AYUDAS
 ;;=====================================================	
 ; función: 	inicializa las variables de estructuras de ayuda del array lista_ayudas
 ; entrada: 	lista_ayudas
@@ -124,11 +124,6 @@ fin_resetea_ayudas:
 	RET
 
 
-
-
-;ahora hay que hacer un examina ayudas que pinte en función delas ayudas que toquen en panatlla
-
-
 ;;=====================================================
 ;;PINTA_OBJ_AYUDA
 ;;=====================================================	
@@ -222,9 +217,6 @@ pinta_ayudas_habitacion:
 	LD		IX, ayuda_ballesta
 	LD		 A, ACTIVA
 	CALL	pinta_obj_ayuda
-	
-;aquí irá el detalle de los esqueletos ********************************************
-	
 fin_pinta_ayudas_habitacion:
 	RET
 
@@ -297,7 +289,7 @@ fin_accion_vidaextra:
 
 
 ;;=====================================================
-;;ACCION_VIDAEXTRA
+;;ACCION_BALLESTA
 ;;=====================================================	
 ; función: 	
 ; entrada: 	

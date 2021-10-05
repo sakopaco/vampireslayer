@@ -113,6 +113,10 @@ array_ballestaon1:			DB	249,251
 array_ballestaoff:			DB	252,254
 array_ballestaoff1:			DB	253,255
 
+antorchas:			DS		ESTRUCTURA_ANTORCHA
+array_antorcha:				DB	197,198,199	;fuego + madera1 + madera2
+
+
 lista_ayudas:
 ayuda_oracion:		DS		ESTRUCTURA_AYUDA		
 ayuda_cruz:			DS		ESTRUCTURA_AYUDA

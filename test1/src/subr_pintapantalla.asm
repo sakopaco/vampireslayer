@@ -834,3 +834,104 @@ byteaux1:		DB	0	;nº filas Registro D
 byteaux2:		DB	0	;nº columnas Registro E
 
 
+
+
+;;=====================================================
+;;INICIALIZA_ANTORCHAS
+;;=====================================================	
+; función: 	inicializa las variables de estructuras de las antorchas
+; entrada: 	antorchas, array_antorcha
+; salida: 	
+; toca:		HL
+inicializa_antorchas:
+	LD		IX, antorchas
+	LD		(IX), INACTIVA
+	LD		HL, array_antorcha
+	LD		(IX + 1), H
+	LD		(IX + 2), L
+	LD		(IX + 3), POSANTOR1
+	LD		(IX + 4), POSANTOR2
+fin_inicializa_antorchas:
+	RET
+
+	
+;;=====================================================
+;;PINTA_ANTORCHAS
+;;=====================================================	
+; función: 	pinta las antorchas con valores base
+; entrada: 	antorchas, array_antorcha
+; salida: 	
+; toca:		HL
+pinta_antorchas:
+	LD		IX, antorchas
+	
+	;hay que pintarlas?
+	LD		 A, (habitacion_extras)
+	BIT		 0, A
+	JP		NZ, .hayantorchas			;si el bit 0 de extras es 0 no se pintan antorchas
+	XOR		 A 
+	LD		(IX), A
+	RET
+	
+.hayantorchas:
+	;pinta antorcha izquierdda
+	LD		 H, (IX + 1)
+	LD		 L, (IX + 2)
+	LD		(wordaux2), HL				;guarda pos array en wordaux2
+	
+	LD		HL, TILMAP + POSANTOR1		;calcula posición en tilemap
+	LD		(wordaux1), HL				;guarda valor pos tilemap en wordaux1
+
+	LD		 A, 3						;nº de filas	
+	LD		(byteaux1), A
+	LD		 A, 1						;nº de columnas
+	LD		(byteaux2), A				
+	
+	CALL	pinta_array
+	
+	;pinta antorcha derecha
+	LD		HL, TILMAP + POSANTOR2		;calcula posición en tilemap
+	LD		(wordaux1), HL				;guarda valor pos tilemap en wordaux1
+	
+	JP		pinta_array
+fin_pinta_antorchas:
+
+
+
+;;=====================================================
+;;ACTUALIZA_ELEMENTOS_FONDO
+;;=====================================================	
+; función: 	de los elementos que pueda haber en el fondo de la pared (pantalla) actualiza si procede
+;			actualmente: antorchas y a futuro esqueletos
+; entrada: 	
+; salida: 	
+; toca:		
+actualiza_elementos_fondo:
+	LD		IX, antorchas
+	LD		 A, (IX)
+	RET 	 Z				;si no están activas las antorchas salimos (a futuro se examinan esqueletos)
+	
+	CALL	flip_llamas_antorchas
+fin_actualiza_elementos_fondo:
+
+
+
+;;=====================================================
+;;FLIP_LLAMAS_ANTORCHAS
+;;=====================================================	
+; función: 	modifica las llamas de las antorchas
+; entrada: 	
+; salida: 	
+; toca:		
+flip_llamas_antorchas:
+	LD		IX, antorchas
+	LD		 A, (IX + 6)
+	DEC		 A
+	RET		NZ
+	;********************************************************************************************************
+fin_flip_llamas_antorchas:
+
+
+
+
+

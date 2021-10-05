@@ -20,8 +20,11 @@ START:
 	;inicializa los niveles por partida
 	CALL	inicializa_niveles			;no es necesario parametrizarlo según el nivel del usuario ya que se cargan todos
 	
-	;inicializa las estructuras de forma particular según ayua pero sin poner valores de posición
+	;inicializa las estructuras de forma particular según ayuDa pero sin poner valores de posición
 	CALL	inicializa_ayudas
+	
+	;inicializa las estructuras de las antorchas
+	CALL	inicializa_antorchas
 	
 	;pinta la pantalla (la primera o algunas especiales se pintan completamente)
 	CALL	pinta_pantalla_completa 
@@ -42,6 +45,8 @@ START:
 	CALL	posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.posx y posy
 		
 	CALL	pinta_ayudas_habitacion
+	
+	CALL	pinta_antorchas
 
 
 	;incializacion de replayer con interrupciones
@@ -53,6 +58,8 @@ loop_principal:
 	CALL	render_sprites			;actualiza array de sprites y los pinta en pantalla
 	
 	CALL	pinta_energia			;pinta la energia en pantalla
+	
+	CALL	actualiza_elementos_fondo
 
 	CALL	check_player			;MIRA EL CONTROL Y APLICA LA LOGICA DE MOVIMIENTO DEL PROTAGONISTA
 	

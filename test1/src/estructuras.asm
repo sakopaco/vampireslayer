@@ -60,6 +60,16 @@ ayu_aux7			DB		0	;relleno
 	ENDSTRUCT;ESTRUCTURA_AYUDA
 
 
+	STRUCT ESTRUCTURA_ANTORCHA
+activo				DB		0	;0 no activa <>0 activo
+postilemem_antor1	DW		0	;pos en memoria ver array_antorcha de cómo se mostrará (wordaux2)	1,2
+pospantalla_antor1	DB		0	;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	3
+pospantalla_antor2	DB		0	;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	4
+escena				DB		0	;(va entre 0 y 1 - tiles 196 y 197)	5
+contador_siguiente_escena	DB	10;	6
+reset_escena		DB		10	;	7
+	ENDSTRUCT;ESTRUCTURA_ANTORCHA
+
 
 
 

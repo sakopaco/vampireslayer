@@ -121,9 +121,13 @@ POSBALLESX	equ		224
 ;;POSICIONES DE LAS AYUDAS EN PANTALLA PIXEL CENTRAL Y
 POSAYUDASY	equ		112	;se pone por poner porque las estructuras de ayudas ya se inicializan con este valor
 
-;; ESTADO ESTRUCTURA AYUDA
+;;ESTADO ESTRUCTURA
 INACTIVA	equ		0
 ACTIVA		equ		1
+
+;;POSICIONES DE LAS ANTORCHAS
+POSANTOR1	equ		136
+POSANTOR2	equ		151
 
 ;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (relacionadas con posiciones en en el banco de memoria)
 TILEPROTAM  equ		19		;tile del prota para pintar en mapa
