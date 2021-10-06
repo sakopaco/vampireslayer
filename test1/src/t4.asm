@@ -48,7 +48,6 @@ START:
 	
 	CALL	pinta_antorchas
 
-
 	;incializacion de replayer con interrupciones
 ;	CALL	inicializa_replayer_efectos_interrupciones
 

@@ -128,6 +128,9 @@ ACTIVA		equ		1
 ;;POSICIONES DE LAS ANTORCHAS
 POSANTOR1	equ		136
 POSANTOR2	equ		151
+MAPLLAMA1	equ		196
+MAPLLAMA2	equ		197
+RESETLLAMA	equ		10
 
 ;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (relacionadas con posiciones en en el banco de memoria)
 TILEPROTAM  equ		19		;tile del prota para pintar en mapa

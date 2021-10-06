@@ -851,6 +851,8 @@ inicializa_antorchas:
 	LD		(IX + 2), L
 	LD		(IX + 3), POSANTOR1
 	LD		(IX + 4), POSANTOR2
+	LD		(IX + 5), 0
+	LD		(IX + 6), RESETLLAMA
 fin_inicializa_antorchas:
 	RET
 
@@ -869,11 +871,11 @@ pinta_antorchas:
 	LD		 A, (habitacion_extras)
 	BIT		 0, A
 	JP		NZ, .hayantorchas			;si el bit 0 de extras es 0 no se pintan antorchas
-	XOR		 A 
-	LD		(IX), A
+	LD		(IX), INACTIVA
 	RET
 	
 .hayantorchas:
+	LD		(IX), ACTIVA
 	;pinta antorcha izquierdda
 	LD		 H, (IX + 1)
 	LD		 L, (IX + 2)
@@ -909,6 +911,7 @@ fin_pinta_antorchas:
 actualiza_elementos_fondo:
 	LD		IX, antorchas
 	LD		 A, (IX)
+	OR		 A
 	RET 	 Z				;si no están activas las antorchas salimos (a futuro se examinan esqueletos)
 	
 	CALL	flip_llamas_antorchas
@@ -925,10 +928,73 @@ fin_actualiza_elementos_fondo:
 ; toca:		
 flip_llamas_antorchas:
 	LD		IX, antorchas
+	;tiene que cambiar de llama?
 	LD		 A, (IX + 6)
 	DEC		 A
+	LD		 (IX + 6), A
+	;no
 	RET		NZ
-	;********************************************************************************************************
+	;si
+	LD		(IX + 6), RESETLLAMA
+	;qué llama toca?
+	LD		 A, (IX + 5)
+	OR		 A
+	JP		 Z, .llama_par
+.llama_impar
+ 	XOR		 A
+	LD		 (IX + 5), A
+	LD		 B, A
+	LD		 C, 0
+	LD		 D, 0
+	CALL	pinta_tile_suelto
+	
+	XOR		 A
+	LD		 B, A
+	LD		 C, 1
+	LD		 D, 1
+	JP		pinta_tile_suelto
+.llama_par
+	LD		 (IX + 5), 1
+	XOR		 A
+	LD		 B, A
+	LD		 C, 0
+	LD		 D, 1
+	CALL	pinta_tile_suelto
+	
+	XOR		 A
+	LD		 B, A
+	LD		 C, 1
+	LD		 D, 0
+	JP		pinta_tile_suelto	
+	
+	
+	
+;~ .llama_impar
+ 	;~ XOR		 A
+	;~ LD		 (IX + 5), A
+	;~ LD		 B, A
+	;~ LD		 C, POSANTOR1
+	;~ LD		 D, MAPLLAMA1
+	;~ CALL	pinta_tile_suelto
+	
+	;~ XOR		 A
+	;~ LD		 B, A
+	;~ LD		 C, POSANTOR2
+	;~ LD		 D, MAPLLAMA2
+	;~ JP		pinta_tile_suelto
+;~ .llama_par
+	;~ LD		 (IX + 5), 1
+	;~ XOR		 A
+	;~ LD		 B, A
+	;~ LD		 C, POSANTOR1
+	;~ LD		 D, MAPLLAMA2
+	;~ CALL	pinta_tile_suelto
+	
+	;~ XOR		 A
+	;~ LD		 B, A
+	;~ LD		 C, POSANTOR2
+	;~ LD		 D, MAPLLAMA1
+	;~ JP		pinta_tile_suelto	
 fin_flip_llamas_antorchas:
 
 
