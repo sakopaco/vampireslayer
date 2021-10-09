@@ -116,6 +116,8 @@ array_ballestaoff1:			DB	253,255
 antorchas:			DS		ESTRUCTURA_ANTORCHA
 array_antorcha:				DB	197,198,199	;fuego + madera1 + madera2
 
+esqueletos:			DS		ESTRUCTURA_ESQUELETO
+array_esqueleto:			DB	194, 0, 195, 160, 164, 161, 0, 163, 0, 193, 162, 192
 
 lista_ayudas:
 ayuda_oracion:		DS		ESTRUCTURA_AYUDA		

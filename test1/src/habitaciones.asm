@@ -12,8 +12,8 @@
 
 ;~ 7 - sin asignar
 ;~ 6 - sin asignar
-;~ 5 - sin asignar
-;~ 4 - sin asignar
+;~ 5 - esqueletos
+;~ 4 - todos los enemigos muertos
 ;~ 0,1,2,3 - nº puertas 1 arriba 1 derecha 1 abajo 1 izquierda
 
 ;~ 7 - oracion
@@ -23,7 +23,7 @@
 ;~ 3 - planta
 ;~ 2 - vida extra
 ;~ 1 - ballesta
-;~ 0 - sin asignar
+;~ 0 - antorchas
 
 ;importante: el byte de la columna 15 indicará con 1 y 0 habitaciones por las que se haya pasado
 ;cuando se inicie la partida todos se pondrán a 0

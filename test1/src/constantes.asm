@@ -132,6 +132,15 @@ MAPLLAMA1	equ		196
 MAPLLAMA2	equ		197
 RESETLLAMA	equ		10
 
+;;POSICIONES DE LOS ESQUELETOS
+POSESQUEL1	equ		136
+POSESQUEL2	equ		149
+MAPESQUEL1	equ		164
+MAPESQUEL2	equ		165
+MAPESQUEL3	equ		164
+MAPESQUEL4	equ		166
+RESETESQUEL	equ		10
+
 ;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (relacionadas con posiciones en en el banco de memoria)
 TILEPROTAM  equ		19		;tile del prota para pintar en mapa
 TILEGRISM	equ		9		;tile gris que representa vacio (por donde el prota va pasando)

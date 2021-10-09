@@ -842,7 +842,7 @@ byteaux2:		DB	0	;nº columnas Registro E
 ; función: 	inicializa las variables de estructuras de las antorchas
 ; entrada: 	antorchas, array_antorcha
 ; salida: 	
-; toca:		HL
+; toca:		HL, IX
 inicializa_antorchas:
 	LD		IX, antorchas
 	LD		(IX), INACTIVA
@@ -856,6 +856,27 @@ inicializa_antorchas:
 fin_inicializa_antorchas:
 	RET
 
+
+;;=====================================================
+;;INICIALIZA_esqueletos
+;;=====================================================	
+; función: 	inicializa las variables de estructuras de los esqueletos
+; entrada: 	esqueletos, array_esqueletos
+; salida: 	
+; toca:		HL, IX
+inicializa_esqueletos:
+	LD		IX, esqueletos
+	LD		(IX), INACTIVA
+	LD		HL, array_esqueleto
+	LD		(IX + 1), H
+	LD		(IX + 2), L
+	LD		(IX + 3), POSESQUEL1
+	LD		(IX + 4), POSESQUEL2
+	LD		(IX + 5), 0
+	LD		(IX + 6), RESETESQUEL
+fin_inicializa_esqueletos:
+	RET
+	
 	
 ;;=====================================================
 ;;PINTA_ANTORCHAS
@@ -909,13 +930,16 @@ fin_pinta_antorchas:
 ; salida: 	
 ; toca:		
 actualiza_elementos_fondo:
+.examina_antorchas:
 	LD		IX, antorchas
 	LD		 A, (IX)
 	OR		 A
-	RET 	 Z				;si no están activas las antorchas salimos (a futuro se examinan esqueletos)
+	JP 	 	.examina_esqueletos
 	
-	JP		flip_llamas_antorchas
+	CALL	flip_llamas_antorchas
+.examina_esqueletos:
 fin_actualiza_elementos_fondo:
+	RET
 
 
 
