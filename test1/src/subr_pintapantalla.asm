@@ -885,15 +885,15 @@ fin_inicializa_esqueletos:
 ; entrada: 	antorchas, array_antorcha
 ; salida: 	
 ; toca:		HL
-pinta_antorchas:
+pinta_extra_fondo:
 	LD		IX, antorchas
-	
+.examina_sihay_antorchas
 	;hay que pintarlas?
 	LD		 A, (habitacion_extras)
 	BIT		 0, A
 	JP		NZ, .hayantorchas			;si el bit 0 de extras es 0 no se pintan antorchas
 	LD		(IX), INACTIVA
-	RET
+	JP		.examina_sihay_esqueletos
 	
 .hayantorchas:
 	LD		(IX), ACTIVA
@@ -916,8 +916,12 @@ pinta_antorchas:
 	LD		HL, TILMAP + POSANTOR2		;calcula posición en tilemap
 	LD		(wordaux1), HL				;guarda valor pos tilemap en wordaux1
 	
-	JP		pinta_array
-fin_pinta_antorchas:
+	CALL	pinta_array
+	RET
+.examina_sihay_esqueletos
+***********************************
+fin_pinta_extra_fondo:
+	RET
 
 
 

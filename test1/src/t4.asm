@@ -46,7 +46,7 @@ START:
 		
 	CALL	pinta_ayudas_habitacion
 	
-	CALL	pinta_antorchas
+	CALL	pinta_extra_fondo
 
 	;incializacion de replayer con interrupciones
 ;	CALL	inicializa_replayer_efectos_interrupciones
