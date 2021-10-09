@@ -130,16 +130,15 @@ POSANTOR1	equ		136
 POSANTOR2	equ		151
 MAPLLAMA1	equ		196
 MAPLLAMA2	equ		197
-RESETLLAMA	equ		10
+RESETLLAMA	equ		255
 
 ;;POSICIONES DE LOS ESQUELETOS
 POSESQUEL1	equ		136
 POSESQUEL2	equ		149
-MAPESQUEL1	equ		164
-MAPESQUEL2	equ		165
-MAPESQUEL3	equ		164
-MAPESQUEL4	equ		166
-RESETESQUEL	equ		10
+POSCALAVE1	equ		169
+POSCALAVE2	equ		182
+RESETESQUEL	equ		25
+RESETESCENAESQUEL 	equ	4	;hay 4 caras con las que el esqueleto cambia (se ha metido el 0 para facilitar código)
 
 ;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (relacionadas con posiciones en en el banco de memoria)
 TILEPROTAM  equ		19		;tile del prota para pintar en mapa

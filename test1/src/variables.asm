@@ -118,6 +118,8 @@ array_antorcha:				DB	197,198,199	;fuego + madera1 + madera2
 
 esqueletos:			DS		ESTRUCTURA_ESQUELETO
 array_esqueleto:			DB	194, 0, 195, 160, 164, 161, 0, 163, 0, 193, 162, 192
+lista_escenas_calavera:		DB	164, 165, 164, 166
+
 
 lista_ayudas:
 ayuda_oracion:		DS		ESTRUCTURA_AYUDA		

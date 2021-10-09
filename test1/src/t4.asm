@@ -23,8 +23,9 @@ START:
 	;inicializa las estructuras de forma particular según ayuDa pero sin poner valores de posición
 	CALL	inicializa_ayudas
 	
-	;inicializa las estructuras de las antorchas
+	;inicializa las estructuras de las antorchas y esqueletos
 	CALL	inicializa_antorchas
+	CALL	inicializa_esqueletos
 	
 	;pinta la pantalla (la primera o algunas especiales se pintan completamente)
 	CALL	pinta_pantalla_completa 

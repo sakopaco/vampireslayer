@@ -75,7 +75,7 @@ postilemem_antor1	DW		0	;pos en memoria ver array_antorcha de cómo se mostrará
 pospantalla_esquel1	DB		0	;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	3
 pospantalla_esquel2	DB		0	;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	4
 escena				DB		0	;(va entre 0 y 4 - tiles 164, 165, 164, 166)	5
-cont_sig_escena		DB		10	;	6
+cont_sig_escena		DB		0	;	6
 	ENDSTRUCT;ESTRUCTURA_ESQUELETO
 
 
