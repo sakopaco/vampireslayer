@@ -6,12 +6,13 @@
 ;;INICIALIZA_AYUDAS
 ;;=====================================================	
 ; función: 	inicializa las variables de estructuras de ayuda del array lista_ayudas
-; entrada: 	lista_ayudas
+; entrada: 	datos_delasdistintasayudas, variable estructura_ayuda_ayudaquesea
 ; salida: 	lista_ayudas
+; toca:		HL, DE, BC
 inicializa_ayudas:
 	;oración
 	LD		IX, ayuda_oracion
-	LD		(IX), INACTIVA			
+	LD		(IX + 0), INACTIVA			
 	LD		HL, array_oracionon
 	LD		(IX + 1), H
 	LD		(IX + 2), L
@@ -20,108 +21,60 @@ inicializa_ayudas:
 	LD		(IX + 4), L
 	LD		(IX + 5), POSORACION
 	LD		(IX + 6), POSORACIONX
-;	LD		(IX + 7), POSAYUDASY	;como es constante y no se cambia se puede inicializar la estructura con el valor y ahorramos tiempo
+	LD		(IX + 7), POSAYUDASY	;como es constante y no se cambia se puede inicializar la estructura con el valor y ahorramos tiempo
 	LD		HL, accion_oracion
 	LD		(IX + 8), H
 	LD		(IX + 9), L
 	
 	;cruz
-	LD		IX, ayuda_cruz
-	LD		(IX), INACTIVA			
-	LD		HL, array_cruzon
-	LD		(IX + 1), H
-	LD		(IX + 2), L
-	LD		HL, array_cruzoff
-	LD		(IX + 3), H
-	LD		(IX + 4), L
-	LD		(IX + 5), POSCRUZ
-	LD		(IX + 6), POSCRUZX
-;	LD		(IX + 7), POSAYUDASY	;como es constante y no se cambia se puede inicializar la estructura con el valor y ahorramos tiempo
-	LD		HL, accion_cruz
-	LD		(IX + 8), H
-	LD		(IX + 9), L
+	LD		HL, datos_cruz
+	LD		DE, ayuda_cruz
+	LD		BC, 7;#ESTRUCTURA_AYUDA ;equivale a 16.. el tamaño de la estructura en bytes
+	LDIR
 	
 	;agua bendita
-	LD		IX, ayuda_aguabendita
-	LD		(IX), INACTIVA			
-	LD		HL, array_aguaon
-	LD		(IX + 1), H
-	LD		(IX + 2), L
-	LD		HL, array_aguaoff
-	LD		(IX + 3), H
-	LD		(IX + 4), L
-	LD		(IX + 5), POSAGUA
-	LD		(IX + 6), POSAGUAX
-;	LD		(IX + 7), POSAYUDASY	;como es constante y no se cambia se puede inicializar la estructura con el valor y ahorramos tiempo
-	LD		HL, accion_agua
-	LD		(IX + 8), H
-	LD		(IX + 9), L
-	
+	LD		HL, datos_aguabendita
+	LD		DE, ayuda_aguabendita
+	CALL	carga_datos_ayuda
+		
 	;armadura
-	LD		IX, ayuda_armadura
-	LD		(IX), INACTIVA			
-	LD		HL, array_armaduraon
-	LD		(IX + 1), H
-	LD		(IX + 2), L
-	LD		HL, array_armaduraoff
-	LD		(IX + 3), H
-	LD		(IX + 4), L
-	LD		(IX + 5), POSARMAD
-	LD		(IX + 6), POSARMADX
-;	LD		(IX + 7), POSAYUDASY	;como es constante y no se cambia se puede inicializar la estructura con el valor y ahorramos tiempo
-	LD		HL, accion_armadura
-	LD		(IX + 8), H
-	LD		(IX + 9), L
-	
+	LD		HL, datos_armadura
+	LD		DE, ayuda_armadura
+	CALL	carga_datos_ayuda
+		
 	;planta
-	LD		IX, ayuda_planta
-	LD		(IX), INACTIVA			
-	LD		HL, array_plantaon
-	LD		(IX + 1), H
-	LD		(IX + 2), L
-	LD		HL, array_plantaoff
-	LD		(IX + 3), H
-	LD		(IX + 4), L
-	LD		(IX + 5), POSPLANTA
-	LD		(IX + 6), POSPLANTAX
-;	LD		(IX + 7), POSAYUDASY	;como es constante y no se cambia se puede inicializar la estructura con el valor y ahorramos tiempo
-	LD		HL, accion_planta
-	LD		(IX + 8), H
-	LD		(IX + 9), L
-	
+	LD		HL, datos_planta
+	LD		DE, ayuda_planta
+	CALL	carga_datos_ayuda
+		
 	;vida extra
-	LD		IX, ayuda_vidaextra
-	LD		(IX), INACTIVA			
-	LD		HL, array_extraon
-	LD		(IX + 1), H
-	LD		(IX + 2), L
-	LD		HL, array_extraoff
-	LD		(IX + 3), H
-	LD		(IX + 4), L
-	LD		(IX + 5), POSVIDAEXT
-	LD		(IX + 6), POSVIDAEXTX
-;	LD		(IX + 7), POSAYUDASY	;como es constante y no se cambia se puede inicializar la estructura con el valor y ahorramos tiempo
-	LD		HL, accion_vidaextra
-	LD		(IX + 8), H
-	LD		(IX + 9), L
-	
+	LD		HL, datos_vidaextra
+	LD		DE, ayuda_vidaextra
+	CALL	carga_datos_ayuda
+		
 	;ballesta
-	LD		IX, ayuda_ballesta
-	LD		(IX), INACTIVA			
-	LD		HL, array_ballestaon
-	LD		(IX + 1), H
-	LD		(IX + 2), L
-	LD		HL, array_ballestaoff
-	LD		(IX + 3), H
-	LD		(IX + 4), L
-	LD		(IX + 5), POSBALLES
-	LD		(IX + 6), POSBALLES
-;	LD		(IX + 7), POSAYUDASY	;como es constante y no se cambia se puede inicializar la estructura con el valor y ahorramos tiempo
-	LD		HL, accion_ballesta
-	LD		(IX + 8), H
-	LD		(IX + 9), L
+	LD		HL, datos_ballesta
+	LD		DE, ayuda_ballesta
+	CALL	carga_datos_ayuda
 fin_resetea_ayudas:
 	RET
+	
+
+;;=====================================================
+;;CARGA_DATOS_AYUDA
+;;=====================================================	
+; función: 	carga los datos de la ayuda de una variable dentro de la variable estructura (más carga y espacio que rellenar a pelo desde IX en adelante pero más simple)
+;entrada
+;  hl: origen de datos
+;  de: destino de datos
+; salida: 	-
+; toca:		HL, DE, BC
+carga_datos_ayuda:
+	LD		BC, 16;#ESTRUCTURA_AYUDA ;equivale a 16.. el tamaño de la estructura en bytes
+	LDIR
+fin_carga_datos_ayuda:
+	RET
+
 
 
 ;;=====================================================

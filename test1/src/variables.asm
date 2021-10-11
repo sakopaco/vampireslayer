@@ -74,11 +74,121 @@ array_puerta_izquierda5:	DB	1,1,1
 array_puerta_izquierda6:	DB	1,1,2
 array_puerta_izquierda7:	DB	1,2,4
 
-;array con posiciones pseudoaleatorias de ayudas y extras (qué valor se escogerá con R 0-127 + and 00001111)
-;+256 porque aparecerán todas en el banco1
-pos_ayudas:					DB	0,4,18,23,45,69,73,82,90,152,171,180,190,192,198,208
-pos_ayudas_y:				DB	64,64,64,64,72,80,80,80,80,96,104,104,104,112,112,112
-pos_ayudas_x:				DB	0,32,144,184,104,40,72,144,208,192,88,160,240,0,48,128
+
+
+lista_ayudas:
+ayuda_oracion:		DS		ESTRUCTURA_AYUDA		
+ayuda_cruz:			DS		ESTRUCTURA_AYUDA
+ayuda_aguabendita:	DS		ESTRUCTURA_AYUDA
+ayuda_armadura:		DS		ESTRUCTURA_AYUDA
+ayuda_planta:		DS		ESTRUCTURA_AYUDA
+ayuda_vidaextra		DS		ESTRUCTURA_AYUDA
+ayuda_ballesta:		DS		ESTRUCTURA_AYUDA
+
+;datos ayudas
+datos_oracion:
+				DB    	0				;0 no activo <>0 activo															0
+				DW		array_oracionon	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
+				DW		array_oracionoff;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
+				DB		POSORACION		;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
+				DB		POSORACIONX		;pos del pixel central (esquina superior + 8x)									6
+				DB		POSAYUDASY		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
+				DW		accion_oracion	;subrutina que indica la acción si se dispara en el objeto						8,9
+datos_cruz:
+				;~ DB    	0				;0 no activo <>0 activo															0
+				;~ DW		array_cruzon	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
+				;~ DW		array_cruzoff	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
+				;~ DB		POSCRUZ			;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
+				;~ DB		POSCRUZX		;pos del pixel central (esquina superior + 8x)									6
+				;~ DB		POSAYUDASY		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
+				;~ DW		accion_cruz		;subrutina que indica la acción si se dispara en el objeto						8,9 
+				
+				DB    	0				;0 no activo <>0 activo															0
+				DW		array_cruzon	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
+				DW		array_cruzoff	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
+				DB		167			;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
+				DB		64		;pos del pixel central (esquina superior + 8x)									6
+				DB		112		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
+				DW		accion_cruz		;subrutina que indica la acción si se dispara en el objeto						8,9 
+				
+datos_aguabendita:
+				DB    	0				;0 no activo <>0 activo															0
+				DW		array_aguaon	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
+				DW		array_aguaoff	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
+				DB		POSAGUA			;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
+				DB		POSAGUAX		;pos del pixel central (esquina superior + 8x)									6
+				DB		POSAYUDASY		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
+				DW		accion_agua		;subrutina que indica la acción si se dispara en el objeto						8,9
+				DB		0	;relleno																		10-16    
+				DB		0	;relleno																		10-16    
+				DB		0	;relleno																		10-16    
+				DB		0	;relleno																		10-16    
+				DB		0	;relleno																		10-16    
+				DB		0	;relleno																		10-16   
+				DB		0	;relleno																		10-16    
+datos_armadura:
+				DB    	0				;0 no activo <>0 activo															0
+				DW		array_armaduraon;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
+				DW		array_armaduraoff;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
+				DB		POSARMAD		;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
+				DB		POSARMADX		;pos del pixel central (esquina superior + 8x)									6
+				DB		POSAYUDASY		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
+				DW		accion_armadura	;subrutina que indica la acción si se dispara en el objeto						8,9
+				DB		0	;relleno																		10-16    
+				DB		0	;relleno																		10-16    
+				DB		0	;relleno																		10-16    
+				DB		0	;relleno																		10-16    
+				DB		0	;relleno																		10-16    
+				DB		0	;relleno																		10-16   
+				DB		0	;relleno																		10-16    
+datos_planta:
+				DB    	0				;0 no activo <>0 activo															0
+				DW		array_plantaon	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
+				DW		array_plantaoff	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
+				DB		POSPLANTA		;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
+				DB		POSPLANTAX		;pos del pixel central (esquina superior + 8x)									6
+				DB		POSAYUDASY		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
+				DW		accion_planta	;subrutina que indica la acción si se dispara en el objeto						8,9
+				DB		0	;relleno																		10-16    
+				DB		0	;relleno																		10-16    
+				DB		0	;relleno																		10-16    
+				DB		0	;relleno																		10-16    
+				DB		0	;relleno																		10-16    
+				DB		0	;relleno																		10-16   
+				DB		0	;relleno																		10-16     
+datos_vidaextra:
+				DB    	0				;0 no activo <>0 activo															0
+				DW		array_extraon	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
+				DW		array_extraoff	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
+				DB		POSVIDAEXT		;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
+				DB		POSVIDAEXTX		;pos del pixel central (esquina superior + 8x)									6
+				DB		POSAYUDASY		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
+				DW		accion_vidaextra;subrutina que indica la acción si se dispara en el objeto						8,9
+				DB		0	;relleno																		10-16    
+				DB		0	;relleno																		10-16    
+				DB		0	;relleno																		10-16    
+				DB		0	;relleno																		10-16    
+				DB		0	;relleno																		10-16    
+				DB		0	;relleno																		10-16   
+				DB		0	;relleno																		10-16     
+datos_ballesta:
+				DB    	0				;0 no activo <>0 activo															0
+				DW		array_ballestaon;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
+				DW		array_ballestaoff;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
+				DB		POSBALLESTA		;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
+				DB		POSBALLESTAX	;pos del pixel central (esquina superior + 8x)									6
+				DB		POSAYUDASY		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
+				DW		accion_oracion	;subrutina que indica la acción si se dispara en el objeto						8,9
+				DB		0	;relleno																		10-16    
+				DB		0	;relleno																		10-16    
+				DB		0	;relleno																		10-16    
+				DB		0	;relleno																		10-16    
+				DB		0	;relleno																		10-16    
+				DB		0	;relleno																		10-16   
+				DB		0	;relleno																		10-16      
+
+
+
 
 
 ;array de ayudas
@@ -121,14 +231,6 @@ array_esqueleto:			DB	194, 0, 195, 160, 164, 161, 0, 163, 0, 193, 162, 192
 lista_escenas_calavera:		DB	164, 165, 164, 166
 
 
-lista_ayudas:
-ayuda_oracion:		DS		ESTRUCTURA_AYUDA		
-ayuda_cruz:			DS		ESTRUCTURA_AYUDA
-ayuda_aguabendita:	DS		ESTRUCTURA_AYUDA
-ayuda_armadura:		DS		ESTRUCTURA_AYUDA
-ayuda_planta:		DS		ESTRUCTURA_AYUDA
-ayuda_vidaextra		DS		ESTRUCTURA_AYUDA
-ayuda_ballesta:		DS		ESTRUCTURA_AYUDA
 
 
 ;array de 4 bytes x 32 sprites posibles en pantalla que sobreescribirá la tabla de sprites actualizando VRAM
