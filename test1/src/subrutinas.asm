@@ -108,7 +108,6 @@ localiza_info_habitacion:
 	SLA		 A				;multiplico por dos ya que cada habitación va de dos en dos bytes
 	LD		 B, 0
 	LD		 C, A
-
 	ADD 	HL, BC			;sumo a la posición 0 la columnax2 en la que situarme
 	
 .situo_fila:
@@ -130,7 +129,7 @@ localiza_info_habitacion:
 .situo_nivel:
 	LD		 A, (prota_nivel)
 	OR	 	 A
-	JP		 Z, .actualiza_valiable_habitacion	;si el nivel es 0 al pasar por las anterirores ya estoy situado actualizo la variable y termino
+	JP		 Z, .actualiza_variable_habitacion	;si el nivel es 0 al pasar por las anterirores ya estoy situado actualizo la variable y termino
 	
 	PUSH	HL				;guardo el resultado intermedio
 	
@@ -145,12 +144,34 @@ localiza_info_habitacion:
 	
 	ADD		HL, DE			;sumo el resultado del nivel al resultado intermedio anterior
 	
-.actualiza_valiable_habitacion
+.actualiza_variable_habitacion
+	;actualizo la variable habitacion_actual
 	LD		 A, (HL)
 	LD		(habitacion_actual), A
+	
+	;guardo puntero a habitación actual
+	PUSH	HL
+	
+	;actualizo la variable habitacion_extras
 	INC		HL				;el byte de los extras está antes de donde se especifican las puertas
 	LD		 A, (HL)
 	LD		(habitacion_extras), A
+	
+	;actualizo la variable habitacion_recorridal
+	LD		 A, (prota_pos_mapx)
+	LD		 B, A
+	LD		 A, 15
+	SUB		 B
+	
+	;recupero puntero a habitación actual
+	POP		HL
+	
+	CALL	suma_A_HL	;incremento HL para poner el puntero en la posición 15 de la fila que me interesa de las habitaciones
+	LD		 A, (HL)
+	LD		(habitacion_recorrida), A
+	
+	
+	**********************
 fin_localiza_info_habitacion:
 	RET
 

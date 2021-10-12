@@ -17,19 +17,18 @@
 ; salida: 	-
 ; toca: 	-
 carga_patrones_sprites_nivel:
-	
 	CALL 	carga_patrones_nivel_comunes
 	
-	;carga atrones no comunes
-	LD		 A, (prota_nivel)
-	OR		 A
-	JP		 Z, carga_patrones_sprites_nivel1
+	RET		;*********************
 	
 	
+	
+	;~ ;carga patrones no comunes
+	;~ LD		 A, (prota_nivel)
+	;~ OR		 A
+	;~ JP		 Z, carga_patrones_sprites_nivel donde esté el prota
 fin_carga_patrones_sprites_nivel:
-	RET		;dejo este ret de momento pero cuando la subrutina esté terminada sobrará
 
-	;RET comparo numeros con jp para incluir el RET con lo que el último ret me sobra
 
 ;;=====================================================
 ;;CARGA_PATRONES_SPRITES_NIVEL_COMUNES
@@ -54,7 +53,6 @@ fin_carga_patrones_nivel_comunes:
 ; salida: 	-
 ; toca: 	-
 carga_patrones_sprites_nivel1:
-
 
 	;~ ;sprite sprite_reliquia
 	;~ LD		HL,sprite_reliquia

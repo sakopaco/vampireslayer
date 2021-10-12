@@ -63,9 +63,25 @@ loop_principal:
 
 	CALL	check_player			;MIRA EL CONTROL Y APLICA LA LOGICA DE MOVIMIENTO DEL PROTAGONISTA
 	
+	CALL	check_colisiones		;revisa las colisiones con puertas, ayudas y enemigos
+	
 	JP		loop_principal
 fin_programa_principal:
 	;RET
+
+
+
+
+check_colisiones:
+	;pantalla limpia?
+	
+	;SI 
+	;recorre puertas y sale
+	;NO 
+	;recorre ayudas
+	;recorre enemigos
+fin_check_colisiones:
+	RET
 
 
 

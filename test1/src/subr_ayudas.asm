@@ -29,7 +29,7 @@ inicializa_ayudas:
 	;cruz
 	LD		HL, datos_cruz
 	LD		DE, ayuda_cruz
-	LD		BC, 7;#ESTRUCTURA_AYUDA ;equivale a 16.. el tamaño de la estructura en bytes
+	LD		BC, 16;#ESTRUCTURA_AYUDA ;equivale a 16.. el tamaño de la estructura en bytes
 	LDIR
 	
 	;agua bendita

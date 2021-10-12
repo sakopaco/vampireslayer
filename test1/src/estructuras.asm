@@ -56,7 +56,6 @@ ayu_aux3			DB		0	;relleno
 ayu_aux4			DB		0	;relleno
 ayu_aux5			DB		0	;relleno
 ayu_aux6			DB		0	;relleno
-ayu_aux7			DB		0	;relleno
 	ENDSTRUCT;ESTRUCTURA_AYUDA
 
 
