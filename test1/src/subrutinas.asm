@@ -149,29 +149,53 @@ localiza_info_habitacion:
 	LD		 A, (HL)
 	LD		(habitacion_actual), A
 	
-	;guardo puntero a habitación actual
-	PUSH	HL
-	
 	;actualizo la variable habitacion_extras
 	INC		HL				;el byte de los extras está antes de donde se especifican las puertas
 	LD		 A, (HL)
 	LD		(habitacion_extras), A
 	
-	;actualizo la variable habitacion_recorridal
+	;guardo puntero a habitacion_actual
+	DEC		HL
+	PUSH	HL
+	
+	;actualizo la variable habitacion_recorrida
 	LD		 A, (prota_pos_mapx)
+	ADD		 A	;************ doblo SRL
+	
+	
 	LD		 B, A
 	LD		 A, 15
 	SUB		 B
+	LD		 B, A
 	
-	;recupero puntero a habitación actual
-	POP		HL
+	;en B tengo cuanto bytes tengo que incrementar el puntero HL para llegar al byte 15 de la fila del array
+	POP		HL	;recupero HL
+	;LD		 A, 10
+	;CALL	suma_A_HL
+	INC		HL
+	INC		HL
+	INC		HL
+	INC		HL
+	INC		HL
+	INC		HL
+	INC		HL
+	INC		HL
+	INC		HL
 	
-	CALL	suma_A_HL	;incremento HL para poner el puntero en la posición 15 de la fila que me interesa de las habitaciones
+	
+	puede que el problema esté en la inicialización de habitaciones que pone el byte 17 de todas a 0 y por eso leo 0
+	
+
+;~ .siguiente_HL
+	;~ INC		HL
+	;~ DJNZ	.siguiente_HL
+	
+		
 	LD		 A, (HL)
 	LD		(habitacion_recorrida), A
 	
 	
-	**********************
+	
 fin_localiza_info_habitacion:
 	RET
 
