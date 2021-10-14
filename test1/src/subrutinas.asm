@@ -160,46 +160,71 @@ localiza_info_habitacion:
 	
 	;actualizo la variable habitacion_recorrida
 	LD		 A, (prota_pos_mapx)
-	ADD		 A	;************ doblo SRL
-	
-	
+	SLA		 A	;x 2
 	LD		 B, A
-	LD		 A, 15
+	LD		 A, 14
 	SUB		 B
 	LD		 B, A
 	
-	;en B tengo cuanto bytes tengo que incrementar el puntero HL para llegar al byte 15 de la fila del array
+	;en B tengo cuántos bytes tengo que incrementar el puntero HL para llegar al byte 15 de la fila del array (empieza en 0)
 	POP		HL	;recupero HL
-	;LD		 A, 10
-	;CALL	suma_A_HL
-	INC		HL
-	INC		HL
-	INC		HL
-	INC		HL
-	INC		HL
-	INC		HL
-	INC		HL
-	INC		HL
-	INC		HL
+	CALL	suma_A_HL
 	
-	
-	puede que el problema esté en la inicialización de habitaciones que pone el byte 17 de todas a 0 y por eso leo 0
+	LD		IX, habitacion_recorrida
+	LD		(IX), H
+	LD		(IX + 1), L
+fin_localiza_info_habitacion:
+	RET
 	
 
-;~ .siguiente_HL
-	;~ INC		HL
-	;~ DJNZ	.siguiente_HL
-	
-		
+;;=====================================================
+;;ACTUALIZA_VARIABLE_HABITACIÓN_RECORRIDA
+;;=====================================================	
+; función: 	actualiza la variable con lo que haya en A haciend un OR y poniendo un 
+;			1 en la habitación que corresponda desde el bit 0 al 6 indicando que se ha pasado por ahí
+;			es del 0 al 6 del nº de hab. posibles por fila
+; entrada: 	A, habitacion_recorrida
+; salida: 	habitacion_recorrida (byte 14 de la fila de habitaciones) actualizada con OR A
+; toca:		A, HL
+actualiza_variable_habitacion_recorrida:   **************************************
+	;tomamos el valor antiguo de habitación recorrida y lo ponemos en B
+	LD		IX, habitacion_recorrida
+	LD		 H, (IX)
+	LD		 L, (IX + 1)
 	LD		 A, (HL)
-	LD		(habitacion_recorrida), A
+	LD		 B, A
 	
+	;ponemos A a 0 con un 1 en el bit de la habitación que hemos terminado
+	LD		HL, habitacion_terminada
+	LD		 A, (prota_pos_mapx)
+	CALL	suma_A_HL
+	LD		 A, (HL)
 	
+	;marcamos la habitación como terminada
+	OR		 B
 	
-fin_localiza_info_habitacion:
+	;actualizamos la habitación recorrida
+	LD		IX, habitacion_recorrida
+	LD		 H, (IX)
+	LD		 L, (IX + 1)
+	LD		(HL), A	
+fin_actualiza_variable_habitacion_recorrida:
 	RET
 
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

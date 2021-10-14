@@ -18,7 +18,10 @@ START:
 	CALL	inicializa_variables_pruebas
 	
 	;inicializa los niveles por partida
-	CALL	inicializa_niveles			;no es necesario parametrizarlo según el nivel del usuario ya que se cargan todos
+;	CALL	inicializa_niveles			;no es necesario parametrizarlo según el nivel del usuario ya que se cargan todos
+;************** quitarlo cuando el anejo de la variable habitacion_recorrida esté correcto y depurado
+
+
 	
 	;inicializa las estructuras de forma particular según ayuDa pero sin poner valores de posición
 	CALL	inicializa_ayudas
@@ -48,6 +51,12 @@ START:
 	CALL	pinta_ayudas_habitacion
 	
 	CALL	pinta_extra_fondo
+	
+	
+	CALL	actualiza_variable_habitacion_recorrida
+	LD		 A, 00001000b
+	LD		 (prota_pos_mapx), A
+	CALL	actualiza_variable_habitacion_recorrida
 
 	;incializacion de replayer con interrupciones
 ;	CALL	inicializa_replayer_efectos_interrupciones
