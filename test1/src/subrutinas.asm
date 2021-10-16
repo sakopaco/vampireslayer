@@ -178,15 +178,18 @@ fin_localiza_info_habitacion:
 	
 
 ;;=====================================================
-;;ACTUALIZA_VARIABLE_HABITACIÓN_RECORRIDA
+;;TERMINADA_HABIACION_RECORRIDA
 ;;=====================================================	
-; función: 	actualiza la variable con lo que haya en A haciend un OR y poniendo un 
-;			1 en la habitación que corresponda desde el bit 0 al 6 indicando que se ha pasado por ahí
-;			es del 0 al 6 del nº de hab. posibles por fila
-; entrada: 	A, habitacion_recorrida
-; salida: 	habitacion_recorrida (byte 14 de la fila de habitaciones) actualizada con OR A
-; toca:		A, HL
-actualiza_variable_habitacion_recorrida:   **************************************
+; función: 	usando la variable prota_pos_mapx pone un 1 a donde apunta habitacion_recorrida (el array... byte 14 de 
+;			habitaciones recorridas en esa fila) para ver si uestra enemigos o no y permita pasar por puertas
+; entrada: 	prota_pos_mapx, habitacion_recorrida
+; salida: 	habitacion_recorrida (byte 14 de la fila de habitaciones) actualizada con OR A (en A la habitacion)
+; toca:		IX
+terminada_habitacion_recorrida:
+	PUSH	AF
+	PUSH	BC
+	PUSH	HL
+	
 	;tomamos el valor antiguo de habitación recorrida y lo ponemos en B
 	LD		IX, habitacion_recorrida
 	LD		 H, (IX)
@@ -208,11 +211,14 @@ actualiza_variable_habitacion_recorrida:   *************************************
 	LD		 H, (IX)
 	LD		 L, (IX + 1)
 	LD		(HL), A	
-fin_actualiza_variable_habitacion_recorrida:
+	
+	POP		AF
+	POP		BC
+	POP		HL
+fin_terminada_habitacion_recorrida:
 	RET
 
 
-	
 	
 	
 	

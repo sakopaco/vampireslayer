@@ -52,11 +52,7 @@ START:
 	
 	CALL	pinta_extra_fondo
 	
-	
-	CALL	actualiza_variable_habitacion_recorrida
-	LD		 A, 00001000b
-	LD		 (prota_pos_mapx), A
-	CALL	actualiza_variable_habitacion_recorrida
+	;CALL	terminada_habitacion_recorrida ;para cuando se maten todos los enemigos de la habitación
 
 	;incializacion de replayer con interrupciones
 ;	CALL	inicializa_replayer_efectos_interrupciones
