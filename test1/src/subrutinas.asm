@@ -220,6 +220,12 @@ fin_terminada_habitacion_recorrida:
 
 **************************
 get_valor_habitacion_recorrida:
+
+is_habitacion_terminada:
+	db	0
+
+array_habitacion_terminada:	;array con 1 según la habitación que se haya terminado (en el eje x)
+
 fin_get_valor_habitacion_recorrida:
 	RET
 

@@ -35,8 +35,10 @@ habitacion_extras:
 	db	0		;donde van las ayudas de una habitación
 habitacion_recorrida;
 	dw	0		;byte de la columna 15 indicará con 1 y 0 habitaciones por las que se haya pasado (para que sea accesible y modificable se guarda puntero a variable)
+is_habitacion_terminada:
+	db	0
 
-habitacion_terminada:	;array con 1 según la habitación que se haya terminado (en el eje x)
+array_habitacion_terminada:	;array con 1 según la habitación que se haya terminado (en el eje x)
 	db	00000001b, 00000010b, 00000100b, 00001000b, 00010000b, 00100000b, 01000000b
 
 habitaciones_juego:
