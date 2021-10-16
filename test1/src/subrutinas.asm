@@ -218,6 +218,12 @@ terminada_habitacion_recorrida:
 fin_terminada_habitacion_recorrida:
 	RET
 
+**************************
+get_valor_habitacion_recorrida:
+fin_get_valor_habitacion_recorrida:
+	RET
+
+	
 
 	
 	
