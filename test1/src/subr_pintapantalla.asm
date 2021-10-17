@@ -290,7 +290,7 @@ fin_pinta_reliquias:
 pinta_nivel:	
 	;forma más avanzada sin llamada a la bios
 	LD		BC,TILMAP + POSNIVEL ;posición en el mapa de tiles del tile de nivel
-	LD		 A, (prota_nivel)	;seleccionando la pos del banco de tiles a poner en el mapa
+	LD		 A, (prota_nivel)	 ;seleccionando la pos del banco de tiles a poner en el mapa
 	ADD		'0'	
 	LD		 D, A
 	
@@ -306,7 +306,7 @@ fin_pinta_nivel:
 ; entrada: 	BC (posición a pintar en el mapa),D (qué se va a pintar el esa posición)
 ; salida: 	-
 ; toca:		-
-pinta_tile_suelto:
+pinta_tile_suelto:	
 	IN		 A,(REGEST)		;leer registro de estado (recomendado)
 	LD		 A,C			;primero byte bajo	
 	OUT		(REGEST),A
@@ -961,7 +961,7 @@ fin_pinta_extra_fondo:
 ;			actualmente: antorchas y a futuro esqueletos
 ; entrada: 	
 ; salida: 	
-; toca:		
+; toca:		A
 actualiza_elementos_fondo:
 .examina_antorchas:
 	LD		IX, antorchas
@@ -969,7 +969,7 @@ actualiza_elementos_fondo:
 	OR		 A
 	JP 	 	 Z, .examina_esqueletos
 	
-	JP		flip_llamas_antorchas
+	CALL	flip_llamas_antorchas
 .examina_esqueletos:
 	LD		IX, esqueletos
 	LD		 A, (IX)
@@ -978,7 +978,7 @@ actualiza_elementos_fondo:
 	
 	JP		flip_calavera_esqueletos
 fin_actualiza_elementos_fondo:
-	RET
+
 
 
 
@@ -998,6 +998,9 @@ flip_llamas_antorchas:
 	;no
 	RET		NZ
 	;si
+	PUSH	BC
+	PUSH	DE
+	
 	LD		(IX + 6), RESETLLAMA	
 	
 	;qué llama toca?
@@ -1021,6 +1024,7 @@ flip_llamas_antorchas:
 	LD		 D, MAPLLAMA2
 	CALL	pinta_tile_suelto	
 	JP		fin_flip_llamas_antorchas
+	
 .llama_par
 	;cambio a llama par
  	LD		 A, 1
@@ -1036,8 +1040,15 @@ flip_llamas_antorchas:
 	LD		 A, POSANTOR2
 	CALL	suma_A_BC
 	LD		 D, MAPLLAMA1
-	JP		pinta_tile_suelto
+	CALL	pinta_tile_suelto
+
 fin_flip_llamas_antorchas:
+	;restauro los balores de los registros tocados antes
+	POP		DE
+	POP		BC
+	POP		AF
+
+	RET
 
 
 ;;=====================================================

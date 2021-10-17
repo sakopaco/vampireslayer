@@ -160,10 +160,10 @@ fin_actualiza_buffer_reliquias:
 ;ejemplo: nivel 4, posy 5 y posx 3
 ;3 + 5 x 8 + 4 x 49
 localiza_info_habitacion:
-	PUSH	AF
-	PUSH	BC
-	PUSH	DE
-	PUSH	HL
+	;~ PUSH	AF
+	;~ PUSH	BC
+	;~ PUSH	DE
+	;~ PUSH	HL
 
 ;primera posición: me coloco en la columna correcta
 	LD		HL, habitaciones_juego
@@ -229,10 +229,10 @@ localiza_info_habitacion:
 	LD		 A, (HL)
 	LD		(habitacion_extras), A
 
-	POP		HL	
-	POP		DE
-	POP		BC
-	POP		AF
+	;~ POP		HL	
+	;~ POP		DE
+	;~ POP		BC
+	;~ POP		AF
 fin_localiza_info_habitacion:
 	RET
 	
