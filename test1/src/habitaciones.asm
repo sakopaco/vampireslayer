@@ -38,9 +38,6 @@ habitacion_actual_puntero;
 is_habitacion_terminada:
 	db	0		;variable para consultar más rápido si se ha pasado (<>0 si se ha pasado y 0 no se ha pasado)
 
-array_habitacion_terminada:	;array con 1 según la habitación que se haya terminado (en el eje x)
-	db	00000001b, 00000010b, 00000100b, 00001000b, 00010000b, 00100000b, 01000000b
-
 habitaciones_juego:
 habitaciones_nivel0:
 	db  00010000b,#00,00010001b,#01,00011111b,11000001b,00000010b,#03,00001000b,#04,00001001b,#05,00001100b,#06,00000000b,#CD ;primera fila
