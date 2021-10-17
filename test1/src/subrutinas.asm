@@ -6,22 +6,81 @@
 ;;=====================================================
 ;;INICIALIZA_NIVELES
 ;;=====================================================	
-; función: 	copia la plantilla de niveles (habitaciones_plantilla) en los niveles de trabajo para el juego (habitaciones_juego)
+; función: 	pone el bit 4 de todas las habitaciones (byte habitacion_actual 0,2,4....) a 0
 ; entrada: 	habitaciones_plantilla
-; salida: 	habitaciones_juego
-; toca: 	A, B, HL, DE
+; salida: 	habitaciones_plantilla con los el bit 4 de los bites bytes impares a 0
+; toca: 	habitaciones_plantilla, B
 inicializa_niveles:
-		XOR		 A
-		LD		 B,   49				;7 filas por 7 niveles menos el primero que lo hago fuera del buble
-		LD		HL,   habitaciones_juego;tambíen puntero a la primera fila del primer nivel
-		LD		DE,   14				;14 bytes de habitaciones y 2 extras
-		ADD		HL,   DE				;puntero al primero de los bytes extras
-		LD		(HL), A					;0000000Xb si X=0 no se ha pasado por allí y si es 1 sí
-		LD		DE,   16				;desde las col 15 de una fila a la siguiente
-.bucle_borra_hab:
-		ADD		HL,   DE				;situo el puntero 16 bytes siguientes
-		LD		(HL), A					;pongo su contenido a 0
-		DJNZ	.bucle_borra_hab		;repito para poner todos a 0
+		PUSH		AF
+		PUSH		BC
+		PUSH		HL
+		
+		LD			 B, 56		;la mitad de bytes del array de un nivel
+		LD 			HL, habitaciones_nivel0
+.inicia_nivel_0
+		LD		 	 A, (HL)
+		AND			11101111b	;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
+		LD			(HL), A
+[2]		INC			HL
+		DJNZ		.inicia_nivel_0
+
+		LD			 B, 56		;la mitad de bytes del array de un nivel
+		LD 			HL, habitaciones_nivel1
+.inicia_nivel_1
+		LD		 	 A, (HL)
+		AND			11101111b	;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
+		LD			(HL), A
+[2]		INC			HL
+		DJNZ		.inicia_nivel_1
+
+		LD			 B, 56		;la mitad de bytes del array de un nivel
+		LD 			HL, habitaciones_nivel2
+.inicia_nivel_2
+		LD		 	 A, (HL)
+		AND			11101111b	;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
+		LD			(HL), A
+[2]		INC			HL
+		DJNZ		.inicia_nivel_2
+
+		LD			 B, 56		;la mitad de bytes del array de un nivel
+		LD 			HL, habitaciones_nivel3
+.inicia_nivel_3
+		LD		 	 A, (HL)
+		AND			11101111b	;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
+		LD			(HL), A
+[2]		INC			HL
+		DJNZ		.inicia_nivel_3
+
+		LD			 B, 56		;la mitad de bytes del array de un nivel
+		LD 			HL, habitaciones_nivel4
+.inicia_nivel_4
+		LD		 	 A, (HL)
+		AND			11101111b	;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
+		LD			(HL), A
+[2]		INC			HL
+		DJNZ		.inicia_nivel_4
+
+		LD			 B, 56		;la mitad de bytes del array de un nivel
+		LD 			HL, habitaciones_nivel5
+.inicia_nivel_5
+		LD		 	 A, (HL)
+		AND			11101111b	;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
+		LD			(HL), A
+[2]		INC			HL
+		DJNZ		.inicia_nivel_5
+
+		LD			 B, 56		;la mitad de bytes del array de un nivel
+		LD 			HL, habitaciones_nivel6
+.inicia_nivel_6
+		LD		 	 A, (HL)
+		AND			11101111b	;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
+		LD			(HL), A
+[2]		INC			HL
+		DJNZ		.inicia_nivel_6
+
+		POP			HL
+		POP			BC
+		POP			AF
 fin_iniciliza_niveles:
 		RET
 
@@ -101,6 +160,11 @@ fin_actualiza_buffer_reliquias:
 ;ejemplo: nivel 4, posy 5 y posx 3
 ;3 + 5 x 8 + 4 x 49
 localiza_info_habitacion:
+	PUSH	AF
+	PUSH	BC
+	PUSH	DE
+	PUSH	HL
+
 ;primera posición: me coloco en la columna correcta
 	LD		HL, habitaciones_juego
 .situo_columna:	
@@ -145,34 +209,30 @@ localiza_info_habitacion:
 	ADD		HL, DE			;sumo el resultado del nivel al resultado intermedio anterior
 	
 .actualiza_variable_habitacion
-	;actualizo la variable habitacion_actual
 	LD		 A, (HL)
 	LD		(habitacion_actual), A
+	
+	;actualizo la variable habitacion_actual y su puntero para poder modificar por si se vuelve a pasar por ahí
+	LD		IX, habitacion_actual_puntero
+	LD		(IX), H
+	LD		(IX + 1), L
+	
+	;actualizo la variable is_habitacion_terminada
+	XOR		 A
+	LD		(is_habitacion_terminada), A
+	LD		 A, (habitacion_actual_puntero)
+	OR		00010000b
+	LD		(is_habitacion_terminada), A
 	
 	;actualizo la variable habitacion_extras
 	INC		HL				;el byte de los extras está antes de donde se especifican las puertas
 	LD		 A, (HL)
 	LD		(habitacion_extras), A
-	
-	;guardo puntero a habitacion_actual
-	DEC		HL
-	PUSH	HL
-	
-	;actualizo la variable habitacion_recorrida
-	LD		 A, (prota_pos_mapx)
-	SLA		 A	;x 2
-	LD		 B, A
-	LD		 A, 14
-	SUB		 B
-	LD		 B, A
-	
-	;en B tengo cuántos bytes tengo que incrementar el puntero HL para llegar al byte 15 de la fila del array (empieza en 0)
-	POP		HL	;recupero HL
-	CALL	suma_A_HL
-	
-	LD		IX, habitacion_recorrida
-	LD		(IX), H
-	LD		(IX + 1), L
+
+	POP		HL	
+	POP		DE
+	POP		BC
+	POP		AF
 fin_localiza_info_habitacion:
 	RET
 	
@@ -186,50 +246,13 @@ fin_localiza_info_habitacion:
 ; salida: 	habitacion_recorrida (byte 14 de la fila de habitaciones) actualizada con OR A (en A la habitacion)
 ; toca:		IX
 terminada_habitacion_recorrida:
-	PUSH	AF
-	PUSH	BC
-	PUSH	HL
-	
-	;tomamos el valor antiguo de habitación recorrida y lo ponemos en B
-	LD		IX, habitacion_recorrida
-	LD		 H, (IX)
-	LD		 L, (IX + 1)
-	LD		 A, (HL)
-	LD		 B, A
-	
-	;ponemos A a 0 con un 1 en el bit de la habitación que hemos terminado
-	LD		HL, habitacion_terminada
-	LD		 A, (prota_pos_mapx)
-	CALL	suma_A_HL
-	LD		 A, (HL)
-	
-	;marcamos la habitación como terminada
-	OR		 B
-	
-	;actualizamos la habitación recorrida
-	LD		IX, habitacion_recorrida
-	LD		 H, (IX)
-	LD		 L, (IX + 1)
-	LD		(HL), A	
-	
-	POP		AF
-	POP		BC
-	POP		HL
+
+
+
 fin_terminada_habitacion_recorrida:
 	RET
 
-**************************
-get_valor_habitacion_recorrida:
 
-is_habitacion_terminada:
-	db	0
-
-array_habitacion_terminada:	;array con 1 según la habitación que se haya terminado (en el eje x)
-
-fin_get_valor_habitacion_recorrida:
-	RET
-
-	
 
 	
 	

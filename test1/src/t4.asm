@@ -19,7 +19,7 @@ START:
 	
 	;inicializa los niveles por partida
 ;	CALL	inicializa_niveles			;no es necesario parametrizarlo según el nivel del usuario ya que se cargan todos
-;************** quitarlo cuando el anejo de la variable habitacion_recorrida esté correcto y depurado
+;************** quitarlo cuando pueda navegar por habitaciones y esté más avanzado el proyecto
 
 
 	

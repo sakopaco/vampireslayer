@@ -33,18 +33,18 @@ habitacion_actual:
 	db  0		;habitación donde se encuentre el prota. Se mete en una varible par traer todos los datos de golpe y no buscarlos varias veces
 habitacion_extras:
 	db	0		;donde van las ayudas de una habitación
-habitacion_recorrida;
-	dw	0		;byte de la columna 15 indicará con 1 y 0 habitaciones por las que se haya pasado (para que sea accesible y modificable se guarda puntero a variable)
+habitacion_actual_puntero;
+	dw	0		;puntero para actualizar la habitación cuando se maten todos los enemigos
 is_habitacion_terminada:
-	db	0
+	db	0		;variable para consultar más rápido si se ha pasado (<>0 si se ha pasado y 0 no se ha pasado)
 
 array_habitacion_terminada:	;array con 1 según la habitación que se haya terminado (en el eje x)
 	db	00000001b, 00000010b, 00000100b, 00001000b, 00010000b, 00100000b, 01000000b
 
 habitaciones_juego:
 habitaciones_nivel0:
-	db  00000000b,#00,00000001b,#01,00001111b,11000001b,00000010b,#03,00001000b,#04,00001001b,#05,00001100b,#06,00000000b,#CD ;primera fila
-	db  #17,#10,#11,#11,#12,#12,#13,#13,#14,#14,#15,#15,#16,#16,#FF,#00
+	db  00010000b,#00,00010001b,#01,00011111b,11000001b,00000010b,#03,00001000b,#04,00001001b,#05,00001100b,#06,00000000b,#CD ;primera fila
+	db  00010000b,#10,#11,#11,#12,#12,#13,#13,#14,#14,#15,#15,#16,#16,#FF,#00
 	db  #20,#20,#21,#21,#22,#22,#23,#23,#24,#24,#25,#25,#26,#26,#FF,#00
 	db  #30,#30,#31,#31,#32,#32,#33,#33,#34,#34,#35,#35,#36,#36,#FF,#00
 	db  00000000b,#00,00000001b,#01,00001111b,#02,00000011b,#03,00001000b,#04,00001001b,#05,00001100b,#06,#FF,#00
@@ -52,7 +52,7 @@ habitaciones_nivel0:
 	db  00000000b,#00,00000001b,#01,00001111b,#02,00000011b,#03,00001000b,#04,00001001b,#05,00001100b,#06,#FF,#00	;ultima fila
 	
 habitaciones_nivel1:
-	db  00000000b,#00,00000001b,#01,00000010b,#02,00000011b,#03,00001000b,#04,00001001b,#05,00001100b,#06,#FF,#00 ;primera fila
+	db  00010000b,#00,00000001b,#01,00000010b,#02,00000011b,#03,00001000b,#04,00001001b,#05,00001100b,#06,#FF,#00 ;primera fila
 	db  #17,#10,#11,#11,#12,#12,#13,#13,#14,#14,#15,#15,#16,#16,#FF,#00
 	db  #20,#20,#21,#21,#22,#22,#23,#23,#24,#24,#25,#25,#26,#26,#FF,#00
 	db  #30,#30,#31,#31,#32,#32,#33,#33,#34,#34,#35,#35,#36,#36,#FF,#00
