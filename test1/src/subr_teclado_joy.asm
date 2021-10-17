@@ -123,10 +123,13 @@ mira_disparo:
 		;ejecuto sonido								;; ajustar cadencia y que cuando el disparo sea efectivo se reseteen los colores
 		XOR		 A
 		LD		 C, 1
-		CALL	ayFX_INIT	
+		CALL	ayFX_INIT
+		
+		CREAR ESTRUCTURAS PARA LAS PUERTAS Y ARRAY PARA MIRARLAS
+		CALL	check_colisiones ************************
 .fin_mira_disparo1
-
 	POP		AF
+
 .mira_boton_pulsado2:
 	RR		 A
 	RET		 NC
