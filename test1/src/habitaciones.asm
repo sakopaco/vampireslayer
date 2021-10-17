@@ -13,7 +13,7 @@
 ;~ 7 - sin asignar
 ;~ 6 - sin asignar
 ;~ 5 - esqueletos
-;~ 4 - todos los enemigos muertos
+;~ 4 - todos los enemigos muertos 0 no y 1 ó <>0
 ;~ 0,1,2,3 - nº puertas 1 arriba 1 derecha 1 abajo 1 izquierda
 
 ;~ 7 - oracion

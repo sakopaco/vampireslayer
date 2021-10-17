@@ -19,7 +19,7 @@ inicializa_niveles:
 		LD 			HL, habitaciones_nivel0
 .inicia_nivel_0
 		LD		 	 A, (HL)
-		AND			11101111b	;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
+		SET			 4, A 		;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
 		LD			(HL), A
 [2]		INC			HL
 		DJNZ		.inicia_nivel_0
@@ -28,7 +28,7 @@ inicializa_niveles:
 		LD 			HL, habitaciones_nivel1
 .inicia_nivel_1
 		LD		 	 A, (HL)
-		AND			11101111b	;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
+		SET			 4, A 		;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
 		LD			(HL), A
 [2]		INC			HL
 		DJNZ		.inicia_nivel_1
@@ -37,7 +37,7 @@ inicializa_niveles:
 		LD 			HL, habitaciones_nivel2
 .inicia_nivel_2
 		LD		 	 A, (HL)
-		AND			11101111b	;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
+		SET			 4, A 		;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
 		LD			(HL), A
 [2]		INC			HL
 		DJNZ		.inicia_nivel_2
@@ -46,7 +46,7 @@ inicializa_niveles:
 		LD 			HL, habitaciones_nivel3
 .inicia_nivel_3
 		LD		 	 A, (HL)
-		AND			11101111b	;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
+		SET			 4, A 		;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
 		LD			(HL), A
 [2]		INC			HL
 		DJNZ		.inicia_nivel_3
@@ -55,7 +55,7 @@ inicializa_niveles:
 		LD 			HL, habitaciones_nivel4
 .inicia_nivel_4
 		LD		 	 A, (HL)
-		AND			11101111b	;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
+		SET			 4, A 		;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
 		LD			(HL), A
 [2]		INC			HL
 		DJNZ		.inicia_nivel_4
@@ -64,7 +64,7 @@ inicializa_niveles:
 		LD 			HL, habitaciones_nivel5
 .inicia_nivel_5
 		LD		 	 A, (HL)
-		AND			11101111b	;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
+		SET			 4, A 		;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
 		LD			(HL), A
 [2]		INC			HL
 		DJNZ		.inicia_nivel_5
@@ -73,7 +73,7 @@ inicializa_niveles:
 		LD 			HL, habitaciones_nivel6
 .inicia_nivel_6
 		LD		 	 A, (HL)
-		AND			11101111b	;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
+		SET			 4, A 		;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
 		LD			(HL), A
 [2]		INC			HL
 		DJNZ		.inicia_nivel_6
@@ -218,7 +218,7 @@ localiza_info_habitacion:
 	LD		(IX + 1), L
 	
 	;actualizo la variable is_habitacion_terminada
-	XOR		 A
+	LD		 A, (habitacion_actual)
 	LD		(is_habitacion_terminada), A
 	LD		 A, (habitacion_actual_puntero)
 	OR		00010000b
@@ -246,11 +246,27 @@ fin_localiza_info_habitacion:
 ; salida: 	habitacion_recorrida (byte 14 de la fila de habitaciones) actualizada con OR A (en A la habitacion)
 ; toca:		IX
 terminada_habitacion_recorrida:
-
-
-
+		PUSH		AF
+		PUSH		HL
+		
+		LD			HL, habitacion_actual_puntero
+		LD			 A, (HL)
+		SET			 4, A
+		LD			(HL), A
+		
+		LD			 A, HABTERMIN	;da igual qué bit mientras sea distinto de 0
+		LD			(is_habitacion_terminada), A
+		
+		;este trozo no sirve de nada pero ya e quedo más tranquilo si lo pongo, por ser exacto y completo
+		;no sirve porque se cambiará de habitación y se perderá/actualizará el dato
+		LD			 A, (habitacion_actual)
+		SET			 4, A
+		LD			(habitacion_actual), A
+		
+		POP			HL
+		POP			AF
 fin_terminada_habitacion_recorrida:
-	RET
+		RET
 
 
 

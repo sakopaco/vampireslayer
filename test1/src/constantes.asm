@@ -124,6 +124,7 @@ POSAYUDASY	equ		112	;se pone por poner porque las estructuras de ayudas ya se in
 ;;ESTADO ESTRUCTURA
 INACTIVA	equ		0
 ACTIVA		equ		1
+HABTERMIN	equ		1
 
 ;;POSICIONES DE LAS ANTORCHAS
 POSANTOR1	equ		136

@@ -877,7 +877,7 @@ inicializa_esqueletos:
 fin_inicializa_esqueletos:
 	RET
 	
-	
+
 ;;=====================================================
 ;;PINTA_ANTORCHAS
 ;;=====================================================	
@@ -925,7 +925,7 @@ pinta_extra_fondo:
 	BIT		 5, A
 	JP		NZ, .hayesqueletos			;si el bit 0 de extras es 0 no se pintan antorchas
 	LD		(IX), INACTIVA
-	RET
+	RET									;no hay que pintarlo. no hay que continuar
 
 .hayesqueletos
 	LD		(IX), ACTIVA
