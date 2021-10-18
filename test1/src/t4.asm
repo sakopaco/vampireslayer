@@ -72,9 +72,7 @@ loop_principal:
 	
 	JP		loop_principal
 fin_programa_principal:
-	;RET
-
-
+	;no necesita RET
 
 
 check_colisiones:
@@ -138,6 +136,8 @@ fin_inicializa_variables_pruebas:
 	include "subr_general.asm"
 	
 	include "subr_pintapantalla.asm"
+	
+	include "subr_puertas.asm"
 	
 	include "subr_sprites.asm"
 	

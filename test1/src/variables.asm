@@ -46,6 +46,13 @@ elemento_pintar_mapa:
 			DB		0	;TILEPROTAM = 19, ;TILEGRISM = 9
 			
 ;; nota importante: cada vez que se cambie de nivel se actualizará el contenido
+
+lista_puertas:
+puerta_arriba:		DS		ESTRUCTURA_PUERTA
+puerta_derecha:		DS		ESTRUCTURA_PUERTA
+puerta_abajo:		DS		ESTRUCTURA_PUERTA
+puerta_izquierda:	DS		ESTRUCTURA_PUERTA
+
 ;; arrays con mapa de tiles de las puertas
 array_puerta_arriba:
 array_puerta_arriba1:		DB	3,1,1,3
@@ -73,6 +80,43 @@ array_puerta_izquierda4:	DB	1,1,1
 array_puerta_izquierda5:	DB	1,1,1
 array_puerta_izquierda6:	DB	1,1,2
 array_puerta_izquierda7:	DB	1,2,4
+
+datos_puertas:
+datos_puerta_arriba:
+					DB		0		;0 no activa <>0 activo
+					DB		128		;punto x de la puerta para cuando se dispare encima
+					DB		52		;punto y de la puerta para cuando se dispare encima
+					DB		16		;radio x de la puerta para cuando se dispare encima
+					DB		20		;radio y de la puerta para cuando se dispare encima
+					DW		accion_puerta_arriba	;función para acción de cada tipo de puerta
+					DW		array_puerta_arriba		;puntero al array con los tiles de las puertas
+
+datos_puerta_derecha:
+					DB		0		;0 no activa <>0 activo
+					DB		236		;punto x de la puerta para cuando se dispare encima
+					DB		84		;punto y de la puerta para cuando se dispare encima
+					DB		12		;radio x de la puerta para cuando se dispare encima
+					DB		20		;radio y de la puerta para cuando se dispare encima
+					DW		accion_puerta_arriba	;función para acción de cada tipo de puerta
+					DW		array_puerta_derecha	;puntero al array con los tiles de las puertas
+					
+datos_puerta_abajo:
+					DB		0		;0 no activa <>0 activo
+					DB		128		;punto x de la puerta para cuando se dispare encima
+					DB		124		;punto y de la puerta para cuando se dispare encima
+					DB		5		;radio x de la puerta para cuando se dispare encima
+					DB		16		;radio y de la puerta para cuando se dispare encima
+					DW		accion_puerta_arriba	;función para acción de cada tipo de puerta
+					DW		array_puerta_abajo		;puntero al array con los tiles de las puertas
+					
+datos_puerta_izquierda:
+					DB		0		;0 no activa <>0 activo
+					DB		24		;punto x de la puerta para cuando se dispare encima
+					DB		84		;punto y de la puerta para cuando se dispare encima
+					DB		12		;radio x de la puerta para cuando se dispare encima
+					DB		20		;radio y de la puerta para cuando se dispare encima
+					DW		accion_puerta_arriba	;función para acción de cada tipo de puerta
+					DW		array_puerta_izquierda	;puntero al array con los tiles de las puertas
 
 
 

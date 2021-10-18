@@ -21,7 +21,7 @@ inicializa_ayudas:
 	LD		(IX + 4), L
 	LD		(IX + 5), POSORACION
 	LD		(IX + 6), POSORACIONX
-	LD		(IX + 7), POSAYUDASY	;como es constante y no se cambia se puede inicializar la estructura con el valor y ahorramos tiempo
+	LD		(IX + 7), POSAYUDASY	
 	LD		HL, accion_oracion
 	LD		(IX + 8), H
 	LD		(IX + 9), L
@@ -70,7 +70,7 @@ fin_resetea_ayudas:
 ; salida: 	-
 ; toca:		HL, DE, BC
 carga_datos_ayuda:
-	LD		BC, 16;#ESTRUCTURA_AYUDA ;equivale a 16.. el tamaño de la estructura en bytes
+	LD		BC, 16;ESTRUCTURA_AYUDA ;equivale a 16.. el tamaño de la estructura en bytes
 	LDIR
 fin_carga_datos_ayuda:
 	RET

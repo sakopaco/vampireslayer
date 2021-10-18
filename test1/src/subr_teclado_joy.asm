@@ -1,5 +1,5 @@
 ;;=====================================================
-;;SUBRUTINAS QUE CAPTURN EL JOYSTICK Y TECLADO Y MUEVEN PUNTO DE MIRA
+;;SUBRUTINAS QUE CAPTURAN EL JOYSTICK Y TECLADO Y MUEVEN PUNTO DE MIRA
 ;;=====================================================
 
 ;;=====================================================
@@ -125,8 +125,17 @@ mira_disparo:
 		LD		 C, 1
 		CALL	ayFX_INIT
 		
-		CREAR ESTRUCTURAS PARA LAS PUERTAS Y ARRAY PARA MIRARLAS
-		CALL	check_colisiones ************************
+		
+		
+		
+		;CREAR ESTRUCTURAS PARA LAS PUERTAS Y ARRAY PARA MIRARLAS
+		;CALL	check_colisiones ************************
+		
+		
+		
+		
+		
+		
 .fin_mira_disparo1
 	POP		AF
 
