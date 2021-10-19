@@ -84,7 +84,7 @@ posy				DB		0	;punto y de la puerta para cuando se dispare encima
 radiox				DB		0	;radio x de la puerta para cuando se dispare encima
 radioy				DB		0	;radio y de la puerta para cuando se dispare encima
 accion				DW		0	;función para acción de cada tipo de puerta
-tiles_puertas		DW		0	;puntero al array con los tiles de las puertas
+tiles_puerta		DW		0	;puntero al array con los tiles de las puertas
 	ENDSTRUCT;ESTRUCTURA_PUERTA
 
 

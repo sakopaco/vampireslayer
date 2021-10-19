@@ -110,13 +110,13 @@ inicializa_puertas:
 	CALL	carga_datos_puerta
 	
 	;inicializa puerta abajo
-	LD		HL, datos_puerta_derecha	;origen
-	LD		DE, puerta_derecha			;destino
+	LD		HL, datos_puerta_abajo	;origen
+	LD		DE, puerta_abajo			;destino
 	CALL	carga_datos_puerta
 	
 	;inicializa puerta izquierda
-	LD		HL, datos_puerta_derecha	;origen
-	LD		DE, puerta_derecha			;destino
+	LD		HL, datos_puerta_izquierda	;origen
+	LD		DE, puerta_izquierda		;destino
 	CALL	carga_datos_puerta
 	
 	POP		DE
@@ -231,7 +231,10 @@ fin_pinta_puertas:
 pinta_puerta_aba:
 	PUSH	AF
 	
-	LD		HL, array_puerta_abajo			;guardo puntero al array a pintar (como pasar por referencia)
+	LD		IX, puerta_abajo
+	LD		 L, (IX + ESTRUCTURA_PUERTA.tiles_puerta)			;guardo puntero al array a pintar (como pasar por referencia)
+	LD		 H, (IX + ESTRUCTURA_PUERTA.tiles_puerta + 1)
+	
 	LD		(wordaux2), HL					;en la variable wordaux2
 	LD		HL, TILMAP + POSPUERABAJ		;calcula posición en tilemap
 	LD		(wordaux1), HL					;guarda valor pos tilemap en wordaux1
@@ -257,7 +260,10 @@ fin_pinta_puerta_aba:
 pinta_puerta_arr:
 	PUSH	AF
 	
-	LD		HL, array_puerta_arriba			;guardo puntero al array a pintar (como pasar por referencia)
+	LD		IX, puerta_arriba
+	LD		 L, (IX + ESTRUCTURA_PUERTA.tiles_puerta)			;guardo puntero al array a pintar (como pasar por referencia)
+	LD		 H, (IX + ESTRUCTURA_PUERTA.tiles_puerta + 1)
+	
 	LD		(wordaux2), HL					;en la variable wordaux2
 	LD		HL, TILMAP + POSPUERARRI		;calcula posición en tilemap
 	LD		(wordaux1), HL					;guarda valor pos tilemap en wordaux1
@@ -281,7 +287,11 @@ fin_pinta_puerta_arr:
 ; toca:		HL,BC, DE
 pinta_puerta_der:
 	PUSH	AF
-	LD		HL, array_puerta_derecha		;guardo puntero al array a pintar (como pasar por referencia)
+	
+	LD		IX, puerta_derecha
+	LD		 L, (IX + ESTRUCTURA_PUERTA.tiles_puerta)			;guardo puntero al array a pintar (como pasar por referencia)
+	LD		 H, (IX + ESTRUCTURA_PUERTA.tiles_puerta + 1)
+	
 	LD		(wordaux2), HL					;en la variable wordaux2
 	LD		HL, TILMAP + POSPUERDERE		;calcula posición en tilemap
 	LD		(wordaux1), HL					;guarda valor pos tilemap en wordaux1
@@ -307,7 +317,10 @@ fin_pinta_puerta_der:
 pinta_puerta_izq:
 	PUSH	AF
 	
-	LD		HL, array_puerta_izquierda		;guardo puntero al array a pintar (como pasar por referencia)
+	LD		IX, puerta_izquierda
+	LD		 L, (IX + ESTRUCTURA_PUERTA.tiles_puerta)			;guardo puntero al array a pintar (como pasar por referencia)
+	LD		 H, (IX + ESTRUCTURA_PUERTA.tiles_puerta + 1)
+	
 	LD		(wordaux2), HL					;en la variable wordaux2
 	LD		HL, TILMAP + POSPUERIZQU		;calcula posición en tilemap
 	LD		(wordaux1), HL					;guarda valor pos tilemap en wordaux1
