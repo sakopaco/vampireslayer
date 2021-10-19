@@ -6,9 +6,11 @@ x(lo mismo se puede usar el valor enla constante tile_puerta para pintar puerta 
 
 +* crear array puertas
 
-+ inicializar array puertas según indica fernando con arrays
++ *inicializar array puertas según indica fernando con arrays
 
 * actualiza array puertas según habitación actual
+
+Para la escalera se usa el bit 6 de la habitación y se puede actualizar la estructura de la puerta superior y así no hay que crear cosas nuevas
 
 * actualizar diseño por lo menos de primer y segundo nivel para verificar la correcta navegación
 
