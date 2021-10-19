@@ -52,6 +52,7 @@ datos_puerta_arriba:
 					DB		#14;20		;radio y de la puerta para cuando se dispare encima
 					DW		accion_puerta_arriba	;función para acción de cada tipo de puerta
 					DW		array_puerta_arriba		;puntero al array con los tiles de las puertas
+					DW		TILMAP + POSPUERARRI
 
 datos_puerta_derecha:
 					DB		#00;0		;0 no activa <>0 activo
@@ -61,6 +62,7 @@ datos_puerta_derecha:
 					DB		#14;20		;radio y de la puerta para cuando se dispare encima
 					DW		accion_puerta_arriba	;función para acción de cada tipo de puerta
 					DW		array_puerta_derecha	;puntero al array con los tiles de las puertas
+					DW		TILMAP + POSPUERDERE
 					
 datos_puerta_abajo:
 					DB		#00;0		;0 no activa <>0 activo
@@ -70,7 +72,8 @@ datos_puerta_abajo:
 					DB		#10;16		;radio y de la puerta para cuando se dispare encima
 					DW		accion_puerta_arriba	;función para acción de cada tipo de puerta
 					DW		array_puerta_abajo		;puntero al array con los tiles de las puertas
-					
+					DW		TILMAP + POSPUERABAJ
+
 datos_puerta_izquierda:
 					DB		#00;0		;0 no activa <>0 activo
 					DB		#18;24		;punto x de la puerta para cuando se dispare encima
@@ -79,6 +82,7 @@ datos_puerta_izquierda:
 					DB		#14;20		;radio y de la puerta para cuando se dispare encima
 					DW		accion_puerta_arriba	;función para acción de cada tipo de puerta
 					DW		array_puerta_izquierda	;puntero al array con los tiles de las puertas
+					DW		TILMAP + POSPUERIZQU
 
 
 
@@ -203,7 +207,7 @@ pinta_puertas:
 	
 	LD		 A, (habitacion_actual)		;se mete en A porque la función pide A y para no buscar el valor 4 veces
 
-;	BIT		 4, A
+;	BIT		 6, A
 ;	CALL	nz, pinta_escalera
 
 	BIT		 3, A
@@ -225,19 +229,14 @@ fin_pinta_puertas:
 ;;PINTA_PUERTA_ABA
 ;;=====================================================	
 ; función: 	pinta la puerta de abajo
-; entrada: 	array_puerta_abajo, wordaux2, wordaux1
+; entrada: 	puerta_abajo
 ; salida: 	-
 ; toca:		HL,BC, DE
 pinta_puerta_aba:
 	PUSH	AF
 	
 	LD		IX, puerta_abajo
-	LD		 L, (IX + ESTRUCTURA_PUERTA.tiles_puerta)			;guardo puntero al array a pintar (como pasar por referencia)
-	LD		 H, (IX + ESTRUCTURA_PUERTA.tiles_puerta + 1)
-	
-	LD		(wordaux2), HL					;en la variable wordaux2
-	LD		HL, TILMAP + POSPUERABAJ		;calcula posición en tilemap
-	LD		(wordaux1), HL					;guarda valor pos tilemap en wordaux1
+	CALL	actualiza_wordaux1y2
 
 	LD		 A, 1							;nº de filas
 	LD		(byteaux1), A
@@ -254,19 +253,15 @@ fin_pinta_puerta_aba:
 ;;PINTA_PUERTA_ARR
 ;;=====================================================	
 ; función: 	pinta la puerta de arriba
-; entrada: 	array_puerta_arriba, wordaux2, wordaux1
+; entrada: 	puerta_arriba
 ; salida: 	-
-; toca:		HL,BC, DE
+; toca:		IX
 pinta_puerta_arr:
 	PUSH	AF
 	
 	LD		IX, puerta_arriba
-	LD		 L, (IX + ESTRUCTURA_PUERTA.tiles_puerta)			;guardo puntero al array a pintar (como pasar por referencia)
-	LD		 H, (IX + ESTRUCTURA_PUERTA.tiles_puerta + 1)
+	CALL	actualiza_wordaux1y2
 	
-	LD		(wordaux2), HL					;en la variable wordaux2
-	LD		HL, TILMAP + POSPUERARRI		;calcula posición en tilemap
-	LD		(wordaux1), HL					;guarda valor pos tilemap en wordaux1
 	LD		 A, 5							;nº de filas
 	LD		(byteaux1), A
 	LD		 A, 4							;nº de columnas
@@ -282,19 +277,14 @@ fin_pinta_puerta_arr:
 ;;PINTA_PUERTA_DER
 ;;=====================================================	
 ; función: 	pinta la puerta de la derecha
-; entrada: 	array_puerta_derecha, wordaux2, wordaux1
+; entrada: 	puerta_derecha
 ; salida: 	-
 ; toca:		HL,BC, DE
 pinta_puerta_der:
 	PUSH	AF
 	
 	LD		IX, puerta_derecha
-	LD		 L, (IX + ESTRUCTURA_PUERTA.tiles_puerta)			;guardo puntero al array a pintar (como pasar por referencia)
-	LD		 H, (IX + ESTRUCTURA_PUERTA.tiles_puerta + 1)
-	
-	LD		(wordaux2), HL					;en la variable wordaux2
-	LD		HL, TILMAP + POSPUERDERE		;calcula posición en tilemap
-	LD		(wordaux1), HL					;guarda valor pos tilemap en wordaux1
+	CALL	actualiza_wordaux1y2
 
 	LD		 A, 7							;nº de filas
 	LD		(byteaux1), A
@@ -311,19 +301,14 @@ fin_pinta_puerta_der:
 ;;PINTA_PUERTA_IZQ
 ;;=====================================================	
 ; función: 	pinta la puerta de la izquierda
-; entrada: 	array_puerta_izquierda, wordaux2, wordaux1
+; entrada: 	puerta_izquierda
 ; salida: 	-
 ; toca:		HL,BC, DE
 pinta_puerta_izq:
 	PUSH	AF
 	
 	LD		IX, puerta_izquierda
-	LD		 L, (IX + ESTRUCTURA_PUERTA.tiles_puerta)			;guardo puntero al array a pintar (como pasar por referencia)
-	LD		 H, (IX + ESTRUCTURA_PUERTA.tiles_puerta + 1)
-	
-	LD		(wordaux2), HL					;en la variable wordaux2
-	LD		HL, TILMAP + POSPUERIZQU		;calcula posición en tilemap
-	LD		(wordaux1), HL					;guarda valor pos tilemap en wordaux1
+	CALL	actualiza_wordaux1y2
 
 	LD		 A, 7							;nº de filas
 	LD		(byteaux1), A
@@ -335,4 +320,22 @@ pinta_puerta_izq:
 	JP		pinta_array
 fin_pinta_puerta_izq:
 
+
+;;=====================================================
+;;FIN_ACTUALIZA_WORDAUX1Y2
+;;=====================================================	
+; función: 	como el código es el mismo en esta subrutia se actualizan los valores de wordaux2, wordaux1
+; entrada: 	IX apuntando a la estructura de una puerta
+; salida: 	-
+; toca:		HL,BC, DE
+actualiza_wordaux1y2:
+	LD		 L, (IX + ESTRUCTURA_PUERTA.tiles_puerta)			;guardo puntero al array a pintar (como pasar por referencia)
+	LD		 H, (IX + ESTRUCTURA_PUERTA.tiles_puerta + 1)
+	LD		(wordaux2), HL					;en la variable wordaux2
+	
+	LD		 L, (IX + ESTRUCTURA_PUERTA.pos_en_tilemap)			;guardo puntero al array a pintar (como pasar por referencia)
+	LD		 H, (IX + ESTRUCTURA_PUERTA.pos_en_tilemap + 1)
+	LD		(wordaux1), HL					;guarda valor pos tilemap en wordaux1
+fin_actualiza_wordaux1y2:
+	RET
 
