@@ -17,13 +17,15 @@ START:
 	;inicializa variables para parametrizar funciones y que lo que se muestre sea variable (nº vidas, mapa, puertas, pantalla, etc...)
 	CALL	inicializa_variables_pruebas
 	
+;***************************************************
 	;inicializa los niveles por partida
 ;	CALL	inicializa_niveles			;no es necesario parametrizarlo según el nivel del usuario ya que se cargan todos
 ;************** quitarlo cuando pueda navegar por habitaciones y esté más avanzado el proyecto
 
-
+	;inicializa los valores de cada puerta excepto si están activas o no (eso ocurre cuando se matan todos los enemigos de la hab. y sólo a las puertas que se muestren)
+	CALL	inicializa_puertas
 	
-	;inicializa las estructuras de forma particular según ayuDa pero sin poner valores de posición
+	;inicializa las estructuras de forma particular según ayuda pero sin poner valores de posición
 	CALL	inicializa_ayudas
 	
 	;inicializa las estructuras de las antorchas y esqueletos
