@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.10.20 - 22:52:23]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.10.20 - 23:28:25]
 
 t4.asm
 Errors: 0
@@ -334,74 +334,74 @@ Errors: 0
       54   00:8032                      	
       55   00:8032  CD F8 84            	CALL	pinta_extra_fondo
       56   00:8035                      	
-      57   00:8035  CD 56 81            	CALL	terminada_habitacion_recorrida ;para cuando se maten todos los enemigos de la habitación
-      58   00:8038                      
-      59   00:8038                      	;incializacion de replayer con interrupciones
-      60   00:8038                      ;	CALL	inicializa_replayer_efectos_interrupciones
-      61   00:8038                      
-      62   00:8038                      loop_principal:
-      63   00:8038  76                  	HALT							;espera VBLANK y sincroniza
-      64   00:8039                      	
-      65   00:8039  CD 91 87            	CALL	render_sprites			;actualiza array de sprites y los pinta en pantalla
-      66   00:803C                      	
-      67   00:803C  CD 7C 83            	CALL	pinta_energia			;pinta la energia en pantalla
-      68   00:803F                      	
-      69   00:803F  CD 6F 85            	CALL	actualiza_elementos_fondo
-      70   00:8042                      
-      71   00:8042  CD D4 87            	CALL	check_player			;MIRA EL CONTROL Y APLICA LA LOGICA DE MOVIMIENTO DEL PROTAGONISTA
-      72   00:8045                      	
-      73   00:8045  CD 4B 80            	CALL	check_colisiones		;revisa las colisiones con puertas, ayudas y enemigos
-      74   00:8048                      	
-      75   00:8048  C3 38 80            	JP		loop_principal
-      76   00:804B                      fin_programa_principal:
-      77   00:804B                      	;no necesita RET
-      78   00:804B                      
+      57   00:8035                      	;esta función no va aquí sino en check colisiones pero se pone aquí para realizar pruebas
+      58   00:8035  CD 56 81            	CALL	terminada_habitacion_recorrida ;para cuando se maten todos los enemigos de la habitación
+      59   00:8038                      
+      60   00:8038                      	;incializacion de replayer con interrupciones
+      61   00:8038                      ;	CALL	inicializa_replayer_efectos_interrupciones
+      62   00:8038                      
+      63   00:8038                      loop_principal:
+      64   00:8038  76                  	HALT							;espera VBLANK y sincroniza
+      65   00:8039                      	
+      66   00:8039  CD 91 87            	CALL	render_sprites			;actualiza array de sprites y los pinta en pantalla
+      67   00:803C                      	
+      68   00:803C  CD 7C 83            	CALL	pinta_energia			;pinta la energia en pantalla
+      69   00:803F                      	
+      70   00:803F  CD 6F 85            	CALL	actualiza_elementos_fondo
+      71   00:8042                      
+      72   00:8042  CD D4 87            	CALL	check_player			;MIRA EL CONTROL Y APLICA LA LOGICA DE MOVIMIENTO DEL PROTAGONISTA
+      73   00:8045                      	
+      74   00:8045  CD 4B 80            	CALL	check_colisiones		;revisa las colisiones con puertas, ayudas y enemigos
+      75   00:8048                      	
+      76   00:8048  C3 38 80            	JP		loop_principal
+      77   00:804B                      fin_programa_principal:
+      78   00:804B                      	;no necesita RET
       79   00:804B                      
-      80   00:804B                      check_colisiones:
-      81   00:804B                      	;pantalla limpia?
-      82   00:804B                      	
-      83   00:804B                      	;SI 
-      84   00:804B                      	;recorre puertas y sale
-      85   00:804B                      	;NO 
-      86   00:804B                      	;recorre ayudas
-      87   00:804B                      	;recorre enemigos
-      88   00:804B                      fin_check_colisiones:
-      89   00:804B  C9                  	RET
-      90   00:804C                      
+      80   00:804B                      
+      81   00:804B                      check_colisiones:
+      82   00:804B                      	;pantalla limpia?
+      83   00:804B                      	
+      84   00:804B                      	;SI 
+      85   00:804B                      	;recorre puertas y sale
+      86   00:804B                      	;NO 
+      87   00:804B                      	;recorre ayudas
+      88   00:804B                      	;recorre enemigos
+      89   00:804B                      fin_check_colisiones:
+      90   00:804B  C9                  	RET
       91   00:804C                      
       92   00:804C                      
       93   00:804C                      
       94   00:804C                      
-      95   00:804C                      ;;*******************************************************************
-      96   00:804C                      ; sólo para hacer pruebas y pintar la parte de las vidas y demás
-      97   00:804C                      inicializa_variables_pruebas:
-      98   00:804C  3E 04               	LD		 A, 4
-      99   00:804E  32 43 A8            	LD		(prota_vidas),A
-     100   00:8051                      
-     101   00:8051  3E 04               	LD		 A, 4
-     102   00:8053  32 44 A8            	LD		(prota_reliquias), A
-     103   00:8056                      
-     104   00:8056  3E 64               	LD		 A, 100
-     105   00:8058  32 47 A8            	LD		(prota_energia), A
-     106   00:805B                      
-     107   00:805B                      	;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
-     108   00:805B                      	;será igual la posición inicial en todos los niveles
-     109   00:805B                      	
-     110   00:805B  3E 00               	LD		 A, 0				;los niveles (matrices) son 7 del 0 al 6
-     111   00:805D  32 42 A8            	LD		(prota_nivel), A	;nivel empieza en 0 para usar las posiciones ascii
-     112   00:8060                      
-     113   00:8060  3E 00               	LD		 A, 0				;los subniveles (filas) son 7 del 0 al 6
-     114   00:8062  32 46 A8            	LD		(prota_pos_mapy), A	;pos Y dentro del nivel (se empieza en 0)
-     115   00:8065                      
-     116   00:8065  3E 02               	LD		 A, 2				;columnas 7: del 0 al 6
-     117   00:8067  32 45 A8            	LD		(prota_pos_mapx), A	;pos X dentro del nivel (se empieza en 0)
-     118   00:806A                      	
-     119   00:806A  AF                  	XOR		 A
-     120   00:806B  32 37 A8            	LD		(prota.cadencia), A
-     121   00:806E                      fin_inicializa_variables_pruebas:
-     122   00:806E  C9                  	RET
-     123   00:806F                      ;;************************************************************************
-     124   00:806F                      
+      95   00:804C                      
+      96   00:804C                      ;;*******************************************************************
+      97   00:804C                      ; sólo para hacer pruebas y pintar la parte de las vidas y demás
+      98   00:804C                      inicializa_variables_pruebas:
+      99   00:804C  3E 04               	LD		 A, 4
+     100   00:804E  32 43 A8            	LD		(prota_vidas),A
+     101   00:8051                      
+     102   00:8051  3E 04               	LD		 A, 4
+     103   00:8053  32 44 A8            	LD		(prota_reliquias), A
+     104   00:8056                      
+     105   00:8056  3E 64               	LD		 A, 100
+     106   00:8058  32 47 A8            	LD		(prota_energia), A
+     107   00:805B                      
+     108   00:805B                      	;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
+     109   00:805B                      	;será igual la posición inicial en todos los niveles
+     110   00:805B                      	
+     111   00:805B  3E 00               	LD		 A, 0				;los niveles (matrices) son 7 del 0 al 6
+     112   00:805D  32 42 A8            	LD		(prota_nivel), A	;nivel empieza en 0 para usar las posiciones ascii
+     113   00:8060                      
+     114   00:8060  3E 00               	LD		 A, 0				;los subniveles (filas) son 7 del 0 al 6
+     115   00:8062  32 46 A8            	LD		(prota_pos_mapy), A	;pos Y dentro del nivel (se empieza en 0)
+     116   00:8065                      
+     117   00:8065  3E 03               	LD		 A, 3				;columnas 7: del 0 al 6
+     118   00:8067  32 45 A8            	LD		(prota_pos_mapx), A	;pos X dentro del nivel (se empieza en 0)
+     119   00:806A                      	
+     120   00:806A  AF                  	XOR		 A
+     121   00:806B  32 37 A8            	LD		(prota.cadencia), A
+     122   00:806E                      fin_inicializa_variables_pruebas:
+     123   00:806E  C9                  	RET
+     124   00:806F                      ;;************************************************************************
      125   00:806F                      
      126   00:806F                      
      127   00:806F                      
@@ -410,10 +410,11 @@ Errors: 0
      130   00:806F                      
      131   00:806F                      
      132   00:806F                      
-     133   00:806F                      ;;=====================================================
-     134   00:806F                      ;;DEFINICIÓN DE SUBRUTINAS
-     135   00:806F                      ;;=====================================================
-     136   00:806F                      	include "subrutinas.asm"
+     133   00:806F                      
+     134   00:806F                      ;;=====================================================
+     135   00:806F                      ;;DEFINICIÓN DE SUBRUTINAS
+     136   00:806F                      ;;=====================================================
+     137   00:806F                      	include "subrutinas.asm"
        1.  00:806F                      ;;=====================================================
        2.  00:806F                      ;;DEFINICIÓN DE SUBRUTINAS
        3.  00:806F                      ;;=====================================================	
@@ -703,8 +704,8 @@ Errors: 0
      287.  00:816F                      	
      288.  00:816F                      	
      289.  00:816F                      	
-     137   00:816F                      	
-     138   00:816F                      	include "subr_general.asm"
+     138   00:816F                      	
+     139   00:816F                      	include "subr_general.asm"
        1.  00:816F                      ;;=====================================================
        2.  00:816F                      ;;DEFINICIÓN DE SUBRUTINAS GENERALES USABLES PARA CUALQUIER PROYECTO
        3.  00:816F                      ;;=====================================================	
@@ -740,8 +741,8 @@ Errors: 0
       33.  00:8179  67                  	LD		 H, A
       34.  00:817A                      fin_suma_A_HL:
       35.  00:817A  C9                  	RET
-     139   00:817B                      	
-     140   00:817B                      	include "subr_pintapantalla.asm"
+     140   00:817B                      	
+     141   00:817B                      	include "subr_pintapantalla.asm"
        1.  00:817B                      ;;=====================================================
        2.  00:817B                      ;;DEFINICIÓN DE SUBRUTINAS
        3.  00:817B                      ;;=====================================================	
@@ -1729,8 +1730,8 @@ Errors: 0
      985.  00:862F                      fin_actualiza_escena_calavera:
      986.  00:862F  C9                  	RET
      987.  00:8630                      
-     141   00:8630                      	
-     142   00:8630                      	include "subr_puertas.asm"
+     142   00:8630                      	
+     143   00:8630                      	include "subr_puertas.asm"
        1.  00:8630                      ;;=====================================================
        2.  00:8630                      ;;SUBRUTINAS RELACIONADAS CON LAS PUERTAS
        3.  00:8630                      ;;=====================================================
@@ -1872,189 +1873,187 @@ Errors: 0
      139.  00:8705                      
      140.  00:8705                      
      141.  00:8705                      
-     142.  00:8705                      
-     143.  00:8705                      
-     144.  00:8705                      ;;=====================================================
-     145.  00:8705                      ;;CARGA_DATOS_PUERTA
-     146.  00:8705                      ;;=====================================================	
-     147.  00:8705                      ; función: 	carga los datos de la puerta de una variable con los datos de la puerta
-     148.  00:8705                      ; entrada
-     149.  00:8705                      ;  hl: origen de datos
-     150.  00:8705                      ;  de: destino de datos
-     151.  00:8705                      ; salida: 	-
-     152.  00:8705                      ; toca:		HL, DE, BC
-     153.  00:8705                      carga_datos_puerta:
-     154.  00:8705  01 0D 00            	LD		BC, ESTRUCTURA_PUERTA ;bytes a mover (el nombre de la estructura equivale al tamaño de la estructura en bytes)
-     155.  00:8708  ED B0               	LDIR
-     156.  00:870A                      fin_carga_datos_puerta:
-     157.  00:870A  C9                  	RET
-     158.  00:870B                      
-     159.  00:870B                      
-     160.  00:870B                      ;;=====================================================
-     161.  00:870B                      ;;ACCION_PUERTA_ARRIBA
-     162.  00:870B                      ;;=====================================================	
-     163.  00:870B                      ; función: 	
-     164.  00:870B                      ; entrada: 	
-     165.  00:870B                      ; salida: 	
-     166.  00:870B                      accion_puerta_arriba:
-     167.  00:870B                      fin_accion_puerta_arriba:
-     168.  00:870B  C9                  	RET
-     169.  00:870C                      
-     170.  00:870C                      
-     171.  00:870C                      ;;=====================================================
-     172.  00:870C                      ;;ACCION_PUERTA_DERECHA
-     173.  00:870C                      ;;=====================================================	
-     174.  00:870C                      ; función: 	
-     175.  00:870C                      ; entrada: 	
-     176.  00:870C                      ; salida: 	
-     177.  00:870C                      accion_puerta_derecha:
-     178.  00:870C                      fin_accion_puerta_derecha:
-     179.  00:870C  C9                  	RET
-     180.  00:870D                      	
-     181.  00:870D                      
-     182.  00:870D                      ;;=====================================================
-     183.  00:870D                      ;;ACCION_PUERTA_ABAJO
-     184.  00:870D                      ;;=====================================================	
-     185.  00:870D                      ; función: 	
-     186.  00:870D                      ; entrada: 	
-     187.  00:870D                      ; salida: 	
-     188.  00:870D                      accion_puerta_abajo:
-     189.  00:870D                      fin_accion_puerta_abajo:
-     190.  00:870D  C9                  	RET
-     191.  00:870E                      	
-     192.  00:870E                      	
-     193.  00:870E                      ;;=====================================================
-     194.  00:870E                      ;;ACCION_PUERTA_IZQUIERDA
-     195.  00:870E                      ;;=====================================================	
-     196.  00:870E                      ; función: 	
-     197.  00:870E                      ; entrada: 	
-     198.  00:870E                      ; salida: 	
-     199.  00:870E                      accion_puerta_izquierda:
-     200.  00:870E                      fin_accion_puerta_izquierda:
-     201.  00:870E  C9                  	RET
-     202.  00:870F                      	
-     203.  00:870F                      
-     204.  00:870F                      ;;=====================================================
-     205.  00:870F                      ;;PINTA_PUERTAS
-     206.  00:870F                      ;;=====================================================	
-     207.  00:870F                      ; función: 	examina A y mira si tiene que pintar puertas de los lados, arriba o abrajo o las escaleras (o no)
-     208.  00:870F                      ; entrada: 	habitacion_actual 1 escalera 1 puerta arriba 1 pu der 1 pu aba 1 pu izq (si es 0 pinta pared)
-     209.  00:870F                      ; salida: 	-
-     210.  00:870F                      ; toca:		todo
-     211.  00:870F                      pinta_puertas:
-     212.  00:870F  CD B4 81            	CALL	pinta_parte_superior_pantalla	;pinta pasillo y paredes
-     213.  00:8712                      
-     214.  00:8712  CD 03 81            	CALL	localiza_info_habitacion	;busca qué puertas debe pintar y lo mete en habitación_actual
-     215.  00:8715                      	
-     216.  00:8715  3A 14 A5            	LD		 A, (habitacion_actual)
-     217.  00:8718                      ;	BIT		 6, A
-     218.  00:8718                      ;	CALL	nz, pinta_escalera
-     219.  00:8718                      
-     220.  00:8718  3A 14 A5            	LD		 A, (habitacion_actual)
-     221.  00:871B  CB 5F               	BIT		 3, A
-     222.  00:871D  C4 43 87            	CALL	nz, pinta_puerta_arr
-     223.  00:8720                      
-     224.  00:8720  3A 14 A5            	LD		 A, (habitacion_actual)
-     225.  00:8723  CB 57               	BIT		 2, A
-     226.  00:8725  C4 4D 87            	CALL	nz, pinta_puerta_der
-     227.  00:8728                      
-     228.  00:8728  3A 14 A5            	LD		 A, (habitacion_actual)
-     229.  00:872B  CB 4F               	BIT		 1, A
-     230.  00:872D  C4 39 87            	CALL	nz, pinta_puerta_aba
-     231.  00:8730                      
-     232.  00:8730  3A 14 A5            	LD		 A, (habitacion_actual)
-     233.  00:8733  CB 47               	BIT		 0, A
-     234.  00:8735  C4 57 87            	CALL	nz, pinta_puerta_izq
-     235.  00:8738                      fin_pinta_puertas:
-     236.  00:8738  C9                  	RET
-     237.  00:8739                      
-     238.  00:8739                      
-     239.  00:8739                      ;;=====================================================
-     240.  00:8739                      ;;PINTA_PUERTA_ABA
-     241.  00:8739                      ;;=====================================================	
-     242.  00:8739                      ; función: 	pinta la puerta de abajo
-     243.  00:8739                      ; entrada: 	puerta_abajo
-     244.  00:8739                      ; salida: 	-
-     245.  00:8739                      ; toca:		A, HL,BC, DE
-     246.  00:8739                      pinta_puerta_aba:
-     247.  00:8739  DD 21 8C 86         	LD		IX, puerta_abajo
-     248.  00:873D  CD 61 87            	CALL	actualiza_variables_pinta_array
-     249.  00:8740                      		
-     250.  00:8740  C3 6E 84            	JP		pinta_array
-     251.  00:8743                      fin_pinta_puerta_aba:
-     252.  00:8743                      
-     253.  00:8743                      
-     254.  00:8743                      ;;=====================================================
-     255.  00:8743                      ;;PINTA_PUERTA_ARR
-     256.  00:8743                      ;;=====================================================	
-     257.  00:8743                      ; función: 	pinta la puerta de arriba
-     258.  00:8743                      ; entrada: 	puerta_arriba
-     259.  00:8743                      ; salida: 	-
-     260.  00:8743                      ; toca:		IX
-     261.  00:8743                      pinta_puerta_arr:
-     262.  00:8743  DD 21 72 86         	LD		IX, puerta_arriba
-     263.  00:8747  CD 61 87            	CALL	actualiza_variables_pinta_array
-     264.  00:874A                      	
-     265.  00:874A  C3 6E 84            	JP		pinta_array
-     266.  00:874D                      fin_pinta_puerta_arr:
-     267.  00:874D                      
-     268.  00:874D                      
-     269.  00:874D                      ;;=====================================================
-     270.  00:874D                      ;;PINTA_PUERTA_DER
-     271.  00:874D                      ;;=====================================================	
-     272.  00:874D                      ; función: 	pinta la puerta de la derecha
-     273.  00:874D                      ; entrada: 	puerta_derecha
-     274.  00:874D                      ; salida: 	-
-     275.  00:874D                      ; toca:		HL,BC, DE
-     276.  00:874D                      pinta_puerta_der:
-     277.  00:874D  DD 21 7F 86         	LD		IX, puerta_derecha
-     278.  00:8751  CD 61 87            	CALL	actualiza_variables_pinta_array
-     279.  00:8754                      	
-     280.  00:8754  C3 6E 84            	JP		pinta_array
-     281.  00:8757                      fin_pinta_puerta_der:
-     282.  00:8757                      
-     283.  00:8757                      	
-     284.  00:8757                      ;;=====================================================
-     285.  00:8757                      ;;PINTA_PUERTA_IZQ
-     286.  00:8757                      ;;=====================================================	
-     287.  00:8757                      ; función: 	pinta la puerta de la izquierda
-     288.  00:8757                      ; entrada: 	puerta_izquierda
-     289.  00:8757                      ; salida: 	-
-     290.  00:8757                      ; toca:		HL,BC, DE
-     291.  00:8757                      pinta_puerta_izq:
-     292.  00:8757  DD 21 99 86         	LD		IX, puerta_izquierda
-     293.  00:875B  CD 61 87            	CALL	actualiza_variables_pinta_array
-     294.  00:875E                      	
-     295.  00:875E  C3 6E 84            	JP		pinta_array
-     296.  00:8761                      fin_pinta_puerta_izq:
-     297.  00:8761                      
-     298.  00:8761                      
-     299.  00:8761                      ;;=====================================================
-     300.  00:8761                      ;;FIN_ACTUALIZA_VARIABLES_PINTA_ARRAY
-     301.  00:8761                      ;;=====================================================	
-     302.  00:8761                      ; función: 	como el código es el mismo en esta subrutia se actualizan los valores de wordaux2, wordaux1, byteaux1, byteaux2
-     303.  00:8761                      ; entrada: 	IX apuntando a la estructura de una puerta
-     304.  00:8761                      ; salida: 	-
-     305.  00:8761                      ; toca:		A,HL,BC, DE
-     306.  00:8761                      actualiza_variables_pinta_array:
-     307.  00:8761  DD 6E 07            	LD		 L, (IX + ESTRUCTURA_PUERTA.tiles_puerta)			;guardo puntero al array a pintar (como pasar por referencia)
-     308.  00:8764  DD 66 08            	LD		 H, (IX + ESTRUCTURA_PUERTA.tiles_puerta + 1)
-     309.  00:8767  22 B0 84            	LD		(wordaux2), HL					;en la variable wordaux2
-     310.  00:876A                      	
-     311.  00:876A  DD 6E 09            	LD		 L, (IX + ESTRUCTURA_PUERTA.pos_en_tilemap)			;guardo puntero al array a pintar (como pasar por referencia)
-     312.  00:876D  DD 66 0A            	LD		 H, (IX + ESTRUCTURA_PUERTA.pos_en_tilemap + 1)
-     313.  00:8770  22 AE 84            	LD		(wordaux1), HL					;guarda valor pos tilemap en wordaux1
-     314.  00:8773                      	
-     315.  00:8773  DD 7E 0B            	LD		 A, (IX + ESTRUCTURA_PUERTA.alto)	;nº de filas
-     316.  00:8776  32 B2 84            	LD		(byteaux1), A
-     317.  00:8779                      	
-     318.  00:8779  DD 7E 0C            	LD		 A, (IX + ESTRUCTURA_PUERTA.ancho)	;nº de columnas
-     319.  00:877C  32 B3 84            	LD		(byteaux2), A
-     320.  00:877F                      fin_actualiza_variables_pinta_array:
-     321.  00:877F  C9                  	RET
-     322.  00:8780                      
-     143   00:8780                      	
-     144   00:8780                      	include "subr_sprites.asm"
+     142.  00:8705                      ;;=====================================================
+     143.  00:8705                      ;;CARGA_DATOS_PUERTA
+     144.  00:8705                      ;;=====================================================	
+     145.  00:8705                      ; función: 	carga los datos de la puerta de una variable con los datos de la puerta
+     146.  00:8705                      ; entrada
+     147.  00:8705                      ;  hl: origen de datos
+     148.  00:8705                      ;  de: destino de datos
+     149.  00:8705                      ; salida: 	-
+     150.  00:8705                      ; toca:		HL, DE, BC
+     151.  00:8705                      carga_datos_puerta:
+     152.  00:8705  01 0D 00            	LD		BC, ESTRUCTURA_PUERTA ;bytes a mover (el nombre de la estructura equivale al tamaño de la estructura en bytes)
+     153.  00:8708  ED B0               	LDIR
+     154.  00:870A                      fin_carga_datos_puerta:
+     155.  00:870A  C9                  	RET
+     156.  00:870B                      
+     157.  00:870B                      
+     158.  00:870B                      ;;=====================================================
+     159.  00:870B                      ;;ACCION_PUERTA_ARRIBA
+     160.  00:870B                      ;;=====================================================	
+     161.  00:870B                      ; función: 	
+     162.  00:870B                      ; entrada: 	
+     163.  00:870B                      ; salida: 	
+     164.  00:870B                      accion_puerta_arriba:
+     165.  00:870B                      fin_accion_puerta_arriba:
+     166.  00:870B  C9                  	RET
+     167.  00:870C                      
+     168.  00:870C                      
+     169.  00:870C                      ;;=====================================================
+     170.  00:870C                      ;;ACCION_PUERTA_DERECHA
+     171.  00:870C                      ;;=====================================================	
+     172.  00:870C                      ; función: 	
+     173.  00:870C                      ; entrada: 	
+     174.  00:870C                      ; salida: 	
+     175.  00:870C                      accion_puerta_derecha:
+     176.  00:870C                      fin_accion_puerta_derecha:
+     177.  00:870C  C9                  	RET
+     178.  00:870D                      	
+     179.  00:870D                      
+     180.  00:870D                      ;;=====================================================
+     181.  00:870D                      ;;ACCION_PUERTA_ABAJO
+     182.  00:870D                      ;;=====================================================	
+     183.  00:870D                      ; función: 	
+     184.  00:870D                      ; entrada: 	
+     185.  00:870D                      ; salida: 	
+     186.  00:870D                      accion_puerta_abajo:
+     187.  00:870D                      fin_accion_puerta_abajo:
+     188.  00:870D  C9                  	RET
+     189.  00:870E                      	
+     190.  00:870E                      	
+     191.  00:870E                      ;;=====================================================
+     192.  00:870E                      ;;ACCION_PUERTA_IZQUIERDA
+     193.  00:870E                      ;;=====================================================	
+     194.  00:870E                      ; función: 	
+     195.  00:870E                      ; entrada: 	
+     196.  00:870E                      ; salida: 	
+     197.  00:870E                      accion_puerta_izquierda:
+     198.  00:870E                      fin_accion_puerta_izquierda:
+     199.  00:870E  C9                  	RET
+     200.  00:870F                      	
+     201.  00:870F                      
+     202.  00:870F                      ;;=====================================================
+     203.  00:870F                      ;;PINTA_PUERTAS
+     204.  00:870F                      ;;=====================================================	
+     205.  00:870F                      ; función: 	examina A y mira si tiene que pintar puertas de los lados, arriba o abrajo o las escaleras (o no)
+     206.  00:870F                      ; entrada: 	habitacion_actual 1 escalera 1 puerta arriba 1 pu der 1 pu aba 1 pu izq (si es 0 pinta pared)
+     207.  00:870F                      ; salida: 	-
+     208.  00:870F                      ; toca:		todo
+     209.  00:870F                      pinta_puertas:
+     210.  00:870F  CD B4 81            	CALL	pinta_parte_superior_pantalla	;pinta pasillo y paredes
+     211.  00:8712                      
+     212.  00:8712  CD 03 81            	CALL	localiza_info_habitacion	;busca qué puertas debe pintar y lo mete en habitación_actual
+     213.  00:8715                      	
+     214.  00:8715  3A 14 A5            	LD		 A, (habitacion_actual)
+     215.  00:8718                      ;	BIT		 6, A
+     216.  00:8718                      ;	CALL	nz, pinta_escalera
+     217.  00:8718                      
+     218.  00:8718  3A 14 A5            	LD		 A, (habitacion_actual)
+     219.  00:871B  CB 5F               	BIT		 3, A
+     220.  00:871D  C4 43 87            	CALL	nz, pinta_puerta_arr
+     221.  00:8720                      
+     222.  00:8720  3A 14 A5            	LD		 A, (habitacion_actual)
+     223.  00:8723  CB 57               	BIT		 2, A
+     224.  00:8725  C4 4D 87            	CALL	nz, pinta_puerta_der
+     225.  00:8728                      
+     226.  00:8728  3A 14 A5            	LD		 A, (habitacion_actual)
+     227.  00:872B  CB 4F               	BIT		 1, A
+     228.  00:872D  C4 39 87            	CALL	nz, pinta_puerta_aba
+     229.  00:8730                      
+     230.  00:8730  3A 14 A5            	LD		 A, (habitacion_actual)
+     231.  00:8733  CB 47               	BIT		 0, A
+     232.  00:8735  C4 57 87            	CALL	nz, pinta_puerta_izq
+     233.  00:8738                      fin_pinta_puertas:
+     234.  00:8738  C9                  	RET
+     235.  00:8739                      
+     236.  00:8739                      
+     237.  00:8739                      ;;=====================================================
+     238.  00:8739                      ;;PINTA_PUERTA_ABA
+     239.  00:8739                      ;;=====================================================	
+     240.  00:8739                      ; función: 	pinta la puerta de abajo
+     241.  00:8739                      ; entrada: 	puerta_abajo
+     242.  00:8739                      ; salida: 	-
+     243.  00:8739                      ; toca:		A, HL,BC, DE
+     244.  00:8739                      pinta_puerta_aba:
+     245.  00:8739  DD 21 8C 86         	LD		IX, puerta_abajo
+     246.  00:873D  CD 61 87            	CALL	actualiza_variables_pinta_array
+     247.  00:8740                      		
+     248.  00:8740  C3 6E 84            	JP		pinta_array
+     249.  00:8743                      fin_pinta_puerta_aba:
+     250.  00:8743                      
+     251.  00:8743                      
+     252.  00:8743                      ;;=====================================================
+     253.  00:8743                      ;;PINTA_PUERTA_ARR
+     254.  00:8743                      ;;=====================================================	
+     255.  00:8743                      ; función: 	pinta la puerta de arriba
+     256.  00:8743                      ; entrada: 	puerta_arriba
+     257.  00:8743                      ; salida: 	-
+     258.  00:8743                      ; toca:		IX
+     259.  00:8743                      pinta_puerta_arr:
+     260.  00:8743  DD 21 72 86         	LD		IX, puerta_arriba
+     261.  00:8747  CD 61 87            	CALL	actualiza_variables_pinta_array
+     262.  00:874A                      	
+     263.  00:874A  C3 6E 84            	JP		pinta_array
+     264.  00:874D                      fin_pinta_puerta_arr:
+     265.  00:874D                      
+     266.  00:874D                      
+     267.  00:874D                      ;;=====================================================
+     268.  00:874D                      ;;PINTA_PUERTA_DER
+     269.  00:874D                      ;;=====================================================	
+     270.  00:874D                      ; función: 	pinta la puerta de la derecha
+     271.  00:874D                      ; entrada: 	puerta_derecha
+     272.  00:874D                      ; salida: 	-
+     273.  00:874D                      ; toca:		HL,BC, DE
+     274.  00:874D                      pinta_puerta_der:
+     275.  00:874D  DD 21 7F 86         	LD		IX, puerta_derecha
+     276.  00:8751  CD 61 87            	CALL	actualiza_variables_pinta_array
+     277.  00:8754                      	
+     278.  00:8754  C3 6E 84            	JP		pinta_array
+     279.  00:8757                      fin_pinta_puerta_der:
+     280.  00:8757                      
+     281.  00:8757                      	
+     282.  00:8757                      ;;=====================================================
+     283.  00:8757                      ;;PINTA_PUERTA_IZQ
+     284.  00:8757                      ;;=====================================================	
+     285.  00:8757                      ; función: 	pinta la puerta de la izquierda
+     286.  00:8757                      ; entrada: 	puerta_izquierda
+     287.  00:8757                      ; salida: 	-
+     288.  00:8757                      ; toca:		HL,BC, DE
+     289.  00:8757                      pinta_puerta_izq:
+     290.  00:8757  DD 21 99 86         	LD		IX, puerta_izquierda
+     291.  00:875B  CD 61 87            	CALL	actualiza_variables_pinta_array
+     292.  00:875E                      	
+     293.  00:875E  C3 6E 84            	JP		pinta_array
+     294.  00:8761                      fin_pinta_puerta_izq:
+     295.  00:8761                      
+     296.  00:8761                      
+     297.  00:8761                      ;;=====================================================
+     298.  00:8761                      ;;FIN_ACTUALIZA_VARIABLES_PINTA_ARRAY
+     299.  00:8761                      ;;=====================================================	
+     300.  00:8761                      ; función: 	como el código es el mismo en esta subrutia se actualizan los valores de wordaux2, wordaux1, byteaux1, byteaux2
+     301.  00:8761                      ; entrada: 	IX apuntando a la estructura de una puerta
+     302.  00:8761                      ; salida: 	-
+     303.  00:8761                      ; toca:		A,HL,BC, DE
+     304.  00:8761                      actualiza_variables_pinta_array:
+     305.  00:8761  DD 6E 07            	LD		 L, (IX + ESTRUCTURA_PUERTA.tiles_puerta)			;guardo puntero al array a pintar (como pasar por referencia)
+     306.  00:8764  DD 66 08            	LD		 H, (IX + ESTRUCTURA_PUERTA.tiles_puerta + 1)
+     307.  00:8767  22 B0 84            	LD		(wordaux2), HL					;en la variable wordaux2
+     308.  00:876A                      	
+     309.  00:876A  DD 6E 09            	LD		 L, (IX + ESTRUCTURA_PUERTA.pos_en_tilemap)			;guardo puntero al array a pintar (como pasar por referencia)
+     310.  00:876D  DD 66 0A            	LD		 H, (IX + ESTRUCTURA_PUERTA.pos_en_tilemap + 1)
+     311.  00:8770  22 AE 84            	LD		(wordaux1), HL					;guarda valor pos tilemap en wordaux1
+     312.  00:8773                      	
+     313.  00:8773  DD 7E 0B            	LD		 A, (IX + ESTRUCTURA_PUERTA.alto)	;nº de filas
+     314.  00:8776  32 B2 84            	LD		(byteaux1), A
+     315.  00:8779                      	
+     316.  00:8779  DD 7E 0C            	LD		 A, (IX + ESTRUCTURA_PUERTA.ancho)	;nº de columnas
+     317.  00:877C  32 B3 84            	LD		(byteaux2), A
+     318.  00:877F                      fin_actualiza_variables_pinta_array:
+     319.  00:877F  C9                  	RET
+     320.  00:8780                      
+     144   00:8780                      	
+     145   00:8780                      	include "subr_sprites.asm"
        1.  00:8780                      
        2.  00:8780                      ;;=====================================================
        3.  00:8780                      ;;SUBRUTINAS ENCARGADAS DE MANEJAR LOS SPRITES
@@ -2203,8 +2202,8 @@ Errors: 0
      146.  00:87F3                      f;in_check_player:
      147.  00:87F3  C9                  	RET
      148.  00:87F4                      
-     145   00:87F4                      	
-     146   00:87F4                      	include "subr_teclado_joy.asm"
+     146   00:87F4                      	
+     147   00:87F4                      	include "subr_teclado_joy.asm"
        1.  00:87F4                      ;;=====================================================
        2.  00:87F4                      ;;SUBRUTINAS QUE CAPTURAN EL JOYSTICK Y TECLADO Y MUEVEN PUNTO DE MIRA
        3.  00:87F4                      ;;=====================================================
@@ -2496,8 +2495,8 @@ Errors: 0
      288.  00:88DA                      
      289.  00:88DA                      
      290.  00:88DA                      
-     147   00:88DA                      	
-     148   00:88DA                      	include "subr_sonido.asm"
+     148   00:88DA                      	
+     149   00:88DA                      	include "subr_sonido.asm"
        1.  00:88DA                      
        2.  00:88DA                      ;;=====================================================
        3.  00:88DA                      ;;SUBRUTINAS PARA SONIDOS
@@ -3774,8 +3773,8 @@ Errors: 0
       71.  00:994E                      sfx_bank:
       72.  00:994E  (004B)              	incbin "demo.afb"
       73.  00:9999                      
-     149   00:9999                      	
-     150   00:9999                      	include "subr_ayudas.asm"
+     150   00:9999                      	
+     151   00:9999                      	include "subr_ayudas.asm"
        1.  00:9999                      ;;=====================================================
        2.  00:9999                      ;;SUBRUTINAS MANEJO DE OBJETOS AYUDA
        3.  00:9999                      ;;=====================================================	
@@ -4030,16 +4029,16 @@ Errors: 0
      252.  00:9AB3  C9                  	RET
      253.  00:9AB4                      
      254.  00:9AB4                      
-     151   00:9AB4                      	
-     152   00:9AB4                      
-     153   00:9AB4                      ;;=====================================================
-     154   00:9AB4                      ;;DEFINICIÓN DE SUBRUTINAS DE FERNANDO PARA COMPRESIÓN Y SONIDO
-     155   00:9AB4                      ;;=====================================================
-     156   00:9AB4                      ;Este include lleva la rutina de descompresión de ROM/RAM a VRAM de pletter
-     157   00:9AB4                      ;Está adaptada de la original a sjasm
-     158   00:9AB4                      ;	HL = RAM/ROM source	; DE = VRAM destination
-     159   00:9AB4                      depack_VRAM:
-     160   00:9AB4                      	include "PL_VRAM_Depack_SJASM.asm"
+     152   00:9AB4                      	
+     153   00:9AB4                      
+     154   00:9AB4                      ;;=====================================================
+     155   00:9AB4                      ;;DEFINICIÓN DE SUBRUTINAS DE FERNANDO PARA COMPRESIÓN Y SONIDO
+     156   00:9AB4                      ;;=====================================================
+     157   00:9AB4                      ;Este include lleva la rutina de descompresión de ROM/RAM a VRAM de pletter
+     158   00:9AB4                      ;Está adaptada de la original a sjasm
+     159   00:9AB4                      ;	HL = RAM/ROM source	; DE = VRAM destination
+     160   00:9AB4                      depack_VRAM:
+     161   00:9AB4                      	include "PL_VRAM_Depack_SJASM.asm"
        1.  00:9AB4                      ;-----------------------------------------------------------
        2.  00:9AB4                      ; Pletter v0.5b VRAM Depacker v1.1 - 16Kb version
        3.  00:9AB4                      ; HL = RAM/ROM source ; DE = VRAM destination
@@ -4199,13 +4198,13 @@ Errors: 0
      157.  00:9B8E  2B 9B               	dw	mode5
      158.  00:9B90  25 9B               	dw	mode6
      159.  00:9B92  1F 9B               	dw	mode7
-     161   00:9B94                      
      162   00:9B94                      
-     163   00:9B94                      	
-     164   00:9B94                      ;;=====================================================
-     165   00:9B94                      ;;DEFINICIÓN DE ESTRUCTURAS
-     166   00:9B94                      ;;=====================================================		
-     167   00:9B94                      	include "estructuras.asm"
+     163   00:9B94                      
+     164   00:9B94                      	
+     165   00:9B94                      ;;=====================================================
+     166   00:9B94                      ;;DEFINICIÓN DE ESTRUCTURAS
+     167   00:9B94                      ;;=====================================================		
+     168   00:9B94                      	include "estructuras.asm"
        1.  00:9B94                      ;;=====================================================
        2.  00:9B94                      ;;DEFINICIÓN DE ESTRUCTURAS
        3.  00:9B94                      ;;=====================================================
@@ -4303,11 +4302,11 @@ Errors: 0
       95.  00:9B94                      
       96.  00:9B94                      
       97.  00:9B94                      
-     168   00:9B94                      	
-     169   00:9B94                      ;;=====================================================
-     170   00:9B94                      ;;DEFINICIÓN DE VARIABLES
-     171   00:9B94                      ;;=====================================================		
-     172   00:9B94                      	include "sprites.asm"
+     169   00:9B94                      	
+     170   00:9B94                      ;;=====================================================
+     171   00:9B94                      ;;DEFINICIÓN DE VARIABLES
+     172   00:9B94                      ;;=====================================================		
+     173   00:9B94                      	include "sprites.asm"
        1.  00:9B94                      ;;=====================================================
        2.  00:9B94                      ;;DEFINICIÓN DE SPRITES
        3.  00:9B94                      ;;=====================================================	
@@ -5140,8 +5139,8 @@ Errors: 0
      526.  00:A514                      	
      527.  00:A514                      	
      528.  00:A514                      	
-     173   00:A514                      	
-     174   00:A514                      	include "habitaciones.asm"
+     174   00:A514                      	
+     175   00:A514                      	include "habitaciones.asm"
        1.  00:A514                      ;;=====================================================
        2.  00:A514                      ;;DEFINICIÓN DE HABITACIONES x NIVEL
        3.  00:A514                      ;;=====================================================	
@@ -5184,36 +5183,36 @@ Errors: 0
       40.  00:A519                      
       41.  00:A519                      habitaciones_juego:
       42.  00:A519                      habitaciones_nivel0:
-      43.  00:A519                      	db  00010000b,#00,00010001b,#01,00010101b,11000001b,00000010b,#03,00001000b,#04,00001001b,#05,00001100b,#06,00000000b,#CD ;primera fila
-      43.  00:A519  10 00 11 01 15 C1 02 03 08 04 09 05 0C 06 00 CD 
-      44.  00:A529                      	db  00010000b,#10,#11,#11,#12,#12,#13,#13,#14,#14,#15,#15,#16,#16,#FF,#00
-      44.  00:A529  10 10 11 11 12 12 13 13 14 14 15 15 16 16 FF 00 
-      45.  00:A539                      	db  #20,#20,#21,#21,#22,#22,#23,#23,#24,#24,#25,#25,#26,#26,#FF,#00
-      45.  00:A539  20 20 21 21 22 22 23 23 24 24 25 25 26 26 FF 00 
-      46.  00:A549                      	db  #30,#30,#31,#31,#32,#32,#33,#33,#34,#34,#35,#35,#36,#36,#FF,#00
-      46.  00:A549  30 30 31 31 32 32 33 33 34 34 35 35 36 36 FF 00 
-      47.  00:A559                      	db  00000000b,#00,00000001b,#01,00001111b,#02,00000011b,#03,00001000b,#04,00001001b,#05,00001100b,#06,#FF,#00
-      47.  00:A559  00 00 01 01 0F 02 03 03 08 04 09 05 0C 06 FF 00 
-      48.  00:A569                      	db  #50,#50,#51,#51,#52,#52,#53,#53,#54,#54,#55,#55,#56,#56,#FF,#00
-      48.  00:A569  50 50 51 51 52 52 53 53 54 54 55 55 56 56 FF 00 
-      49.  00:A579                      	db  00000000b,#00,00000001b,#01,00001111b,#02,00000011b,#03,00001000b,#04,00001001b,#05,00001100b,#06,#FF,#00	;ultima fila
-      49.  00:A579  00 00 01 01 0F 02 03 03 08 04 09 05 0C 06 FF 00 
+      43.  00:A519                      	db  00000000b,#C0,00000000b,#C0,00000000b,#C0,00001000b,#C0,00001000b,#C0,00000000b,#C0,00000000b,#C0,#00,#00 	;primera fila
+      43.  00:A519  00 C0 00 C0 00 C0 08 C0 08 C0 00 C0 00 C0 00 00 
+      44.  00:A529                      	db  00000000b,#C0,00001100b,#C0,00001101b,#C0,00001111b,#C0,00001101b,#C0,00001001b,#C0,00000000b,#C0,#00,#00
+      44.  00:A529  00 C0 0C C0 0D C0 0F C0 0D C0 09 C0 00 C0 00 00 
+      45.  00:A539                      	db  00000000b,#C0,00001110b,#C0,00001111b,#C0,00001111b,#C0,00001111b,#C0,00001011b,#C0,00000000b,#C0,#00,#00
+      45.  00:A539  00 C0 0E C0 0F C0 0F C0 0F C0 0B C0 00 C0 00 00 
+      46.  00:A549                      	db  00000000b,#C0,00001010b,#C0,00001010b,#C0,00000010b,#C0,00001010b,#C0,00001010b,#C0,00000000b,#C0,#00,#00
+      46.  00:A549  00 C0 0A C0 0A C0 02 C0 0A C0 0A C0 00 C0 00 00 
+      47.  00:A559                      	db  00000000b,#C0,00001010b,#C0,00001110b,#C0,00000101b,#C0,00001011b,#C0,00001010b,#C0,00000000b,#C0,#00,#00
+      47.  00:A559  00 C0 0A C0 0E C0 05 C0 0B C0 0A C0 00 C0 00 00 
+      48.  00:A569                      	db  00000000b,#C0,00000110b,#C0,00000111b,#C0,00000101b,#C0,00000111b,#C0,00000011b,#C0,00000000b,#C0,#00,#00
+      48.  00:A569  00 C0 06 C0 07 C0 05 C0 07 C0 03 C0 00 C0 00 00 
+      49.  00:A579                      	db  00000000b,#C0,00000000b,#C0,00000000b,#C0,01000000b,#C0,00001000b,#C0,00000000b,#C0,00000000b,#C0,#00,#00	;última fila
+      49.  00:A579  00 C0 00 C0 00 C0 40 C0 08 C0 00 C0 00 C0 00 00 
       50.  00:A589                      	
       51.  00:A589                      habitaciones_nivel1:
-      52.  00:A589                      	db  00010000b,#00,00000001b,#01,00000010b,#02,00000011b,#03,00001000b,#04,00001001b,#05,00001100b,#06,#FF,#00 ;primera fila
-      52.  00:A589  10 00 01 01 02 02 03 03 08 04 09 05 0C 06 FF 00 
-      53.  00:A599                      	db  #17,#10,#11,#11,#12,#12,#13,#13,#14,#14,#15,#15,#16,#16,#FF,#00
-      53.  00:A599  17 10 11 11 12 12 13 13 14 14 15 15 16 16 FF 00 
-      54.  00:A5A9                      	db  #20,#20,#21,#21,#22,#22,#23,#23,#24,#24,#25,#25,#26,#26,#FF,#00
-      54.  00:A5A9  20 20 21 21 22 22 23 23 24 24 25 25 26 26 FF 00 
-      55.  00:A5B9                      	db  #30,#30,#31,#31,#32,#32,#33,#33,#34,#34,#35,#35,#36,#36,#FF,#00
-      55.  00:A5B9  30 30 31 31 32 32 33 33 34 34 35 35 36 36 FF 00 
-      56.  00:A5C9                      	db  00000000b,#00,00000001b,#01,00001111b,#02,00000011b,#03,00001000b,#04,00001001b,#05,00001100b,#06,#FF,#00
-      56.  00:A5C9  00 00 01 01 0F 02 03 03 08 04 09 05 0C 06 FF 00 
-      57.  00:A5D9                      	db  #50,#50,#51,#51,#52,#52,#53,#53,#54,#54,#55,#55,#56,#56,#FF,#00
-      57.  00:A5D9  50 50 51 51 52 52 53 53 54 54 55 55 56 56 FF 00 
-      58.  00:A5E9                      	db  00000000b,#00,00000001b,#01,00000010b,#02,00000011b,#03,00001000b,#04,00001001b,#05,00001100b,#06,#FF,#00	;ultima fila
-      58.  00:A5E9  00 00 01 01 02 02 03 03 08 04 09 05 0C 06 FF 00 
+      52.  00:A589                      	db  00000000b,#C0,00000000b,#C0,00000000b,#C0,00001000b,#C0,00001000b,#C0,00000000b,#C0,00000000b,#C0,#00,#00 	;primera fila
+      52.  00:A589  00 C0 00 C0 00 C0 08 C0 08 C0 00 C0 00 C0 00 00 
+      53.  00:A599                      	db  00000000b,#C0,00001100b,#C0,00001101b,#C0,00001111b,#C0,00001101b,#C0,00001001b,#C0,00000000b,#C0,#00,#00
+      53.  00:A599  00 C0 0C C0 0D C0 0F C0 0D C0 09 C0 00 C0 00 00 
+      54.  00:A5A9                      	db  00000000b,#C0,00001110b,#C0,00001111b,#C0,00001111b,#C0,00001111b,#C0,00001011b,#C0,00000000b,#C0,#00,#00
+      54.  00:A5A9  00 C0 0E C0 0F C0 0F C0 0F C0 0B C0 00 C0 00 00 
+      55.  00:A5B9                      	db  00000000b,#C0,00001010b,#C0,00001010b,#C0,00000010b,#C0,00001010b,#C0,00001010b,#C0,00000000b,#C0,#00,#00
+      55.  00:A5B9  00 C0 0A C0 0A C0 02 C0 0A C0 0A C0 00 C0 00 00 
+      56.  00:A5C9                      	db  00000000b,#C0,00001010b,#C0,00001110b,#C0,00000101b,#C0,00001011b,#C0,00001010b,#C0,00000000b,#C0,#00,#00
+      56.  00:A5C9  00 C0 0A C0 0E C0 05 C0 0B C0 0A C0 00 C0 00 00 
+      57.  00:A5D9                      	db  00000000b,#C0,00000110b,#C0,00000111b,#C0,00000101b,#C0,00000111b,#C0,00000011b,#C0,00000000b,#C0,#00,#00
+      57.  00:A5D9  00 C0 06 C0 07 C0 05 C0 07 C0 03 C0 00 C0 00 00 
+      58.  00:A5E9                      	db  00000000b,#C0,00000000b,#C0,00000000b,#C0,01000000b,#C0,00001000b,#C0,00000000b,#C0,00000000b,#C0,#00,#00	;última fila
+      58.  00:A5E9  00 C0 00 C0 00 C0 40 C0 08 C0 00 C0 00 C0 00 00 
       59.  00:A5F9                      	
       60.  00:A5F9                      habitaciones_nivel2:
       61.  00:A5F9                      	db  00000000b,#00,00000001b,#01,00000010b,#02,00000011b,#03,00001000b,#04,00001001b,#05,00001100b,#06,#FF,#00 ;primera fila
@@ -5296,8 +5295,8 @@ Errors: 0
      103.  00:A819  00 00 01 80 0F 02 03 03 08 04 09 05 0C 06 FF 00 
      104.  00:A829                      
      105.  00:A829                      
-     175   00:A829                      	
-     176   00:A829                      	include "variables.asm"
+     176   00:A829                      	
+     177   00:A829                      	include "variables.asm"
        1.  00:A829                      ;;=====================================================
        2.  00:A829                      ;;DEFINICIÓN DE VARIABLES
        3.  00:A829                      ;;=====================================================
@@ -5523,11 +5522,11 @@ Errors: 0
      217.  00:AAA8                      
      218.  00:AAA8                      
      219.  00:AAA8                      
-     177   00:AAA8                      	
-     178   00:AAA8                      ;;=====================================================
-     179   00:AAA8                      ;;DEFINICIÓN DE PANTALLAS
-     180   00:AAA8                      ;;=====================================================		
-     181   00:AAA8                      	include "pantallas.asm"
+     178   00:AAA8                      	
+     179   00:AAA8                      ;;=====================================================
+     180   00:AAA8                      ;;DEFINICIÓN DE PANTALLAS
+     181   00:AAA8                      ;;=====================================================		
+     182   00:AAA8                      	include "pantallas.asm"
        1.  00:AAA8                      ;;=====================================================
        2.  00:AAA8                      ;;DEFINICIÓN DE PANTALLAS
        3.  00:AAA8                      ;;=====================================================		
@@ -5569,10 +5568,10 @@ Errors: 0
       39.  00:BC0A  (0062)              tiles_mapa_marcador:		incbin "pantallas/marcador.map.bin.plet5"
       40.  00:BC6C                      
       41.  00:BC6C                      ;NOTA: FALTARÍAN PANTALLAS ESPECIALES (POR DEFINIR)
-     182   00:BC6C                      
      183   00:BC6C                      
-     184   00:BC6C                      	
-     185   00:BC6C                      END:
+     184   00:BC6C                      
+     185   00:BC6C                      	
+     186   00:BC6C                      END:
 
     LABELS
 -------------------------------------------------
