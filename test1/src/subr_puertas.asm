@@ -213,20 +213,23 @@ pinta_puertas:
 
 	CALL	localiza_info_habitacion	;busca qué puertas debe pintar y lo mete en habitación_actual
 	
-	LD		 A, (habitacion_actual)		;se mete en A porque la función pide A y para no buscar el valor 4 veces
-
+	LD		 A, (habitacion_actual)
 ;	BIT		 6, A
 ;	CALL	nz, pinta_escalera
 
+	LD		 A, (habitacion_actual)
 	BIT		 3, A
 	CALL	nz, pinta_puerta_arr
 
+	LD		 A, (habitacion_actual)
 	BIT		 2, A
 	CALL	nz, pinta_puerta_der
 
+	LD		 A, (habitacion_actual)
 	BIT		 1, A
 	CALL	nz, pinta_puerta_aba
-	
+
+	LD		 A, (habitacion_actual)
 	BIT		 0, A
 	CALL	nz, pinta_puerta_izq
 fin_pinta_puertas:
@@ -241,12 +244,8 @@ fin_pinta_puertas:
 ; salida: 	-
 ; toca:		A, HL,BC, DE
 pinta_puerta_aba:
-	EX		AF, AF'
-	
 	LD		IX, puerta_abajo
 	CALL	actualiza_variables_pinta_array
-	
-	EX		AF, AF'
 		
 	JP		pinta_array
 fin_pinta_puerta_aba:
@@ -260,12 +259,8 @@ fin_pinta_puerta_aba:
 ; salida: 	-
 ; toca:		IX
 pinta_puerta_arr:
-	EX		AF, AF'
-	
 	LD		IX, puerta_arriba
 	CALL	actualiza_variables_pinta_array
-
-	EX		AF, AF'
 	
 	JP		pinta_array
 fin_pinta_puerta_arr:
@@ -279,12 +274,8 @@ fin_pinta_puerta_arr:
 ; salida: 	-
 ; toca:		HL,BC, DE
 pinta_puerta_der:
-	EX		AF, AF'
-	
 	LD		IX, puerta_derecha
 	CALL	actualiza_variables_pinta_array
-	
-	EX		AF, AF'
 	
 	JP		pinta_array
 fin_pinta_puerta_der:
@@ -298,12 +289,8 @@ fin_pinta_puerta_der:
 ; salida: 	-
 ; toca:		HL,BC, DE
 pinta_puerta_izq:
-	EX		AF, AF'
-	
 	LD		IX, puerta_izquierda
 	CALL	actualiza_variables_pinta_array
-
-	EX		AF, AF'
 	
 	JP		pinta_array
 fin_pinta_puerta_izq:
