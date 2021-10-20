@@ -77,7 +77,7 @@ escena				DB		0	;(va entre 0 y 4 - tiles 164, 165, 164, 166)	5
 cont_sig_escena		DB		0	;	6
 	ENDSTRUCT;ESTRUCTURA_ESQUELETO
 	
-	STRUCT	ESTRUCTURA_PUERTA
+	STRUCT ESTRUCTURA_PUERTA	;también servirá para la escalera
 activo				DB		0	;0 no activa <>0 activo
 posx				DB		0	;punto x de la puerta para cuando se dispare encima
 posy				DB		0	;punto y de la puerta para cuando se dispare encima
@@ -86,6 +86,8 @@ radioy				DB		0	;radio y de la puerta para cuando se dispare encima
 accion				DW		0	;función para acción de cada tipo de puerta
 tiles_puerta		DW		0	;puntero al array con los tiles de las puertas para wordaux2
 pos_en_tilemap		DW		0	;calcula posición en tilemap para wordaux1
+alto				DB		0	;alto en tiles del dibujo de la puerta (filas)
+ancho				DB		0	;ancho en tiles del dibujo de la puerta (columnas)
 	ENDSTRUCT;ESTRUCTURA_PUERTA
 
 

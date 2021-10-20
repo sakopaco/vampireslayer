@@ -53,6 +53,8 @@ datos_puerta_arriba:
 					DW		accion_puerta_arriba	;función para acción de cada tipo de puerta
 					DW		array_puerta_arriba		;puntero al array con los tiles de las puertas
 					DW		TILMAP + POSPUERARRI
+					DB		5			;alto/filas
+					DB		4			;ancho/columnas
 
 datos_puerta_derecha:
 					DB		#00;0		;0 no activa <>0 activo
@@ -63,6 +65,8 @@ datos_puerta_derecha:
 					DW		accion_puerta_arriba	;función para acción de cada tipo de puerta
 					DW		array_puerta_derecha	;puntero al array con los tiles de las puertas
 					DW		TILMAP + POSPUERDERE
+					DB		7			;alto/filas
+					DB		3			;ancho/columnas
 					
 datos_puerta_abajo:
 					DB		#00;0		;0 no activa <>0 activo
@@ -73,6 +77,8 @@ datos_puerta_abajo:
 					DW		accion_puerta_arriba	;función para acción de cada tipo de puerta
 					DW		array_puerta_abajo		;puntero al array con los tiles de las puertas
 					DW		TILMAP + POSPUERABAJ
+					DB		1			;alto/filas
+					DB		4			;ancho/columnas
 
 datos_puerta_izquierda:
 					DB		#00;0		;0 no activa <>0 activo
@@ -83,6 +89,8 @@ datos_puerta_izquierda:
 					DW		accion_puerta_arriba	;función para acción de cada tipo de puerta
 					DW		array_puerta_izquierda	;puntero al array con los tiles de las puertas
 					DW		TILMAP + POSPUERIZQU
+					DB		7			;alto/filas
+					DB		3			;ancho/columnas
 
 
 
@@ -231,20 +239,15 @@ fin_pinta_puertas:
 ; función: 	pinta la puerta de abajo
 ; entrada: 	puerta_abajo
 ; salida: 	-
-; toca:		HL,BC, DE
+; toca:		A, HL,BC, DE
 pinta_puerta_aba:
-	PUSH	AF
+	EX		AF, AF'
 	
 	LD		IX, puerta_abajo
-	CALL	actualiza_wordaux1y2
-
-	LD		 A, 1							;nº de filas
-	LD		(byteaux1), A
-	LD		 A, 4							;nº de columnas
-	LD		(byteaux2), A
+	CALL	actualiza_variables_pinta_array
 	
-	POP		AF
-	
+	EX		AF, AF'
+		
 	JP		pinta_array
 fin_pinta_puerta_aba:
 
@@ -257,17 +260,12 @@ fin_pinta_puerta_aba:
 ; salida: 	-
 ; toca:		IX
 pinta_puerta_arr:
-	PUSH	AF
+	EX		AF, AF'
 	
 	LD		IX, puerta_arriba
-	CALL	actualiza_wordaux1y2
-	
-	LD		 A, 5							;nº de filas
-	LD		(byteaux1), A
-	LD		 A, 4							;nº de columnas
-	LD		(byteaux2), A
-	
-	POP		AF
+	CALL	actualiza_variables_pinta_array
+
+	EX		AF, AF'
 	
 	JP		pinta_array
 fin_pinta_puerta_arr:
@@ -281,17 +279,12 @@ fin_pinta_puerta_arr:
 ; salida: 	-
 ; toca:		HL,BC, DE
 pinta_puerta_der:
-	PUSH	AF
+	EX		AF, AF'
 	
 	LD		IX, puerta_derecha
-	CALL	actualiza_wordaux1y2
-
-	LD		 A, 7							;nº de filas
-	LD		(byteaux1), A
-	LD		 A, 3							;nº de columnas
-	LD		(byteaux2), A
+	CALL	actualiza_variables_pinta_array
 	
-	POP		AF
+	EX		AF, AF'
 	
 	JP		pinta_array
 fin_pinta_puerta_der:
@@ -305,30 +298,25 @@ fin_pinta_puerta_der:
 ; salida: 	-
 ; toca:		HL,BC, DE
 pinta_puerta_izq:
-	PUSH	AF
+	EX		AF, AF'
 	
 	LD		IX, puerta_izquierda
-	CALL	actualiza_wordaux1y2
+	CALL	actualiza_variables_pinta_array
 
-	LD		 A, 7							;nº de filas
-	LD		(byteaux1), A
-	LD		 A, 3							;nº de columnas
-	LD		(byteaux2), A
-	
-	POP		AF
+	EX		AF, AF'
 	
 	JP		pinta_array
 fin_pinta_puerta_izq:
 
 
 ;;=====================================================
-;;FIN_ACTUALIZA_WORDAUX1Y2
+;;FIN_ACTUALIZA_VARIABLES_PINTA_ARRAY
 ;;=====================================================	
-; función: 	como el código es el mismo en esta subrutia se actualizan los valores de wordaux2, wordaux1
+; función: 	como el código es el mismo en esta subrutia se actualizan los valores de wordaux2, wordaux1, byteaux1, byteaux2
 ; entrada: 	IX apuntando a la estructura de una puerta
 ; salida: 	-
-; toca:		HL,BC, DE
-actualiza_wordaux1y2:
+; toca:		A,HL,BC, DE
+actualiza_variables_pinta_array:
 	LD		 L, (IX + ESTRUCTURA_PUERTA.tiles_puerta)			;guardo puntero al array a pintar (como pasar por referencia)
 	LD		 H, (IX + ESTRUCTURA_PUERTA.tiles_puerta + 1)
 	LD		(wordaux2), HL					;en la variable wordaux2
@@ -336,6 +324,12 @@ actualiza_wordaux1y2:
 	LD		 L, (IX + ESTRUCTURA_PUERTA.pos_en_tilemap)			;guardo puntero al array a pintar (como pasar por referencia)
 	LD		 H, (IX + ESTRUCTURA_PUERTA.pos_en_tilemap + 1)
 	LD		(wordaux1), HL					;guarda valor pos tilemap en wordaux1
-fin_actualiza_wordaux1y2:
+	
+	LD		 A, (IX + ESTRUCTURA_PUERTA.alto)	;nº de filas
+	LD		(byteaux1), A
+	
+	LD		 A, (IX + ESTRUCTURA_PUERTA.ancho)	;nº de columnas
+	LD		(byteaux2), A
+fin_actualiza_variables_pinta_array:
 	RET
 
