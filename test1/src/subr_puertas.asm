@@ -9,31 +9,40 @@
 
 ;; arrays con mapa de tiles de las puertas
 array_puerta_arriba:
-array_puerta_arriba1:		DB	3,1,1,3
-array_puerta_arriba2:		DB	1,1,1,1
-array_puerta_arriba3:		DB	1,1,1,1
-array_puerta_arriba4:		DB	1,1,1,1
-array_puerta_arriba5:		DB	1,1,1,1
+	DB	3,1,1,3
+	DB	1,1,1,1
+	DB	1,1,1,1
+	DB	1,1,1,1
+	DB	1,1,1,1
 
 array_puerta_derecha:
-array_puerta_derecha1:		DB	1,3,3
-array_puerta_derecha2:		DB	1,1,3
-array_puerta_derecha3:		DB	1,1,1
-array_puerta_derecha4:		DB	1,1,1
-array_puerta_derecha5:		DB	1,1,1
-array_puerta_derecha6:		DB	2,1,1
-array_puerta_derecha7:		DB	4,2,1
+	DB	1,3,3
+	DB	1,1,3
+	DB	1,1,1
+	DB	1,1,1
+	DB	1,1,1
+	DB	2,1,1
+	DB	4,2,1
 	
-array_puerta_abajo:			DB	1,1,1,1
+array_puerta_abajo:			
+	DB	1,1,1,1
 
 array_puerta_izquierda:
-array_puerta_izquierda1:	DB	3,3,1
-array_puerta_izquierda2:	DB	3,1,1
-array_puerta_izquierda3:	DB	1,1,1
-array_puerta_izquierda4:	DB	1,1,1
-array_puerta_izquierda5:	DB	1,1,1
-array_puerta_izquierda6:	DB	1,1,2
-array_puerta_izquierda7:	DB	1,2,4
+	DB	3,3,1
+	DB	3,1,1
+	DB	1,1,1
+	DB	1,1,1
+	DB	1,1,1
+	DB	1,1,2
+	DB	1,2,4
+
+array_escalera:
+	DB	5,5,5,5,5,5,5,5
+	DB	5,0,0,0,1,1,1,5
+	DB	5,0,0,0,1,1,1,5
+	DB	5,0,0,6,6,6,6,5
+	DB	5,0,6,6,6,6,6,5
+	DB	5,6,6,6,6,6,6,5
 
 
 
@@ -44,6 +53,18 @@ puerta_abajo:		DS		ESTRUCTURA_PUERTA
 puerta_izquierda:	DS		ESTRUCTURA_PUERTA
 
 datos_puertas:
+datos_puerta_escalera:
+					DB		#00;0		;0 no activa <>0 activo
+					DB		#80;128		;punto x de la puerta para cuando se dispare encima
+					DB		#34;52		;punto y de la puerta para cuando se dispare encima
+					DB		#10;16		;radio x de la puerta para cuando se dispare encima
+					DB		#14;20		;radio y de la puerta para cuando se dispare encima
+					DW		accion_puerta_arriba	;función para acción de cada tipo de puerta
+					DW		array_puerta_arriba		;puntero al array con los tiles de las puertas
+					DW		TILMAP + POSPUERARRI
+					DB		5			;alto/filas
+					DB		4			;ancho/columnas
+
 datos_puerta_arriba:
 					DB		#00;0		;0 no activa <>0 activo
 					DB		#80;128		;punto x de la puerta para cuando se dispare encima
