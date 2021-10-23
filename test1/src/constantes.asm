@@ -56,7 +56,6 @@ LIMCADENCIA equ		4	;nº de veces que se ejecutará el disparo antes de ejecutar 
 ;hay que estudiar si 3 es un nº mejor
 
 
-
 ;;PALETA DE COLORES DEL MSX
 COLTRASP	equ		0
 COLNEGRO	equ		1
@@ -74,7 +73,6 @@ COLVERDOSC	equ		12
 COLMAGENTA	equ		13
 COLGRIS		equ		14
 COLBLANCO	equ		15
-
 
 
 ;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (relacionadas con posiciones en mapa vdp)
@@ -120,6 +118,10 @@ POSBALLESTAX equ	224
 
 ;;POSICIONES DE LAS AYUDAS EN PANTALLA PIXEL CENTRAL Y
 POSAYUDASY	equ		112	;se pone por poner porque las estructuras de ayudas ya se inicializan con este valor
+
+;;POSICIÓN INICIAL DEL SPRITE DEL PUNTO DE MIRA
+POSXPM		equ		120
+POSYPM		equ		108
 
 ;;ESTADO ESTRUCTURA
 INACTIVA	equ		0

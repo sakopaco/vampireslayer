@@ -125,15 +125,8 @@ mira_disparo:
 		LD		 C, 1
 		CALL	ayFX_INIT
 		
-		
-		
-		
-		;CREAR ESTRUCTURAS PARA LAS PUERTAS Y ARRAY PARA MIRARLAS
-		;CALL	check_colisiones ************************
-		
-		
-		
-		
+
+		CALL	fin_check_colisiones_objetos		;revisa las colisiones con puertas, ayudas y enemigos
 		
 		
 .fin_mira_disparo1

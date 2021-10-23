@@ -244,11 +244,8 @@ fin_localiza_info_habitacion:
 ;			habitaciones recorridas en esa fila) para ver si uestra enemigos o no y permita pasar por puertas
 ; entrada: 	prota_pos_mapx, habitacion_recorrida
 ; salida: 	habitacion_recorrida (byte 14 de la fila de habitaciones) actualizada con OR A (en A la habitacion)
-; toca:		IX
+; toca:		IX, HL, AF
 terminada_habitacion_recorrida:
-		PUSH		AF
-		PUSH		HL
-		
 		LD			HL, habitacion_actual_puntero
 		LD			 A, (HL)
 		SET			 4, A
@@ -263,10 +260,11 @@ terminada_habitacion_recorrida:
 		SET			 4, A
 		LD			(habitacion_actual), A
 		
-		POP			HL
-		POP			AF
+		LD			 A, 1
+		LD			 B, A
+		JP			activa_desactiva_puertas		;se la pasa B que para activar necesita 1
 fin_terminada_habitacion_recorrida:
-		RET
+
 
 
 

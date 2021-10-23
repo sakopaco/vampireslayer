@@ -190,6 +190,7 @@ fin_carga_datos_puerta:
 ; entrada: 	
 ; salida: 	
 accion_escalera:
+	;CALL	cambio_habitacion
 fin_accion_escalera:
 	RET
 
@@ -201,6 +202,7 @@ fin_accion_escalera:
 ; entrada: 	
 ; salida: 	
 accion_puerta_arriba:
+	;CALL	cambio_habitacion
 fin_accion_puerta_arriba:
 	RET
 
@@ -212,6 +214,7 @@ fin_accion_puerta_arriba:
 ; entrada: 	
 ; salida: 	
 accion_puerta_derecha:
+	;CALL	cambio_habitacion
 fin_accion_puerta_derecha:
 	RET
 	
@@ -223,6 +226,7 @@ fin_accion_puerta_derecha:
 ; entrada: 	
 ; salida: 	
 accion_puerta_abajo:
+	;CALL	cambio_habitacion
 fin_accion_puerta_abajo:
 	RET
 	
@@ -234,6 +238,7 @@ fin_accion_puerta_abajo:
 ; entrada: 	
 ; salida: 	
 accion_puerta_izquierda:
+	;CALL	cambio_habitacion
 fin_accion_puerta_izquierda:
 	RET
 	
@@ -337,13 +342,13 @@ fin_pinta_puerta_izq:
 ; salida: 	-
 ; toca:		A,HL,BC, DE
 actualiza_variables_pinta_array:
-	LD		 L, (IX + ESTRUCTURA_PUERTA.tiles_puerta)			;guardo puntero al array a pintar (como pasar por referencia)
+	LD		 L, (IX + ESTRUCTURA_PUERTA.tiles_puerta)	;guardo puntero al array a pintar (como pasar por referencia)
 	LD		 H, (IX + ESTRUCTURA_PUERTA.tiles_puerta + 1)
-	LD		(wordaux2), HL					;en la variable wordaux2
+	LD		(wordaux2), HL						;en la variable wordaux2
 	
-	LD		 L, (IX + ESTRUCTURA_PUERTA.pos_en_tilemap)			;guardo puntero al array a pintar (como pasar por referencia)
+	LD		 L, (IX + ESTRUCTURA_PUERTA.pos_en_tilemap)	;guardo puntero al array a pintar (como pasar por referencia)
 	LD		 H, (IX + ESTRUCTURA_PUERTA.pos_en_tilemap + 1)
-	LD		(wordaux1), HL					;guarda valor pos tilemap en wordaux1
+	LD		(wordaux1), HL						;guarda valor pos tilemap en wordaux1
 	
 	LD		 A, (IX + ESTRUCTURA_PUERTA.alto)	;nº de filas
 	LD		(byteaux1), A
@@ -352,4 +357,51 @@ actualiza_variables_pinta_array:
 	LD		(byteaux2), A
 fin_actualiza_variables_pinta_array:
 	RET
+
+
+;;=====================================================
+;;ACTIVA_DESACTIVA_PUERTAS
+;;=====================================================	
+; función: 	coloca todas las puertas que haya pintadas en la habitación como activas o inactivas según B
+; entrada: 	IX apuntando a la estructura de una puerta, habitacion_actual
+; salida: 	-
+; toca:		A, IX, B
+activa_desactiva_puertas:
+.mira_puerta_arriba	
+	LD		 A, (habitacion_actual)
+	BIT		 3, A
+	JP		 Z, .mira_puerta_derecha
+	LD		 A, B
+	LD		IX, puerta_arriba
+	LD		(IX), A
+
+.mira_puerta_derecha
+	LD		 A, (habitacion_actual)
+	BIT		 2, A
+	JP		 Z, .mira_puerta_abajo
+	LD		 A, B
+	LD		IX, puerta_derecha
+	LD		(IX), A
+	
+.mira_puerta_abajo
+	LD		 A, (habitacion_actual)
+	BIT		 1, A
+	JP		 Z, .mira_puerta_izquierda
+	LD		 A, B
+	LD		IX, puerta_abajo
+	LD		(IX), A
+
+.mira_puerta_izquierda
+	LD		 A, (habitacion_actual)
+	BIT		 0, A
+	JP		 Z, fin_activa_desactiva_puertas
+	LD		 A, B
+	LD		IX, puerta_abajo
+	LD		(IX), A
+fin_activa_desactiva_puertas:
+	RET
+
+
+
+
 

@@ -71,26 +71,74 @@ loop_principal:
 
 	CALL	check_player			;MIRA EL CONTROL Y APLICA LA LOGICA DE MOVIMIENTO DEL PROTAGONISTA
 	
-	CALL	check_colisiones		;revisa las colisiones con puertas, ayudas y enemigos
-	
 	JP		loop_principal
 fin_programa_principal:
 	;no necesita RET
 
-
-check_colisiones:
+;;akskskk
+check_colisiones_objetos:
 	;pantalla limpia?
-	
+	LD		 A, (is_habitacion_terminada)
+	OR		 0
+	JP		 Z, .habitacion_no_terminada
 	;SI 
 	;recorre puertas y sale
+		CALL	check_colisiones_puertas
+		JP		fin_check_colisiones_objetos	
 	;NO 
+.habitacion_no_terminada:
 	;recorre ayudas
 	;recorre enemigos
-fin_check_colisiones:
+	
+fin_check_colisiones_objetos:
 	RET
 
 
+;;che
+check_colisiones_puertas:
+.examina_puerta_arriba:
+	LD		IX, puerta_arriba
+	LD		 A, (IX)
+	OR		 A
+	JP		 Z, .examina_puerta_derecha
+	CALL	check_colision_puerta	;aquí ya es cosa de ver colisiones prota/puerta_izquierda
 
+.examina_puerta_derecha:
+	LD		IX, puerta_derecha
+	LD		 A, (IX)
+	OR		 A
+	JP		 Z, .examina_puerta_abajo
+	CALL	check_colision_puerta	;aquí ya es cosa de ver colisiones prota/puerta_izquierda
+
+.examina_puerta_abajo:
+	LD		IX, puerta_abajo
+	LD		 A, (IX)
+	OR		 A
+	JP		 Z, .examina_puerta_izquierda
+	CALL	check_colision_puerta	;aquí ya es cosa de ver colisiones prota/puerta_izquierda
+
+.examina_puerta_izquierda:
+	LD		IX, puerta_abajo
+	LD		 A, (IX)
+	OR		 A
+	JP		 Z, .examina_puerta_izquierda
+	CALL	check_colision_puerta	;aquí ya es cosa de ver colisiones prota/puerta_izquierda
+fin_check_colisiones_puertas:
+		RET
+
+
+;;Sisisisisisi
+;recibe:	IX con el puntero a la puerta que se examina
+check_colision_puerta:
+	LD		IY, prota
+	LD		 A, 8		;offset del punto de mira ya que se mueve según la esquina superior izquierda y el centro del punto de mira está en el centro del sprite
+	LD		 B, A
+	
+	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posx)
+	ADD		 B			;ya tengo en A la coordenada X del centro del punto de mira
+	
+fin_check_colision_puerta:
+	RET
 
 
 ;;*******************************************************************
@@ -111,7 +159,7 @@ inicializa_variables_pruebas:
 	LD		 A, 0				;los niveles (matrices) son 7 del 0 al 6
 	LD		(prota_nivel), A	;nivel empieza en 0 para usar las posiciones ascii
 
-	LD		 A, 6				;los subniveles (filas) son 7 del 0 al 6
+	LD		 A, 1				;los subniveles (filas) son 7 del 0 al 6
 	LD		(prota_pos_mapy), A	;pos Y dentro del nivel (se empieza en 0)
 
 	LD		 A, 3				;columnas 7: del 0 al 6
@@ -181,6 +229,4 @@ depack_VRAM:
 ;;=====================================================		
 	include "pantallas.asm"
 
-
-	
 END:

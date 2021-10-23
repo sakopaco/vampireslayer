@@ -141,7 +141,7 @@ check_player:
 	
 	;zona para mirar disparo Recibe A que tendrá 0000 0 0 X-letra M X-espacio 
 	CALL	mira_disparo
-	
+
 	JP		vuelca_resultado_puntomira_array
 f;in_check_player:
 	RET

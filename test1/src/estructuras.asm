@@ -5,8 +5,8 @@
 ;crear estructura
 
 	STRUCT ESTRUCTURA_PUNTOMIRA
-posx			DB		100
-posy			DB		100
+posx			DB		POSXPM
+posy			DB		POSYPM
 escena			DB		0	;valores porsibles 0 (blanco+rojo en punto de mira) y NEG 0 (al revés)
 velocidad		DB		0
 boton2_pressed  DB		0

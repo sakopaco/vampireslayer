@@ -39,3 +39,8 @@ tiles_color_marcador:		incbin "pantallas/marcador.til.bin.clr.plet5"
 tiles_mapa_marcador:		incbin "pantallas/marcador.map.bin.plet5"
 
 ;NOTA: FALTARÍAN PANTALLAS ESPECIALES (POR DEFINIR)
+; INICIO
+; GAME OVER
+; HUIDA
+; 2 FINAL BUENO
+; 1 FINAL MALO
