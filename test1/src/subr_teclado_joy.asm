@@ -120,14 +120,14 @@ mira_disparo:
 		;reseteo cadencia para el próximo disparo
 		LD		 A, LIMCADENCIA				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 		LD		 (prota.cadencia), A		;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		
 		;ejecuto sonido						;; ajustar cadencia y que cuando el disparo sea efectivo se reseteen los colores
 		XOR		 A
 		LD		 C, 1
 		CALL	ayFX_INIT
 		
-
+		;examino si el disparo le dió a algo activo
 		CALL	check_colisiones_objetos	;revisa las colisiones con puertas, ayudas y enemigos
-		
 		
 .fin_mira_disparo1
 	POP		AF

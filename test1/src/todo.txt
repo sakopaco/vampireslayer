@@ -12,6 +12,9 @@ activa, posx y posx y función si acierta
 
 * verificar colisiones con disparos en subr_teclado_joy
 
+examina_puerta_arriba
+
+
 * ver lo de inicializar ayudas con Fernando (no funciona si uso su método)
 
 * verificar colisiones con ayudas
