@@ -33,7 +33,7 @@ START:
 	CALL	inicializa_esqueletos
 	
 	;pinta la pantalla (la primera o algunas especiales se pintan completamente)
-	CALL	pinta_pantalla_completa 
+	CALL	pinta_pantalla_completa
 	
 	;carga sprites en memoria (SE HA RETRASADO HASTA PARAMETRIZAR LA CARGA DE PANTALLAS)
 	CALL 	carga_patrones_sprites_nivel
@@ -85,18 +85,18 @@ fin_programa_principal:
 check_colisiones_objetos:
 	PUSH	AF
 	
-	;pantalla limpia?
-	LD		 A, (is_habitacion_terminada)
-	OR		 0
-	JP		 Z, .habitacion_no_terminada
-	;SI 
-	;recorre puertas y sale
+	;~ ;pantalla limpia?
+	;~ LD		 A, (is_habitacion_terminada)
+	;~ OR		 0
+	;~ JP		 Z, .habitacion_no_terminada
+	;~ ;SI 
+	;~ ;recorre puertas y sale
 		CALL	check_colisiones_puertas
-		JP		fin_check_colisiones_objetos	
-	;NO 
-.habitacion_no_terminada:
-	;recorre ayudas
-	;recorre enemigos
+		;~ JP		fin_check_colisiones_objetos	
+	;~ ;NO 
+;~ .habitacion_no_terminada:
+	;~ ;recorre ayudas
+	;~ ;recorre enemigos
 	
 	POP		AF
 fin_check_colisiones_objetos:
@@ -111,13 +111,18 @@ check_colisiones_puertas:
 	OR		 A							;está activa esta puerta?
 	JP		 Z, .examina_puerta_derecha
 	CALL	check_colision_puerta		;aquí ya es cosa de ver colisiones prota/puerta_izquierda
-	
+	;recibe valor A
 	OR		 0							;hubo colisión?
 	JP		 Z, .examina_puerta_derecha	;no hubo colisión por lo que examina puerta siguiente
 	;hubo colisión
 	;EJECUTA ACCIÓN Y SALE DE LA RUTINA
+	LD		HL, fin_check_colisiones_puertas ;se guarda dónde volver
+	PUSH	HL
 	
-	RET
+	LD		 L, (IX + ESTRUCTURA_PUERTA.accion)
+	LD		 H, (IX + ESTRUCTURA_PUERTA.accion + 1)
+	JP		(HL)
+
 
 .examina_puerta_derecha:
 	LD		IX, puerta_derecha

@@ -59,8 +59,8 @@ datos_escalera:
 					DB		#30;48		;punto y de la puerta para cuando se dispare encima
 					DB		#20;32		;radio x de la puerta para cuando se dispare encima
 					DB		#18;24		;radio y de la puerta para cuando se dispare encima
-					DW		accion_escalera	;función para acción de cada tipo de puerta
-					DW		array_escalera	;puntero al array con los tiles de las puertas
+					DW		accion_puerta_arriba;función para acción de cada tipo de puerta
+					DW		array_escalera		;puntero al array con los tiles de las puertas
 					DW		TILMAP + POSESCALERA
 					DB		6			;alto/filas
 					DB		8			;ancho/columnas
@@ -182,19 +182,6 @@ carga_datos_puerta:
 fin_carga_datos_puerta:
 	RET
 
-
-;;=====================================================
-;;ACCION_ESCALERA
-;;=====================================================	
-; función: 	
-; entrada: 	
-; salida: 	
-accion_escalera:
-	;CALL	cambio_habitacion
-fin_accion_escalera:
-	RET
-
-
 ;;=====================================================
 ;;ACCION_PUERTA_ARRIBA
 ;;=====================================================	
@@ -202,7 +189,10 @@ fin_accion_escalera:
 ; entrada: 	
 ; salida: 	
 accion_puerta_arriba:
-	;CALL	cambio_habitacion
+	LD		 HL, prota_pos_mapy
+	INC		 (HL)
+
+	CALL	cambio_habitacion
 fin_accion_puerta_arriba:
 	RET
 
@@ -214,7 +204,10 @@ fin_accion_puerta_arriba:
 ; entrada: 	
 ; salida: 	
 accion_puerta_derecha:
-	;CALL	cambio_habitacion
+	LD		 HL, prota_pos_mapx
+	INC		 (HL)
+
+	CALL	cambio_habitacion
 fin_accion_puerta_derecha:
 	RET
 	
@@ -226,7 +219,20 @@ fin_accion_puerta_derecha:
 ; entrada: 	
 ; salida: 	
 accion_puerta_abajo:
-	;CALL	cambio_habitacion
+
+;* examina si es la primera habitación para efecto de retirarse del juego
+
+	LD		 A, (prota_pos_mapy)
+	OR		 A
+	JR		NZ, .decrementa_solo_habitacion
+.decrementa_nivel
+	LD		HL, (prota_nivel)
+	DEC		HL
+.decrementa_solo_habitacion
+	LD		HL, prota_pos_mapy
+	DEC		(HL)
+
+	CALL	cambio_habitacion
 fin_accion_puerta_abajo:
 	RET
 	
@@ -238,7 +244,10 @@ fin_accion_puerta_abajo:
 ; entrada: 	
 ; salida: 	
 accion_puerta_izquierda:
-	;CALL	cambio_habitacion
+	LD		 HL, prota_pos_mapx
+	DEC		 (HL)
+
+	CALL	cambio_habitacion
 fin_accion_puerta_izquierda:
 	RET
 	

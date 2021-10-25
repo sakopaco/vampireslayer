@@ -260,15 +260,36 @@ terminada_habitacion_recorrida:
 		SET			 4, A
 		LD			(habitacion_actual), A
 		
-		LD			 A, 1
+		LD			 A, 1					;1 es puerta activa y 0 no activa
 		LD			 B, A
-		JP			activa_desactiva_puertas		;se la pasa B que para activar necesita 1
+		JP			activa_desactiva_puertas;se la pasa B que para activar necesita 1
 fin_terminada_habitacion_recorrida:
 
 
 
-
+;;=====================================================
+;;CAMBIO_HABITACION												*no terminada
+;;=====================================================	
+; función: 	actualiza elementos en pantalla cuando hay cambios en habitación
+;			fondo
+;			puertas
+;			ayudas
+;			imagenes
+;			mapa inferior
+;			enemigos
+; entrada: 	prota_pos_mapy, prota_pos_mapy, prota_nivel
+; salida: 	
+cambio_habitacion:
+		CALL	pinta_pantalla_completa
+		CALL	pinta_ayudas_habitacion
+		CALL	pinta_extra_fondo
+		CALL	pinta_puertas
 	
+		LD		 A, TILEPROTAM
+		LD		(elemento_pintar_mapa), A
+		CALL	posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.posx y posy
+fin_cambio_habitacion:
+		RET
 	
 	
 	
