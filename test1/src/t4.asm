@@ -83,20 +83,28 @@ fin_programa_principal:
 ; salida: 	-
 ; toca:		HL,BC, DE
 check_colisiones_objetos:
+
+
+*************************************+ esto hay que depurarlo
+
 	PUSH	AF
 	
-	;~ ;pantalla limpia?
-	;~ LD		 A, (is_habitacion_terminada)
-	;~ OR		 0
-	;~ JP		 Z, .habitacion_no_terminada
-	;~ ;SI 
-	;~ ;recorre puertas y sale
+	;pantalla limpia?
+	LD		 A, (is_habitacion_terminada)
+	OR		 0
+	JP		 Z, .habitacion_no_terminada
+	;SI 
+	;recorre puertas y sale
 		CALL	check_colisiones_puertas
-		;~ JP		fin_check_colisiones_objetos	
-	;~ ;NO 
-;~ .habitacion_no_terminada:
-	;~ ;recorre ayudas
-	;~ ;recorre enemigos
+		
+		CALL test_OK	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;,  FLAG DE PASO
+		
+		
+		JP		fin_check_colisiones_objetos	
+	;NO 
+.habitacion_no_terminada:
+	;recorre ayudas
+	;recorre enemigos
 	
 	POP		AF
 fin_check_colisiones_objetos:
@@ -219,6 +227,30 @@ check_colision_puerta:
 	LD		 A, SI
 fin_check_colision_puerta:
 	RET
+
+
+
+;; FLAG PARA PRUEBAS 
+test_OK:
+	PUSH	AF
+	
+	LD		 A, 15
+	
+	LD 		(FORCLR), A
+	INC		HL
+	
+	LD 		(BAKCLR), A
+	INC		HL
+	
+	LD		 A, (HL)
+	LD 		(BDRCLR), A
+	
+	CALL	CHGCLR 
+	
+	POP		AF
+fin_test_OK:
+	RET
+
 
 
 ;;*******************************************************************
