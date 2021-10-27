@@ -219,9 +219,8 @@ localiza_info_habitacion:
 	
 	;actualizo la variable is_habitacion_terminada
 	LD		 A, (habitacion_actual)
-	LD		(is_habitacion_terminada), A
-	LD		 A, (habitacion_actual_puntero)
-	OR		00010000b
+	AND		00010000b					;me interresa sólo el bit 4 (si la habitación ha sido recorrida)
+[4]	SRA		 A
 	LD		(is_habitacion_terminada), A
 	
 	;actualizo la variable habitacion_extras
@@ -251,7 +250,7 @@ terminada_habitacion_recorrida:
 		SET			 4, A
 		LD			(HL), A
 		
-		LD			 A, HABTERMIN	;da igual qué bit mientras sea distinto de 0
+		LD			 A, HABTERMIN	;da igual qué bit mientras sea distinto de 0 pero se pone 1
 		LD			(is_habitacion_terminada), A
 		
 		;este trozo no sirve de nada pero ya e quedo más tranquilo si lo pongo, por ser exacto y completo

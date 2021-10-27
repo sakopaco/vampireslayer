@@ -372,7 +372,7 @@ fin_actualiza_variables_pinta_array:
 ;;ACTIVA_DESACTIVA_PUERTAS
 ;;=====================================================	
 ; función: 	coloca todas las puertas que haya pintadas en la habitación como activas o inactivas según B
-; entrada: 	IX apuntando a la estructura de una puerta, habitacion_actual
+; entrada: 	IX apuntando a la estructura de una puerta, habitacion_actual, B con 0 para desactivar las puertas indicadas en habitación actual o 1 para activarlas
 ; salida: 	-
 ; toca:		A, IX, B
 activa_desactiva_puertas:
@@ -380,33 +380,29 @@ activa_desactiva_puertas:
 	LD		 A, (habitacion_actual)
 	BIT		 3, A
 	JP		 Z, .mira_puerta_derecha
-	LD		 A, B
 	LD		IX, puerta_arriba
-	LD		(IX), A
+	LD		(IX + ESTRUCTURA_PUERTA.activa), B
 
 .mira_puerta_derecha
 	LD		 A, (habitacion_actual)
 	BIT		 2, A
 	JP		 Z, .mira_puerta_abajo
-	LD		 A, B
-	LD		IX, puerta_derecha
-	LD		(IX), A
+	LD		IX, puerta_arriba
+	LD		(IX + ESTRUCTURA_PUERTA.activa), B
 	
 .mira_puerta_abajo
 	LD		 A, (habitacion_actual)
 	BIT		 1, A
 	JP		 Z, .mira_puerta_izquierda
-	LD		 A, B
-	LD		IX, puerta_abajo
-	LD		(IX), A
+	LD		IX, puerta_arriba
+	LD		(IX + ESTRUCTURA_PUERTA.activa), B
 
 .mira_puerta_izquierda
 	LD		 A, (habitacion_actual)
 	BIT		 0, A
 	JP		 Z, fin_activa_desactiva_puertas
-	LD		 A, B
-	LD		IX, puerta_abajo
-	LD		(IX), A
+	LD		IX, puerta_arriba
+	LD		(IX + ESTRUCTURA_PUERTA.activa), B
 fin_activa_desactiva_puertas:
 	RET
 

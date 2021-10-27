@@ -85,7 +85,7 @@ fin_programa_principal:
 check_colisiones_objetos:
 
 
-*************************************+ esto hay que depurarlo
+;*************************************+ esto hay que depurarlo
 
 	PUSH	AF
 	
@@ -279,6 +279,8 @@ inicializa_variables_pruebas:
 	
 	XOR		 A
 	LD		(prota.cadencia), A
+	
+	LD		(is_habitacion_terminada), A
 fin_inicializa_variables_pruebas:
 	RET
 ;;************************************************************************

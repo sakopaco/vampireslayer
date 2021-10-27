@@ -78,7 +78,7 @@ cont_sig_escena		DB		0	;	6
 	ENDSTRUCT;ESTRUCTURA_ESQUELETO
 	
 	STRUCT ESTRUCTURA_PUERTA	;también servirá para la escalera
-activo				DB		0	;0 no activa <>0 activo
+activa				DB		0	;0 no activa <>0 activo
 posx				DB		0	;punto x de la puerta para cuando se dispare encima
 posy				DB		0	;punto y de la puerta para cuando se dispare encima
 radiox				DB		0	;radio x de la puerta para cuando se dispare encima

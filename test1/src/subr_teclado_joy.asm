@@ -127,7 +127,7 @@ mira_disparo:
 		CALL	ayFX_INIT
 		
 		;examino si el disparo le dió a algo activo
-		CALL	check_colisiones_objetos	;revisa las colisiones con puertas, ayudas y enemigos
+;		CALL	check_colisiones_objetos	;revisa las colisiones con puertas, ayudas y enemigos
 		
 .fin_mira_disparo1
 	POP		AF
