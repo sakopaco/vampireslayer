@@ -97,17 +97,17 @@ check_colisiones_objetos:
 	;recorre puertas y sale
 		CALL	check_colisiones_puertas
 		
-		CALL test_OK	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;,  FLAG DE PASO
-		
+
 		
 		JP		fin_check_colisiones_objetos	
 	;NO 
 .habitacion_no_terminada:
 	;recorre ayudas
 	;recorre enemigos
-	
+
+
+fin_check_colisiones_objetos:	
 	POP		AF
-fin_check_colisiones_objetos:
 	RET
 
 
@@ -118,6 +118,7 @@ check_colisiones_puertas:
 	LD		 A, (IX)
 	OR		 A							;está activa esta puerta?
 	JP		 Z, .examina_puerta_derecha
+	
 	CALL	check_colision_puerta		;aquí ya es cosa de ver colisiones prota/puerta_izquierda
 	;recibe valor A
 	OR		 0							;hubo colisión?
@@ -130,8 +131,8 @@ check_colisiones_puertas:
 	LD		 L, (IX + ESTRUCTURA_PUERTA.accion)
 	LD		 H, (IX + ESTRUCTURA_PUERTA.accion + 1)
 	JP		(HL)
-
-
+	
+	JP		fin_check_colisiones_puertas
 .examina_puerta_derecha:
 	LD		IX, puerta_derecha
 	LD		 A, (IX)
@@ -144,8 +145,7 @@ check_colisiones_puertas:
 	;hubo colisión
 	;EJECUTA ACCIÓN Y SALE DE LA RUTINA
 	
-	RET
-
+	JP		fin_check_colisiones_puertas
 .examina_puerta_abajo:
 	LD		IX, puerta_abajo
 	LD		 A, (IX)
@@ -158,13 +158,12 @@ check_colisiones_puertas:
 	;hubo colisión
 	;EJECUTA ACCIÓN Y SALE DE LA RUTINA
 	
-	RET
-
+	JP		fin_check_colisiones_puertas
 .examina_puerta_izquierda:
 	LD		IX, puerta_abajo
 	LD		 A, (IX)
 	OR		 A							;está activa esta puerta?
-	JP		 Z, .examina_puerta_izquierda
+	JP		 Z, fin_check_colisiones_puertas
 	CALL	check_colision_puerta		;aquí ya es cosa de ver colisiones prota/puerta_izquierda
 	
 	OR		 0							;hubo colisión?
@@ -205,7 +204,7 @@ check_colision_puerta:
 	RET
 	
 .deteccioncolision_paso3:					;la distancia X es válida, comprobamos la distancia Y
-	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posx)
+	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posy)
 	ADD		 8								;le sumo el offset del punto de mira (8 es fijo)
 
 	;ya tengo en A la coordenada Y del centro del punto de mira					
@@ -220,7 +219,7 @@ check_colision_puerta:
 
 	JP		 C, .deteccioncolision_paso5	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
 	
-	XOR		 A								;el resultado es falso y se guarda en A y ya no hay que seguir coprobando
+	XOR		 A								;el resultado es falso y se guarda en A un 0 y al ser la 2º comprobación salimos
 	RET
 
 .deteccioncolision_paso5:

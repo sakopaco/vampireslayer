@@ -279,7 +279,11 @@ fin_terminada_habitacion_recorrida:
 ; entrada: 	prota_pos_mapy, prota_pos_mapy, prota_nivel
 ; salida: 	
 cambio_habitacion:
-		CALL	pinta_pantalla_completa
+
+
+************************
+
+		;CALL	pinta_pantalla_completa
 		CALL	pinta_ayudas_habitacion
 		CALL	pinta_extra_fondo
 		CALL	pinta_puertas

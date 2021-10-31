@@ -387,21 +387,21 @@ activa_desactiva_puertas:
 	LD		 A, (habitacion_actual)
 	BIT		 2, A
 	JP		 Z, .mira_puerta_abajo
-	LD		IX, puerta_arriba
+	LD		IX, puerta_derecha
 	LD		(IX + ESTRUCTURA_PUERTA.activa), B
 	
 .mira_puerta_abajo
 	LD		 A, (habitacion_actual)
 	BIT		 1, A
 	JP		 Z, .mira_puerta_izquierda
-	LD		IX, puerta_arriba
+	LD		IX, puerta_abajo
 	LD		(IX + ESTRUCTURA_PUERTA.activa), B
 
 .mira_puerta_izquierda
 	LD		 A, (habitacion_actual)
 	BIT		 0, A
 	JP		 Z, fin_activa_desactiva_puertas
-	LD		IX, puerta_arriba
+	LD		IX, puerta_izquierda
 	LD		(IX + ESTRUCTURA_PUERTA.activa), B
 fin_activa_desactiva_puertas:
 	RET
