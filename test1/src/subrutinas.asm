@@ -267,7 +267,7 @@ fin_terminada_habitacion_recorrida:
 
 
 ;;=====================================================
-;;CAMBIO_HABITACION												*no terminada
+;;ENTRA_HABITACION												*no terminada
 ;;=====================================================	
 ; función: 	actualiza elementos en pantalla cuando hay cambios en habitación
 ;			fondo
@@ -278,26 +278,47 @@ fin_terminada_habitacion_recorrida:
 ;			enemigos
 ; entrada: 	prota_pos_mapy, prota_pos_mapy, prota_nivel
 ; salida: 	
-cambio_habitacion:
-
-
-************************
-
-		;CALL	pinta_pantalla_completa
-		CALL	pinta_ayudas_habitacion
-		CALL	pinta_extra_fondo
+entra_habitacion:
+		CALL	pinta_parte_superior_pantalla
 		CALL	pinta_puertas
+		CALL	pinta_extra_fondo
+		CALL	pinta_ayudas_habitacion
 	
+		JP		pinta_heroe_mapa
+fin_entra_habitacion:
+
+
+;;=====================================================
+;;SALE_HABITACION
+;;=====================================================	
+; función: 	actualiza elementos en pantalla cuando hay cambios en habitación
+;			para salir de una habitacion
+; entrada: 	
+; salida: 	
+sale_habitacion:
+		JP		pinta_blanco_mapa
+fin_sale_habitacion:
+
+
+	
+;;=====================================================
+;;PINTA_HEROE_MAPA
+;;PINTA_BLANCO_MAPA
+;;=====================================================	
+; función: 	pinta el iconito del heroe en el mapa o un espacio en blanco
+; entrada: 	
+; salida: 	
+; toca:		todo
+pinta_heroe_mapa:
 		LD		 A, TILEPROTAM
 		LD		(elemento_pintar_mapa), A
-		CALL	posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.posx y posy
-fin_cambio_habitacion:
-		RET
-	
-	
-	
-	
-	
+		JP		posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.posx y posy
+fin_pinta_heroe_mapa:
+pinta_blanco_mapa:
+		LD		 A, TILEGRISM
+		LD		(elemento_pintar_mapa), A
+		JP		posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.posx y posy
+fin_pinta_blanco_mapa:
 	
 	
 	

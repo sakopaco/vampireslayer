@@ -494,7 +494,7 @@ fin_borra_mapa:
 ; función: 	en el mapa de marcadores de la derecha/abajo marca un cuadro en gris o con un muñeco
 ;			según el valor de prota.posición pinta entrá un muñeco y por donde vaya pasando el prota
 ;			quedará en gris
-; entrada: 	elemento_pintar_mapa, prota_pos_mapy, prota_pos_mapx
+; entrada: 	elemento_pintar_mapa  A , prota_pos_mapy, prota_pos_mapx
 ; salida: 	-
 ; toca:		todos
 posiciona_en_mapa:

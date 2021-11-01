@@ -189,12 +189,13 @@ fin_carga_datos_puerta:
 ; entrada: 	
 ; salida: 	
 accion_puerta_arriba:
-	LD		 HL, prota_pos_mapy
-	INC		 (HL)
+	CALL	sale_habitacion
+	
+	LD		HL, prota_pos_mapy
+	INC		(HL)
 
-	CALL	cambio_habitacion
+	JP		entra_habitacion
 fin_accion_puerta_arriba:
-	RET
 
 
 ;;=====================================================
@@ -207,9 +208,8 @@ accion_puerta_derecha:
 	LD		 HL, prota_pos_mapx
 	INC		 (HL)
 
-	CALL	cambio_habitacion
+	JP		entra_habitacion
 fin_accion_puerta_derecha:
-	RET
 	
 
 ;;=====================================================
@@ -232,9 +232,8 @@ accion_puerta_abajo:
 	LD		HL, prota_pos_mapy
 	DEC		(HL)
 
-	CALL	cambio_habitacion
+	JP		entra_habitacion
 fin_accion_puerta_abajo:
-	RET
 	
 	
 ;;=====================================================
@@ -247,9 +246,8 @@ accion_puerta_izquierda:
 	LD		 HL, prota_pos_mapx
 	DEC		 (HL)
 
-	CALL	cambio_habitacion
+	JP		entra_habitacion
 fin_accion_puerta_izquierda:
-	RET
 	
 
 ;;=====================================================

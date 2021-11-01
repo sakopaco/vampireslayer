@@ -124,7 +124,7 @@ check_colisiones_puertas:
 	OR		 0							;hubo colisión?
 	JP		 Z, .examina_puerta_derecha	;no hubo colisión por lo que examina puerta siguiente
 	;hubo colisión
-	;EJECUTA ACCIÓN Y SALE DE LA RUTINA
+	;EJECUTA ACCIÓN Y SALE DE LA RUTINA	
 	LD		HL, fin_check_colisiones_puertas ;se guarda dónde volver
 	PUSH	HL
 	
@@ -133,6 +133,7 @@ check_colisiones_puertas:
 	JP		(HL)
 	
 	JP		fin_check_colisiones_puertas
+	
 .examina_puerta_derecha:
 	LD		IX, puerta_derecha
 	LD		 A, (IX)
@@ -146,6 +147,7 @@ check_colisiones_puertas:
 	;EJECUTA ACCIÓN Y SALE DE LA RUTINA
 	
 	JP		fin_check_colisiones_puertas
+	
 .examina_puerta_abajo:
 	LD		IX, puerta_abajo
 	LD		 A, (IX)
@@ -159,6 +161,7 @@ check_colisiones_puertas:
 	;EJECUTA ACCIÓN Y SALE DE LA RUTINA
 	
 	JP		fin_check_colisiones_puertas
+	
 .examina_puerta_izquierda:
 	LD		IX, puerta_abajo
 	LD		 A, (IX)
