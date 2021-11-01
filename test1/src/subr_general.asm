@@ -33,3 +33,28 @@ suma_A_HL:
 	LD		 H, A
 fin_suma_A_HL:
 	RET
+	
+	
+;;=====================================================
+;;TEST_OK
+;;=====================================================	
+; función: para pruebas.. cambia el color de fondo cuando se le llama
+test_OK:
+	PUSH	AF
+	
+	LD		 A, 15
+	
+	LD 		(FORCLR), A
+	INC		HL
+	
+	LD 		(BAKCLR), A
+	INC		HL
+	
+	LD		 A, (HL)
+	LD 		(BDRCLR), A
+	
+	CALL	CHGCLR 
+	
+	POP		AF
+fin_test_OK:
+	RET

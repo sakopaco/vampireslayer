@@ -12,10 +12,8 @@ activa, posx y posx y función si acierta
 
 * verificar colisiones con disparos en subr_teclado_joy
 
-parece que ya funciona con puerta arriba...
-casi ... ver que pinta lo que debe (que actualiza la parte superior de pantalla pero 
 
-hacer código cuando dispare a puertas de abajo y laterales
+Depurar cuando se entre a puerta izquiera
 
 
 

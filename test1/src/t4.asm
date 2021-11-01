@@ -75,6 +75,7 @@ loop_principal:
 fin_programa_principal:
 	;no necesita RET
 
+
 ;;=====================================================
 ;;CHECK_COLISIONES_OBJETOS
 ;;=====================================================	
@@ -84,8 +85,7 @@ fin_programa_principal:
 ; toca:		HL,BC, DE
 check_colisiones_objetos:
 
-
-;*************************************+ esto hay que depurarlo
+;;;		parece que funciona pero hayq que seguir depurando
 
 	PUSH	AF
 	
@@ -96,8 +96,6 @@ check_colisiones_objetos:
 	;SI 
 	;recorre puertas y sale
 		CALL	check_colisiones_puertas
-		
-
 		
 		JP		fin_check_colisiones_objetos	
 	;NO 
@@ -111,147 +109,8 @@ fin_check_colisiones_objetos:
 	RET
 
 
-;;che
-check_colisiones_puertas:
-.examina_puerta_arriba:
-	LD		IX, puerta_arriba
-	LD		 A, (IX)
-	OR		 A							;está activa esta puerta?
-	JP		 Z, .examina_puerta_derecha
-	
-	CALL	check_colision_puerta		;aquí ya es cosa de ver colisiones prota/puerta_izquierda
-	;recibe valor A
-	OR		 0							;hubo colisión?
-	JP		 Z, .examina_puerta_derecha	;no hubo colisión por lo que examina puerta siguiente
-	;hubo colisión
-	;EJECUTA ACCIÓN Y SALE DE LA RUTINA	
-	LD		HL, fin_check_colisiones_puertas ;se guarda dónde volver
-	PUSH	HL
-	
-	LD		 L, (IX + ESTRUCTURA_PUERTA.accion)
-	LD		 H, (IX + ESTRUCTURA_PUERTA.accion + 1)
-	JP		(HL)
-	
-	JP		fin_check_colisiones_puertas
-	
-.examina_puerta_derecha:
-	LD		IX, puerta_derecha
-	LD		 A, (IX)
-	OR		 A							;está activa esta puerta?
-	JP		 Z, .examina_puerta_abajo
-	CALL	check_colision_puerta		;aquí ya es cosa de ver colisiones prota/puerta_izquierda
-	
-	OR		 0							;hubo colisión?
-	JP		 Z, .examina_puerta_abajo	;no hubo colisión por lo que examina puerta siguiente
-	;hubo colisión
-	;EJECUTA ACCIÓN Y SALE DE LA RUTINA
-	
-	JP		fin_check_colisiones_puertas
-	
-.examina_puerta_abajo:
-	LD		IX, puerta_abajo
-	LD		 A, (IX)
-	OR		 A							;está activa esta puerta?
-	JP		 Z, .examina_puerta_izquierda
-	CALL	check_colision_puerta		;aquí ya es cosa de ver colisiones prota/puerta_izquierda
-	
-	OR		 0							;hubo colisión?
-	JP		 Z, .examina_puerta_izquierda;no hubo colisión por lo que examina puerta siguiente
-	;hubo colisión
-	;EJECUTA ACCIÓN Y SALE DE LA RUTINA
-	
-	JP		fin_check_colisiones_puertas
-	
-.examina_puerta_izquierda:
-	LD		IX, puerta_abajo
-	LD		 A, (IX)
-	OR		 A							;está activa esta puerta?
-	JP		 Z, fin_check_colisiones_puertas
-	CALL	check_colision_puerta		;aquí ya es cosa de ver colisiones prota/puerta_izquierda
-	
-	OR		 0							;hubo colisión?
-	RET		 Z							;es la última puerta a mirar, si no hubo colisión salimos
-	;hubo colisión
-	;EJECUTA ACCIÓN Y SALE DE LA RUTINA
-	
-fin_check_colisiones_puertas:
-	RET
 
 
-;;=====================================================
-;;CHECK_COLISION_PUERTA
-;;=====================================================	
-; función: 	revisa (con enemigos+ayudas o puertas según si la habitación ha sido recorrida o no) las variables para ver si se disparó sobre ellas
-; entrada: 	IX con el puntero a la puerta que se examina
-; salida: 	A (0 no hay colisión con puerta / 1 sí la hay)
-; toca:		HL,BC, DE
-check_colision_puerta:
-.deteccioncolision_paso1:
-	LD		IY, prota	;IY punto de mira / IX puerta
-	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posx)
-	ADD		 8			;8-es fijo, offset del punto de mira ya que se mueve según la esquina superior izquierda y el centro del punto de mira está en el centro del sprite
-	
-	;ya tengo en A la coordenada X del centro del punto de mira					
-	SUB		(IX + ESTRUCTURA_PUERTA.posx)	;le resto el punto x en la puerta
-	
-	JP		NC, .deteccioncolision_paso2	;si no es negativo comparo con el radio
-
-	NEG										;si es negativo lo niego (valor absoluto)
-	
-.deteccioncolision_paso2:
-	CP		(IX + ESTRUCTURA_PUERTA.radiox)	;comparo con el radio X de la puerta
-	
-	JP		 C, .deteccioncolision_paso3	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
-	
-	XOR		 A								;el resultado es falso y se guarda en A y ya no hay que seguir coprobando
-	RET
-	
-.deteccioncolision_paso3:					;la distancia X es válida, comprobamos la distancia Y
-	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posy)
-	ADD		 8								;le sumo el offset del punto de mira (8 es fijo)
-
-	;ya tengo en A la coordenada Y del centro del punto de mira					
-	SUB		(IX + ESTRUCTURA_PUERTA.posy)	;le resto el punto y en la puerta
-	
-	JP		NC, .deteccioncolision_paso4	;si no es negativo comparo con el radio
-
-	NEG										;si es negativo lo niego (valor absoluto)
-
-.deteccioncolision_paso4:
-	CP		(IX + ESTRUCTURA_PUERTA.radioy)	;comparo con el radio Y de la puerta
-
-	JP		 C, .deteccioncolision_paso5	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
-	
-	XOR		 A								;el resultado es falso y se guarda en A un 0 y al ser la 2º comprobación salimos
-	RET
-
-.deteccioncolision_paso5:
-	LD		 A, SI
-fin_check_colision_puerta:
-	RET
-
-
-
-;; FLAG PARA PRUEBAS 
-test_OK:
-	PUSH	AF
-	
-	LD		 A, 15
-	
-	LD 		(FORCLR), A
-	INC		HL
-	
-	LD 		(BAKCLR), A
-	INC		HL
-	
-	LD		 A, (HL)
-	LD 		(BDRCLR), A
-	
-	CALL	CHGCLR 
-	
-	POP		AF
-fin_test_OK:
-	RET
 
 
 
@@ -273,13 +132,13 @@ inicializa_variables_pruebas:
 	LD		 A, 0				;los niveles (matrices) son 7 del 0 al 6
 	LD		(prota_nivel), A	;nivel empieza en 0 para usar las posiciones ascii
 
-	LD		 A, 1				;los subniveles (filas) son 7 del 0 al 6
+	LD		 A, 0				;los subniveles (filas) son 7 del 0 al 6
 	LD		(prota_pos_mapy), A	;pos Y dentro del nivel (se empieza en 0)
 
 	LD		 A, 3				;columnas 7: del 0 al 6
 	LD		(prota_pos_mapx), A	;pos X dentro del nivel (se empieza en 0)
 	
-	XOR		 A
+	XOR		 A					;cadencia por defecto.. cuando se coja mejora en arma se puede variar
 	LD		(prota.cadencia), A
 	
 	LD		(is_habitacion_terminada), A
