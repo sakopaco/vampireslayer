@@ -13,7 +13,9 @@ activa, posx y posx y función si acierta
 * verificar colisiones con disparos en subr_teclado_joy
 
 
-Depurar cuando se entre a puerta izquiera
+Depurar el que cuando no esté la puerta no se pueda disparar (arriba es con la que estoy)
+
+Depurar cuando se entre en resto de puertas
 
 
 

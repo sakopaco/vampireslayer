@@ -258,11 +258,8 @@ terminada_habitacion_recorrida:
 		LD			 A, (habitacion_actual)
 		SET			 4, A
 		LD			(habitacion_actual), A
-		
-		LD			 A, 1					;1 es puerta activa y 0 no activa
-		LD			 B, A
-		JP			activa_desactiva_puertas;se la pasa B que para activar necesita 1
 fin_terminada_habitacion_recorrida:
+		RET
 
 
 
@@ -281,6 +278,7 @@ fin_terminada_habitacion_recorrida:
 entra_habitacion:
 		CALL	pinta_parte_superior_pantalla
 		CALL	pinta_puertas
+		CALL	desactiva_puertas_no_activas
 		CALL	pinta_extra_fondo
 		CALL	pinta_ayudas_habitacion
 	
