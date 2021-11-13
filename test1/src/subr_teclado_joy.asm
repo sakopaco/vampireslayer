@@ -79,7 +79,7 @@ mueve_izquierda:
 	
 	LD		 	 A, (prota.posx)
 	DEC			 A
-;	CP			 A, LIMPANTIZQ
+;	CP			 A, LIMPANTIZQ 			;no es necesario ya que es cero (Z)
 	JP			 Z,.no_decrementa_x
 	LD			(prota.posx), A
 	

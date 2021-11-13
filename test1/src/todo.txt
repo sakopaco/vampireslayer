@@ -13,14 +13,12 @@ activa, posx y posx y función si acierta
 * verificar colisiones con disparos en subr_teclado_joy
 
 
-Depurar el que cuando no esté la puerta no se pueda disparar (arriba es con la que estoy)
-
-Depurar cuando se entre en resto de puertas
+Depurar cuando se entre en resto de puertas que no sea arriba
 
 
 
 
-* ver lo de inicializar ayudas con Fernando (no funciona si uso su método)
+* ver lo de inicializar ayudas con Fernando (no funciona si uso su método  ¿'¿'¿?¿ raro)
 
 * verificar colisiones con ayudas
 

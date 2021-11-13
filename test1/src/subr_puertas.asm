@@ -83,7 +83,7 @@ datos_puerta_derecha:
 					DB		#54;84		;punto y de la puerta para cuando se dispare encima
 					DB		#0C;12		;radio x de la puerta para cuando se dispare encima
 					DB		#14;20		;radio y de la puerta para cuando se dispare encima
-					DW		accion_puerta_arriba	;función para acción de cada tipo de puerta
+					DW		accion_puerta_derecha	;función para acción de cada tipo de puerta
 					DW		array_puerta_derecha	;puntero al array con los tiles de las puertas
 					DW		TILMAP + POSPUERDERE
 					DB		7			;alto/filas
@@ -95,7 +95,7 @@ datos_puerta_abajo:
 					DB		#7C;124		;punto y de la puerta para cuando se dispare encima
 					DB		#0A;#05;5		;radio x de la puerta para cuando se dispare encima  **********************************
 					DB		#20;#10;16		;radio y de la puerta para cuando se dispare encima
-					DW		accion_puerta_arriba	;función para acción de cada tipo de puerta
+					DW		accion_puerta_abajo		;función para acción de cada tipo de puerta
 					DW		array_puerta_abajo		;puntero al array con los tiles de las puertas
 					DW		TILMAP + POSPUERABAJ
 					DB		1			;alto/filas
@@ -107,7 +107,7 @@ datos_puerta_izquierda:
 					DB		#54;84		;punto y de la puerta para cuando se dispare encima
 					DB		#0C;12		;radio x de la puerta para cuando se dispare encima
 					DB		#14;20		;radio y de la puerta para cuando se dispare encima
-					DW		accion_puerta_arriba	;función para acción de cada tipo de puerta
+					DW		accion_puerta_izquierda	;función para acción de cada tipo de puerta
 					DW		array_puerta_izquierda	;puntero al array con los tiles de las puertas
 					DW		TILMAP + POSPUERIZQU
 					DB		7			;alto/filas
@@ -426,13 +426,13 @@ check_colisiones_puertas:
 	LD		 A, (IX)
 	OR		 A							;está activa esta puerta?
 	JP		 Z, .examina_puerta_abajo
-	CALL	check_colision_puerta		;aquí ya es cosa de ver colisiones prota/puerta_izquierda
-	
+	CALL	check_colision_puerta		;aquí ya es cosa de ver colisiones prota/puerta_derecha
+	;recibe valor
 	OR		 0							;hubo colisión?
 	JP		 Z, .examina_puerta_abajo	;no hubo colisión por lo que examina puerta siguiente
 	;hubo colisión
 	;EJECUTA ACCIÓN Y SALE DE LA RUTINA
-	JP		fin_check_colisiones_puertas
+	JP		.ejecuta_accion_y_sale
 	
 .examina_puerta_abajo:
 	LD		IX, puerta_abajo
@@ -445,7 +445,7 @@ check_colisiones_puertas:
 	JP		 Z, .examina_puerta_izquierda;no hubo colisión por lo que examina puerta siguiente
 	;hubo colisión
 	;EJECUTA ACCIÓN Y SALE DE LA RUTINA
-	JP		fin_check_colisiones_puertas
+	JP		.ejecuta_accion_y_sale
 	
 .examina_puerta_izquierda:
 	LD		IX, puerta_izquierda
@@ -458,7 +458,7 @@ check_colisiones_puertas:
 	RET		 Z							;es la última puerta a mirar, si no hubo colisión salimos
 	;hubo colisión
 	;EJECUTA ACCIÓN Y SALE DE LA RUTINA
-	JP		fin_check_colisiones_puertas
+	;JP		.ejecuta_accion_y_sale ;no necesaria
 
 .ejecuta_accion_y_sale
 	LD		HL, fin_check_colisiones_puertas ;se guarda dónde volver
