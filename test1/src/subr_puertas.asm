@@ -51,9 +51,10 @@ puerta_arriba:		DS		ESTRUCTURA_PUERTA
 puerta_derecha:		DS		ESTRUCTURA_PUERTA
 puerta_abajo:		DS		ESTRUCTURA_PUERTA
 puerta_izquierda:	DS		ESTRUCTURA_PUERTA
+puerta_escalera:	DS		ESTRUCTURA_PUERTA
 
 datos_puertas:
-datos_escalera:
+datos_puerta_escalera:
 					DB		#00;0		; 0 no activa <>0 activo
 					DB		#80;128		;punto x de la puerta para cuando se dispare encima
 					DB		#30;48		;punto y de la puerta para cuando se dispare encima
@@ -132,15 +133,13 @@ inicializa_puertas:
 	PUSH	BC
 	PUSH	DE
 	
+	;inicializa puerta escalera
+	LD		HL, datos_puerta_escalera	;origen
+	LD		DE, puerta_escalera			;destino
+	CALL	carga_datos_puerta
+
 	;inicializa puerta arriba
-	LD		 A, (prota_pos_mapy)
-	CP		 6
-	JP		 Z,.pinta_escalera			;de tener que pintar algo arriba, se pinta escalera (fila 6) o puerta (fila <> 6)
-		LD		HL, datos_puerta_arriba	;origen
-		JP		.cotinuamos_pintando_escalera_arriba
-.pinta_escalera
-		LD		HL, datos_escalera		;origen
-.cotinuamos_pintando_escalera_arriba
+	LD		HL, datos_puerta_arriba		;origen
 	LD		DE, puerta_arriba			;destino
 	CALL	carga_datos_puerta
 	
@@ -191,9 +190,20 @@ fin_carga_datos_puerta:
 accion_puerta_arriba:
 	CALL	sale_habitacion
 	
-	LD		HL, prota_pos_mapy
-	INC		(HL)
+	LD		 A, (prota_pos_mapy)
+	INC		 A
+	LD		 (prota_pos_mapy), A
+	
+	JP		NC, .no_cambia_nivel
 
+	;aquí hay que poner texto de cambio de nivel
+
+	LD		 A, (prota_nivel)
+	INC		 A
+	LD		(prota_nivel), A
+	CALL	cambio_nivel
+	
+.no_cambia_nivel:
 	JP		entra_habitacion
 fin_accion_puerta_arriba:
 
@@ -207,8 +217,9 @@ fin_accion_puerta_arriba:
 accion_puerta_derecha:
 	CALL	sale_habitacion
 	
-	LD		 HL, prota_pos_mapx
-	INC		 (HL)
+	LD		 A, (prota_pos_mapx)
+	INC		 A
+	LD		 (prota_pos_mapx), A
 
 	JP		entra_habitacion
 fin_accion_puerta_derecha:
@@ -222,9 +233,13 @@ fin_accion_puerta_derecha:
 ; salida: 	
 accion_puerta_abajo:
 ;* examina si es la primera habitación para efecto de retirarse del juego
+; casos especiales puerta de la primera pantalla o bajar de nivel
 
-;************************************************************************************************
-	CALL	test_OK
+
+
+	LD		 A, (prota_nivel)
+	INC		 A
+	LD		(prota_nivel), A
 
 
 	LD		 A, (prota_pos_mapy)
@@ -232,16 +247,18 @@ accion_puerta_abajo:
 	JR		NZ, .decrementa_solo_habitacion
 .decrementa_nivel
 	LD		HL, (prota_nivel)
-	DEC		HL
-	
+	DEC		(HL)
+	LD		HL, (prota_pos_mapy)
+	LD		(HL), 6
 	
 	;esto tienem más trabajo
 	
 .decrementa_solo_habitacion
 	CALL	sale_habitacion
-	
-	LD		HL, prota_pos_mapy
-	DEC		(HL)
+
+	LD		 A, (prota_pos_mapy)
+	DEC		 A
+	LD		 (prota_pos_mapy), A
 
 	JP		entra_habitacion
 fin_accion_puerta_abajo:
@@ -255,9 +272,10 @@ fin_accion_puerta_abajo:
 ; salida: 	
 accion_puerta_izquierda:
 	CALL	sale_habitacion
-	
-	LD		 HL, prota_pos_mapx
-	DEC		 (HL)
+
+	LD		 A, (prota_pos_mapx)
+	DEC		 A
+	LD		 (prota_pos_mapx), A
 
 	JP		entra_habitacion
 fin_accion_puerta_izquierda:
@@ -336,9 +354,16 @@ fin_pinta_puerta_aba:
 ; salida: 	-
 ; toca:		IX
 pinta_puerta_arr:
-	LD		IX, puerta_arriba
+	LD		 A, (prota_pos_mapy)
+	CP		 6								;en la fila 6 la única puerta arriba será una escalera
+	JP		NZ, .pinta_puerta_normal
+.pinta_puerta_escalera
+		LD		IX, puerta_escalera
+		JP		.fin_si
+.pinta_puerta_normal
+		LD		IX, puerta_arriba	
+.fin_si
 	CALL	actualiza_variables_pinta_array
-	
 	JP		pinta_array
 fin_pinta_puerta_arr:
 
@@ -528,9 +553,9 @@ fin_check_colision_puerta:
 
 	
 ;;=====================================================
-;;CHECK_COLISION_PUERTA
+;;DESACTIVA_TODAS_PUERTAS
 ;;=====================================================	
-; función: 	revisa (con enemigos+ayudas o puertas según si la habitación ha sido recorrida o no) las variables para ver si se disparó sobre ellas
+; función: 	desactiva todas las puertas (es más rápido todas que mirar cuál estaba activa en la habitación aanterior) y ya se activarán las que se muestren
 ; entrada: 	puerta_arriba, puerta_derecha, puerta_abajo, puerta_izquierda
 ; salida: 	las estructuras de la puertas (entrada) con el valor activo a 0 (PUERTAINACT)
 ; toca:		IX

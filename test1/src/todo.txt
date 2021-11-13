@@ -12,8 +12,13 @@ activa, posx y posx y función si acierta
 
 * verificar colisiones con disparos en subr_teclado_joy
 
+actualizar marcador floor de abajo
+Que se muestre la escalera en puerta de final de nivel... repasar
 
-Depurar cuando se entre en resto de puertas que no sea arriba
+Inicialización correcta de ayudas
+
+Casos especiales de a puerta inferior de la primera pantalla
+
 
 
 

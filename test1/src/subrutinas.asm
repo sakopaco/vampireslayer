@@ -318,8 +318,26 @@ pinta_blanco_mapa:
 fin_pinta_blanco_mapa:
 	
 	
+
+;;=====================================================
+;;CAMBIO_NIVEL
+;;=====================================================	
+; función: 	pinta el iconito del heroe en el mapa o un espacio en blanco
+; entrada: 	
+; salida: 	
+; toca:		todo	
+cambio_nivel:
 	
+		;MIRAR CUANDO EL NIVEL SEA -1 (SE SALE DEL CASTILLO Y PUEDE QUE SEA POR TERMINAR JUEGO O SALIR ANTES DE TIEMPO)
 	
+		CALL		borra_mapa
+	
+		LD		 A, 6
+		LD		 (prota_pos_mapy), A
+		
+		CALL	pinta_nivel
+fin_cabio_nivel:
+		RET
 	
 	
 	
