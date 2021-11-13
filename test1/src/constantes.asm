@@ -53,6 +53,7 @@ SPRTBL		equ		#3800
 SI			equ		1
 NO			equ		0
 PUERTAACTIV equ		1
+PUERTAINACT equ		0
 LIMCADENCIA equ		4	;nº de veces que se ejecutará el disparo antes de ejecutar un disparo real (porque cuando se pulsa la tecl dispara 3 ó 4 veces de rápido que va)
 ;hay que estudiar si 3 es un nº mejor
 

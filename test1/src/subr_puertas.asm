@@ -271,73 +271,44 @@ fin_accion_puerta_izquierda:
 ; salida: 	-
 ; toca:		todo
 pinta_puertas:
-	CALL	pinta_parte_superior_pantalla	;pinta pasillo y paredes
-
 	CALL	localiza_info_habitacion	;busca qué puertas debe pintar y lo mete en habitación_actual
-	
+
+	CALL	desactiva_todas_puertas
+
+	;examina puerta arrba
 	LD		 A, (habitacion_actual)
 	BIT		 3, A					
-	JP		 Z, .no_puerta_arriba		;tiene puerta arriba?
-	;SI
-.si_puerta_arriba:
+	JP		 Z, .fin_puerta_arriba		;tiene puerta arriba?
 		CALL	pinta_puerta_arr		;pinto puerta ;si es de la fila 7 los datos de la pueta de arriba serán los de una escalera
 		LD		IX, puerta_arriba		
 		LD		(IX), 1					;activo puerta
-		JP		.fin_puerta_arriba
-	;NO
-		LD		IX, puerta_arriba		;desactivo_puerta
-		LD		(IX), 0
-.no_puerta_arriba:
-	;FIN_SI	
 .fin_puerta_arriba:
 
+	;examina puerta derecha
 	LD		 A, (habitacion_actual)
 	BIT		 2, A
-	JP		 Z, .no_puerta_derecha		;tiene puerta derecha?
-	;SI
-.si_puerta_derecha:
+	JP		 Z, .fin_puerta_derecha		;tiene puerta derecha?
 		CALL	pinta_puerta_der		;pinto puerta
 		LD		IX, puerta_derecha
 		LD		(IX), 1					;activo puerta
-		JP		.fin_puerta_derecha
-	;NO
-		LD		IX, puerta_derecha		;desactivo_puerta
-		LD		(IX), 0
-.no_puerta_derecha:
-	;FIN_SI	
 .fin_puerta_derecha:
 
+	;examina puerta abajo
 	LD		 A, (habitacion_actual)
 	BIT		 1, A
-	JP		 Z, .no_puerta_abajo		;tiene puerta derecha?
-	;SI
-.si_puerta_abajo:
+	JP		 Z, .fin_puerta_abajo		;tiene puerta derecha?
 		CALL	pinta_puerta_aba		;pinto puerta
 		LD		IX, puerta_abajo	
 		LD		(IX), 1					;activo puerta
-		JP		.fin_puerta_abajo
-	;NO
-		LD		IX, puerta_abajo		;desactivo_puerta
-		LD		(IX), 0
-.no_puerta_abajo:
-	;FIN_SI	
 .fin_puerta_abajo:
 
+	;examina puerta izquierda
 	LD		 A, (habitacion_actual)
 	BIT		 0, A
-	JP		 Z, .no_puerta_izquierda	;tiene puerta derecha?
-	;SI
-.si_puerta_izquierda:
+	JP		 Z, fin_pinta_puertas		;tiene puerta derecha?
 		CALL	pinta_puerta_izq		;pinto puerta
 		LD		IX, puerta_izquierda	
 		LD		(IX), 1					;activo puerta
-		JP		.fin_puerta_izquierda
-	;NO
-		LD		IX, puerta_izquierda	;desactivo_puerta
-		LD		(IX), 0
-.no_puerta_izquierda:
-	;FIN_SI	
-.fin_puerta_izquierda:
 fin_pinta_puertas:
 	RET
 
@@ -555,7 +526,23 @@ fin_check_colision_puerta:
 
 
 
-desactiva_puertas_no_activas:
-
-fin_desactiva_puertas_no_activas:
+	
+;;=====================================================
+;;CHECK_COLISION_PUERTA
+;;=====================================================	
+; función: 	revisa (con enemigos+ayudas o puertas según si la habitación ha sido recorrida o no) las variables para ver si se disparó sobre ellas
+; entrada: 	puerta_arriba, puerta_derecha, puerta_abajo, puerta_izquierda
+; salida: 	las estructuras de la puertas (entrada) con el valor activo a 0 (PUERTAINACT)
+; toca:		IX
+desactiva_todas_puertas:
+	LD		IX, puerta_arriba		;desactivo_puerta arriba
+	LD		(IX), PUERTAINACT
+	LD		IX, puerta_derecha		;desactivo_puerta derecha
+	LD		(IX), PUERTAINACT
+	LD		IX, puerta_abajo		;desactivo_puerta abajo
+	LD		(IX), PUERTAINACT
+	LD		IX, puerta_izquierda	;desactivo_puerta izquierda
+	LD		(IX), PUERTAINACT
+fin_desactiva_todas_puertas:
+	RET
 

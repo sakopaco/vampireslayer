@@ -278,7 +278,6 @@ fin_terminada_habitacion_recorrida:
 entra_habitacion:
 		CALL	pinta_parte_superior_pantalla
 		CALL	pinta_puertas
-		CALL	desactiva_puertas_no_activas
 		CALL	pinta_extra_fondo
 		CALL	pinta_ayudas_habitacion
 	
