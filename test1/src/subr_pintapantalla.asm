@@ -287,7 +287,7 @@ fin_pinta_reliquias:
 ; entrada: 	prota_nivel
 ; salida: 	-
 ; toca:		HL,DE,BC
-pinta_nivel:	
+pinta_nivel:
 	;forma más avanzada sin llamada a la bios
 	LD		BC,TILMAP + POSNIVEL ;posición en el mapa de tiles del tile de nivel
 	LD		 A, (prota_nivel)	 ;seleccionando la pos del banco de tiles a poner en el mapa
@@ -305,7 +305,7 @@ fin_pinta_nivel:
 ; función: 	pinta al tile que digamos en D, en la posición BC
 ; entrada: 	BC (posición a pintar en el mapa),D (qué se va a pintar el esa posición)
 ; salida: 	-
-; toca:		-
+; toca:		A
 pinta_tile_suelto:	
 	IN		 A,(REGEST)		;leer registro de estado (recomendado)
 	LD		 A,C			;primero byte bajo	

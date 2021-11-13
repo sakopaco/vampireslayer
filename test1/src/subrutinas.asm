@@ -286,19 +286,6 @@ fin_entra_habitacion:
 
 
 ;;=====================================================
-;;SALE_HABITACION
-;;=====================================================	
-; función: 	actualiza elementos en pantalla cuando hay cambios en habitación
-;			para salir de una habitacion
-; entrada: 	
-; salida: 	
-sale_habitacion:
-		JP		pinta_blanco_mapa
-fin_sale_habitacion:
-
-
-	
-;;=====================================================
 ;;PINTA_HEROE_MAPA
 ;;PINTA_BLANCO_MAPA
 ;;=====================================================	
@@ -330,12 +317,11 @@ cambio_nivel:
 	
 		;MIRAR CUANDO EL NIVEL SEA -1 (SE SALE DEL CASTILLO Y PUEDE QUE SEA POR TERMINAR JUEGO O SALIR ANTES DE TIEMPO)
 	
-		CALL		borra_mapa
+;		*****************************************************************************************************************************+
+		CALL		pinta_nivel
 	
-		LD		 A, 6
-		LD		 (prota_pos_mapy), A
+		CALL		borra_mapa	
 		
-		CALL	pinta_nivel
 fin_cabio_nivel:
 		RET
 	

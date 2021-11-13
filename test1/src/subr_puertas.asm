@@ -94,8 +94,8 @@ datos_puerta_abajo:
 					DB		#00;0		;0 no activa <>0 activo
 					DB		#80;128		;punto x de la puerta para cuando se dispare encima
 					DB		#7C;124		;punto y de la puerta para cuando se dispare encima
-					DB		#0A;#05;5		;radio x de la puerta para cuando se dispare encima  **********************************
-					DB		#20;#10;16		;radio y de la puerta para cuando se dispare encima
+					DB		#05;5		;radio x de la puerta para cuando se dispare encima  **********************************
+					DB		#10;16		;radio y de la puerta para cuando se dispare encima
 					DW		accion_puerta_abajo		;función para acción de cada tipo de puerta
 					DW		array_puerta_abajo		;puntero al array con los tiles de las puertas
 					DW		TILMAP + POSPUERABAJ
@@ -188,22 +188,29 @@ fin_carga_datos_puerta:
 ; entrada: 	
 ; salida: 	
 accion_puerta_arriba:
-	CALL	sale_habitacion
+	CALL	pinta_blanco_mapa
 	
 	LD		 A, (prota_pos_mapy)
 	INC		 A
-	LD		 (prota_pos_mapy), A
 	
-	JP		NC, .no_cambia_nivel
+	CP		 7
+	JP		NZ, .no_cambia_nivel
+.si_cambia_nivel:	
+	;aquí hay que poner texto de cambio de nivel  ;***************************************************************
 
-	;aquí hay que poner texto de cambio de nivel
-
+	;reseteo fila
+	XOR		 A
+	LD		(prota_pos_mapy), A
+	;incremento nivel
 	LD		 A, (prota_nivel)
 	INC		 A
 	LD		(prota_nivel), A
+	;reflejo en pantalla cambio de nivel
 	CALL	cambio_nivel
-	
+	JP		.fin_cambia_nivel
 .no_cambia_nivel:
+	LD		 (prota_pos_mapy), A
+.fin_cambia_nivel:
 	JP		entra_habitacion
 fin_accion_puerta_arriba:
 
@@ -215,7 +222,7 @@ fin_accion_puerta_arriba:
 ; entrada: 	
 ; salida: 	
 accion_puerta_derecha:
-	CALL	sale_habitacion
+	CALL	pinta_blanco_mapa
 	
 	LD		 A, (prota_pos_mapx)
 	INC		 A
@@ -232,34 +239,30 @@ fin_accion_puerta_derecha:
 ; entrada: 	
 ; salida: 	
 accion_puerta_abajo:
-;* examina si es la primera habitación para efecto de retirarse del juego
-; casos especiales puerta de la primera pantalla o bajar de nivel
-
-
-
-	LD		 A, (prota_nivel)
-	INC		 A
-	LD		(prota_nivel), A
-
-
-	LD		 A, (prota_pos_mapy)
-	OR		 A
-	JR		NZ, .decrementa_solo_habitacion
-.decrementa_nivel
-	LD		HL, (prota_nivel)
-	DEC		(HL)
-	LD		HL, (prota_pos_mapy)
-	LD		(HL), 6
+	CALL	pinta_blanco_mapa
 	
-	;esto tienem más trabajo
-	
-.decrementa_solo_habitacion
-	CALL	sale_habitacion
-
 	LD		 A, (prota_pos_mapy)
 	DEC		 A
-	LD		 (prota_pos_mapy), A
+	
+;	JP		NC, .no_cambia_nivel					;******************************+
+	CP		-1
+	JR		NZ, .no_cambia_nivel
+.si_cambia_nivel:	
+	;aquí hay que poner texto de cambio de nivel  ;***************************************************************
 
+	;reseteo fila
+	LD		 A, 6
+	LD		(prota_pos_mapy), A
+	;decremento nivel
+	LD		 A, (prota_nivel)
+	DEC		 A
+	LD		(prota_nivel), A
+	;reflejo en pantalla cambio de nivel
+	CALL	cambio_nivel
+	JP		.fin_cambia_nivel
+.no_cambia_nivel:
+	LD		 (prota_pos_mapy), A
+.fin_cambia_nivel:
 	JP		entra_habitacion
 fin_accion_puerta_abajo:
 	
@@ -271,7 +274,7 @@ fin_accion_puerta_abajo:
 ; entrada: 	
 ; salida: 	
 accion_puerta_izquierda:
-	CALL	sale_habitacion
+	CALL	pinta_blanco_mapa
 
 	LD		 A, (prota_pos_mapx)
 	DEC		 A
