@@ -41,23 +41,42 @@ array_ballestaoff1:			DB	253,255
 
 lista_ayudas:
 ayuda_oracion:		DS		ESTRUCTURA_AYUDA		
-ayuda_cruz:			DS		ESTRUCTURA_AYUDA
-ayuda_aguabendita:	DS		ESTRUCTURA_AYUDA
-ayuda_armadura:		DS		ESTRUCTURA_AYUDA
-ayuda_planta:		DS		ESTRUCTURA_AYUDA
-ayuda_vidaextra		DS		ESTRUCTURA_AYUDA
-ayuda_ballesta:		DS		ESTRUCTURA_AYUDA
+;~ ayuda_cruz:			DS		ESTRUCTURA_AYUDA
+;~ ayuda_aguabendita:	DS		ESTRUCTURA_AYUDA
+;~ ayuda_armadura:		DS		ESTRUCTURA_AYUDA
+;~ ayuda_planta:		DS		ESTRUCTURA_AYUDA
+;~ ayuda_vidaextra		DS		ESTRUCTURA_AYUDA
+;~ ayuda_ballesta:		DS		ESTRUCTURA_AYUDA
 
 ;datos ayudas
-datos_oracion:
-				DB    	0				;0 no activo <>0 activo															0
-				DW		array_oracionon	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
-				DW		array_oracionoff;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
-				DB		POSORACION		;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
-				DB		POSORACIONX		;pos del pixel central (esquina superior + 8x)									6
-				DB		POSAYUDASY		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
-				DW		accion_oracion	;subrutina que indica la acción si se dispara en el objeto						8,9
-datos_cruz:
+datos_oracion:			
+				DB		0				;0 no activa <>0 activo (y muestra tiles ayudaoff)
+				DB		POSORACIONX	;punto x de la ayuda para cuando se dispare encima
+				DB		POSAYUDASY	;punto y de la ayuda para cuando se dispare encima
+				DB		8				;radio x de la ayuda para cuando se dispare encima
+				DB		8				;radio y de la ayuda para cuando se dispare encima
+				DW		accion_oracion	;función para acción de cada tipo de ayuda
+				DW		array_oracionon	;puntero al array con los tiles de las ayudas sin usar para wordaux2
+				DW		array_oracionoff;puntero al array con los tiles de las ayudas sin usar para wordaux2
+				DW		TILMAP + POSORACION ;calcula posición en tilemap para wordaux1
+				DB		2				;alto en tiles del dibujo de la puerta (filas)
+				DB		2				;ancho en tiles del dibujo de la puerta (columnas)
+	
+	
+	;~ activa				DB		0	;0 no activa <>0 activo (y muestra tiles ayudaoff)
+;~ posx				DB		0	;punto x de la ayuda para cuando se dispare encima
+;~ posy				DB		112	;punto y de la ayuda para cuando se dispare encima
+;~ radiox				DB		0	;radio x de la ayuda para cuando se dispare encima
+;~ radioy				DB		0	;radio y de la ayuda para cuando se dispare encima
+;~ accion				DW		0	;función para acción de cada tipo de ayuda
+;~ tiles_ayudaon		DW		0	;puntero al array con los tiles de las ayudas sin usar para wordaux2
+;~ tiles_ayudaoff		DW		0	;puntero al array con los tiles de las ayudas sin usar para wordaux2
+;~ pos_en_tilemap		DW		0	;calcula posición en tilemap para wordaux1
+;~ alto				DB		2	;alto en tiles del dibujo de la puerta (filas)
+;~ ancho				DB		2	;ancho en tiles del dibujo de la puerta (columnas)
+				
+				
+;~ datos_cruz:
 				;~ DB    	0				;0 no activo <>0 activo															0
 				;~ DW		array_cruzon	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
 				;~ DW		array_cruzoff	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
@@ -66,89 +85,89 @@ datos_cruz:
 				;~ DB		POSAYUDASY		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
 				;~ DW		accion_cruz		;subrutina que indica la acción si se dispara en el objeto						8,9 
 				
-				DB    	0				;0 no activo <>0 activo															0
-				DW		array_cruzon	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
-				DW		array_cruzoff	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
-				DB		167			;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
-				DB		64		;pos del pixel central (esquina superior + 8x)									6
-				DB		112		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
-				DW		accion_cruz		;subrutina que indica la acción si se dispara en el objeto						8,9 
+				;~ DB    	0				;0 no activo <>0 activo															0
+				;~ DW		array_cruzon	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
+				;~ DW		array_cruzoff	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
+				;~ DB		167			;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
+				;~ DB		64		;pos del pixel central (esquina superior + 8x)									6
+				;~ DB		112		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
+				;~ DW		accion_cruz		;subrutina que indica la acción si se dispara en el objeto						8,9 
 				
-datos_aguabendita:
-				DB    	0				;0 no activo <>0 activo															0
-				DW		array_aguaon	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
-				DW		array_aguaoff	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
-				DB		POSAGUA			;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
-				DB		POSAGUAX		;pos del pixel central (esquina superior + 8x)									6
-				DB		POSAYUDASY		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
-				DW		accion_agua		;subrutina que indica la acción si se dispara en el objeto						8,9
-				DB		0	;relleno																		10-16    
-				DB		0	;relleno																		10-16    
-				DB		0	;relleno																		10-16    
-				DB		0	;relleno																		10-16    
-				DB		0	;relleno																		10-16    
-				DB		0	;relleno																		10-16   
-				DB		0	;relleno																		10-16    
-datos_armadura:
-				DB    	0				;0 no activo <>0 activo															0
-				DW		array_armaduraon;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
-				DW		array_armaduraoff;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
-				DB		POSARMAD		;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
-				DB		POSARMADX		;pos del pixel central (esquina superior + 8x)									6
-				DB		POSAYUDASY		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
-				DW		accion_armadura	;subrutina que indica la acción si se dispara en el objeto						8,9
-				DB		0	;relleno																		10-16    
-				DB		0	;relleno																		10-16    
-				DB		0	;relleno																		10-16    
-				DB		0	;relleno																		10-16    
-				DB		0	;relleno																		10-16    
-				DB		0	;relleno																		10-16   
-				DB		0	;relleno																		10-16    
-datos_planta:
-				DB    	0				;0 no activo <>0 activo															0
-				DW		array_plantaon	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
-				DW		array_plantaoff	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
-				DB		POSPLANTA		;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
-				DB		POSPLANTAX		;pos del pixel central (esquina superior + 8x)									6
-				DB		POSAYUDASY		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
-				DW		accion_planta	;subrutina que indica la acción si se dispara en el objeto						8,9
-				DB		0	;relleno																		10-16    
-				DB		0	;relleno																		10-16    
-				DB		0	;relleno																		10-16    
-				DB		0	;relleno																		10-16    
-				DB		0	;relleno																		10-16    
-				DB		0	;relleno																		10-16   
-				DB		0	;relleno																		10-16     
-datos_vidaextra:
-				DB    	0				;0 no activo <>0 activo															0
-				DW		array_extraon	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
-				DW		array_extraoff	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
-				DB		POSVIDAEXT		;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
-				DB		POSVIDAEXTX		;pos del pixel central (esquina superior + 8x)									6
-				DB		POSAYUDASY		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
-				DW		accion_vidaextra;subrutina que indica la acción si se dispara en el objeto						8,9
-				DB		0	;relleno																		10-16    
-				DB		0	;relleno																		10-16    
-				DB		0	;relleno																		10-16    
-				DB		0	;relleno																		10-16    
-				DB		0	;relleno																		10-16    
-				DB		0	;relleno																		10-16   
-				DB		0	;relleno																		10-16     
-datos_ballesta:
-				DB    	0				;0 no activo <>0 activo															0
-				DW		array_ballestaon;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
-				DW		array_ballestaoff;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
-				DB		POSBALLESTA		;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
-				DB		POSBALLESTAX	;pos del pixel central (esquina superior + 8x)									6
-				DB		POSAYUDASY		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
-				DW		accion_oracion	;subrutina que indica la acción si se dispara en el objeto						8,9
-				DB		0	;relleno																		10-16    
-				DB		0	;relleno																		10-16    
-				DB		0	;relleno																		10-16    
-				DB		0	;relleno																		10-16    
-				DB		0	;relleno																		10-16    
-				DB		0	;relleno																		10-16   
-				DB		0	;relleno																		10-16      
+;~ datos_aguabendita:
+				;~ DB    	0				;0 no activo <>0 activo															0
+				;~ DW		array_aguaon	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
+				;~ DW		array_aguaoff	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
+				;~ DB		POSAGUA			;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
+				;~ DB		POSAGUAX		;pos del pixel central (esquina superior + 8x)									6
+				;~ DB		POSAYUDASY		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
+				;~ DW		accion_agua		;subrutina que indica la acción si se dispara en el objeto						8,9
+				;~ DB		0	;relleno																		10-16    
+				;~ DB		0	;relleno																		10-16    
+				;~ DB		0	;relleno																		10-16    
+				;~ DB		0	;relleno																		10-16    
+				;~ DB		0	;relleno																		10-16    
+				;~ DB		0	;relleno																		10-16   
+				;~ DB		0	;relleno																		10-16    
+;~ datos_armadura:
+				;~ DB    	0				;0 no activo <>0 activo															0
+				;~ DW		array_armaduraon;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
+				;~ DW		array_armaduraoff;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
+				;~ DB		POSARMAD		;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
+				;~ DB		POSARMADX		;pos del pixel central (esquina superior + 8x)									6
+				;~ DB		POSAYUDASY		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
+				;~ DW		accion_armadura	;subrutina que indica la acción si se dispara en el objeto						8,9
+				;~ DB		0	;relleno																		10-16    
+				;~ DB		0	;relleno																		10-16    
+				;~ DB		0	;relleno																		10-16    
+				;~ DB		0	;relleno																		10-16    
+				;~ DB		0	;relleno																		10-16    
+				;~ DB		0	;relleno																		10-16   
+				;~ DB		0	;relleno																		10-16    
+;~ datos_planta:
+				;~ DB    	0				;0 no activo <>0 activo															0
+				;~ DW		array_plantaon	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
+				;~ DW		array_plantaoff	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
+				;~ DB		POSPLANTA		;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
+				;~ DB		POSPLANTAX		;pos del pixel central (esquina superior + 8x)									6
+				;~ DB		POSAYUDASY		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
+				;~ DW		accion_planta	;subrutina que indica la acción si se dispara en el objeto						8,9
+				;~ DB		0	;relleno																		10-16    
+				;~ DB		0	;relleno																		10-16    
+				;~ DB		0	;relleno																		10-16    
+				;~ DB		0	;relleno																		10-16    
+				;~ DB		0	;relleno																		10-16    
+				;~ DB		0	;relleno																		10-16   
+				;~ DB		0	;relleno																		10-16     
+;~ datos_vidaextra:
+				;~ DB    	0				;0 no activo <>0 activo															0
+				;~ DW		array_extraon	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
+				;~ DW		array_extraoff	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
+				;~ DB		POSVIDAEXT		;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
+				;~ DB		POSVIDAEXTX		;pos del pixel central (esquina superior + 8x)									6
+				;~ DB		POSAYUDASY		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
+				;~ DW		accion_vidaextra;subrutina que indica la acción si se dispara en el objeto						8,9
+				;~ DB		0	;relleno																		10-16    
+				;~ DB		0	;relleno																		10-16    
+				;~ DB		0	;relleno																		10-16    
+				;~ DB		0	;relleno																		10-16    
+				;~ DB		0	;relleno																		10-16    
+				;~ DB		0	;relleno																		10-16   
+				;~ DB		0	;relleno																		10-16     
+;~ datos_ballesta:
+				;~ DB    	0				;0 no activo <>0 activo															0
+				;~ DW		array_ballestaon;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
+				;~ DW		array_ballestaoff;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
+				;~ DB		POSBALLESTA		;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
+				;~ DB		POSBALLESTAX	;pos del pixel central (esquina superior + 8x)									6
+				;~ DB		POSAYUDASY		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
+				;~ DW		accion_oracion	;subrutina que indica la acción si se dispara en el objeto						8,9
+				;~ DB		0	;relleno																		10-16    
+				;~ DB		0	;relleno																		10-16    
+				;~ DB		0	;relleno																		10-16    
+				;~ DB		0	;relleno																		10-16    
+				;~ DB		0	;relleno																		10-16    
+				;~ DB		0	;relleno																		10-16   
+				;~ DB		0	;relleno																		10-16      
 
 
 
@@ -164,53 +183,59 @@ datos_ballesta:
 ; salida: 	lista_ayudas
 ; toca:		HL, DE, BC
 inicializa_ayudas:
-	;oración
-	LD		IX, ayuda_oracion
-	LD		(IX + 0), INACTIVA			
-	LD		HL, array_oracionon
-	LD		(IX + 1), H
-	LD		(IX + 2), L
-	LD		HL, array_oracionoff
-	LD		(IX + 3), H
-	LD		(IX + 4), L
-	LD		(IX + 5), POSORACION
-	LD		(IX + 6), POSORACIONX
-	LD		(IX + 7), POSAYUDASY	
-	LD		HL, accion_oracion
-	LD		(IX + 8), H
-	LD		(IX + 9), L
+	;oracion
+	LD		HL, datos_oracion
+	LD		DE, ayuda_oracion
+	CALL	carga_datos_ayuda
+
+
+	;~ ;oración
+	;~ LD		IX, ayuda_oracion
+	;~ LD		(IX + 0), INACTIVA			
+	;~ LD		HL, array_oracionon
+	;~ LD		(IX + 1), H
+	;~ LD		(IX + 2), L
+	;~ LD		HL, array_oracionoff
+	;~ LD		(IX + 3), H
+	;~ LD		(IX + 4), L
+	;~ LD		(IX + 5), POSORACION
+	;~ LD		(IX + 6), POSORACIONX
+	;~ LD		(IX + 7), POSAYUDASY	
+	;~ LD		HL, accion_oracion
+	;~ LD		(IX + 8), H
+	;~ LD		(IX + 9), L
 	
-	;cruz
-	LD		HL, datos_cruz
-	LD		DE, ayuda_cruz
-	LD		BC, 16;#ESTRUCTURA_AYUDA ;equivale a 16.. el tamaño de la estructura en bytes
-	LDIR
+	;~ ;cruz
+	;~ LD		HL, datos_cruz
+	;~ LD		DE, ayuda_cruz
+	;~ LD		BC, 16;#ESTRUCTURA_AYUDA ;equivale a 16.. el tamaño de la estructura en bytes
+	;~ LDIR
 	
-	;agua bendita
-	LD		HL, datos_aguabendita
-	LD		DE, ayuda_aguabendita
-	CALL	carga_datos_ayuda
+	;~ ;agua bendita
+	;~ LD		HL, datos_aguabendita
+	;~ LD		DE, ayuda_aguabendita
+	;~ CALL	carga_datos_ayuda
 		
-	;armadura
-	LD		HL, datos_armadura
-	LD		DE, ayuda_armadura
-	CALL	carga_datos_ayuda
+	;~ ;armadura
+	;~ LD		HL, datos_armadura
+	;~ LD		DE, ayuda_armadura
+	;~ CALL	carga_datos_ayuda
 		
-	;planta
-	LD		HL, datos_planta
-	LD		DE, ayuda_planta
-	CALL	carga_datos_ayuda
+	;~ ;planta
+	;~ LD		HL, datos_planta
+	;~ LD		DE, ayuda_planta
+	;~ CALL	carga_datos_ayuda
 		
-	;vida extra
-	LD		HL, datos_vidaextra
-	LD		DE, ayuda_vidaextra
-	CALL	carga_datos_ayuda
+	;~ ;vida extra
+	;~ LD		HL, datos_vidaextra
+	;~ LD		DE, ayuda_vidaextra
+	;~ CALL	carga_datos_ayuda
 		
-	;ballesta
-	LD		HL, datos_ballesta
-	LD		DE, ayuda_ballesta
-	CALL	carga_datos_ayuda
-fin_resetea_ayudas:
+	;~ ;ballesta
+	;~ LD		HL, datos_ballesta
+	;~ LD		DE, ayuda_ballesta
+	;~ CALL	carga_datos_ayuda
+fin_inicializa_ayudas:
 	RET
 	
 
@@ -224,7 +249,7 @@ fin_resetea_ayudas:
 ; salida: 	-
 ; toca:		HL, DE, BC
 carga_datos_ayuda:
-	LD		BC, 16;ESTRUCTURA_AYUDA ;equivale a 16.. el tamaño de la estructura en bytes
+	LD		BC, 15;ESTRUCTURA_AYUDA ;equivale a 16.. el tamaño de la estructura en bytes
 	LDIR
 fin_carga_datos_ayuda:
 	RET
@@ -241,28 +266,31 @@ fin_carga_datos_ayuda:
 pinta_obj_ayuda:
 	;se recibe objeto desde fuera, por ejmplo LD IX, ayuda_oracion
 
+	;si A=1 dibujo on (si 0 off)
 	OR		 A
 	JP		 Z,.dibujooff
 .dibujoon:	
-	LD		 H, (IX + 1)
-	LD		 L, (IX + 2)
-	LD		(wordaux2), HL
-	JP		.param_wordaux2
+		LD		 H, (IX + ESTRUCTURA_AYUDA.tiles_ayudaon)
+		LD		 L, (IX + ESTRUCTURA_AYUDA.tiles_ayudaon + 1)
+		LD		(wordaux2), HL	;pongo el valor en wordaux2
+		JP		.param_wordaux2
 .dibujooff:
-	LD		 H, (IX + 3)
-	LD		 L, (IX + 4)
-	LD		(wordaux2), HL
-
+		LD		 H, (IX + ESTRUCTURA_AYUDA.tiles_ayudaoff)
+		LD		 L, (IX + ESTRUCTURA_AYUDA.tiles_ayudaoff + 1)
+		LD		(wordaux2), HL	;pongo el valor en wordaux2
+;fin si
 .param_wordaux2:	
-	LD		HL, TILMAP + 256	;calcula posición en tilemap + 256 por colocarse siempre en bank1
-	LD		 A, (IX + 5)
-	CALL	suma_A_HL
+	LD		 H, (IX + ESTRUCTURA_AYUDA.pos_en_tilemap)
+	LD		 L, (IX + ESTRUCTURA_AYUDA.pos_en_tilemap + 1)
 	LD		(wordaux1), HL		;pongo el valor en wordaux1
 
 .filasycols:
-	LD		 A, 2				;equivale a LD	A,2 porque A ya valía 1
-	LD		(byteaux1), A	;nº de filas
-	LD		(byteaux2), A	;nº de columnas
+	LD		 A, 2
+	;se comenta para ahorrar tiempo (y porque habría que pasarlo previamente a A cuando siempre es 2)
+	;~ LD		(byteaux1), (IX + ESTRUCTURA_AYUDA.alto);nº de filas
+	;~ LD		(byteaux2), (IX + ESTRUCTURA_AYUDA.alto);nº de columnas
+	LD		(byteaux1), A		;nº de filas
+	LD		(byteaux2), A		;nº de columnas
 	
 	JP		pinta_array
 fin_pinta_obj_ayuda:
@@ -278,52 +306,52 @@ pinta_ayudas_habitacion:
 .examina_oracion:
 	LD		 A, (habitacion_extras)
 	BIT		 7,A
-	JP		 Z,.examina_cruz
+	JP		 Z,fin_pinta_ayudas_habitacion;.examina_cruz
 	LD		IX, ayuda_oracion
 	LD		 A, ACTIVA
 	CALL	pinta_obj_ayuda
-.examina_cruz:
-	LD		 A, (habitacion_extras)
-	BIT		 6,A
-	JP		 Z,.examina_aguabendita
-	LD		IX, ayuda_cruz
-	LD		 A, ACTIVA
-	CALL	pinta_obj_ayuda
-.examina_aguabendita:
-	LD		 A, (habitacion_extras)
-	BIT		 5,A
-	JP		 Z,.examina_armadura
-	LD		IX, ayuda_aguabendita
-	LD		 A, ACTIVA
-	CALL	pinta_obj_ayuda
-.examina_armadura:
-	LD		 A, (habitacion_extras)
-	BIT		 4,A
-	JP		 Z,.examina_planta
-	LD		IX, ayuda_armadura
-	LD		 A, ACTIVA
-	CALL	pinta_obj_ayuda
-.examina_planta:
-	LD		 A, (habitacion_extras)
-	BIT		 3,A
-	JP		 Z,.examina_vidaextra
-	LD		IX, ayuda_planta
-	LD		 A, ACTIVA
-	CALL	pinta_obj_ayuda
-.examina_vidaextra:
-	LD		 A, (habitacion_extras)
-	BIT		 2,A
-	JP		 Z,.examina_ballesta
-	LD		IX, ayuda_vidaextra
-	LD		 A, ACTIVA
-	CALL	pinta_obj_ayuda
-.examina_ballesta:
-	LD		 A, (habitacion_extras)
-	BIT		 1,A
-	RET		 Z
-	LD		IX, ayuda_ballesta
-	LD		 A, ACTIVA
-	CALL	pinta_obj_ayuda
+;~ .examina_cruz:
+	;~ LD		 A, (habitacion_extras)
+	;~ BIT		 6,A
+	;~ JP		 Z,.examina_aguabendita
+	;~ LD		IX, ayuda_cruz
+	;~ LD		 A, ACTIVA
+	;~ CALL	pinta_obj_ayuda
+;~ .examina_aguabendita:
+	;~ LD		 A, (habitacion_extras)
+	;~ BIT		 5,A
+	;~ JP		 Z,.examina_armadura
+	;~ LD		IX, ayuda_aguabendita
+	;~ LD		 A, ACTIVA
+	;~ CALL	pinta_obj_ayuda
+;~ .examina_armadura:
+	;~ LD		 A, (habitacion_extras)
+	;~ BIT		 4,A
+	;~ JP		 Z,.examina_planta
+	;~ LD		IX, ayuda_armadura
+	;~ LD		 A, ACTIVA
+	;~ CALL	pinta_obj_ayuda
+;~ .examina_planta:
+	;~ LD		 A, (habitacion_extras)
+	;~ BIT		 3,A
+	;~ JP		 Z,.examina_vidaextra
+	;~ LD		IX, ayuda_planta
+	;~ LD		 A, ACTIVA
+	;~ CALL	pinta_obj_ayuda
+;~ .examina_vidaextra:
+	;~ LD		 A, (habitacion_extras)
+	;~ BIT		 2,A
+	;~ JP		 Z,.examina_ballesta
+	;~ LD		IX, ayuda_vidaextra
+	;~ LD		 A, ACTIVA
+	;~ CALL	pinta_obj_ayuda
+;~ .examina_ballesta:
+	;~ LD		 A, (habitacion_extras)
+	;~ BIT		 1,A
+	;~ RET		 Z
+	;~ LD		IX, ayuda_ballesta
+	;~ LD		 A, ACTIVA
+	;~ CALL	pinta_obj_ayuda
 fin_pinta_ayudas_habitacion:
 	RET
 

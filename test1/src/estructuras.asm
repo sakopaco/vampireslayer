@@ -24,39 +24,6 @@ pm_aux9			DB		0	;para llegar a los 16 campos
 pm_aux10		DB		0	;para llegar a los 16 campos
 	ENDSTRUCT;ESTRUCTURA_PUNTOMIRA
 
-	
-	STRUCT ESTRUCTURA_ENEMIGO
-tipo				DB		0	;(0 serpiente por ejemplo) #FF muerto o no existe
-posx				DB		5
-posy				DB		50
-color				DB		5
-escena				DB		0
-contador_siguiente_escena	DB	0
-reset_contador		DB		0
-dano				DB		0	;daño
-energia				DB		0	;energía del enemigo... si llega a 0 => existe <- 0
-;indica el nº de sprite a mostrar y si está compuesto por uno o dos sprites y si están en horizontal o vertical
-ver_hor				DB		0
-manejador_dibujo 	DW		0
-en_aux3				DB		0
-en_aux4				DB		0
-	ENDSTRUCT;ESTRUCTURA_ENEMIGO
-	
-	STRUCT ESTRUCTURA_AYUDA		;vidas extra, plantas de curación de energía, reliquias				
-activo				DB		0	;0 no activo <>0 activo 											0
-postilemem_nousado	DW		0	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)	1,2
-postilemem_usado	DW		0	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)	3,4
-pospantalla			DB		0	;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
-posx				DB		0	;pos del pixel central (esquina superior + 8x)						6
-posy				DB		112	;pos del pixel central (esquina superior + 8y) (para toas igual)	7
-puntero_accion		DW		0	;subrutina que indica la acción si se dispara en el objeto			8,9
-ayu_aux1			DB		0	;relleno
-ayu_aux2			DB		0	;relleno
-ayu_aux3			DB		0	;relleno
-ayu_aux4			DB		0	;relleno
-ayu_aux5			DB		0	;relleno
-ayu_aux6			DB		0	;relleno
-	ENDSTRUCT;ESTRUCTURA_AYUDA
 
 
 	STRUCT ESTRUCTURA_ANTORCHA
@@ -77,6 +44,48 @@ escena				DB		0	;(va entre 0 y 4 - tiles 164, 165, 164, 166)	5
 cont_sig_escena		DB		0	;	6
 	ENDSTRUCT;ESTRUCTURA_ESQUELETO
 	
+
+	STRUCT ESTRUCTURA_ENEMIGO
+tipo				DB		0	;(0 serpiente por ejemplo) #FF muerto o no existe
+posx				DB		5
+posy				DB		50
+color				DB		5
+escena				DB		0
+contador_siguiente_escena	DB	0
+reset_contador		DB		0
+dano				DB		0	;daño
+energia				DB		0	;energía del enemigo... si llega a 0 => existe <- 0
+;indica el nº de sprite a mostrar y si está compuesto por uno o dos sprites y si están en horizontal o vertical
+ver_hor				DB		0
+manejador_dibujo 	DW		0
+en_aux3				DB		0
+en_aux4				DB		0
+	ENDSTRUCT;ESTRUCTURA_ENEMIGO
+	
+	;~ STRUCT ESTRUCTURA_AYUDA		;vidas extra, plantas de curación de energía, reliquias				
+;~ activo				DB		0	;0 no activo <>0 activo 											0
+;~ postilemem_nousado	DW		0	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)	1,2
+;~ postilemem_usado	DW		0	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)	3,4
+;~ pospantalla			DB		0	;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
+;~ posx				DB		0	;pos del pixel central (esquina superior + 8x)						6
+;~ posy				DB		112	;pos del pixel central (esquina superior + 8y) (para toas igual)	7
+;~ puntero_accion		DW		0	;subrutina que indica la acción si se dispara en el objeto			8,9
+	;~ ENDSTRUCT;ESTRUCTURA_AYUDA
+
+	STRUCT ESTRUCTURA_AYUDA	
+activa				DB		0	;0 no activa <>0 activo (y muestra tiles ayudaoff)
+posx				DB		0	;punto x de la ayuda para cuando se dispare encima
+posy				DB		112	;punto y de la ayuda para cuando se dispare encima
+radiox				DB		0	;radio x de la ayuda para cuando se dispare encima
+radioy				DB		0	;radio y de la ayuda para cuando se dispare encima
+accion				DW		0	;función para acción de cada tipo de ayuda
+tiles_ayudaon		DW		0	;puntero al array con los tiles de las ayudas sin usar para wordaux2
+tiles_ayudaoff		DW		0	;puntero al array con los tiles de las ayudas sin usar para wordaux2
+pos_en_tilemap		DW		0	;calcula posición en tilemap para wordaux1
+alto				DB		2	;alto en tiles del dibujo de la puerta (filas)
+ancho				DB		2	;ancho en tiles del dibujo de la puerta (columnas)
+	ENDSTRUCT;ESTRUCTURA_PUERTA
+
 	STRUCT ESTRUCTURA_PUERTA	;también servirá para la escalera
 activa				DB		0	;0 no activa <>0 activo
 posx				DB		0	;punto x de la puerta para cuando se dispare encima

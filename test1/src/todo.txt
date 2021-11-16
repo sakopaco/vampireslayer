@@ -10,22 +10,24 @@ activa, posx y posx y función si acierta
 
 + * actualizar diseño por lo menos de primer y segundo nivel para verificar la correcta navegación
 
-* verificar colisiones con disparos en subr_teclado_joy
++* verificar colisiones con disparos en subr_teclado_joy
 
-actualizar marcador floor de abajo
-Que se muestre la escalera en puerta de final de nivel... repasar
++* actualizar marcador floor de abajo
 
-Inicialización correcta de ayudas
++* actualiza marcador de nivel
+
+*rehacer ayudas
+	- estructuras
+	- inicializar
+	- pintar
+	- colisiones ayudas
+	- que ejecuten acción
+	
 
 Casos especiales de a puerta inferior de la primera pantalla
 
 
 
-
-
-* ver lo de inicializar ayudas con Fernando (no funciona si uso su método  ¿'¿'¿?¿ raro)
-
-* verificar colisiones con ayudas
 
 
 
