@@ -564,13 +564,13 @@ fin_check_colision_puerta:
 ; toca:		IX
 desactiva_todas_puertas:
 	LD		IX, puerta_arriba		;desactivo_puerta arriba
-	LD		(IX), PUERTAINACT
+	LD		(IX), INACTIVA
 	LD		IX, puerta_derecha		;desactivo_puerta derecha
-	LD		(IX), PUERTAINACT
+	LD		(IX), INACTIVA
 	LD		IX, puerta_abajo		;desactivo_puerta abajo
-	LD		(IX), PUERTAINACT
+	LD		(IX), INACTIVA
 	LD		IX, puerta_izquierda	;desactivo_puerta izquierda
-	LD		(IX), PUERTAINACT
+	LD		(IX), INACTIVA
 fin_desactiva_todas_puertas:
 	RET
 

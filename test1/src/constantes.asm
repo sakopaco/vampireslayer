@@ -52,8 +52,6 @@ SPRTBL		equ		#3800
 ;;ETIQUETAS ESTANDAR PARA DAR MÁS CLARIDAD AL CODIGO
 SI			equ		1
 NO			equ		0
-PUERTAACTIV equ		1
-PUERTAINACT equ		0
 LIMCADENCIA equ		4	;nº de veces que se ejecutará el disparo antes de ejecutar un disparo real (porque cuando se pulsa la tecl dispara 3 ó 4 veces de rápido que va)
 ;hay que estudiar si 3 es un nº mejor
 
@@ -101,7 +99,7 @@ POSPUERIZQU equ		#00E1
 POSESCALERA equ		#006C	;32 x 3 + columna
 
 ;;POSICIONES DE LAS AYUDAS EN PANTALLA BANCO 1
-POSORACION	equ		256 + 5
+POSORACION	equ		#0146	;256 + 70
 POSCRUZ		equ		167
 POSAGUA		equ		171
 POSARMAD	equ		175
@@ -118,7 +116,16 @@ POSPLANTAX	equ		160
 POSVIDAEXTX	equ		192
 POSBALLESTAX equ	224
 
+;; TAMAÑO AYUDAS
+ALTOAYUDA	equ		#02
+ANCHOAYUDA	equ		#02
+
+;; RADIOS DE DISPARO
+RADIOAYUDAX equ		#08
+RADIOAYUDAY equ		#08
+
 ;;POSICIONES DE LAS AYUDAS EN PANTALLA PIXEL CENTRAL Y
+POSORACIONY	equ		32
 POSAYUDASY	equ		112	;se pone por poner porque las estructuras de ayudas ya se inicializan con este valor
 
 ;;POSICIÓN INICIAL DEL SPRITE DEL PUNTO DE MIRA
@@ -261,6 +268,7 @@ ayFX_CHANNEL:	#1			; PSG channel to play the ayFX stream
 ;ayFX_VT:	ds	2			; ayFX relative volume table pointer
 	;ENDIF
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ayFX REPLAYER END
+
 
 
 

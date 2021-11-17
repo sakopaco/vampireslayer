@@ -18,6 +18,10 @@ activa, posx y posx y función si acierta
 
 *rehacer ayudas
 	- estructuras
+	
+	;hay que repasar todos los posoracionx y posayudasy ***********************************
+	
+	
 	- inicializar
 	- pintar
 	- colisiones ayudas

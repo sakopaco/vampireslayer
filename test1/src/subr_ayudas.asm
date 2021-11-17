@@ -49,32 +49,35 @@ ayuda_oracion:		DS		ESTRUCTURA_AYUDA
 ;~ ayuda_ballesta:		DS		ESTRUCTURA_AYUDA
 
 ;datos ayudas
+
+;hay que repasar todos los posoracionx y posayudasy ***********************************
+
 datos_oracion:			
-				DB		0				;0 no activa <>0 activo (y muestra tiles ayudaoff)
-				DB		POSORACIONX	;punto x de la ayuda para cuando se dispare encima
-				DB		POSAYUDASY	;punto y de la ayuda para cuando se dispare encima
-				DB		8				;radio x de la ayuda para cuando se dispare encima
-				DB		8				;radio y de la ayuda para cuando se dispare encima
+				DB		INACTIVA		;0 no activa <>0 activo (y muestra tiles ayudaoff)
+				DB		POSORACIONX		;punto x de la ayuda para cuando se dispare encima
+				DB		POSORACIONY		;punto y de la ayuda para cuando se dispare encima
+				DB		RADIOAYUDAX		;radio x de la ayuda para cuando se dispare encima
+				DB		RADIOAYUDAY		;radio y de la ayuda para cuando se dispare encima
 				DW		accion_oracion	;función para acción de cada tipo de ayuda
 				DW		array_oracionon	;puntero al array con los tiles de las ayudas sin usar para wordaux2
 				DW		array_oracionoff;puntero al array con los tiles de las ayudas sin usar para wordaux2
 				DW		TILMAP + POSORACION ;calcula posición en tilemap para wordaux1
-				DB		2				;alto en tiles del dibujo de la puerta (filas)
-				DB		2				;ancho en tiles del dibujo de la puerta (columnas)
-	
-	
-	;~ activa				DB		0	;0 no activa <>0 activo (y muestra tiles ayudaoff)
-;~ posx				DB		0	;punto x de la ayuda para cuando se dispare encima
-;~ posy				DB		112	;punto y de la ayuda para cuando se dispare encima
-;~ radiox				DB		0	;radio x de la ayuda para cuando se dispare encima
-;~ radioy				DB		0	;radio y de la ayuda para cuando se dispare encima
-;~ accion				DW		0	;función para acción de cada tipo de ayuda
-;~ tiles_ayudaon		DW		0	;puntero al array con los tiles de las ayudas sin usar para wordaux2
-;~ tiles_ayudaoff		DW		0	;puntero al array con los tiles de las ayudas sin usar para wordaux2
-;~ pos_en_tilemap		DW		0	;calcula posición en tilemap para wordaux1
-;~ alto				DB		2	;alto en tiles del dibujo de la puerta (filas)
-;~ ancho				DB		2	;ancho en tiles del dibujo de la puerta (columnas)
-				
+				DB		ALTOAYUDA		;alto en tiles del dibujo de la puerta (filas)
+				DB		ANCHOAYUDA		;ancho en tiles del dibujo de la puerta (columnas)
+					
+;~ datos_cruz:			
+				;~ DB		0				;0 no activa <>0 activo (y muestra tiles ayudaoff)
+				;~ DB		POSCRUZX		;punto x de la ayuda para cuando se dispare encima
+				;~ DB		POSAYUDASY		;punto y de la ayuda para cuando se dispare encima
+				;~ DB		8				;radio x de la ayuda para cuando se dispare encima
+				;~ DB		8				;radio y de la ayuda para cuando se dispare encima
+				;~ DW		accion_oracion	;función para acción de cada tipo de ayuda
+				;~ DW		array_oracionon	;puntero al array con los tiles de las ayudas sin usar para wordaux2
+				;~ DW		array_oracionoff;puntero al array con los tiles de las ayudas sin usar para wordaux2
+				;~ DW		TILMAP + POSORACION ;calcula posición en tilemap para wordaux1
+				;~ DB		2				;alto en tiles del dibujo de la puerta (filas)
+				;~ DB		2				;ancho en tiles del dibujo de la puerta (columnas)
+
 				
 ;~ datos_cruz:
 				;~ DB    	0				;0 no activo <>0 activo															0
@@ -270,18 +273,18 @@ pinta_obj_ayuda:
 	OR		 A
 	JP		 Z,.dibujooff
 .dibujoon:	
-		LD		 H, (IX + ESTRUCTURA_AYUDA.tiles_ayudaon)
-		LD		 L, (IX + ESTRUCTURA_AYUDA.tiles_ayudaon + 1)
+		LD		 L, (IX + ESTRUCTURA_AYUDA.tiles_ayudaon)
+		LD		 H, (IX + ESTRUCTURA_AYUDA.tiles_ayudaon + 1)
 		LD		(wordaux2), HL	;pongo el valor en wordaux2
 		JP		.param_wordaux2
 .dibujooff:
-		LD		 H, (IX + ESTRUCTURA_AYUDA.tiles_ayudaoff)
-		LD		 L, (IX + ESTRUCTURA_AYUDA.tiles_ayudaoff + 1)
+		LD		 L, (IX + ESTRUCTURA_AYUDA.tiles_ayudaoff)
+		LD		 H, (IX + ESTRUCTURA_AYUDA.tiles_ayudaoff + 1)
 		LD		(wordaux2), HL	;pongo el valor en wordaux2
 ;fin si
 .param_wordaux2:	
-	LD		 H, (IX + ESTRUCTURA_AYUDA.pos_en_tilemap)
-	LD		 L, (IX + ESTRUCTURA_AYUDA.pos_en_tilemap + 1)
+	LD		 L, (IX + ESTRUCTURA_AYUDA.pos_en_tilemap)
+	LD		 H, (IX + ESTRUCTURA_AYUDA.pos_en_tilemap + 1)
 	LD		(wordaux1), HL		;pongo el valor en wordaux1
 
 .filasycols:
