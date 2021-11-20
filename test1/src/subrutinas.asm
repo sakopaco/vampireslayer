@@ -10,6 +10,10 @@
 ; entrada: 	habitaciones_plantilla
 ; salida: 	habitaciones_plantilla con los el bit 4 de los bites bytes impares a 0
 ; toca: 	habitaciones_plantilla, B
+
+
+;******************************************************************************************+  REHACER MÁS SIMPLE Y CORTO
+
 inicializa_niveles:
 		PUSH		AF
 		PUSH		BC
@@ -19,6 +23,7 @@ inicializa_niveles:
 		LD 			HL, habitaciones_nivel0
 .inicia_nivel_0
 		LD		 	 A, (HL)
+		SET			 6, A 		;el 6 bit a 0 indica que por esa habitacion, si hay ayudas, no se han cogido.
 		SET			 4, A 		;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
 		LD			(HL), A
 [2]		INC			HL
@@ -28,6 +33,7 @@ inicializa_niveles:
 		LD 			HL, habitaciones_nivel1
 .inicia_nivel_1
 		LD		 	 A, (HL)
+		SET			 6, A 		;el 6 bit a 0 indica que por esa habitacion, si hay ayudas, no se han cogido.
 		SET			 4, A 		;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
 		LD			(HL), A
 [2]		INC			HL
@@ -37,6 +43,7 @@ inicializa_niveles:
 		LD 			HL, habitaciones_nivel2
 .inicia_nivel_2
 		LD		 	 A, (HL)
+		SET			 6, A 		;el 6 bit a 0 indica que por esa habitacion, si hay ayudas, no se han cogido.
 		SET			 4, A 		;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
 		LD			(HL), A
 [2]		INC			HL
@@ -46,6 +53,7 @@ inicializa_niveles:
 		LD 			HL, habitaciones_nivel3
 .inicia_nivel_3
 		LD		 	 A, (HL)
+		SET			 6, A 		;el 6 bit a 0 indica que por esa habitacion, si hay ayudas, no se han cogido.
 		SET			 4, A 		;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
 		LD			(HL), A
 [2]		INC			HL
@@ -64,6 +72,7 @@ inicializa_niveles:
 		LD 			HL, habitaciones_nivel5
 .inicia_nivel_5
 		LD		 	 A, (HL)
+		SET			 6, A 		;el 6 bit a 0 indica que por esa habitacion, si hay ayudas, no se han cogido.
 		SET			 4, A 		;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
 		LD			(HL), A
 [2]		INC			HL
@@ -73,6 +82,7 @@ inicializa_niveles:
 		LD 			HL, habitaciones_nivel6
 .inicia_nivel_6
 		LD		 	 A, (HL)
+		SET			 6, A 		;el 6 bit a 0 indica que por esa habitacion, si hay ayudas, no se han cogido.
 		SET			 4, A 		;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
 		LD			(HL), A
 [2]		INC			HL

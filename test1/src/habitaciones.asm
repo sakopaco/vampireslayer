@@ -13,9 +13,9 @@
 ;NOTA: no es necesario asignar un bit para la puerta de arriba ya que en las habitaciones de la fila 7 sólo habrá una puerta que será una escalera
 
 ;~ 7 - sin asignar
-;~ 6 - sin asignar
+;~ 6 - si 1 => ayudas usadas 0 => ayudas no usuadas (se inicializan al empezar la partida)
 ;~ 5 - esqueletos
-;~ 4 - todos los enemigos muertos 0 no y 1 ó <>0 => toca la variable "is_habitacion_terminada"
+;~ 4 - todos los enemigos muertos 0 no y 1 ó <>0 => toca la variable "is_habitacion_terminada" (se inicializan al empezar la partida)
 ;~ 0,1,2,3 - nº puertas 1 arriba 1 derecha 1 abajo 1 izquierda
 
 ;~ 7 - oracion

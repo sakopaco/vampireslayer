@@ -306,6 +306,9 @@ fin_pinta_obj_ayuda:
 ; entrada: 	habitacion_extras
 ; salida: 	-
 pinta_ayudas_habitacion:
+	LD		 A, (habitacion_actual)
+	BIT		 6, A
+	RET		 Z						;0 ya no hay ayudas activas (se actualiza cuando se usa la ayuda)
 .examina_oracion:
 	LD		 A, (habitacion_extras)
 	BIT		 7,A
