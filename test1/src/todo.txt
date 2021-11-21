@@ -17,7 +17,10 @@ activa, posx y posx y función si acierta
 +* actualiza marcador de nivel
 
 *rehacer ayudas
-	- estructuras
+	
+	hay que ver si coje bien hay_ayudas_utilizadas porque parece que no coje el valor 1 o 0 
+	subrutinas 258
+	subr_ayudas 310
 	
 	;hay que repasar todos los posoracionx y posayudasy ***********************************
 	

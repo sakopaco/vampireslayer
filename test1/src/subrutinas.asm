@@ -18,7 +18,7 @@ inicializa_niveles:
 		PUSH		AF
 		PUSH		BC
 		PUSH		HL
-		
+
 		LD			 B, 56		;la mitad de bytes del array de un nivel
 		LD 			HL, habitaciones_nivel0
 .inicia_nivel_0
@@ -229,9 +229,34 @@ localiza_info_habitacion:
 	
 	;actualizo la variable is_habitacion_terminada
 	LD		 A, (habitacion_actual)
-	AND		00010000b					;me interresa sólo el bit 4 (si la habitación ha sido recorrida)
-[4]	SRA		 A
+	BIT		 4, A					;está terminada la habitación
+	JP		 NZ, .si_terminada
+.no_terminada:						;pongo un 0 en is_habitacion_terminada
+	LD		 B, A
+	XOR		 A
 	LD		(is_habitacion_terminada), A
+	JP		.fin_esta_terminada
+.si_terminada:						;pongo un 1 en is_habitacion_terminada
+	LD		 B, A
+	LD		 A, 1		
+	LD		(is_habitacion_terminada), A
+.fin_esta_terminada:
+	LD		 A, B					;como uso de var aux A tengo que devolver su valor para mirar si la habitación tiene ayudas
+	
+	;actualizo la variable hay_ayudas
+	LD		 A, (habitacion_actual)
+	BIT		 6, A					;está terminada la habitación
+	JP		 Z, .no_cogidas_ayudas
+.si_cogidas_ayudas:							;pongo un 0 en is_habitacion_terminada
+	LD		 B, A
+	XOR		 A
+	LD		(hay_ayudas_utilizadas), A
+	JP		.fin_mira_ayudas
+.no_cogidas_ayudas:							;pongo un 1 en is_habitacion_terminada
+	LD		 B, A
+	LD		 A, 1		
+	LD		(hay_ayudas_utilizadas), A
+.fin_mira_ayudas:							;no restauro B en A porque ya no lo necesito
 	
 	;actualizo la variable habitacion_extras
 	INC		HL				;el byte de los extras está antes de donde se especifican las puertas
@@ -336,8 +361,7 @@ fin_cabio_nivel:
 		RET
 	
 	
-	
-	
+
 	
 	
 	

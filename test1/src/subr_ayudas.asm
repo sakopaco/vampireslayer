@@ -6,6 +6,8 @@
 ;;VARIABLES
 ;;=====================================================
 
+hay_ayudas_utilizadas:		DB	0		;variable que se actualiza cuando cambiemos da habitación para no mirar el bit de habitación cada vez
+
 ;array de ayudas
 ;posición dentro del bank1 (o 0 que son iguales) de los tiles de la ayuda (cómo en los sprites de 2x2)
 array_ayudas:
@@ -269,17 +271,17 @@ fin_carga_datos_ayuda:
 pinta_obj_ayuda:
 	;se recibe objeto desde fuera, por ejmplo LD IX, ayuda_oracion
 
-	;si A=1 dibujo on (si 0 off)
+	;si A=0 dibujo on (si 1 off)
 	OR		 A
 	JP		 Z,.dibujooff
 .dibujoon:	
-		LD		 L, (IX + ESTRUCTURA_AYUDA.tiles_ayudaon)
-		LD		 H, (IX + ESTRUCTURA_AYUDA.tiles_ayudaon + 1)
+		LD		 L, (IX + ESTRUCTURA_AYUDA.tiles_ayudaoff)
+		LD		 H, (IX + ESTRUCTURA_AYUDA.tiles_ayudaoff + 1)
 		LD		(wordaux2), HL	;pongo el valor en wordaux2
 		JP		.param_wordaux2
 .dibujooff:
-		LD		 L, (IX + ESTRUCTURA_AYUDA.tiles_ayudaoff)
-		LD		 H, (IX + ESTRUCTURA_AYUDA.tiles_ayudaoff + 1)
+		LD		 L, (IX + ESTRUCTURA_AYUDA.tiles_ayudaon)
+		LD		 H, (IX + ESTRUCTURA_AYUDA.tiles_ayudaon + 1)
 		LD		(wordaux2), HL	;pongo el valor en wordaux2
 ;fin si
 .param_wordaux2:	
@@ -310,12 +312,31 @@ pinta_ayudas_habitacion:
 	BIT		 6, A
 	RET		 Z						;0 ya no hay ayudas activas (se actualiza cuando se usa la ayuda)
 .examina_oracion:
+	;~ LD		 A, (habitacion_extras)
+	;~ BIT		 7,A
+	;~ JP		 Z,fin_pinta_ayudas_habitacion;.examina_cruz
+	;~ LD		IX, ayuda_oracion
+	;~ LD		 A, ACTIVA
+	;~ CALL	pinta_obj_ayuda
+	
+	
 	LD		 A, (habitacion_extras)
 	BIT		 7,A
 	JP		 Z,fin_pinta_ayudas_habitacion;.examina_cruz
 	LD		IX, ayuda_oracion
-	LD		 A, ACTIVA
+	LD		 A, (hay_ayudas_utilizadas)
+	;~ OR		 A
+	;~ JP		 Z, .pinta_ayuda_noactiva
+;~ .pinta_ayuda_activa:
+	;~ LD		 A, ACTIVA
+	;~ JP		.fin_pinta_ayuda
+;~ .pinta_ayuda_noactiva:
+	;~ XOR		 A					;LD		A, 0 (INCATIVA)
+;~ .fin_pinta_ayuda:
+
 	CALL	pinta_obj_ayuda
+	
+	
 ;~ .examina_cruz:
 	;~ LD		 A, (habitacion_extras)
 	;~ BIT		 6,A
