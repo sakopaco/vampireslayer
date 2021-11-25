@@ -12,82 +12,164 @@
 ; toca: 	habitaciones_plantilla, B
 
 
-;******************************************************************************************+  REHACER MÁS SIMPLE Y CORTO
+;ahora mismo se pondrá que se pueda navegar por cualquier habitación y sólo se controlarán las ayudas
+;cuando ya haya enemigos se modificará para que el bit 4 a 0 todos los enemigos muerto y 1 hay enemigos vivos
+;ayudas bit 6 1 hay ayudas y 0 no hay ayudas
 
 inicializa_niveles:
 		PUSH		AF
 		PUSH		BC
 		PUSH		HL
 
-		LD			 B, 56		;la mitad de bytes del array de un nivel
-		LD 			HL, habitaciones_nivel0
-.inicia_nivel_0
-		LD		 	 A, (HL)
-		SET			 6, A 		;el 6 bit a 0 indica que por esa habitacion, si hay ayudas, no se han cogido.
-		SET			 4, A 		;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
-		LD			(HL), A
-[2]		INC			HL
+		;inicia habitación para decir si por esa habitación no se ha pasado
+		;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
+		;el 6 bit a 1 indica que en esa habitación hay ayudas no utilizadas
+
+;nivel 0 -----------------------------------------------------------------------
+		LD			 B, 56	;la mitad de bytes del array de un nivel
+		LD 			HL, habitaciones_nivel0	;puntero al byte de la habitación
+		LD			IX, habitaciones_nivel0
+		INC			IX		;IX será un puntero al byte donde están las ayudas (que es el siguiente)
+.inicia_nivel_0:
+		LD		 	 B, (HL)
+		
+		SET			 4, B	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
+		
+		LD			 A, (IX)
+		AND			1111110b
+		JR			 Z, .no_tiene_ayuda_nivel0
+.si_tiene_ayuda_nivel0:
+		SET			 6, B
+.no_tiene_ayuda_nivel0:
+		RES			 6, B
+.fin_tiene_ayuda_nivel0:
+		
+		LD			(HL), B
+[2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
+[2]		INC			IX		;pongo puntero en la siguiente byte de ayudas (2 saltos)
 		DJNZ		.inicia_nivel_0
 
-		LD			 B, 56		;la mitad de bytes del array de un nivel
-		LD 			HL, habitaciones_nivel1
-.inicia_nivel_1
-		LD		 	 A, (HL)
-		SET			 6, A 		;el 6 bit a 0 indica que por esa habitacion, si hay ayudas, no se han cogido.
-		SET			 4, A 		;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
-		LD			(HL), A
-[2]		INC			HL
+;nivel 1 -----------------------------------------------------------------------
+		LD			 B, 56	;la mitad de bytes del array de un nivel
+		LD 			HL, habitaciones_nivel1	;puntero al byte de la habitación
+		LD			IX, habitaciones_nivel1
+		INC			IX		;IX será un puntero al byte donde están las ayudas (que es el siguiente)
+.inicia_nivel_1:
+		LD		 	 B, (HL)
+		
+		SET			 4, B	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
+		
+		LD			 A, (IX)
+		AND			1111110b
+		JR			 Z, .no_tiene_ayuda_nivel1
+.si_tiene_ayuda_nivel1:
+		SET			 6, B
+.no_tiene_ayuda_nivel1:
+		RES			 6, B
+.fin_tiene_ayuda_nivel1:
+		
+		LD			(HL), B
+[2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
+[2]		INC			IX		;pongo puntero en la siguiente byte de ayudas (2 saltos)
 		DJNZ		.inicia_nivel_1
 
-		LD			 B, 56		;la mitad de bytes del array de un nivel
-		LD 			HL, habitaciones_nivel2
-.inicia_nivel_2
-		LD		 	 A, (HL)
-		SET			 6, A 		;el 6 bit a 0 indica que por esa habitacion, si hay ayudas, no se han cogido.
-		SET			 4, A 		;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
-		LD			(HL), A
-[2]		INC			HL
+;nivel 2 -----------------------------------------------------------------------
+		LD			 B, 56	;la mitad de bytes del array de un nivel
+		LD 			HL, habitaciones_nivel2	;puntero al byte de la habitación
+		LD			IX, habitaciones_nivel2
+		INC			IX		;IX será un puntero al byte donde están las ayudas (que es el siguiente)
+.inicia_nivel_2:
+		LD		 	 B, (HL)
+		
+		SET			 4, B	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
+		
+		LD			 A, (IX)
+		AND			1111110b
+		JR			 Z, .no_tiene_ayuda_nivel2
+.si_tiene_ayuda_nivel2:
+		SET			 6, B
+.no_tiene_ayuda_nivel2:
+		RES			 6, B
+.fin_tiene_ayuda_nivel2:
+		
+		LD			(HL), B
+[2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
+[2]		INC			IX		;pongo puntero en la siguiente byte de ayudas (2 saltos)
 		DJNZ		.inicia_nivel_2
 
-		LD			 B, 56		;la mitad de bytes del array de un nivel
-		LD 			HL, habitaciones_nivel3
-.inicia_nivel_3
-		LD		 	 A, (HL)
-		SET			 6, A 		;el 6 bit a 0 indica que por esa habitacion, si hay ayudas, no se han cogido.
-		SET			 4, A 		;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
-		LD			(HL), A
-[2]		INC			HL
+;nivel 3 -----------------------------------------------------------------------
+		LD			 B, 56	;la mitad de bytes del array de un nivel
+		LD 			HL, habitaciones_nivel3	;puntero al byte de la habitación
+		LD			IX, habitaciones_nivel3
+		INC			IX		;IX será un puntero al byte donde están las ayudas (que es el siguiente)
+.inicia_nivel_3:
+		LD		 	 B, (HL)
+		
+		SET			 4, B	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
+		
+		LD			 A, (IX)
+		AND			1111110b
+		JR			 Z, .no_tiene_ayuda_nivel3
+.si_tiene_ayuda_nivel3:
+		SET			 6, B
+.no_tiene_ayuda_nivel3:
+		RES			 6, B
+.fin_tiene_ayuda_nivel3:
+		
+		LD			(HL), B
+[2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
+[2]		INC			IX		;pongo puntero en la siguiente byte de ayudas (2 saltos)
 		DJNZ		.inicia_nivel_3
 
-		LD			 B, 56		;la mitad de bytes del array de un nivel
-		LD 			HL, habitaciones_nivel4
-.inicia_nivel_4
-		LD		 	 A, (HL)
-		SET			 4, A 		;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
-		LD			(HL), A
-[2]		INC			HL
+;nivel 4 -----------------------------------------------------------------------
+		LD			 B, 56	;la mitad de bytes del array de un nivel
+		LD 			HL, habitaciones_nivel4	;puntero al byte de la habitación
+		LD			IX, habitaciones_nivel4
+		INC			IX		;IX será un puntero al byte donde están las ayudas (que es el siguiente)
+.inicia_nivel_4:
+		LD		 	 B, (HL)
+		
+		SET			 4, B	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
+		
+		LD			 A, (IX)
+		AND			1111110b
+		JR			 Z, .no_tiene_ayuda_nivel4
+.si_tiene_ayuda_nivel4:
+		SET			 6, B
+.no_tiene_ayuda_nivel4:
+		RES			 6, B
+.fin_tiene_ayuda_nivel4:
+		
+		LD			(HL), B
+[2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
+[2]		INC			IX		;pongo puntero en la siguiente byte de ayudas (2 saltos)
 		DJNZ		.inicia_nivel_4
 
-		LD			 B, 56		;la mitad de bytes del array de un nivel
-		LD 			HL, habitaciones_nivel5
-.inicia_nivel_5
-		LD		 	 A, (HL)
-		SET			 6, A 		;el 6 bit a 0 indica que por esa habitacion, si hay ayudas, no se han cogido.
-		SET			 4, A 		;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
-		LD			(HL), A
-[2]		INC			HL
+;nivel 5 -----------------------------------------------------------------------
+		LD			 B, 56	;la mitad de bytes del array de un nivel
+		LD 			HL, habitaciones_nivel5	;puntero al byte de la habitación
+		LD			IX, habitaciones_nivel5
+		INC			IX		;IX será un puntero al byte donde están las ayudas (que es el siguiente)
+.inicia_nivel_5:
+		LD		 	 B, (HL)
+		
+		SET			 4, B	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
+		
+		LD			 A, (IX)
+		AND			1111110b
+		JR			 Z, .no_tiene_ayuda_nivel5
+.si_tiene_ayuda_nivel5:
+		SET			 6, B
+.no_tiene_ayuda_nivel5:
+		RES			 6, B
+.fin_tiene_ayuda_nivel5:
+		
+		LD			(HL), B
+[2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
+[2]		INC			IX		;pongo puntero en la siguiente byte de ayudas (2 saltos)
 		DJNZ		.inicia_nivel_5
 
-		LD			 B, 56		;la mitad de bytes del array de un nivel
-		LD 			HL, habitaciones_nivel6
-.inicia_nivel_6
-		LD		 	 A, (HL)
-		SET			 6, A 		;el 6 bit a 0 indica que por esa habitacion, si hay ayudas, no se han cogido.
-		SET			 4, A 		;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
-		LD			(HL), A
-[2]		INC			HL
-		DJNZ		.inicia_nivel_6
-
+		
 		POP			HL
 		POP			BC
 		POP			AF
