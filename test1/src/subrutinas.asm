@@ -285,7 +285,7 @@ localiza_info_habitacion:
 	;~ PUSH	AF
 	;~ PUSH	BC
 	;~ PUSH	DE
-	;~ PUSH	HL
+	PUSH	HL
 
 ;primera posición: me coloco en la columna correcta
 	LD		HL, habitaciones_juego
@@ -370,7 +370,7 @@ localiza_info_habitacion:
 	LD		 A, (HL)
 	LD		(habitacion_extras), A
 
-	;~ POP		HL	
+	POP		HL	
 	;~ POP		DE
 	;~ POP		BC
 	;~ POP		AF

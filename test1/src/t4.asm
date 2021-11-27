@@ -82,9 +82,6 @@ fin_programa_principal:
 ; salida: 	-
 ; toca:		HL,BC, DE
 check_colisiones_objetos:
-
-;;;		parece que funciona pero hayq que seguir depurando
-
 	PUSH	AF
 	
 	;pantalla limpia?
@@ -94,11 +91,19 @@ check_colisiones_objetos:
 	;SI 
 	;recorre puertas y sale
 		CALL	check_colisiones_puertas
-		
-		JP		fin_check_colisiones_objetos	
 	;NO 
 .habitacion_no_terminada:
+	
 	;recorre ayudas
+	LD		 A, (examina_ayudas_en_pantalla)
+	OR		 0
+	JP		 Z, .habitacion_sin_ayudas
+	;SI
+	;mira si hay colisiones con la ayuda que haya puntero_ayuda_actual
+		CALL	check_colision_ayudas
+	;NO
+.habitacion_sin_ayudas:
+	
 	;recorre enemigos
 
 
@@ -107,8 +112,34 @@ fin_check_colisiones_objetos:
 	RET
 
 
-
-
+;;=====================================================
+;;CHECK_COLISION_AYUDAS
+;;=====================================================	
+; función: 	revisa si ha habido disparo sobre la ayuda de pantalla
+; entrada: 	puntero_ayuda_actual
+; salida: 	-
+; toca:		todo
+check_colision_ayudas:
+	LD 		IX, (puntero_ayuda_actual)
+	LD		 A, (IX)
+	OR		 A							;está activa la ayuda de pantalla?
+	JP		 Z, fin_check_colision_ayudas
+	;SI
+		CALL	check_colision_ayuda	;aquí ya es cosa de ver colisiones prota/puerta_izquierda
+		;recibe valor A
+		OR		 0						;hubo colisión?
+		RET		 Z						;no hubo colisión por lo que sale
+		;hubo colisión
+		;EJECUTA ACCIÓN Y SALE DE LA RUTINA	
+		LD		HL, fin_check_colision_ayudas ;se guarda dónde volver
+		PUSH	HL
+	
+		LD		 L, (IX + ESTRUCTURA_AYUDA.accion)
+		LD		 H, (IX + ESTRUCTURA_AYUDA.accion + 1)
+		JP		(HL)
+	;FINSI
+fin_check_colision_ayudas:
+	RET
 
 
 
