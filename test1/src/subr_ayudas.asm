@@ -271,9 +271,9 @@ fin_carga_datos_ayuda:
 pinta_obj_ayuda:
 	;se recibe objeto desde fuera, por ejmplo LD IX, ayuda_oracion
 
-	;si A=0 dibujo on (si 1 off)
+	;si A=1 dibujo on (si 0 off)
 	OR		 A
-	JP		 Z,.dibujooff
+	JP		 NZ,.dibujooff
 .dibujoon:	
 		LD		 L, (IX + ESTRUCTURA_AYUDA.tiles_ayudaoff)
 		LD		 H, (IX + ESTRUCTURA_AYUDA.tiles_ayudaoff + 1)

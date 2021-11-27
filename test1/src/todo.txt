@@ -34,7 +34,29 @@ activa, posx y posx y función si acierta
 Casos especiales de a puerta inferior de la primera pantalla
 
 
-
+;nivel 0 -----------------------------------------------------------------------
+		LD			 B, 56	;la mitad de bytes del array de un nivel
+		LD 			HL, habitaciones_nivel0	;puntero al byte de la habitación
+		;~ LD			IX, habitaciones_nivel0
+		;~ INC			IX		;IX será un puntero al byte donde están las ayudas (que es el siguiente)
+.inicia_nivel_0:
+		LD		 	 C, (HL)
+		
+		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
+		
+		;~ LD			 A, (IX)
+		;~ AND			1111110b
+		;~ JR			 Z, .no_tiene_ayuda_nivel0
+;~ .si_tiene_ayuda_nivel0:
+		;~ SET			 6, C
+;~ .no_tiene_ayuda_nivel0:
+		;~ RES			 6, C
+;~ .fin_tiene_ayuda_nivel0:
+		
+		LD			(HL), C
+[2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
+;[2]		INC			IX		;pongo puntero en la siguiente byte de ayudas (2 saltos)
+		DJNZ		.inicia_nivel_0
 
 
 

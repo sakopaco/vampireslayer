@@ -29,147 +29,177 @@ inicializa_niveles:
 		LD			 B, 56	;la mitad de bytes del array de un nivel
 		LD 			HL, habitaciones_nivel0	;puntero al byte de la habitación
 		LD			IX, habitaciones_nivel0
-		INC			IX		;IX será un puntero al byte donde están las ayudas (que es el siguiente)
+		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
 .inicia_nivel_0:
-		LD		 	 B, (HL)
+		LD		 	 C, (HL)
+		;pongo habitación no terminada bit 4 habitación a 0
+		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
 		
-		SET			 4, B	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
-		
+		;examino si hay ayudas en siguiente byte
 		LD			 A, (IX)
 		AND			1111110b
 		JR			 Z, .no_tiene_ayuda_nivel0
 .si_tiene_ayuda_nivel0:
-		SET			 6, B
+		SET			 6, C
 .no_tiene_ayuda_nivel0:
-		RES			 6, B
+		RES			 6, C
 .fin_tiene_ayuda_nivel0:
 		
-		LD			(HL), B
+		LD			(HL), C
 [2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
-[2]		INC			IX		;pongo puntero en la siguiente byte de ayudas (2 saltos)
+[2]		INC			IX		;pongo puntero en la siguiente habitación (2 saltos)
 		DJNZ		.inicia_nivel_0
 
 ;nivel 1 -----------------------------------------------------------------------
 		LD			 B, 56	;la mitad de bytes del array de un nivel
 		LD 			HL, habitaciones_nivel1	;puntero al byte de la habitación
 		LD			IX, habitaciones_nivel1
-		INC			IX		;IX será un puntero al byte donde están las ayudas (que es el siguiente)
+		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
 .inicia_nivel_1:
-		LD		 	 B, (HL)
+		LD		 	 C, (HL)
+		;pongo habitación no terminada bit 4 habitación a 0
+		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
 		
-		SET			 4, B	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
-		
+		;examino si hay ayudas en siguiente byte
 		LD			 A, (IX)
 		AND			1111110b
 		JR			 Z, .no_tiene_ayuda_nivel1
 .si_tiene_ayuda_nivel1:
-		SET			 6, B
+		SET			 6, C
 .no_tiene_ayuda_nivel1:
-		RES			 6, B
+		RES			 6, C
 .fin_tiene_ayuda_nivel1:
 		
-		LD			(HL), B
+		LD			(HL), C
 [2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
-[2]		INC			IX		;pongo puntero en la siguiente byte de ayudas (2 saltos)
+[2]		INC			IX		;pongo puntero en la siguiente habitación (2 saltos)
 		DJNZ		.inicia_nivel_1
 
 ;nivel 2 -----------------------------------------------------------------------
 		LD			 B, 56	;la mitad de bytes del array de un nivel
 		LD 			HL, habitaciones_nivel2	;puntero al byte de la habitación
 		LD			IX, habitaciones_nivel2
-		INC			IX		;IX será un puntero al byte donde están las ayudas (que es el siguiente)
+		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
 .inicia_nivel_2:
-		LD		 	 B, (HL)
+		LD		 	 C, (HL)
+		;pongo habitación no terminada bit 4 habitación a 0
+		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
 		
-		SET			 4, B	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
-		
+		;examino si hay ayudas en siguiente byte
 		LD			 A, (IX)
 		AND			1111110b
 		JR			 Z, .no_tiene_ayuda_nivel2
 .si_tiene_ayuda_nivel2:
-		SET			 6, B
+		SET			 6, C
 .no_tiene_ayuda_nivel2:
-		RES			 6, B
+		RES			 6, C
 .fin_tiene_ayuda_nivel2:
 		
-		LD			(HL), B
+		LD			(HL), C
 [2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
-[2]		INC			IX		;pongo puntero en la siguiente byte de ayudas (2 saltos)
+[2]		INC			IX		;pongo puntero en la siguiente habitación (2 saltos)
 		DJNZ		.inicia_nivel_2
 
 ;nivel 3 -----------------------------------------------------------------------
 		LD			 B, 56	;la mitad de bytes del array de un nivel
 		LD 			HL, habitaciones_nivel3	;puntero al byte de la habitación
 		LD			IX, habitaciones_nivel3
-		INC			IX		;IX será un puntero al byte donde están las ayudas (que es el siguiente)
+		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
 .inicia_nivel_3:
-		LD		 	 B, (HL)
+		LD		 	 C, (HL)
+		;pongo habitación no terminada bit 4 habitación a 0
+		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
 		
-		SET			 4, B	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
-		
+		;examino si hay ayudas en siguiente byte
 		LD			 A, (IX)
 		AND			1111110b
 		JR			 Z, .no_tiene_ayuda_nivel3
 .si_tiene_ayuda_nivel3:
-		SET			 6, B
+		SET			 6, C
 .no_tiene_ayuda_nivel3:
-		RES			 6, B
+		RES			 6, C
 .fin_tiene_ayuda_nivel3:
 		
-		LD			(HL), B
+		LD			(HL), C
 [2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
-[2]		INC			IX		;pongo puntero en la siguiente byte de ayudas (2 saltos)
+[2]		INC			IX		;pongo puntero en la siguiente habitación (2 saltos)
 		DJNZ		.inicia_nivel_3
 
 ;nivel 4 -----------------------------------------------------------------------
 		LD			 B, 56	;la mitad de bytes del array de un nivel
 		LD 			HL, habitaciones_nivel4	;puntero al byte de la habitación
 		LD			IX, habitaciones_nivel4
-		INC			IX		;IX será un puntero al byte donde están las ayudas (que es el siguiente)
+		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
 .inicia_nivel_4:
-		LD		 	 B, (HL)
+		LD		 	 C, (HL)
+		;pongo habitación no terminada bit 4 habitación a 0
+		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
 		
-		SET			 4, B	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
-		
+		;examino si hay ayudas en siguiente byte
 		LD			 A, (IX)
 		AND			1111110b
 		JR			 Z, .no_tiene_ayuda_nivel4
 .si_tiene_ayuda_nivel4:
-		SET			 6, B
+		SET			 6, C
 .no_tiene_ayuda_nivel4:
-		RES			 6, B
+		RES			 6, C
 .fin_tiene_ayuda_nivel4:
 		
-		LD			(HL), B
+		LD			(HL), C
 [2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
-[2]		INC			IX		;pongo puntero en la siguiente byte de ayudas (2 saltos)
+[2]		INC			IX		;pongo puntero en la siguiente habitación (2 saltos)
 		DJNZ		.inicia_nivel_4
-
+		
 ;nivel 5 -----------------------------------------------------------------------
 		LD			 B, 56	;la mitad de bytes del array de un nivel
 		LD 			HL, habitaciones_nivel5	;puntero al byte de la habitación
 		LD			IX, habitaciones_nivel5
-		INC			IX		;IX será un puntero al byte donde están las ayudas (que es el siguiente)
+		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
 .inicia_nivel_5:
-		LD		 	 B, (HL)
+		LD		 	 C, (HL)
+		;pongo habitación no terminada bit 4 habitación a 0
+		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
 		
-		SET			 4, B	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
-		
+		;examino si hay ayudas en siguiente byte
 		LD			 A, (IX)
 		AND			1111110b
 		JR			 Z, .no_tiene_ayuda_nivel5
 .si_tiene_ayuda_nivel5:
-		SET			 6, B
+		SET			 6, C
 .no_tiene_ayuda_nivel5:
-		RES			 6, B
+		RES			 6, C
 .fin_tiene_ayuda_nivel5:
 		
-		LD			(HL), B
+		LD			(HL), C
 [2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
-[2]		INC			IX		;pongo puntero en la siguiente byte de ayudas (2 saltos)
+[2]		INC			IX		;pongo puntero en la siguiente habitación (2 saltos)
 		DJNZ		.inicia_nivel_5
-
 		
+;nivel 6 -----------------------------------------------------------------------
+		LD			 B, 56	;la mitad de bytes del array de un nivel
+		LD 			HL, habitaciones_nivel1	;puntero al byte de la habitación
+		LD			IX, habitaciones_nivel1
+		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
+.inicia_nivel_6:
+		LD		 	 C, (HL)
+		;pongo habitación no terminada bit 4 habitación a 0
+		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
+		
+		;examino si hay ayudas en siguiente byte
+		LD			 A, (IX)
+		AND			1111110b
+		JR			 Z, .no_tiene_ayuda_nivel6
+.si_tiene_ayuda_nivel6:
+		SET			 6, C
+.no_tiene_ayuda_nivel6:
+		RES			 6, C
+.fin_tiene_ayuda_nivel6:
+		
+		LD			(HL), C
+[2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
+[2]		INC			IX		;pongo puntero en la siguiente habitación (2 saltos)
+		DJNZ		.inicia_nivel_6
+
 		POP			HL
 		POP			BC
 		POP			AF
