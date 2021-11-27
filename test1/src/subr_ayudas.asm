@@ -380,6 +380,7 @@ fin_pinta_ayudas_habitacion:
 ; entrada: 	
 ; salida: 	-
 accion_oracion:
+	CALL		test_OK
 fin_accion_oracion:
 	RET
 	
