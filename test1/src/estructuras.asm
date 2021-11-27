@@ -61,16 +61,6 @@ manejador_dibujo 	DW		0
 en_aux3				DB		0
 en_aux4				DB		0
 	ENDSTRUCT;ESTRUCTURA_ENEMIGO
-	
-	;~ STRUCT ESTRUCTURA_AYUDA		;vidas extra, plantas de curación de energía, reliquias				
-;~ activo				DB		0	;0 no activo <>0 activo 											0
-;~ postilemem_nousado	DW		0	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)	1,2
-;~ postilemem_usado	DW		0	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)	3,4
-;~ pospantalla			DB		0	;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
-;~ posx				DB		0	;pos del pixel central (esquina superior + 8x)						6
-;~ posy				DB		112	;pos del pixel central (esquina superior + 8y) (para toas igual)	7
-;~ puntero_accion		DW		0	;subrutina que indica la acción si se dispara en el objeto			8,9
-	;~ ENDSTRUCT;ESTRUCTURA_AYUDA
 
 	STRUCT ESTRUCTURA_AYUDA	
 activa				DB		0	;0 no activa <>0 activo (y muestra tiles ayudaoff)

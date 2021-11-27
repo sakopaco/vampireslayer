@@ -100,7 +100,8 @@ check_colisiones_objetos:
 	JP		 Z, .habitacion_sin_ayudas
 	;SI
 	;mira si hay colisiones con la ayuda que haya puntero_ayuda_actual
-		CALL	check_colision_ayudas
+;		CALL	check_colision_ayudas
+	CALL		test_OK
 	;NO
 .habitacion_sin_ayudas:
 	

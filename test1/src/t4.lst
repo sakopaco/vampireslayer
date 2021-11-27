@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.11.27 - 19:21:01]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.11.27 - 20:02:26]
 
 t4.asm
 Errors: 0
@@ -391,135 +391,135 @@ Errors: 0
      100   00:805C  CA 62 80            	JP		 Z, .habitacion_sin_ayudas
      101   00:805F                      	;SI
      102   00:805F                      	;mira si hay colisiones con la ayuda que haya puntero_ayuda_actual
-     103   00:805F  CD 64 80            		CALL	check_colision_ayudas
-     104   00:8062                      	;NO
-     105   00:8062                      .habitacion_sin_ayudas:
-     106   00:8062                      	
-     107   00:8062                      	;recorre enemigos
-     108   00:8062                      
-     109   00:8062                      fin_check_colisiones_objetos:	
-     110   00:8062  F1                  	POP		AF
-     111   00:8063  C9                  	RET
-     112   00:8064                      
+     103   00:805F                      ;		CALL	check_colision_ayudas
+     104   00:805F  CD B5 82            	CALL		test_OK
+     105   00:8062                      	;NO
+     106   00:8062                      .habitacion_sin_ayudas:
+     107   00:8062                      	
+     108   00:8062                      	;recorre enemigos
+     109   00:8062                      
+     110   00:8062                      fin_check_colisiones_objetos:	
+     111   00:8062  F1                  	POP		AF
+     112   00:8063  C9                  	RET
      113   00:8064                      
-     114   00:8064                      ;;=====================================================
-     115   00:8064                      ;;CHECK_COLISION_AYUDAS
-     116   00:8064                      ;;=====================================================	
-     117   00:8064                      ; función: 	revisa si ha habido disparo sobre la ayuda de pantalla
-     118   00:8064                      ; entrada: 	puntero_ayuda_actual
-     119   00:8064                      ; salida: 	-
-     120   00:8064                      ; toca:		todo
-     121   00:8064                      check_colision_ayudas:
-     122   00:8064  DD 2A 83 9C         	LD 		IX, (puntero_ayuda_actual)
-     123   00:8068  DD 7E 00            	LD		 A, (IX)
-     124   00:806B  B7                  	OR		 A							;está activa la ayuda de pantalla?
-     125   00:806C  CA 80 80            	JP		 Z, fin_check_colision_ayudas
-     126   00:806F                      	;SI
-     127   00:806F  CD 81 80            		CALL	check_colision_ayuda	;aquí ya es cosa de ver colisiones prota/puerta_izquierda
-     128   00:8072                      		;recibe valor A
-     129   00:8072  F6 00               		OR		 0						;hubo colisión?
-     130   00:8074  C8                  		RET		 Z						;no hubo colisión por lo que sale
-     131   00:8075                      		;hubo colisión
-     132   00:8075                      		;EJECUTA ACCIÓN Y SALE DE LA RUTINA	
-     133   00:8075  21 80 80            		LD		HL, fin_check_colision_ayudas ;se guarda dónde volver
-     134   00:8078  E5                  		PUSH	HL
-     135   00:8079  DD 6E 05            		LD		 L, (IX + ESTRUCTURA_AYUDA.accion)
-     136   00:807C  DD 66 06            		LD		 H, (IX + ESTRUCTURA_AYUDA.accion + 1)
-     137   00:807F  E9                  		JP		(HL)
-     138   00:8080                      	;FINSI
-     139   00:8080                      fin_check_colision_ayudas:
-     140   00:8080  C9                  	RET
-     141   00:8081                      	
+     114   00:8064                      
+     115   00:8064                      ;;=====================================================
+     116   00:8064                      ;;CHECK_COLISION_AYUDAS
+     117   00:8064                      ;;=====================================================	
+     118   00:8064                      ; función: 	revisa si ha habido disparo sobre la ayuda de pantalla
+     119   00:8064                      ; entrada: 	puntero_ayuda_actual
+     120   00:8064                      ; salida: 	-
+     121   00:8064                      ; toca:		todo
+     122   00:8064                      check_colision_ayudas:
+     123   00:8064  DD 2A 83 9C         	LD 		IX, (puntero_ayuda_actual)
+     124   00:8068  DD 7E 00            	LD		 A, (IX)
+     125   00:806B  B7                  	OR		 A							;está activa la ayuda de pantalla?
+     126   00:806C  CA 80 80            	JP		 Z, fin_check_colision_ayudas
+     127   00:806F                      	;SI
+     128   00:806F  CD 81 80            		CALL	check_colision_ayuda	;aquí ya es cosa de ver colisiones prota/puerta_izquierda
+     129   00:8072                      		;recibe valor A
+     130   00:8072  F6 00               		OR		 0						;hubo colisión?
+     131   00:8074  C8                  		RET		 Z						;no hubo colisión por lo que sale
+     132   00:8075                      		;hubo colisión
+     133   00:8075                      		;EJECUTA ACCIÓN Y SALE DE LA RUTINA	
+     134   00:8075  21 80 80            		LD		HL, fin_check_colision_ayudas ;se guarda dónde volver
+     135   00:8078  E5                  		PUSH	HL
+     136   00:8079  DD 6E 05            		LD		 L, (IX + ESTRUCTURA_AYUDA.accion)
+     137   00:807C  DD 66 06            		LD		 H, (IX + ESTRUCTURA_AYUDA.accion + 1)
+     138   00:807F  E9                  		JP		(HL)
+     139   00:8080                      	;FINSI
+     140   00:8080                      fin_check_colision_ayudas:
+     141   00:8080  C9                  	RET
      142   00:8081                      	
-     143   00:8081                      
+     143   00:8081                      	
      144   00:8081                      
-     145   00:8081                      ;;=====================================================
-     146   00:8081                      ;;CHECK_COLISION_AYUDA
-     147   00:8081                      ;;=====================================================	
-     148   00:8081                      ; función: 	revisa la distancia con ayuda para ver si se disparó a la ayuda activa
-     149   00:8081                      ; entrada: 	IX con el puntero a la puerta que se examina
-     150   00:8081                      ; salida: 	A (0 no hay colisión con puerta / 1 sí la hay)
-     151   00:8081                      ; toca:		HL,BC, DE
-     152   00:8081                      check_colision_ayuda:
-     153   00:8081                      .deteccioncolision_paso1:
-     154   00:8081  FD 21 C0 AA         	LD		IY, prota	;IY punto de mira / IX puerta
-     155   00:8085  FD 7E 01            	LD		 A, (IY + ESTRUCTURA_AYUDA.posx)
-     156   00:8088  C6 08               	ADD		 8			;8-es fijo, offset del punto de mira ya que se mueve según la esquina superior izquierda y el centro del punto de mira está en el centro del sprite
-     157   00:808A                      	
-     158   00:808A                      	;ya tengo en A la coordenada X del centro del punto de mira					
-     159   00:808A  DD 96 01            	SUB		(IX + ESTRUCTURA_AYUDA.posx)	;le resto el punto x en la puerta
-     160   00:808D                      	
-     161   00:808D  D2 92 80            	JP		NC, .deteccioncolision_paso2	;si no es negativo comparo con el radio
-     162   00:8090                      
-     163   00:8090  ED 44               	NEG										;si es negativo lo niego (valor absoluto)
-     164   00:8092                      	
-     165   00:8092                      .deteccioncolision_paso2:
-     166   00:8092  DD BE 03            	CP		(IX + ESTRUCTURA_AYUDA.radiox)	;comparo con el radio X de la puerta
-     167   00:8095                      	
-     168   00:8095  DA 9A 80            	JP		 C, .deteccioncolision_paso3	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
-     169   00:8098                      	
-     170   00:8098  AF                  	XOR		 A								;el resultado es falso y se guarda en A y ya no hay que seguir coprobando
-     171   00:8099  C9                  	RET
-     172   00:809A                      	
-     173   00:809A                      .deteccioncolision_paso3:					;la distancia X es válida, comprobamos la distancia Y
-     174   00:809A  FD 7E 02            	LD		 A, (IY + ESTRUCTURA_AYUDA.posy)
-     175   00:809D  C6 08               	ADD		 8								;le sumo el offset del punto de mira (8 es fijo)
-     176   00:809F                      
-     177   00:809F                      	;ya tengo en A la coordenada Y del centro del punto de mira					
-     178   00:809F  DD 96 02            	SUB		(IX + ESTRUCTURA_AYUDA.posy)	;le resto el punto y en la puerta
-     179   00:80A2                      	
-     180   00:80A2  D2 A7 80            	JP		NC, .deteccioncolision_paso4	;si no es negativo comparo con el radio
-     181   00:80A5                      
-     182   00:80A5  ED 44               	NEG										;si es negativo lo niego (valor absoluto)
-     183   00:80A7                      
-     184   00:80A7                      .deteccioncolision_paso4:
-     185   00:80A7  DD BE 04            	CP		(IX + ESTRUCTURA_AYUDA.radioy)	;comparo con el radio Y de la puerta
-     186   00:80AA                      
-     187   00:80AA  DA AF 80            	JP		 C, .deteccioncolision_paso5	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
-     188   00:80AD                      	
-     189   00:80AD  AF                  	XOR		 A								;el resultado es falso y se guarda en A un 0 y al ser la 2º comprobación salimos
-     190   00:80AE  C9                  	RET
-     191   00:80AF                      
-     192   00:80AF                      .deteccioncolision_paso5:
-     193   00:80AF  3E 01               	LD		 A, SI
-     194   00:80B1                      fin_check_colision_ayuda:
-     195   00:80B1  C9                  	RET
-     196   00:80B2                      
+     145   00:8081                      
+     146   00:8081                      ;;=====================================================
+     147   00:8081                      ;;CHECK_COLISION_AYUDA
+     148   00:8081                      ;;=====================================================	
+     149   00:8081                      ; función: 	revisa la distancia con ayuda para ver si se disparó a la ayuda activa
+     150   00:8081                      ; entrada: 	IX con el puntero a la puerta que se examina
+     151   00:8081                      ; salida: 	A (0 no hay colisión con puerta / 1 sí la hay)
+     152   00:8081                      ; toca:		HL,BC, DE
+     153   00:8081                      check_colision_ayuda:
+     154   00:8081                      .deteccioncolision_paso1:
+     155   00:8081  FD 21 C0 AA         	LD		IY, prota	;IY punto de mira / IX puerta
+     156   00:8085  FD 7E 01            	LD		 A, (IY + ESTRUCTURA_AYUDA.posx)
+     157   00:8088  C6 08               	ADD		 8			;8-es fijo, offset del punto de mira ya que se mueve según la esquina superior izquierda y el centro del punto de mira está en el centro del sprite
+     158   00:808A                      	
+     159   00:808A                      	;ya tengo en A la coordenada X del centro del punto de mira					
+     160   00:808A  DD 96 01            	SUB		(IX + ESTRUCTURA_AYUDA.posx)	;le resto el punto x en la puerta
+     161   00:808D                      	
+     162   00:808D  D2 92 80            	JP		NC, .deteccioncolision_paso2	;si no es negativo comparo con el radio
+     163   00:8090                      
+     164   00:8090  ED 44               	NEG										;si es negativo lo niego (valor absoluto)
+     165   00:8092                      	
+     166   00:8092                      .deteccioncolision_paso2:
+     167   00:8092  DD BE 03            	CP		(IX + ESTRUCTURA_AYUDA.radiox)	;comparo con el radio X de la puerta
+     168   00:8095                      	
+     169   00:8095  DA 9A 80            	JP		 C, .deteccioncolision_paso3	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
+     170   00:8098                      	
+     171   00:8098  AF                  	XOR		 A								;el resultado es falso y se guarda en A y ya no hay que seguir coprobando
+     172   00:8099  C9                  	RET
+     173   00:809A                      	
+     174   00:809A                      .deteccioncolision_paso3:					;la distancia X es válida, comprobamos la distancia Y
+     175   00:809A  FD 7E 02            	LD		 A, (IY + ESTRUCTURA_AYUDA.posy)
+     176   00:809D  C6 08               	ADD		 8								;le sumo el offset del punto de mira (8 es fijo)
+     177   00:809F                      
+     178   00:809F                      	;ya tengo en A la coordenada Y del centro del punto de mira					
+     179   00:809F  DD 96 02            	SUB		(IX + ESTRUCTURA_AYUDA.posy)	;le resto el punto y en la puerta
+     180   00:80A2                      	
+     181   00:80A2  D2 A7 80            	JP		NC, .deteccioncolision_paso4	;si no es negativo comparo con el radio
+     182   00:80A5                      
+     183   00:80A5  ED 44               	NEG										;si es negativo lo niego (valor absoluto)
+     184   00:80A7                      
+     185   00:80A7                      .deteccioncolision_paso4:
+     186   00:80A7  DD BE 04            	CP		(IX + ESTRUCTURA_AYUDA.radioy)	;comparo con el radio Y de la puerta
+     187   00:80AA                      
+     188   00:80AA  DA AF 80            	JP		 C, .deteccioncolision_paso5	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
+     189   00:80AD                      	
+     190   00:80AD  AF                  	XOR		 A								;el resultado es falso y se guarda en A un 0 y al ser la 2º comprobación salimos
+     191   00:80AE  C9                  	RET
+     192   00:80AF                      
+     193   00:80AF                      .deteccioncolision_paso5:
+     194   00:80AF  3E 01               	LD		 A, SI
+     195   00:80B1                      fin_check_colision_ayuda:
+     196   00:80B1  C9                  	RET
      197   00:80B2                      
      198   00:80B2                      
      199   00:80B2                      
-     200   00:80B2                      ;;*******************************************************************
-     201   00:80B2                      ; sólo para hacer pruebas y pintar la parte de las vidas y demás
-     202   00:80B2                      inicializa_variables_pruebas:
-     203   00:80B2  3E 04               	LD		 A, 4
-     204   00:80B4  32 D1 AA            	LD		(prota_vidas),A
-     205   00:80B7                      
-     206   00:80B7  3E 04               	LD		 A, 4
-     207   00:80B9  32 D2 AA            	LD		(prota_reliquias), A
-     208   00:80BC                      
-     209   00:80BC  3E 64               	LD		 A, 100
-     210   00:80BE  32 D5 AA            	LD		(prota_energia), A
-     211   00:80C1                      
-     212   00:80C1                      	;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
-     213   00:80C1                      	;será igual la posición inicial en todos los niveles
-     214   00:80C1                      	
-     215   00:80C1  3E 00               	LD		 A, 0				;los niveles (matrices) son 7 del 0 al 6
-     216   00:80C3  32 D0 AA            	LD		(prota_nivel), A	;nivel empieza en 0 para usar las posiciones ascii
-     217   00:80C6                      
-     218   00:80C6  3E 00               	LD		 A, 0				;los subniveles (filas) son 7 del 0 al 6
-     219   00:80C8  32 D4 AA            	LD		(prota_pos_mapy), A	;pos Y dentro del nivel (se empieza en 0)
-     220   00:80CB                      
-     221   00:80CB  3E 03               	LD		 A, 3				;columnas 7: del 0 al 6
-     222   00:80CD  32 D3 AA            	LD		(prota_pos_mapx), A	;pos X dentro del nivel (se empieza en 0)
-     223   00:80D0                      	
-     224   00:80D0  AF                  	XOR		 A					;cadencia por defecto.. cuando se coja mejora en arma se puede variar
-     225   00:80D1  32 C5 AA            	LD		(prota.cadencia), A
-     226   00:80D4                      	
-     227   00:80D4  32 A6 A7            	LD		(is_habitacion_terminada), A
-     228   00:80D7                      fin_inicializa_variables_pruebas:
-     229   00:80D7  C9                  	RET
-     230   00:80D8                      ;;************************************************************************
-     231   00:80D8                      
+     200   00:80B2                      
+     201   00:80B2                      ;;*******************************************************************
+     202   00:80B2                      ; sólo para hacer pruebas y pintar la parte de las vidas y demás
+     203   00:80B2                      inicializa_variables_pruebas:
+     204   00:80B2  3E 04               	LD		 A, 4
+     205   00:80B4  32 D1 AA            	LD		(prota_vidas),A
+     206   00:80B7                      
+     207   00:80B7  3E 04               	LD		 A, 4
+     208   00:80B9  32 D2 AA            	LD		(prota_reliquias), A
+     209   00:80BC                      
+     210   00:80BC  3E 64               	LD		 A, 100
+     211   00:80BE  32 D5 AA            	LD		(prota_energia), A
+     212   00:80C1                      
+     213   00:80C1                      	;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
+     214   00:80C1                      	;será igual la posición inicial en todos los niveles
+     215   00:80C1                      	
+     216   00:80C1  3E 00               	LD		 A, 0				;los niveles (matrices) son 7 del 0 al 6
+     217   00:80C3  32 D0 AA            	LD		(prota_nivel), A	;nivel empieza en 0 para usar las posiciones ascii
+     218   00:80C6                      
+     219   00:80C6  3E 00               	LD		 A, 0				;los subniveles (filas) son 7 del 0 al 6
+     220   00:80C8  32 D4 AA            	LD		(prota_pos_mapy), A	;pos Y dentro del nivel (se empieza en 0)
+     221   00:80CB                      
+     222   00:80CB  3E 03               	LD		 A, 3				;columnas 7: del 0 al 6
+     223   00:80CD  32 D3 AA            	LD		(prota_pos_mapx), A	;pos X dentro del nivel (se empieza en 0)
+     224   00:80D0                      	
+     225   00:80D0  AF                  	XOR		 A					;cadencia por defecto.. cuando se coja mejora en arma se puede variar
+     226   00:80D1  32 C5 AA            	LD		(prota.cadencia), A
+     227   00:80D4                      	
+     228   00:80D4  32 A6 A7            	LD		(is_habitacion_terminada), A
+     229   00:80D7                      fin_inicializa_variables_pruebas:
+     230   00:80D7  C9                  	RET
+     231   00:80D8                      ;;************************************************************************
      232   00:80D8                      
      233   00:80D8                      
      234   00:80D8                      
@@ -528,10 +528,11 @@ Errors: 0
      237   00:80D8                      
      238   00:80D8                      
      239   00:80D8                      
-     240   00:80D8                      ;;=====================================================
-     241   00:80D8                      ;;DEFINICIÓN DE SUBRUTINAS
-     242   00:80D8                      ;;=====================================================
-     243   00:80D8                      	include "subrutinas.asm"
+     240   00:80D8                      
+     241   00:80D8                      ;;=====================================================
+     242   00:80D8                      ;;DEFINICIÓN DE SUBRUTINAS
+     243   00:80D8                      ;;=====================================================
+     244   00:80D8                      	include "subrutinas.asm"
        1.  00:80D8                      ;;=====================================================
        2.  00:80D8                      ;;DEFINICIÓN DE SUBRUTINAS
        3.  00:80D8                      ;;=====================================================	
@@ -1006,8 +1007,8 @@ Errors: 0
      472.  00:82A9                      	
      473.  00:82A9                      	
      474.  00:82A9                      	
-     244   00:82A9                      	
-     245   00:82A9                      	include "subr_general.asm"
+     245   00:82A9                      	
+     246   00:82A9                      	include "subr_general.asm"
        1.  00:82A9                      ;;=====================================================
        2.  00:82A9                      ;;DEFINICIÓN DE SUBRUTINAS GENERALES USABLES PARA CUALQUIER PROYECTO
        3.  00:82A9                      ;;=====================================================	
@@ -1068,8 +1069,8 @@ Errors: 0
       58.  00:82C7  F1                  	POP		AF
       59.  00:82C8                      fin_test_OK:
       60.  00:82C8  C9                  	RET
-     246   00:82C9                      	
-     247   00:82C9                      	include "subr_pintapantalla.asm"
+     247   00:82C9                      	
+     248   00:82C9                      	include "subr_pintapantalla.asm"
        1.  00:82C9                      ;;=====================================================
        2.  00:82C9                      ;;DEFINICIÓN DE SUBRUTINAS
        3.  00:82C9                      ;;=====================================================	
@@ -2057,8 +2058,8 @@ Errors: 0
      985.  00:877D                      fin_actualiza_escena_calavera:
      986.  00:877D  C9                  	RET
      987.  00:877E                      
-     248   00:877E                      	
-     249   00:877E                      	include "subr_puertas.asm"
+     249   00:877E                      	
+     250   00:877E                      	include "subr_puertas.asm"
        1.  00:877E                      ;;=====================================================
        2.  00:877E                      ;;SUBRUTINAS RELACIONADAS CON LAS PUERTAS
        3.  00:877E                      ;;=====================================================
@@ -2641,8 +2642,8 @@ Errors: 0
      574.  00:8A65                      fin_desactiva_todas_puertas:
      575.  00:8A65  C9                  	RET
      576.  00:8A66                      
-     250   00:8A66                      	
-     251   00:8A66                      	include "subr_sprites.asm"
+     251   00:8A66                      	
+     252   00:8A66                      	include "subr_sprites.asm"
        1.  00:8A66                      
        2.  00:8A66                      ;;=====================================================
        3.  00:8A66                      ;;SUBRUTINAS ENCARGADAS DE MANEJAR LOS SPRITES
@@ -2791,8 +2792,8 @@ Errors: 0
      146.  00:8AD9                      f;in_check_player:
      147.  00:8AD9  C9                  	RET
      148.  00:8ADA                      
-     252   00:8ADA                      	
-     253   00:8ADA                      	include "subr_teclado_joy.asm"
+     253   00:8ADA                      	
+     254   00:8ADA                      	include "subr_teclado_joy.asm"
        1.  00:8ADA                      ;;=====================================================
        2.  00:8ADA                      ;;SUBRUTINAS QUE CAPTURAN EL JOYSTICK Y TECLADO Y MUEVEN PUNTO DE MIRA
        3.  00:8ADA                      ;;=====================================================
@@ -3077,8 +3078,8 @@ Errors: 0
      281.  00:8BC3                      
      282.  00:8BC3                      
      283.  00:8BC3                      
-     254   00:8BC3                      	
-     255   00:8BC3                      	include "subr_sonido.asm"
+     255   00:8BC3                      	
+     256   00:8BC3                      	include "subr_sonido.asm"
        1.  00:8BC3                      
        2.  00:8BC3                      ;;=====================================================
        3.  00:8BC3                      ;;SUBRUTINAS PARA SONIDOS
@@ -4355,8 +4356,8 @@ Errors: 0
       71.  00:9C37                      sfx_bank:
       72.  00:9C37  (004B)              	incbin "demo.afb"
       73.  00:9C82                      
-     256   00:9C82                      	
-     257   00:9C82                      	include "subr_ayudas.asm"
+     257   00:9C82                      	
+     258   00:9C82                      	include "subr_ayudas.asm"
        1.  00:9C82                      ;;=====================================================
        2.  00:9C82                      ;;SUBRUTINAS MANEJO DE OBJETOS AYUDA
        3.  00:9C82                      ;;=====================================================	
@@ -4810,16 +4811,16 @@ Errors: 0
      451.  00:9D41  C9                  	RET
      452.  00:9D42                      
      453.  00:9D42                      
-     258   00:9D42                      	
-     259   00:9D42                      
-     260   00:9D42                      ;;=====================================================
-     261   00:9D42                      ;;DEFINICIÓN DE SUBRUTINAS DE FERNANDO PARA COMPRESIÓN Y SONIDO
-     262   00:9D42                      ;;=====================================================
-     263   00:9D42                      ;Este include lleva la rutina de descompresión de ROM/RAM a VRAM de pletter
-     264   00:9D42                      ;Está adaptada de la original a sjasm
-     265   00:9D42                      ;	HL = RAM/ROM source	; DE = VRAM destination
-     266   00:9D42                      depack_VRAM:
-     267   00:9D42                      	include "PL_VRAM_Depack_SJASM.asm"
+     259   00:9D42                      	
+     260   00:9D42                      
+     261   00:9D42                      ;;=====================================================
+     262   00:9D42                      ;;DEFINICIÓN DE SUBRUTINAS DE FERNANDO PARA COMPRESIÓN Y SONIDO
+     263   00:9D42                      ;;=====================================================
+     264   00:9D42                      ;Este include lleva la rutina de descompresión de ROM/RAM a VRAM de pletter
+     265   00:9D42                      ;Está adaptada de la original a sjasm
+     266   00:9D42                      ;	HL = RAM/ROM source	; DE = VRAM destination
+     267   00:9D42                      depack_VRAM:
+     268   00:9D42                      	include "PL_VRAM_Depack_SJASM.asm"
        1.  00:9D42                      ;-----------------------------------------------------------
        2.  00:9D42                      ; Pletter v0.5b VRAM Depacker v1.1 - 16Kb version
        3.  00:9D42                      ; HL = RAM/ROM source ; DE = VRAM destination
@@ -4979,13 +4980,13 @@ Errors: 0
      157.  00:9E1C  B9 9D               	dw	mode5
      158.  00:9E1E  B3 9D               	dw	mode6
      159.  00:9E20  AD 9D               	dw	mode7
-     268   00:9E22                      
      269   00:9E22                      
-     270   00:9E22                      	
-     271   00:9E22                      ;;=====================================================
-     272   00:9E22                      ;;DEFINICIÓN DE ESTRUCTURAS
-     273   00:9E22                      ;;=====================================================		
-     274   00:9E22                      	include "estructuras.asm"
+     270   00:9E22                      
+     271   00:9E22                      	
+     272   00:9E22                      ;;=====================================================
+     273   00:9E22                      ;;DEFINICIÓN DE ESTRUCTURAS
+     274   00:9E22                      ;;=====================================================		
+     275   00:9E22                      	include "estructuras.asm"
        1.  00:9E22                      ;;=====================================================
        2.  00:9E22                      ;;DEFINICIÓN DE ESTRUCTURAS
        3.  00:9E22                      ;;=====================================================
@@ -5049,54 +5050,44 @@ Errors: 0
       61.  00:9E22                    < en_aux3				DB		0
       62.  00:9E22                    < en_aux4				DB		0
       63.  00:9E22                    < 	ENDSTRUCT;ESTRUCTURA_ENEMIGO
-      64.  00:9E22                      	
-      65.  00:9E22                      	;~ STRUCT ESTRUCTURA_AYUDA		;vidas extra, plantas de curación de energía, reliquias				
-      66.  00:9E22                      ;~ activo				DB		0	;0 no activo <>0 activo 											0
-      67.  00:9E22                      ;~ postilemem_nousado	DW		0	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)	1,2
-      68.  00:9E22                      ;~ postilemem_usado	DW		0	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)	3,4
-      69.  00:9E22                      ;~ pospantalla			DB		0	;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
-      70.  00:9E22                      ;~ posx				DB		0	;pos del pixel central (esquina superior + 8x)						6
-      71.  00:9E22                      ;~ posy				DB		112	;pos del pixel central (esquina superior + 8y) (para toas igual)	7
-      72.  00:9E22                      ;~ puntero_accion		DW		0	;subrutina que indica la acción si se dispara en el objeto			8,9
-      73.  00:9E22                      	;~ ENDSTRUCT;ESTRUCTURA_AYUDA
-      74.  00:9E22                      
-      75.  00:9E22                      	STRUCT ESTRUCTURA_AYUDA	
-      76.  00:9E22                    < activa				DB		0	;0 no activa <>0 activo (y muestra tiles ayudaoff)
-      77.  00:9E22                    < posx				DB		0	;punto x de la ayuda para cuando se dispare encima
-      78.  00:9E22                    < posy				DB		112	;punto y de la ayuda para cuando se dispare encima
-      79.  00:9E22                    < radiox				DB		0	;radio x de la ayuda para cuando se dispare encima
-      80.  00:9E22                    < radioy				DB		0	;radio y de la ayuda para cuando se dispare encima
-      81.  00:9E22                    < accion				DW		0	;función para acción de cada tipo de ayuda
-      82.  00:9E22                    < tiles_ayudaon		DW		0	;puntero al array con los tiles de las ayudas sin usar para wordaux2
-      83.  00:9E22                    < tiles_ayudaoff		DW		0	;puntero al array con los tiles de las ayudas sin usar para wordaux2
-      84.  00:9E22                    < pos_en_tilemap		DW		0	;calcula posición en tilemap para wordaux1
-      85.  00:9E22                    < alto				DB		2	;alto en tiles del dibujo de la puerta (filas)
-      86.  00:9E22                    < ancho				DB		2	;ancho en tiles del dibujo de la puerta (columnas)
-      87.  00:9E22                    < 	ENDSTRUCT;ESTRUCTURA_PUERTA
-      88.  00:9E22                      
-      89.  00:9E22                      	STRUCT ESTRUCTURA_PUERTA	;también servirá para la escalera
-      90.  00:9E22                    < activa				DB		0	;0 no activa <>0 activo
-      91.  00:9E22                    < posx				DB		0	;punto x de la puerta para cuando se dispare encima
-      92.  00:9E22                    < posy				DB		0	;punto y de la puerta para cuando se dispare encima
-      93.  00:9E22                    < radiox				DB		0	;radio x de la puerta para cuando se dispare encima
-      94.  00:9E22                    < radioy				DB		0	;radio y de la puerta para cuando se dispare encima
-      95.  00:9E22                    < accion				DW		0	;función para acción de cada tipo de puerta
-      96.  00:9E22                    < tiles_puerta		DW		0	;puntero al array con los tiles de las puertas para wordaux2
-      97.  00:9E22                    < pos_en_tilemap		DW		0	;calcula posición en tilemap para wordaux1
-      98.  00:9E22                    < alto				DB		0	;alto en tiles del dibujo de la puerta (filas)
-      99.  00:9E22                    < ancho				DB		0	;ancho en tiles del dibujo de la puerta (columnas)
-     100.  00:9E22                    < 	ENDSTRUCT;ESTRUCTURA_PUERTA
-     101.  00:9E22                      
-     102.  00:9E22                      
-     103.  00:9E22                      
-     104.  00:9E22                      
-     105.  00:9E22                      
-     106.  00:9E22                      
-     275   00:9E22                      	
-     276   00:9E22                      ;;=====================================================
-     277   00:9E22                      ;;DEFINICIÓN DE VARIABLES
-     278   00:9E22                      ;;=====================================================		
-     279   00:9E22                      	include "sprites.asm"
+      64.  00:9E22                      
+      65.  00:9E22                      	STRUCT ESTRUCTURA_AYUDA	
+      66.  00:9E22                    < activa				DB		0	;0 no activa <>0 activo (y muestra tiles ayudaoff)
+      67.  00:9E22                    < posx				DB		0	;punto x de la ayuda para cuando se dispare encima
+      68.  00:9E22                    < posy				DB		112	;punto y de la ayuda para cuando se dispare encima
+      69.  00:9E22                    < radiox				DB		0	;radio x de la ayuda para cuando se dispare encima
+      70.  00:9E22                    < radioy				DB		0	;radio y de la ayuda para cuando se dispare encima
+      71.  00:9E22                    < accion				DW		0	;función para acción de cada tipo de ayuda
+      72.  00:9E22                    < tiles_ayudaon		DW		0	;puntero al array con los tiles de las ayudas sin usar para wordaux2
+      73.  00:9E22                    < tiles_ayudaoff		DW		0	;puntero al array con los tiles de las ayudas sin usar para wordaux2
+      74.  00:9E22                    < pos_en_tilemap		DW		0	;calcula posición en tilemap para wordaux1
+      75.  00:9E22                    < alto				DB		2	;alto en tiles del dibujo de la puerta (filas)
+      76.  00:9E22                    < ancho				DB		2	;ancho en tiles del dibujo de la puerta (columnas)
+      77.  00:9E22                    < 	ENDSTRUCT;ESTRUCTURA_PUERTA
+      78.  00:9E22                      
+      79.  00:9E22                      	STRUCT ESTRUCTURA_PUERTA	;también servirá para la escalera
+      80.  00:9E22                    < activa				DB		0	;0 no activa <>0 activo
+      81.  00:9E22                    < posx				DB		0	;punto x de la puerta para cuando se dispare encima
+      82.  00:9E22                    < posy				DB		0	;punto y de la puerta para cuando se dispare encima
+      83.  00:9E22                    < radiox				DB		0	;radio x de la puerta para cuando se dispare encima
+      84.  00:9E22                    < radioy				DB		0	;radio y de la puerta para cuando se dispare encima
+      85.  00:9E22                    < accion				DW		0	;función para acción de cada tipo de puerta
+      86.  00:9E22                    < tiles_puerta		DW		0	;puntero al array con los tiles de las puertas para wordaux2
+      87.  00:9E22                    < pos_en_tilemap		DW		0	;calcula posición en tilemap para wordaux1
+      88.  00:9E22                    < alto				DB		0	;alto en tiles del dibujo de la puerta (filas)
+      89.  00:9E22                    < ancho				DB		0	;ancho en tiles del dibujo de la puerta (columnas)
+      90.  00:9E22                    < 	ENDSTRUCT;ESTRUCTURA_PUERTA
+      91.  00:9E22                      
+      92.  00:9E22                      
+      93.  00:9E22                      
+      94.  00:9E22                      
+      95.  00:9E22                      
+      96.  00:9E22                      
+     276   00:9E22                      	
+     277   00:9E22                      ;;=====================================================
+     278   00:9E22                      ;;DEFINICIÓN DE VARIABLES
+     279   00:9E22                      ;;=====================================================		
+     280   00:9E22                      	include "sprites.asm"
        1.  00:9E22                      ;;=====================================================
        2.  00:9E22                      ;;DEFINICIÓN DE SPRITES
        3.  00:9E22                      ;;=====================================================	
@@ -5929,8 +5920,8 @@ Errors: 0
      526.  00:A7A2                      	
      527.  00:A7A2                      	
      528.  00:A7A2                      	
-     280   00:A7A2                      	
-     281   00:A7A2                      	include "habitaciones.asm"
+     281   00:A7A2                      	
+     282   00:A7A2                      	include "habitaciones.asm"
        1.  00:A7A2                      ;;=====================================================
        2.  00:A7A2                      ;;DEFINICIÓN DE HABITACIONES x NIVEL
        3.  00:A7A2                      ;;=====================================================	
@@ -6089,8 +6080,8 @@ Errors: 0
      107.  00:AAA7  00 C0 00 C0 00 C0 1A C0 18 C0 00 C0 00 C0 00 00 
      108.  00:AAB7                      
      109.  00:AAB7                      
-     282   00:AAB7                      	
-     283   00:AAB7                      	include "variables.asm"
+     283   00:AAB7                      	
+     284   00:AAB7                      	include "variables.asm"
        1.  00:AAB7                      ;;=====================================================
        2.  00:AAB7                      ;;DEFINICIÓN DE VARIABLES
        3.  00:AAB7                      ;;=====================================================
@@ -6170,11 +6161,11 @@ Errors: 0
       71.  00:AC25                      
       72.  00:AC25                      
       73.  00:AC25                      
-     284   00:AC25                      	
-     285   00:AC25                      ;;=====================================================
-     286   00:AC25                      ;;DEFINICIÓN DE PANTALLAS
-     287   00:AC25                      ;;=====================================================		
-     288   00:AC25                      	include "pantallas.asm"
+     285   00:AC25                      	
+     286   00:AC25                      ;;=====================================================
+     287   00:AC25                      ;;DEFINICIÓN DE PANTALLAS
+     288   00:AC25                      ;;=====================================================		
+     289   00:AC25                      	include "pantallas.asm"
        1.  00:AC25                      ;;=====================================================
        2.  00:AC25                      ;;DEFINICIÓN DE PANTALLAS
        3.  00:AC25                      ;;=====================================================		
@@ -6221,8 +6212,8 @@ Errors: 0
       44.  00:BDF8                      ; HUIDA
       45.  00:BDF8                      ; 2 FINAL BUENO
       46.  00:BDF8                      ; 1 FINAL MALO
-     289   00:BDF8                      
-     290   00:BDF8                      END:
+     290   00:BDF8                      
+     291   00:BDF8                      END:
 
     LABELS
 -------------------------------------------------
@@ -6417,7 +6408,7 @@ Errors: 0
 00:00008057   check_colisiones_objetos.habitacion_no_terminada
 00:00008062   check_colisiones_objetos.habitacion_sin_ayudas
 00:00008062 X fin_check_colisiones_objetos
-00:00008064   check_colision_ayudas
+00:00008064 X check_colision_ayudas
 00:00008080   fin_check_colision_ayudas
 00:00008081   check_colision_ayuda
 00:00008081 X check_colision_ayuda.deteccioncolision_paso1
