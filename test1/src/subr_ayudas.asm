@@ -9,6 +9,7 @@
 examina_ayudas_en_pantalla:		DB	0		;variable que se actualiza cuando cambiemos de habitación para no mirar el bit de habitación cada vez
 puntero_ayuda_actual:			DW	0		;puntero a ayda que se muestra en pantalla (sólo se muestra una a la vez)
 
+
 ;array de ayudas
 ;posición dentro del bank1 (o 0 que son iguales) de los tiles de la ayuda (cómo en los sprites de 2x2)
 array_ayudas:
@@ -316,12 +317,8 @@ pinta_ayudas_habitacion:
 	JP		 Z, fin_pinta_ayudas_habitacion	;despues .examina_cruz
 	
 	LD		IX, ayuda_oracion
-	;------
-	;estas 3 lineas es para almacenar un puntero a la ayuda actual de la habitación y no tener que recorrer todas para ver cuál está activa
-	LD		 L, (IX)
-	LD		 H, (IX + 1)
-	LD		(puntero_ayuda_actual), HL
-	;--------	
+	;puntero_ayuda_actual
+	LD		(puntero_ayuda_actual), IX
 	LD		 A, ACTIVA
 	CALL	pinta_obj_ayuda
 .fin_examina_oracion:	

@@ -120,7 +120,7 @@ fin_check_colisiones_objetos:
 ; salida: 	-
 ; toca:		todo
 check_colision_ayudas:
-	LD 		IX, (puntero_ayuda_actual)
+	LD		IX, (puntero_ayuda_actual)
 	LD		 A, (IX)
 	OR		 A							;está activa la ayuda de pantalla?
 	JP		 Z, fin_check_colision_ayudas
