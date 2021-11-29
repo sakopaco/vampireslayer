@@ -314,7 +314,7 @@ pinta_ayudas_habitacion:
 .examina_oracion:
 	LD		 A, (habitacion_extras)
 	BIT		 7, A
-	JP		 Z, fin_pinta_ayudas_habitacion	;despues .examina_cruz
+	JP		 NZ, fin_pinta_ayudas_habitacion	;despues .examina_cruz
 	
 	LD		IX, ayuda_oracion
 	;puntero_ayuda_actual

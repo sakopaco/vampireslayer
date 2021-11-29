@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.11.28 - 20:33:52]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.11.29 - 19:17:26]
 
 t4.asm
 Errors: 0
@@ -542,471 +542,472 @@ Errors: 0
        7.  00:80D8                      ;;INICIALIZA_NIVELES
        8.  00:80D8                      ;;=====================================================	
        9.  00:80D8                      ; función: 	pone el bit 4 de todas las habitaciones (byte habitacion_actual 0,2,4....) a 0
-      10.  00:80D8                      ; entrada: 	habitaciones_plantilla
-      11.  00:80D8                      ; salida: 	habitaciones_plantilla con los el bit 4 de los bites bytes impares a 0
-      12.  00:80D8                      ; toca: 	habitaciones_plantilla, B
-      13.  00:80D8                      
+      10.  00:80D8                      ;			pone el bit 6 a 1 si hay ayudas y 0 si no hay ayudas
+      11.  00:80D8                      ; entrada: 	habitaciones_plantilla
+      12.  00:80D8                      ; salida: 	habitaciones_plantilla con los el bit 4 de los bites bytes impares a 0
+      13.  00:80D8                      ; toca: 	habitaciones_plantilla, B
       14.  00:80D8                      
-      15.  00:80D8                      ;ahora mismo se pondrá que se pueda navegar por cualquier habitación y sólo se controlarán las ayudas
-      16.  00:80D8                      ;cuando ya haya enemigos se modificará para que el bit 4 a 0 todos los enemigos muerto y 1 hay enemigos vivos
-      17.  00:80D8                      ;ayudas bit 6 1 hay ayudas y 0 no hay ayudas
-      18.  00:80D8                      
-      19.  00:80D8                      inicializa_niveles:
-      20.  00:80D8  F5                  		PUSH		AF
-      21.  00:80D9  C5                  		PUSH		BC
-      22.  00:80DA  E5                  		PUSH		HL
-      23.  00:80DB                      
-      24.  00:80DB                      		;inicia habitación para decir si por esa habitación no se ha pasado
-      25.  00:80DB                      		;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
-      26.  00:80DB                      		;el 6 bit a 1 indica que en esa habitación hay ayudas no utilizadas
-      27.  00:80DB                      
-      28.  00:80DB                      ;nivel 0 -----------------------------------------------------------------------
-      29.  00:80DB  06 38               		LD			 B, 56	;la mitad de bytes del array de un nivel
-      30.  00:80DD  21 A2 A7            		LD 			HL, habitaciones_nivel0	;puntero al byte de la habitación
-      31.  00:80E0  DD 21 A2 A7         		LD			IX, habitaciones_nivel0
-      32.  00:80E4  DD 23               		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
-      33.  00:80E6                      .inicia_nivel_0:
-      34.  00:80E6  4E                  		LD		 	 C, (HL)
-      35.  00:80E7                      		;pongo habitación no terminada bit 4 habitación a 0
-      36.  00:80E7  CB E1               		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
-      37.  00:80E9                      		
-      38.  00:80E9                      		;examino si hay ayudas en siguiente byte
-      39.  00:80E9  DD 7E 00            		LD			 A, (IX)
-      40.  00:80EC  E6 7E               		AND			1111110b
-      41.  00:80EE  28 02               		JR			 Z, .no_tiene_ayuda_nivel0
-      42.  00:80F0                      .si_tiene_ayuda_nivel0:
-      43.  00:80F0  CB F1               		SET			 6, C
-      44.  00:80F2                      .no_tiene_ayuda_nivel0:
-      45.  00:80F2  CB B1               		RES			 6, C
-      46.  00:80F4                      .fin_tiene_ayuda_nivel0:
-      47.  00:80F4                      		
-      48.  00:80F4  71                  		LD			(HL), C
-      49.  00:80F5  23 23               [2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
-      50.  00:80F7  DD 23 DD 23         [2]		INC			IX		;pongo puntero en la siguiente habitación (2 saltos)
-      51.  00:80FB  10 E9               		DJNZ		.inicia_nivel_0
-      52.  00:80FD                      
-      53.  00:80FD                      ;nivel 1 -----------------------------------------------------------------------
-      54.  00:80FD  06 38               		LD			 B, 56	;la mitad de bytes del array de un nivel
-      55.  00:80FF  21 12 A8            		LD 			HL, habitaciones_nivel1	;puntero al byte de la habitación
-      56.  00:8102  DD 21 12 A8         		LD			IX, habitaciones_nivel1
-      57.  00:8106  DD 23               		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
-      58.  00:8108                      .inicia_nivel_1:
-      59.  00:8108  4E                  		LD		 	 C, (HL)
-      60.  00:8109                      		;pongo habitación no terminada bit 4 habitación a 0
-      61.  00:8109  CB E1               		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
-      62.  00:810B                      		
-      63.  00:810B                      		;examino si hay ayudas en siguiente byte
-      64.  00:810B  DD 7E 00            		LD			 A, (IX)
-      65.  00:810E  E6 7E               		AND			1111110b
-      66.  00:8110  28 02               		JR			 Z, .no_tiene_ayuda_nivel1
-      67.  00:8112                      .si_tiene_ayuda_nivel1:
-      68.  00:8112  CB F1               		SET			 6, C
-      69.  00:8114                      .no_tiene_ayuda_nivel1:
-      70.  00:8114  CB B1               		RES			 6, C
-      71.  00:8116                      .fin_tiene_ayuda_nivel1:
-      72.  00:8116                      		
-      73.  00:8116  71                  		LD			(HL), C
-      74.  00:8117  23 23               [2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
-      75.  00:8119  DD 23 DD 23         [2]		INC			IX		;pongo puntero en la siguiente habitación (2 saltos)
-      76.  00:811D  10 E9               		DJNZ		.inicia_nivel_1
-      77.  00:811F                      
-      78.  00:811F                      ;nivel 2 -----------------------------------------------------------------------
-      79.  00:811F  06 38               		LD			 B, 56	;la mitad de bytes del array de un nivel
-      80.  00:8121  21 82 A8            		LD 			HL, habitaciones_nivel2	;puntero al byte de la habitación
-      81.  00:8124  DD 21 82 A8         		LD			IX, habitaciones_nivel2
-      82.  00:8128  DD 23               		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
-      83.  00:812A                      .inicia_nivel_2:
-      84.  00:812A  4E                  		LD		 	 C, (HL)
-      85.  00:812B                      		;pongo habitación no terminada bit 4 habitación a 0
-      86.  00:812B  CB E1               		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
-      87.  00:812D                      		
-      88.  00:812D                      		;examino si hay ayudas en siguiente byte
-      89.  00:812D  DD 7E 00            		LD			 A, (IX)
-      90.  00:8130  E6 7E               		AND			1111110b
-      91.  00:8132  28 02               		JR			 Z, .no_tiene_ayuda_nivel2
-      92.  00:8134                      .si_tiene_ayuda_nivel2:
-      93.  00:8134  CB F1               		SET			 6, C
-      94.  00:8136                      .no_tiene_ayuda_nivel2:
-      95.  00:8136  CB B1               		RES			 6, C
-      96.  00:8138                      .fin_tiene_ayuda_nivel2:
-      97.  00:8138                      		
-      98.  00:8138  71                  		LD			(HL), C
-      99.  00:8139  23 23               [2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
-     100.  00:813B  DD 23 DD 23         [2]		INC			IX		;pongo puntero en la siguiente habitación (2 saltos)
-     101.  00:813F  10 E9               		DJNZ		.inicia_nivel_2
-     102.  00:8141                      
-     103.  00:8141                      ;nivel 3 -----------------------------------------------------------------------
-     104.  00:8141  06 38               		LD			 B, 56	;la mitad de bytes del array de un nivel
-     105.  00:8143  21 F2 A8            		LD 			HL, habitaciones_nivel3	;puntero al byte de la habitación
-     106.  00:8146  DD 21 F2 A8         		LD			IX, habitaciones_nivel3
-     107.  00:814A  DD 23               		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
-     108.  00:814C                      .inicia_nivel_3:
-     109.  00:814C  4E                  		LD		 	 C, (HL)
-     110.  00:814D                      		;pongo habitación no terminada bit 4 habitación a 0
-     111.  00:814D  CB E1               		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
-     112.  00:814F                      		
-     113.  00:814F                      		;examino si hay ayudas en siguiente byte
-     114.  00:814F  DD 7E 00            		LD			 A, (IX)
-     115.  00:8152  E6 7E               		AND			1111110b
-     116.  00:8154  28 02               		JR			 Z, .no_tiene_ayuda_nivel3
-     117.  00:8156                      .si_tiene_ayuda_nivel3:
-     118.  00:8156  CB F1               		SET			 6, C
-     119.  00:8158                      .no_tiene_ayuda_nivel3:
-     120.  00:8158  CB B1               		RES			 6, C
-     121.  00:815A                      .fin_tiene_ayuda_nivel3:
-     122.  00:815A                      		
-     123.  00:815A  71                  		LD			(HL), C
-     124.  00:815B  23 23               [2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
-     125.  00:815D  DD 23 DD 23         [2]		INC			IX		;pongo puntero en la siguiente habitación (2 saltos)
-     126.  00:8161  10 E9               		DJNZ		.inicia_nivel_3
-     127.  00:8163                      
-     128.  00:8163                      ;nivel 4 -----------------------------------------------------------------------
-     129.  00:8163  06 38               		LD			 B, 56	;la mitad de bytes del array de un nivel
-     130.  00:8165  21 62 A9            		LD 			HL, habitaciones_nivel4	;puntero al byte de la habitación
-     131.  00:8168  DD 21 62 A9         		LD			IX, habitaciones_nivel4
-     132.  00:816C  DD 23               		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
-     133.  00:816E                      .inicia_nivel_4:
-     134.  00:816E  4E                  		LD		 	 C, (HL)
-     135.  00:816F                      		;pongo habitación no terminada bit 4 habitación a 0
-     136.  00:816F  CB E1               		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
-     137.  00:8171                      		
-     138.  00:8171                      		;examino si hay ayudas en siguiente byte
-     139.  00:8171  DD 7E 00            		LD			 A, (IX)
-     140.  00:8174  E6 7E               		AND			1111110b
-     141.  00:8176  28 02               		JR			 Z, .no_tiene_ayuda_nivel4
-     142.  00:8178                      .si_tiene_ayuda_nivel4:
-     143.  00:8178  CB F1               		SET			 6, C
-     144.  00:817A                      .no_tiene_ayuda_nivel4:
-     145.  00:817A  CB B1               		RES			 6, C
-     146.  00:817C                      .fin_tiene_ayuda_nivel4:
-     147.  00:817C                      		
-     148.  00:817C  71                  		LD			(HL), C
-     149.  00:817D  23 23               [2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
-     150.  00:817F  DD 23 DD 23         [2]		INC			IX		;pongo puntero en la siguiente habitación (2 saltos)
-     151.  00:8183  10 E9               		DJNZ		.inicia_nivel_4
-     152.  00:8185                      		
-     153.  00:8185                      ;nivel 5 -----------------------------------------------------------------------
-     154.  00:8185  06 38               		LD			 B, 56	;la mitad de bytes del array de un nivel
-     155.  00:8187  21 D2 A9            		LD 			HL, habitaciones_nivel5	;puntero al byte de la habitación
-     156.  00:818A  DD 21 D2 A9         		LD			IX, habitaciones_nivel5
-     157.  00:818E  DD 23               		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
-     158.  00:8190                      .inicia_nivel_5:
-     159.  00:8190  4E                  		LD		 	 C, (HL)
-     160.  00:8191                      		;pongo habitación no terminada bit 4 habitación a 0
-     161.  00:8191  CB E1               		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
-     162.  00:8193                      		
-     163.  00:8193                      		;examino si hay ayudas en siguiente byte
-     164.  00:8193  DD 7E 00            		LD			 A, (IX)
-     165.  00:8196  E6 7E               		AND			1111110b
-     166.  00:8198  28 02               		JR			 Z, .no_tiene_ayuda_nivel5
-     167.  00:819A                      .si_tiene_ayuda_nivel5:
-     168.  00:819A  CB F1               		SET			 6, C
-     169.  00:819C                      .no_tiene_ayuda_nivel5:
-     170.  00:819C  CB B1               		RES			 6, C
-     171.  00:819E                      .fin_tiene_ayuda_nivel5:
-     172.  00:819E                      		
-     173.  00:819E  71                  		LD			(HL), C
-     174.  00:819F  23 23               [2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
-     175.  00:81A1  DD 23 DD 23         [2]		INC			IX		;pongo puntero en la siguiente habitación (2 saltos)
-     176.  00:81A5  10 E9               		DJNZ		.inicia_nivel_5
-     177.  00:81A7                      		
-     178.  00:81A7                      ;nivel 6 -----------------------------------------------------------------------
-     179.  00:81A7  06 38               		LD			 B, 56	;la mitad de bytes del array de un nivel
-     180.  00:81A9  21 12 A8            		LD 			HL, habitaciones_nivel1	;puntero al byte de la habitación
-     181.  00:81AC  DD 21 12 A8         		LD			IX, habitaciones_nivel1
-     182.  00:81B0  DD 23               		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
-     183.  00:81B2                      .inicia_nivel_6:
-     184.  00:81B2  4E                  		LD		 	 C, (HL)
-     185.  00:81B3                      		;pongo habitación no terminada bit 4 habitación a 0
-     186.  00:81B3  CB E1               		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
-     187.  00:81B5                      		
-     188.  00:81B5                      		;examino si hay ayudas en siguiente byte
-     189.  00:81B5  DD 7E 00            		LD			 A, (IX)
-     190.  00:81B8  E6 7E               		AND			1111110b
-     191.  00:81BA  28 02               		JR			 Z, .no_tiene_ayuda_nivel6
-     192.  00:81BC                      .si_tiene_ayuda_nivel6:
-     193.  00:81BC  CB F1               		SET			 6, C
-     194.  00:81BE                      .no_tiene_ayuda_nivel6:
-     195.  00:81BE  CB B1               		RES			 6, C
-     196.  00:81C0                      .fin_tiene_ayuda_nivel6:
-     197.  00:81C0                      		
-     198.  00:81C0  71                  		LD			(HL), C
-     199.  00:81C1  23 23               [2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
-     200.  00:81C3  DD 23 DD 23         [2]		INC			IX		;pongo puntero en la siguiente habitación (2 saltos)
-     201.  00:81C7  10 E9               		DJNZ		.inicia_nivel_6
-     202.  00:81C9                      
-     203.  00:81C9  E1                  		POP			HL
-     204.  00:81CA  C1                  		POP			BC
-     205.  00:81CB  F1                  		POP			AF
-     206.  00:81CC                      fin_iniciliza_niveles:
-     207.  00:81CC  C9                  		RET
-     208.  00:81CD                      
+      15.  00:80D8                      
+      16.  00:80D8                      ;ahora mismo se pondrá que se pueda navegar por cualquier habitación y sólo se controlarán las ayudas
+      17.  00:80D8                      ;cuando ya haya enemigos se modificará para que el bit 4 a 0 todos los enemigos muerto y 1 hay enemigos vivos
+      18.  00:80D8                      ;ayudas bit 6 1 hay ayudas y 0 no hay ayudas
+      19.  00:80D8                      
+      20.  00:80D8                      inicializa_niveles:
+      21.  00:80D8  F5                  		PUSH		AF
+      22.  00:80D9  C5                  		PUSH		BC
+      23.  00:80DA  E5                  		PUSH		HL
+      24.  00:80DB                      
+      25.  00:80DB                      		;inicia habitación para decir si por esa habitación no se ha pasado
+      26.  00:80DB                      		;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
+      27.  00:80DB                      		;el 6 bit a 1 indica que en esa habitación hay ayudas no utilizadas
+      28.  00:80DB                      
+      29.  00:80DB                      ;nivel 0 -----------------------------------------------------------------------
+      30.  00:80DB  06 38               		LD			 B, 56	;la mitad de bytes del array de un nivel
+      31.  00:80DD  21 A2 A7            		LD 			HL, habitaciones_nivel0	;puntero al byte de la habitación
+      32.  00:80E0  DD 21 A2 A7         		LD			IX, habitaciones_nivel0
+      33.  00:80E4  DD 23               		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
+      34.  00:80E6                      .inicia_nivel_0:
+      35.  00:80E6  4E                  		LD		 	 C, (HL)
+      36.  00:80E7                      		;pongo habitación no terminada bit 4 habitación a 0
+      37.  00:80E7  CB E1               		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
+      38.  00:80E9                      		
+      39.  00:80E9                      		;examino si hay ayudas en siguiente byte
+      40.  00:80E9  DD 7E 00            		LD			 A, (IX)
+      41.  00:80EC  E6 FE               		AND			11111110b
+      42.  00:80EE  28 02               		JR			 Z, .no_tiene_ayuda_nivel0
+      43.  00:80F0                      .si_tiene_ayuda_nivel0:
+      44.  00:80F0  CB F1               		SET			 6, C
+      45.  00:80F2                      .no_tiene_ayuda_nivel0:
+      46.  00:80F2  CB B1               		RES			 6, C
+      47.  00:80F4                      .fin_tiene_ayuda_nivel0:
+      48.  00:80F4                      		
+      49.  00:80F4  71                  		LD			(HL), C
+      50.  00:80F5  23 23               [2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
+      51.  00:80F7  DD 23 DD 23         [2]		INC			IX		;pongo puntero en la siguiente habitación (2 saltos)
+      52.  00:80FB  10 E9               		DJNZ		.inicia_nivel_0
+      53.  00:80FD                      
+      54.  00:80FD                      ;nivel 1 -----------------------------------------------------------------------
+      55.  00:80FD  06 38               		LD			 B, 56	;la mitad de bytes del array de un nivel
+      56.  00:80FF  21 12 A8            		LD 			HL, habitaciones_nivel1	;puntero al byte de la habitación
+      57.  00:8102  DD 21 12 A8         		LD			IX, habitaciones_nivel1
+      58.  00:8106  DD 23               		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
+      59.  00:8108                      .inicia_nivel_1:
+      60.  00:8108  4E                  		LD		 	 C, (HL)
+      61.  00:8109                      		;pongo habitación no terminada bit 4 habitación a 0
+      62.  00:8109  CB E1               		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
+      63.  00:810B                      		
+      64.  00:810B                      		;examino si hay ayudas en siguiente byte
+      65.  00:810B  DD 7E 00            		LD			 A, (IX)
+      66.  00:810E  E6 7E               		AND			1111110b
+      67.  00:8110  28 02               		JR			 Z, .no_tiene_ayuda_nivel1
+      68.  00:8112                      .si_tiene_ayuda_nivel1:
+      69.  00:8112  CB F1               		SET			 6, C
+      70.  00:8114                      .no_tiene_ayuda_nivel1:
+      71.  00:8114  CB B1               		RES			 6, C
+      72.  00:8116                      .fin_tiene_ayuda_nivel1:
+      73.  00:8116                      		
+      74.  00:8116  71                  		LD			(HL), C
+      75.  00:8117  23 23               [2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
+      76.  00:8119  DD 23 DD 23         [2]		INC			IX		;pongo puntero en la siguiente habitación (2 saltos)
+      77.  00:811D  10 E9               		DJNZ		.inicia_nivel_1
+      78.  00:811F                      
+      79.  00:811F                      ;nivel 2 -----------------------------------------------------------------------
+      80.  00:811F  06 38               		LD			 B, 56	;la mitad de bytes del array de un nivel
+      81.  00:8121  21 82 A8            		LD 			HL, habitaciones_nivel2	;puntero al byte de la habitación
+      82.  00:8124  DD 21 82 A8         		LD			IX, habitaciones_nivel2
+      83.  00:8128  DD 23               		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
+      84.  00:812A                      .inicia_nivel_2:
+      85.  00:812A  4E                  		LD		 	 C, (HL)
+      86.  00:812B                      		;pongo habitación no terminada bit 4 habitación a 0
+      87.  00:812B  CB E1               		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
+      88.  00:812D                      		
+      89.  00:812D                      		;examino si hay ayudas en siguiente byte
+      90.  00:812D  DD 7E 00            		LD			 A, (IX)
+      91.  00:8130  E6 7E               		AND			1111110b
+      92.  00:8132  28 02               		JR			 Z, .no_tiene_ayuda_nivel2
+      93.  00:8134                      .si_tiene_ayuda_nivel2:
+      94.  00:8134  CB F1               		SET			 6, C
+      95.  00:8136                      .no_tiene_ayuda_nivel2:
+      96.  00:8136  CB B1               		RES			 6, C
+      97.  00:8138                      .fin_tiene_ayuda_nivel2:
+      98.  00:8138                      		
+      99.  00:8138  71                  		LD			(HL), C
+     100.  00:8139  23 23               [2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
+     101.  00:813B  DD 23 DD 23         [2]		INC			IX		;pongo puntero en la siguiente habitación (2 saltos)
+     102.  00:813F  10 E9               		DJNZ		.inicia_nivel_2
+     103.  00:8141                      
+     104.  00:8141                      ;nivel 3 -----------------------------------------------------------------------
+     105.  00:8141  06 38               		LD			 B, 56	;la mitad de bytes del array de un nivel
+     106.  00:8143  21 F2 A8            		LD 			HL, habitaciones_nivel3	;puntero al byte de la habitación
+     107.  00:8146  DD 21 F2 A8         		LD			IX, habitaciones_nivel3
+     108.  00:814A  DD 23               		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
+     109.  00:814C                      .inicia_nivel_3:
+     110.  00:814C  4E                  		LD		 	 C, (HL)
+     111.  00:814D                      		;pongo habitación no terminada bit 4 habitación a 0
+     112.  00:814D  CB E1               		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
+     113.  00:814F                      		
+     114.  00:814F                      		;examino si hay ayudas en siguiente byte
+     115.  00:814F  DD 7E 00            		LD			 A, (IX)
+     116.  00:8152  E6 7E               		AND			1111110b
+     117.  00:8154  28 02               		JR			 Z, .no_tiene_ayuda_nivel3
+     118.  00:8156                      .si_tiene_ayuda_nivel3:
+     119.  00:8156  CB F1               		SET			 6, C
+     120.  00:8158                      .no_tiene_ayuda_nivel3:
+     121.  00:8158  CB B1               		RES			 6, C
+     122.  00:815A                      .fin_tiene_ayuda_nivel3:
+     123.  00:815A                      		
+     124.  00:815A  71                  		LD			(HL), C
+     125.  00:815B  23 23               [2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
+     126.  00:815D  DD 23 DD 23         [2]		INC			IX		;pongo puntero en la siguiente habitación (2 saltos)
+     127.  00:8161  10 E9               		DJNZ		.inicia_nivel_3
+     128.  00:8163                      
+     129.  00:8163                      ;nivel 4 -----------------------------------------------------------------------
+     130.  00:8163  06 38               		LD			 B, 56	;la mitad de bytes del array de un nivel
+     131.  00:8165  21 62 A9            		LD 			HL, habitaciones_nivel4	;puntero al byte de la habitación
+     132.  00:8168  DD 21 62 A9         		LD			IX, habitaciones_nivel4
+     133.  00:816C  DD 23               		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
+     134.  00:816E                      .inicia_nivel_4:
+     135.  00:816E  4E                  		LD		 	 C, (HL)
+     136.  00:816F                      		;pongo habitación no terminada bit 4 habitación a 0
+     137.  00:816F  CB E1               		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
+     138.  00:8171                      		
+     139.  00:8171                      		;examino si hay ayudas en siguiente byte
+     140.  00:8171  DD 7E 00            		LD			 A, (IX)
+     141.  00:8174  E6 7E               		AND			1111110b
+     142.  00:8176  28 02               		JR			 Z, .no_tiene_ayuda_nivel4
+     143.  00:8178                      .si_tiene_ayuda_nivel4:
+     144.  00:8178  CB F1               		SET			 6, C
+     145.  00:817A                      .no_tiene_ayuda_nivel4:
+     146.  00:817A  CB B1               		RES			 6, C
+     147.  00:817C                      .fin_tiene_ayuda_nivel4:
+     148.  00:817C                      		
+     149.  00:817C  71                  		LD			(HL), C
+     150.  00:817D  23 23               [2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
+     151.  00:817F  DD 23 DD 23         [2]		INC			IX		;pongo puntero en la siguiente habitación (2 saltos)
+     152.  00:8183  10 E9               		DJNZ		.inicia_nivel_4
+     153.  00:8185                      		
+     154.  00:8185                      ;nivel 5 -----------------------------------------------------------------------
+     155.  00:8185  06 38               		LD			 B, 56	;la mitad de bytes del array de un nivel
+     156.  00:8187  21 D2 A9            		LD 			HL, habitaciones_nivel5	;puntero al byte de la habitación
+     157.  00:818A  DD 21 D2 A9         		LD			IX, habitaciones_nivel5
+     158.  00:818E  DD 23               		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
+     159.  00:8190                      .inicia_nivel_5:
+     160.  00:8190  4E                  		LD		 	 C, (HL)
+     161.  00:8191                      		;pongo habitación no terminada bit 4 habitación a 0
+     162.  00:8191  CB E1               		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
+     163.  00:8193                      		
+     164.  00:8193                      		;examino si hay ayudas en siguiente byte
+     165.  00:8193  DD 7E 00            		LD			 A, (IX)
+     166.  00:8196  E6 7E               		AND			1111110b
+     167.  00:8198  28 02               		JR			 Z, .no_tiene_ayuda_nivel5
+     168.  00:819A                      .si_tiene_ayuda_nivel5:
+     169.  00:819A  CB F1               		SET			 6, C
+     170.  00:819C                      .no_tiene_ayuda_nivel5:
+     171.  00:819C  CB B1               		RES			 6, C
+     172.  00:819E                      .fin_tiene_ayuda_nivel5:
+     173.  00:819E                      		
+     174.  00:819E  71                  		LD			(HL), C
+     175.  00:819F  23 23               [2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
+     176.  00:81A1  DD 23 DD 23         [2]		INC			IX		;pongo puntero en la siguiente habitación (2 saltos)
+     177.  00:81A5  10 E9               		DJNZ		.inicia_nivel_5
+     178.  00:81A7                      		
+     179.  00:81A7                      ;nivel 6 -----------------------------------------------------------------------
+     180.  00:81A7  06 38               		LD			 B, 56	;la mitad de bytes del array de un nivel
+     181.  00:81A9  21 12 A8            		LD 			HL, habitaciones_nivel1	;puntero al byte de la habitación
+     182.  00:81AC  DD 21 12 A8         		LD			IX, habitaciones_nivel1
+     183.  00:81B0  DD 23               		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
+     184.  00:81B2                      .inicia_nivel_6:
+     185.  00:81B2  4E                  		LD		 	 C, (HL)
+     186.  00:81B3                      		;pongo habitación no terminada bit 4 habitación a 0
+     187.  00:81B3  CB E1               		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
+     188.  00:81B5                      		
+     189.  00:81B5                      		;examino si hay ayudas en siguiente byte
+     190.  00:81B5  DD 7E 00            		LD			 A, (IX)
+     191.  00:81B8  E6 7E               		AND			1111110b
+     192.  00:81BA  28 02               		JR			 Z, .no_tiene_ayuda_nivel6
+     193.  00:81BC                      .si_tiene_ayuda_nivel6:
+     194.  00:81BC  CB F1               		SET			 6, C
+     195.  00:81BE                      .no_tiene_ayuda_nivel6:
+     196.  00:81BE  CB B1               		RES			 6, C
+     197.  00:81C0                      .fin_tiene_ayuda_nivel6:
+     198.  00:81C0                      		
+     199.  00:81C0  71                  		LD			(HL), C
+     200.  00:81C1  23 23               [2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
+     201.  00:81C3  DD 23 DD 23         [2]		INC			IX		;pongo puntero en la siguiente habitación (2 saltos)
+     202.  00:81C7  10 E9               		DJNZ		.inicia_nivel_6
+     203.  00:81C9                      
+     204.  00:81C9  E1                  		POP			HL
+     205.  00:81CA  C1                  		POP			BC
+     206.  00:81CB  F1                  		POP			AF
+     207.  00:81CC                      fin_iniciliza_niveles:
+     208.  00:81CC  C9                  		RET
      209.  00:81CD                      
-     210.  00:81CD                      ;;=====================================================
-     211.  00:81CD                      ;;ACTUALIZA_MARCADOR_VIDAS
-     212.  00:81CD                      ;;=====================================================	
-     213.  00:81CD                      ; función:  actualiza el buffer de vidas
-     214.  00:81CD                      ; entrada: 	prota_vidas
-     215.  00:81CD                      ; salida: 	array_aux_vidas
-     216.  00:81CD                      ; toca:		A,B,HL
-     217.  00:81CD                      actualiza_marcador_vidas:
-     218.  00:81CD                      	;para no andar restando pongo todos los huecos a negro y luego en otro bucle las caras
-     219.  00:81CD                      	;1-pinto todo en blanco
-     220.  00:81CD  21 D1 AA            	LD		HL,array_aux_vidas
-     221.  00:81D0  06 08               	LD		 B,NMAXVIDREL
-     222.  00:81D2                      loop_marcador_caras_negro:	;asignar espacios en negro
-     223.  00:81D2  36 00               	LD		(HL),0			;0 posición mapa tiles para nada (es transparente pero el fondo es negro)
-     224.  00:81D4  23                  	INC		HL
-     225.  00:81D5  10 FB               	DJNZ	loop_marcador_caras_negro
-     226.  00:81D7                      fin_loop_marcador_caras_negro:
-     227.  00:81D7                      	;2-pinto las caras según el n de vidas
-     228.  00:81D7  3A CC AA            	LD		 A, (prota_vidas)
-     229.  00:81DA  B7                  	OR		 A
-     230.  00:81DB  C8                  	RET 	 Z
-     231.  00:81DC  47                  	LD		 B, A
-     232.  00:81DD  21 D1 AA            	LD		HL, array_aux_vidas
-     233.  00:81E0                      loop_marcador_caras: ;asignar caras
-     234.  00:81E0  36 0D               	LD		(HL), POSCARAMAP	;13 posición mapa tiles para cara
-     235.  00:81E2  23                  	INC		HL
-     236.  00:81E3  10 FB               	DJNZ	loop_marcador_caras
-     237.  00:81E5                      fin_loop_marcador_caras:
-     238.  00:81E5                      fin_actualiza_marcador_vidas:
-     239.  00:81E5  C9                  	RET
-     240.  00:81E6                      
+     210.  00:81CD                      
+     211.  00:81CD                      ;;=====================================================
+     212.  00:81CD                      ;;ACTUALIZA_MARCADOR_VIDAS
+     213.  00:81CD                      ;;=====================================================	
+     214.  00:81CD                      ; función:  actualiza el buffer de vidas
+     215.  00:81CD                      ; entrada: 	prota_vidas
+     216.  00:81CD                      ; salida: 	array_aux_vidas
+     217.  00:81CD                      ; toca:		A,B,HL
+     218.  00:81CD                      actualiza_marcador_vidas:
+     219.  00:81CD                      	;para no andar restando pongo todos los huecos a negro y luego en otro bucle las caras
+     220.  00:81CD                      	;1-pinto todo en blanco
+     221.  00:81CD  21 D1 AA            	LD		HL,array_aux_vidas
+     222.  00:81D0  06 08               	LD		 B,NMAXVIDREL
+     223.  00:81D2                      loop_marcador_caras_negro:	;asignar espacios en negro
+     224.  00:81D2  36 00               	LD		(HL),0			;0 posición mapa tiles para nada (es transparente pero el fondo es negro)
+     225.  00:81D4  23                  	INC		HL
+     226.  00:81D5  10 FB               	DJNZ	loop_marcador_caras_negro
+     227.  00:81D7                      fin_loop_marcador_caras_negro:
+     228.  00:81D7                      	;2-pinto las caras según el n de vidas
+     229.  00:81D7  3A CC AA            	LD		 A, (prota_vidas)
+     230.  00:81DA  B7                  	OR		 A
+     231.  00:81DB  C8                  	RET 	 Z
+     232.  00:81DC  47                  	LD		 B, A
+     233.  00:81DD  21 D1 AA            	LD		HL, array_aux_vidas
+     234.  00:81E0                      loop_marcador_caras: ;asignar caras
+     235.  00:81E0  36 0D               	LD		(HL), POSCARAMAP	;13 posición mapa tiles para cara
+     236.  00:81E2  23                  	INC		HL
+     237.  00:81E3  10 FB               	DJNZ	loop_marcador_caras
+     238.  00:81E5                      fin_loop_marcador_caras:
+     239.  00:81E5                      fin_actualiza_marcador_vidas:
+     240.  00:81E5  C9                  	RET
      241.  00:81E6                      
-     242.  00:81E6                      ;;=====================================================
-     243.  00:81E6                      ;;ACTUALIZA_BUFFER_RELIQUIAS
-     244.  00:81E6                      ;;=====================================================	
-     245.  00:81E6                      ; función: 	actualiza buffer de reliquias
-     246.  00:81E6                      ; entrada: 	prota_reliquias
-     247.  00:81E6                      ; salida: 	array_aux_reliquias
-     248.  00:81E6                      ; toca:		A,B,HL
-     249.  00:81E6                      actualiza_buffer_reliquias:	
-     250.  00:81E6                      	;para no andar restando pongo todos los huecos a negro y luego en otro bucle las reliquias
-     251.  00:81E6                      	;1-pinto todo en blanco
-     252.  00:81E6  21 D9 AA            	LD		HL, array_aux_reliquias
-     253.  00:81E9  06 08               	LD		 B, NMAXVIDREL
-     254.  00:81EB  AF                  	XOR		 A
-     255.  00:81EC                      loop_buffer_reliquias_negro:	;asignar espacios en negro
-     256.  00:81EC  77                  	LD		(HL), A			;0 posición mapa tiles para nada (es transparente pero el fondo es negro)
-     257.  00:81ED  23                  	INC		HL
-     258.  00:81EE  10 FC               	DJNZ	loop_buffer_reliquias_negro
-     259.  00:81F0                      
-     260.  00:81F0                      	;2-pinto las cruces según el n de reliquias
-     261.  00:81F0  21 D9 AA            	LD		HL, array_aux_reliquias
-     262.  00:81F3  3A CD AA            	LD		 A, (prota_reliquias)
-     263.  00:81F6  B7                  	OR		 A
-     264.  00:81F7  C8                  	RET		 Z
-     265.  00:81F8  47                  	LD		 B, A
-     266.  00:81F9                      loop_buffer_reliquias: ;asignar reliquias
-     267.  00:81F9  36 11               	LD		(HL), POSRELIMAP	;17 posición mapa tiles para reliquia
-     268.  00:81FB  23                  	INC		HL
-     269.  00:81FC  10 FB               	DJNZ	loop_buffer_reliquias
-     270.  00:81FE                      fin_actualiza_buffer_reliquias:
-     271.  00:81FE  C9                  	RET
-     272.  00:81FF                      
+     242.  00:81E6                      
+     243.  00:81E6                      ;;=====================================================
+     244.  00:81E6                      ;;ACTUALIZA_BUFFER_RELIQUIAS
+     245.  00:81E6                      ;;=====================================================	
+     246.  00:81E6                      ; función: 	actualiza buffer de reliquias
+     247.  00:81E6                      ; entrada: 	prota_reliquias
+     248.  00:81E6                      ; salida: 	array_aux_reliquias
+     249.  00:81E6                      ; toca:		A,B,HL
+     250.  00:81E6                      actualiza_buffer_reliquias:	
+     251.  00:81E6                      	;para no andar restando pongo todos los huecos a negro y luego en otro bucle las reliquias
+     252.  00:81E6                      	;1-pinto todo en blanco
+     253.  00:81E6  21 D9 AA            	LD		HL, array_aux_reliquias
+     254.  00:81E9  06 08               	LD		 B, NMAXVIDREL
+     255.  00:81EB  AF                  	XOR		 A
+     256.  00:81EC                      loop_buffer_reliquias_negro:	;asignar espacios en negro
+     257.  00:81EC  77                  	LD		(HL), A			;0 posición mapa tiles para nada (es transparente pero el fondo es negro)
+     258.  00:81ED  23                  	INC		HL
+     259.  00:81EE  10 FC               	DJNZ	loop_buffer_reliquias_negro
+     260.  00:81F0                      
+     261.  00:81F0                      	;2-pinto las cruces según el n de reliquias
+     262.  00:81F0  21 D9 AA            	LD		HL, array_aux_reliquias
+     263.  00:81F3  3A CD AA            	LD		 A, (prota_reliquias)
+     264.  00:81F6  B7                  	OR		 A
+     265.  00:81F7  C8                  	RET		 Z
+     266.  00:81F8  47                  	LD		 B, A
+     267.  00:81F9                      loop_buffer_reliquias: ;asignar reliquias
+     268.  00:81F9  36 11               	LD		(HL), POSRELIMAP	;17 posición mapa tiles para reliquia
+     269.  00:81FB  23                  	INC		HL
+     270.  00:81FC  10 FB               	DJNZ	loop_buffer_reliquias
+     271.  00:81FE                      fin_actualiza_buffer_reliquias:
+     272.  00:81FE  C9                  	RET
      273.  00:81FF                      
      274.  00:81FF                      
-     275.  00:81FF                      ;;=====================================================
-     276.  00:81FF                      ;;LOCALIZA_INFO_HABITACION
-     277.  00:81FF                      ;;=====================================================	
-     278.  00:81FF                      ; función: 	busca las puertas que hay que pintar egún la posición del usuario y las pone en habitacion_actual
-     279.  00:81FF                      ; entrada: 	prota.pos_mapy, prota.pos_mapx, prota_nivel habitaciones_juego
-     280.  00:81FF                      ; salida: 	habitacion_actual
-     281.  00:81FF                      ; toca:		todo
-     282.  00:81FF                      ;ejemplo: nivel 4, posy 5 y posx 3
-     283.  00:81FF                      ;3 + 5 x 8 + 4 x 49
-     284.  00:81FF                      localiza_info_habitacion:
-     285.  00:81FF                      	;~ PUSH	AF
-     286.  00:81FF                      	;~ PUSH	BC
-     287.  00:81FF                      	;~ PUSH	DE
-     288.  00:81FF  E5                  	PUSH	HL
-     289.  00:8200                      
-     290.  00:8200                      ;primera posición: me coloco en la columna correcta
-     291.  00:8200  21 A2 A7            	LD		HL, habitaciones_juego
-     292.  00:8203                      .situo_columna:	
-     293.  00:8203  3A CE AA            	LD		 A, (prota_pos_mapx)
-     294.  00:8206  CB 27               	SLA		 A				;multiplico por dos ya que cada habitación va de dos en dos bytes
-     295.  00:8208  06 00               	LD		 B, 0
-     296.  00:820A  4F                  	LD		 C, A
-     297.  00:820B  09                  	ADD 	HL, BC			;sumo a la posición 0 la columnax2 en la que situarme
-     298.  00:820C                      	
-     299.  00:820C                      .situo_fila:
-     300.  00:820C  3A CF AA            	LD		A, (prota_pos_mapy)
-     301.  00:820F  B7                  	OR	 	A
-     302.  00:8210  CA 1D 82            	JP		Z, .situo_nivel	;si la fila es 0 no es necesario seguir operando en fila
-     303.  00:8213                      	
-     304.  00:8213  47                  	LD		B, A
-     305.  00:8214  AF                  	XOR		A
-     306.  00:8215                      .loop_suma_fila:
-     307.  00:8215  C6 10               	ADD		16				;cada fila tiene 16 bytes
-     308.  00:8217  10 FC               	DJNZ	.loop_suma_fila
-     309.  00:8219                      	
-     310.  00:8219  06 00               	LD		 B, 0
-     311.  00:821B  4F                  	LD		 C, A
-     312.  00:821C                      
-     313.  00:821C  09                  	ADD 	HL, BC			;sumo a la columna 16 x filas para situarme en la fila correcta
-     314.  00:821D                      
-     315.  00:821D                      .situo_nivel:
-     316.  00:821D  3A CB AA            	LD		 A, (prota_nivel)
-     317.  00:8220  B7                  	OR	 	 A
-     318.  00:8221  CA 31 82            	JP		 Z, .actualiza_variable_habitacion	;si el nivel es 0 al pasar por las anterirores ya estoy situado actualizo la variable y termino
-     319.  00:8224                      	
-     320.  00:8224  E5                  	PUSH	HL				;guardo el resultado intermedio
-     321.  00:8225                      	
-     322.  00:8225  47                  	LD		 B, A			;preparo la varible del bucle
-     323.  00:8226  11 70 00            	LD		DE, 112			;112 = 16x42 son los bytes de cada matriz-nivel
-     324.  00:8229  21 00 00            	LD		HL, 0
-     325.  00:822C                      .loop_suma_nivel:
-     326.  00:822C  19                  	ADD		HL, DE
-     327.  00:822D  10 FD               	DJNZ	.loop_suma_nivel
-     328.  00:822F                      	
-     329.  00:822F  D1                  	POP		DE				;devuelvo el resultado intermedio en DE que ya no lo necesito
-     330.  00:8230                      	
-     331.  00:8230  19                  	ADD		HL, DE			;sumo el resultado del nivel al resultado intermedio anterior
-     332.  00:8231                      	
-     333.  00:8231                      .actualiza_variable_habitacion
-     334.  00:8231  7E                  	LD		 A, (HL)
-     335.  00:8232  32 9D A7            	LD		(habitacion_actual), A
-     336.  00:8235                      	
-     337.  00:8235                      	;actualizo la variable habitacion_actual y su puntero para poder modificar por si se vuelve a pasar por ahí
-     338.  00:8235  DD 21 9F A7         	LD		IX, habitacion_actual_puntero
-     339.  00:8239  DD 74 00            	LD		(IX), H
-     340.  00:823C  DD 75 01            	LD		(IX + 1), L
-     341.  00:823F                      	
-     342.  00:823F                      	;actualizo la variable is_habitacion_terminada
-     343.  00:823F  3A 9D A7            	LD		 A, (habitacion_actual)
-     344.  00:8242  CB 67               	BIT		 4, A					;está terminada la habitación
-     345.  00:8244  C2 4E 82            	JP		 NZ, .si_terminada
-     346.  00:8247                      .no_terminada:						;pongo un 0 en is_habitacion_terminada
-     347.  00:8247  AF                  	XOR		 A
-     348.  00:8248  32 A1 A7            	LD		(is_habitacion_terminada), A
-     349.  00:824B  C3 53 82            	JP		.fin_esta_terminada
-     350.  00:824E                      .si_terminada:						;pongo un 1 en is_habitacion_terminada
-     351.  00:824E  3E 01               	LD		 A, 1		
-     352.  00:8250  32 A1 A7            	LD		(is_habitacion_terminada), A
-     353.  00:8253                      .fin_esta_terminada:
-     354.  00:8253                      	
-     355.  00:8253                      	;actualizo la variable hay_ayudas
-     356.  00:8253  3A 9D A7            	LD		 A, (habitacion_actual)
-     357.  00:8256  CB 77               	BIT		 6, A							;pintar ayuda
-     358.  00:8258  C2 63 82            	JP		 NZ, .no_mostrar_ayuda_activa	;0 no hay o ya se han cogido ayudas // 1 mostrar ayuda activa
-     359.  00:825B                      .si_mostrar_ayuda_activa:							
-     360.  00:825B  3E 01               	LD		 A, 1
-     361.  00:825D  32 82 9C            	LD		(examina_ayudas_en_pantalla), A	
-     362.  00:8260  C3 67 82            	JP		.fin_mostrar_ayuda_activa
-     363.  00:8263                      .no_mostrar_ayuda_activa:
-     364.  00:8263  AF                  	XOR		 A
-     365.  00:8264  32 82 9C            	LD		(examina_ayudas_en_pantalla), A
-     366.  00:8267                      .fin_mostrar_ayuda_activa:					;no restauro B en A porque ya no lo necesito
-     367.  00:8267                      	
-     368.  00:8267                      	;actualizo la variable habitacion_extras
-     369.  00:8267  23                  	INC		HL				;el byte de los extras está antes de donde se especifican las puertas
-     370.  00:8268  7E                  	LD		 A, (HL)
-     371.  00:8269  32 9E A7            	LD		(habitacion_extras), A
-     372.  00:826C                      
-     373.  00:826C  E1                  	POP		HL	
-     374.  00:826D                      	;~ POP		DE
-     375.  00:826D                      	;~ POP		BC
-     376.  00:826D                      	;~ POP		AF
-     377.  00:826D                      fin_localiza_info_habitacion:
-     378.  00:826D  C9                  	RET
-     379.  00:826E                      	
-     380.  00:826E                      
-     381.  00:826E                      ;;=====================================================
-     382.  00:826E                      ;;TERMINADA_HABIACION_RECORRIDA
-     383.  00:826E                      ;;=====================================================	
-     384.  00:826E                      ; función: 	usando la variable prota_pos_mapx pone un 1 a donde apunta habitacion_recorrida (el array... byte 14 de 
-     385.  00:826E                      ;			habitaciones recorridas en esa fila) para ver si uestra enemigos o no y permita pasar por puertas
-     386.  00:826E                      ; entrada: 	prota_pos_mapx, habitacion_recorrida
-     387.  00:826E                      ; salida: 	habitacion_recorrida (byte 14 de la fila de habitaciones) actualizada con OR A (en A la habitacion)
-     388.  00:826E                      ; toca:		IX, HL, AF
-     389.  00:826E                      terminada_habitacion_recorrida:
-     390.  00:826E  21 9F A7            		LD			HL, habitacion_actual_puntero
-     391.  00:8271  7E                  		LD			 A, (HL)
-     392.  00:8272  CB E7               		SET			 4, A
-     393.  00:8274  77                  		LD			(HL), A
-     394.  00:8275                      		
-     395.  00:8275  3E 01               		LD			 A, HABTERMIN	;da igual qué bit mientras sea distinto de 0 pero se pone 1
-     396.  00:8277  32 A1 A7            		LD			(is_habitacion_terminada), A
-     397.  00:827A                      		
-     398.  00:827A                      		;este trozo no sirve de nada pero ya e quedo más tranquilo si lo pongo, por ser exacto y completo
-     399.  00:827A                      		;no sirve porque se cambiará de habitación y se perderá/actualizará el dato
-     400.  00:827A  3A 9D A7            		LD			 A, (habitacion_actual)
-     401.  00:827D  CB E7               		SET			 4, A
-     402.  00:827F  32 9D A7            		LD			(habitacion_actual), A
-     403.  00:8282                      fin_terminada_habitacion_recorrida:
-     404.  00:8282  C9                  		RET
-     405.  00:8283                      
+     275.  00:81FF                      
+     276.  00:81FF                      ;;=====================================================
+     277.  00:81FF                      ;;LOCALIZA_INFO_HABITACION
+     278.  00:81FF                      ;;=====================================================	
+     279.  00:81FF                      ; función: 	busca las puertas que hay que pintar egún la posición del usuario y las pone en habitacion_actual
+     280.  00:81FF                      ; entrada: 	prota.pos_mapy, prota.pos_mapx, prota_nivel habitaciones_juego
+     281.  00:81FF                      ; salida: 	habitacion_actual
+     282.  00:81FF                      ; toca:		todo
+     283.  00:81FF                      ;ejemplo: nivel 4, posy 5 y posx 3
+     284.  00:81FF                      ;3 + 5 x 8 + 4 x 49
+     285.  00:81FF                      localiza_info_habitacion:
+     286.  00:81FF                      	;~ PUSH	AF
+     287.  00:81FF                      	;~ PUSH	BC
+     288.  00:81FF                      	;~ PUSH	DE
+     289.  00:81FF  E5                  	PUSH	HL
+     290.  00:8200                      
+     291.  00:8200                      ;primera posición: me coloco en la columna correcta
+     292.  00:8200  21 A2 A7            	LD		HL, habitaciones_juego
+     293.  00:8203                      .situo_columna:	
+     294.  00:8203  3A CE AA            	LD		 A, (prota_pos_mapx)
+     295.  00:8206  CB 27               	SLA		 A				;multiplico por dos ya que cada habitación va de dos en dos bytes
+     296.  00:8208  06 00               	LD		 B, 0
+     297.  00:820A  4F                  	LD		 C, A
+     298.  00:820B  09                  	ADD 	HL, BC			;sumo a la posición 0 la columnax2 en la que situarme
+     299.  00:820C                      	
+     300.  00:820C                      .situo_fila:
+     301.  00:820C  3A CF AA            	LD		A, (prota_pos_mapy)
+     302.  00:820F  B7                  	OR	 	A
+     303.  00:8210  CA 1D 82            	JP		Z, .situo_nivel	;si la fila es 0 no es necesario seguir operando en fila
+     304.  00:8213                      	
+     305.  00:8213  47                  	LD		B, A
+     306.  00:8214  AF                  	XOR		A
+     307.  00:8215                      .loop_suma_fila:
+     308.  00:8215  C6 10               	ADD		16				;cada fila tiene 16 bytes
+     309.  00:8217  10 FC               	DJNZ	.loop_suma_fila
+     310.  00:8219                      	
+     311.  00:8219  06 00               	LD		 B, 0
+     312.  00:821B  4F                  	LD		 C, A
+     313.  00:821C                      
+     314.  00:821C  09                  	ADD 	HL, BC			;sumo a la columna 16 x filas para situarme en la fila correcta
+     315.  00:821D                      
+     316.  00:821D                      .situo_nivel:
+     317.  00:821D  3A CB AA            	LD		 A, (prota_nivel)
+     318.  00:8220  B7                  	OR	 	 A
+     319.  00:8221  CA 31 82            	JP		 Z, .actualiza_variable_habitacion	;si el nivel es 0 al pasar por las anterirores ya estoy situado actualizo la variable y termino
+     320.  00:8224                      	
+     321.  00:8224  E5                  	PUSH	HL				;guardo el resultado intermedio
+     322.  00:8225                      	
+     323.  00:8225  47                  	LD		 B, A			;preparo la varible del bucle
+     324.  00:8226  11 70 00            	LD		DE, 112			;112 = 16x42 son los bytes de cada matriz-nivel
+     325.  00:8229  21 00 00            	LD		HL, 0
+     326.  00:822C                      .loop_suma_nivel:
+     327.  00:822C  19                  	ADD		HL, DE
+     328.  00:822D  10 FD               	DJNZ	.loop_suma_nivel
+     329.  00:822F                      	
+     330.  00:822F  D1                  	POP		DE				;devuelvo el resultado intermedio en DE que ya no lo necesito
+     331.  00:8230                      	
+     332.  00:8230  19                  	ADD		HL, DE			;sumo el resultado del nivel al resultado intermedio anterior
+     333.  00:8231                      	
+     334.  00:8231                      .actualiza_variable_habitacion
+     335.  00:8231  7E                  	LD		 A, (HL)
+     336.  00:8232  32 9D A7            	LD		(habitacion_actual), A
+     337.  00:8235                      	
+     338.  00:8235                      	;actualizo la variable habitacion_actual y su puntero para poder modificar por si se vuelve a pasar por ahí
+     339.  00:8235  DD 21 9F A7         	LD		IX, habitacion_actual_puntero
+     340.  00:8239  DD 74 00            	LD		(IX), H
+     341.  00:823C  DD 75 01            	LD		(IX + 1), L
+     342.  00:823F                      	
+     343.  00:823F                      	;actualizo la variable is_habitacion_terminada
+     344.  00:823F  3A 9D A7            	LD		 A, (habitacion_actual)
+     345.  00:8242  CB 67               	BIT		 4, A					;está terminada la habitación
+     346.  00:8244  C2 4E 82            	JP		 NZ, .si_terminada
+     347.  00:8247                      .no_terminada:						;pongo un 0 en is_habitacion_terminada
+     348.  00:8247  AF                  	XOR		 A
+     349.  00:8248  32 A1 A7            	LD		(is_habitacion_terminada), A
+     350.  00:824B  C3 53 82            	JP		.fin_esta_terminada
+     351.  00:824E                      .si_terminada:						;pongo un 1 en is_habitacion_terminada
+     352.  00:824E  3E 01               	LD		 A, 1		
+     353.  00:8250  32 A1 A7            	LD		(is_habitacion_terminada), A
+     354.  00:8253                      .fin_esta_terminada:
+     355.  00:8253                      	
+     356.  00:8253                      	;actualizo la variable hay_ayudas
+     357.  00:8253  3A 9D A7            	LD		 A, (habitacion_actual)
+     358.  00:8256  CB 77               	BIT		 6, A							;pintar ayuda
+     359.  00:8258  CA 63 82            	JP		 Z, .no_mostrar_ayuda_activa	;0 no hay o ya se han cogido ayudas // 1 mostrar ayuda activa
+     360.  00:825B                      .si_mostrar_ayuda_activa:							
+     361.  00:825B  3E 01               	LD		 A, 1
+     362.  00:825D  32 82 9C            	LD		(examina_ayudas_en_pantalla), A	
+     363.  00:8260  C3 67 82            	JP		.fin_mostrar_ayuda_activa
+     364.  00:8263                      .no_mostrar_ayuda_activa:
+     365.  00:8263  AF                  	XOR		 A
+     366.  00:8264  32 82 9C            	LD		(examina_ayudas_en_pantalla), A
+     367.  00:8267                      .fin_mostrar_ayuda_activa:					;no restauro B en A porque ya no lo necesito
+     368.  00:8267                      	
+     369.  00:8267                      	;actualizo la variable habitacion_extras
+     370.  00:8267  23                  	INC		HL				;el byte de los extras está antes de donde se especifican las puertas
+     371.  00:8268  7E                  	LD		 A, (HL)
+     372.  00:8269  32 9E A7            	LD		(habitacion_extras), A
+     373.  00:826C                      
+     374.  00:826C  E1                  	POP		HL	
+     375.  00:826D                      	;~ POP		DE
+     376.  00:826D                      	;~ POP		BC
+     377.  00:826D                      	;~ POP		AF
+     378.  00:826D                      fin_localiza_info_habitacion:
+     379.  00:826D  C9                  	RET
+     380.  00:826E                      	
+     381.  00:826E                      
+     382.  00:826E                      ;;=====================================================
+     383.  00:826E                      ;;TERMINADA_HABIACION_RECORRIDA
+     384.  00:826E                      ;;=====================================================	
+     385.  00:826E                      ; función: 	usando la variable prota_pos_mapx pone un 1 a donde apunta habitacion_recorrida (el array... byte 14 de 
+     386.  00:826E                      ;			habitaciones recorridas en esa fila) para ver si uestra enemigos o no y permita pasar por puertas
+     387.  00:826E                      ; entrada: 	prota_pos_mapx, habitacion_recorrida
+     388.  00:826E                      ; salida: 	habitacion_recorrida (byte 14 de la fila de habitaciones) actualizada con OR A (en A la habitacion)
+     389.  00:826E                      ; toca:		IX, HL, AF
+     390.  00:826E                      terminada_habitacion_recorrida:
+     391.  00:826E  21 9F A7            		LD			HL, habitacion_actual_puntero
+     392.  00:8271  7E                  		LD			 A, (HL)
+     393.  00:8272  CB E7               		SET			 4, A
+     394.  00:8274  77                  		LD			(HL), A
+     395.  00:8275                      		
+     396.  00:8275  3E 01               		LD			 A, HABTERMIN	;da igual qué bit mientras sea distinto de 0 pero se pone 1
+     397.  00:8277  32 A1 A7            		LD			(is_habitacion_terminada), A
+     398.  00:827A                      		
+     399.  00:827A                      		;este trozo no sirve de nada pero ya e quedo más tranquilo si lo pongo, por ser exacto y completo
+     400.  00:827A                      		;no sirve porque se cambiará de habitación y se perderá/actualizará el dato
+     401.  00:827A  3A 9D A7            		LD			 A, (habitacion_actual)
+     402.  00:827D  CB E7               		SET			 4, A
+     403.  00:827F  32 9D A7            		LD			(habitacion_actual), A
+     404.  00:8282                      fin_terminada_habitacion_recorrida:
+     405.  00:8282  C9                  		RET
      406.  00:8283                      
      407.  00:8283                      
-     408.  00:8283                      ;;=====================================================
-     409.  00:8283                      ;;ENTRA_HABITACION												*no terminada
-     410.  00:8283                      ;;=====================================================	
-     411.  00:8283                      ; función: 	actualiza elementos en pantalla cuando hay cambios en habitación
-     412.  00:8283                      ;			fondo
-     413.  00:8283                      ;			puertas
-     414.  00:8283                      ;			ayudas
-     415.  00:8283                      ;			imagenes
-     416.  00:8283                      ;			mapa inferior
-     417.  00:8283                      ;			enemigos
-     418.  00:8283                      ; entrada: 	prota_pos_mapy, prota_pos_mapy, prota_nivel
-     419.  00:8283                      ; salida: 	
-     420.  00:8283                      entra_habitacion:
-     421.  00:8283  CD 02 83            		CALL	pinta_parte_superior_pantalla
-     422.  00:8286  CD 0C 89            		CALL	pinta_puertas
-     423.  00:8289  CD 46 86            		CALL	pinta_extra_fondo
-     424.  00:828C  CD 18 9D            		CALL	pinta_ayudas_habitacion
-     425.  00:828F                      	
-     426.  00:828F  C3 92 82            		JP		pinta_heroe_mapa
-     427.  00:8292                      fin_entra_habitacion:
-     428.  00:8292                      
+     408.  00:8283                      
+     409.  00:8283                      ;;=====================================================
+     410.  00:8283                      ;;ENTRA_HABITACION												*no terminada
+     411.  00:8283                      ;;=====================================================	
+     412.  00:8283                      ; función: 	actualiza elementos en pantalla cuando hay cambios en habitación
+     413.  00:8283                      ;			fondo
+     414.  00:8283                      ;			puertas
+     415.  00:8283                      ;			ayudas
+     416.  00:8283                      ;			imagenes
+     417.  00:8283                      ;			mapa inferior
+     418.  00:8283                      ;			enemigos
+     419.  00:8283                      ; entrada: 	prota_pos_mapy, prota_pos_mapy, prota_nivel
+     420.  00:8283                      ; salida: 	
+     421.  00:8283                      entra_habitacion:
+     422.  00:8283  CD 02 83            		CALL	pinta_parte_superior_pantalla
+     423.  00:8286  CD 0C 89            		CALL	pinta_puertas
+     424.  00:8289  CD 46 86            		CALL	pinta_extra_fondo
+     425.  00:828C  CD 18 9D            		CALL	pinta_ayudas_habitacion
+     426.  00:828F                      	
+     427.  00:828F  C3 92 82            		JP		pinta_heroe_mapa
+     428.  00:8292                      fin_entra_habitacion:
      429.  00:8292                      
-     430.  00:8292                      ;;=====================================================
-     431.  00:8292                      ;;PINTA_HEROE_MAPA
-     432.  00:8292                      ;;PINTA_BLANCO_MAPA
-     433.  00:8292                      ;;=====================================================	
-     434.  00:8292                      ; función: 	pinta el iconito del heroe en el mapa o un espacio en blanco
-     435.  00:8292                      ; entrada: 	
-     436.  00:8292                      ; salida: 	
-     437.  00:8292                      ; toca:		todo
-     438.  00:8292                      pinta_heroe_mapa:
-     439.  00:8292  3E 13               		LD		 A, TILEPROTAM
-     440.  00:8294  32 F0 AA            		LD		(elemento_pintar_mapa), A
-     441.  00:8297  C3 30 85            		JP		posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.posx y posy
-     442.  00:829A                      fin_pinta_heroe_mapa:
-     443.  00:829A                      pinta_blanco_mapa:
-     444.  00:829A  3E 09               		LD		 A, TILEGRISM
-     445.  00:829C  32 F0 AA            		LD		(elemento_pintar_mapa), A
-     446.  00:829F  C3 30 85            		JP		posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.posx y posy
-     447.  00:82A2                      fin_pinta_blanco_mapa:
-     448.  00:82A2                      	
+     430.  00:8292                      
+     431.  00:8292                      ;;=====================================================
+     432.  00:8292                      ;;PINTA_HEROE_MAPA
+     433.  00:8292                      ;;PINTA_BLANCO_MAPA
+     434.  00:8292                      ;;=====================================================	
+     435.  00:8292                      ; función: 	pinta el iconito del heroe en el mapa o un espacio en blanco
+     436.  00:8292                      ; entrada: 	
+     437.  00:8292                      ; salida: 	
+     438.  00:8292                      ; toca:		todo
+     439.  00:8292                      pinta_heroe_mapa:
+     440.  00:8292  3E 13               		LD		 A, TILEPROTAM
+     441.  00:8294  32 F0 AA            		LD		(elemento_pintar_mapa), A
+     442.  00:8297  C3 30 85            		JP		posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.posx y posy
+     443.  00:829A                      fin_pinta_heroe_mapa:
+     444.  00:829A                      pinta_blanco_mapa:
+     445.  00:829A  3E 09               		LD		 A, TILEGRISM
+     446.  00:829C  32 F0 AA            		LD		(elemento_pintar_mapa), A
+     447.  00:829F  C3 30 85            		JP		posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.posx y posy
+     448.  00:82A2                      fin_pinta_blanco_mapa:
      449.  00:82A2                      	
-     450.  00:82A2                      
-     451.  00:82A2                      ;;=====================================================
-     452.  00:82A2                      ;;CAMBIO_NIVEL
-     453.  00:82A2                      ;;=====================================================	
-     454.  00:82A2                      ; función: 	pinta el iconito del heroe en el mapa o un espacio en blanco
-     455.  00:82A2                      ; entrada: 	
-     456.  00:82A2                      ; salida: 	
-     457.  00:82A2                      ; toca:		todo	
-     458.  00:82A2                      cambio_nivel:
-     459.  00:82A2                      	
-     460.  00:82A2                      		;MIRAR CUANDO EL NIVEL SEA -1 (SE SALE DEL CASTILLO Y PUEDE QUE SEA POR TERMINAR JUEGO O SALIR ANTES DE TIEMPO)
-     461.  00:82A2                      	
-     462.  00:82A2                      ;		*****************************************************************************************************************************+
-     463.  00:82A2  CD 59 84            		CALL		pinta_nivel
-     464.  00:82A5                      	
-     465.  00:82A5  CD D9 84            		CALL		borra_mapa	
-     466.  00:82A8                      		
-     467.  00:82A8                      fin_cabio_nivel:
-     468.  00:82A8  C9                  		RET
-     469.  00:82A9                      	
+     450.  00:82A2                      	
+     451.  00:82A2                      
+     452.  00:82A2                      ;;=====================================================
+     453.  00:82A2                      ;;CAMBIO_NIVEL
+     454.  00:82A2                      ;;=====================================================	
+     455.  00:82A2                      ; función: 	pinta el iconito del heroe en el mapa o un espacio en blanco
+     456.  00:82A2                      ; entrada: 	
+     457.  00:82A2                      ; salida: 	
+     458.  00:82A2                      ; toca:		todo	
+     459.  00:82A2                      cambio_nivel:
+     460.  00:82A2                      	
+     461.  00:82A2                      		;MIRAR CUANDO EL NIVEL SEA -1 (SE SALE DEL CASTILLO Y PUEDE QUE SEA POR TERMINAR JUEGO O SALIR ANTES DE TIEMPO)
+     462.  00:82A2                      	
+     463.  00:82A2                      ;		*****************************************************************************************************************************+
+     464.  00:82A2  CD 59 84            		CALL		pinta_nivel
+     465.  00:82A5                      	
+     466.  00:82A5  CD D9 84            		CALL		borra_mapa	
+     467.  00:82A8                      		
+     468.  00:82A8                      fin_cabio_nivel:
+     469.  00:82A8  C9                  		RET
      470.  00:82A9                      	
-     471.  00:82A9                      
-     472.  00:82A9                      	
+     471.  00:82A9                      	
+     472.  00:82A9                      
      473.  00:82A9                      	
      474.  00:82A9                      	
+     475.  00:82A9                      	
      245   00:82A9                      	
      246   00:82A9                      	include "subr_general.asm"
        1.  00:82A9                      ;;=====================================================
@@ -4674,7 +4675,7 @@ Errors: 0
      314.  00:9D1D                      .examina_oracion:
      315.  00:9D1D  3A 9E A7            	LD		 A, (habitacion_extras)
      316.  00:9D20  CB 7F               	BIT		 7, A
-     317.  00:9D22  CA 32 9D            	JP		 Z, fin_pinta_ayudas_habitacion	;despues .examina_cruz
+     317.  00:9D22  C2 32 9D            	JP		 NZ, fin_pinta_ayudas_habitacion	;despues .examina_cruz
      318.  00:9D25                      	
      319.  00:9D25  DD 21 BD 9C         	LD		IX, ayuda_oracion
      320.  00:9D29                      	;puntero_ayuda_actual

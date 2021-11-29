@@ -7,6 +7,7 @@
 ;;INICIALIZA_NIVELES
 ;;=====================================================	
 ; función: 	pone el bit 4 de todas las habitaciones (byte habitacion_actual 0,2,4....) a 0
+;			pone el bit 6 a 1 si hay ayudas y 0 si no hay ayudas
 ; entrada: 	habitaciones_plantilla
 ; salida: 	habitaciones_plantilla con los el bit 4 de los bites bytes impares a 0
 ; toca: 	habitaciones_plantilla, B
@@ -37,7 +38,7 @@ inicializa_niveles:
 		
 		;examino si hay ayudas en siguiente byte
 		LD			 A, (IX)
-		AND			1111110b
+		AND			11111110b
 		JR			 Z, .no_tiene_ayuda_nivel0
 .si_tiene_ayuda_nivel0:
 		SET			 6, C
@@ -355,7 +356,7 @@ localiza_info_habitacion:
 	;actualizo la variable hay_ayudas
 	LD		 A, (habitacion_actual)
 	BIT		 6, A							;pintar ayuda
-	JP		 NZ, .no_mostrar_ayuda_activa	;0 no hay o ya se han cogido ayudas // 1 mostrar ayuda activa
+	JP		 Z, .no_mostrar_ayuda_activa	;0 no hay o ya se han cogido ayudas // 1 mostrar ayuda activa
 .si_mostrar_ayuda_activa:							
 	LD		 A, 1
 	LD		(examina_ayudas_en_pantalla), A	
