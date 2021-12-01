@@ -64,9 +64,10 @@ inicializa_niveles:
 		;examino si hay ayudas en siguiente byte
 		LD			 A, (IX)
 		AND			1111110b
-		JR			 Z, .no_tiene_ayuda_nivel1
+		JP			 Z, .no_tiene_ayuda_nivel1
 .si_tiene_ayuda_nivel1:
 		SET			 6, C
+		JP			.fin_tiene_ayuda_nivel1
 .no_tiene_ayuda_nivel1:
 		RES			 6, C
 .fin_tiene_ayuda_nivel1:
@@ -89,9 +90,10 @@ inicializa_niveles:
 		;examino si hay ayudas en siguiente byte
 		LD			 A, (IX)
 		AND			1111110b
-		JR			 Z, .no_tiene_ayuda_nivel2
+		JP			 Z, .no_tiene_ayuda_nivel2
 .si_tiene_ayuda_nivel2:
 		SET			 6, C
+		JP			.fin_tiene_ayuda_nivel2
 .no_tiene_ayuda_nivel2:
 		RES			 6, C
 .fin_tiene_ayuda_nivel2:
@@ -114,9 +116,10 @@ inicializa_niveles:
 		;examino si hay ayudas en siguiente byte
 		LD			 A, (IX)
 		AND			1111110b
-		JR			 Z, .no_tiene_ayuda_nivel3
+		JP			 Z, .no_tiene_ayuda_nivel3
 .si_tiene_ayuda_nivel3:
 		SET			 6, C
+		JP			.fin_tiene_ayuda_nivel3
 .no_tiene_ayuda_nivel3:
 		RES			 6, C
 .fin_tiene_ayuda_nivel3:
@@ -139,9 +142,10 @@ inicializa_niveles:
 		;examino si hay ayudas en siguiente byte
 		LD			 A, (IX)
 		AND			1111110b
-		JR			 Z, .no_tiene_ayuda_nivel4
+		JP			 Z, .no_tiene_ayuda_nivel4
 .si_tiene_ayuda_nivel4:
 		SET			 6, C
+		JP			.fin_tiene_ayuda_nivel4
 .no_tiene_ayuda_nivel4:
 		RES			 6, C
 .fin_tiene_ayuda_nivel4:
@@ -164,9 +168,10 @@ inicializa_niveles:
 		;examino si hay ayudas en siguiente byte
 		LD			 A, (IX)
 		AND			1111110b
-		JR			 Z, .no_tiene_ayuda_nivel5
+		JP			 Z, .no_tiene_ayuda_nivel5
 .si_tiene_ayuda_nivel5:
 		SET			 6, C
+		JP			.fin_tiene_ayuda_nivel5
 .no_tiene_ayuda_nivel5:
 		RES			 6, C
 .fin_tiene_ayuda_nivel5:
@@ -189,9 +194,10 @@ inicializa_niveles:
 		;examino si hay ayudas en siguiente byte
 		LD			 A, (IX)
 		AND			1111110b
-		JR			 Z, .no_tiene_ayuda_nivel6
+		JP			 Z, .no_tiene_ayuda_nivel6
 .si_tiene_ayuda_nivel6:
 		SET			 6, C
+		JP			.fin_tiene_ayuda_nivel6
 .no_tiene_ayuda_nivel6:
 		RES			 6, C
 .fin_tiene_ayuda_nivel6:
