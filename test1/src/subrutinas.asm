@@ -35,13 +35,14 @@ inicializa_niveles:
 		LD		 	 C, (HL)
 		;pongo habitación no terminada bit 4 habitación a 0
 		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
-		
+
 		;examino si hay ayudas en siguiente byte
 		LD			 A, (IX)
 		AND			11111110b
 		JR			 Z, .no_tiene_ayuda_nivel0
 .si_tiene_ayuda_nivel0:
 		SET			 6, C
+		JP			.fin_tiene_ayuda_nivel0
 .no_tiene_ayuda_nivel0:
 		RES			 6, C
 .fin_tiene_ayuda_nivel0:
@@ -365,11 +366,11 @@ localiza_info_habitacion:
 	JP		 Z, .no_mostrar_ayuda_activa	;0 no hay o ya se han cogido ayudas // 1 mostrar ayuda activa
 .si_mostrar_ayuda_activa:							
 	LD		 A, 1
-	LD		(examina_ayudas_en_pantalla), A	
+	LD		(hay_ayudas_en_pantalla), A	
 	JP		.fin_mostrar_ayuda_activa
 .no_mostrar_ayuda_activa:
 	XOR		 A
-	LD		(examina_ayudas_en_pantalla), A
+	LD		(hay_ayudas_en_pantalla), A
 .fin_mostrar_ayuda_activa:					;no restauro B en A porque ya no lo necesito
 	
 	;actualizo la variable habitacion_extras

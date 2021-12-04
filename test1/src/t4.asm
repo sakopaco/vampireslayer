@@ -95,13 +95,13 @@ check_colisiones_objetos:
 .habitacion_no_terminada:
 	
 	;recorre ayudas
-	LD		 A, (examina_ayudas_en_pantalla)
+	LD		 A, (hay_ayudas_en_pantalla)
 	OR		 0
 	JP		 Z, .habitacion_sin_ayudas
 	;SI
 	;mira si hay colisiones con la ayuda que haya puntero_ayuda_actual
-;		CALL	check_colision_ayudas
-	CALL		test_OK
+		CALL	check_colision_ayudas
+;	CALL		test_OK
 	;NO
 .habitacion_sin_ayudas:
 	
@@ -153,7 +153,7 @@ fin_check_colision_ayudas:
 check_colision_ayuda:
 .deteccioncolision_paso1:
 	LD		IY, prota	;IY punto de mira / IX puerta
-	LD		 A, (IY + ESTRUCTURA_AYUDA.posx)
+	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posx)
 	ADD		 8			;8-es fijo, offset del punto de mira ya que se mueve según la esquina superior izquierda y el centro del punto de mira está en el centro del sprite
 	
 	;ya tengo en A la coordenada X del centro del punto de mira					
@@ -172,7 +172,7 @@ check_colision_ayuda:
 	RET
 	
 .deteccioncolision_paso3:					;la distancia X es válida, comprobamos la distancia Y
-	LD		 A, (IY + ESTRUCTURA_AYUDA.posy)
+	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posy)
 	ADD		 8								;le sumo el offset del punto de mira (8 es fijo)
 
 	;ya tengo en A la coordenada Y del centro del punto de mira					
