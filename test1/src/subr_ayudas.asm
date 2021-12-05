@@ -373,13 +373,26 @@ fin_pinta_ayudas_habitacion:
 ;;=====================================================
 ;;ACCION_ORACION
 ;;=====================================================	
-; función: 	
+; función: 	suma 
 ; entrada: 	
 ; salida: 	-
 accion_oracion:
-	CALL		test_OK
+	;suma energía
+	LD		 A, (prota_energia)
+	ADD		100
+	JP		NC, .fin_suma
+.pone_maximo:
+	LD		 A, 250
+.fin_suma:
+	LD		(prota_energia), A
+	CALL	pinta_energia			;pinta la energia en pantalla
+	
+	;desactiva ayuda
+	LD		(puntero_ayuda_actual), IX
+	XOR		 A
+	JP		pinta_obj_ayuda
 fin_accion_oracion:
-	RET
+
 	
 
 ;;=====================================================

@@ -63,8 +63,6 @@ loop_principal:
 	
 	CALL	render_sprites			;actualiza array de sprites y los pinta en pantalla
 	
-	CALL	pinta_energia			;pinta la energia en pantalla
-	
 	CALL	actualiza_elementos_fondo
 
 	CALL	check_player			;MIRA EL CONTROL Y APLICA LA LOGICA DE MOVIMIENTO DEL PROTAGONISTA
@@ -207,7 +205,7 @@ inicializa_variables_pruebas:
 	LD		 A, 4
 	LD		(prota_reliquias), A
 
-	LD		 A, 100
+	LD		 A, 5							;*************************************************************+ no pinta bien cuado hay poco
 	LD		(prota_energia), A
 
 	;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
