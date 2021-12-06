@@ -6,8 +6,10 @@
 ;;VARIABLES
 ;;=====================================================
 
-hay_ayudas_en_pantalla		DB	0		;1 => hay / 0 => no hay; variable que se actualiza cuando cambiemos de habitación para no mirar el bit de habitación cada vez
-puntero_ayuda_actual:		DW	0		;puntero a ayda que se muestra en pantalla (sólo se muestra una a la vez)
+hay_ayudas_en_pantalla				DB	0		;1 => hay / 0 => no hay; variable que se actualiza cuando cambiemos de habitación para no mirar el bit de habitación cada vez
+puntero_ayuda_actual:				DW	0		;puntero a ayuda que se muestra en pantalla (sólo se muestra una a la vez)
+puntero_extras_habitacion_actual:	DW	0		;puntero a los extras de la habitación actual para poder modificarlo (para que no salgan extras)
+puntero_habitacion_actual:			DW	0		;puntero a la habitación actual para poder modificarla (para que no salgan enemigos)
 
 
 ;array de ayudas
@@ -57,17 +59,17 @@ ayuda_oracion:		DS		ESTRUCTURA_AYUDA
 ;hay que repasar todos los posoracionx y posayudasy ***********************************
 
 datos_oracion:			
-				DB		1;ACTIVA			;0 no activa <>0 activo (y muestra tiles ayudaoff)
-				DB		56;POSORACIONX		;punto x de la ayuda para cuando se dispare encima
-				DB		88;POSORACIONY		;punto y de la ayuda para cuando se dispare encima
-				DB		16;RADIOAYUDAX		;radio x de la ayuda para cuando se dispare encima
-				DB		16;RADIOAYUDAY		;radio y de la ayuda para cuando se dispare encima
+				DB		ACTIVA			;0 no activa <>0 activo (y muestra tiles ayudaoff)
+				DB		POSORACIONX		;punto x de la ayuda para cuando se dispare encima
+				DB		POSORACIONY		;punto y de la ayuda para cuando se dispare encima
+				DB		RADIOAYUDAX		;radio x de la ayuda para cuando se dispare encima
+				DB		RADIOAYUDAY		;radio y de la ayuda para cuando se dispare encima
 				DW		accion_oracion	;función para acción de cada tipo de ayuda
 				DW		array_oracionon	;puntero al array con los tiles de las ayudas sin usar para wordaux2
 				DW		array_oracionoff;puntero al array con los tiles de las ayudas sin usar para wordaux2
-				DW		TILMAP + 326;TILMAP + POSORACION ;calcula posición en tilemap para wordaux1
-				DB		2;ALTOAYUDA		;alto en tiles del dibujo de la puerta (filas)
-				DB		2;ANCHOAYUDA		;ancho en tiles del dibujo de la puerta (columnas)
+				DW		TILMAP + POSORACION ;calcula posición en tilemap para wordaux1
+				DB		ALTOAYUDA		;alto en tiles del dibujo de la puerta (filas)
+				DB		ANCHOAYUDA		;ancho en tiles del dibujo de la puerta (columnas)
 					
 ;~ datos_cruz:			
 				;~ DB		0				;0 no activa <>0 activo (y muestra tiles ayudaoff)
@@ -320,6 +322,7 @@ pinta_ayudas_habitacion:
 	;puntero_ayuda_actual
 	LD		(puntero_ayuda_actual), IX
 	LD		 A, ACTIVA
+	LD		(IX), A						;si lo pinta activo pone el bit a 1 por si el último lo puso a 0
 	CALL	pinta_obj_ayuda
 .fin_examina_oracion:	
 	
@@ -385,12 +388,20 @@ accion_oracion:
 	LD		 A, 250
 .fin_suma:
 	LD		(prota_energia), A
-	CALL	pinta_energia			;pinta la energia en pantalla
+	
+	LD		HL, (puntero_extras_habitacion_actual)
+	LD		 A, (HL)
+	AND		01111111b					;personalizar para cada ayuda
+	LD		(HL), A
+	LD		(habitacion_extras), A
 	
 	;desactiva ayuda
-	LD		(puntero_ayuda_actual), IX
+	LD		IX, (puntero_ayuda_actual)
 	XOR		 A
-	JP		pinta_obj_ayuda
+	LD		(IX), A
+	CALL	pinta_obj_ayuda			;se le pasa A = 0 para que pinte desaactivado
+	
+	CALL	pinta_energia			;pinta la energia en pantalla
 fin_accion_oracion:
 
 	

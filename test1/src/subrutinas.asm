@@ -375,6 +375,7 @@ localiza_info_habitacion:
 	
 	;actualizo la variable habitacion_extras
 	INC		HL				;el byte de los extras está antes de donde se especifican las puertas
+	LD		(puntero_extras_habitacion_actual), HL
 	LD		 A, (HL)
 	LD		(habitacion_extras), A
 
