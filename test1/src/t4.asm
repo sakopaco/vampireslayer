@@ -47,7 +47,9 @@ START:
 	LD		 A, TILEPROTAM
 	LD		(elemento_pintar_mapa), A
 	CALL	posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.posx y posy
-		
+	
+	CALL	pinta_energia
+	
 	CALL	pinta_ayudas_habitacion
 	
 	CALL	pinta_extra_fondo
@@ -80,8 +82,6 @@ fin_programa_principal:
 ; salida: 	-
 ; toca:		HL,BC, DE
 check_colisiones_objetos:
-	PUSH	AF
-	
 	;pantalla limpia?
 	LD		 A, (is_habitacion_terminada)
 	OR		 0
@@ -93,20 +93,18 @@ check_colisiones_objetos:
 .habitacion_no_terminada:
 	
 	;recorre ayudas
+	;SI ;mira si hay colisiones con la ayuda que haya puntero_ayuda_actual
 	LD		 A, (hay_ayudas_en_pantalla)
 	OR		 0
 	JP		 Z, .habitacion_sin_ayudas
-	;SI
-	;mira si hay colisiones con la ayuda que haya puntero_ayuda_actual
+	;THEN
 		CALL	check_colision_ayudas
-;	CALL		test_OK
-	;NO
+	;ENDIF
 .habitacion_sin_ayudas:
 	
 	;recorre enemigos
 
 fin_check_colisiones_objetos:	
-	POP		AF
 	RET
 
 
