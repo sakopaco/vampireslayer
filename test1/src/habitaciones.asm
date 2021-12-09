@@ -40,6 +40,9 @@ habitacion_actual_puntero;
 is_habitacion_terminada:
 	db	0		;variable para consultar más rápido si se ha pasado (<>0 si se ha pasado y 0 no se ha pasado)
 
+puntero_extras_habitacion_actual:	DW	0		;puntero a los extras de la habitación actual para poder modificarlo (para que no salgan extras)
+puntero_habitacion_actual:			DW	0		;puntero a la habitación actual para poder modificarlo 
+
 
 habitaciones_juego:
 habitaciones_nivel0:

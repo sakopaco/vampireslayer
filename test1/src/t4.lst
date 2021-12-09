@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.12.08 - 19:51:55]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.12.09 - 19:32:44]
 
 t4.asm
 Errors: 0
@@ -294,7 +294,7 @@ Errors: 0
        5.  00:8000                      ;;CABECERA FICHERO BIN
        6.  00:8000  FE                  	DB	#FE
        7.  00:8001  00 80               	DW	START
-       8.  00:8003  2E BE               	DW	END
+       8.  00:8003  32 BE               	DW	END
        9.  00:8005  00 80               	DW	START
       10.  00:8007                      
       11.  00:8007                      ;;INICIO CÓDIGO PROGRAMA	
@@ -315,7 +315,7 @@ Errors: 0
       24   00:8009  CD 8E 88            	CALL	inicializa_puertas
       25   00:800C                      	
       26   00:800C                      	;inicializa las estructuras de forma particular según ayuda pero sin poner valores de posición
-      27   00:800C  CD FB 9C            	CALL	inicializa_ayudas
+      27   00:800C  CD F7 9C            	CALL	inicializa_ayudas
       28   00:800F                      	
       29   00:800F                      	;inicializa las estructuras de las antorchas y esqueletos
       30   00:800F  CD 1E 86            	CALL	inicializa_antorchas
@@ -336,12 +336,12 @@ Errors: 0
       45   00:8027  CD 28 89            	CALL	pinta_puertas
       46   00:802A                      
       47   00:802A  3E 13               	LD		 A, TILEPROTAM
-      48   00:802C  32 2B AB            	LD		(elemento_pintar_mapa), A
+      48   00:802C  32 2F AB            	LD		(elemento_pintar_mapa), A
       49   00:802F  CD 4C 85            	CALL	posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.posx y posy
       50   00:8032                      	
       51   00:8032  CD E6 84            	CALL	pinta_energia
       52   00:8035                      	
-      53   00:8035  CD 38 9D            	CALL	pinta_ayudas_habitacion
+      53   00:8035  CD 34 9D            	CALL	pinta_ayudas_habitacion
       54   00:8038                      	
       55   00:8038  CD 62 86            	CALL	pinta_extra_fondo
       56   00:803B                      	
@@ -439,7 +439,7 @@ Errors: 0
      148   00:807F                      ; toca:		HL,BC, DE
      149   00:807F                      check_colision_ayuda:
      150   00:807F                      .deteccioncolision_paso1:
-     151   00:807F  FD 21 F6 AA         	LD		IY, prota	;IY punto de mira / IX puerta
+     151   00:807F  FD 21 FA AA         	LD		IY, prota	;IY punto de mira / IX puerta
      152   00:8083  FD 7E 00            	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posx)
      153   00:8086  C6 08               	ADD		 8			;8-es fijo, offset del punto de mira ya que se mueve según la esquina superior izquierda y el centro del punto de mira está en el centro del sprite
      154   00:8088                      	
@@ -489,28 +489,28 @@ Errors: 0
      198   00:80B0                      ; sólo para hacer pruebas y pintar la parte de las vidas y demás
      199   00:80B0                      inicializa_variables_pruebas:
      200   00:80B0  3E 04               	LD		 A, 4
-     201   00:80B2  32 07 AB            	LD		(prota_vidas),A
+     201   00:80B2  32 0B AB            	LD		(prota_vidas),A
      202   00:80B5                      
      203   00:80B5  3E 04               	LD		 A, 4
-     204   00:80B7  32 08 AB            	LD		(prota_reliquias), A
+     204   00:80B7  32 0C AB            	LD		(prota_reliquias), A
      205   00:80BA                      
      206   00:80BA  3E 05               	LD		 A, 5							;*************************************************************+ no pinta bien cuado hay poco
-     207   00:80BC  32 0B AB            	LD		(prota_energia), A
+     207   00:80BC  32 0F AB            	LD		(prota_energia), A
      208   00:80BF                      
      209   00:80BF                      	;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
      210   00:80BF                      	;será igual la posición inicial en todos los niveles
      211   00:80BF                      	
      212   00:80BF  3E 00               	LD		 A, 0				;los niveles (matrices) son 7 del 0 al 6
-     213   00:80C1  32 06 AB            	LD		(prota_nivel), A	;nivel empieza en 0 para usar las posiciones ascii
+     213   00:80C1  32 0A AB            	LD		(prota_nivel), A	;nivel empieza en 0 para usar las posiciones ascii
      214   00:80C4                      
      215   00:80C4  3E 00               	LD		 A, 0				;los subniveles (filas) son 7 del 0 al 6
-     216   00:80C6  32 0A AB            	LD		(prota_pos_mapy), A	;pos Y dentro del nivel (se empieza en 0)
+     216   00:80C6  32 0E AB            	LD		(prota_pos_mapy), A	;pos Y dentro del nivel (se empieza en 0)
      217   00:80C9                      
      218   00:80C9  3E 03               	LD		 A, 3				;columnas 7: del 0 al 6
-     219   00:80CB  32 09 AB            	LD		(prota_pos_mapx), A	;pos X dentro del nivel (se empieza en 0)
+     219   00:80CB  32 0D AB            	LD		(prota_pos_mapx), A	;pos X dentro del nivel (se empieza en 0)
      220   00:80CE                      	
      221   00:80CE  AF                  	XOR		 A					;cadencia por defecto.. cuando se coja mejora en arma se puede variar
-     222   00:80CF  32 FB AA            	LD		(prota.cadencia), A
+     222   00:80CF  32 FF AA            	LD		(prota.cadencia), A
      223   00:80D2                      	
      224   00:80D2  32 DC A7            	LD		(is_habitacion_terminada), A
      225   00:80D5                      fin_inicializa_variables_pruebas:
@@ -559,8 +559,8 @@ Errors: 0
       28.  00:80D9                      
       29.  00:80D9                      ;nivel 0 -----------------------------------------------------------------------
       30.  00:80D9  06 38               		LD			 B, 56	;la mitad de bytes del array de un nivel
-      31.  00:80DB  21 DD A7            		LD 			HL, habitaciones_nivel0	;puntero al byte de la habitación
-      32.  00:80DE  DD 21 DD A7         		LD			IX, habitaciones_nivel0
+      31.  00:80DB  21 E1 A7            		LD 			HL, habitaciones_nivel0	;puntero al byte de la habitación
+      32.  00:80DE  DD 21 E1 A7         		LD			IX, habitaciones_nivel0
       33.  00:80E2  DD 23               		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
       34.  00:80E4                      .inicia_nivel_0:
       35.  00:80E4  4E                  		LD		 	 C, (HL)
@@ -585,8 +585,8 @@ Errors: 0
       54.  00:80FE                      
       55.  00:80FE                      ;nivel 1 -----------------------------------------------------------------------
       56.  00:80FE  06 38               		LD			 B, 56	;la mitad de bytes del array de un nivel
-      57.  00:8100  21 4D A8            		LD 			HL, habitaciones_nivel1	;puntero al byte de la habitación
-      58.  00:8103  DD 21 4D A8         		LD			IX, habitaciones_nivel1
+      57.  00:8100  21 51 A8            		LD 			HL, habitaciones_nivel1	;puntero al byte de la habitación
+      58.  00:8103  DD 21 51 A8         		LD			IX, habitaciones_nivel1
       59.  00:8107  DD 23               		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
       60.  00:8109                      .inicia_nivel_1:
       61.  00:8109  4E                  		LD		 	 C, (HL)
@@ -611,8 +611,8 @@ Errors: 0
       80.  00:8124                      
       81.  00:8124                      ;nivel 2 -----------------------------------------------------------------------
       82.  00:8124  06 38               		LD			 B, 56	;la mitad de bytes del array de un nivel
-      83.  00:8126  21 BD A8            		LD 			HL, habitaciones_nivel2	;puntero al byte de la habitación
-      84.  00:8129  DD 21 BD A8         		LD			IX, habitaciones_nivel2
+      83.  00:8126  21 C1 A8            		LD 			HL, habitaciones_nivel2	;puntero al byte de la habitación
+      84.  00:8129  DD 21 C1 A8         		LD			IX, habitaciones_nivel2
       85.  00:812D  DD 23               		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
       86.  00:812F                      .inicia_nivel_2:
       87.  00:812F  4E                  		LD		 	 C, (HL)
@@ -637,8 +637,8 @@ Errors: 0
      106.  00:814A                      
      107.  00:814A                      ;nivel 3 -----------------------------------------------------------------------
      108.  00:814A  06 38               		LD			 B, 56	;la mitad de bytes del array de un nivel
-     109.  00:814C  21 2D A9            		LD 			HL, habitaciones_nivel3	;puntero al byte de la habitación
-     110.  00:814F  DD 21 2D A9         		LD			IX, habitaciones_nivel3
+     109.  00:814C  21 31 A9            		LD 			HL, habitaciones_nivel3	;puntero al byte de la habitación
+     110.  00:814F  DD 21 31 A9         		LD			IX, habitaciones_nivel3
      111.  00:8153  DD 23               		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
      112.  00:8155                      .inicia_nivel_3:
      113.  00:8155  4E                  		LD		 	 C, (HL)
@@ -663,8 +663,8 @@ Errors: 0
      132.  00:8170                      
      133.  00:8170                      ;nivel 4 -----------------------------------------------------------------------
      134.  00:8170  06 38               		LD			 B, 56	;la mitad de bytes del array de un nivel
-     135.  00:8172  21 9D A9            		LD 			HL, habitaciones_nivel4	;puntero al byte de la habitación
-     136.  00:8175  DD 21 9D A9         		LD			IX, habitaciones_nivel4
+     135.  00:8172  21 A1 A9            		LD 			HL, habitaciones_nivel4	;puntero al byte de la habitación
+     136.  00:8175  DD 21 A1 A9         		LD			IX, habitaciones_nivel4
      137.  00:8179  DD 23               		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
      138.  00:817B                      .inicia_nivel_4:
      139.  00:817B  4E                  		LD		 	 C, (HL)
@@ -689,8 +689,8 @@ Errors: 0
      158.  00:8196                      		
      159.  00:8196                      ;nivel 5 -----------------------------------------------------------------------
      160.  00:8196  06 38               		LD			 B, 56	;la mitad de bytes del array de un nivel
-     161.  00:8198  21 0D AA            		LD 			HL, habitaciones_nivel5	;puntero al byte de la habitación
-     162.  00:819B  DD 21 0D AA         		LD			IX, habitaciones_nivel5
+     161.  00:8198  21 11 AA            		LD 			HL, habitaciones_nivel5	;puntero al byte de la habitación
+     162.  00:819B  DD 21 11 AA         		LD			IX, habitaciones_nivel5
      163.  00:819F  DD 23               		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
      164.  00:81A1                      .inicia_nivel_5:
      165.  00:81A1  4E                  		LD		 	 C, (HL)
@@ -715,8 +715,8 @@ Errors: 0
      184.  00:81BC                      		
      185.  00:81BC                      ;nivel 6 -----------------------------------------------------------------------
      186.  00:81BC  06 38               		LD			 B, 56	;la mitad de bytes del array de un nivel
-     187.  00:81BE  21 4D A8            		LD 			HL, habitaciones_nivel1	;puntero al byte de la habitación
-     188.  00:81C1  DD 21 4D A8         		LD			IX, habitaciones_nivel1
+     187.  00:81BE  21 51 A8            		LD 			HL, habitaciones_nivel1	;puntero al byte de la habitación
+     188.  00:81C1  DD 21 51 A8         		LD			IX, habitaciones_nivel1
      189.  00:81C5  DD 23               		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
      190.  00:81C7                      .inicia_nivel_6:
      191.  00:81C7  4E                  		LD		 	 C, (HL)
@@ -756,7 +756,7 @@ Errors: 0
      225.  00:81E6                      actualiza_marcador_vidas:
      226.  00:81E6                      	;para no andar restando pongo todos los huecos a negro y luego en otro bucle las caras
      227.  00:81E6                      	;1-pinto todo en blanco
-     228.  00:81E6  21 0C AB            	LD		HL,array_aux_vidas
+     228.  00:81E6  21 10 AB            	LD		HL,array_aux_vidas
      229.  00:81E9  06 08               	LD		 B,NMAXVIDREL
      230.  00:81EB                      loop_marcador_caras_negro:	;asignar espacios en negro
      231.  00:81EB  36 00               	LD		(HL),0			;0 posición mapa tiles para nada (es transparente pero el fondo es negro)
@@ -764,11 +764,11 @@ Errors: 0
      233.  00:81EE  10 FB               	DJNZ	loop_marcador_caras_negro
      234.  00:81F0                      fin_loop_marcador_caras_negro:
      235.  00:81F0                      	;2-pinto las caras según el n de vidas
-     236.  00:81F0  3A 07 AB            	LD		 A, (prota_vidas)
+     236.  00:81F0  3A 0B AB            	LD		 A, (prota_vidas)
      237.  00:81F3  B7                  	OR		 A
      238.  00:81F4  C8                  	RET 	 Z
      239.  00:81F5  47                  	LD		 B, A
-     240.  00:81F6  21 0C AB            	LD		HL, array_aux_vidas
+     240.  00:81F6  21 10 AB            	LD		HL, array_aux_vidas
      241.  00:81F9                      loop_marcador_caras: ;asignar caras
      242.  00:81F9  36 0D               	LD		(HL), POSCARAMAP	;13 posición mapa tiles para cara
      243.  00:81FB  23                  	INC		HL
@@ -788,7 +788,7 @@ Errors: 0
      257.  00:81FF                      actualiza_buffer_reliquias:	
      258.  00:81FF                      	;para no andar restando pongo todos los huecos a negro y luego en otro bucle las reliquias
      259.  00:81FF                      	;1-pinto todo en blanco
-     260.  00:81FF  21 14 AB            	LD		HL, array_aux_reliquias
+     260.  00:81FF  21 18 AB            	LD		HL, array_aux_reliquias
      261.  00:8202  06 08               	LD		 B, NMAXVIDREL
      262.  00:8204  AF                  	XOR		 A
      263.  00:8205                      loop_buffer_reliquias_negro:	;asignar espacios en negro
@@ -797,8 +797,8 @@ Errors: 0
      266.  00:8207  10 FC               	DJNZ	loop_buffer_reliquias_negro
      267.  00:8209                      
      268.  00:8209                      	;2-pinto las cruces según el n de reliquias
-     269.  00:8209  21 14 AB            	LD		HL, array_aux_reliquias
-     270.  00:820C  3A 08 AB            	LD		 A, (prota_reliquias)
+     269.  00:8209  21 18 AB            	LD		HL, array_aux_reliquias
+     270.  00:820C  3A 0C AB            	LD		 A, (prota_reliquias)
      271.  00:820F  B7                  	OR		 A
      272.  00:8210  C8                  	RET		 Z
      273.  00:8211  47                  	LD		 B, A
@@ -827,16 +827,16 @@ Errors: 0
      296.  00:8218  E5                  	PUSH	HL
      297.  00:8219                      
      298.  00:8219                      ;primera posición: me coloco en la columna correcta
-     299.  00:8219  21 DD A7            	LD		HL, habitaciones_juego
+     299.  00:8219  21 E1 A7            	LD		HL, habitaciones_juego
      300.  00:821C                      .situo_columna:	
-     301.  00:821C  3A 09 AB            	LD		 A, (prota_pos_mapx)
+     301.  00:821C  3A 0D AB            	LD		 A, (prota_pos_mapx)
      302.  00:821F  CB 27               	SLA		 A				;multiplico por dos ya que cada habitación va de dos en dos bytes
      303.  00:8221  06 00               	LD		 B, 0
      304.  00:8223  4F                  	LD		 C, A
      305.  00:8224  09                  	ADD 	HL, BC			;sumo a la posición 0 la columnax2 en la que situarme
      306.  00:8225                      	
      307.  00:8225                      .situo_fila:
-     308.  00:8225  3A 0A AB            	LD		A, (prota_pos_mapy)
+     308.  00:8225  3A 0E AB            	LD		A, (prota_pos_mapy)
      309.  00:8228  B7                  	OR	 	A
      310.  00:8229  CA 36 82            	JP		Z, .situo_nivel	;si la fila es 0 no es necesario seguir operando en fila
      311.  00:822C                      	
@@ -852,7 +852,7 @@ Errors: 0
      321.  00:8235  09                  	ADD 	HL, BC			;sumo a la columna 16 x filas para situarme en la fila correcta
      322.  00:8236                      
      323.  00:8236                      .situo_nivel:
-     324.  00:8236  3A 06 AB            	LD		 A, (prota_nivel)
+     324.  00:8236  3A 0A AB            	LD		 A, (prota_nivel)
      325.  00:8239  B7                  	OR	 	 A
      326.  00:823A  CA 4A 82            	JP		 Z, .actualiza_variable_habitacion	;si el nivel es 0 al pasar por las anterirores ya estoy situado actualizo la variable y termino
      327.  00:823D                      	
@@ -874,7 +874,7 @@ Errors: 0
      343.  00:824B  32 D8 A7            	LD		(habitacion_actual), A
      344.  00:824E                      	
      345.  00:824E                      	;actualizo la variable habitacion_actual y su puntero para poder modificar por si se vuelve a pasar por ahí
-     346.  00:824E  DD 21 DA A7         	LD		IX, habitacion_actual_puntero
+     346.  00:824E  DD 21 DF A7         	LD		IX, puntero_habitacion_actual
      347.  00:8252  DD 74 00            	LD		(IX), H
      348.  00:8255  DD 75 01            	LD		(IX + 1), L
      349.  00:8258                      	
@@ -906,7 +906,7 @@ Errors: 0
      375.  00:8280                      	
      376.  00:8280                      	;actualizo la variable habitacion_extras
      377.  00:8280  23                  	INC		HL				;el byte de los extras está antes de donde se especifican las puertas
-     378.  00:8281  22 A1 9C            	LD		(puntero_extras_habitacion_actual), HL
+     378.  00:8281  22 DD A7            	LD		(puntero_extras_habitacion_actual), HL
      379.  00:8284  7E                  	LD		 A, (HL)
      380.  00:8285  32 D9 A7            	LD		(habitacion_extras), A
      381.  00:8288                      
@@ -927,7 +927,7 @@ Errors: 0
      396.  00:828A                      ; salida: 	habitacion_recorrida (byte 14 de la fila de habitaciones) actualizada con OR A (en A la habitacion)
      397.  00:828A                      ; toca:		IX, HL, AF
      398.  00:828A                      terminada_habitacion_recorrida:
-     399.  00:828A  21 DA A7            		LD			HL, habitacion_actual_puntero
+     399.  00:828A  21 DF A7            		LD			HL, puntero_habitacion_actual
      400.  00:828D  7E                  		LD			 A, (HL)
      401.  00:828E  CB E7               		SET			 4, A
      402.  00:8290  77                  		LD			(HL), A
@@ -961,7 +961,7 @@ Errors: 0
      430.  00:829F  CD 1E 83            		CALL	pinta_parte_superior_pantalla
      431.  00:82A2  CD 28 89            		CALL	pinta_puertas
      432.  00:82A5  CD 62 86            		CALL	pinta_extra_fondo
-     433.  00:82A8  CD 38 9D            		CALL	pinta_ayudas_habitacion
+     433.  00:82A8  CD 34 9D            		CALL	pinta_ayudas_habitacion
      434.  00:82AB                      	
      435.  00:82AB  C3 AE 82            		JP		pinta_heroe_mapa
      436.  00:82AE                      fin_entra_habitacion:
@@ -977,12 +977,12 @@ Errors: 0
      446.  00:82AE                      ; toca:		todo
      447.  00:82AE                      pinta_heroe_mapa:
      448.  00:82AE  3E 13               		LD		 A, TILEPROTAM
-     449.  00:82B0  32 2B AB            		LD		(elemento_pintar_mapa), A
+     449.  00:82B0  32 2F AB            		LD		(elemento_pintar_mapa), A
      450.  00:82B3  C3 4C 85            		JP		posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.posx y posy
      451.  00:82B6                      fin_pinta_heroe_mapa:
      452.  00:82B6                      pinta_blanco_mapa:
      453.  00:82B6  3E 09               		LD		 A, TILEGRISM
-     454.  00:82B8  32 2B AB            		LD		(elemento_pintar_mapa), A
+     454.  00:82B8  32 2F AB            		LD		(elemento_pintar_mapa), A
      455.  00:82BB  C3 4C 85            		JP		posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.posx y posy
      456.  00:82BE                      fin_pinta_blanco_mapa:
      457.  00:82BE                      	
@@ -1125,7 +1125,7 @@ Errors: 0
       47.  00:82FE                      fin_limpia_pantalla:
       48.  00:82FE                      
       49.  00:82FE                      	;toca A y direcciones #F3E9/#F3EA/#F3EB, poner en HL array con 3 valores
-      50.  00:82FE  21 ED AA            	LD		HL, color_base
+      50.  00:82FE  21 F1 AA            	LD		HL, color_base
       51.  00:8301  CD E5 82            	CALL	color_pantalla
       52.  00:8304                      	
       53.  00:8304                      	;cambiamos a SCREEN 2,2 del BASIC
@@ -1166,102 +1166,102 @@ Errors: 0
       88.  00:831E                      ; salida: -
       89.  00:831E                      ; toca: si no son todos los regristros, casi todos
       90.  00:831E                      pinta_parte_superior_pantalla:
-      91.  00:831E  3A 06 AB            	LD		 A, (prota_nivel)
+      91.  00:831E  3A 0A AB            	LD		 A, (prota_nivel)
       92.  00:8321  CA 4F 83            	JP		 Z, .carga_nivel_0
       93.  00:8324  3D                  	DEC		 A
-      94.  00:8325  3A 06 AB            	LD		 A, (prota_nivel)
+      94.  00:8325  3A 0A AB            	LD		 A, (prota_nivel)
       95.  00:8328  CA 6A 83            	JP		 Z, .carga_nivel_1
       96.  00:832B  3D                  	DEC		 A
-      97.  00:832C  3A 06 AB            	LD		 A, (prota_nivel)
+      97.  00:832C  3A 0A AB            	LD		 A, (prota_nivel)
       98.  00:832F  CA 85 83            	JP		 Z, .carga_nivel_2
       99.  00:8332  3D                  	DEC		 A
-     100.  00:8333  3A 06 AB            	LD		 A, (prota_nivel)
+     100.  00:8333  3A 0A AB            	LD		 A, (prota_nivel)
      101.  00:8336  CA A0 83            	JP		 Z, .carga_nivel_3
      102.  00:8339  3D                  	DEC		 A
-     103.  00:833A  3A 06 AB            	LD		 A, (prota_nivel)
+     103.  00:833A  3A 0A AB            	LD		 A, (prota_nivel)
      104.  00:833D  CA BB 83            	JP		 Z, .carga_nivel_4
      105.  00:8340  3D                  	DEC		 A
-     106.  00:8341  3A 06 AB            	LD		 A, (prota_nivel)
+     106.  00:8341  3A 0A AB            	LD		 A, (prota_nivel)
      107.  00:8344  CA D6 83            	JP		 Z, .carga_nivel_5
      108.  00:8347  3D                  	DEC		 A
-     109.  00:8348  3A 06 AB            	LD		 A, (prota_nivel)
+     109.  00:8348  3A 0A AB            	LD		 A, (prota_nivel)
      110.  00:834B  CA F1 83            	JP		 Z, .carga_nivel_6
      111.  00:834E  3D                  	DEC		 A
      112.  00:834F                      	
      113.  00:834F                      .carga_nivel_0:
-     114.  00:834F  21 5B AC            	LD		HL, tiles_patrones_nivel0
+     114.  00:834F  21 5F AC            	LD		HL, tiles_patrones_nivel0
      115.  00:8352  22 36 84            	LD		(tiles_patrones), HL
-     116.  00:8355  21 85 AE            	LD		HL, tiles_color_nivel0
+     116.  00:8355  21 89 AE            	LD		HL, tiles_color_nivel0
      117.  00:8358  22 38 84            	LD		(tiles_colores), HL
-     118.  00:835B  21 5B AC            	LD		HL, tiles_patrones_nivel0
+     118.  00:835B  21 5F AC            	LD		HL, tiles_patrones_nivel0
      119.  00:835E  22 36 84            	LD		(tiles_patrones), HL
-     120.  00:8361  21 F0 AE            	LD		HL, tiles_mapa_nivel0
+     120.  00:8361  21 F4 AE            	LD		HL, tiles_mapa_nivel0
      121.  00:8364  22 3A 84            	LD		(tiles_mapa), HL
      122.  00:8367  C3 09 84            	JP		.fin_carga_niveles
      123.  00:836A                      
      124.  00:836A                      .carga_nivel_1:
-     125.  00:836A  21 25 AF            	LD		HL, tiles_patrones_nivel1
+     125.  00:836A  21 29 AF            	LD		HL, tiles_patrones_nivel1
      126.  00:836D  22 36 84            	LD		(tiles_patrones), HL
-     127.  00:8370  21 DA B0            	LD		HL, tiles_color_nivel1
+     127.  00:8370  21 DE B0            	LD		HL, tiles_color_nivel1
      128.  00:8373  22 38 84            	LD		(tiles_colores), HL
-     129.  00:8376  21 25 AF            	LD		HL, tiles_patrones_nivel1
+     129.  00:8376  21 29 AF            	LD		HL, tiles_patrones_nivel1
      130.  00:8379  22 36 84            	LD		(tiles_patrones), HL
-     131.  00:837C  21 21 B1            	LD		HL, tiles_mapa_nivel1
+     131.  00:837C  21 25 B1            	LD		HL, tiles_mapa_nivel1
      132.  00:837F  22 3A 84            	LD		(tiles_mapa), HL
      133.  00:8382  C3 09 84            	JP		.fin_carga_niveles
      134.  00:8385                      	
      135.  00:8385                      .carga_nivel_2:
-     136.  00:8385  21 56 B1            	LD		HL, tiles_patrones_nivel2
+     136.  00:8385  21 5A B1            	LD		HL, tiles_patrones_nivel2
      137.  00:8388  22 36 84            	LD		(tiles_patrones), HL
-     138.  00:838B  21 0B B3            	LD		HL, tiles_color_nivel2
+     138.  00:838B  21 0F B3            	LD		HL, tiles_color_nivel2
      139.  00:838E  22 38 84            	LD		(tiles_colores), HL
-     140.  00:8391  21 56 B1            	LD		HL, tiles_patrones_nivel2
+     140.  00:8391  21 5A B1            	LD		HL, tiles_patrones_nivel2
      141.  00:8394  22 36 84            	LD		(tiles_patrones), HL
-     142.  00:8397  21 52 B3            	LD		HL, tiles_mapa_nivel2
+     142.  00:8397  21 56 B3            	LD		HL, tiles_mapa_nivel2
      143.  00:839A  22 3A 84            	LD		(tiles_mapa), HL
      144.  00:839D  C3 09 84            	JP		.fin_carga_niveles
      145.  00:83A0                      	
      146.  00:83A0                      .carga_nivel_3:
-     147.  00:83A0  21 87 B3            	LD		HL, tiles_patrones_nivel3
+     147.  00:83A0  21 8B B3            	LD		HL, tiles_patrones_nivel3
      148.  00:83A3  22 36 84            	LD		(tiles_patrones), HL
-     149.  00:83A6  21 3C B5            	LD		HL, tiles_color_nivel3
+     149.  00:83A6  21 40 B5            	LD		HL, tiles_color_nivel3
      150.  00:83A9  22 38 84            	LD		(tiles_colores), HL
-     151.  00:83AC  21 87 B3            	LD		HL, tiles_patrones_nivel3
+     151.  00:83AC  21 8B B3            	LD		HL, tiles_patrones_nivel3
      152.  00:83AF  22 36 84            	LD		(tiles_patrones), HL
-     153.  00:83B2  21 83 B5            	LD		HL, tiles_mapa_nivel3
+     153.  00:83B2  21 87 B5            	LD		HL, tiles_mapa_nivel3
      154.  00:83B5  22 3A 84            	LD		(tiles_mapa), HL
      155.  00:83B8  C3 09 84            	JP		.fin_carga_niveles
      156.  00:83BB                      	
      157.  00:83BB                      .carga_nivel_4:
-     158.  00:83BB  21 B8 B5            	LD		HL, tiles_patrones_nivel4
+     158.  00:83BB  21 BC B5            	LD		HL, tiles_patrones_nivel4
      159.  00:83BE  22 36 84            	LD		(tiles_patrones), HL
-     160.  00:83C1  21 6D B7            	LD		HL, tiles_color_nivel4
+     160.  00:83C1  21 71 B7            	LD		HL, tiles_color_nivel4
      161.  00:83C4  22 38 84            	LD		(tiles_colores), HL
-     162.  00:83C7  21 B8 B5            	LD		HL, tiles_patrones_nivel4
+     162.  00:83C7  21 BC B5            	LD		HL, tiles_patrones_nivel4
      163.  00:83CA  22 36 84            	LD		(tiles_patrones), HL
-     164.  00:83CD  21 B4 B7            	LD		HL, tiles_mapa_nivel4
+     164.  00:83CD  21 B8 B7            	LD		HL, tiles_mapa_nivel4
      165.  00:83D0  22 3A 84            	LD		(tiles_mapa), HL
      166.  00:83D3  C3 09 84            	JP		.fin_carga_niveles
      167.  00:83D6                      	
      168.  00:83D6                      .carga_nivel_5:
-     169.  00:83D6  21 E9 B7            	LD		HL, tiles_patrones_nivel5
+     169.  00:83D6  21 ED B7            	LD		HL, tiles_patrones_nivel5
      170.  00:83D9  22 36 84            	LD		(tiles_patrones), HL
-     171.  00:83DC  21 9E B9            	LD		HL, tiles_color_nivel5
+     171.  00:83DC  21 A2 B9            	LD		HL, tiles_color_nivel5
      172.  00:83DF  22 38 84            	LD		(tiles_colores), HL
-     173.  00:83E2  21 E9 B7            	LD		HL, tiles_patrones_nivel5
+     173.  00:83E2  21 ED B7            	LD		HL, tiles_patrones_nivel5
      174.  00:83E5  22 36 84            	LD		(tiles_patrones), HL
-     175.  00:83E8  21 E5 B9            	LD		HL, tiles_mapa_nivel5
+     175.  00:83E8  21 E9 B9            	LD		HL, tiles_mapa_nivel5
      176.  00:83EB  22 3A 84            	LD		(tiles_mapa), HL
      177.  00:83EE  C3 09 84            	JP		.fin_carga_niveles
      178.  00:83F1                      	
      179.  00:83F1                      .carga_nivel_6:
-     180.  00:83F1  21 1A BA            	LD		HL, tiles_patrones_nivel6
+     180.  00:83F1  21 1E BA            	LD		HL, tiles_patrones_nivel6
      181.  00:83F4  22 36 84            	LD		(tiles_patrones), HL
-     182.  00:83F7  21 CF BB            	LD		HL, tiles_color_nivel6
+     182.  00:83F7  21 D3 BB            	LD		HL, tiles_color_nivel6
      183.  00:83FA  22 38 84            	LD		(tiles_colores), HL
-     184.  00:83FD  21 1A BA            	LD		HL, tiles_patrones_nivel6
+     184.  00:83FD  21 1E BA            	LD		HL, tiles_patrones_nivel6
      185.  00:8400  22 36 84            	LD		(tiles_patrones), HL
-     186.  00:8403  21 16 BC            	LD		HL, tiles_mapa_nivel6
+     186.  00:8403  21 1A BC            	LD		HL, tiles_mapa_nivel6
      187.  00:8406  22 3A 84            	LD		(tiles_mapa), HL
      188.  00:8409                      ;	JP		.fin_carga niveles			;no necesario
      189.  00:8409                      .fin_carga_niveles:
@@ -1306,15 +1306,15 @@ Errors: 0
      228.  00:843C                      pinta_parte_inferior_pantalla:
      229.  00:843C                      	;cangando banco 3
      230.  00:843C                      	;cargamos los patrones
-     231.  00:843C  21 4B BC            	LD		HL,tiles_patrones_marcador
+     231.  00:843C  21 4F BC            	LD		HL,tiles_patrones_marcador
      232.  00:843F  11 00 10            	LD		DE,CHRTBL + #1000
      233.  00:8442  CD 78 9D            	CALL	depack_VRAM	
      234.  00:8445                      	;cargamos mapa de pantalla
-     235.  00:8445  21 CC BD            	LD		HL,tiles_mapa_marcador
+     235.  00:8445  21 D0 BD            	LD		HL,tiles_mapa_marcador
      236.  00:8448  11 00 1A            	LD		DE,TILMAP + #0200
      237.  00:844B  CD 78 9D            	CALL	depack_VRAM
      238.  00:844E                      	;cargamos los colores de los patrones
-     239.  00:844E  21 97 BD            	LD		HL,tiles_color_marcador
+     239.  00:844E  21 9B BD            	LD		HL,tiles_color_marcador
      240.  00:8451  11 00 30            	LD		DE,CLRTBL + #1000
      241.  00:8454  C3 78 9D            	JP		depack_VRAM
      242.  00:8457                      fin_pinta_parte_inferior_pantalla:
@@ -1331,7 +1331,7 @@ Errors: 0
      253.  00:8457                      pinta_vidas:
      254.  00:8457  CD E6 81            	CALL	actualiza_marcador_vidas
      255.  00:845A                      	
-     256.  00:845A  21 0C AB            	LD		HL, array_aux_vidas
+     256.  00:845A  21 10 AB            	LD		HL, array_aux_vidas
      257.  00:845D  11 48 1A            	LD		DE, TILMAP + POSVIDAS 	;inicio posición en el mapa de tiles de las vidas
      258.  00:8460  01 08 00            	LD		BC, NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
      259.  00:8463  C3 5C 00            	JP		LDIRVM
@@ -1349,7 +1349,7 @@ Errors: 0
      271.  00:8466                      pinta_reliquias:
      272.  00:8466  CD FF 81            	CALL	actualiza_buffer_reliquias
      273.  00:8469                      	
-     274.  00:8469  21 14 AB            	LD		HL, array_aux_reliquias
+     274.  00:8469  21 18 AB            	LD		HL, array_aux_reliquias
      275.  00:846C  11 C8 1A            	LD		DE, TILMAP + POSRELIQ 	;inicio posición en el mapa de tiles de las vidas
      276.  00:846F  01 08 00            	LD		BC, NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
      277.  00:8472  C3 5C 00            	JP		LDIRVM
@@ -1368,7 +1368,7 @@ Errors: 0
      290.  00:8475                      pinta_nivel:
      291.  00:8475                      	;forma más avanzada sin llamada a la bios
      292.  00:8475  01 B4 1A            	LD		BC,TILMAP + POSNIVEL ;posición en el mapa de tiles del tile de nivel
-     293.  00:8478  3A 06 AB            	LD		 A, (prota_nivel)	 ;seleccionando la pos del banco de tiles a poner en el mapa
+     293.  00:8478  3A 0A AB            	LD		 A, (prota_nivel)	 ;seleccionando la pos del banco de tiles a poner en el mapa
      294.  00:847B  C6 30               	ADD		'0'	
      295.  00:847D  57                  	LD		 D, A
      296.  00:847E                      	
@@ -1415,12 +1415,12 @@ Errors: 0
      337.  00:848F                      mira_pinta_energia:
      338.  00:848F  D9                  	EXX							;por si acaso guardo el contenido de HL (si veo que no es necesario guardarlo lo quito) uso esto en vez de push por el nº ciclos
      339.  00:8490                      	
-     340.  00:8490  3A 0B AB            	LD		 A,(prota_energia) 	;para las comparaciones A variable (actual) y B fijo (limites)
+     340.  00:8490  3A 0F AB            	LD		 A,(prota_energia) 	;para las comparaciones A variable (actual) y B fijo (limites)
      341.  00:8493                      
      342.  00:8493  0E 00               	LD		 C,TILENEGRO		;para agilizar asignaciones en vez de un valor cte uso otro registro
      343.  00:8495                      pinta_ener:
      344.  00:8495                      pinta_ener_tile_8:
-     345.  00:8495  21 23 AB            	LD		HL,ultimo_pos_array_aux_energia	;coloco puntero en array e iré decrementando
+     345.  00:8495  21 27 AB            	LD		HL,ultimo_pos_array_aux_energia	;coloco puntero en array e iré decrementando
      346.  00:8498  06 D9               	LD		 B,TILEENERG8
      347.  00:849A  B8                  	CP		 B
      348.  00:849B  38 04               	JR		C,pinta_ener_tile_8_negro
@@ -1503,7 +1503,7 @@ Errors: 0
      425.  00:84E6                      pinta_energia:
      426.  00:84E6  CD 8F 84            	CALL	mira_pinta_energia
      427.  00:84E9                      	
-     428.  00:84E9  21 1C AB            	LD		HL, array_aux_energia
+     428.  00:84E9  21 20 AB            	LD		HL, array_aux_energia
      429.  00:84EC  11 88 1A            	LD		DE, TILMAP + POSENERG 	;inicio posición en el mapa de tiles de las vidas
      430.  00:84EF  01 08 00            	LD		BC, NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
      431.  00:84F2  C3 5C 00            	JP		LDIRVM
@@ -1521,37 +1521,37 @@ Errors: 0
      443.  00:84F5                      borra_mapa:
      444.  00:84F5  D9                  	EXX
      445.  00:84F6                      	
-     446.  00:84F6  21 24 AB            	LD		HL,array_aux_mapa_limpiar
+     446.  00:84F6  21 28 AB            	LD		HL,array_aux_mapa_limpiar
      447.  00:84F9  11 F8 1A            	LD		DE,TILMAP + POSMAPLIN1 	;inicio posición en el mapa de tiles de la primera fila del mapa
      448.  00:84FC  01 07 00            	LD		BC,NHABNIVEL			;cada nivel son 7 filas con 7 habitaciones "posibles"
      449.  00:84FF  CD 5C 00            	CALL	LDIRVM
      450.  00:8502                      	
-     451.  00:8502  21 24 AB            	LD		HL,array_aux_mapa_limpiar
+     451.  00:8502  21 28 AB            	LD		HL,array_aux_mapa_limpiar
      452.  00:8505  11 D8 1A            	LD		DE,TILMAP + POSMAPLIN2
      453.  00:8508  01 07 00            	LD		BC,NHABNIVEL
      454.  00:850B  CD 5C 00            	CALL	LDIRVM
      455.  00:850E                      
-     456.  00:850E  21 24 AB            	LD		HL,array_aux_mapa_limpiar
+     456.  00:850E  21 28 AB            	LD		HL,array_aux_mapa_limpiar
      457.  00:8511  11 B8 1A            	LD		DE,TILMAP + POSMAPLIN3
      458.  00:8514  01 07 00            	LD		BC,NHABNIVEL
      459.  00:8517  CD 5C 00            	CALL	LDIRVM
      460.  00:851A                      
-     461.  00:851A  21 24 AB            	LD		HL,array_aux_mapa_limpiar	
+     461.  00:851A  21 28 AB            	LD		HL,array_aux_mapa_limpiar	
      462.  00:851D  11 98 1A            	LD		DE,TILMAP + POSMAPLIN4
      463.  00:8520  01 07 00            	LD		BC,NHABNIVEL
      464.  00:8523  CD 5C 00            	CALL	LDIRVM
      465.  00:8526                      
-     466.  00:8526  21 24 AB            	LD		HL,array_aux_mapa_limpiar	
+     466.  00:8526  21 28 AB            	LD		HL,array_aux_mapa_limpiar	
      467.  00:8529  11 78 1A            	LD		DE,TILMAP + POSMAPLIN5
      468.  00:852C  01 07 00            	LD		BC,NHABNIVEL
      469.  00:852F  CD 5C 00            	CALL	LDIRVM
      470.  00:8532                      
-     471.  00:8532  21 24 AB            	LD		HL,array_aux_mapa_limpiar	
+     471.  00:8532  21 28 AB            	LD		HL,array_aux_mapa_limpiar	
      472.  00:8535  11 58 1A            	LD		DE,TILMAP + POSMAPLIN6
      473.  00:8538  01 07 00            	LD		BC,NHABNIVEL
      474.  00:853B  CD 5C 00            	CALL	LDIRVM
      475.  00:853E                      
-     476.  00:853E  21 24 AB            	LD		HL,array_aux_mapa_limpiar	
+     476.  00:853E  21 28 AB            	LD		HL,array_aux_mapa_limpiar	
      477.  00:8541  11 38 1A            	LD		DE,TILMAP + POSMAPLIN7
      478.  00:8544  01 07 00            	LD		BC,NHABNIVEL
      479.  00:8547  CD 5C 00            	CALL	LDIRVM
@@ -1581,22 +1581,22 @@ Errors: 0
      503.  00:854F                      	
      504.  00:854F                      	;ahora se le calcula la fila a pintar ya que va de abajo a arriba y no como en el mapa + columna
      505.  00:854F                      .sumar_fila:
-     506.  00:854F  3A 0A AB            	LD		 A, (prota_pos_mapy)
+     506.  00:854F  3A 0E AB            	LD		 A, (prota_pos_mapy)
      507.  00:8552  FE 01               	CP		 1
      508.  00:8554  28 2A               	JR		 Z, .fila_1
-     509.  00:8556  3A 0A AB            	LD		 A, (prota_pos_mapy)
+     509.  00:8556  3A 0E AB            	LD		 A, (prota_pos_mapy)
      510.  00:8559  FE 02               	CP		 2
      511.  00:855B  28 2A               	JR		 Z, .fila_2
-     512.  00:855D  3A 0A AB            	LD		 A, (prota_pos_mapy)
+     512.  00:855D  3A 0E AB            	LD		 A, (prota_pos_mapy)
      513.  00:8560  FE 03               	CP		 3
      514.  00:8562  28 2A               	JR		 Z, .fila_3
-     515.  00:8564  3A 0A AB            	LD		 A, (prota_pos_mapy)
+     515.  00:8564  3A 0E AB            	LD		 A, (prota_pos_mapy)
      516.  00:8567  FE 04               	CP		 4
      517.  00:8569  28 2A               	JR		 Z, .fila_4
-     518.  00:856B  3A 0A AB            	LD		 A, (prota_pos_mapy)
+     518.  00:856B  3A 0E AB            	LD		 A, (prota_pos_mapy)
      519.  00:856E  FE 05               	CP		 5
      520.  00:8570  28 2A               	JR		 Z, .fila_5
-     521.  00:8572  3A 0A AB            	LD		 A, (prota_pos_mapy)
+     521.  00:8572  3A 0E AB            	LD		 A, (prota_pos_mapy)
      522.  00:8575  FE 06               	CP		 6
      523.  00:8577  28 2A               	JR		 Z, .sumar_columna
      524.  00:8579                      	;no consulto la 0 porque si no es ninguna de las anteriores es 0 y por tanto sería un jr fila_0
@@ -1630,7 +1630,7 @@ Errors: 0
      552.  00:85A3                      	
      553.  00:85A3                      	
      554.  00:85A3                      .sumar_columna:
-     555.  00:85A3  3A 09 AB            	LD 		 A, (prota_pos_mapx) ;POS X
+     555.  00:85A3  3A 0D AB            	LD 		 A, (prota_pos_mapx) ;POS X
      556.  00:85A6  16 00               	LD		 D, 0
      557.  00:85A8  5F                  	LD		 E, A
      558.  00:85A9  19                  	ADD		HL, DE
@@ -1640,7 +1640,7 @@ Errors: 0
      562.  00:85AB  4D                  	LD		 C, L
      563.  00:85AC                      	
      564.  00:85AC                      	;terminado de fijar la coordenada recuperamos a para ver el tipo
-     565.  00:85AC  3A 2B AB            	LD		 A, (elemento_pintar_mapa)
+     565.  00:85AC  3A 2F AB            	LD		 A, (elemento_pintar_mapa)
      566.  00:85AF  FE 09               	CP		 TILEGRISM
      567.  00:85B1  CA B9 85            	JP		 Z, pinta_pos_mapa_vacio
      568.  00:85B4  16 13               	LD		 D, TILEPROTAM
@@ -1668,7 +1668,7 @@ Errors: 0
      590.  00:85C1                      
      591.  00:85C1                      .parpadea_fondo:
      592.  00:85C1  C5                  	PUSH	BC
-     593.  00:85C2  21 F0 AA            	LD		HL, color_bomba1
+     593.  00:85C2  21 F4 AA            	LD		HL, color_bomba1
      594.  00:85C5  CD E5 82            	CALL	color_pantalla
      595.  00:85C8                      	
      596.  00:85C8                      	;~ PUSH	BC
@@ -1681,12 +1681,12 @@ Errors: 0
      603.  00:85C8  76                  	HALT
      604.  00:85C9                      
      605.  00:85C9                      	
-     606.  00:85C9  21 F3 AA            	LD		HL, color_bomba2
+     606.  00:85C9  21 F7 AA            	LD		HL, color_bomba2
      607.  00:85CC  CD E5 82            	CALL	color_pantalla
      608.  00:85CF  C1                  	POP		BC
      609.  00:85D0  10 EF               	DJNZ	.parpadea_fondo
      610.  00:85D2                      	
-     611.  00:85D2  21 ED AA            	LD		HL, color_base
+     611.  00:85D2  21 F1 AA            	LD		HL, color_base
      612.  00:85D5  C3 E5 82            	JP		color_pantalla
      613.  00:85D8                      fin_efecto_imagen_tira_reliquia:
      614.  00:85D8                      
@@ -1789,9 +1789,9 @@ Errors: 0
      711.  00:861E                      ; salida: 	
      712.  00:861E                      ; toca:		HL, IX
      713.  00:861E                      inicializa_antorchas:
-     714.  00:861E  DD 21 2C AB         	LD		IX, antorchas
+     714.  00:861E  DD 21 30 AB         	LD		IX, antorchas
      715.  00:8622  DD 36 00 00         	LD		(IX), INACTIVA
-     716.  00:8626  21 33 AB            	LD		HL, array_antorcha
+     716.  00:8626  21 37 AB            	LD		HL, array_antorcha
      717.  00:8629  DD 74 01            	LD		(IX + 1), H
      718.  00:862C  DD 75 02            	LD		(IX + 2), L
      719.  00:862F  DD 36 03 88         	LD		(IX + 3), POSANTOR1
@@ -1810,9 +1810,9 @@ Errors: 0
      732.  00:8640                      ; salida: 	
      733.  00:8640                      ; toca:		HL, IX
      734.  00:8640                      inicializa_esqueletos:
-     735.  00:8640  DD 21 36 AB         	LD		IX, esqueletos
+     735.  00:8640  DD 21 3A AB         	LD		IX, esqueletos
      736.  00:8644  DD 36 00 00         	LD		(IX), INACTIVA
-     737.  00:8648  21 3D AB            	LD		HL, array_esqueleto
+     737.  00:8648  21 41 AB            	LD		HL, array_esqueleto
      738.  00:864B  DD 74 01            	LD		(IX + 1), H
      739.  00:864E  DD 75 02            	LD		(IX + 2), L
      740.  00:8651  DD 36 03 88         	LD		(IX + 3), POSESQUEL1
@@ -1831,7 +1831,7 @@ Errors: 0
      753.  00:8662                      ; salida: 	
      754.  00:8662                      ; toca:		HL
      755.  00:8662                      pinta_extra_fondo:
-     756.  00:8662  DD 21 2C AB         	LD		IX, antorchas
+     756.  00:8662  DD 21 30 AB         	LD		IX, antorchas
      757.  00:8666                      .examina_sihay_antorchas
      758.  00:8666                      	;hay que pintarlas?
      759.  00:8666  3A D9 A7            	LD		 A, (habitacion_extras)
@@ -1864,7 +1864,7 @@ Errors: 0
      786.  00:869B  C3 D8 85            	JP		pinta_array 				;no ecesita CALL ya que la subrutina termina aquí
      787.  00:869E                      	
      788.  00:869E                      .examina_sihay_esqueletos
-     789.  00:869E  DD 21 36 AB         	LD		IX, esqueletos
+     789.  00:869E  DD 21 3A AB         	LD		IX, esqueletos
      790.  00:86A2                      	;hay que pintarlos?
      791.  00:86A2  3A D8 A7            	LD		 A, (habitacion_actual)
      792.  00:86A5  CB 6F               	BIT		 5, A
@@ -1909,14 +1909,14 @@ Errors: 0
      831.  00:86D9                      ; toca:		A
      832.  00:86D9                      actualiza_elementos_fondo:
      833.  00:86D9                      .examina_antorchas:
-     834.  00:86D9  DD 21 2C AB         	LD		IX, antorchas
+     834.  00:86D9  DD 21 30 AB         	LD		IX, antorchas
      835.  00:86DD  DD 7E 00            	LD		 A, (IX)
      836.  00:86E0  B7                  	OR		 A
      837.  00:86E1  CA E7 86            	JP 	 	 Z, .examina_esqueletos
      838.  00:86E4                      	
      839.  00:86E4  CD F3 86            	CALL	flip_llamas_antorchas
      840.  00:86E7                      .examina_esqueletos:
-     841.  00:86E7  DD 21 36 AB         	LD		IX, esqueletos
+     841.  00:86E7  DD 21 3A AB         	LD		IX, esqueletos
      842.  00:86EB  DD 7E 00            	LD		 A, (IX)
      843.  00:86EE  B7                  	OR		 A
      844.  00:86EF  C8                  	RET	 	 Z
@@ -1935,7 +1935,7 @@ Errors: 0
      857.  00:86F3                      ; salida: 	
      858.  00:86F3                      ; toca:		
      859.  00:86F3                      flip_llamas_antorchas:
-     860.  00:86F3  DD 21 2C AB         	LD		IX, antorchas
+     860.  00:86F3  DD 21 30 AB         	LD		IX, antorchas
      861.  00:86F7                      	;tiene que cambiar de llama?
      862.  00:86F7  DD 7E 06            	LD		 A, (IX + 6)
      863.  00:86FA  3D                  	DEC		 A
@@ -2004,7 +2004,7 @@ Errors: 0
      926.  00:8750                      ; salida: 	
      927.  00:8750                      ; toca:		TODOS.... muy importante DE
      928.  00:8750                      flip_calavera_esqueletos:
-     929.  00:8750  DD 21 36 AB         	LD		IX, esqueletos
+     929.  00:8750  DD 21 3A AB         	LD		IX, esqueletos
      930.  00:8754                      	
      931.  00:8754                      	;tiene que cambiar de calavera?
      932.  00:8754  DD 7E 06            	LD		 A, (IX + ESTRUCTURA_ESQUELETO.cont_sig_escena)
@@ -2054,7 +2054,7 @@ Errors: 0
      976.  00:878B                      .fin_consulta_escena
      977.  00:878B  DD 77 05            	LD		 (IX + ESTRUCTURA_ESQUELETO.escena), A
      978.  00:878E                      	
-     979.  00:878E  21 49 AB            	LD		HL, lista_escenas_calavera
+     979.  00:878E  21 4D AB            	LD		HL, lista_escenas_calavera
      980.  00:8791  3A 7D 87            	LD		 A, (var_aux_calavera)
      981.  00:8794  CD CB 82            	CALL	suma_A_HL
      982.  00:8797                      	
@@ -2263,7 +2263,7 @@ Errors: 0
      190.  00:88C8                      accion_puerta_arriba:
      191.  00:88C8  CD B6 82            	CALL	pinta_blanco_mapa
      192.  00:88CB                      	
-     193.  00:88CB  3A 0A AB            	LD		 A, (prota_pos_mapy)
+     193.  00:88CB  3A 0E AB            	LD		 A, (prota_pos_mapy)
      194.  00:88CE  3C                  	INC		 A
      195.  00:88CF                      	
      196.  00:88CF  FE 07               	CP		 7
@@ -2273,16 +2273,16 @@ Errors: 0
      200.  00:88D4                      
      201.  00:88D4                      	;reseteo fila
      202.  00:88D4  AF                  	XOR		 A
-     203.  00:88D5  32 0A AB            	LD		(prota_pos_mapy), A
+     203.  00:88D5  32 0E AB            	LD		(prota_pos_mapy), A
      204.  00:88D8                      	;incremento nivel
-     205.  00:88D8  3A 06 AB            	LD		 A, (prota_nivel)
+     205.  00:88D8  3A 0A AB            	LD		 A, (prota_nivel)
      206.  00:88DB  3C                  	INC		 A
-     207.  00:88DC  32 06 AB            	LD		(prota_nivel), A
+     207.  00:88DC  32 0A AB            	LD		(prota_nivel), A
      208.  00:88DF                      	;reflejo en pantalla cambio de nivel
      209.  00:88DF  CD BE 82            	CALL	cambio_nivel
      210.  00:88E2  C3 E8 88            	JP		.fin_cambia_nivel
      211.  00:88E5                      .no_cambia_nivel:
-     212.  00:88E5  32 0A AB            	LD		 (prota_pos_mapy), A
+     212.  00:88E5  32 0E AB            	LD		 (prota_pos_mapy), A
      213.  00:88E8                      .fin_cambia_nivel:
      214.  00:88E8  C3 9F 82            	JP		entra_habitacion
      215.  00:88EB                      fin_accion_puerta_arriba:
@@ -2297,9 +2297,9 @@ Errors: 0
      224.  00:88EB                      accion_puerta_derecha:
      225.  00:88EB  CD B6 82            	CALL	pinta_blanco_mapa
      226.  00:88EE                      	
-     227.  00:88EE  3A 09 AB            	LD		 A, (prota_pos_mapx)
+     227.  00:88EE  3A 0D AB            	LD		 A, (prota_pos_mapx)
      228.  00:88F1  3C                  	INC		 A
-     229.  00:88F2  32 09 AB            	LD		 (prota_pos_mapx), A
+     229.  00:88F2  32 0D AB            	LD		 (prota_pos_mapx), A
      230.  00:88F5                      
      231.  00:88F5  C3 9F 82            	JP		entra_habitacion
      232.  00:88F8                      fin_accion_puerta_derecha:
@@ -2314,7 +2314,7 @@ Errors: 0
      241.  00:88F8                      accion_puerta_abajo:
      242.  00:88F8  CD B6 82            	CALL	pinta_blanco_mapa
      243.  00:88FB                      	
-     244.  00:88FB  3A 0A AB            	LD		 A, (prota_pos_mapy)
+     244.  00:88FB  3A 0E AB            	LD		 A, (prota_pos_mapy)
      245.  00:88FE  3D                  	DEC		 A
      246.  00:88FF                      	;~ OR		 A
      247.  00:88FF                      	;~ JP		NC, .no_cambia_nivel				;no entiendo por qué no funciona... preguntar fernando
@@ -2325,16 +2325,16 @@ Errors: 0
      252.  00:8903                      
      253.  00:8903                      	;reseteo fila
      254.  00:8903  3E 06               	LD		 A, 6
-     255.  00:8905  32 0A AB            	LD		(prota_pos_mapy), A
+     255.  00:8905  32 0E AB            	LD		(prota_pos_mapy), A
      256.  00:8908                      	;decremento nivel
-     257.  00:8908  3A 06 AB            	LD		 A, (prota_nivel)
+     257.  00:8908  3A 0A AB            	LD		 A, (prota_nivel)
      258.  00:890B  3D                  	DEC		 A
-     259.  00:890C  32 06 AB            	LD		(prota_nivel), A
+     259.  00:890C  32 0A AB            	LD		(prota_nivel), A
      260.  00:890F                      	;reflejo en pantalla cambio de nivel
      261.  00:890F  CD BE 82            	CALL	cambio_nivel
      262.  00:8912  C3 18 89            	JP		.fin_cambia_nivel
      263.  00:8915                      .no_cambia_nivel:
-     264.  00:8915  32 0A AB            	LD		 (prota_pos_mapy), A
+     264.  00:8915  32 0E AB            	LD		 (prota_pos_mapy), A
      265.  00:8918                      .fin_cambia_nivel:
      266.  00:8918  C3 9F 82            	JP		entra_habitacion
      267.  00:891B                      fin_accion_puerta_abajo:
@@ -2349,9 +2349,9 @@ Errors: 0
      276.  00:891B                      accion_puerta_izquierda:
      277.  00:891B  CD B6 82            	CALL	pinta_blanco_mapa
      278.  00:891E                      
-     279.  00:891E  3A 09 AB            	LD		 A, (prota_pos_mapx)
+     279.  00:891E  3A 0D AB            	LD		 A, (prota_pos_mapx)
      280.  00:8921  3D                  	DEC		 A
-     281.  00:8922  32 09 AB            	LD		 (prota_pos_mapx), A
+     281.  00:8922  32 0D AB            	LD		 (prota_pos_mapx), A
      282.  00:8925                      
      283.  00:8925  C3 9F 82            	JP		entra_habitacion
      284.  00:8928                      fin_accion_puerta_izquierda:
@@ -2430,7 +2430,7 @@ Errors: 0
      357.  00:8985                      ; salida: 	-
      358.  00:8985                      ; toca:		IX
      359.  00:8985                      pinta_puerta_arr:
-     360.  00:8985  3A 0A AB            	LD		 A, (prota_pos_mapy)
+     360.  00:8985  3A 0E AB            	LD		 A, (prota_pos_mapy)
      361.  00:8988  FE 06               	CP		 6								;en la fila 6 la única puerta arriba será una escalera
      362.  00:898A  C2 94 89            	JP		NZ, .pinta_puerta_normal
      363.  00:898D                      .pinta_puerta_escalera
@@ -2581,7 +2581,7 @@ Errors: 0
      508.  00:8A30                      ; toca:		HL,BC, DE
      509.  00:8A30                      check_colision_puerta:
      510.  00:8A30                      .deteccioncolision_paso1:
-     511.  00:8A30  FD 21 F6 AA         	LD		IY, prota	;IY punto de mira / IX puerta
+     511.  00:8A30  FD 21 FA AA         	LD		IY, prota	;IY punto de mira / IX puerta
      512.  00:8A34  FD 7E 00            	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posx)
      513.  00:8A37  C6 08               	ADD		 8			;8-es fijo, offset del punto de mira ya que se mueve según la esquina superior izquierda y el centro del punto de mira está en el centro del sprite
      514.  00:8A39                      	
@@ -2727,7 +2727,7 @@ Errors: 0
       76.  00:8A93                      ; toca: 	todos los registros. Como me interesa la velocidad, si necesito copiar de algo lo hago fuera
       77.  00:8A93                      render_sprites:
       78.  00:8A93                      	;volcando el array con toda la info de los sprites a la zona de atributos de sprites
-      79.  00:8A93  21 4D AB            	LD		HL,array_sprites
+      79.  00:8A93  21 51 AB            	LD		HL,array_sprites
       80.  00:8A96  11 00 1B            	LD		DE,SPRART
       81.  00:8A99  01 80 00            	LD		BC,4 * 32				;32 sprites x 4 bytes controlando el sprite (Y, X, plano, color)
       82.  00:8A9C  C3 5C 00            	JP		LDIRVM
@@ -2742,20 +2742,20 @@ Errors: 0
       91.  00:8A9F                      ; salida: 	-
       92.  00:8A9F                      ; toca: 	-
       93.  00:8A9F                      vuelca_resultado_puntomira_array:
-      94.  00:8A9F  DD 21 4D AB         	LD		IX, array_sprites_pm
+      94.  00:8A9F  DD 21 51 AB         	LD		IX, array_sprites_pm
       95.  00:8AA3                      	;posición y de los dos sprites que conforman el punto de mira
-      96.  00:8AA3  3A F7 AA            	LD		 A, (prota.posy)
+      96.  00:8AA3  3A FB AA            	LD		 A, (prota.posy)
       97.  00:8AA6  DD 77 00            	LD		(IX  ), A
       98.  00:8AA9  DD 77 04            	LD		(IX+4), A
       99.  00:8AAC                      	;posición x de los dos sprites que conforman el punto de mira
-     100.  00:8AAC  3A F6 AA            	LD		 A, (prota.posx)
+     100.  00:8AAC  3A FA AA            	LD		 A, (prota.posx)
      101.  00:8AAF  DD 77 01            	LD		(IX+1), A
      102.  00:8AB2  DD 77 05            	LD		(IX+5), A
      103.  00:8AB5                      	;plano
      104.  00:8AB5  DD 36 02 00         	LD		(IX+2), 0
      105.  00:8AB9  DD 36 06 04         	LD		(IX+6), 4	;al ser sprites de 16x16 hay que ir de 4 en 4
      106.  00:8ABD                      	;color
-     107.  00:8ABD  3A F8 AA            	LD		 A, (prota.escena)
+     107.  00:8ABD  3A FC AA            	LD		 A, (prota.escena)
      108.  00:8AC0  B7                  	OR		 A
      109.  00:8AC1  C2 CD 8A            	JP		NZ,.codigo_color_2
      110.  00:8AC4                      .codigo_color_1:
@@ -2813,10 +2813,10 @@ Errors: 0
       12.  00:8AF6                      mueve_arriba:
       13.  00:8AF6  F5                  	PUSH		AF
       14.  00:8AF7                      	
-      15.  00:8AF7  3A F7 AA            	LD		 	 A, (prota.posy)
+      15.  00:8AF7  3A FB AA            	LD		 	 A, (prota.posy)
       16.  00:8AFA  3D                  	DEC			 A
       17.  00:8AFB  CA 01 8B            	JP			 Z,.no_decrementa_y
-      18.  00:8AFE  32 F7 AA            	LD			(prota.posy), A
+      18.  00:8AFE  32 FB AA            	LD			(prota.posy), A
       19.  00:8B01                      	
       20.  00:8B01                      .no_decrementa_y:
       21.  00:8B01  F1                  	POP			AF
@@ -2834,11 +2834,11 @@ Errors: 0
       33.  00:8B03                      mueve_derecha:
       34.  00:8B03  F5                  	PUSH		AF
       35.  00:8B04                      	
-      36.  00:8B04  3A F6 AA            	LD		 	 A, (prota.posx)
+      36.  00:8B04  3A FA AA            	LD		 	 A, (prota.posx)
       37.  00:8B07  3C                  	INC			 A
       38.  00:8B08  FE EF               	CP			 A, LIMPANTDER - 16
       39.  00:8B0A  CA 10 8B            	JP			 Z, .no_incrementa_x
-      40.  00:8B0D  32 F6 AA            	LD			(prota.posx), A
+      40.  00:8B0D  32 FA AA            	LD			(prota.posx), A
       41.  00:8B10                      	
       42.  00:8B10                      .no_incrementa_x:
       43.  00:8B10  F1                  	POP			AF
@@ -2856,11 +2856,11 @@ Errors: 0
       55.  00:8B12                      mueve_abajo:
       56.  00:8B12  F5                  	PUSH		AF
       57.  00:8B13                      	
-      58.  00:8B13  3A F7 AA            	LD		 	 A, (prota.posy)
+      58.  00:8B13  3A FB AA            	LD		 	 A, (prota.posy)
       59.  00:8B16  3C                  	INC			 A
       60.  00:8B17  FE 70               	CP			 A, LIMPANTABA - 16
       61.  00:8B19  CA 1F 8B            	JP			 Z,.no_incrementa_y
-      62.  00:8B1C  32 F7 AA            	LD			(prota.posy), A
+      62.  00:8B1C  32 FB AA            	LD			(prota.posy), A
       63.  00:8B1F                      	
       64.  00:8B1F                      .no_incrementa_y:
       65.  00:8B1F  F1                  	POP			AF
@@ -2878,11 +2878,11 @@ Errors: 0
       77.  00:8B21                      mueve_izquierda:
       78.  00:8B21  F5                  	PUSH		AF
       79.  00:8B22                      	
-      80.  00:8B22  3A F6 AA            	LD		 	 A, (prota.posx)
+      80.  00:8B22  3A FA AA            	LD		 	 A, (prota.posx)
       81.  00:8B25  3D                  	DEC			 A
       82.  00:8B26                      ;	CP			 A, LIMPANTIZQ 			;no es necesario ya que es cero (Z)
       83.  00:8B26  CA 2C 8B            	JP			 Z,.no_decrementa_x
-      84.  00:8B29  32 F6 AA            	LD			(prota.posx), A
+      84.  00:8B29  32 FA AA            	LD			(prota.posx), A
       85.  00:8B2C                      	
       86.  00:8B2C                      .no_decrementa_x:
       87.  00:8B2C  F1                  	POP			AF
@@ -2904,23 +2904,23 @@ Errors: 0
      103.  00:8B30  D2 5C 8B            	JP		 NC, .mira_boton_pulsado2					
      104.  00:8B33  F5                  	PUSH	AF						;copia A para usarlo después
      105.  00:8B34                      	;se ha pulsado barra o boton 1
-     106.  00:8B34  3A FB AA            	LD		 A, (prota.cadencia)
+     106.  00:8B34  3A FF AA            	LD		 A, (prota.cadencia)
      107.  00:8B37  B7                  	OR		 A
      108.  00:8B38  CA 46 8B            	JP		 Z, .efectua_disparo	;toca efectuar disparo realmente porque se ha pulsado lo suficiente el disparo
      109.  00:8B3B                      .no_efectua_disparo: ;IF
      110.  00:8B3B  3D                  		DEC		 A
-     111.  00:8B3C  32 FB AA            		LD		(prota.cadencia), A	;resto cadencia hasta próximo disparo "real" (no automático por haber pulsado una tecla e ir demasiado rápido)
+     111.  00:8B3C  32 FF AA            		LD		(prota.cadencia), A	;resto cadencia hasta próximo disparo "real" (no automático por haber pulsado una tecla e ir demasiado rápido)
      112.  00:8B3F  AF                  		XOR		 A 
-     113.  00:8B40  32 F8 AA            		LD		(prota.escena), A
+     113.  00:8B40  32 FC AA            		LD		(prota.escena), A
      114.  00:8B43  C3 5B 8B            		JP		.fin_mira_disparo1
      115.  00:8B46                      .efectua_disparo:	;ELSE
      116.  00:8B46                      		;cambio colores del sprite
-     117.  00:8B46  3A F8 AA            		LD		 A, (prota.escena)
+     117.  00:8B46  3A FC AA            		LD		 A, (prota.escena)
      118.  00:8B49  2F                  		CPL		 
-     119.  00:8B4A  32 F8 AA            		LD		(prota.escena), A
+     119.  00:8B4A  32 FC AA            		LD		(prota.escena), A
      120.  00:8B4D                      		;reseteo cadencia para el próximo disparo
      121.  00:8B4D  3E 04               		LD		 A, LIMCADENCIA				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-     122.  00:8B4F  32 FB AA            		LD		 (prota.cadencia), A		;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     122.  00:8B4F  32 FF AA            		LD		 (prota.cadencia), A		;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
      123.  00:8B52                      		
      124.  00:8B52                      		;ejecuto sonido						;; ajustar cadencia y que cuando el disparo sea efectivo se reseteen los colores
      125.  00:8B52  AF                  		XOR		 A
@@ -2938,14 +2938,14 @@ Errors: 0
      137.  00:8B5E  D0                  	RET		 NC
      138.  00:8B5F                      	;se ha pulsado shift o boton 2
      139.  00:8B5F                      	
-     140.  00:8B5F  3A 08 AB            	LD		 A, (prota_reliquias)	;miro si le quedan reliquias
+     140.  00:8B5F  3A 0C AB            	LD		 A, (prota_reliquias)	;miro si le quedan reliquias
      141.  00:8B62  B7                  	OR		 A
      142.  00:8B63  C8                  	RET		 Z						;si no le quedan salgo ya
      143.  00:8B64                      	
      144.  00:8B64                      	;actuaciones si se usa la reliquia botón 2 o M y quedn reliquias.. (antes ya se puso el valor en A)
-     145.  00:8B64  3A 08 AB            	LD		A, (prota_reliquias)
+     145.  00:8B64  3A 0C AB            	LD		A, (prota_reliquias)
      146.  00:8B67  3D                  	DEC		 A
-     147.  00:8B68  32 08 AB            	LD		(prota_reliquias), A
+     147.  00:8B68  32 0C AB            	LD		(prota_reliquias), A
      148.  00:8B6B                      	
      149.  00:8B6B  3E 01               	LD		 A, 1
      150.  00:8B6D  0E 01               	LD		 C, 1
@@ -4373,409 +4373,355 @@ Errors: 0
        8.  00:9C9E                      
        9.  00:9C9E  00                  hay_ayudas_en_pantalla				DB	0		;1 => hay / 0 => no hay; variable que se actualiza cuando cambiemos de habitación para no mirar el bit de habitación cada vez
       10.  00:9C9F  00 00               puntero_ayuda_actual:				DW	0		;puntero a ayuda que se muestra en pantalla (sólo se muestra una a la vez)
-      11.  00:9CA1  00 00               puntero_extras_habitacion_actual:	DW	0		;puntero a los extras de la habitación actual para poder modificarlo (para que no salgan extras)
-      12.  00:9CA3  00 00               puntero_habitacion_actual:			DW	0		;puntero a la habitación actual para poder modificarla (para que no salgan enemigos)
-      13.  00:9CA5                      
-      14.  00:9CA5                      
-      15.  00:9CA5                      ;array de ayudas
-      16.  00:9CA5                      ;posición dentro del bank1 (o 0 que son iguales) de los tiles de la ayuda (cómo en los sprites de 2x2)
-      17.  00:9CA5                      array_ayudas:
-      18.  00:9CA5  C8 CA               array_oracionon:			DB	200,202
-      19.  00:9CA7  C9 CB               array_oracionon1:			DB	201,203
-      20.  00:9CA9  CC CE               array_oracionoff:			DB	204,206
-      21.  00:9CAB  CD CF               array_oracionoff1:			DB	205,207
-      22.  00:9CAD  D0 D2               array_cruzon:				DB	208,210
-      23.  00:9CAF  D1 D3               array_cruzon1:				DB	209,211
-      24.  00:9CB1  D4 D6               array_cruzoff:				DB	212,214
-      25.  00:9CB3  D5 D7               array_cruzoff1:				DB	213,215
-      26.  00:9CB5  D8 DA               array_aguaon:				DB	216,218
-      27.  00:9CB7  D9 DB               array_aguaon1:				DB	217,219
-      28.  00:9CB9  DC DE               array_aguaoff:				DB	220,222
-      29.  00:9CBB  DD DF               array_aguaoff1:				DB	221,223
-      30.  00:9CBD  E0 E2               array_armaduraon:			DB	224,226
-      31.  00:9CBF  E1 E3               array_armaduraon1:			DB	225,227
-      32.  00:9CC1  E4 E6               array_armaduraoff:			DB	228,230
-      33.  00:9CC3  E5 E7               array_armaduraoff1:			DB	229,231
-      34.  00:9CC5  E8 EA               array_plantaon:				DB	232,234
-      35.  00:9CC7  E9 EB               array_plantaon1:			DB	233,235
-      36.  00:9CC9  EC EE               array_plantaoff:			DB	236,238
-      37.  00:9CCB  ED EF               array_plantaoff1:			DB	237,239
-      38.  00:9CCD  F0 F2               array_extraon:				DB	240,242
-      39.  00:9CCF  F1 F3               array_extraon1:				DB	241,243
-      40.  00:9CD1  F4 F6               array_extraoff:				DB	244,246
-      41.  00:9CD3  F5 F7               array_extraoff1:			DB	245,247
-      42.  00:9CD5  F8 FA               array_ballestaon:			DB	248,250
-      43.  00:9CD7  F9 FB               array_ballestaon1:			DB	249,251
-      44.  00:9CD9  FC FE               array_ballestaoff:			DB	252,254
-      45.  00:9CDB  FD FF               array_ballestaoff1:			DB	253,255
-      46.  00:9CDD                      
-      47.  00:9CDD                      
-      48.  00:9CDD                      lista_ayudas:
-      49.  00:9CDD  00 (15)             ayuda_oracion:		DS		ESTRUCTURA_AYUDA		
-      50.  00:9CEC                      ;~ ayuda_cruz:			DS		ESTRUCTURA_AYUDA
-      51.  00:9CEC                      
-      52.  00:9CEC                      ;~ ayuda_aguabendita:	DS		ESTRUCTURA_AYUDA
-      53.  00:9CEC                      ;~ ayuda_armadura:		DS		ESTRUCTURA_AYUDA
-      54.  00:9CEC                      ;~ ayuda_planta:		DS		ESTRUCTURA_AYUDA
-      55.  00:9CEC                      ;~ ayuda_vidaextra		DS		ESTRUCTURA_AYUDA
-      56.  00:9CEC                      ;~ ayuda_ballesta:		DS		ESTRUCTURA_AYUDA
-      57.  00:9CEC                      
-      58.  00:9CEC                      ;datos ayudas
-      59.  00:9CEC                      datos_oracion:			
-      60.  00:9CEC  01                  				DB		ACTIVA				;0 no activa <>0 activo (y muestra tiles ayudaoff)
-      61.  00:9CED  38                  				DB		POSORACIONX			;punto x de la ayuda para cuando se dispare encima
-      62.  00:9CEE  58                  				DB		POSORACIONY			;punto y de la ayuda para cuando se dispare encima
-      63.  00:9CEF  08                  				DB		RADIOAYUDAX			;radio x de la ayuda para cuando se dispare encima
-      64.  00:9CF0  08                  				DB		RADIOAYUDAY			;radio y de la ayuda para cuando se dispare encima
-      65.  00:9CF1  56 9D               				DW		accion_oracion		;función para acción de cada tipo de ayuda
-      66.  00:9CF3  A5 9C               				DW		array_oracionon		;puntero al array con los tiles de las ayudas sin usar para wordaux2
-      67.  00:9CF5  A9 9C               				DW		array_oracionoff	;puntero al array con los tiles de las ayudas sin usar para wordaux2
-      68.  00:9CF7  46 19               				DW		TILMAP + POSORACION ;calcula posición en tilemap para wordaux1
-      69.  00:9CF9  02                  				DB		ALTOAYUDA			;alto en tiles del dibujo de la puerta (filas)
-      70.  00:9CFA  02                  				DB		ANCHOAYUDA			;ancho en tiles del dibujo de la puerta (columnas)
-      71.  00:9CFB                      
-      72.  00:9CFB                      ;~ datos_cruz:
-      73.  00:9CFB                      				;~ DB		ACTIVA				;0 no activa <>0 activo (y muestra tiles ayudaoff)
-      74.  00:9CFB                      				;~ DB		POSORACIONX			;punto x de la ayuda para cuando se dispare encima
-      75.  00:9CFB                      				;~ DB		POSORACIONY			;punto y de la ayuda para cuando se dispare encima
-      76.  00:9CFB                      				;~ DB		RADIOAYUDAX			;radio x de la ayuda para cuando se dispare encima
-      77.  00:9CFB                      				;~ DB		RADIOAYUDAY			;radio y de la ayuda para cuando se dispare encima
-      78.  00:9CFB                      				;~ DW		accion_cruz			;función para acción de cada tipo de ayuda
-      79.  00:9CFB                      				;~ DW		array_oracionon		;puntero al array con los tiles de las ayudas sin usar para wordaux2
-      80.  00:9CFB                      				;~ DW		array_oracionoff	;puntero al array con los tiles de las ayudas sin usar para wordaux2
-      81.  00:9CFB                      				;~ DW		TILMAP + POSORACION ;calcula posición en tilemap para wordaux1
-      82.  00:9CFB                      				;~ DB		ALTOAYUDA			;alto en tiles del dibujo de la puerta (filas)
-      83.  00:9CFB                      				;~ DB		ANCHOAYUDA			;ancho en tiles del dibujo de la puerta (columnas)
-      84.  00:9CFB                      					
-      85.  00:9CFB                      ;~ datos_cruz:			
-      86.  00:9CFB                      				;~ DB		0				;0 no activa <>0 activo (y muestra tiles ayudaoff)
-      87.  00:9CFB                      				;~ DB		POSCRUZX		;punto x de la ayuda para cuando se dispare encima
-      88.  00:9CFB                      				;~ DB		POSAYUDASY		;punto y de la ayuda para cuando se dispare encima
-      89.  00:9CFB                      				;~ DB		8				;radio x de la ayuda para cuando se dispare encima
-      90.  00:9CFB                      				;~ DB		8				;radio y de la ayuda para cuando se dispare encima
-      91.  00:9CFB                      				;~ DW		accion_oracion	;función para acción de cada tipo de ayuda
-      92.  00:9CFB                      				;~ DW		array_oracionon	;puntero al array con los tiles de las ayudas sin usar para wordaux2
-      93.  00:9CFB                      				;~ DW		array_oracionoff;puntero al array con los tiles de las ayudas sin usar para wordaux2
-      94.  00:9CFB                      				;~ DW		TILMAP + POSORACION ;calcula posición en tilemap para wordaux1
-      95.  00:9CFB                      				;~ DB		2				;alto en tiles del dibujo de la puerta (filas)
-      96.  00:9CFB                      				;~ DB		2				;ancho en tiles del dibujo de la puerta (columnas)
-      97.  00:9CFB                      
-      98.  00:9CFB                      				
-      99.  00:9CFB                      ;~ datos_cruz:
-     100.  00:9CFB                      				;~ DB    	0				;0 no activo <>0 activo															0
-     101.  00:9CFB                      				;~ DW		array_cruzon	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
-     102.  00:9CFB                      				;~ DW		array_cruzoff	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
-     103.  00:9CFB                      				;~ DB		POSCRUZ			;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
-     104.  00:9CFB                      				;~ DB		POSCRUZX		;pos del pixel central (esquina superior + 8x)									6
-     105.  00:9CFB                      				;~ DB		POSAYUDASY		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
-     106.  00:9CFB                      				;~ DW		accion_cruz		;subrutina que indica la acción si se dispara en el objeto						8,9 
-     107.  00:9CFB                      				
-     108.  00:9CFB                      				;~ DB    	0				;0 no activo <>0 activo															0
-     109.  00:9CFB                      				;~ DW		array_cruzon	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
-     110.  00:9CFB                      				;~ DW		array_cruzoff	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
-     111.  00:9CFB                      				;~ DB		167			;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
-     112.  00:9CFB                      				;~ DB		64		;pos del pixel central (esquina superior + 8x)									6
-     113.  00:9CFB                      				;~ DB		112		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
-     114.  00:9CFB                      				;~ DW		accion_cruz		;subrutina que indica la acción si se dispara en el objeto						8,9 
-     115.  00:9CFB                      				
-     116.  00:9CFB                      ;~ datos_aguabendita:
-     117.  00:9CFB                      				;~ DB    	0				;0 no activo <>0 activo															0
-     118.  00:9CFB                      				;~ DW		array_aguaon	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
-     119.  00:9CFB                      				;~ DW		array_aguaoff	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
-     120.  00:9CFB                      				;~ DB		POSAGUA			;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
-     121.  00:9CFB                      				;~ DB		POSAGUAX		;pos del pixel central (esquina superior + 8x)									6
-     122.  00:9CFB                      				;~ DB		POSAYUDASY		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
-     123.  00:9CFB                      				;~ DW		accion_agua		;subrutina que indica la acción si se dispara en el objeto						8,9
-     124.  00:9CFB                      				;~ DB		0	;relleno																		10-16    
-     125.  00:9CFB                      				;~ DB		0	;relleno																		10-16    
-     126.  00:9CFB                      				;~ DB		0	;relleno																		10-16    
-     127.  00:9CFB                      				;~ DB		0	;relleno																		10-16    
-     128.  00:9CFB                      				;~ DB		0	;relleno																		10-16    
-     129.  00:9CFB                      				;~ DB		0	;relleno																		10-16   
-     130.  00:9CFB                      				;~ DB		0	;relleno																		10-16    
-     131.  00:9CFB                      ;~ datos_armadura:
-     132.  00:9CFB                      				;~ DB    	0				;0 no activo <>0 activo															0
-     133.  00:9CFB                      				;~ DW		array_armaduraon;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
-     134.  00:9CFB                      				;~ DW		array_armaduraoff;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
-     135.  00:9CFB                      				;~ DB		POSARMAD		;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
-     136.  00:9CFB                      				;~ DB		POSARMADX		;pos del pixel central (esquina superior + 8x)									6
-     137.  00:9CFB                      				;~ DB		POSAYUDASY		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
-     138.  00:9CFB                      				;~ DW		accion_armadura	;subrutina que indica la acción si se dispara en el objeto						8,9
-     139.  00:9CFB                      				;~ DB		0	;relleno																		10-16    
-     140.  00:9CFB                      				;~ DB		0	;relleno																		10-16    
-     141.  00:9CFB                      				;~ DB		0	;relleno																		10-16    
-     142.  00:9CFB                      				;~ DB		0	;relleno																		10-16    
-     143.  00:9CFB                      				;~ DB		0	;relleno																		10-16    
-     144.  00:9CFB                      				;~ DB		0	;relleno																		10-16   
-     145.  00:9CFB                      				;~ DB		0	;relleno																		10-16    
-     146.  00:9CFB                      ;~ datos_planta:
-     147.  00:9CFB                      				;~ DB    	0				;0 no activo <>0 activo															0
-     148.  00:9CFB                      				;~ DW		array_plantaon	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
-     149.  00:9CFB                      				;~ DW		array_plantaoff	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
-     150.  00:9CFB                      				;~ DB		POSPLANTA		;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
-     151.  00:9CFB                      				;~ DB		POSPLANTAX		;pos del pixel central (esquina superior + 8x)									6
-     152.  00:9CFB                      				;~ DB		POSAYUDASY		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
-     153.  00:9CFB                      				;~ DW		accion_planta	;subrutina que indica la acción si se dispara en el objeto						8,9
-     154.  00:9CFB                      				;~ DB		0	;relleno																		10-16    
-     155.  00:9CFB                      				;~ DB		0	;relleno																		10-16    
-     156.  00:9CFB                      				;~ DB		0	;relleno																		10-16    
-     157.  00:9CFB                      				;~ DB		0	;relleno																		10-16    
-     158.  00:9CFB                      				;~ DB		0	;relleno																		10-16    
-     159.  00:9CFB                      				;~ DB		0	;relleno																		10-16   
-     160.  00:9CFB                      				;~ DB		0	;relleno																		10-16     
-     161.  00:9CFB                      ;~ datos_vidaextra:
-     162.  00:9CFB                      				;~ DB    	0				;0 no activo <>0 activo															0
-     163.  00:9CFB                      				;~ DW		array_extraon	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
-     164.  00:9CFB                      				;~ DW		array_extraoff	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
-     165.  00:9CFB                      				;~ DB		POSVIDAEXT		;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
-     166.  00:9CFB                      				;~ DB		POSVIDAEXTX		;pos del pixel central (esquina superior + 8x)									6
-     167.  00:9CFB                      				;~ DB		POSAYUDASY		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
-     168.  00:9CFB                      				;~ DW		accion_vidaextra;subrutina que indica la acción si se dispara en el objeto						8,9
-     169.  00:9CFB                      				;~ DB		0	;relleno																		10-16    
-     170.  00:9CFB                      				;~ DB		0	;relleno																		10-16    
-     171.  00:9CFB                      				;~ DB		0	;relleno																		10-16    
-     172.  00:9CFB                      				;~ DB		0	;relleno																		10-16    
-     173.  00:9CFB                      				;~ DB		0	;relleno																		10-16    
-     174.  00:9CFB                      				;~ DB		0	;relleno																		10-16   
-     175.  00:9CFB                      				;~ DB		0	;relleno																		10-16     
-     176.  00:9CFB                      ;~ datos_ballesta:
-     177.  00:9CFB                      				;~ DB    	0				;0 no activo <>0 activo															0
-     178.  00:9CFB                      				;~ DW		array_ballestaon;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
-     179.  00:9CFB                      				;~ DW		array_ballestaoff;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
-     180.  00:9CFB                      				;~ DB		POSBALLESTA		;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
-     181.  00:9CFB                      				;~ DB		POSBALLESTAX	;pos del pixel central (esquina superior + 8x)									6
-     182.  00:9CFB                      				;~ DB		POSAYUDASY		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
-     183.  00:9CFB                      				;~ DW		accion_oracion	;subrutina que indica la acción si se dispara en el objeto						8,9
-     184.  00:9CFB                      				;~ DB		0	;relleno																		10-16    
-     185.  00:9CFB                      				;~ DB		0	;relleno																		10-16    
-     186.  00:9CFB                      				;~ DB		0	;relleno																		10-16    
-     187.  00:9CFB                      				;~ DB		0	;relleno																		10-16    
-     188.  00:9CFB                      				;~ DB		0	;relleno																		10-16    
-     189.  00:9CFB                      				;~ DB		0	;relleno																		10-16   
-     190.  00:9CFB                      				;~ DB		0	;relleno																		10-16      
-     191.  00:9CFB                      
-     192.  00:9CFB                      
-     193.  00:9CFB                      
-     194.  00:9CFB                      
-     195.  00:9CFB                      ;;=====================================================
-     196.  00:9CFB                      ;;INICIALIZA_AYUDAS
-     197.  00:9CFB                      ;;=====================================================	
-     198.  00:9CFB                      ; función: 	inicializa las variables de estructuras de ayuda del array lista_ayudas
-     199.  00:9CFB                      ; entrada: 	datos_delasdistintasayudas, variable estructura_ayuda_ayudaquesea
-     200.  00:9CFB                      ; salida: 	lista_ayudas
-     201.  00:9CFB                      ; toca:		HL, DE, BC
-     202.  00:9CFB                      inicializa_ayudas:
-     203.  00:9CFB                      	;oracion
-     204.  00:9CFB  21 EC 9C            	LD		HL, datos_oracion
-     205.  00:9CFE  11 DD 9C            	LD		DE, ayuda_oracion
-     206.  00:9D01  CD 05 9D            	CALL	carga_datos_ayuda
-     207.  00:9D04                      
-     208.  00:9D04                      	;~ ;cruz
-     209.  00:9D04                      	;~ LD		HL, datos_cruz
-     210.  00:9D04                      	;~ LD		DE, ayuda_cruz
-     211.  00:9D04                      	;~ CALL	carga_datos_ayuda
-     212.  00:9D04                      
-     213.  00:9D04                      	
-     214.  00:9D04                      	;~ ;agua bendita
-     215.  00:9D04                      	;~ LD		HL, datos_aguabendita
-     216.  00:9D04                      	;~ LD		DE, ayuda_aguabendita
-     217.  00:9D04                      	;~ CALL	carga_datos_ayuda
-     218.  00:9D04                      		
-     219.  00:9D04                      	;~ ;armadura
-     220.  00:9D04                      	;~ LD		HL, datos_armadura
-     221.  00:9D04                      	;~ LD		DE, ayuda_armadura
-     222.  00:9D04                      	;~ CALL	carga_datos_ayuda
-     223.  00:9D04                      		
-     224.  00:9D04                      	;~ ;planta
-     225.  00:9D04                      	;~ LD		HL, datos_planta
-     226.  00:9D04                      	;~ LD		DE, ayuda_planta
-     227.  00:9D04                      	;~ CALL	carga_datos_ayuda
-     228.  00:9D04                      		
-     229.  00:9D04                      	;~ ;vida extra
-     230.  00:9D04                      	;~ LD		HL, datos_vidaextra
-     231.  00:9D04                      	;~ LD		DE, ayuda_vidaextra
-     232.  00:9D04                      	;~ CALL	carga_datos_ayuda
-     233.  00:9D04                      		
-     234.  00:9D04                      	;~ ;ballesta
-     235.  00:9D04                      	;~ LD		HL, datos_ballesta
-     236.  00:9D04                      	;~ LD		DE, ayuda_ballesta
-     237.  00:9D04                      	;~ CALL	carga_datos_ayuda
-     238.  00:9D04                      fin_inicializa_ayudas:
-     239.  00:9D04  C9                  	RET
-     240.  00:9D05                      	
-     241.  00:9D05                      
-     242.  00:9D05                      ;;=====================================================
-     243.  00:9D05                      ;;CARGA_DATOS_AYUDA
-     244.  00:9D05                      ;;=====================================================	
-     245.  00:9D05                      ; función: 	carga los datos de la ayuda de una variable dentro de la variable estructura (más carga y espacio que rellenar a pelo desde IX en adelante pero más simple)
-     246.  00:9D05                      ;entrada
-     247.  00:9D05                      ;  hl: origen de datos
-     248.  00:9D05                      ;  de: destino de datos
-     249.  00:9D05                      ; salida: 	-
-     250.  00:9D05                      ; toca:		HL, DE, BC
-     251.  00:9D05                      carga_datos_ayuda:
-     252.  00:9D05  01 0F 00            	LD		BC, 15;ESTRUCTURA_AYUDA ;equivale a 16.. el tamaño de la estructura en bytes
-     253.  00:9D08  ED B0               	LDIR
-     254.  00:9D0A                      fin_carga_datos_ayuda:
-     255.  00:9D0A  C9                  	RET
-     256.  00:9D0B                      
-     257.  00:9D0B                      
-     258.  00:9D0B                      
-     259.  00:9D0B                      ;;=====================================================
-     260.  00:9D0B                      ;;PINTA_OBJ_AYUDA
-     261.  00:9D0B                      ;;=====================================================	
-     262.  00:9D0B                      ; función: 	pinta un objeto de tipo ayuda que se le pase por referencia IX y el tipo en A
-     263.  00:9D0B                      ; entrada: 	IX - puntero a objeto a mostrar, A - si está on u off
-     264.  00:9D0B                      ; salida: 	-
-     265.  00:9D0B                      ; toca:		AF, HL, BC, DE
-     266.  00:9D0B                      pinta_obj_ayuda:
-     267.  00:9D0B                      	;se recibe objeto desde fuera, por ejmplo LD IX, ayuda_oracion
-     268.  00:9D0B                      
-     269.  00:9D0B                      	;si A=1 dibujo on (si 0 off)
-     270.  00:9D0B  B7                  	OR		 A
-     271.  00:9D0C  C2 1B 9D            	JP		 NZ,.dibujooff
-     272.  00:9D0F                      .dibujoon:	
-     273.  00:9D0F  DD 6E 09            		LD		 L, (IX + ESTRUCTURA_AYUDA.tiles_ayudaoff)
-     274.  00:9D12  DD 66 0A            		LD		 H, (IX + ESTRUCTURA_AYUDA.tiles_ayudaoff + 1)
-     275.  00:9D15  22 1A 86            		LD		(wordaux2), HL	;pongo el valor en wordaux2
-     276.  00:9D18  C3 24 9D            		JP		.param_wordaux2
-     277.  00:9D1B                      .dibujooff:
-     278.  00:9D1B  DD 6E 07            		LD		 L, (IX + ESTRUCTURA_AYUDA.tiles_ayudaon)
-     279.  00:9D1E  DD 66 08            		LD		 H, (IX + ESTRUCTURA_AYUDA.tiles_ayudaon + 1)
-     280.  00:9D21  22 1A 86            		LD		(wordaux2), HL	;pongo el valor en wordaux2
-     281.  00:9D24                      ;fin si
-     282.  00:9D24                      .param_wordaux2:	
-     283.  00:9D24  DD 6E 0B            	LD		 L, (IX + ESTRUCTURA_AYUDA.pos_en_tilemap)
-     284.  00:9D27  DD 66 0C            	LD		 H, (IX + ESTRUCTURA_AYUDA.pos_en_tilemap + 1)
-     285.  00:9D2A  22 18 86            	LD		(wordaux1), HL		;pongo el valor en wordaux1
-     286.  00:9D2D                      
-     287.  00:9D2D                      .filasycols:
-     288.  00:9D2D  3E 02               	LD		 A, 2
-     289.  00:9D2F                      	;se comenta para ahorrar tiempo (y porque habría que pasarlo previamente a A cuando siempre es 2)
-     290.  00:9D2F                      	;~ LD		(byteaux1), (IX + ESTRUCTURA_AYUDA.alto);nº de filas
-     291.  00:9D2F                      	;~ LD		(byteaux2), (IX + ESTRUCTURA_AYUDA.alto);nº de columnas
-     292.  00:9D2F  32 1C 86            	LD		(byteaux1), A		;nº de filas
-     293.  00:9D32  32 1D 86            	LD		(byteaux2), A		;nº de columnas
-     294.  00:9D35                      	
-     295.  00:9D35  C3 D8 85            	JP		pinta_array
-     296.  00:9D38                      fin_pinta_obj_ayuda:
-     297.  00:9D38                      
-     298.  00:9D38                      
-     299.  00:9D38                      ;;=====================================================
-     300.  00:9D38                      ;;PINTA_AYUDAS_HABITACIÓN
-     301.  00:9D38                      ;;=====================================================	
-     302.  00:9D38                      ; función: 	examina el byte con las ayudas y pinta las que estén seleccionadas según variable habitacion_extras
-     303.  00:9D38                      ; entrada: 	habitacion_extras
-     304.  00:9D38                      ; salida: 	-
-     305.  00:9D38                      pinta_ayudas_habitacion:
-     306.  00:9D38  3A 9E 9C            	LD		 A, (hay_ayudas_en_pantalla)
-     307.  00:9D3B  B7                  	OR		 A
-     308.  00:9D3C  C8                  	RET		 Z							;0 ya no hay ayudas activas (se actualiza cuando se usa la ayuda)
-     309.  00:9D3D                      	
-     310.  00:9D3D                      .examina_oracion:
-     311.  00:9D3D  3A D9 A7            	LD		 A, (habitacion_extras)
-     312.  00:9D40  CB 7F               	BIT		 7, A						;bit 7 oracion
-     313.  00:9D42  CA 3D 9D            	JP		 Z, .examina_oracion		;después .examina_cruz
-     314.  00:9D45                      	
-     315.  00:9D45  DD 21 DD 9C         	LD		IX, ayuda_oracion
-     316.  00:9D49                      	;puntero_ayuda_actual
-     317.  00:9D49  DD 22 9F 9C         	LD		(puntero_ayuda_actual), IX
-     318.  00:9D4D  3E 01               	LD		 A, ACTIVA
-     319.  00:9D4F  DD 77 00            	LD		(IX), A						;si lo pinta activo pone el bit a 1 por si el último lo puso a 0
-     320.  00:9D52  CD 0B 9D            	CALL	pinta_obj_ayuda
-     321.  00:9D55                      .fin_examina_oracion:
-     322.  00:9D55                      
-     323.  00:9D55                      ;~ .examina_cruz:
-     324.  00:9D55                      	;~ LD		 A, (habitacion_extras)
-     325.  00:9D55                      	;~ BIT		 6, A						;bit 6 cruz
-     326.  00:9D55                      	;~ JP		 Z, fin_pinta_ayudas_habitacion	;despues .examina_cruz
-     327.  00:9D55                      	
-     328.  00:9D55                      	;~ LD		IX, ayuda_cruz
-     329.  00:9D55                      	;~ ;puntero_ayuda_actual
-     330.  00:9D55                      	;~ LD		(puntero_ayuda_actual), IX
-     331.  00:9D55                      	;~ LD		 A, ACTIVA
-     332.  00:9D55                      	;~ LD		(IX), A						;si lo pinta activo pone el bit a 1 por si el último lo puso a 0
-     333.  00:9D55                      	;~ CALL	pinta_obj_ayuda
-     334.  00:9D55                      ;~ .fin_examina_cruz:
-     335.  00:9D55                      
-     336.  00:9D55                      
-     337.  00:9D55                      ;~ .examina_aguabendita:
-     338.  00:9D55                      	;~ LD		 A, (habitacion_extras)
-     339.  00:9D55                      	;~ BIT		 5,A
-     340.  00:9D55                      	;~ JP		 Z,.examina_armadura
-     341.  00:9D55                      	;~ LD		IX, ayuda_aguabendita
-     342.  00:9D55                      	;~ LD		 A, ACTIVA
-     343.  00:9D55                      	;~ CALL	pinta_obj_ayuda
-     344.  00:9D55                      ;~ .examina_armadura:
-     345.  00:9D55                      	;~ LD		 A, (habitacion_extras)
-     346.  00:9D55                      	;~ BIT		 4,A
-     347.  00:9D55                      	;~ JP		 Z,.examina_planta
-     348.  00:9D55                      	;~ LD		IX, ayuda_armadura
-     349.  00:9D55                      	;~ LD		 A, ACTIVA
-     350.  00:9D55                      	;~ CALL	pinta_obj_ayuda
-     351.  00:9D55                      ;~ .examina_planta:
-     352.  00:9D55                      	;~ LD		 A, (habitacion_extras)
-     353.  00:9D55                      	;~ BIT		 3,A
-     354.  00:9D55                      	;~ JP		 Z,.examina_vidaextra
-     355.  00:9D55                      	;~ LD		IX, ayuda_planta
-     356.  00:9D55                      	;~ LD		 A, ACTIVA
-     357.  00:9D55                      	;~ CALL	pinta_obj_ayuda
-     358.  00:9D55                      ;~ .examina_vidaextra:
-     359.  00:9D55                      	;~ LD		 A, (habitacion_extras)
-     360.  00:9D55                      	;~ BIT		 2,A
-     361.  00:9D55                      	;~ JP		 Z,.examina_ballesta
-     362.  00:9D55                      	;~ LD		IX, ayuda_vidaextra
-     363.  00:9D55                      	;~ LD		 A, ACTIVA
-     364.  00:9D55                      	;~ CALL	pinta_obj_ayuda
-     365.  00:9D55                      ;~ .examina_ballesta:
-     366.  00:9D55                      	;~ LD		 A, (habitacion_extras)
-     367.  00:9D55                      	;~ BIT		 1,A
-     368.  00:9D55                      	;~ RET		 Z
-     369.  00:9D55                      	;~ LD		IX, ayuda_ballesta
-     370.  00:9D55                      	;~ LD		 A, ACTIVA
-     371.  00:9D55                      	;~ CALL	pinta_obj_ayuda
-     372.  00:9D55                      fin_pinta_ayudas_habitacion:
-     373.  00:9D55  C9                  	RET
-     374.  00:9D56                      
-     375.  00:9D56                      
-     376.  00:9D56                      
-     377.  00:9D56                      ;;=====================================================
-     378.  00:9D56                      ;;ACCION_ORACION
-     379.  00:9D56                      ;;=====================================================	
-     380.  00:9D56                      ; función: 	suma 
-     381.  00:9D56                      ; entrada: 	
-     382.  00:9D56                      ; salida: 	-
-     383.  00:9D56                      accion_oracion:
-     384.  00:9D56                      	;suma energía
-     385.  00:9D56  3A 0B AB            	LD		 A, (prota_energia)
-     386.  00:9D59  C6 32               	ADD		50
-     387.  00:9D5B  D2 60 9D            	JP		NC, .fin_suma
-     388.  00:9D5E                      .pone_maximo:
-     389.  00:9D5E  3E FA               	LD		 A, 250
-     390.  00:9D60                      .fin_suma:
-     391.  00:9D60  32 0B AB            	LD		(prota_energia), A
-     392.  00:9D63                      	
-     393.  00:9D63                      	
-     394.  00:9D63                      	;~ ;**********************************************************************************++++++++++++
-     395.  00:9D63  2A A1 9C            	LD		HL, (puntero_extras_habitacion_actual)
-     396.  00:9D66  7E                  	LD		 A, (HL)
-     397.  00:9D67  CB BF               	RES		 7, A					;personalizar para cada ayuda
-     398.  00:9D69  77                  	LD		(HL), A
-     399.  00:9D6A                      	;LD		(habitacion_extras), A
-     400.  00:9D6A                      	
-     401.  00:9D6A                      	;**********************************************************************************++++++++++++
-     402.  00:9D6A                      	
-     403.  00:9D6A                      	;desactiva ayuda
-     404.  00:9D6A  DD 2A 9F 9C         	LD		IX, (puntero_ayuda_actual)
-     405.  00:9D6E  AF                  	XOR		 A
-     406.  00:9D6F  DD 77 00            	LD		(IX), A
-     407.  00:9D72  CD 0B 9D            	CALL	pinta_obj_ayuda			;se le pasa A = 0 para que pinte desactivado
-     408.  00:9D75                      	
-     409.  00:9D75  C3 E6 84            	JP			pinta_energia			;pinta la energia en pantalla
-     410.  00:9D78                      fin_accion_oracion:
-     411.  00:9D78                      
-     412.  00:9D78                      
-     413.  00:9D78                      	
+      11.  00:9CA1                      
+      12.  00:9CA1                      
+      13.  00:9CA1                      ;array de ayudas
+      14.  00:9CA1                      ;posición dentro del bank1 (o 0 que son iguales) de los tiles de la ayuda (cómo en los sprites de 2x2)
+      15.  00:9CA1                      array_ayudas:
+      16.  00:9CA1  C8 CA               array_oracionon:			DB	200,202
+      17.  00:9CA3  C9 CB               array_oracionon1:			DB	201,203
+      18.  00:9CA5  CC CE               array_oracionoff:			DB	204,206
+      19.  00:9CA7  CD CF               array_oracionoff1:			DB	205,207
+      20.  00:9CA9  D0 D2               array_cruzon:				DB	208,210
+      21.  00:9CAB  D1 D3               array_cruzon1:				DB	209,211
+      22.  00:9CAD  D4 D6               array_cruzoff:				DB	212,214
+      23.  00:9CAF  D5 D7               array_cruzoff1:				DB	213,215
+      24.  00:9CB1  D8 DA               array_aguaon:				DB	216,218
+      25.  00:9CB3  D9 DB               array_aguaon1:				DB	217,219
+      26.  00:9CB5  DC DE               array_aguaoff:				DB	220,222
+      27.  00:9CB7  DD DF               array_aguaoff1:				DB	221,223
+      28.  00:9CB9  E0 E2               array_armaduraon:			DB	224,226
+      29.  00:9CBB  E1 E3               array_armaduraon1:			DB	225,227
+      30.  00:9CBD  E4 E6               array_armaduraoff:			DB	228,230
+      31.  00:9CBF  E5 E7               array_armaduraoff1:			DB	229,231
+      32.  00:9CC1  E8 EA               array_plantaon:				DB	232,234
+      33.  00:9CC3  E9 EB               array_plantaon1:			DB	233,235
+      34.  00:9CC5  EC EE               array_plantaoff:			DB	236,238
+      35.  00:9CC7  ED EF               array_plantaoff1:			DB	237,239
+      36.  00:9CC9  F0 F2               array_extraon:				DB	240,242
+      37.  00:9CCB  F1 F3               array_extraon1:				DB	241,243
+      38.  00:9CCD  F4 F6               array_extraoff:				DB	244,246
+      39.  00:9CCF  F5 F7               array_extraoff1:			DB	245,247
+      40.  00:9CD1  F8 FA               array_ballestaon:			DB	248,250
+      41.  00:9CD3  F9 FB               array_ballestaon1:			DB	249,251
+      42.  00:9CD5  FC FE               array_ballestaoff:			DB	252,254
+      43.  00:9CD7  FD FF               array_ballestaoff1:			DB	253,255
+      44.  00:9CD9                      
+      45.  00:9CD9                      
+      46.  00:9CD9                      lista_ayudas:
+      47.  00:9CD9  00 (15)             ayuda_oracion:		DS		ESTRUCTURA_AYUDA		
+      48.  00:9CE8                      ;~ ayuda_cruz:			DS		ESTRUCTURA_AYUDA
+      49.  00:9CE8                      
+      50.  00:9CE8                      ;~ ayuda_aguabendita:	DS		ESTRUCTURA_AYUDA
+      51.  00:9CE8                      ;~ ayuda_armadura:		DS		ESTRUCTURA_AYUDA
+      52.  00:9CE8                      ;~ ayuda_planta:		DS		ESTRUCTURA_AYUDA
+      53.  00:9CE8                      ;~ ayuda_vidaextra		DS		ESTRUCTURA_AYUDA
+      54.  00:9CE8                      ;~ ayuda_ballesta:		DS		ESTRUCTURA_AYUDA
+      55.  00:9CE8                      
+      56.  00:9CE8                      ;datos ayudas
+      57.  00:9CE8                      datos_oracion:			
+      58.  00:9CE8  01                  				DB		ACTIVA				;0 no activa <>0 activo (y muestra tiles ayudaoff)
+      59.  00:9CE9  38                  				DB		POSORACIONX			;punto x de la ayuda para cuando se dispare encima
+      60.  00:9CEA  58                  				DB		POSORACIONY			;punto y de la ayuda para cuando se dispare encima
+      61.  00:9CEB  08                  				DB		RADIOAYUDAX			;radio x de la ayuda para cuando se dispare encima
+      62.  00:9CEC  08                  				DB		RADIOAYUDAY			;radio y de la ayuda para cuando se dispare encima
+      63.  00:9CED  52 9D               				DW		accion_oracion		;función para acción de cada tipo de ayuda
+      64.  00:9CEF  A1 9C               				DW		array_oracionon		;puntero al array con los tiles de las ayudas sin usar para wordaux2
+      65.  00:9CF1  A5 9C               				DW		array_oracionoff	;puntero al array con los tiles de las ayudas sin usar para wordaux2
+      66.  00:9CF3  46 19               				DW		TILMAP + POSORACION ;calcula posición en tilemap para wordaux1
+      67.  00:9CF5  02                  				DB		ALTOAYUDA			;alto en tiles del dibujo de la puerta (filas)
+      68.  00:9CF6  02                  				DB		ANCHOAYUDA			;ancho en tiles del dibujo de la puerta (columnas)
+      69.  00:9CF7                      
+      70.  00:9CF7                      ;~ datos_cruz:
+      71.  00:9CF7                      				;~ DB		ACTIVA				;0 no activa <>0 activo (y muestra tiles ayudaoff)
+      72.  00:9CF7                      				;~ DB		POSORACIONX			;punto x de la ayuda para cuando se dispare encima
+      73.  00:9CF7                      				;~ DB		POSORACIONY			;punto y de la ayuda para cuando se dispare encima
+      74.  00:9CF7                      				;~ DB		RADIOAYUDAX			;radio x de la ayuda para cuando se dispare encima
+      75.  00:9CF7                      				;~ DB		RADIOAYUDAY			;radio y de la ayuda para cuando se dispare encima
+      76.  00:9CF7                      				;~ DW		accion_cruz			;función para acción de cada tipo de ayuda
+      77.  00:9CF7                      				;~ DW		array_oracionon		;puntero al array con los tiles de las ayudas sin usar para wordaux2
+      78.  00:9CF7                      				;~ DW		array_oracionoff	;puntero al array con los tiles de las ayudas sin usar para wordaux2
+      79.  00:9CF7                      				;~ DW		TILMAP + POSORACION ;calcula posición en tilemap para wordaux1
+      80.  00:9CF7                      				;~ DB		ALTOAYUDA			;alto en tiles del dibujo de la puerta (filas)
+      81.  00:9CF7                      				;~ DB		ANCHOAYUDA			;ancho en tiles del dibujo de la puerta (columnas)
+      82.  00:9CF7                      					
+      83.  00:9CF7                      ;~ datos_cruz:			
+      84.  00:9CF7                      				;~ DB		0				;0 no activa <>0 activo (y muestra tiles ayudaoff)
+      85.  00:9CF7                      				;~ DB		POSCRUZX		;punto x de la ayuda para cuando se dispare encima
+      86.  00:9CF7                      				;~ DB		POSAYUDASY		;punto y de la ayuda para cuando se dispare encima
+      87.  00:9CF7                      				;~ DB		8				;radio x de la ayuda para cuando se dispare encima
+      88.  00:9CF7                      				;~ DB		8				;radio y de la ayuda para cuando se dispare encima
+      89.  00:9CF7                      				;~ DW		accion_oracion	;función para acción de cada tipo de ayuda
+      90.  00:9CF7                      				;~ DW		array_oracionon	;puntero al array con los tiles de las ayudas sin usar para wordaux2
+      91.  00:9CF7                      				;~ DW		array_oracionoff;puntero al array con los tiles de las ayudas sin usar para wordaux2
+      92.  00:9CF7                      				;~ DW		TILMAP + POSORACION ;calcula posición en tilemap para wordaux1
+      93.  00:9CF7                      				;~ DB		2				;alto en tiles del dibujo de la puerta (filas)
+      94.  00:9CF7                      				;~ DB		2				;ancho en tiles del dibujo de la puerta (columnas)
+      95.  00:9CF7                      
+      96.  00:9CF7                      				
+      97.  00:9CF7                      ;~ datos_cruz:
+      98.  00:9CF7                      				;~ DB    	0				;0 no activo <>0 activo															0
+      99.  00:9CF7                      				;~ DW		array_cruzon	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
+     100.  00:9CF7                      				;~ DW		array_cruzoff	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
+     101.  00:9CF7                      				;~ DB		POSCRUZ			;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
+     102.  00:9CF7                      				;~ DB		POSCRUZX		;pos del pixel central (esquina superior + 8x)									6
+     103.  00:9CF7                      				;~ DB		POSAYUDASY		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
+     104.  00:9CF7                      				;~ DW		accion_cruz		;subrutina que indica la acción si se dispara en el objeto						8,9 
+     105.  00:9CF7                      				
+     106.  00:9CF7                      				;~ DB    	0				;0 no activo <>0 activo															0
+     107.  00:9CF7                      				;~ DW		array_cruzon	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
+     108.  00:9CF7                      				;~ DW		array_cruzoff	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
+     109.  00:9CF7                      				;~ DB		167			;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
+     110.  00:9CF7                      				;~ DB		64		;pos del pixel central (esquina superior + 8x)									6
+     111.  00:9CF7                      				;~ DB		112		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
+     112.  00:9CF7                      				;~ DW		accion_cruz		;subrutina que indica la acción si se dispara en el objeto						8,9 
+     113.  00:9CF7                      				
+     114.  00:9CF7                      ;~ datos_aguabendita:
+     115.  00:9CF7                      				;~ DB    	0				;0 no activo <>0 activo															0
+     116.  00:9CF7                      				;~ DW		array_aguaon	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
+     117.  00:9CF7                      				;~ DW		array_aguaoff	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
+     118.  00:9CF7                      				;~ DB		POSAGUA			;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
+     119.  00:9CF7                      				;~ DB		POSAGUAX		;pos del pixel central (esquina superior + 8x)									6
+     120.  00:9CF7                      				;~ DB		POSAYUDASY		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
+     121.  00:9CF7                      				;~ DW		accion_agua		;subrutina que indica la acción si se dispara en el objeto						8,9
+     122.  00:9CF7                      				;~ DB		0	;relleno																		10-16    
+     123.  00:9CF7                      				;~ DB		0	;relleno																		10-16    
+     124.  00:9CF7                      				;~ DB		0	;relleno																		10-16    
+     125.  00:9CF7                      				;~ DB		0	;relleno																		10-16    
+     126.  00:9CF7                      				;~ DB		0	;relleno																		10-16    
+     127.  00:9CF7                      				;~ DB		0	;relleno																		10-16   
+     128.  00:9CF7                      				;~ DB		0	;relleno																		10-16    
+     129.  00:9CF7                      ;~ datos_armadura:
+     130.  00:9CF7                      				;~ DB    	0				;0 no activo <>0 activo															0
+     131.  00:9CF7                      				;~ DW		array_armaduraon;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
+     132.  00:9CF7                      				;~ DW		array_armaduraoff;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
+     133.  00:9CF7                      				;~ DB		POSARMAD		;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
+     134.  00:9CF7                      				;~ DB		POSARMADX		;pos del pixel central (esquina superior + 8x)									6
+     135.  00:9CF7                      				;~ DB		POSAYUDASY		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
+     136.  00:9CF7                      				;~ DW		accion_armadura	;subrutina que indica la acción si se dispara en el objeto						8,9
+     137.  00:9CF7                      				;~ DB		0	;relleno																		10-16    
+     138.  00:9CF7                      				;~ DB		0	;relleno																		10-16    
+     139.  00:9CF7                      				;~ DB		0	;relleno																		10-16    
+     140.  00:9CF7                      				;~ DB		0	;relleno																		10-16    
+     141.  00:9CF7                      				;~ DB		0	;relleno																		10-16    
+     142.  00:9CF7                      				;~ DB		0	;relleno																		10-16   
+     143.  00:9CF7                      				;~ DB		0	;relleno																		10-16    
+     144.  00:9CF7                      ;~ datos_planta:
+     145.  00:9CF7                      				;~ DB    	0				;0 no activo <>0 activo															0
+     146.  00:9CF7                      				;~ DW		array_plantaon	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
+     147.  00:9CF7                      				;~ DW		array_plantaoff	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
+     148.  00:9CF7                      				;~ DB		POSPLANTA		;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
+     149.  00:9CF7                      				;~ DB		POSPLANTAX		;pos del pixel central (esquina superior + 8x)									6
+     150.  00:9CF7                      				;~ DB		POSAYUDASY		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
+     151.  00:9CF7                      				;~ DW		accion_planta	;subrutina que indica la acción si se dispara en el objeto						8,9
+     152.  00:9CF7                      				;~ DB		0	;relleno																		10-16    
+     153.  00:9CF7                      				;~ DB		0	;relleno																		10-16    
+     154.  00:9CF7                      				;~ DB		0	;relleno																		10-16    
+     155.  00:9CF7                      				;~ DB		0	;relleno																		10-16    
+     156.  00:9CF7                      				;~ DB		0	;relleno																		10-16    
+     157.  00:9CF7                      				;~ DB		0	;relleno																		10-16   
+     158.  00:9CF7                      				;~ DB		0	;relleno																		10-16     
+     159.  00:9CF7                      ;~ datos_vidaextra:
+     160.  00:9CF7                      				;~ DB    	0				;0 no activo <>0 activo															0
+     161.  00:9CF7                      				;~ DW		array_extraon	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
+     162.  00:9CF7                      				;~ DW		array_extraoff	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
+     163.  00:9CF7                      				;~ DB		POSVIDAEXT		;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
+     164.  00:9CF7                      				;~ DB		POSVIDAEXTX		;pos del pixel central (esquina superior + 8x)									6
+     165.  00:9CF7                      				;~ DB		POSAYUDASY		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
+     166.  00:9CF7                      				;~ DW		accion_vidaextra;subrutina que indica la acción si se dispara en el objeto						8,9
+     167.  00:9CF7                      				;~ DB		0	;relleno																		10-16    
+     168.  00:9CF7                      				;~ DB		0	;relleno																		10-16    
+     169.  00:9CF7                      				;~ DB		0	;relleno																		10-16    
+     170.  00:9CF7                      				;~ DB		0	;relleno																		10-16    
+     171.  00:9CF7                      				;~ DB		0	;relleno																		10-16    
+     172.  00:9CF7                      				;~ DB		0	;relleno																		10-16   
+     173.  00:9CF7                      				;~ DB		0	;relleno																		10-16     
+     174.  00:9CF7                      ;~ datos_ballesta:
+     175.  00:9CF7                      				;~ DB    	0				;0 no activo <>0 activo															0
+     176.  00:9CF7                      				;~ DW		array_ballestaon;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
+     177.  00:9CF7                      				;~ DW		array_ballestaoff;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
+     178.  00:9CF7                      				;~ DB		POSBALLESTA		;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
+     179.  00:9CF7                      				;~ DB		POSBALLESTAX	;pos del pixel central (esquina superior + 8x)									6
+     180.  00:9CF7                      				;~ DB		POSAYUDASY		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
+     181.  00:9CF7                      				;~ DW		accion_oracion	;subrutina que indica la acción si se dispara en el objeto						8,9
+     182.  00:9CF7                      				;~ DB		0	;relleno																		10-16    
+     183.  00:9CF7                      				;~ DB		0	;relleno																		10-16    
+     184.  00:9CF7                      				;~ DB		0	;relleno																		10-16    
+     185.  00:9CF7                      				;~ DB		0	;relleno																		10-16    
+     186.  00:9CF7                      				;~ DB		0	;relleno																		10-16    
+     187.  00:9CF7                      				;~ DB		0	;relleno																		10-16   
+     188.  00:9CF7                      				;~ DB		0	;relleno																		10-16      
+     189.  00:9CF7                      
+     190.  00:9CF7                      
+     191.  00:9CF7                      
+     192.  00:9CF7                      
+     193.  00:9CF7                      ;;=====================================================
+     194.  00:9CF7                      ;;INICIALIZA_AYUDAS
+     195.  00:9CF7                      ;;=====================================================	
+     196.  00:9CF7                      ; función: 	inicializa las variables de estructuras de ayuda del array lista_ayudas
+     197.  00:9CF7                      ; entrada: 	datos_delasdistintasayudas, variable estructura_ayuda_ayudaquesea
+     198.  00:9CF7                      ; salida: 	lista_ayudas
+     199.  00:9CF7                      ; toca:		HL, DE, BC
+     200.  00:9CF7                      inicializa_ayudas:
+     201.  00:9CF7                      	;oracion
+     202.  00:9CF7  21 E8 9C            	LD		HL, datos_oracion
+     203.  00:9CFA  11 D9 9C            	LD		DE, ayuda_oracion
+     204.  00:9CFD  CD 01 9D            	CALL	carga_datos_ayuda
+     205.  00:9D00                      
+     206.  00:9D00                      	;~ ;cruz
+     207.  00:9D00                      	;~ LD		HL, datos_cruz
+     208.  00:9D00                      	;~ LD		DE, ayuda_cruz
+     209.  00:9D00                      	;~ CALL	carga_datos_ayuda
+     210.  00:9D00                      
+     211.  00:9D00                      	
+     212.  00:9D00                      	;~ ;agua bendita
+     213.  00:9D00                      	;~ LD		HL, datos_aguabendita
+     214.  00:9D00                      	;~ LD		DE, ayuda_aguabendita
+     215.  00:9D00                      	;~ CALL	carga_datos_ayuda
+     216.  00:9D00                      		
+     217.  00:9D00                      	;~ ;armadura
+     218.  00:9D00                      	;~ LD		HL, datos_armadura
+     219.  00:9D00                      	;~ LD		DE, ayuda_armadura
+     220.  00:9D00                      	;~ CALL	carga_datos_ayuda
+     221.  00:9D00                      		
+     222.  00:9D00                      	;~ ;planta
+     223.  00:9D00                      	;~ LD		HL, datos_planta
+     224.  00:9D00                      	;~ LD		DE, ayuda_planta
+     225.  00:9D00                      	;~ CALL	carga_datos_ayuda
+     226.  00:9D00                      		
+     227.  00:9D00                      	;~ ;vida extra
+     228.  00:9D00                      	;~ LD		HL, datos_vidaextra
+     229.  00:9D00                      	;~ LD		DE, ayuda_vidaextra
+     230.  00:9D00                      	;~ CALL	carga_datos_ayuda
+     231.  00:9D00                      		
+     232.  00:9D00                      	;~ ;ballesta
+     233.  00:9D00                      	;~ LD		HL, datos_ballesta
+     234.  00:9D00                      	;~ LD		DE, ayuda_ballesta
+     235.  00:9D00                      	;~ CALL	carga_datos_ayuda
+     236.  00:9D00                      fin_inicializa_ayudas:
+     237.  00:9D00  C9                  	RET
+     238.  00:9D01                      	
+     239.  00:9D01                      
+     240.  00:9D01                      ;;=====================================================
+     241.  00:9D01                      ;;CARGA_DATOS_AYUDA
+     242.  00:9D01                      ;;=====================================================	
+     243.  00:9D01                      ; función: 	carga los datos de la ayuda de una variable dentro de la variable estructura (más carga y espacio que rellenar a pelo desde IX en adelante pero más simple)
+     244.  00:9D01                      ;entrada
+     245.  00:9D01                      ;  hl: origen de datos
+     246.  00:9D01                      ;  de: destino de datos
+     247.  00:9D01                      ; salida: 	-
+     248.  00:9D01                      ; toca:		HL, DE, BC
+     249.  00:9D01                      carga_datos_ayuda:
+     250.  00:9D01  01 0F 00            	LD		BC, 15;ESTRUCTURA_AYUDA ;equivale a 16.. el tamaño de la estructura en bytes
+     251.  00:9D04  ED B0               	LDIR
+     252.  00:9D06                      fin_carga_datos_ayuda:
+     253.  00:9D06  C9                  	RET
+     254.  00:9D07                      
+     255.  00:9D07                      
+     256.  00:9D07                      
+     257.  00:9D07                      ;;=====================================================
+     258.  00:9D07                      ;;PINTA_OBJ_AYUDA
+     259.  00:9D07                      ;;=====================================================	
+     260.  00:9D07                      ; función: 	pinta un objeto de tipo ayuda que se le pase por referencia IX y el tipo en A
+     261.  00:9D07                      ; entrada: 	IX - puntero a objeto a mostrar, A - si está on u off
+     262.  00:9D07                      ; salida: 	-
+     263.  00:9D07                      ; toca:		AF, HL, BC, DE
+     264.  00:9D07                      pinta_obj_ayuda:
+     265.  00:9D07                      	;se recibe objeto desde fuera, por ejmplo LD IX, ayuda_oracion
+     266.  00:9D07                      
+     267.  00:9D07                      	;si A=1 dibujo on (si 0 off)
+     268.  00:9D07  B7                  	OR		 A
+     269.  00:9D08  C2 17 9D            	JP		 NZ,.dibujooff
+     270.  00:9D0B                      .dibujoon:	
+     271.  00:9D0B  DD 6E 09            		LD		 L, (IX + ESTRUCTURA_AYUDA.tiles_ayudaoff)
+     272.  00:9D0E  DD 66 0A            		LD		 H, (IX + ESTRUCTURA_AYUDA.tiles_ayudaoff + 1)
+     273.  00:9D11  22 1A 86            		LD		(wordaux2), HL	;pongo el valor en wordaux2
+     274.  00:9D14  C3 20 9D            		JP		.param_wordaux2
+     275.  00:9D17                      .dibujooff:
+     276.  00:9D17  DD 6E 07            		LD		 L, (IX + ESTRUCTURA_AYUDA.tiles_ayudaon)
+     277.  00:9D1A  DD 66 08            		LD		 H, (IX + ESTRUCTURA_AYUDA.tiles_ayudaon + 1)
+     278.  00:9D1D  22 1A 86            		LD		(wordaux2), HL	;pongo el valor en wordaux2
+     279.  00:9D20                      ;fin si
+     280.  00:9D20                      .param_wordaux2:	
+     281.  00:9D20  DD 6E 0B            	LD		 L, (IX + ESTRUCTURA_AYUDA.pos_en_tilemap)
+     282.  00:9D23  DD 66 0C            	LD		 H, (IX + ESTRUCTURA_AYUDA.pos_en_tilemap + 1)
+     283.  00:9D26  22 18 86            	LD		(wordaux1), HL		;pongo el valor en wordaux1
+     284.  00:9D29                      
+     285.  00:9D29                      .filasycols:
+     286.  00:9D29  3E 02               	LD		 A, 2
+     287.  00:9D2B                      	;se comenta para ahorrar tiempo (y porque habría que pasarlo previamente a A cuando siempre es 2)
+     288.  00:9D2B                      	;~ LD		(byteaux1), (IX + ESTRUCTURA_AYUDA.alto);nº de filas
+     289.  00:9D2B                      	;~ LD		(byteaux2), (IX + ESTRUCTURA_AYUDA.alto);nº de columnas
+     290.  00:9D2B  32 1C 86            	LD		(byteaux1), A		;nº de filas
+     291.  00:9D2E  32 1D 86            	LD		(byteaux2), A		;nº de columnas
+     292.  00:9D31                      	
+     293.  00:9D31  C3 D8 85            	JP		pinta_array
+     294.  00:9D34                      fin_pinta_obj_ayuda:
+     295.  00:9D34                      
+     296.  00:9D34                      
+     297.  00:9D34                      ;;=====================================================
+     298.  00:9D34                      ;;PINTA_AYUDAS_HABITACIÓN
+     299.  00:9D34                      ;;=====================================================	
+     300.  00:9D34                      ; función: 	examina el byte con las ayudas y pinta las que estén seleccionadas según variable habitacion_extras
+     301.  00:9D34                      ; entrada: 	habitacion_extras
+     302.  00:9D34                      ; salida: 	-
+     303.  00:9D34                      pinta_ayudas_habitacion:
+     304.  00:9D34  3A 9E 9C            	LD		 A, (hay_ayudas_en_pantalla)
+     305.  00:9D37  B7                  	OR		 A
+     306.  00:9D38  C8                  	RET		 Z							;0 ya no hay ayudas activas (se actualiza cuando se usa la ayuda)
+     307.  00:9D39                      	
+     308.  00:9D39                      .examina_oracion:
+     309.  00:9D39  3A D9 A7            	LD		 A, (habitacion_extras)
+     310.  00:9D3C  CB 7F               	BIT		 7, A						;bit 7 oracion
+     311.  00:9D3E  CA 51 9D            	JP		 Z, .fin_examina_oracion	;después .examina_cruz
+     312.  00:9D41                      	
+     313.  00:9D41  DD 21 D9 9C         	LD		IX, ayuda_oracion
+     314.  00:9D45                      	;puntero_ayuda_actual
+     315.  00:9D45  DD 22 9F 9C         	LD		(puntero_ayuda_actual), IX
+     316.  00:9D49  3E 01               	LD		 A, ACTIVA
+     317.  00:9D4B  DD 77 00            	LD		(IX), A						;si lo pinta activo pone el bit a 1 por si el último lo puso a 0
+     318.  00:9D4E  CD 07 9D            	CALL	pinta_obj_ayuda
+     319.  00:9D51                      .fin_examina_oracion:
+     320.  00:9D51                      
+     321.  00:9D51                      fin_pinta_ayudas_habitacion:
+     322.  00:9D51  C9                  	RET
+     323.  00:9D52                      
+     324.  00:9D52                      
+     325.  00:9D52                      
+     326.  00:9D52                      ;;=====================================================
+     327.  00:9D52                      ;;ACCION_ORACION
+     328.  00:9D52                      ;;=====================================================	
+     329.  00:9D52                      ; función: 	suma 
+     330.  00:9D52                      ; entrada: 	
+     331.  00:9D52                      ; salida: 	-
+     332.  00:9D52                      accion_oracion:
+     333.  00:9D52                      	;suma energía
+     334.  00:9D52  3A 0F AB            	LD		 A, (prota_energia)
+     335.  00:9D55  C6 32               	ADD		50
+     336.  00:9D57  D2 5C 9D            	JP		NC, .fin_suma
+     337.  00:9D5A                      .pone_maximo:
+     338.  00:9D5A  3E FA               	LD		 A, 250
+     339.  00:9D5C                      .fin_suma:
+     340.  00:9D5C  32 0F AB            	LD		(prota_energia), A
+     341.  00:9D5F                      	
+     342.  00:9D5F  2A DD A7            	LD		HL, (puntero_extras_habitacion_actual)
+     343.  00:9D62  7E                  	LD		 A, (HL)
+     344.  00:9D63  CB BF               	RES		 7, A					;elimino la ayuda del mapa, personalizar para cada ayuda
+     345.  00:9D65  77                  	LD		(HL), A
+     346.  00:9D66  AF                  	XOR		 A
+     347.  00:9D67  32 D9 A7            	LD		(habitacion_extras), A	;para no tener que verificar ayudas
+     348.  00:9D6A                      	
+     349.  00:9D6A                      	;desactiva ayuda
+     350.  00:9D6A  DD 2A 9F 9C         	LD		IX, (puntero_ayuda_actual)
+     351.  00:9D6E  AF                  	XOR		 A
+     352.  00:9D6F  DD 77 00            	LD		(IX), A
+     353.  00:9D72  CD 07 9D            	CALL	pinta_obj_ayuda			;se le pasa A = 0 para que pinte desactivado
+     354.  00:9D75                      	
+     355.  00:9D75  C3 E6 84            	JP		pinta_energia			;pinta la energia en pantalla
+     356.  00:9D78                      fin_accion_oracion:
+     357.  00:9D78                      
+     358.  00:9D78                      
+     359.  00:9D78                      	
      255   00:9D78                      	
      256   00:9D78                      
      257   00:9D78                      ;;=====================================================
@@ -5929,256 +5875,259 @@ Errors: 0
       40.  00:A7DC                      is_habitacion_terminada:
       41.  00:A7DC  00                  	db	0		;variable para consultar más rápido si se ha pasado (<>0 si se ha pasado y 0 no se ha pasado)
       42.  00:A7DD                      
-      43.  00:A7DD                      
-      44.  00:A7DD                      habitaciones_juego:
-      45.  00:A7DD                      habitaciones_nivel0:
-      46.  00:A7DD                      			;0		0'		   1        1'         2         2'         3        3'        4         4'       5         5'        6         6'
-      47.  00:A7DD                      	db 00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00001010b,10000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,#00,#00 ;nivel 0 fila 1
-      47.  00:A7DD  00 00 00 00 00 00 0A 80 00 00 00 00 00 00 00 00 
-      48.  00:A7ED                      	db 00000000b,00000000b,00001100b,00000000b,00000101b,00000000b,00001111b,00000000b,00000101b,00000000b,00001001b,00000000b,00000000b,00000000b,#00,#00 
-      48.  00:A7ED  00 00 0C 00 05 00 0F 00 05 00 09 00 00 00 00 00 
-      49.  00:A7FD                      	db 00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,#00,#00 
-      49.  00:A7FD  00 00 0A 00 00 00 0A 00 00 00 0A 00 00 00 00 00 
-      50.  00:A80D                      	db 00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,00000010b,00000000b,00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,#00,#00 
-      50.  00:A80D  00 00 0A 00 00 00 02 00 00 00 0A 00 00 00 00 00 
-      51.  00:A81D                      	db 00000000b,00000000b,00001110b,10000000b,00000001b,00000000b,00000000b,00000000b,00000100b,00000000b,00001011b,00000000b,00000000b,00000000b,#00,#00 
-      51.  00:A81D  00 00 0E 80 01 00 00 00 04 00 0B 00 00 00 00 00 
-      52.  00:A82D                      	db 00000000b,00000000b,00000110b,00000000b,00000101b,00000000b,00001101b,00000000b,00000101b,00000000b,00000011b,00000000b,00000000b,00000000b,#00,#00 
-      52.  00:A82D  00 00 06 00 05 00 0D 00 05 00 03 00 00 00 00 00 
-      53.  00:A83D                      	db 00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,#00,#00 ;nivel 0 fila 7
-      53.  00:A83D  00 00 00 00 00 00 0A 00 00 00 00 00 00 00 00 00 
-      54.  00:A84D                      	
-      55.  00:A84D                      habitaciones_nivel1:
-      56.  00:A84D                      	db  00000000b,#C0,00000000b,#C0,00000000b,#00,00011010b,#00,00010000b,#C0,00000000b,#C0,00000000b,#C0,#00,#00 	;primera fila
-      56.  00:A84D  00 C0 00 C0 00 00 1A 00 10 C0 00 C0 00 C0 00 00 
-      57.  00:A85D                      	db  00000000b,#C0,00011100b,#C0,00011101b,#00,00011111b,#00,00011101b,#C0,00011001b,#C0,00000000b,#C0,#00,#00
-      57.  00:A85D  00 C0 1C C0 1D 00 1F 00 1D C0 19 C0 00 C0 00 00 
-      58.  00:A86D                      	db  00000000b,#C0,00011110b,#C0,00011111b,#00,00011111b,#00,00011111b,#C0,00011011b,#C0,00000000b,#C0,#00,#00
-      58.  00:A86D  00 C0 1E C0 1F 00 1F 00 1F C0 1B C0 00 C0 00 00 
-      59.  00:A87D                      	db  00000000b,#C0,00011010b,#C0,00011010b,#00,00010010b,#00,00011010b,#C0,00011010b,#C0,00000000b,#C0,#00,#00
-      59.  00:A87D  00 C0 1A C0 1A 00 12 00 1A C0 1A C0 00 C0 00 00 
-      60.  00:A88D                      	db  00000000b,#C0,00011010b,#C0,00011110b,#C0,00010101b,#C0,00011011b,#C0,00011010b,#C0,00000000b,#C0,#00,#00
-      60.  00:A88D  00 C0 1A C0 1E C0 15 C0 1B C0 1A C0 00 C0 00 00 
-      61.  00:A89D                      	db  00000000b,#C0,00010110b,#C0,00010111b,#C0,00011101b,#C0,00010111b,#C0,00010011b,#C0,00000000b,#C0,#00,#00
-      61.  00:A89D  00 C0 16 C0 17 C0 1D C0 17 C0 13 C0 00 C0 00 00 
-      62.  00:A8AD                      	db  00000000b,#C0,00000000b,#C0,00000000b,#C0,00011010b,#C0,00011000b,#C0,00000000b,#C0,00000000b,#C0,#00,#00	;última fila
-      62.  00:A8AD  00 C0 00 C0 00 C0 1A C0 18 C0 00 C0 00 C0 00 00 
-      63.  00:A8BD                      	
-      64.  00:A8BD                      habitaciones_nivel2:
-      65.  00:A8BD                      	db  00000000b,#C0,00000000b,#C0,00000000b,#00,00011010b,#00,00010000b,#C0,00000000b,#C0,00000000b,#C0,#00,#00 	;primera fila
-      65.  00:A8BD  00 C0 00 C0 00 00 1A 00 10 C0 00 C0 00 C0 00 00 
-      66.  00:A8CD                      	db  00000000b,#C0,00011100b,#C0,00011101b,#00,00011111b,#00,00011101b,#C0,00011001b,#C0,00000000b,#C0,#00,#00
-      66.  00:A8CD  00 C0 1C C0 1D 00 1F 00 1D C0 19 C0 00 C0 00 00 
-      67.  00:A8DD                      	db  00000000b,#C0,00011110b,#C0,00011111b,#00,00011111b,#00,00011111b,#C0,00011011b,#C0,00000000b,#C0,#00,#00
-      67.  00:A8DD  00 C0 1E C0 1F 00 1F 00 1F C0 1B C0 00 C0 00 00 
-      68.  00:A8ED                      	db  00000000b,#C0,00011010b,#C0,00011010b,#00,00010010b,#00,00011010b,#C0,00011010b,#C0,00000000b,#C0,#00,#00
-      68.  00:A8ED  00 C0 1A C0 1A 00 12 00 1A C0 1A C0 00 C0 00 00 
-      69.  00:A8FD                      	db  00000000b,#C0,00011010b,#C0,00011110b,#C0,00010101b,#C0,00011011b,#C0,00011010b,#C0,00000000b,#C0,#00,#00
-      69.  00:A8FD  00 C0 1A C0 1E C0 15 C0 1B C0 1A C0 00 C0 00 00 
-      70.  00:A90D                      	db  00000000b,#C0,00010110b,#C0,00010111b,#C0,00011101b,#C0,00010111b,#C0,00010011b,#C0,00000000b,#C0,#00,#00
-      70.  00:A90D  00 C0 16 C0 17 C0 1D C0 17 C0 13 C0 00 C0 00 00 
-      71.  00:A91D                      	db  00000000b,#C0,00000000b,#C0,00000000b,#C0,00011010b,#C0,00011000b,#C0,00000000b,#C0,00000000b,#C0,#00,#00	;última fila
-      71.  00:A91D  00 C0 00 C0 00 C0 1A C0 18 C0 00 C0 00 C0 00 00 
-      72.  00:A92D                      	
-      73.  00:A92D                      habitaciones_nivel3:
-      74.  00:A92D                      	db  00000000b,#C0,00000000b,#C0,00000000b,#00,00011010b,#00,00010000b,#C0,00000000b,#C0,00000000b,#C0,#00,#00 	;primera fila
-      74.  00:A92D  00 C0 00 C0 00 00 1A 00 10 C0 00 C0 00 C0 00 00 
-      75.  00:A93D                      	db  00000000b,#C0,00011100b,#C0,00011101b,#00,00011111b,#00,00011101b,#C0,00011001b,#C0,00000000b,#C0,#00,#00
-      75.  00:A93D  00 C0 1C C0 1D 00 1F 00 1D C0 19 C0 00 C0 00 00 
-      76.  00:A94D                      	db  00000000b,#C0,00011110b,#C0,00011111b,#00,00011111b,#00,00011111b,#C0,00011011b,#C0,00000000b,#C0,#00,#00
-      76.  00:A94D  00 C0 1E C0 1F 00 1F 00 1F C0 1B C0 00 C0 00 00 
-      77.  00:A95D                      	db  00000000b,#C0,00011010b,#C0,00011010b,#00,00010010b,#00,00011010b,#C0,00011010b,#C0,00000000b,#C0,#00,#00
-      77.  00:A95D  00 C0 1A C0 1A 00 12 00 1A C0 1A C0 00 C0 00 00 
-      78.  00:A96D                      	db  00000000b,#C0,00011010b,#C0,00011110b,#C0,00010101b,#C0,00011011b,#C0,00011010b,#C0,00000000b,#C0,#00,#00
-      78.  00:A96D  00 C0 1A C0 1E C0 15 C0 1B C0 1A C0 00 C0 00 00 
-      79.  00:A97D                      	db  00000000b,#C0,00010110b,#C0,00010111b,#C0,00011101b,#C0,00010111b,#C0,00010011b,#C0,00000000b,#C0,#00,#00
-      79.  00:A97D  00 C0 16 C0 17 C0 1D C0 17 C0 13 C0 00 C0 00 00 
-      80.  00:A98D                      	db  00000000b,#C0,00000000b,#C0,00000000b,#C0,00011010b,#C0,00011000b,#C0,00000000b,#C0,00000000b,#C0,#00,#00	;última fila
-      80.  00:A98D  00 C0 00 C0 00 C0 1A C0 18 C0 00 C0 00 C0 00 00 
-      81.  00:A99D                      	
-      82.  00:A99D                      habitaciones_nivel4:
-      83.  00:A99D                      	db  00000000b,#C0,00000000b,#C0,00000000b,#00,00011010b,#00,00010000b,#C0,00000000b,#C0,00000000b,#C0,#00,#00 	;primera fila
-      83.  00:A99D  00 C0 00 C0 00 00 1A 00 10 C0 00 C0 00 C0 00 00 
-      84.  00:A9AD                      	db  00000000b,#C0,00011100b,#C0,00011101b,#00,00011111b,#00,00011101b,#C0,00011001b,#C0,00000000b,#C0,#00,#00
-      84.  00:A9AD  00 C0 1C C0 1D 00 1F 00 1D C0 19 C0 00 C0 00 00 
-      85.  00:A9BD                      	db  00000000b,#C0,00011110b,#C0,00011111b,#00,00011111b,#00,00011111b,#C0,00011011b,#C0,00000000b,#C0,#00,#00
-      85.  00:A9BD  00 C0 1E C0 1F 00 1F 00 1F C0 1B C0 00 C0 00 00 
-      86.  00:A9CD                      	db  00000000b,#C0,00011010b,#C0,00011010b,#00,00010010b,#00,00011010b,#C0,00011010b,#C0,00000000b,#C0,#00,#00
-      86.  00:A9CD  00 C0 1A C0 1A 00 12 00 1A C0 1A C0 00 C0 00 00 
-      87.  00:A9DD                      	db  00000000b,#C0,00011010b,#C0,00011110b,#C0,00010101b,#C0,00011011b,#C0,00011010b,#C0,00000000b,#C0,#00,#00
-      87.  00:A9DD  00 C0 1A C0 1E C0 15 C0 1B C0 1A C0 00 C0 00 00 
-      88.  00:A9ED                      	db  00000000b,#C0,00010110b,#C0,00010111b,#C0,00011101b,#C0,00010111b,#C0,00010011b,#C0,00000000b,#C0,#00,#00
-      88.  00:A9ED  00 C0 16 C0 17 C0 1D C0 17 C0 13 C0 00 C0 00 00 
-      89.  00:A9FD                      	db  00000000b,#C0,00000000b,#C0,00000000b,#C0,00011010b,#C0,00011000b,#C0,00000000b,#C0,00000000b,#C0,#00,#00	;última fila
-      89.  00:A9FD  00 C0 00 C0 00 C0 1A C0 18 C0 00 C0 00 C0 00 00 
-      90.  00:AA0D                      	
-      91.  00:AA0D                      habitaciones_nivel5:
-      92.  00:AA0D                      	db  00000000b,#C0,00000000b,#C0,00000000b,#00,00011010b,#00,00010000b,#C0,00000000b,#C0,00000000b,#C0,#00,#00 	;primera fila
-      92.  00:AA0D  00 C0 00 C0 00 00 1A 00 10 C0 00 C0 00 C0 00 00 
-      93.  00:AA1D                      	db  00000000b,#C0,00011100b,#C0,00011101b,#00,00011111b,#00,00011101b,#C0,00011001b,#C0,00000000b,#C0,#00,#00
-      93.  00:AA1D  00 C0 1C C0 1D 00 1F 00 1D C0 19 C0 00 C0 00 00 
-      94.  00:AA2D                      	db  00000000b,#C0,00011110b,#C0,00011111b,#00,00011111b,#00,00011111b,#C0,00011011b,#C0,00000000b,#C0,#00,#00
-      94.  00:AA2D  00 C0 1E C0 1F 00 1F 00 1F C0 1B C0 00 C0 00 00 
-      95.  00:AA3D                      	db  00000000b,#C0,00011010b,#C0,00011010b,#00,00010010b,#00,00011010b,#C0,00011010b,#C0,00000000b,#C0,#00,#00
-      95.  00:AA3D  00 C0 1A C0 1A 00 12 00 1A C0 1A C0 00 C0 00 00 
-      96.  00:AA4D                      	db  00000000b,#C0,00011010b,#C0,00011110b,#C0,00010101b,#C0,00011011b,#C0,00011010b,#C0,00000000b,#C0,#00,#00
-      96.  00:AA4D  00 C0 1A C0 1E C0 15 C0 1B C0 1A C0 00 C0 00 00 
-      97.  00:AA5D                      	db  00000000b,#C0,00010110b,#C0,00010111b,#C0,00011101b,#C0,00010111b,#C0,00010011b,#C0,00000000b,#C0,#00,#00
-      97.  00:AA5D  00 C0 16 C0 17 C0 1D C0 17 C0 13 C0 00 C0 00 00 
-      98.  00:AA6D                      	db  00000000b,#C0,00000000b,#C0,00000000b,#C0,00011010b,#C0,00011000b,#C0,00000000b,#C0,00000000b,#C0,#00,#00	;última fila
-      98.  00:AA6D  00 C0 00 C0 00 C0 1A C0 18 C0 00 C0 00 C0 00 00 
-      99.  00:AA7D                      	
-     100.  00:AA7D                      habitaciones_nivel6:
-     101.  00:AA7D                      	db  00000000b,#C0,00000000b,#C0,00000000b,#00,00011010b,#00,00010000b,#C0,00000000b,#C0,00000000b,#C0,#00,#00 	;primera fila
-     101.  00:AA7D  00 C0 00 C0 00 00 1A 00 10 C0 00 C0 00 C0 00 00 
-     102.  00:AA8D                      	db  00000000b,#C0,00011100b,#C0,00011101b,#00,00011111b,#00,00011101b,#C0,00011001b,#C0,00000000b,#C0,#00,#00
-     102.  00:AA8D  00 C0 1C C0 1D 00 1F 00 1D C0 19 C0 00 C0 00 00 
-     103.  00:AA9D                      	db  00000000b,#C0,00011110b,#C0,00011111b,#00,00011111b,#00,00011111b,#C0,00011011b,#C0,00000000b,#C0,#00,#00
-     103.  00:AA9D  00 C0 1E C0 1F 00 1F 00 1F C0 1B C0 00 C0 00 00 
-     104.  00:AAAD                      	db  00000000b,#C0,00011010b,#C0,00011010b,#00,00010010b,#00,00011010b,#C0,00011010b,#C0,00000000b,#C0,#00,#00
-     104.  00:AAAD  00 C0 1A C0 1A 00 12 00 1A C0 1A C0 00 C0 00 00 
-     105.  00:AABD                      	db  00000000b,#C0,00011010b,#C0,00011110b,#C0,00010101b,#C0,00011011b,#C0,00011010b,#C0,00000000b,#C0,#00,#00
-     105.  00:AABD  00 C0 1A C0 1E C0 15 C0 1B C0 1A C0 00 C0 00 00 
-     106.  00:AACD                      	db  00000000b,#C0,00010110b,#C0,00010111b,#C0,00011101b,#C0,00010111b,#C0,00010011b,#C0,00000000b,#C0,#00,#00
-     106.  00:AACD  00 C0 16 C0 17 C0 1D C0 17 C0 13 C0 00 C0 00 00 
-     107.  00:AADD                      	db  00000000b,#C0,00000000b,#C0,00000000b,#C0,00011010b,#C0,00011000b,#C0,00000000b,#C0,00000000b,#C0,#00,#00	;última fila
-     107.  00:AADD  00 C0 00 C0 00 C0 1A C0 18 C0 00 C0 00 C0 00 00 
-     108.  00:AAED                      
-     109.  00:AAED                      
-     279   00:AAED                      	
-     280   00:AAED                      	include "variables.asm"
-       1.  00:AAED                      ;;=====================================================
-       2.  00:AAED                      ;;DEFINICIÓN DE VARIABLES
-       3.  00:AAED                      ;;=====================================================
-       4.  00:AAED                      
-       5.  00:AAED                      ;Colores base de la pantalla
-       6.  00:AAED                      color_base:
-       7.  00:AAED  01 01 01            			DB		COLNEGRO,COLNEGRO,COLNEGRO	
-       8.  00:AAF0                      ;colores de pantalla cuando se tira bomba
-       9.  00:AAF0                      color_bomba1:
-      10.  00:AAF0  08 08 08            			DB		COLROJO,COLROJO,COLROJO
-      11.  00:AAF3                      color_bomba2:
-      12.  00:AAF3  06 06 06            			DB		COLROJOOSC,COLROJOOSC,COLROJOOSC
-      13.  00:AAF6                      
-      14.  00:AAF6                      ;definicion de variable del prota usando la estructura del punto de mira
-      15.  00:AAF6                      prota:		ESTRUCTURA_PUNTOMIRA
-      15.  00:AAF6  78 6C 00 00 00 05 00 00 00 00 00 00 00 00 00 00 
-      16.  00:AB06                      ;variables globales del prota
-      17.  00:AB06                      prota_nivel:			;nivel del castillo donde está 0-6
-      18.  00:AB06  00                  			DB		0
-      19.  00:AB07                      prota_vidas:
-      20.  00:AB07  00                  			DB		0
-      21.  00:AB08                      prota_reliquias:
-      22.  00:AB08  03                  			DB		3
-      23.  00:AB09                      prota_pos_mapx:
-      24.  00:AB09  00                  			DB		0	;pos columna
-      25.  00:AB0A                      prota_pos_mapy:
-      26.  00:AB0A  00                  			DB		0	;pos fila
-      27.  00:AB0B                      prota_energia:
-      28.  00:AB0B  FA                  			DB		250
-      29.  00:AB0C                      
-      30.  00:AB0C                      ;array para pintar de golpe el marcador de vidas
-      31.  00:AB0C                      array_aux_vidas: 		
-      32.  00:AB0C                      			DB		0,0,0,0,0,0,0,0
-      32.  00:AB0C  00 00 00 00 00 00 00 00 
-      33.  00:AB14                      
-      34.  00:AB14                      ;array para pintar de golpe el marcador de reliquias
-      35.  00:AB14                      array_aux_reliquias:	
-      36.  00:AB14                      			DB		0,0,0,0,0,0,0,0
-      36.  00:AB14  00 00 00 00 00 00 00 00 
-      37.  00:AB1C                      
-      38.  00:AB1C                      array_aux_energia:					;array para pintar de golpe el marcador de energía
-      39.  00:AB1C                      			DB		16,0,0,0,0,0,0 	;el 16 primero es porque siempre estará pintado el cuadro primero rojo
-      39.  00:AB1C  10 00 00 00 00 00 00 
-      40.  00:AB23                      ultimo_pos_array_aux_energia:
-      41.  00:AB23  00                  			DB		0				;el array completo es de 8 pero para posicionar sin niecesidad de cálculos  etiqueto este aparte
-      42.  00:AB24                      			
-      43.  00:AB24                      array_aux_mapa_limpiar:	;es por facilitar el reseteo del mapa (pinto 7 lineas en negro con bios) la otra opción es más larga en código y complicada aunque más rápida
-      44.  00:AB24                      			DB		0,0,0,0,0,0,0
-      44.  00:AB24  00 00 00 00 00 00 00 
-      45.  00:AB2B                      elemento_pintar_mapa:
-      46.  00:AB2B  00                  			DB		0	;TILEPROTAM = 19, ;TILEGRISM = 9
-      47.  00:AB2C                      			
-      48.  00:AB2C                      ;; nota importante: cada vez que se cambie de nivel se actualizará el contenido
-      49.  00:AB2C                      
-      50.  00:AB2C                      
-      51.  00:AB2C                      
-      52.  00:AB2C  00 (7)              antorchas:			DS		ESTRUCTURA_ANTORCHA
-      53.  00:AB33  C5 C6 C7            array_antorcha:				DB	197,198,199	;fuego + madera1 + madera2
-      54.  00:AB36                      
-      55.  00:AB36  00 (7)              esqueletos:			DS		ESTRUCTURA_ESQUELETO
-      56.  00:AB3D                      array_esqueleto:			DB	194, 0, 195, 160, 164, 161, 0, 163, 0, 193, 162, 192
-      56.  00:AB3D  C2 00 C3 A0 A4 A1 00 A3 00 C1 A2 C0 
-      57.  00:AB49  A4 A5 A4 A6         lista_escenas_calavera:		DB	164, 165, 164, 166
-      58.  00:AB4D                      
-      59.  00:AB4D                      
-      60.  00:AB4D                      
-      61.  00:AB4D                      
-      62.  00:AB4D                      ;array de 4 bytes x 32 sprites posibles en pantalla que sobreescribirá la tabla de sprites actualizando VRAM
-      63.  00:AB4D                      array_sprites:
-      64.  00:AB4D  00 (8)              array_sprites_pm:				DS	2 * 4
-      65.  00:AB55  00 (120)            array_sprites_enem:				DS	30 * 4
-      66.  00:ABCD  00 (140)            lista_enemigos:					DS	10 * ESTRUCTURA_ENEMIGO
-      67.  00:AC59                      ; puntero al array a pintar en VRAM
-      68.  00:AC59  00 00               puntero_array_atrib_array_VRAM: DW	0	;ARRAYSPTRIES + 8
-      69.  00:AC5B                      
-      70.  00:AC5B                      
-      71.  00:AC5B                      
-      72.  00:AC5B                      
-      73.  00:AC5B                      
-     281   00:AC5B                      	
-     282   00:AC5B                      ;;=====================================================
-     283   00:AC5B                      ;;DEFINICIÓN DE PANTALLAS
-     284   00:AC5B                      ;;=====================================================		
-     285   00:AC5B                      	include "pantallas.asm"
-       1.  00:AC5B                      ;;=====================================================
-       2.  00:AC5B                      ;;DEFINICIÓN DE PANTALLAS
-       3.  00:AC5B                      ;;=====================================================		
-       4.  00:AC5B                      
-       5.  00:AC5B                      ; bancos 1 y 2 y de pantalla 1 
-       6.  00:AC5B                      ; se usa un banco común (en este caso el banco 1)
-       7.  00:AC5B                      ; el mapa afecta al banco 1 y 2
-       8.  00:AC5B  (022A)              tiles_patrones_nivel0:	incbin "pantallas/nivel0.bank1.til.bin.chr.plet5"
-       9.  00:AE85  (006B)              tiles_color_nivel0:		incbin "pantallas/nivel0.bank1.til.bin.clr.plet5"
-      10.  00:AEF0  (0035)              tiles_mapa_nivel0:		incbin "pantallas/nivel0.bank01.map.bin.plet5"
-      11.  00:AF25                      
-      12.  00:AF25  (01B5)              tiles_patrones_nivel1:	incbin "pantallas/nivel1.bank1.til.bin.chr.plet5"
-      13.  00:B0DA  (0047)              tiles_color_nivel1:		incbin "pantallas/nivel1.bank1.til.bin.clr.plet5"
-      14.  00:B121  (0035)              tiles_mapa_nivel1:		incbin "pantallas/nivel1.bank01.map.bin.plet5"
-      15.  00:B156                      
-      16.  00:B156  (01B5)              tiles_patrones_nivel2:	incbin "pantallas/nivel2.bank1.til.bin.chr.plet5"
-      17.  00:B30B  (0047)              tiles_color_nivel2:		incbin "pantallas/nivel2.bank1.til.bin.clr.plet5"
-      18.  00:B352  (0035)              tiles_mapa_nivel2:		incbin "pantallas/nivel2.bank01.map.bin.plet5"
-      19.  00:B387                      
-      20.  00:B387  (01B5)              tiles_patrones_nivel3:	incbin "pantallas/nivel3.bank1.til.bin.chr.plet5"
-      21.  00:B53C  (0047)              tiles_color_nivel3:		incbin "pantallas/nivel3.bank1.til.bin.clr.plet5"
-      22.  00:B583  (0035)              tiles_mapa_nivel3:		incbin "pantallas/nivel3.bank01.map.bin.plet5"
-      23.  00:B5B8                      
-      24.  00:B5B8  (01B5)              tiles_patrones_nivel4:	incbin "pantallas/nivel4.bank1.til.bin.chr.plet5"
-      25.  00:B76D  (0047)              tiles_color_nivel4:		incbin "pantallas/nivel4.bank1.til.bin.clr.plet5"
-      26.  00:B7B4  (0035)              tiles_mapa_nivel4:		incbin "pantallas/nivel4.bank01.map.bin.plet5"
-      27.  00:B7E9                      
-      28.  00:B7E9  (01B5)              tiles_patrones_nivel5:	incbin "pantallas/nivel5.bank1.til.bin.chr.plet5"
-      29.  00:B99E  (0047)              tiles_color_nivel5:		incbin "pantallas/nivel5.bank1.til.bin.clr.plet5"
-      30.  00:B9E5  (0035)              tiles_mapa_nivel5:		incbin "pantallas/nivel5.bank01.map.bin.plet5"
-      31.  00:BA1A                      
-      32.  00:BA1A  (01B5)              tiles_patrones_nivel6:	incbin "pantallas/nivel6.bank1.til.bin.chr.plet5"
-      33.  00:BBCF  (0047)              tiles_color_nivel6:		incbin "pantallas/nivel6.bank1.til.bin.clr.plet5"
-      34.  00:BC16  (0035)              tiles_mapa_nivel6:		incbin "pantallas/nivel6.bank01.map.bin.plet5"
-      35.  00:BC4B                      
-      36.  00:BC4B                      ; 3º banco que es la parte de puntos, vidas, mapas, etc... es común
-      37.  00:BC4B  (014C)              tiles_patrones_marcador:	incbin "pantallas/marcador.til.bin.chr.plet5"
-      38.  00:BD97  (0035)              tiles_color_marcador:		incbin "pantallas/marcador.til.bin.clr.plet5"
-      39.  00:BDCC  (0062)              tiles_mapa_marcador:		incbin "pantallas/marcador.map.bin.plet5"
-      40.  00:BE2E                      
-      41.  00:BE2E                      ;NOTA: FALTARÍAN PANTALLAS ESPECIALES (POR DEFINIR)
-      42.  00:BE2E                      ; INICIO
-      43.  00:BE2E                      ; GAME OVER
-      44.  00:BE2E                      ; HUIDA
-      45.  00:BE2E                      ; 2 FINAL BUENO
-      46.  00:BE2E                      ; 1 FINAL MALO
-     286   00:BE2E                      
-     287   00:BE2E                      END:
+      43.  00:A7DD  00 00               puntero_extras_habitacion_actual:	DW	0		;puntero a los extras de la habitación actual para poder modificarlo (para que no salgan extras)
+      44.  00:A7DF  00 00               puntero_habitacion_actual:			DW	0		;puntero a la habitación actual para poder modificarlo 
+      45.  00:A7E1                      
+      46.  00:A7E1                      
+      47.  00:A7E1                      habitaciones_juego:
+      48.  00:A7E1                      habitaciones_nivel0:
+      49.  00:A7E1                      			;0		0'		   1        1'         2         2'         3        3'        4         4'       5         5'        6         6'
+      50.  00:A7E1                      	db 00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00001010b,10000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,#00,#00 ;nivel 0 fila 1
+      50.  00:A7E1  00 00 00 00 00 00 0A 80 00 00 00 00 00 00 00 00 
+      51.  00:A7F1                      	db 00000000b,00000000b,00001100b,00000000b,00000101b,00000000b,00001111b,00000000b,00000101b,00000000b,00001001b,00000000b,00000000b,00000000b,#00,#00 
+      51.  00:A7F1  00 00 0C 00 05 00 0F 00 05 00 09 00 00 00 00 00 
+      52.  00:A801                      	db 00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,#00,#00 
+      52.  00:A801  00 00 0A 00 00 00 0A 00 00 00 0A 00 00 00 00 00 
+      53.  00:A811                      	db 00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,00000010b,00000000b,00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,#00,#00 
+      53.  00:A811  00 00 0A 00 00 00 02 00 00 00 0A 00 00 00 00 00 
+      54.  00:A821                      	db 00000000b,00000000b,00001110b,10000000b,00000001b,00000000b,00000000b,00000000b,00000100b,00000000b,00001011b,00000000b,00000000b,00000000b,#00,#00 
+      54.  00:A821  00 00 0E 80 01 00 00 00 04 00 0B 00 00 00 00 00 
+      55.  00:A831                      	db 00000000b,00000000b,00000110b,00000000b,00000101b,00000000b,00001101b,00000000b,00000101b,00000000b,00000011b,00000000b,00000000b,00000000b,#00,#00 
+      55.  00:A831  00 00 06 00 05 00 0D 00 05 00 03 00 00 00 00 00 
+      56.  00:A841                      	db 00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,#00,#00 ;nivel 0 fila 7
+      56.  00:A841  00 00 00 00 00 00 0A 00 00 00 00 00 00 00 00 00 
+      57.  00:A851                      	
+      58.  00:A851                      habitaciones_nivel1:
+      59.  00:A851                      	db  00000000b,#C0,00000000b,#C0,00000000b,#00,00011010b,#00,00010000b,#C0,00000000b,#C0,00000000b,#C0,#00,#00 	;primera fila
+      59.  00:A851  00 C0 00 C0 00 00 1A 00 10 C0 00 C0 00 C0 00 00 
+      60.  00:A861                      	db  00000000b,#C0,00011100b,#C0,00011101b,#00,00011111b,#00,00011101b,#C0,00011001b,#C0,00000000b,#C0,#00,#00
+      60.  00:A861  00 C0 1C C0 1D 00 1F 00 1D C0 19 C0 00 C0 00 00 
+      61.  00:A871                      	db  00000000b,#C0,00011110b,#C0,00011111b,#00,00011111b,#00,00011111b,#C0,00011011b,#C0,00000000b,#C0,#00,#00
+      61.  00:A871  00 C0 1E C0 1F 00 1F 00 1F C0 1B C0 00 C0 00 00 
+      62.  00:A881                      	db  00000000b,#C0,00011010b,#C0,00011010b,#00,00010010b,#00,00011010b,#C0,00011010b,#C0,00000000b,#C0,#00,#00
+      62.  00:A881  00 C0 1A C0 1A 00 12 00 1A C0 1A C0 00 C0 00 00 
+      63.  00:A891                      	db  00000000b,#C0,00011010b,#C0,00011110b,#C0,00010101b,#C0,00011011b,#C0,00011010b,#C0,00000000b,#C0,#00,#00
+      63.  00:A891  00 C0 1A C0 1E C0 15 C0 1B C0 1A C0 00 C0 00 00 
+      64.  00:A8A1                      	db  00000000b,#C0,00010110b,#C0,00010111b,#C0,00011101b,#C0,00010111b,#C0,00010011b,#C0,00000000b,#C0,#00,#00
+      64.  00:A8A1  00 C0 16 C0 17 C0 1D C0 17 C0 13 C0 00 C0 00 00 
+      65.  00:A8B1                      	db  00000000b,#C0,00000000b,#C0,00000000b,#C0,00011010b,#C0,00011000b,#C0,00000000b,#C0,00000000b,#C0,#00,#00	;última fila
+      65.  00:A8B1  00 C0 00 C0 00 C0 1A C0 18 C0 00 C0 00 C0 00 00 
+      66.  00:A8C1                      	
+      67.  00:A8C1                      habitaciones_nivel2:
+      68.  00:A8C1                      	db  00000000b,#C0,00000000b,#C0,00000000b,#00,00011010b,#00,00010000b,#C0,00000000b,#C0,00000000b,#C0,#00,#00 	;primera fila
+      68.  00:A8C1  00 C0 00 C0 00 00 1A 00 10 C0 00 C0 00 C0 00 00 
+      69.  00:A8D1                      	db  00000000b,#C0,00011100b,#C0,00011101b,#00,00011111b,#00,00011101b,#C0,00011001b,#C0,00000000b,#C0,#00,#00
+      69.  00:A8D1  00 C0 1C C0 1D 00 1F 00 1D C0 19 C0 00 C0 00 00 
+      70.  00:A8E1                      	db  00000000b,#C0,00011110b,#C0,00011111b,#00,00011111b,#00,00011111b,#C0,00011011b,#C0,00000000b,#C0,#00,#00
+      70.  00:A8E1  00 C0 1E C0 1F 00 1F 00 1F C0 1B C0 00 C0 00 00 
+      71.  00:A8F1                      	db  00000000b,#C0,00011010b,#C0,00011010b,#00,00010010b,#00,00011010b,#C0,00011010b,#C0,00000000b,#C0,#00,#00
+      71.  00:A8F1  00 C0 1A C0 1A 00 12 00 1A C0 1A C0 00 C0 00 00 
+      72.  00:A901                      	db  00000000b,#C0,00011010b,#C0,00011110b,#C0,00010101b,#C0,00011011b,#C0,00011010b,#C0,00000000b,#C0,#00,#00
+      72.  00:A901  00 C0 1A C0 1E C0 15 C0 1B C0 1A C0 00 C0 00 00 
+      73.  00:A911                      	db  00000000b,#C0,00010110b,#C0,00010111b,#C0,00011101b,#C0,00010111b,#C0,00010011b,#C0,00000000b,#C0,#00,#00
+      73.  00:A911  00 C0 16 C0 17 C0 1D C0 17 C0 13 C0 00 C0 00 00 
+      74.  00:A921                      	db  00000000b,#C0,00000000b,#C0,00000000b,#C0,00011010b,#C0,00011000b,#C0,00000000b,#C0,00000000b,#C0,#00,#00	;última fila
+      74.  00:A921  00 C0 00 C0 00 C0 1A C0 18 C0 00 C0 00 C0 00 00 
+      75.  00:A931                      	
+      76.  00:A931                      habitaciones_nivel3:
+      77.  00:A931                      	db  00000000b,#C0,00000000b,#C0,00000000b,#00,00011010b,#00,00010000b,#C0,00000000b,#C0,00000000b,#C0,#00,#00 	;primera fila
+      77.  00:A931  00 C0 00 C0 00 00 1A 00 10 C0 00 C0 00 C0 00 00 
+      78.  00:A941                      	db  00000000b,#C0,00011100b,#C0,00011101b,#00,00011111b,#00,00011101b,#C0,00011001b,#C0,00000000b,#C0,#00,#00
+      78.  00:A941  00 C0 1C C0 1D 00 1F 00 1D C0 19 C0 00 C0 00 00 
+      79.  00:A951                      	db  00000000b,#C0,00011110b,#C0,00011111b,#00,00011111b,#00,00011111b,#C0,00011011b,#C0,00000000b,#C0,#00,#00
+      79.  00:A951  00 C0 1E C0 1F 00 1F 00 1F C0 1B C0 00 C0 00 00 
+      80.  00:A961                      	db  00000000b,#C0,00011010b,#C0,00011010b,#00,00010010b,#00,00011010b,#C0,00011010b,#C0,00000000b,#C0,#00,#00
+      80.  00:A961  00 C0 1A C0 1A 00 12 00 1A C0 1A C0 00 C0 00 00 
+      81.  00:A971                      	db  00000000b,#C0,00011010b,#C0,00011110b,#C0,00010101b,#C0,00011011b,#C0,00011010b,#C0,00000000b,#C0,#00,#00
+      81.  00:A971  00 C0 1A C0 1E C0 15 C0 1B C0 1A C0 00 C0 00 00 
+      82.  00:A981                      	db  00000000b,#C0,00010110b,#C0,00010111b,#C0,00011101b,#C0,00010111b,#C0,00010011b,#C0,00000000b,#C0,#00,#00
+      82.  00:A981  00 C0 16 C0 17 C0 1D C0 17 C0 13 C0 00 C0 00 00 
+      83.  00:A991                      	db  00000000b,#C0,00000000b,#C0,00000000b,#C0,00011010b,#C0,00011000b,#C0,00000000b,#C0,00000000b,#C0,#00,#00	;última fila
+      83.  00:A991  00 C0 00 C0 00 C0 1A C0 18 C0 00 C0 00 C0 00 00 
+      84.  00:A9A1                      	
+      85.  00:A9A1                      habitaciones_nivel4:
+      86.  00:A9A1                      	db  00000000b,#C0,00000000b,#C0,00000000b,#00,00011010b,#00,00010000b,#C0,00000000b,#C0,00000000b,#C0,#00,#00 	;primera fila
+      86.  00:A9A1  00 C0 00 C0 00 00 1A 00 10 C0 00 C0 00 C0 00 00 
+      87.  00:A9B1                      	db  00000000b,#C0,00011100b,#C0,00011101b,#00,00011111b,#00,00011101b,#C0,00011001b,#C0,00000000b,#C0,#00,#00
+      87.  00:A9B1  00 C0 1C C0 1D 00 1F 00 1D C0 19 C0 00 C0 00 00 
+      88.  00:A9C1                      	db  00000000b,#C0,00011110b,#C0,00011111b,#00,00011111b,#00,00011111b,#C0,00011011b,#C0,00000000b,#C0,#00,#00
+      88.  00:A9C1  00 C0 1E C0 1F 00 1F 00 1F C0 1B C0 00 C0 00 00 
+      89.  00:A9D1                      	db  00000000b,#C0,00011010b,#C0,00011010b,#00,00010010b,#00,00011010b,#C0,00011010b,#C0,00000000b,#C0,#00,#00
+      89.  00:A9D1  00 C0 1A C0 1A 00 12 00 1A C0 1A C0 00 C0 00 00 
+      90.  00:A9E1                      	db  00000000b,#C0,00011010b,#C0,00011110b,#C0,00010101b,#C0,00011011b,#C0,00011010b,#C0,00000000b,#C0,#00,#00
+      90.  00:A9E1  00 C0 1A C0 1E C0 15 C0 1B C0 1A C0 00 C0 00 00 
+      91.  00:A9F1                      	db  00000000b,#C0,00010110b,#C0,00010111b,#C0,00011101b,#C0,00010111b,#C0,00010011b,#C0,00000000b,#C0,#00,#00
+      91.  00:A9F1  00 C0 16 C0 17 C0 1D C0 17 C0 13 C0 00 C0 00 00 
+      92.  00:AA01                      	db  00000000b,#C0,00000000b,#C0,00000000b,#C0,00011010b,#C0,00011000b,#C0,00000000b,#C0,00000000b,#C0,#00,#00	;última fila
+      92.  00:AA01  00 C0 00 C0 00 C0 1A C0 18 C0 00 C0 00 C0 00 00 
+      93.  00:AA11                      	
+      94.  00:AA11                      habitaciones_nivel5:
+      95.  00:AA11                      	db  00000000b,#C0,00000000b,#C0,00000000b,#00,00011010b,#00,00010000b,#C0,00000000b,#C0,00000000b,#C0,#00,#00 	;primera fila
+      95.  00:AA11  00 C0 00 C0 00 00 1A 00 10 C0 00 C0 00 C0 00 00 
+      96.  00:AA21                      	db  00000000b,#C0,00011100b,#C0,00011101b,#00,00011111b,#00,00011101b,#C0,00011001b,#C0,00000000b,#C0,#00,#00
+      96.  00:AA21  00 C0 1C C0 1D 00 1F 00 1D C0 19 C0 00 C0 00 00 
+      97.  00:AA31                      	db  00000000b,#C0,00011110b,#C0,00011111b,#00,00011111b,#00,00011111b,#C0,00011011b,#C0,00000000b,#C0,#00,#00
+      97.  00:AA31  00 C0 1E C0 1F 00 1F 00 1F C0 1B C0 00 C0 00 00 
+      98.  00:AA41                      	db  00000000b,#C0,00011010b,#C0,00011010b,#00,00010010b,#00,00011010b,#C0,00011010b,#C0,00000000b,#C0,#00,#00
+      98.  00:AA41  00 C0 1A C0 1A 00 12 00 1A C0 1A C0 00 C0 00 00 
+      99.  00:AA51                      	db  00000000b,#C0,00011010b,#C0,00011110b,#C0,00010101b,#C0,00011011b,#C0,00011010b,#C0,00000000b,#C0,#00,#00
+      99.  00:AA51  00 C0 1A C0 1E C0 15 C0 1B C0 1A C0 00 C0 00 00 
+     100.  00:AA61                      	db  00000000b,#C0,00010110b,#C0,00010111b,#C0,00011101b,#C0,00010111b,#C0,00010011b,#C0,00000000b,#C0,#00,#00
+     100.  00:AA61  00 C0 16 C0 17 C0 1D C0 17 C0 13 C0 00 C0 00 00 
+     101.  00:AA71                      	db  00000000b,#C0,00000000b,#C0,00000000b,#C0,00011010b,#C0,00011000b,#C0,00000000b,#C0,00000000b,#C0,#00,#00	;última fila
+     101.  00:AA71  00 C0 00 C0 00 C0 1A C0 18 C0 00 C0 00 C0 00 00 
+     102.  00:AA81                      	
+     103.  00:AA81                      habitaciones_nivel6:
+     104.  00:AA81                      	db  00000000b,#C0,00000000b,#C0,00000000b,#00,00011010b,#00,00010000b,#C0,00000000b,#C0,00000000b,#C0,#00,#00 	;primera fila
+     104.  00:AA81  00 C0 00 C0 00 00 1A 00 10 C0 00 C0 00 C0 00 00 
+     105.  00:AA91                      	db  00000000b,#C0,00011100b,#C0,00011101b,#00,00011111b,#00,00011101b,#C0,00011001b,#C0,00000000b,#C0,#00,#00
+     105.  00:AA91  00 C0 1C C0 1D 00 1F 00 1D C0 19 C0 00 C0 00 00 
+     106.  00:AAA1                      	db  00000000b,#C0,00011110b,#C0,00011111b,#00,00011111b,#00,00011111b,#C0,00011011b,#C0,00000000b,#C0,#00,#00
+     106.  00:AAA1  00 C0 1E C0 1F 00 1F 00 1F C0 1B C0 00 C0 00 00 
+     107.  00:AAB1                      	db  00000000b,#C0,00011010b,#C0,00011010b,#00,00010010b,#00,00011010b,#C0,00011010b,#C0,00000000b,#C0,#00,#00
+     107.  00:AAB1  00 C0 1A C0 1A 00 12 00 1A C0 1A C0 00 C0 00 00 
+     108.  00:AAC1                      	db  00000000b,#C0,00011010b,#C0,00011110b,#C0,00010101b,#C0,00011011b,#C0,00011010b,#C0,00000000b,#C0,#00,#00
+     108.  00:AAC1  00 C0 1A C0 1E C0 15 C0 1B C0 1A C0 00 C0 00 00 
+     109.  00:AAD1                      	db  00000000b,#C0,00010110b,#C0,00010111b,#C0,00011101b,#C0,00010111b,#C0,00010011b,#C0,00000000b,#C0,#00,#00
+     109.  00:AAD1  00 C0 16 C0 17 C0 1D C0 17 C0 13 C0 00 C0 00 00 
+     110.  00:AAE1                      	db  00000000b,#C0,00000000b,#C0,00000000b,#C0,00011010b,#C0,00011000b,#C0,00000000b,#C0,00000000b,#C0,#00,#00	;última fila
+     110.  00:AAE1  00 C0 00 C0 00 C0 1A C0 18 C0 00 C0 00 C0 00 00 
+     111.  00:AAF1                      
+     112.  00:AAF1                      
+     279   00:AAF1                      	
+     280   00:AAF1                      	include "variables.asm"
+       1.  00:AAF1                      ;;=====================================================
+       2.  00:AAF1                      ;;DEFINICIÓN DE VARIABLES
+       3.  00:AAF1                      ;;=====================================================
+       4.  00:AAF1                      
+       5.  00:AAF1                      ;Colores base de la pantalla
+       6.  00:AAF1                      color_base:
+       7.  00:AAF1  01 01 01            			DB		COLNEGRO,COLNEGRO,COLNEGRO	
+       8.  00:AAF4                      ;colores de pantalla cuando se tira bomba
+       9.  00:AAF4                      color_bomba1:
+      10.  00:AAF4  08 08 08            			DB		COLROJO,COLROJO,COLROJO
+      11.  00:AAF7                      color_bomba2:
+      12.  00:AAF7  06 06 06            			DB		COLROJOOSC,COLROJOOSC,COLROJOOSC
+      13.  00:AAFA                      
+      14.  00:AAFA                      ;definicion de variable del prota usando la estructura del punto de mira
+      15.  00:AAFA                      prota:		ESTRUCTURA_PUNTOMIRA
+      15.  00:AAFA  78 6C 00 00 00 05 00 00 00 00 00 00 00 00 00 00 
+      16.  00:AB0A                      ;variables globales del prota
+      17.  00:AB0A                      prota_nivel:			;nivel del castillo donde está 0-6
+      18.  00:AB0A  00                  			DB		0
+      19.  00:AB0B                      prota_vidas:
+      20.  00:AB0B  00                  			DB		0
+      21.  00:AB0C                      prota_reliquias:
+      22.  00:AB0C  03                  			DB		3
+      23.  00:AB0D                      prota_pos_mapx:
+      24.  00:AB0D  00                  			DB		0	;pos columna
+      25.  00:AB0E                      prota_pos_mapy:
+      26.  00:AB0E  00                  			DB		0	;pos fila
+      27.  00:AB0F                      prota_energia:
+      28.  00:AB0F  FA                  			DB		250
+      29.  00:AB10                      
+      30.  00:AB10                      ;array para pintar de golpe el marcador de vidas
+      31.  00:AB10                      array_aux_vidas: 		
+      32.  00:AB10                      			DB		0,0,0,0,0,0,0,0
+      32.  00:AB10  00 00 00 00 00 00 00 00 
+      33.  00:AB18                      
+      34.  00:AB18                      ;array para pintar de golpe el marcador de reliquias
+      35.  00:AB18                      array_aux_reliquias:	
+      36.  00:AB18                      			DB		0,0,0,0,0,0,0,0
+      36.  00:AB18  00 00 00 00 00 00 00 00 
+      37.  00:AB20                      
+      38.  00:AB20                      array_aux_energia:					;array para pintar de golpe el marcador de energía
+      39.  00:AB20                      			DB		16,0,0,0,0,0,0 	;el 16 primero es porque siempre estará pintado el cuadro primero rojo
+      39.  00:AB20  10 00 00 00 00 00 00 
+      40.  00:AB27                      ultimo_pos_array_aux_energia:
+      41.  00:AB27  00                  			DB		0				;el array completo es de 8 pero para posicionar sin niecesidad de cálculos  etiqueto este aparte
+      42.  00:AB28                      			
+      43.  00:AB28                      array_aux_mapa_limpiar:	;es por facilitar el reseteo del mapa (pinto 7 lineas en negro con bios) la otra opción es más larga en código y complicada aunque más rápida
+      44.  00:AB28                      			DB		0,0,0,0,0,0,0
+      44.  00:AB28  00 00 00 00 00 00 00 
+      45.  00:AB2F                      elemento_pintar_mapa:
+      46.  00:AB2F  00                  			DB		0	;TILEPROTAM = 19, ;TILEGRISM = 9
+      47.  00:AB30                      			
+      48.  00:AB30                      ;; nota importante: cada vez que se cambie de nivel se actualizará el contenido
+      49.  00:AB30                      
+      50.  00:AB30                      
+      51.  00:AB30                      
+      52.  00:AB30  00 (7)              antorchas:			DS		ESTRUCTURA_ANTORCHA
+      53.  00:AB37  C5 C6 C7            array_antorcha:				DB	197,198,199	;fuego + madera1 + madera2
+      54.  00:AB3A                      
+      55.  00:AB3A  00 (7)              esqueletos:			DS		ESTRUCTURA_ESQUELETO
+      56.  00:AB41                      array_esqueleto:			DB	194, 0, 195, 160, 164, 161, 0, 163, 0, 193, 162, 192
+      56.  00:AB41  C2 00 C3 A0 A4 A1 00 A3 00 C1 A2 C0 
+      57.  00:AB4D  A4 A5 A4 A6         lista_escenas_calavera:		DB	164, 165, 164, 166
+      58.  00:AB51                      
+      59.  00:AB51                      
+      60.  00:AB51                      
+      61.  00:AB51                      
+      62.  00:AB51                      ;array de 4 bytes x 32 sprites posibles en pantalla que sobreescribirá la tabla de sprites actualizando VRAM
+      63.  00:AB51                      array_sprites:
+      64.  00:AB51  00 (8)              array_sprites_pm:				DS	2 * 4
+      65.  00:AB59  00 (120)            array_sprites_enem:				DS	30 * 4
+      66.  00:ABD1  00 (140)            lista_enemigos:					DS	10 * ESTRUCTURA_ENEMIGO
+      67.  00:AC5D                      ; puntero al array a pintar en VRAM
+      68.  00:AC5D  00 00               puntero_array_atrib_array_VRAM: DW	0	;ARRAYSPTRIES + 8
+      69.  00:AC5F                      
+      70.  00:AC5F                      
+      71.  00:AC5F                      
+      72.  00:AC5F                      
+      73.  00:AC5F                      
+     281   00:AC5F                      	
+     282   00:AC5F                      ;;=====================================================
+     283   00:AC5F                      ;;DEFINICIÓN DE PANTALLAS
+     284   00:AC5F                      ;;=====================================================		
+     285   00:AC5F                      	include "pantallas.asm"
+       1.  00:AC5F                      ;;=====================================================
+       2.  00:AC5F                      ;;DEFINICIÓN DE PANTALLAS
+       3.  00:AC5F                      ;;=====================================================		
+       4.  00:AC5F                      
+       5.  00:AC5F                      ; bancos 1 y 2 y de pantalla 1 
+       6.  00:AC5F                      ; se usa un banco común (en este caso el banco 1)
+       7.  00:AC5F                      ; el mapa afecta al banco 1 y 2
+       8.  00:AC5F  (022A)              tiles_patrones_nivel0:	incbin "pantallas/nivel0.bank1.til.bin.chr.plet5"
+       9.  00:AE89  (006B)              tiles_color_nivel0:		incbin "pantallas/nivel0.bank1.til.bin.clr.plet5"
+      10.  00:AEF4  (0035)              tiles_mapa_nivel0:		incbin "pantallas/nivel0.bank01.map.bin.plet5"
+      11.  00:AF29                      
+      12.  00:AF29  (01B5)              tiles_patrones_nivel1:	incbin "pantallas/nivel1.bank1.til.bin.chr.plet5"
+      13.  00:B0DE  (0047)              tiles_color_nivel1:		incbin "pantallas/nivel1.bank1.til.bin.clr.plet5"
+      14.  00:B125  (0035)              tiles_mapa_nivel1:		incbin "pantallas/nivel1.bank01.map.bin.plet5"
+      15.  00:B15A                      
+      16.  00:B15A  (01B5)              tiles_patrones_nivel2:	incbin "pantallas/nivel2.bank1.til.bin.chr.plet5"
+      17.  00:B30F  (0047)              tiles_color_nivel2:		incbin "pantallas/nivel2.bank1.til.bin.clr.plet5"
+      18.  00:B356  (0035)              tiles_mapa_nivel2:		incbin "pantallas/nivel2.bank01.map.bin.plet5"
+      19.  00:B38B                      
+      20.  00:B38B  (01B5)              tiles_patrones_nivel3:	incbin "pantallas/nivel3.bank1.til.bin.chr.plet5"
+      21.  00:B540  (0047)              tiles_color_nivel3:		incbin "pantallas/nivel3.bank1.til.bin.clr.plet5"
+      22.  00:B587  (0035)              tiles_mapa_nivel3:		incbin "pantallas/nivel3.bank01.map.bin.plet5"
+      23.  00:B5BC                      
+      24.  00:B5BC  (01B5)              tiles_patrones_nivel4:	incbin "pantallas/nivel4.bank1.til.bin.chr.plet5"
+      25.  00:B771  (0047)              tiles_color_nivel4:		incbin "pantallas/nivel4.bank1.til.bin.clr.plet5"
+      26.  00:B7B8  (0035)              tiles_mapa_nivel4:		incbin "pantallas/nivel4.bank01.map.bin.plet5"
+      27.  00:B7ED                      
+      28.  00:B7ED  (01B5)              tiles_patrones_nivel5:	incbin "pantallas/nivel5.bank1.til.bin.chr.plet5"
+      29.  00:B9A2  (0047)              tiles_color_nivel5:		incbin "pantallas/nivel5.bank1.til.bin.clr.plet5"
+      30.  00:B9E9  (0035)              tiles_mapa_nivel5:		incbin "pantallas/nivel5.bank01.map.bin.plet5"
+      31.  00:BA1E                      
+      32.  00:BA1E  (01B5)              tiles_patrones_nivel6:	incbin "pantallas/nivel6.bank1.til.bin.chr.plet5"
+      33.  00:BBD3  (0047)              tiles_color_nivel6:		incbin "pantallas/nivel6.bank1.til.bin.clr.plet5"
+      34.  00:BC1A  (0035)              tiles_mapa_nivel6:		incbin "pantallas/nivel6.bank01.map.bin.plet5"
+      35.  00:BC4F                      
+      36.  00:BC4F                      ; 3º banco que es la parte de puntos, vidas, mapas, etc... es común
+      37.  00:BC4F  (014C)              tiles_patrones_marcador:	incbin "pantallas/marcador.til.bin.chr.plet5"
+      38.  00:BD9B  (0035)              tiles_color_marcador:		incbin "pantallas/marcador.til.bin.clr.plet5"
+      39.  00:BDD0  (0062)              tiles_mapa_marcador:		incbin "pantallas/marcador.map.bin.plet5"
+      40.  00:BE32                      
+      41.  00:BE32                      ;NOTA: FALTARÍAN PANTALLAS ESPECIALES (POR DEFINIR)
+      42.  00:BE32                      ; INICIO
+      43.  00:BE32                      ; GAME OVER
+      44.  00:BE32                      ; HUIDA
+      45.  00:BE32                      ; 2 FINAL BUENO
+      46.  00:BE32                      ; 1 FINAL MALO
+     286   00:BE32                      
+     287   00:BE32                      END:
 
     LABELS
 -------------------------------------------------
@@ -6813,57 +6762,55 @@ Errors: 0
 00:00009C53   sfx_bank
 00:00009C9E   hay_ayudas_en_pantalla
 00:00009C9F   puntero_ayuda_actual
-00:00009CA1   puntero_extras_habitacion_actual
-00:00009CA3 X puntero_habitacion_actual
-00:00009CA5 X array_ayudas
-00:00009CA5   array_oracionon
-00:00009CA7 X array_oracionon1
-00:00009CA9   array_oracionoff
-00:00009CAB X array_oracionoff1
-00:00009CAD X array_cruzon
-00:00009CAF X array_cruzon1
-00:00009CB1 X array_cruzoff
-00:00009CB3 X array_cruzoff1
-00:00009CB5 X array_aguaon
-00:00009CB7 X array_aguaon1
-00:00009CB9 X array_aguaoff
-00:00009CBB X array_aguaoff1
-00:00009CBD X array_armaduraon
-00:00009CBF X array_armaduraon1
-00:00009CC1 X array_armaduraoff
-00:00009CC3 X array_armaduraoff1
-00:00009CC5 X array_plantaon
-00:00009CC7 X array_plantaon1
-00:00009CC9 X array_plantaoff
-00:00009CCB X array_plantaoff1
-00:00009CCD X array_extraon
-00:00009CCF X array_extraon1
-00:00009CD1 X array_extraoff
-00:00009CD3 X array_extraoff1
-00:00009CD5 X array_ballestaon
-00:00009CD7 X array_ballestaon1
-00:00009CD9 X array_ballestaoff
-00:00009CDB X array_ballestaoff1
-00:00009CDD X lista_ayudas
-00:00009CDD   ayuda_oracion
-00:00009CEC   datos_oracion
-00:00009CFB   inicializa_ayudas
-00:00009D04 X fin_inicializa_ayudas
-00:00009D05   carga_datos_ayuda
-00:00009D0A X fin_carga_datos_ayuda
-00:00009D0B   pinta_obj_ayuda
-00:00009D0F X pinta_obj_ayuda.dibujoon
-00:00009D1B   pinta_obj_ayuda.dibujooff
-00:00009D24   pinta_obj_ayuda.param_wordaux2
-00:00009D2D X pinta_obj_ayuda.filasycols
-00:00009D38 X fin_pinta_obj_ayuda
-00:00009D38   pinta_ayudas_habitacion
-00:00009D3D   pinta_ayudas_habitacion.examina_oracion
-00:00009D55 X pinta_ayudas_habitacion.fin_examina_oracion
-00:00009D55 X fin_pinta_ayudas_habitacion
-00:00009D56   accion_oracion
-00:00009D5E X accion_oracion.pone_maximo
-00:00009D60   accion_oracion.fin_suma
+00:00009CA1 X array_ayudas
+00:00009CA1   array_oracionon
+00:00009CA3 X array_oracionon1
+00:00009CA5   array_oracionoff
+00:00009CA7 X array_oracionoff1
+00:00009CA9 X array_cruzon
+00:00009CAB X array_cruzon1
+00:00009CAD X array_cruzoff
+00:00009CAF X array_cruzoff1
+00:00009CB1 X array_aguaon
+00:00009CB3 X array_aguaon1
+00:00009CB5 X array_aguaoff
+00:00009CB7 X array_aguaoff1
+00:00009CB9 X array_armaduraon
+00:00009CBB X array_armaduraon1
+00:00009CBD X array_armaduraoff
+00:00009CBF X array_armaduraoff1
+00:00009CC1 X array_plantaon
+00:00009CC3 X array_plantaon1
+00:00009CC5 X array_plantaoff
+00:00009CC7 X array_plantaoff1
+00:00009CC9 X array_extraon
+00:00009CCB X array_extraon1
+00:00009CCD X array_extraoff
+00:00009CCF X array_extraoff1
+00:00009CD1 X array_ballestaon
+00:00009CD3 X array_ballestaon1
+00:00009CD5 X array_ballestaoff
+00:00009CD7 X array_ballestaoff1
+00:00009CD9 X lista_ayudas
+00:00009CD9   ayuda_oracion
+00:00009CE8   datos_oracion
+00:00009CF7   inicializa_ayudas
+00:00009D00 X fin_inicializa_ayudas
+00:00009D01   carga_datos_ayuda
+00:00009D06 X fin_carga_datos_ayuda
+00:00009D07   pinta_obj_ayuda
+00:00009D0B X pinta_obj_ayuda.dibujoon
+00:00009D17   pinta_obj_ayuda.dibujooff
+00:00009D20   pinta_obj_ayuda.param_wordaux2
+00:00009D29 X pinta_obj_ayuda.filasycols
+00:00009D34 X fin_pinta_obj_ayuda
+00:00009D34   pinta_ayudas_habitacion
+00:00009D39 X pinta_ayudas_habitacion.examina_oracion
+00:00009D51   pinta_ayudas_habitacion.fin_examina_oracion
+00:00009D51 X fin_pinta_ayudas_habitacion
+00:00009D52   accion_oracion
+00:00009D5A X accion_oracion.pone_maximo
+00:00009D5C   accion_oracion.fin_suma
 00:00009D78 X fin_accion_oracion
 00:00009D78   depack_VRAM
 00:00009DA5   literal
@@ -7032,83 +6979,85 @@ Errors: 0
 00:0000A7B8 X sprite_manoder3
 00:0000A7D8   habitacion_actual
 00:0000A7D9   habitacion_extras
-00:0000A7DA   habitacion_actual_puntero
+00:0000A7DA X habitacion_actual_puntero
 00:0000A7DC   is_habitacion_terminada
-00:0000A7DD   habitaciones_juego
-00:0000A7DD   habitaciones_nivel0
-00:0000A84D   habitaciones_nivel1
-00:0000A8BD   habitaciones_nivel2
-00:0000A92D   habitaciones_nivel3
-00:0000A99D   habitaciones_nivel4
-00:0000AA0D   habitaciones_nivel5
-00:0000AA7D X habitaciones_nivel6
-00:0000AAED   color_base
-00:0000AAF0   color_bomba1
-00:0000AAF3   color_bomba2
-00:0000AAF6   prota
-00:0000AAF6   prota.posx
-00:0000AAF7   prota.posy
-00:0000AAF8   prota.escena
-00:0000AAF9 X prota.velocidad
-00:0000AAFA X prota.boton2_pressed
-00:0000AAFB   prota.cadencia
-00:0000AAFC X prota.pm_aux1
-00:0000AAFD X prota.pm_aux2
-00:0000AAFE X prota.pm_aux3
-00:0000AAFF X prota.pm_aux4
-00:0000AB00 X prota.pm_aux5
-00:0000AB01 X prota.pm_aux6
-00:0000AB02 X prota.pm_aux7
-00:0000AB03 X prota.pm_aux8
-00:0000AB04 X prota.pm_aux9
-00:0000AB05 X prota.pm_aux10
-00:0000AB06   prota_nivel
-00:0000AB07   prota_vidas
-00:0000AB08   prota_reliquias
-00:0000AB09   prota_pos_mapx
-00:0000AB0A   prota_pos_mapy
-00:0000AB0B   prota_energia
-00:0000AB0C   array_aux_vidas
-00:0000AB14   array_aux_reliquias
-00:0000AB1C   array_aux_energia
-00:0000AB23   ultimo_pos_array_aux_energia
-00:0000AB24   array_aux_mapa_limpiar
-00:0000AB2B   elemento_pintar_mapa
-00:0000AB2C   antorchas
-00:0000AB33   array_antorcha
-00:0000AB36   esqueletos
-00:0000AB3D   array_esqueleto
-00:0000AB49   lista_escenas_calavera
-00:0000AB4D   array_sprites
-00:0000AB4D   array_sprites_pm
-00:0000AB55 X array_sprites_enem
-00:0000ABCD X lista_enemigos
-00:0000AC59 X puntero_array_atrib_array_VRAM
-00:0000AC5B   tiles_patrones_nivel0
-00:0000AE85   tiles_color_nivel0
-00:0000AEF0   tiles_mapa_nivel0
-00:0000AF25   tiles_patrones_nivel1
-00:0000B0DA   tiles_color_nivel1
-00:0000B121   tiles_mapa_nivel1
-00:0000B156   tiles_patrones_nivel2
-00:0000B30B   tiles_color_nivel2
-00:0000B352   tiles_mapa_nivel2
-00:0000B387   tiles_patrones_nivel3
-00:0000B53C   tiles_color_nivel3
-00:0000B583   tiles_mapa_nivel3
-00:0000B5B8   tiles_patrones_nivel4
-00:0000B76D   tiles_color_nivel4
-00:0000B7B4   tiles_mapa_nivel4
-00:0000B7E9   tiles_patrones_nivel5
-00:0000B99E   tiles_color_nivel5
-00:0000B9E5   tiles_mapa_nivel5
-00:0000BA1A   tiles_patrones_nivel6
-00:0000BBCF   tiles_color_nivel6
-00:0000BC16   tiles_mapa_nivel6
-00:0000BC4B   tiles_patrones_marcador
-00:0000BD97   tiles_color_marcador
-00:0000BDCC   tiles_mapa_marcador
-00:0000BE2E   END
+00:0000A7DD   puntero_extras_habitacion_actual
+00:0000A7DF   puntero_habitacion_actual
+00:0000A7E1   habitaciones_juego
+00:0000A7E1   habitaciones_nivel0
+00:0000A851   habitaciones_nivel1
+00:0000A8C1   habitaciones_nivel2
+00:0000A931   habitaciones_nivel3
+00:0000A9A1   habitaciones_nivel4
+00:0000AA11   habitaciones_nivel5
+00:0000AA81 X habitaciones_nivel6
+00:0000AAF1   color_base
+00:0000AAF4   color_bomba1
+00:0000AAF7   color_bomba2
+00:0000AAFA   prota
+00:0000AAFA   prota.posx
+00:0000AAFB   prota.posy
+00:0000AAFC   prota.escena
+00:0000AAFD X prota.velocidad
+00:0000AAFE X prota.boton2_pressed
+00:0000AAFF   prota.cadencia
+00:0000AB00 X prota.pm_aux1
+00:0000AB01 X prota.pm_aux2
+00:0000AB02 X prota.pm_aux3
+00:0000AB03 X prota.pm_aux4
+00:0000AB04 X prota.pm_aux5
+00:0000AB05 X prota.pm_aux6
+00:0000AB06 X prota.pm_aux7
+00:0000AB07 X prota.pm_aux8
+00:0000AB08 X prota.pm_aux9
+00:0000AB09 X prota.pm_aux10
+00:0000AB0A   prota_nivel
+00:0000AB0B   prota_vidas
+00:0000AB0C   prota_reliquias
+00:0000AB0D   prota_pos_mapx
+00:0000AB0E   prota_pos_mapy
+00:0000AB0F   prota_energia
+00:0000AB10   array_aux_vidas
+00:0000AB18   array_aux_reliquias
+00:0000AB20   array_aux_energia
+00:0000AB27   ultimo_pos_array_aux_energia
+00:0000AB28   array_aux_mapa_limpiar
+00:0000AB2F   elemento_pintar_mapa
+00:0000AB30   antorchas
+00:0000AB37   array_antorcha
+00:0000AB3A   esqueletos
+00:0000AB41   array_esqueleto
+00:0000AB4D   lista_escenas_calavera
+00:0000AB51   array_sprites
+00:0000AB51   array_sprites_pm
+00:0000AB59 X array_sprites_enem
+00:0000ABD1 X lista_enemigos
+00:0000AC5D X puntero_array_atrib_array_VRAM
+00:0000AC5F   tiles_patrones_nivel0
+00:0000AE89   tiles_color_nivel0
+00:0000AEF4   tiles_mapa_nivel0
+00:0000AF29   tiles_patrones_nivel1
+00:0000B0DE   tiles_color_nivel1
+00:0000B125   tiles_mapa_nivel1
+00:0000B15A   tiles_patrones_nivel2
+00:0000B30F   tiles_color_nivel2
+00:0000B356   tiles_mapa_nivel2
+00:0000B38B   tiles_patrones_nivel3
+00:0000B540   tiles_color_nivel3
+00:0000B587   tiles_mapa_nivel3
+00:0000B5BC   tiles_patrones_nivel4
+00:0000B771   tiles_color_nivel4
+00:0000B7B8   tiles_mapa_nivel4
+00:0000B7ED   tiles_patrones_nivel5
+00:0000B9A2   tiles_color_nivel5
+00:0000B9E9   tiles_mapa_nivel5
+00:0000BA1E   tiles_patrones_nivel6
+00:0000BBD3   tiles_color_nivel6
+00:0000BC1A   tiles_mapa_nivel6
+00:0000BC4F   tiles_patrones_marcador
+00:0000BD9B   tiles_color_marcador
+00:0000BDD0   tiles_mapa_marcador
+00:0000BE32   END
 
 
  Output: t4.out
@@ -7123,7 +7072,7 @@ Errors: 0
 -------------------------------------------------
 
  Page: 00
-  Org: 00008000  Size: *  Used: 00003E35
+  Org: 00008000  Size: *  Used: 00003E39
 
    Address   Length Align   Label
-   00008000   15925         START
+   00008000   15929         START

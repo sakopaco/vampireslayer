@@ -8,8 +8,6 @@
 
 hay_ayudas_en_pantalla				DB	0		;1 => hay / 0 => no hay; variable que se actualiza cuando cambiemos de habitación para no mirar el bit de habitación cada vez
 puntero_ayuda_actual:				DW	0		;puntero a ayuda que se muestra en pantalla (sólo se muestra una a la vez)
-puntero_extras_habitacion_actual:	DW	0		;puntero a los extras de la habitación actual para poder modificarlo (para que no salgan extras)
-puntero_habitacion_actual:			DW	0		;puntero a la habitación actual para poder modificarla (para que no salgan enemigos)
 
 
 ;array de ayudas
@@ -310,7 +308,7 @@ pinta_ayudas_habitacion:
 .examina_oracion:
 	LD		 A, (habitacion_extras)
 	BIT		 7, A						;bit 7 oracion
-	JP		 Z, .examina_oracion		;después .examina_cruz
+	JP		 Z, .fin_examina_oracion	;después .examina_cruz
 	
 	LD		IX, ayuda_oracion
 	;puntero_ayuda_actual
@@ -320,55 +318,6 @@ pinta_ayudas_habitacion:
 	CALL	pinta_obj_ayuda
 .fin_examina_oracion:
 
-;~ .examina_cruz:
-	;~ LD		 A, (habitacion_extras)
-	;~ BIT		 6, A						;bit 6 cruz
-	;~ JP		 Z, fin_pinta_ayudas_habitacion	;despues .examina_cruz
-	
-	;~ LD		IX, ayuda_cruz
-	;~ ;puntero_ayuda_actual
-	;~ LD		(puntero_ayuda_actual), IX
-	;~ LD		 A, ACTIVA
-	;~ LD		(IX), A						;si lo pinta activo pone el bit a 1 por si el último lo puso a 0
-	;~ CALL	pinta_obj_ayuda
-;~ .fin_examina_cruz:
-
-
-;~ .examina_aguabendita:
-	;~ LD		 A, (habitacion_extras)
-	;~ BIT		 5,A
-	;~ JP		 Z,.examina_armadura
-	;~ LD		IX, ayuda_aguabendita
-	;~ LD		 A, ACTIVA
-	;~ CALL	pinta_obj_ayuda
-;~ .examina_armadura:
-	;~ LD		 A, (habitacion_extras)
-	;~ BIT		 4,A
-	;~ JP		 Z,.examina_planta
-	;~ LD		IX, ayuda_armadura
-	;~ LD		 A, ACTIVA
-	;~ CALL	pinta_obj_ayuda
-;~ .examina_planta:
-	;~ LD		 A, (habitacion_extras)
-	;~ BIT		 3,A
-	;~ JP		 Z,.examina_vidaextra
-	;~ LD		IX, ayuda_planta
-	;~ LD		 A, ACTIVA
-	;~ CALL	pinta_obj_ayuda
-;~ .examina_vidaextra:
-	;~ LD		 A, (habitacion_extras)
-	;~ BIT		 2,A
-	;~ JP		 Z,.examina_ballesta
-	;~ LD		IX, ayuda_vidaextra
-	;~ LD		 A, ACTIVA
-	;~ CALL	pinta_obj_ayuda
-;~ .examina_ballesta:
-	;~ LD		 A, (habitacion_extras)
-	;~ BIT		 1,A
-	;~ RET		 Z
-	;~ LD		IX, ayuda_ballesta
-	;~ LD		 A, ACTIVA
-	;~ CALL	pinta_obj_ayuda
 fin_pinta_ayudas_habitacion:
 	RET
 
@@ -390,15 +339,12 @@ accion_oracion:
 .fin_suma:
 	LD		(prota_energia), A
 	
-	
-	;~ ;**********************************************************************************++++++++++++
 	LD		HL, (puntero_extras_habitacion_actual)
 	LD		 A, (HL)
-	RES		 7, A					;personalizar para cada ayuda
+	RES		 7, A					;elimino la ayuda del mapa, personalizar para cada ayuda
 	LD		(HL), A
-	;LD		(habitacion_extras), A
-	
-	;**********************************************************************************++++++++++++
+	XOR		 A
+	LD		(habitacion_extras), A	;para no tener que verificar ayudas
 	
 	;desactiva ayuda
 	LD		IX, (puntero_ayuda_actual)
@@ -406,7 +352,7 @@ accion_oracion:
 	LD		(IX), A
 	CALL	pinta_obj_ayuda			;se le pasa A = 0 para que pinte desactivado
 	
-	JP			pinta_energia			;pinta la energia en pantalla
+	JP		pinta_energia			;pinta la energia en pantalla
 fin_accion_oracion:
 
 

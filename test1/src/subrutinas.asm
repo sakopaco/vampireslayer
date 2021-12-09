@@ -343,7 +343,7 @@ localiza_info_habitacion:
 	LD		(habitacion_actual), A
 	
 	;actualizo la variable habitacion_actual y su puntero para poder modificar por si se vuelve a pasar por ahí
-	LD		IX, habitacion_actual_puntero
+	LD		IX, puntero_habitacion_actual
 	LD		(IX), H
 	LD		(IX + 1), L
 	
@@ -396,7 +396,7 @@ fin_localiza_info_habitacion:
 ; salida: 	habitacion_recorrida (byte 14 de la fila de habitaciones) actualizada con OR A (en A la habitacion)
 ; toca:		IX, HL, AF
 terminada_habitacion_recorrida:
-		LD			HL, habitacion_actual_puntero
+		LD			HL, puntero_habitacion_actual
 		LD			 A, (HL)
 		SET			 4, A
 		LD			(HL), A
