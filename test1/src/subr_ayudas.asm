@@ -45,9 +45,9 @@ array_ballestaoff1:			DB	253,255
 
 lista_ayudas:
 ayuda_oracion:		DS		ESTRUCTURA_AYUDA		
-;~ ayuda_cruz:			DS		ESTRUCTURA_AYUDA
+ayuda_cruz:			DS		ESTRUCTURA_AYUDA
+ayuda_aguabendita:	DS		ESTRUCTURA_AYUDA
 
-;~ ayuda_aguabendita:	DS		ESTRUCTURA_AYUDA
 ;~ ayuda_armadura:		DS		ESTRUCTURA_AYUDA
 ;~ ayuda_planta:		DS		ESTRUCTURA_AYUDA
 ;~ ayuda_vidaextra		DS		ESTRUCTURA_AYUDA
@@ -67,65 +67,32 @@ datos_oracion:
 				DB		ALTOAYUDA			;alto en tiles del dibujo de la puerta (filas)
 				DB		ANCHOAYUDA			;ancho en tiles del dibujo de la puerta (columnas)
 
-;~ datos_cruz:
-				;~ DB		ACTIVA				;0 no activa <>0 activo (y muestra tiles ayudaoff)
-				;~ DB		POSORACIONX			;punto x de la ayuda para cuando se dispare encima
-				;~ DB		POSORACIONY			;punto y de la ayuda para cuando se dispare encima
-				;~ DB		RADIOAYUDAX			;radio x de la ayuda para cuando se dispare encima
-				;~ DB		RADIOAYUDAY			;radio y de la ayuda para cuando se dispare encima
-				;~ DW		accion_cruz			;función para acción de cada tipo de ayuda
-				;~ DW		array_oracionon		;puntero al array con los tiles de las ayudas sin usar para wordaux2
-				;~ DW		array_oracionoff	;puntero al array con los tiles de las ayudas sin usar para wordaux2
-				;~ DW		TILMAP + POSORACION ;calcula posición en tilemap para wordaux1
-				;~ DB		ALTOAYUDA			;alto en tiles del dibujo de la puerta (filas)
-				;~ DB		ANCHOAYUDA			;ancho en tiles del dibujo de la puerta (columnas)
+datos_cruz:
+				DB		ACTIVA				;0 no activa <>0 activo (y muestra tiles ayudaoff)
+				DB		POSORACIONX			;punto x de la ayuda para cuando se dispare encima
+				DB		POSORACIONY			;punto y de la ayuda para cuando se dispare encima
+				DB		RADIOAYUDAX			;radio x de la ayuda para cuando se dispare encima
+				DB		RADIOAYUDAY			;radio y de la ayuda para cuando se dispare encima
+				DW		accion_cruz			;función para acción de cada tipo de ayuda
+				DW		array_cruzon		;puntero al array con los tiles de las ayudas sin usar para wordaux2
+				DW		array_cruzoff		;puntero al array con los tiles de las ayudas sin usar para wordaux2
+				DW		TILMAP + POSORACION ;calcula posición en tilemap para wordaux1
+				DB		ALTOAYUDA			;alto en tiles del dibujo de la puerta (filas)
+				DB		ANCHOAYUDA			;ancho en tiles del dibujo de la puerta (columnas)
 					
-;~ datos_cruz:			
-				;~ DB		0				;0 no activa <>0 activo (y muestra tiles ayudaoff)
-				;~ DB		POSCRUZX		;punto x de la ayuda para cuando se dispare encima
-				;~ DB		POSAYUDASY		;punto y de la ayuda para cuando se dispare encima
-				;~ DB		8				;radio x de la ayuda para cuando se dispare encima
-				;~ DB		8				;radio y de la ayuda para cuando se dispare encima
-				;~ DW		accion_oracion	;función para acción de cada tipo de ayuda
-				;~ DW		array_oracionon	;puntero al array con los tiles de las ayudas sin usar para wordaux2
-				;~ DW		array_oracionoff;puntero al array con los tiles de las ayudas sin usar para wordaux2
-				;~ DW		TILMAP + POSORACION ;calcula posición en tilemap para wordaux1
-				;~ DB		2				;alto en tiles del dibujo de la puerta (filas)
-				;~ DB		2				;ancho en tiles del dibujo de la puerta (columnas)
+datos_aguabendita:
+				DB		ACTIVA				;0 no activa <>0 activo (y muestra tiles ayudaoff)
+				DB		POSORACIONX			;punto x de la ayuda para cuando se dispare encima
+				DB		POSORACIONY			;punto y de la ayuda para cuando se dispare encima
+				DB		RADIOAYUDAX			;radio x de la ayuda para cuando se dispare encima
+				DB		RADIOAYUDAY			;radio y de la ayuda para cuando se dispare encima
+				DW		accion_aguabendita	;función para acción de cada tipo de ayuda
+				DW		array_aguaon		;puntero al array con los tiles de las ayudas sin usar para wordaux2
+				DW		array_aguaoff		;puntero al array con los tiles de las ayudas sin usar para wordaux2
+				DW		TILMAP + POSORACION ;calcula posición en tilemap para wordaux1
+				DB		ALTOAYUDA			;alto en tiles del dibujo de la puerta (filas)
+				DB		ANCHOAYUDA			;ancho en tiles del dibujo de la puerta (columnas)
 
-				
-;~ datos_cruz:
-				;~ DB    	0				;0 no activo <>0 activo															0
-				;~ DW		array_cruzon	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
-				;~ DW		array_cruzoff	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
-				;~ DB		POSCRUZ			;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
-				;~ DB		POSCRUZX		;pos del pixel central (esquina superior + 8x)									6
-				;~ DB		POSAYUDASY		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
-				;~ DW		accion_cruz		;subrutina que indica la acción si se dispara en el objeto						8,9 
-				
-				;~ DB    	0				;0 no activo <>0 activo															0
-				;~ DW		array_cruzon	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
-				;~ DW		array_cruzoff	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
-				;~ DB		167			;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
-				;~ DB		64		;pos del pixel central (esquina superior + 8x)									6
-				;~ DB		112		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
-				;~ DW		accion_cruz		;subrutina que indica la acción si se dispara en el objeto						8,9 
-				
-;~ datos_aguabendita:
-				;~ DB    	0				;0 no activo <>0 activo															0
-				;~ DW		array_aguaon	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
-				;~ DW		array_aguaoff	;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				3,4
-				;~ DB		POSAGUA			;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	5
-				;~ DB		POSAGUAX		;pos del pixel central (esquina superior + 8x)									6
-				;~ DB		POSAYUDASY		;pos del pixel central (esquina superior + 8y) (para toas igual)				7
-				;~ DW		accion_agua		;subrutina que indica la acción si se dispara en el objeto						8,9
-				;~ DB		0	;relleno																		10-16    
-				;~ DB		0	;relleno																		10-16    
-				;~ DB		0	;relleno																		10-16    
-				;~ DB		0	;relleno																		10-16    
-				;~ DB		0	;relleno																		10-16    
-				;~ DB		0	;relleno																		10-16   
-				;~ DB		0	;relleno																		10-16    
 ;~ datos_armadura:
 				;~ DB    	0				;0 no activo <>0 activo															0
 				;~ DW		array_armaduraon;pos en memoria ver array_ayudas de cómo se mostrarán (wordaux2)				1,2
@@ -203,10 +170,15 @@ inicializa_ayudas:
 	LD		DE, ayuda_oracion
 	CALL	carga_datos_ayuda
 
-	;~ ;cruz
-	;~ LD		HL, datos_cruz
-	;~ LD		DE, ayuda_cruz
-	;~ CALL	carga_datos_ayuda
+	;cruz
+	LD		HL, datos_cruz
+	LD		DE, ayuda_cruz
+	CALL	carga_datos_ayuda
+
+	;agua_bendita
+	LD		HL, datos_aguabendita
+	LD		DE, ayuda_aguabendita
+	CALL	carga_datos_ayuda
 
 	
 	;~ ;agua bendita
@@ -318,6 +290,32 @@ pinta_ayudas_habitacion:
 	CALL	pinta_obj_ayuda
 .fin_examina_oracion:
 
+.examina_cruz:
+	LD		 A, (habitacion_extras)
+	BIT		 6, A						;bit 6 cruz
+	JP		 Z, .fin_examina_cruz		;después .examina_cruz
+	
+	LD		IX, ayuda_cruz
+	;puntero_ayuda_actual
+	LD		(puntero_ayuda_actual), IX
+	LD		 A, ACTIVA
+	LD		(IX), A						;si lo pinta activo pone el bit a 1 por si el último lo puso a 0
+	CALL	pinta_obj_ayuda
+.fin_examina_cruz:
+
+.examina_aguabendita:
+	LD		 A, (habitacion_extras)
+	BIT		 5, A						;bit 6 cruz
+	JP		 Z, .fin_examina_aguabendita;después .examina_cruz
+	
+	LD		IX, ayuda_aguabendita
+	;puntero_ayuda_actual
+	LD		(puntero_ayuda_actual), IX
+	LD		 A, ACTIVA
+	LD		(IX), A						;si lo pinta activo pone el bit a 1 por si el último lo puso a 0
+	CALL	pinta_obj_ayuda
+.fin_examina_aguabendita:
+
 fin_pinta_ayudas_habitacion:
 	RET
 
@@ -356,4 +354,67 @@ accion_oracion:
 fin_accion_oracion:
 
 
+;;=====================================================
+;;ACCION_CRUZ
+;;=====================================================	
+; función: 	suma 
+; entrada: 	
+; salida: 	-
+accion_cruz:
+	;suma energía
+	LD		 A, (prota_energia)
+	ADD		50
+	JP		NC, .fin_suma
+.pone_maximo:
+	LD		 A, 250
+.fin_suma:
+	LD		(prota_energia), A
 	
+	LD		HL, (puntero_extras_habitacion_actual)
+	LD		 A, (HL)
+	RES		 6, A					;elimino la ayuda del mapa, personalizar para cada ayuda
+	LD		(HL), A
+	XOR		 A
+	LD		(habitacion_extras), A	;para no tener que verificar ayudas
+	
+	;desactiva ayuda
+	LD		IX, (puntero_ayuda_actual)
+	XOR		 A
+	LD		(IX), A
+	CALL	pinta_obj_ayuda			;se le pasa A = 0 para que pinte desactivado
+	
+	JP		pinta_energia			;pinta la energia en pantalla
+fin_accion_cruz:
+	
+
+;;=====================================================
+;;ACCION_AGUABEDITA
+;;=====================================================	
+; función: 	suma 
+; entrada: 	
+; salida: 	-
+accion_aguabendita:
+	;suma energía
+	LD		 A, (prota_energia)
+	ADD		50
+	JP		NC, .fin_suma
+.pone_maximo:
+	LD		 A, 250
+.fin_suma:
+	LD		(prota_energia), A
+	
+	LD		HL, (puntero_extras_habitacion_actual)
+	LD		 A, (HL)
+	RES		 5, A					;elimino la ayuda del mapa, personalizar para cada ayuda
+	LD		(HL), A
+	XOR		 A
+	LD		(habitacion_extras), A	;para no tener que verificar ayudas
+	
+	;desactiva ayuda
+	LD		IX, (puntero_ayuda_actual)
+	XOR		 A
+	LD		(IX), A
+	CALL	pinta_obj_ayuda			;se le pasa A = 0 para que pinte desactivado
+	
+	JP		pinta_energia			;pinta la energia en pantalla
+fin_accion_aguabendita:
