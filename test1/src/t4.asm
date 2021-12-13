@@ -108,90 +108,6 @@ fin_check_colisiones_objetos:
 	RET
 
 
-;;=====================================================
-;;CHECK_COLISION_AYUDAS
-;;=====================================================	
-; función: 	revisa si ha habido disparo sobre la ayuda de pantalla
-; entrada: 	puntero_ayuda_actual
-; salida: 	-
-; toca:		todo
-check_colision_ayudas:
-	LD		IX, (puntero_ayuda_actual)
-	LD		 A, (IX)
-	OR		 A							;está activa la ayuda de pantalla?
-	JP		 Z, fin_check_colision_ayudas
-	;SI
-		CALL	check_colision_ayuda	;aquí ya es cosa de ver colisiones prota/puerta_izquierda
-		;recibe valor A
-		OR		 0						;hubo colisión?
-		RET		 Z						;no hubo colisión por lo que sale
-		;hubo colisión
-		;EJECUTA ACCIÓN Y SALE DE LA RUTINA	
-		LD		HL, fin_check_colision_ayudas ;se guarda dónde volver
-		PUSH	HL
-		LD		 L, (IX + ESTRUCTURA_AYUDA.accion)
-		LD		 H, (IX + ESTRUCTURA_AYUDA.accion + 1)
-		JP		(HL)
-	;FINSI
-fin_check_colision_ayudas:
-	RET
-	
-	
-
-
-;;=====================================================
-;;CHECK_COLISION_AYUDA
-;;=====================================================	
-; función: 	revisa la distancia con ayuda para ver si se disparó a la ayuda activa
-; entrada: 	IX con el puntero a la puerta que se examina
-; salida: 	A (0 no hay colisión con puerta / 1 sí la hay)
-; toca:		HL,BC, DE
-check_colision_ayuda:
-.deteccioncolision_paso1:
-	LD		IY, prota	;IY punto de mira / IX puerta
-	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posx)
-	ADD		 8			;8-es fijo, offset del punto de mira ya que se mueve según la esquina superior izquierda y el centro del punto de mira está en el centro del sprite
-	
-	;ya tengo en A la coordenada X del centro del punto de mira					
-	SUB		(IX + ESTRUCTURA_AYUDA.posx)	;le resto el punto x en la puerta
-	
-	JP		NC, .deteccioncolision_paso2	;si no es negativo comparo con el radio
-
-	NEG										;si es negativo lo niego (valor absoluto)
-	
-.deteccioncolision_paso2:
-	CP		(IX + ESTRUCTURA_AYUDA.radiox)	;comparo con el radio X de la puerta
-	
-	JP		 C, .deteccioncolision_paso3	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
-	
-	XOR		 A								;el resultado es falso y se guarda en A y ya no hay que seguir coprobando
-	RET
-	
-.deteccioncolision_paso3:					;la distancia X es válida, comprobamos la distancia Y
-	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posy)
-	ADD		 8								;le sumo el offset del punto de mira (8 es fijo)
-
-	;ya tengo en A la coordenada Y del centro del punto de mira					
-	SUB		(IX + ESTRUCTURA_AYUDA.posy)	;le resto el punto y en la puerta
-	
-	JP		NC, .deteccioncolision_paso4	;si no es negativo comparo con el radio
-
-	NEG										;si es negativo lo niego (valor absoluto)
-
-.deteccioncolision_paso4:
-	CP		(IX + ESTRUCTURA_AYUDA.radioy)	;comparo con el radio Y de la puerta
-
-	JP		 C, .deteccioncolision_paso5	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
-	
-	XOR		 A								;el resultado es falso y se guarda en A un 0 y al ser la 2º comprobación salimos
-	RET
-
-.deteccioncolision_paso5:
-	LD		 A, SI
-fin_check_colision_ayuda:
-	RET
-
-
 
 
 ;;*******************************************************************
@@ -200,10 +116,10 @@ inicializa_variables_pruebas:
 	LD		 A, 4
 	LD		(prota_vidas),A
 
-	LD		 A, 4
+	LD		 A, 7
 	LD		(prota_reliquias), A
 
-	LD		 A, 5							;*************************************************************+ no pinta bien cuado hay poco
+	LD		 A, 5							
 	LD		(prota_energia), A
 
 	;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
