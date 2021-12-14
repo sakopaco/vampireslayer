@@ -119,7 +119,7 @@ inicializa_variables_pruebas:
 	LD		 A, 7
 	LD		(prota_reliquias), A
 
-	LD		 A, 5							
+	LD		 A, 25							
 	LD		(prota_energia), A
 
 	;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán

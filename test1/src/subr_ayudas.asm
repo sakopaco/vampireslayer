@@ -480,7 +480,7 @@ fin_accion_oracion:
 ;;=====================================================
 ;;ACCION_CRUZ
 ;;=====================================================	
-; función: 	añade una reliquia máximo 8 (no puede tener más)
+; función: 	añade 2 reliquias máximo 8 (no puede tener más)
 ; entrada: 	puntero_extras_habitacion_actual, puntero_ayuda_actual, prota_reliquias
 ; salida: 	-
 accion_cruz:
@@ -500,7 +500,7 @@ accion_cruz:
 	LD		 A, (prota_reliquias)
 	CP		 6
 	JR		NC, .max_reliquias
-.sum_tres_reliquias
+.suma_reliquias
 [2]	INC		 A						;suma 2 reliquias
 	JP		.fin_suma_reliquias
 .max_reliquias
@@ -515,8 +515,8 @@ fin_accion_cruz:
 ;;=====================================================
 ;;ACCION_AGUABEDITA
 ;;=====================================================	
-; función: 	suma 
-; entrada: 	
+; función: 	añade 3 reliquias máximo 8 (no puede tener más)
+; entrada: 	puntero_extras_habitacion_actual, puntero_ayuda_actual, prota_reliquias
 ; salida: 	-
 accion_aguabendita:
 	LD		HL, (puntero_extras_habitacion_actual)
@@ -535,7 +535,7 @@ accion_aguabendita:
 	LD		 A, (prota_reliquias)
 	CP		 5
 	JR		NC, .max_reliquias
-.sum_tres_reliquias
+.suma_reliquias
 [3]	INC		 A						;suma 3 reliquias
 	JP		.fin_suma_reliquias
 .max_reliquias
@@ -550,19 +550,10 @@ fin_accion_aguabendita:
 ;;=====================================================
 ;;ACCION_ARMADURA
 ;;=====================================================	
-; función: 	suma 
-; entrada: 	
+; función: 	Añade 75 a la vida
+; entrada: 	puntero_extras_habitacion_actual, puntero_ayuda_actual, prota_reliquias
 ; salida: 	-
 accion_armadura:
-	;suma energía
-	LD		 A, (prota_energia)
-	ADD		50
-	JP		NC, .fin_suma
-.pone_maximo:
-	LD		 A, 250
-.fin_suma:
-	LD		(prota_energia), A
-	
 	LD		HL, (puntero_extras_habitacion_actual)
 	LD		 A, (HL)
 	RES		 4, A					;elimino la ayuda del mapa, personalizar para cada ayuda
@@ -575,6 +566,17 @@ accion_armadura:
 	XOR		 A
 	LD		(IX), A
 	CALL	pinta_obj_ayuda			;se le pasa A = 0 para que pinte desactivado
+	
+	LD		 A, (prota_energia)
+	CP		179
+	JR		NC, .max_energia
+.suma_energia
+	ADD		75						;suma 75 al marcador de energía
+	JP		.fin_suma_energia
+.max_energia
+	LD		 A, 255					;aplica el máx. de energía 255
+.fin_suma_energia
+	LD		(prota_energia), A
 	
 	JP		pinta_energia			;pinta la energia en pantalla
 fin_accion_armadura:
