@@ -612,19 +612,10 @@ fin_accion_planta:
 ;;=====================================================
 ;;ACCION_VIDAEXTRA
 ;;=====================================================	
-; función: 	suma 
+; función: 	añade una vida al marcador de vidas
 ; entrada: 	
 ; salida: 	-
 accion_vidaextra:
-	;suma energía
-	LD		 A, (prota_energia)
-	ADD		50
-	JP		NC, .fin_suma
-.pone_maximo:
-	LD		 A, 250
-.fin_suma:
-	LD		(prota_energia), A
-	
 	LD		HL, (puntero_extras_habitacion_actual)
 	LD		 A, (HL)
 	RES		 2, A					;elimino la ayuda del mapa, personalizar para cada ayuda
@@ -638,7 +629,11 @@ accion_vidaextra:
 	LD		(IX), A
 	CALL	pinta_obj_ayuda			;se le pasa A = 0 para que pinte desactivado
 	
-	JP		pinta_energia			;pinta la energia en pantalla
+	LD		 A, (prota_vidas)		;suma una vida al marcador de vidas
+	INC		 A
+	LD		 (prota_vidas), A
+	
+	JP		pinta_vidas				;pinta la vidas en pantalla
 fin_accion_vidaextra:
 
 
