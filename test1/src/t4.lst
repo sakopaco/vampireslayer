@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.12.13 - 20:17:45]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.12.14 - 19:45:33]
 
 t4.asm
 Errors: 0
@@ -4784,8 +4784,8 @@ Errors: 0
      498.  00:9F25  CD B4 9D            	CALL	pinta_obj_ayuda			;se le pasa A = 0 para que pinte desactivado
      499.  00:9F28                      	
      500.  00:9F28  3A 8F AD            	LD		 A, (prota_reliquias)
-     501.  00:9F2B  FE 05               	CP		 A, 5
-     502.  00:9F2D  38 06               	JR		 C, .max_reliquias
+     501.  00:9F2B  FE 05               	CP		 5
+     502.  00:9F2D  30 06               	JR		NC, .max_reliquias
      503.  00:9F2F                      .sum_tres_reliquias
      504.  00:9F2F  3C 3C 3C            [3]	INC		 A						;suma 3 reliquias
      505.  00:9F32  C3 37 9F            	JP		.fin_suma_reliquias

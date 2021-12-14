@@ -498,8 +498,8 @@ accion_cruz:
 	CALL	pinta_obj_ayuda			;se le pasa A = 0 para que pinte desactivado
 	
 	LD		 A, (prota_reliquias)
-	CP		 A, 5
-	JR		 C, .max_reliquias
+	CP		 5
+	JR		NC, .max_reliquias
 .sum_tres_reliquias
 [3]	INC		 A						;suma 3 reliquias
 	JP		.fin_suma_reliquias
