@@ -498,10 +498,10 @@ accion_cruz:
 	CALL	pinta_obj_ayuda			;se le pasa A = 0 para que pinte desactivado
 	
 	LD		 A, (prota_reliquias)
-	CP		 5
+	CP		 6
 	JR		NC, .max_reliquias
 .sum_tres_reliquias
-[3]	INC		 A						;suma 3 reliquias
+[2]	INC		 A						;suma 2 reliquias
 	JP		.fin_suma_reliquias
 .max_reliquias
 	LD		 A, 8					;aplica el máx. de reliquias 8
@@ -519,15 +519,6 @@ fin_accion_cruz:
 ; entrada: 	
 ; salida: 	-
 accion_aguabendita:
-	;suma energía
-	LD		 A, (prota_energia)
-	ADD		50
-	JP		NC, .fin_suma
-.pone_maximo:
-	LD		 A, 250
-.fin_suma:
-	LD		(prota_energia), A
-	
 	LD		HL, (puntero_extras_habitacion_actual)
 	LD		 A, (HL)
 	RES		 5, A					;elimino la ayuda del mapa, personalizar para cada ayuda
@@ -541,7 +532,18 @@ accion_aguabendita:
 	LD		(IX), A
 	CALL	pinta_obj_ayuda			;se le pasa A = 0 para que pinte desactivado
 	
-	JP		pinta_energia			;pinta la energia en pantalla
+	LD		 A, (prota_reliquias)
+	CP		 5
+	JR		NC, .max_reliquias
+.sum_tres_reliquias
+[3]	INC		 A						;suma 3 reliquias
+	JP		.fin_suma_reliquias
+.max_reliquias
+	LD		 A, 8					;aplica el máx. de reliquias 8
+.fin_suma_reliquias
+	LD		(prota_reliquias), A
+	
+	JP		pinta_reliquias			;pinta la energia en pantalla
 fin_accion_aguabendita:
 
 
