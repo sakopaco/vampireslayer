@@ -585,19 +585,10 @@ fin_accion_armadura:
 ;;=====================================================
 ;;ACCION_PLANTA
 ;;=====================================================	
-; función: 	suma 
+; función: 	rellena toda la energía 
 ; entrada: 	
 ; salida: 	-
 accion_planta:
-	;suma energía
-	LD		 A, (prota_energia)
-	ADD		50
-	JP		NC, .fin_suma
-.pone_maximo:
-	LD		 A, 250
-.fin_suma:
-	LD		(prota_energia), A
-	
 	LD		HL, (puntero_extras_habitacion_actual)
 	LD		 A, (HL)
 	RES		 3, A					;elimino la ayuda del mapa, personalizar para cada ayuda
@@ -610,6 +601,9 @@ accion_planta:
 	XOR		 A
 	LD		(IX), A
 	CALL	pinta_obj_ayuda			;se le pasa A = 0 para que pinte desactivado
+	
+	LD		 A, 255					;aplica el máx. de energía 255
+	LD		(prota_energia), A
 	
 	JP		pinta_energia			;pinta la energia en pantalla
 fin_accion_planta:
