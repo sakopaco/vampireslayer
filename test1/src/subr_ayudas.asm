@@ -52,7 +52,7 @@ ayuda_planta:		DS		ESTRUCTURA_AYUDA
 ayuda_vidaextra		DS		ESTRUCTURA_AYUDA
 ayuda_ballesta:		DS		ESTRUCTURA_AYUDA
 
-;datos ayudas
+datos_ayudas:
 datos_oracion:			
 				DB		ACTIVA				;0 no activa <>0 activo (y muestra tiles ayudaoff)
 				DB		POSORACIONX			;punto x de la ayuda para cuando se dispare encima
@@ -68,40 +68,40 @@ datos_oracion:
 
 datos_cruz:
 				DB		ACTIVA				;0 no activa <>0 activo (y muestra tiles ayudaoff)
-				DB		POSORACIONX			;punto x de la ayuda para cuando se dispare encima
-				DB		POSORACIONY			;punto y de la ayuda para cuando se dispare encima
+				DB		POSCRUZX			;punto x de la ayuda para cuando se dispare encima
+				DB		POSCRUZY			;punto y de la ayuda para cuando se dispare encima
 				DB		RADIOAYUDAX			;radio x de la ayuda para cuando se dispare encima
 				DB		RADIOAYUDAY			;radio y de la ayuda para cuando se dispare encima
 				DW		accion_cruz			;función para acción de cada tipo de ayuda
 				DW		array_cruzon		;puntero al array con los tiles de las ayudas sin usar para wordaux2
 				DW		array_cruzoff		;puntero al array con los tiles de las ayudas sin usar para wordaux2
-				DW		TILMAP + POSORACION ;calcula posición en tilemap para wordaux1
+				DW		TILMAP + POSCRUZ	;calcula posición en tilemap para wordaux1
 				DB		ALTOAYUDA			;alto en tiles del dibujo de la puerta (filas)
 				DB		ANCHOAYUDA			;ancho en tiles del dibujo de la puerta (columnas)
 					
 datos_aguabendita:
 				DB		ACTIVA				;0 no activa <>0 activo (y muestra tiles ayudaoff)
-				DB		POSORACIONX			;punto x de la ayuda para cuando se dispare encima
-				DB		POSORACIONY			;punto y de la ayuda para cuando se dispare encima
+				DB		POSAGUAX			;punto x de la ayuda para cuando se dispare encima
+				DB		POSAGUAY			;punto y de la ayuda para cuando se dispare encima
 				DB		RADIOAYUDAX			;radio x de la ayuda para cuando se dispare encima
 				DB		RADIOAYUDAY			;radio y de la ayuda para cuando se dispare encima
 				DW		accion_aguabendita	;función para acción de cada tipo de ayuda
 				DW		array_aguaon		;puntero al array con los tiles de las ayudas sin usar para wordaux2
 				DW		array_aguaoff		;puntero al array con los tiles de las ayudas sin usar para wordaux2
-				DW		TILMAP + POSORACION ;calcula posición en tilemap para wordaux1
+				DW		TILMAP + POSAGUA	;calcula posición en tilemap para wordaux1
 				DB		ALTOAYUDA			;alto en tiles del dibujo de la puerta (filas)
 				DB		ANCHOAYUDA			;ancho en tiles del dibujo de la puerta (columnas)
 
 datos_armadura:
 				DB		ACTIVA				;0 no activa <>0 activo (y muestra tiles ayudaoff)
-				DB		POSORACIONX			;punto x de la ayuda para cuando se dispare encima
-				DB		POSORACIONY			;punto y de la ayuda para cuando se dispare encima
+				DB		POSARMADURX			;punto x de la ayuda para cuando se dispare encima
+				DB		POSARMADURY			;punto y de la ayuda para cuando se dispare encima
 				DB		RADIOAYUDAX			;radio x de la ayuda para cuando se dispare encima
 				DB		RADIOAYUDAY			;radio y de la ayuda para cuando se dispare encima
 				DW		accion_armadura		;función para acción de cada tipo de ayuda
 				DW		array_armaduraon	;puntero al array con los tiles de las ayudas sin usar para wordaux2
 				DW		array_armaduraoff	;puntero al array con los tiles de las ayudas sin usar para wordaux2
-				DW		TILMAP + POSORACION ;calcula posición en tilemap para wordaux1
+				DW		TILMAP + POSARMADURA;calcula posición en tilemap para wordaux1
 				DB		ALTOAYUDA			;alto en tiles del dibujo de la puerta (filas)
 				DB		ANCHOAYUDA			;ancho en tiles del dibujo de la puerta (columnas)
 

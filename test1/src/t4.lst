@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.12.14 - 20:26:52]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2021.12.16 - 19:17:28]
 
 t4.asm
 Errors: 0
@@ -111,177 +111,178 @@ Errors: 0
      100.  00:8000                      
      101.  00:8000                      ;;POSICIONES DE LAS AYUDAS EN PANTALLA BANCO 1
      102.  00:8000  (00:0146)           POSORACION	equ		#0146;326	;256 + 70
-     103.  00:8000  (00:00A7)           POSCRUZ		equ		167
-     104.  00:8000  (00:00AB)           POSAGUA		equ		171
-     105.  00:8000  (00:00AF)           POSARMAD	equ		175
+     103.  00:8000  (00:01A3)           POSCRUZ		equ		#01A3;419	;256 + 93
+     104.  00:8000  (00:016A)           POSAGUA		equ		#016A;362
+     105.  00:8000  (00:01AB)           POSARMADURA	equ		#01AB;427
      106.  00:8000  (00:00B3)           POSPLANTA	equ		179
      107.  00:8000  (00:00B7)           POSVIDAEXT	equ		183
      108.  00:8000  (00:00BB)           POSBALLESTA	equ		187
      109.  00:8000                      
-     110.  00:8000                      ;;POSICIONES DE LAS AYUDAS EN PANTALLA PIXEL CENTRAL
-     111.  00:8000  (00:0070)           POSAYUDASY	equ		112	;quitar cuando ya no se use
-     112.  00:8000                      
-     113.  00:8000  (00:0038)           POSORACIONX	equ		56
-     114.  00:8000  (00:0058)           POSORACIONY	equ		88
-     115.  00:8000  (00:0040)           POSCRUZX	equ		64
-     116.  00:8000  (00:0060)           POSAGUAX	equ		96
-     117.  00:8000  (00:0080)           POSARMADX	equ		128
-     118.  00:8000  (00:00A0)           POSPLANTAX	equ		160
-     119.  00:8000  (00:00C0)           POSVIDAEXTX	equ		192
-     120.  00:8000  (00:00E0)           POSBALLESTAX equ	224
-     121.  00:8000                      
-     122.  00:8000                      ;; TAMAÑO AYUDAS
-     123.  00:8000  (00:0002)           ALTOAYUDA	equ		#02
-     124.  00:8000  (00:0002)           ANCHOAYUDA	equ		#02
-     125.  00:8000                      
-     126.  00:8000                      ;; RADIOS DE DISPARO
-     127.  00:8000  (00:0008)           RADIOAYUDAX equ		#08
-     128.  00:8000  (00:0008)           RADIOAYUDAY equ		#08
-     129.  00:8000                      
-     130.  00:8000                      ;;POSICIÓN INICIAL DEL SPRITE DEL PUNTO DE MIRA
-     131.  00:8000  (00:0078)           POSXPM		equ		120
-     132.  00:8000  (00:006C)           POSYPM		equ		108
-     133.  00:8000                      
-     134.  00:8000                      ;;ESTADO ESTRUCTURA
-     135.  00:8000  (00:0000)           INACTIVA	equ		0
-     136.  00:8000  (00:0001)           ACTIVA		equ		1
-     137.  00:8000  (00:0001)           HABTERMIN	equ		1
-     138.  00:8000                      
-     139.  00:8000                      ;;POSICIONES DE LAS ANTORCHAS
-     140.  00:8000  (00:0088)           POSANTOR1	equ		136
-     141.  00:8000  (00:0097)           POSANTOR2	equ		151
-     142.  00:8000  (00:00C4)           MAPLLAMA1	equ		196
-     143.  00:8000  (00:00C5)           MAPLLAMA2	equ		197
-     144.  00:8000  (00:00FF)           RESETLLAMA	equ		255
-     145.  00:8000                      
-     146.  00:8000                      ;;POSICIONES DE LOS ESQUELETOS
-     147.  00:8000  (00:0088)           POSESQUEL1	equ		136
-     148.  00:8000  (00:0095)           POSESQUEL2	equ		149
-     149.  00:8000  (00:00A9)           POSCALAVE1	equ		169
-     150.  00:8000  (00:00B6)           POSCALAVE2	equ		182
-     151.  00:8000  (00:0019)           RESETESQUEL	equ		25
-     152.  00:8000  (00:0004)           RESETESCENAESQUEL 	equ	4	;hay 4 caras con las que el esqueleto cambia (se ha metido el 0 para facilitar código)
-     153.  00:8000                      
-     154.  00:8000                      ;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (relacionadas con posiciones en en el banco de memoria)
-     155.  00:8000  (00:0013)           TILEPROTAM  equ		19		;tile del prota para pintar en mapa
-     156.  00:8000  (00:0009)           TILEGRISM	equ		9		;tile gris que representa vacio (por donde el prota va pasando)
-     157.  00:8000  (00:0010)           TILEMAPROJO equ		16
-     158.  00:8000  (00:000F)           TILEMAPAMAR equ		15
-     159.  00:8000  (00:000E)           TILEMAPVERD equ		14
-     160.  00:8000                      
+     110.  00:8000  (00:0038)           POSORACIONX	equ		56
+     111.  00:8000  (00:0058)           POSORACIONY	equ		88
+     112.  00:8000  (00:0020)           POSCRUZX	equ		32
+     113.  00:8000  (00:0070)           POSCRUZY	equ		112
+     114.  00:8000  (00:0058)           POSAGUAX	equ		88
+     115.  00:8000  (00:0060)           POSAGUAY	equ		96
+     116.  00:8000  (00:0068)           POSARMADURX	equ		104
+     117.  00:8000  (00:0070)           POSARMADURY	equ		112
+     118.  00:8000                      
+     119.  00:8000  (00:00A0)           POSPLANTAX	equ		160
+     120.  00:8000  (00:00C0)           POSVIDAEXTX	equ		192
+     121.  00:8000  (00:00E0)           POSBALLESTAX equ	224
+     122.  00:8000                      
+     123.  00:8000                      ;; TAMAÑO AYUDAS
+     124.  00:8000  (00:0002)           ALTOAYUDA	equ		#02
+     125.  00:8000  (00:0002)           ANCHOAYUDA	equ		#02
+     126.  00:8000                      
+     127.  00:8000                      ;; RADIOS DE DISPARO
+     128.  00:8000  (00:0008)           RADIOAYUDAX equ		#08
+     129.  00:8000  (00:0008)           RADIOAYUDAY equ		#08
+     130.  00:8000                      
+     131.  00:8000                      ;;POSICIÓN INICIAL DEL SPRITE DEL PUNTO DE MIRA
+     132.  00:8000  (00:0078)           POSXPM		equ		120
+     133.  00:8000  (00:006C)           POSYPM		equ		108
+     134.  00:8000                      
+     135.  00:8000                      ;;ESTADO ESTRUCTURA
+     136.  00:8000  (00:0000)           INACTIVA	equ		0
+     137.  00:8000  (00:0001)           ACTIVA		equ		1
+     138.  00:8000  (00:0001)           HABTERMIN	equ		1
+     139.  00:8000                      
+     140.  00:8000                      ;;POSICIONES DE LAS ANTORCHAS
+     141.  00:8000  (00:0088)           POSANTOR1	equ		136
+     142.  00:8000  (00:0097)           POSANTOR2	equ		151
+     143.  00:8000  (00:00C4)           MAPLLAMA1	equ		196
+     144.  00:8000  (00:00C5)           MAPLLAMA2	equ		197
+     145.  00:8000  (00:00FF)           RESETLLAMA	equ		255
+     146.  00:8000                      
+     147.  00:8000                      ;;POSICIONES DE LOS ESQUELETOS
+     148.  00:8000  (00:0088)           POSESQUEL1	equ		136
+     149.  00:8000  (00:0095)           POSESQUEL2	equ		149
+     150.  00:8000  (00:00A9)           POSCALAVE1	equ		169
+     151.  00:8000  (00:00B6)           POSCALAVE2	equ		182
+     152.  00:8000  (00:0019)           RESETESQUEL	equ		25
+     153.  00:8000  (00:0004)           RESETESCENAESQUEL 	equ	4	;hay 4 caras con las que el esqueleto cambia (se ha metido el 0 para facilitar código)
+     154.  00:8000                      
+     155.  00:8000                      ;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (relacionadas con posiciones en en el banco de memoria)
+     156.  00:8000  (00:0013)           TILEPROTAM  equ		19		;tile del prota para pintar en mapa
+     157.  00:8000  (00:0009)           TILEGRISM	equ		9		;tile gris que representa vacio (por donde el prota va pasando)
+     158.  00:8000  (00:0010)           TILEMAPROJO equ		16
+     159.  00:8000  (00:000F)           TILEMAPAMAR equ		15
+     160.  00:8000  (00:000E)           TILEMAPVERD equ		14
      161.  00:8000                      
-     162.  00:8000                      ;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (generales)
-     163.  00:8000  (00:0008)           NMAXVIDREL	equ		8		;el número máximo de vidas y de reliquias es de 8
-     164.  00:8000  (00:0007)           NHABNIVEL	equ		7
-     165.  00:8000  (00:00F8)           MAXENERGIA  equ		248
-     166.  00:8000  (00:00D9)           TILEENERG8  equ		217
-     167.  00:8000  (00:00BA)           TILEENERG7  equ		186
-     168.  00:8000  (00:009B)           TILEENERG6  equ		155
-     169.  00:8000  (00:007C)           TILEENERG5  equ		124
-     170.  00:8000  (00:005D)           TILEENERG4  equ		93
-     171.  00:8000  (00:003E)           TILEENERG3  equ		62
-     172.  00:8000  (00:001F)           TILEENERG2  equ		31
-     173.  00:8000  (00:0000)           TILENEGRO	equ		0
-     174.  00:8000                      
-     175.  00:8000                      ;limites
-     176.  00:8000  (00:0000)           LIMPANTIZQ  equ		0
-     177.  00:8000  (00:00FF)           LIMPANTDER  equ		255
-     178.  00:8000  (00:0000)           LIMPANTARR  equ		0
-     179.  00:8000  (00:0080)           LIMPANTABA  equ		128
-     180.  00:8000                      
+     162.  00:8000                      
+     163.  00:8000                      ;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (generales)
+     164.  00:8000  (00:0008)           NMAXVIDREL	equ		8		;el número máximo de vidas y de reliquias es de 8
+     165.  00:8000  (00:0007)           NHABNIVEL	equ		7
+     166.  00:8000  (00:00F8)           MAXENERGIA  equ		248
+     167.  00:8000  (00:00D9)           TILEENERG8  equ		217
+     168.  00:8000  (00:00BA)           TILEENERG7  equ		186
+     169.  00:8000  (00:009B)           TILEENERG6  equ		155
+     170.  00:8000  (00:007C)           TILEENERG5  equ		124
+     171.  00:8000  (00:005D)           TILEENERG4  equ		93
+     172.  00:8000  (00:003E)           TILEENERG3  equ		62
+     173.  00:8000  (00:001F)           TILEENERG2  equ		31
+     174.  00:8000  (00:0000)           TILENEGRO	equ		0
+     175.  00:8000                      
+     176.  00:8000                      ;limites
+     177.  00:8000  (00:0000)           LIMPANTIZQ  equ		0
+     178.  00:8000  (00:00FF)           LIMPANTDER  equ		255
+     179.  00:8000  (00:0000)           LIMPANTARR  equ		0
+     180.  00:8000  (00:0080)           LIMPANTABA  equ		128
      181.  00:8000                      
-     182.  00:8000                      ;matriz de 7x7 empieza en 0, y fila y x col, cuento desde esquina sup izq
-     183.  00:8000  (00:0006)           BASEMAPY	equ		6
-     184.  00:8000  (00:0003)           BASEMAPX	equ		3
-     185.  00:8000                      
+     182.  00:8000                      
+     183.  00:8000                      ;matriz de 7x7 empieza en 0, y fila y x col, cuento desde esquina sup izq
+     184.  00:8000  (00:0006)           BASEMAPY	equ		6
+     185.  00:8000  (00:0003)           BASEMAPX	equ		3
      186.  00:8000                      
      187.  00:8000                      
-     188.  00:8000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-     189.  00:8000                      ;; CONSTANTES PARA INTERRUPCIONES
-     190.  00:8000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-     191.  00:8000  (00:FD9A)           H.KEYI		equ     	#FD9A
-     192.  00:8000  (00:FD9F)           H.TIMI	 	equ     	#FD9F
-     193.  00:8000                      
+     188.  00:8000                      
+     189.  00:8000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     190.  00:8000                      ;; CONSTANTES PARA INTERRUPCIONES
+     191.  00:8000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     192.  00:8000  (00:FD9A)           H.KEYI		equ     	#FD9A
+     193.  00:8000  (00:FD9F)           H.TIMI	 	equ     	#FD9F
      194.  00:8000                      
-     195.  00:8000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-     196.  00:8000                      ;; CONSTANTES PARA SONIDO 
-     197.  00:8000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-     198.  00:8000                      
-     199.  00:8000  (F000)              	map		#f000
-     200.  00:8000                      
-     201.  00:8000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PT3 REPLAYER
-     202.  00:8000  (00:F000)           PT3_SETUP:		#1	;set bit0 to 1, if you want to play without looping
-     203.  00:8000                      					;bit7 is set each time, when loop point is passed
-     204.  00:8000  (00:F001)           PT3_MODADDR:	#2
-     205.  00:8000  (00:F003)           PT3_CrPsPtr:	#2
-     206.  00:8000  (00:F005)           PT3_SAMPTRS:	#2
-     207.  00:8000  (00:F007)           PT3_OrnPtrs:	#2
-     208.  00:8000  (00:F009)           PT3_PDSP:		#2
-     209.  00:8000  (00:F00B)           PT3_CSP:		#2
-     210.  00:8000  (00:F00D)           PT3_PSP:		#2
-     211.  00:8000  (00:F00F)           PT3_PrNote:		#1
-     212.  00:8000  (00:F010)           PT3_PrSlide:	#2
-     213.  00:8000  (00:F012)           PT3_AdInPtA:	#2
-     214.  00:8000  (00:F014)           PT3_AdInPtB:	#2
-     215.  00:8000  (00:F016)           PT3_AdInPtC:	#2
-     216.  00:8000  (00:F018)           PT3_LPosPtr:	#2
-     217.  00:8000  (00:F01A)           PT3_PatsPtr:	#2
-     218.  00:8000  (00:F01C)           PT3_Delay:		#1
-     219.  00:8000  (00:F01D)           PT3_AddToEn:	#1
-     220.  00:8000  (00:F01E)           PT3_Env_Del:	#1
-     221.  00:8000  (00:F01F)           PT3_ESldAdd:	#2
-     222.  00:8000  (00:F021)           PT3_NTL3:		#2	; AND A / NOP (note table creator)
-     223.  00:8000                      
-     224.  00:8000  (00:F023)           VARS:			#0
-     225.  00:8000                      
-     226.  00:8000  (00:F023)           ChanA:			#29			;CHNPRM_Size
-     227.  00:8000  (00:F040)           ChanB:			#29			;CHNPRM_Size
-     228.  00:8000  (00:F05D)           ChanC:			#29			;CHNPRM_Size
-     229.  00:8000                      
-     230.  00:8000                      ;GlobalVars
-     231.  00:8000  (00:F07A)           DelyCnt:		#1
-     232.  00:8000  (00:F07B)           CurESld:		#2
-     233.  00:8000  (00:F07D)           CurEDel:		#1
-     234.  00:8000  (00:F07E)           Ns_Base_AddToNs:	#0
-     235.  00:8000  (00:F07E)           Ns_Base:		#1
-     236.  00:8000  (00:F07F)           AddToNs:		#1
-     237.  00:8000                      
-     238.  00:8000  (00:F080)           NT_:			#192	; Puntero a/tabla de frecuencias
-     239.  00:8000                      
-     240.  00:8000  (00:F140)           AYREGS:			#0
-     241.  00:8000  (00:F140)           VT_:			#14
-     242.  00:8000  (00:F14E)           EnvBase:		#2
-     243.  00:8000  (00:F150)           VAR0END:		#0
-     244.  00:8000                      
-     245.  00:8000  (00:F150)           T1_:			#0		
-     246.  00:8000  (00:F150)           T_NEW_1:		#0
-     247.  00:8000  (00:F150)           T_OLD_1:		#24
-     248.  00:8000  (00:F168)           T_OLD_2:		#24
-     249.  00:8000  (00:F180)           T_NEW_3:		#0
-     250.  00:8000  (00:F180)           T_OLD_3:		#2
-     251.  00:8000  (00:F182)           T_OLD_0:		#0
-     252.  00:8000  (00:F182)           T_NEW_0:		#24
-     253.  00:8000  (00:F19A)           T_NEW_2:		#166
-     254.  00:8000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PT3 REPLAYER END
-     255.  00:8000                      
-     256.  00:8000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ayFX REPLAYER 
-     257.  00:8000  (00:F240)           ayFX_MODE:		#1			; ayFX mode
-     258.  00:8000  (00:F241)           ayFX_BANK:		#2			; Current ayFX Bank
-     259.  00:8000  (00:F243)           ayFX_PRIORITY:	#1			; Current ayFX stream priotity
-     260.  00:8000  (00:F244)           ayFX_POINTER:	#2			; Pointer to the current ayFX stream
-     261.  00:8000  (00:F246)           ayFX_TONE:		#2			; Current tone of the ayFX stream
-     262.  00:8000  (00:F248)           ayFX_NOISE:		#1			; Current noise of the ayFX stream
-     263.  00:8000  (00:F249)           ayFX_VOLUME:	#1			; Current volume of the ayFX stream
-     264.  00:8000  (00:F24A)           ayFX_CHANNEL:	#1			; PSG channel to play the ayFX stream
-     265.  00:8000                      
-     266.  00:8000                      	;IF (AYFXRELATIVE == 1 ) 
-     267.  00:8000                      ;ayFX_VT:	ds	2			; ayFX relative volume table pointer
-     268.  00:8000                      	;ENDIF
-     269.  00:8000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ayFX REPLAYER END
-     270.  00:8000                      
+     195.  00:8000                      
+     196.  00:8000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     197.  00:8000                      ;; CONSTANTES PARA SONIDO 
+     198.  00:8000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     199.  00:8000                      
+     200.  00:8000  (F000)              	map		#f000
+     201.  00:8000                      
+     202.  00:8000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PT3 REPLAYER
+     203.  00:8000  (00:F000)           PT3_SETUP:		#1	;set bit0 to 1, if you want to play without looping
+     204.  00:8000                      					;bit7 is set each time, when loop point is passed
+     205.  00:8000  (00:F001)           PT3_MODADDR:	#2
+     206.  00:8000  (00:F003)           PT3_CrPsPtr:	#2
+     207.  00:8000  (00:F005)           PT3_SAMPTRS:	#2
+     208.  00:8000  (00:F007)           PT3_OrnPtrs:	#2
+     209.  00:8000  (00:F009)           PT3_PDSP:		#2
+     210.  00:8000  (00:F00B)           PT3_CSP:		#2
+     211.  00:8000  (00:F00D)           PT3_PSP:		#2
+     212.  00:8000  (00:F00F)           PT3_PrNote:		#1
+     213.  00:8000  (00:F010)           PT3_PrSlide:	#2
+     214.  00:8000  (00:F012)           PT3_AdInPtA:	#2
+     215.  00:8000  (00:F014)           PT3_AdInPtB:	#2
+     216.  00:8000  (00:F016)           PT3_AdInPtC:	#2
+     217.  00:8000  (00:F018)           PT3_LPosPtr:	#2
+     218.  00:8000  (00:F01A)           PT3_PatsPtr:	#2
+     219.  00:8000  (00:F01C)           PT3_Delay:		#1
+     220.  00:8000  (00:F01D)           PT3_AddToEn:	#1
+     221.  00:8000  (00:F01E)           PT3_Env_Del:	#1
+     222.  00:8000  (00:F01F)           PT3_ESldAdd:	#2
+     223.  00:8000  (00:F021)           PT3_NTL3:		#2	; AND A / NOP (note table creator)
+     224.  00:8000                      
+     225.  00:8000  (00:F023)           VARS:			#0
+     226.  00:8000                      
+     227.  00:8000  (00:F023)           ChanA:			#29			;CHNPRM_Size
+     228.  00:8000  (00:F040)           ChanB:			#29			;CHNPRM_Size
+     229.  00:8000  (00:F05D)           ChanC:			#29			;CHNPRM_Size
+     230.  00:8000                      
+     231.  00:8000                      ;GlobalVars
+     232.  00:8000  (00:F07A)           DelyCnt:		#1
+     233.  00:8000  (00:F07B)           CurESld:		#2
+     234.  00:8000  (00:F07D)           CurEDel:		#1
+     235.  00:8000  (00:F07E)           Ns_Base_AddToNs:	#0
+     236.  00:8000  (00:F07E)           Ns_Base:		#1
+     237.  00:8000  (00:F07F)           AddToNs:		#1
+     238.  00:8000                      
+     239.  00:8000  (00:F080)           NT_:			#192	; Puntero a/tabla de frecuencias
+     240.  00:8000                      
+     241.  00:8000  (00:F140)           AYREGS:			#0
+     242.  00:8000  (00:F140)           VT_:			#14
+     243.  00:8000  (00:F14E)           EnvBase:		#2
+     244.  00:8000  (00:F150)           VAR0END:		#0
+     245.  00:8000                      
+     246.  00:8000  (00:F150)           T1_:			#0		
+     247.  00:8000  (00:F150)           T_NEW_1:		#0
+     248.  00:8000  (00:F150)           T_OLD_1:		#24
+     249.  00:8000  (00:F168)           T_OLD_2:		#24
+     250.  00:8000  (00:F180)           T_NEW_3:		#0
+     251.  00:8000  (00:F180)           T_OLD_3:		#2
+     252.  00:8000  (00:F182)           T_OLD_0:		#0
+     253.  00:8000  (00:F182)           T_NEW_0:		#24
+     254.  00:8000  (00:F19A)           T_NEW_2:		#166
+     255.  00:8000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PT3 REPLAYER END
+     256.  00:8000                      
+     257.  00:8000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ayFX REPLAYER 
+     258.  00:8000  (00:F240)           ayFX_MODE:		#1			; ayFX mode
+     259.  00:8000  (00:F241)           ayFX_BANK:		#2			; Current ayFX Bank
+     260.  00:8000  (00:F243)           ayFX_PRIORITY:	#1			; Current ayFX stream priotity
+     261.  00:8000  (00:F244)           ayFX_POINTER:	#2			; Pointer to the current ayFX stream
+     262.  00:8000  (00:F246)           ayFX_TONE:		#2			; Current tone of the ayFX stream
+     263.  00:8000  (00:F248)           ayFX_NOISE:		#1			; Current noise of the ayFX stream
+     264.  00:8000  (00:F249)           ayFX_VOLUME:	#1			; Current volume of the ayFX stream
+     265.  00:8000  (00:F24A)           ayFX_CHANNEL:	#1			; PSG channel to play the ayFX stream
+     266.  00:8000                      
+     267.  00:8000                      	;IF (AYFXRELATIVE == 1 ) 
+     268.  00:8000                      ;ayFX_VT:	ds	2			; ayFX relative volume table pointer
+     269.  00:8000                      	;ENDIF
+     270.  00:8000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ayFX REPLAYER END
      271.  00:8000                      
      272.  00:8000                      
      273.  00:8000                      
+     274.  00:8000                      
        7   00:8000                      
        8   00:8000                      ;;=====================================================
        9   00:8000                      ;;DEFINICIÓN DE CABECERA DE ARCHIVO BIN
@@ -4338,7 +4339,7 @@ Errors: 0
       52.  00:9CE8  00 (15)             ayuda_vidaextra		DS		ESTRUCTURA_AYUDA
       53.  00:9CF7  00 (15)             ayuda_ballesta:		DS		ESTRUCTURA_AYUDA
       54.  00:9D06                      
-      55.  00:9D06                      ;datos ayudas
+      55.  00:9D06                      datos_ayudas:
       56.  00:9D06                      datos_oracion:			
       57.  00:9D06  01                  				DB		ACTIVA				;0 no activa <>0 activo (y muestra tiles ayudaoff)
       58.  00:9D07  38                  				DB		POSORACIONX			;punto x de la ayuda para cuando se dispare encima
@@ -4354,40 +4355,40 @@ Errors: 0
       68.  00:9D15                      
       69.  00:9D15                      datos_cruz:
       70.  00:9D15  01                  				DB		ACTIVA				;0 no activa <>0 activo (y muestra tiles ayudaoff)
-      71.  00:9D16  38                  				DB		POSORACIONX			;punto x de la ayuda para cuando se dispare encima
-      72.  00:9D17  58                  				DB		POSORACIONY			;punto y de la ayuda para cuando se dispare encima
+      71.  00:9D16  20                  				DB		POSCRUZX			;punto x de la ayuda para cuando se dispare encima
+      72.  00:9D17  70                  				DB		POSCRUZY			;punto y de la ayuda para cuando se dispare encima
       73.  00:9D18  08                  				DB		RADIOAYUDAX			;radio x de la ayuda para cuando se dispare encima
       74.  00:9D19  08                  				DB		RADIOAYUDAY			;radio y de la ayuda para cuando se dispare encima
       75.  00:9D1A  12 9F               				DW		accion_cruz			;función para acción de cada tipo de ayuda
       76.  00:9D1C  6D 9C               				DW		array_cruzon		;puntero al array con los tiles de las ayudas sin usar para wordaux2
       77.  00:9D1E  71 9C               				DW		array_cruzoff		;puntero al array con los tiles de las ayudas sin usar para wordaux2
-      78.  00:9D20  46 19               				DW		TILMAP + POSORACION ;calcula posición en tilemap para wordaux1
+      78.  00:9D20  A3 19               				DW		TILMAP + POSCRUZ	;calcula posición en tilemap para wordaux1
       79.  00:9D22  02                  				DB		ALTOAYUDA			;alto en tiles del dibujo de la puerta (filas)
       80.  00:9D23  02                  				DB		ANCHOAYUDA			;ancho en tiles del dibujo de la puerta (columnas)
       81.  00:9D24                      					
       82.  00:9D24                      datos_aguabendita:
       83.  00:9D24  01                  				DB		ACTIVA				;0 no activa <>0 activo (y muestra tiles ayudaoff)
-      84.  00:9D25  38                  				DB		POSORACIONX			;punto x de la ayuda para cuando se dispare encima
-      85.  00:9D26  58                  				DB		POSORACIONY			;punto y de la ayuda para cuando se dispare encima
+      84.  00:9D25  58                  				DB		POSAGUAX			;punto x de la ayuda para cuando se dispare encima
+      85.  00:9D26  60                  				DB		POSAGUAY			;punto y de la ayuda para cuando se dispare encima
       86.  00:9D27  08                  				DB		RADIOAYUDAX			;radio x de la ayuda para cuando se dispare encima
       87.  00:9D28  08                  				DB		RADIOAYUDAY			;radio y de la ayuda para cuando se dispare encima
       88.  00:9D29  3C 9F               				DW		accion_aguabendita	;función para acción de cada tipo de ayuda
       89.  00:9D2B  75 9C               				DW		array_aguaon		;puntero al array con los tiles de las ayudas sin usar para wordaux2
       90.  00:9D2D  79 9C               				DW		array_aguaoff		;puntero al array con los tiles de las ayudas sin usar para wordaux2
-      91.  00:9D2F  46 19               				DW		TILMAP + POSORACION ;calcula posición en tilemap para wordaux1
+      91.  00:9D2F  6A 19               				DW		TILMAP + POSAGUA	;calcula posición en tilemap para wordaux1
       92.  00:9D31  02                  				DB		ALTOAYUDA			;alto en tiles del dibujo de la puerta (filas)
       93.  00:9D32  02                  				DB		ANCHOAYUDA			;ancho en tiles del dibujo de la puerta (columnas)
       94.  00:9D33                      
       95.  00:9D33                      datos_armadura:
       96.  00:9D33  01                  				DB		ACTIVA				;0 no activa <>0 activo (y muestra tiles ayudaoff)
-      97.  00:9D34  38                  				DB		POSORACIONX			;punto x de la ayuda para cuando se dispare encima
-      98.  00:9D35  58                  				DB		POSORACIONY			;punto y de la ayuda para cuando se dispare encima
+      97.  00:9D34  68                  				DB		POSARMADURX			;punto x de la ayuda para cuando se dispare encima
+      98.  00:9D35  70                  				DB		POSARMADURY			;punto y de la ayuda para cuando se dispare encima
       99.  00:9D36  08                  				DB		RADIOAYUDAX			;radio x de la ayuda para cuando se dispare encima
      100.  00:9D37  08                  				DB		RADIOAYUDAY			;radio y de la ayuda para cuando se dispare encima
      101.  00:9D38  67 9F               				DW		accion_armadura		;función para acción de cada tipo de ayuda
      102.  00:9D3A  7D 9C               				DW		array_armaduraon	;puntero al array con los tiles de las ayudas sin usar para wordaux2
      103.  00:9D3C  81 9C               				DW		array_armaduraoff	;puntero al array con los tiles de las ayudas sin usar para wordaux2
-     104.  00:9D3E  46 19               				DW		TILMAP + POSORACION ;calcula posición en tilemap para wordaux1
+     104.  00:9D3E  AB 19               				DW		TILMAP + POSARMADURA;calcula posición en tilemap para wordaux1
      105.  00:9D40  02                  				DB		ALTOAYUDA			;alto en tiles del dibujo de la puerta (filas)
      106.  00:9D41  02                  				DB		ANCHOAYUDA			;ancho en tiles del dibujo de la puerta (columnas)
      107.  00:9D42                      
@@ -6114,8 +6115,8 @@ Errors: 0
       47.  00:AA5E                      habitaciones_juego:
       48.  00:AA5E                      habitaciones_nivel0:
       49.  00:AA5E                      			;0		0'		   1        1'         2         2'         3        3'        4         4'       5         5'        6         6'
-      50.  00:AA5E                      	db 00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00001010b,00000100b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,#00,#00 ;nivel 0 fila 1
-      50.  00:AA5E  00 00 00 00 00 00 0A 04 00 00 00 00 00 00 00 00 
+      50.  00:AA5E                      	db 00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00001010b,00010000b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,#00,#00 ;nivel 0 fila 1
+      50.  00:AA5E  00 00 00 00 00 00 0A 10 00 00 00 00 00 00 00 00 
       51.  00:AA6E                      	db 00000000b,00000000b,00001100b,00000000b,00000101b,00000000b,00001111b,00000000b,00000101b,00000000b,00001001b,00000000b,00000000b,00000000b,#00,#00 
       51.  00:AA6E  00 00 0C 00 05 00 0F 00 05 00 09 00 00 00 00 00 
       52.  00:AA7E                      	db 00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,00001010b,00000100b,00000000b,00000000b,#00,#00 
@@ -6436,18 +6437,20 @@ Errors: 0
 00:000000E1   POSPUERIZQU
 00:0000006C   POSESCALERA
 00:00000146   POSORACION
-00:000000A7 X POSCRUZ
-00:000000AB X POSAGUA
-00:000000AF X POSARMAD
+00:000001A3   POSCRUZ
+00:0000016A   POSAGUA
+00:000001AB   POSARMADURA
 00:000000B3 X POSPLANTA
 00:000000B7 X POSVIDAEXT
 00:000000BB X POSBALLESTA
-00:00000070 X POSAYUDASY
 00:00000038   POSORACIONX
 00:00000058   POSORACIONY
-00:00000040 X POSCRUZX
-00:00000060 X POSAGUAX
-00:00000080 X POSARMADX
+00:00000020   POSCRUZX
+00:00000070   POSCRUZY
+00:00000058   POSAGUAX
+00:00000060   POSAGUAY
+00:00000068   POSARMADURX
+00:00000070   POSARMADURY
 00:000000A0 X POSPLANTAX
 00:000000C0 X POSVIDAEXTX
 00:000000E0 X POSBALLESTAX
@@ -7022,6 +7025,7 @@ Errors: 0
 00:00009CD9   ayuda_planta
 00:00009CE8   ayuda_vidaextra
 00:00009CF7   ayuda_ballesta
+00:00009D06 X datos_ayudas
 00:00009D06   datos_oracion
 00:00009D15   datos_cruz
 00:00009D24   datos_aguabendita
