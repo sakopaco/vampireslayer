@@ -455,7 +455,6 @@ pinta_blanco_mapa:
 		JP		posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.posx y posy
 fin_pinta_blanco_mapa:
 	
-	
 
 ;;=====================================================
 ;;CAMBIO_NIVEL
@@ -476,8 +475,6 @@ cambio_nivel:
 fin_cabio_nivel:
 		RET
 	
-	
-
 	
 	
 	

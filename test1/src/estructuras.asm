@@ -10,20 +10,16 @@ posy			DB		POSYPM
 escena			DB		0	;valores porsibles 0 (blanco+rojo en punto de mira) y NEG 0 (al revés)
 velocidad		DB		0
 boton2_pressed  DB		0
-cadencia		DB		5	;nº de veces que se ejecutará el disparo antes de ejecutar un disparo real (porque cuando se pulsa la tecl dispara 3 ó 4 veces de rápido que va)
-; al final he decidido (ya que el punto de mira es el prota) que lo relacionado con el prota vaya en esta estructura
-pm_aux1			DB		0	;para llegar a los 16 campos
-pm_aux2			DB		0	;para llegar a los 16 campos
-pm_aux3			DB		0	;para llegar a los 16 campos
-pm_aux4			DB		0	;para llegar a los 16 campos
-pm_aux5			DB		0	;para llegar a los 16 campos
-pm_aux6			DB		0	;para llegar a los 16 campos
-pm_aux7			DB		0	;para llegar a los 16 campos
-pm_aux8			DB		0	;para llegar a los 16 campos
-pm_aux9			DB		0	;para llegar a los 16 campos
-pm_aux10		DB		0	;para llegar a los 16 campos
+cadencia		DB		4	;velocidad de disparo si botón pulsado
+dano1			DB		2	;para llegar a los 16 campos
+dano2			DB		4	;para llegar a los 16 campos
+spritenormal1	DW		0	;dibujo de 16 x 16 del punto de mira 1
+spritenormal2	DW		0	;dibujo de 16 x 16 del punto de mira 2
+spriteextra1	DW		0	;dibujo de 16 x 16 del punto de mira 1 (versión ballesta extra)
+spriteextra2	DW		0	;dibujo de 16 x 16 del punto de mira 2 (versión ballesta extra)
+cambiaballesta	DW		0	;función para intercambiar una ballesta con otra (mira variable prota_dano)
+boton2_accion   DW		0	;acción si se pulsa el botón 2
 	ENDSTRUCT;ESTRUCTURA_PUNTOMIRA
-
 
 
 	STRUCT ESTRUCTURA_ANTORCHA
@@ -34,6 +30,7 @@ pospantalla_antor2	DB		0	;pos en pantalla (memoria en el banco 1 se le suma 256 
 escena				DB		0	;(va entre 0 y 1 - 0=>llama1 y llama2 o 1=>llama2 y llama1	7 - tiles 196 y 197)	5
 cont_sig_escena		DB		10	;	6
 	ENDSTRUCT;ESTRUCTURA_ANTORCHA
+
 
 	STRUCT ESTRUCTURA_ESQUELETO
 activo				DB		0	;0 no activa <>0 activo
@@ -62,6 +59,7 @@ en_aux3				DB		0
 en_aux4				DB		0
 	ENDSTRUCT;ESTRUCTURA_ENEMIGO
 
+
 	STRUCT ESTRUCTURA_AYUDA	
 activa				DB		0	;0 no activa <>0 activo (y muestra tiles ayudaoff)
 posx				DB		0	;punto x de la ayuda para cuando se dispare encima
@@ -75,6 +73,7 @@ pos_en_tilemap		DW		0	;calcula posición en tilemap para wordaux1
 alto				DB		2	;alto en tiles del dibujo de la puerta (filas)
 ancho				DB		2	;ancho en tiles del dibujo de la puerta (columnas)
 	ENDSTRUCT;ESTRUCTURA_PUERTA
+
 
 	STRUCT ESTRUCTURA_PUERTA	;también servirá para la escalera
 activa				DB		0	;0 no activa <>0 activo

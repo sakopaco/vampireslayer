@@ -52,9 +52,6 @@ SPRTBL		equ		#3800
 ;;ETIQUETAS ESTANDAR PARA DAR MÁS CLARIDAD AL CODIGO
 SI			equ		1
 NO			equ		0
-LIMCADENCIA equ		4	;nº de veces que se ejecutará el disparo antes de ejecutar un disparo real (porque cuando se pulsa la tecl dispara 3 ó 4 veces de rápido que va)
-;hay que estudiar si 3 es un nº mejor
-
 
 ;;PALETA DE COLORES DEL MSX
 COLTRASP	equ		0
@@ -139,6 +136,11 @@ POSYPM		equ		108
 INACTIVA	equ		0
 ACTIVA		equ		1
 HABTERMIN	equ		1
+
+;;ETIQUETAS PARA PUNTO DE MIRA
+LIMCADENCIA equ		4	;nº de veces que se ejecutará el disparo antes de ejecutar un disparo real (porque cuando se pulsa la tecl dispara 3 ó 4 veces de rápido que va)
+DANO1		equ		2	;daño por defecto del punto de mira
+DANO2		equ		5	;daño mejorado del punto de mira
 
 ;;POSICIONES DE LAS ANTORCHAS
 POSANTOR1	equ		136

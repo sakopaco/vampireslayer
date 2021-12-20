@@ -17,6 +17,9 @@ START:
 	;inicializa variables para parametrizar funciones y que lo que se muestre sea variable (nº vidas, mapa, puertas, pantalla, etc...)
 	CALL	inicializa_variables_pruebas
 	
+	;inicializa el punto de mira
+	CALL	inicializa_punto_mira
+	
 	;inicializa los niveles por partida
 	CALL	inicializa_niveles			;no es necesario parametrizarlo según el nivel del usuario ya que se cargan todos
 
@@ -168,6 +171,8 @@ fin_inicializa_variables_pruebas:
 	include "subr_sonido.asm"
 	
 	include "subr_ayudas.asm"
+	
+	include "subr_puntomira.asm"
 	
 
 ;;=====================================================
