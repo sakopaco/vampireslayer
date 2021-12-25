@@ -400,7 +400,7 @@ fin_check_colision_ayudas:
 ; toca:		HL,BC, DE
 check_colision_ayuda:
 .deteccioncolision_paso1:
-	LD		IY, prota	;IY punto de mira / IX puerta
+	LD		IY, puntomira	;IY punto de mira / IX puerta
 	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posx)
 	ADD		 8			;8-es fijo, offset del punto de mira ya que se mueve según la esquina superior izquierda y el centro del punto de mira está en el centro del sprite
 	

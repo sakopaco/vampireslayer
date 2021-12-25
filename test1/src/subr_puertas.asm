@@ -98,8 +98,8 @@ datos_puerta_abajo:
 					DB		#00;0		;0 no activa <>0 activo
 					DB		#80;128		;punto x de la puerta para cuando se dispare encima
 					DB		#7C;124		;punto y de la puerta para cuando se dispare encima
-					DB		#05;5		;radio x de la puerta para cuando se dispare encima  **********************************
-					DB		#10;16		;radio y de la puerta para cuando se dispare encima
+					DB		#11;		;radio x de la puerta para cuando se dispare encima
+					DB		#06;		;radio y de la puerta para cuando se dispare encima
 					DW		accion_puerta_abajo		;función para acción de cada tipo de puerta
 					DW		array_puerta_abajo		;puntero al array con los tiles de las puertas
 					DW		TILMAP + POSPUERABAJ
@@ -512,9 +512,9 @@ fin_check_colisiones_puertas:
 ; toca:		HL,BC, DE
 check_colision_puerta:
 .deteccioncolision_paso1:
-	LD		IY, prota	;IY punto de mira / IX puerta
+	LD		IY, puntomira	;IY punto de mira / IX puerta
 	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posx)
-	ADD		 8			;8-es fijo, offset del punto de mira ya que se mueve según la esquina superior izquierda y el centro del punto de mira está en el centro del sprite
+	ADD		 8				;8-es fijo, offset del punto de mira ya que se mueve según la esquina superior izquierda y el centro del punto de mira está en el centro del sprite
 	
 	;ya tengo en A la coordenada X del centro del punto de mira					
 	SUB		(IX + ESTRUCTURA_PUERTA.posx)	;le resto el punto x en la puerta

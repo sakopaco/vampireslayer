@@ -137,9 +137,6 @@ inicializa_variables_pruebas:
 	LD		 A, 3				;columnas 7: del 0 al 6
 	LD		(prota_pos_mapx), A	;pos X dentro del nivel (se empieza en 0)
 	
-	XOR		 A					;cadencia por defecto.. cuando se coja mejora en arma se puede variar
-	LD		(prota.cadencia), A
-	
 	LD		(is_habitacion_terminada), A
 fin_inicializa_variables_pruebas:
 	RET
@@ -162,6 +159,8 @@ fin_inicializa_variables_pruebas:
 	
 	include "subr_pintapantalla.asm"
 	
+	include "subr_puntomira.asm"
+	
 	include "subr_puertas.asm"
 	
 	include "subr_sprites.asm"
@@ -171,8 +170,6 @@ fin_inicializa_variables_pruebas:
 	include "subr_sonido.asm"
 	
 	include "subr_ayudas.asm"
-	
-	include "subr_puntomira.asm"
 	
 
 ;;=====================================================
@@ -185,11 +182,11 @@ depack_VRAM:
 	include "PL_VRAM_Depack_SJASM.asm"
 
 
-	
 ;;=====================================================
 ;;DEFINICIÓN DE ESTRUCTURAS
 ;;=====================================================		
 	include "estructuras.asm"
+
 	
 ;;=====================================================
 ;;DEFINICIÓN DE VARIABLES
@@ -199,10 +196,12 @@ depack_VRAM:
 	include "habitaciones.asm"
 	
 	include "variables.asm"
-	
+
+
 ;;=====================================================
 ;;DEFINICIÓN DE PANTALLAS
 ;;=====================================================		
 	include "pantallas.asm"
+
 
 END:

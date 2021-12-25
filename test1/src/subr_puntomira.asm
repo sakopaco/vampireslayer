@@ -5,22 +5,18 @@
 ;;=====================================================
 ;;VARIABLES
 ;;=====================================================
+dano_actual:	DB		2	;daño actual cuando el prota dispara
 
-dano_actual:
-			DB		2	;daño actual cuando el prota dispara
-
-estructura_pm:	
-			DS		ESTRUCTURA_PUNTOMIRA	
+puntomira:		DS		ESTRUCTURA_PUNTOMIRA
 
 datos_puntomira:			
-			DB		POSXPM		;posición X de los sprites del punto de mira
-			DB		POSYPM		;posición Y de los sprites del punto de mira
-			DB		0			;valores posibles 0 (blanco+rojo en punto de mira) y NEG 0 (al revés)
-			DB		0			;velocidad (por si lo pongo variable)
-			DB		0			;incrementos extras para mover el punto de mira
-			DB		4			;cadencia
-			DB		SPRI_DANO1A	;valor en pos de memoria del sprite grande del punto de mira
-			DB		SPRI_DANO1B	;valor en pos de memoria del sprite pequeño del punto de mira
+				DB		POSXPM		;posición X de los sprites del punto de mira
+				DB		POSYPM		;posición Y de los sprites del punto de mira
+				DB		0			;valores posibles 0 (blanco+rojo en punto de mira) y NEG 0 (al revés)
+				DB		0			;velocidad (por si lo pongo variable)
+				DB		4			;cadencia
+				DB		SPRI_DANO1A	;valor en pos de memoria del sprite grande del punto de mira
+				DB		SPRI_DANO1B	;valor en pos de memoria del sprite pequeño del punto de mira
 			
 
 ;;=====================================================
@@ -33,8 +29,8 @@ datos_puntomira:
 inicializa_punto_mira:
 	;oracion
 	LD		HL, datos_puntomira
-	LD		DE, estructura_pm
-	CALL	carga_datos_puntomira
+	LD		DE, puntomira
+	JP		carga_datos_puntomira
 fin_inicializa_punto_mira:	
 	
 	
@@ -49,7 +45,7 @@ fin_inicializa_punto_mira:
 ; salida: 	-
 ; toca:		HL, DE, BC
 carga_datos_puntomira:
-	LD		BC, ESTRUCTURA_PUNTOMIRA;ESTRUCTURA_PUNTOMIRA ;equivale a 5.. el tamaño de la estructura en bytes
+	LD		BC, ESTRUCTURA_PUNTOMIRA;ESTRUCTURA_PUNTOMIRA ;equivale a 8.. el tamaño de la estructura en bytes
 	LDIR
 fin_carga_datos_puntomira:
 	RET
@@ -64,12 +60,13 @@ fin_carga_datos_puntomira:
 ; toca:		-
 accion_boton1:
 		;cambio colores del sprite
-		LD		 A, (prota.escena)
+		LD		IX, puntomira
+		LD		 A, (IX + ESTRUCTURA_PUNTOMIRA.escena)
 		CPL		 
-		LD		(prota.escena), A
+		LD		(IX + ESTRUCTURA_PUNTOMIRA.escena), A
 		;reseteo cadencia para el próximo disparo
 		LD		 A, LIMCADENCIA				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-		LD		(prota.cadencia), A		;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		LD		(IX + ESTRUCTURA_PUNTOMIRA.cadencia), A		;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 		
 		;ejecuto sonido						;; ajustar cadencia y que cuando el disparo sea efectivo se reseteen los colores
 		XOR		 A

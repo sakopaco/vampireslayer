@@ -6,16 +6,16 @@
 ;;MUEVE_ARRIBA
 ;;=====================================================	
 ; función: 	decrementa y si se no sale de los límites el valor del punto de mira a la derecha
-; entrada: 	-
+; entrada: 	IX, puntomira
 ; salida: 	-
 ; toca: 	-
 mueve_arriba:
 	PUSH		AF
 	
-	LD		 	 A, (prota.posy)
+	LD		 	 A, (IX + ESTRUCTURA_PUNTOMIRA.posy)
 	DEC			 A
 	JP			 Z,.no_decrementa_y
-	LD			(prota.posy), A
+	LD			(IX + ESTRUCTURA_PUNTOMIRA.posy), A
 	
 .no_decrementa_y:
 	POP			AF
@@ -27,17 +27,17 @@ fin_mueve_arriba:
 ;;MUEVE_DERECHA
 ;;=====================================================	
 ; función: 	incrementa si se no sale de los límites el valor del punto de mira a la derecha
-; entrada: 	-
+; entrada: 	IX, puntomira
 ; salida: 	-
 ; toca: 	-
 mueve_derecha:
 	PUSH		AF
 	
-	LD		 	 A, (prota.posx)
+	LD		 	 A, (IX + ESTRUCTURA_PUNTOMIRA.posx)
 	INC			 A
 	CP			 A, LIMPANTDER - 16
 	JP			 Z, .no_incrementa_x
-	LD			(prota.posx), A
+	LD			(IX + ESTRUCTURA_PUNTOMIRA.posx), A
 	
 .no_incrementa_x:
 	POP			AF
@@ -49,17 +49,17 @@ fin_mueve_derecha:
 ;;MUEVE_ABAJO
 ;;=====================================================	
 ; función: 	incrementa y si se no sale de los límites el valor del punto de mira abajo
-; entrada: 	-
+; entrada: 	IX, puntomira
 ; salida: 	-
 ; toca: 	-
 mueve_abajo:
 	PUSH		AF
 	
-	LD		 	 A, (prota.posy)
+	LD		 	 A, (IX + ESTRUCTURA_PUNTOMIRA.posy)
 	INC			 A
 	CP			 A, LIMPANTABA - 16
 	JP			 Z,.no_incrementa_y
-	LD			(prota.posy), A
+	LD			(IX + ESTRUCTURA_PUNTOMIRA.posy), A
 	
 .no_incrementa_y:
 	POP			AF
@@ -71,17 +71,17 @@ fin_mueve_abajo:
 ;;MUEVE_IZQUIERDA
 ;;=====================================================	
 ; función: 	decrementa x si se no sale de los límites el valor del punto de mira a la izquierda
-; entrada: 	-
+; entrada: 	IX, puntomira
 ; salida: 	-
 ; toca: 	-
 mueve_izquierda:
 	PUSH		AF
 	
-	LD		 	 A, (prota.posx)
+	LD		 	 A, (IX + ESTRUCTURA_PUNTOMIRA.posx)
 	DEC			 A
 ;	CP			 A, LIMPANTIZQ 			;no es necesario ya que es cero (Z)
 	JP			 Z,.no_decrementa_x
-	LD			(prota.posx), A
+	LD			(IX + ESTRUCTURA_PUNTOMIRA.posx), A
 	
 .no_decrementa_x:
 	POP			AF
@@ -103,13 +103,14 @@ mira_disparo:
 	JP		 NC, .mira_disparo2					
 	PUSH	AF						;copia A para usarlo después en mira_disparo2
 	;se ha pulsado barra o boton 1?
-	LD		 A, (prota.cadencia)
+	LD		IX, puntomira
+	LD		 A, (IX + ESTRUCTURA_PUNTOMIRA.cadencia)
 	OR		 A
 	;IF
 	JP		 Z, .efectua_disparo	;toca efectuar disparo realmente porque se ha pulsado lo suficiente el disparo
 .no_efectua_disparo:;THEN
 		DEC		 A
-		LD		(prota.cadencia), A	;resto cadencia hasta próximo disparo "real" (no automático por haber pulsado una tecla e ir demasiado rápido)
+		LD		(IX + ESTRUCTURA_PUNTOMIRA.cadencia), A	;resto cadencia hasta próximo disparo "real" (no automático por haber pulsado una tecla e ir demasiado rápido)
 		JP		.fin_mira_disparo1
 .efectua_disparo:	;ELSE
 		CALL	accion_boton1
