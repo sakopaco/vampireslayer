@@ -19,9 +19,6 @@
 carga_patrones_sprites_nivel:
 	CALL 	carga_patrones_nivel_comunes
 	
-	RET		;*********************
-	
-	
 	;POR AHORA ES TODO COMÚN ... CUANDO EL JUGADOR SE MUEVA LOS PATRONES SERÁN DEPENDIENDO DEL NIVEL
 	; O NO Y LO QUE SE HACE ES PERSONALIZAR LA PANTALLA USANDO LOS MISMOS PATRONES PERO PINTANDO DISTINTOS
 	; EN DISTINTOS SITIOS SEGÚN NIVEL
@@ -31,6 +28,7 @@ carga_patrones_sprites_nivel:
 	;~ OR		 A
 	;~ JP		 Z, carga_patrones_sprites_nivel donde esté el prota
 fin_carga_patrones_sprites_nivel:
+	RET	
 
 
 ;;=====================================================
@@ -101,8 +99,8 @@ vuelca_resultado_puntomira_array:
 	LD		(IX+1), A
 	LD		(IX+5), A
 	;plano
-	LD		(IX+2), 0
-	LD		(IX+6), 4	;al ser sprites de 16x16 hay que ir de 4 en 4
+	LD		(IX+2), 0;(ESTRUCTURA_PUNTOMIRA.spritea)
+	LD		(IX+6), 4;(ESTRUCTURA_PUNTOMIRA.spriteb)
 	;color
 	LD		 A, (prota.escena)
 	OR		 A

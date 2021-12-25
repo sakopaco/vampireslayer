@@ -98,63 +98,31 @@ fin_mueve_izquierda:
 ; salida: 	-
 ; toca: 	A, B
 mira_disparo:
-.mira_boton_pulsado1:
+.mira_disparo1:
 	RR		 A						;preparo en el carry si se ha pulsado botón 1
-	JP		 NC, .mira_boton_pulsado2					
-	PUSH	AF						;copia A para usarlo después
-	;se ha pulsado barra o boton 1
+	JP		 NC, .mira_disparo2					
+	PUSH	AF						;copia A para usarlo después en mira_disparo2
+	;se ha pulsado barra o boton 1?
 	LD		 A, (prota.cadencia)
 	OR		 A
+	;IF
 	JP		 Z, .efectua_disparo	;toca efectuar disparo realmente porque se ha pulsado lo suficiente el disparo
-.no_efectua_disparo: ;IF
+.no_efectua_disparo:;THEN
 		DEC		 A
 		LD		(prota.cadencia), A	;resto cadencia hasta próximo disparo "real" (no automático por haber pulsado una tecla e ir demasiado rápido)
-		XOR		 A 
-		LD		(prota.escena), A
 		JP		.fin_mira_disparo1
 .efectua_disparo:	;ELSE
-		;cambio colores del sprite
-		LD		 A, (prota.escena)
-		CPL		 
-		LD		(prota.escena), A
-		;reseteo cadencia para el próximo disparo
-		LD		 A, LIMCADENCIA				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-		LD		 (prota.cadencia), A		;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-		
-		;ejecuto sonido						;; ajustar cadencia y que cuando el disparo sea efectivo se reseteen los colores
-		XOR		 A
-		LD		 C, 1
-		CALL	ayFX_INIT
-		
-		;examino si el disparo le dió a algo activo
-		CALL	check_colisiones_objetos	;revisa las colisiones con puertas, ayudas y enemigos
-		
+		CALL	accion_boton1
 .fin_mira_disparo1
-	POP		AF
 
-.mira_boton_pulsado2:
+	POP			AF
+.mira_disparo2:
 	RR		 A
-	RET		 NC
-	;se ha pulsado shift o boton 2
-	
-	LD		 A, (prota_reliquias)	;miro si le quedan reliquias
-	OR		 A
-	RET		 Z						;si no le quedan salgo ya
-	
-	;actuaciones si se usa la reliquia botón 2 o M y quedn reliquias.. (antes ya se puso el valor en A)
-	LD		A, (prota_reliquias)
-	DEC		 A
-	LD		(prota_reliquias), A
-	
-	LD		 A, 1
-	LD		 C, 1
-	CALL	ayFX_INIT
-	
-	CALL 	efecto_imagen_tira_reliquia
-	
-	JP		pinta_reliquias
+	RET		 NC ; no se ha pulsado shift o boton 2?
+	;si se ha pulsado
+	JP			accion_boton2
 fin_mira_disparo:
-;	RET		
+
 
 
 ;;============================================================

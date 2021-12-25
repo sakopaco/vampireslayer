@@ -279,7 +279,6 @@ fin_actualiza_buffer_reliquias:
 	RET
 
 
-
 ;;=====================================================
 ;;LOCALIZA_INFO_HABITACION
 ;;=====================================================	
@@ -411,7 +410,6 @@ terminada_habitacion_recorrida:
 		LD			(habitacion_actual), A
 fin_terminada_habitacion_recorrida:
 		RET
-
 
 
 ;;=====================================================

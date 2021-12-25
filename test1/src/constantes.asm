@@ -141,6 +141,10 @@ HABTERMIN	equ		1
 LIMCADENCIA equ		4	;nº de veces que se ejecutará el disparo antes de ejecutar un disparo real (porque cuando se pulsa la tecl dispara 3 ó 4 veces de rápido que va)
 DANO1		equ		2	;daño por defecto del punto de mira
 DANO2		equ		5	;daño mejorado del punto de mira
+SPRI_DANO1A equ		0	;posiciones de los sprites en memoria (va de 4 en 4 al tratarse de sprites de 16 x 16)
+SPRI_DANO1B equ		4
+SPRI_DANO2A equ		8
+SPRI_DANO3B equ		12
 
 ;;POSICIONES DE LAS ANTORCHAS
 POSANTOR1	equ		136

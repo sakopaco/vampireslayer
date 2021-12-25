@@ -9,16 +9,9 @@ posx			DB		POSXPM
 posy			DB		POSYPM
 escena			DB		0	;valores porsibles 0 (blanco+rojo en punto de mira) y NEG 0 (al revés)
 velocidad		DB		0
-boton2_pressed  DB		0
-cadencia		DB		4	;velocidad de disparo si botón pulsado
-dano1			DB		2	;para llegar a los 16 campos
-dano2			DB		4	;para llegar a los 16 campos
-spritenormal1	DW		0	;dibujo de 16 x 16 del punto de mira 1
-spritenormal2	DW		0	;dibujo de 16 x 16 del punto de mira 2
-spriteextra1	DW		0	;dibujo de 16 x 16 del punto de mira 1 (versión ballesta extra)
-spriteextra2	DW		0	;dibujo de 16 x 16 del punto de mira 2 (versión ballesta extra)
-cambiaballesta	DW		0	;función para intercambiar una ballesta con otra (mira variable prota_dano)
-boton2_accion   DW		0	;acción si se pulsa el botón 2
+cadencia		DB		0	;velocidad de disparo si botón pulsado
+spritea			DB		0	;valor en pos de memoria del sprite grande del punto de mira
+spriteb			DB		0 	;valor en pos de memoria del sprite pequeño del punto de mira
 	ENDSTRUCT;ESTRUCTURA_PUNTOMIRA
 
 

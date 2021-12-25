@@ -644,27 +644,10 @@ fin_accion_vidaextra:
 ; entrada: 	
 ; salida: 	-
 accion_ballesta:
-	;suma energía
-	LD		 A, (prota_energia)
-	ADD		50
-	JP		NC, .fin_suma
-.pone_maximo:
-	LD		 A, 250
-.fin_suma:
-	LD		(prota_energia), A
-	
-	LD		HL, (puntero_extras_habitacion_actual)
-	LD		 A, (HL)
-	RES		 1, A					;elimino la ayuda del mapa, personalizar para cada ayuda
-	LD		(HL), A
-	XOR		 A
-	LD		(habitacion_extras), A	;para no tener que verificar ayudas
-	
-	;desactiva ayuda
-	LD		IX, (puntero_ayuda_actual)
-	XOR		 A
-	LD		(IX), A
-	CALL	pinta_obj_ayuda			;se le pasa A = 0 para que pinte desactivado
-	
-	JP		pinta_energia			;pinta la energia en pantalla
+		;CAMBIO SPRiTE
+		
+		;cambio daño a daño mejorado
+		LD		 A, DANO2
+		LD		(dano_actual), A
 fin_accion_ballesta:
+		RET
