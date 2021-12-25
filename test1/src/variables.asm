@@ -11,8 +11,6 @@ color_bomba1:
 color_bomba2:
 			DB		COLROJOOSC,COLROJOOSC,COLROJOOSC
 
-;definicion de variable del prota usando la estructura del punto de mira
-prota:		ESTRUCTURA_PUNTOMIRA
 ;variables globales del prota
 prota_nivel:			;nivel del castillo donde está 0-6
 			DB		0

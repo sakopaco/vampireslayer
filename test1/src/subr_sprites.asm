@@ -85,24 +85,27 @@ fin_actualiza_array_sprites_vram:
 ;;VUELCA_RESULTADO_PUNTOMIRA_ARRAY
 ;;=====================================================	
 ; función: 	coloca los valores del punto de mira en la variable array_sprites para ser volcados en VRAM
-; entrada: 	array_sprites_pm, prota.XXXXX
+; entrada: 	array_sprites_pm, puntomira
 ; salida: 	-
 ; toca: 	-
 vuelca_resultado_puntomira_array:
 	LD		IX, array_sprites_pm
+	LD		IY, puntomira
 	;posición y de los dos sprites que conforman el punto de mira
-	LD		 A, (prota.posy)
+	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posy)
 	LD		(IX  ), A
 	LD		(IX+4), A
 	;posición x de los dos sprites que conforman el punto de mira
-	LD		 A, (prota.posx)
+	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posx)
 	LD		(IX+1), A
 	LD		(IX+5), A
 	;plano
-	LD		(IX+2), 0;(ESTRUCTURA_PUNTOMIRA.spritea)
-	LD		(IX+6), 4;(ESTRUCTURA_PUNTOMIRA.spriteb)
+	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.spritea)
+	LD		(IX+2), A
+	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.spriteb)
+	LD		(IX+6), A
 	;color
-	LD		 A, (prota.escena)
+	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.escena)
 	OR		 A
 	JP		NZ,.codigo_color_2
 .codigo_color_1:
@@ -128,6 +131,7 @@ check_player:
 	OR		 A
 	RET		 Z						;si no se ha pulsado nada no se necesita mirar nada
 
+	LD		IX, puntomira		;variable de entrada para las subrutinas mueve_dirección
 	RR		 A
 	CALL	 C, mueve_arriba
 	RR		 A
