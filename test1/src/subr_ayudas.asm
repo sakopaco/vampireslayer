@@ -644,7 +644,10 @@ fin_accion_vidaextra:
 ; entrada: 	
 ; salida: 	-
 accion_ballesta:
-		;CAMBIO SPRiTE
+		;cambio sprites a ballesta mejorada
+		LD		IX, puntomira
+		LD		(IX + ESTRUCTURA_PUNTOMIRA.spritea), SPRI_DANO2A
+		LD		(IX + ESTRUCTURA_PUNTOMIRA.spriteb), SPRI_DANO2B
 		
 		;cambio daño a daño mejorado
 		LD		 A, DANO2

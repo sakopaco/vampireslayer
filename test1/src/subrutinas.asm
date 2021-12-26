@@ -462,17 +462,47 @@ fin_pinta_blanco_mapa:
 ; salida: 	
 ; toca:		todo	
 cambio_nivel:
-	
 		;MIRAR CUANDO EL NIVEL SEA -1 (SE SALE DEL CASTILLO Y PUEDE QUE SEA POR TERMINAR JUEGO O SALIR ANTES DE TIEMPO)
 	
 ;		*****************************************************************************************************************************+
 		CALL		pinta_nivel
 	
-		CALL		borra_mapa	
-		
+		JP			borra_mapa	
 fin_cabio_nivel:
-		RET
+
+
+;;=====================================================
+;;CHECK_COLISIONES_OBJETOS
+;;=====================================================	
+; función: 	revisa (con enemigos+ayudas o puertas según si la habitación ha sido recorrida o no) las variables para ver si se disparó sobre ellas
+; entrada: 	is_habitacion_terminada
+; salida: 	-
+; toca:		HL,BC, DE
+check_colisiones_objetos:
+	;pantalla limpia?
+	LD		 A, (is_habitacion_terminada)
+	OR		 0
+	JP		 Z, .habitacion_no_terminada
+	;SI 
+	;recorre puertas y sale
+		CALL	check_colisiones_puertas
+	;NO 
+.habitacion_no_terminada:
+	;recorre ayudas
+	;SI ;mira si hay colisiones con la ayuda que haya puntero_ayuda_actual
+	LD		 A, (hay_ayudas_en_pantalla)
+	OR		 0
+	JP		 Z, .habitacion_sin_ayudas
+	;THEN
+		CALL	check_colision_ayudas
+	;ENDIF
+.habitacion_sin_ayudas:
 	
+	;recorre enemigos
+
+fin_check_colisiones_objetos:	
+	RET
+
 	
 	
 	
