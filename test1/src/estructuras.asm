@@ -67,7 +67,7 @@ ancho				DB		0	;ancho en tiles del dibujo de la puerta (columnas)
 ;Tipo:
 ;	0  - inactivo
 ;	1  - muerto (se pone daño 0 y vida: el tiempo para desaparecer)
-;	2  - ciempies
+;	2  - ciempiés
 ;	3  - serpiente
 ;	4  - araña
 ;	5  - murciélago
@@ -86,9 +86,30 @@ ancho				DB		0	;ancho en tiles del dibujo de la puerta (columnas)
 ;	18 - jefe beholder
 ;	19 - manos conde drácula
 ;	20 - conde drácula
+;
+;Sprites que usa (16x16):
+;	2  - ciempiés: 1
+;	3  - serpiente: 1
+;	4  - araña: 1
+;	5  - murciélago: 1
+;	6  - lobo: 2 (horz)
+;	7  - zombi: 2 (vert)
+;	8  - fantasma: 3 (triángulo invertido)
+;	9  - caballero gris: 2 (vert)
+;	10 - caballero negro: 2 (vert)
+;	11 - fuego: 2 (vert)
+;	12 - magia: 2 (horz)
+;	13 - jefe lobo gigante: 4
+;	14 - jefe murciélago gigante: 4
+;	15 - jefe fantasma gigante: 4
+;	16 - jefe zombie gigante: 4
+;	17 - jefe caballero: 4
+;	18 - jefe beholder: 4
+;	19 - manos conde drácula: 2 (vert)
+;	20 - conde drácula: 2 (vert)
 ;		
 ;movimiento:
-;	1 - ciempies
+;	1 - ciempiés
 ;		beholder
 ;		posiciones aleatoriaas precalculadas (duran en posición cont_sig_escena)
 ;	2 - murciélago

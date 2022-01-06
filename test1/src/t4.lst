@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.01.06 - 10:07:18]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.01.06 - 19:21:31]
 
 t4.asm
 Errors: 0
@@ -5270,7 +5270,7 @@ Errors: 0
       67.  00:A0FD                      ;Tipo:
       68.  00:A0FD                      ;	0  - inactivo
       69.  00:A0FD                      ;	1  - muerto (se pone daño 0 y vida: el tiempo para desaparecer)
-      70.  00:A0FD                      ;	2  - ciempies
+      70.  00:A0FD                      ;	2  - ciempiés
       71.  00:A0FD                      ;	3  - serpiente
       72.  00:A0FD                      ;	4  - araña
       73.  00:A0FD                      ;	5  - murciélago
@@ -5289,74 +5289,95 @@ Errors: 0
       86.  00:A0FD                      ;	18 - jefe beholder
       87.  00:A0FD                      ;	19 - manos conde drácula
       88.  00:A0FD                      ;	20 - conde drácula
-      89.  00:A0FD                      ;		
-      90.  00:A0FD                      ;movimiento:
-      91.  00:A0FD                      ;	1 - ciempies
-      92.  00:A0FD                      ;		beholder
-      93.  00:A0FD                      ;		posiciones aleatoriaas precalculadas (duran en posición cont_sig_escena)
-      94.  00:A0FD                      ;	2 - murciélago
-      95.  00:A0FD                      ;		araña 
-      96.  00:A0FD                      ;		"precalculadas en horizontal" de 8 posibles (para usar R) desde la parte superior e irán bajando y 
-      97.  00:A0FD                      ;		subiendo verticalmente y con pos aleatorias horizontales para que no vayan todos al unísono
-      98.  00:A0FD                      ;		NOTA: para el murciélado me gustaría una onda senoidal a la altura de un tercio 				?? investigar
-      99.  00:A0FD                      ;	3 - serpiente
-     100.  00:A0FD                      ;		lobo
-     101.  00:A0FD                      ;		zombie
-     102.  00:A0FD                      ;		cabalero gris y negro
-     103.  00:A0FD                      ;		"precalculadas en vertical" de 8 posibles (para usar R) desde la parte izquierda a la derecha moviéndose
-     104.  00:A0FD                      ;		horizontalmente y con pos aleatorias verticales para que no vayan todos al unísono
-     105.  00:A0FD                      ;	4 - fantasma
-     106.  00:A0FD                      ;		fuego
-     107.  00:A0FD                      ;		describe círculos desde un punto central con radios (pseudoaleatorios) a cada vuelta
-     108.  00:A0FD                      ;	5 - magia
-     109.  00:A0FD                      ;		manos del conde drácula
-     110.  00:A0FD                      ;		posiciones "pseudoaleatorias" por pantalla estando un contador en cada posición
-     111.  00:A0FD                      ;	6 - conde drácula
-     112.  00:A0FD                      ;		posiciones aleatoriaas precalculadas (duran en posición cont_sig_escena)
-     113.  00:A0FD                      
-     114.  00:A0FD                      
-     115.  00:A0FD                      	STRUCT ESTRUCTURA_ENEMIGO
-     116.  00:A0FD                    < activo_tipo			DB		0	;si inactivo = 0 si <> 0 es el tipo de enemigo
-     117.  00:A0FD                    < escena				DB		0	;sprite a mostrar 1/2
-     118.  00:A0FD                    < cont_sig_escena		DB		0	;retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
-     119.  00:A0FD                    < tiemp_cam_escena	DB		0	;cada cuantas iteraciones se cambiará la escena
-     120.  00:A0FD                    < ptr_sig_escena		DW		0	;funcion que cambia los sprites de la escena (según el nº de sprites será distinta)
-     121.  00:A0FD                    < energia				DB		0	;energía del enemigo antes de morir
-     122.  00:A0FD                    < ptr_explosion		DW		0	;realiza cambios en caso de muerte (energía = 0)
-     123.  00:A0FD                    < pos_x				DB		0	;pos x para mover y punto central del sprite para revisar disparo
-     124.  00:A0FD                    < pos_y				DB		0	;pos y para mover y punto central del sprite para revisar disparo
-     125.  00:A0FD                    < inc_x				DB		0	;incremento x para mover
-     126.  00:A0FD                    < inx_y				DB		0	;incremento y para mover
-     127.  00:A0FD                    < direccion			DB		0	;?? (duda por si no tendría espacio para tanto sprite en memoria)
-     128.  00:A0FD                    < ptr_mover			DW		0	;puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
-     129.  00:A0FD                    < ;se pondrán 8 sprites: 4 por si hay enemigos de hasta 4 sprites y por 2 por usar 2 escenas... si se usan 3 habría que ampliar
-     130.  00:A0FD                    < sprite_1a			DB		0
-     131.  00:A0FD                    < sprite_2a			DB		0
-     132.  00:A0FD                    < sprite_3a			DB		0
-     133.  00:A0FD                    < sprite_4a			DB		0
-     134.  00:A0FD                    < sprite_1b			DB		0
-     135.  00:A0FD                    < sprite_2b			DB		0
-     136.  00:A0FD                    < sprite_3b			DB		0
-     137.  00:A0FD                    < sprite_4b			DB		0
-     138.  00:A0FD                    < sprite_1c			DB		0
-     139.  00:A0FD                    < sprite_2c			DB		0
-     140.  00:A0FD                    < sprite_3c			DB		0
-     141.  00:A0FD                    < sprite_4c			DB		0
-     142.  00:A0FD                    < sprite_1d			DB		0
-     143.  00:A0FD                    < sprite_2d			DB		0
-     144.  00:A0FD                    < sprite_3d			DB		0
-     145.  00:A0FD                    < sprite_4d			DB		0
-     146.  00:A0FD                    < color1				DB		0	;color sprite 1
-     147.  00:A0FD                    < color2				DB		0	;color sprite 1
-     148.  00:A0FD                    < color3				DB		0	;color sprite 1
-     149.  00:A0FD                    < color4				DB		0	;color sprite 1
-     150.  00:A0FD                    < 	ENDSTRUCT;ESTRUCTURA_ENEMIGO
-     151.  00:A0FD                      
-     152.  00:A0FD                      array_dano:
-     153.  00:A0FD                      		DB			0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-     153.  00:A0FD  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-     154.  00:A10D                      
-     155.  00:A10D                      
+      89.  00:A0FD                      ;
+      90.  00:A0FD                      ;Sprites que usa (16x16):
+      91.  00:A0FD                      ;	2  - ciempiés: 2
+      92.  00:A0FD                      ;	3  - serpiente: 2
+      93.  00:A0FD                      ;	4  - araña: 2
+      94.  00:A0FD                      ;	5  - murciélago: 2
+      95.  00:A0FD                      ;	6  - lobo: 3
+      96.  00:A0FD                      ;	7  - zombi: 3
+      97.  00:A0FD                      ;	8  - fantasma: 3
+      98.  00:A0FD                      ;	9  - caballero gris: 3
+      99.  00:A0FD                      ;	10 - caballero negro: 3
+     100.  00:A0FD                      ;	11 - fuego: 4
+     101.  00:A0FD                      ;	12 - magia: 4
+     102.  00:A0FD                      ;	13 - jefe lobo gigante: 4
+     103.  00:A0FD                      ;	14 - jefe murciélago gigante: 4
+     104.  00:A0FD                      ;	15 - jefe fantasma gigante: 4
+     105.  00:A0FD                      ;	16 - jefe zombie gigante: 4
+     106.  00:A0FD                      ;	17 - jefe caballero: 4
+     107.  00:A0FD                      ;	18 - jefe beholder: 4
+     108.  00:A0FD                      ;	19 - manos conde drácula: 3
+     109.  00:A0FD                      ;	20 - conde drácula: 2
+     110.  00:A0FD                      ;		
+     111.  00:A0FD                      ;movimiento:
+     112.  00:A0FD                      ;	1 - ciempiés
+     113.  00:A0FD                      ;		beholder
+     114.  00:A0FD                      ;		posiciones aleatoriaas precalculadas (duran en posición cont_sig_escena)
+     115.  00:A0FD                      ;	2 - murciélago
+     116.  00:A0FD                      ;		araña 
+     117.  00:A0FD                      ;		"precalculadas en horizontal" de 8 posibles (para usar R) desde la parte superior e irán bajando y 
+     118.  00:A0FD                      ;		subiendo verticalmente y con pos aleatorias horizontales para que no vayan todos al unísono
+     119.  00:A0FD                      ;		NOTA: para el murciélado me gustaría una onda senoidal a la altura de un tercio 				?? investigar
+     120.  00:A0FD                      ;	3 - serpiente
+     121.  00:A0FD                      ;		lobo
+     122.  00:A0FD                      ;		zombie
+     123.  00:A0FD                      ;		cabalero gris y negro
+     124.  00:A0FD                      ;		"precalculadas en vertical" de 8 posibles (para usar R) desde la parte izquierda a la derecha moviéndose
+     125.  00:A0FD                      ;		horizontalmente y con pos aleatorias verticales para que no vayan todos al unísono
+     126.  00:A0FD                      ;	4 - fantasma
+     127.  00:A0FD                      ;		fuego
+     128.  00:A0FD                      ;		describe círculos desde un punto central con radios (pseudoaleatorios) a cada vuelta
+     129.  00:A0FD                      ;	5 - magia
+     130.  00:A0FD                      ;		manos del conde drácula
+     131.  00:A0FD                      ;		posiciones "pseudoaleatorias" por pantalla estando un contador en cada posición
+     132.  00:A0FD                      ;	6 - conde drácula
+     133.  00:A0FD                      ;		posiciones aleatoriaas precalculadas (duran en posición cont_sig_escena)
+     134.  00:A0FD                      
+     135.  00:A0FD                      
+     136.  00:A0FD                      	STRUCT ESTRUCTURA_ENEMIGO
+     137.  00:A0FD                    < activo_tipo			DB		0	;si inactivo = 0 si <> 0 es el tipo de enemigo
+     138.  00:A0FD                    < escena				DB		0	;sprite a mostrar 1/2
+     139.  00:A0FD                    < cont_sig_escena		DB		0	;retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
+     140.  00:A0FD                    < tiemp_cam_escena	DB		0	;cada cuantas iteraciones se cambiará la escena
+     141.  00:A0FD                    < ptr_sig_escena		DW		0	;funcion que cambia los sprites de la escena (según el nº de sprites será distinta)
+     142.  00:A0FD                    < energia				DB		0	;energía del enemigo antes de morir
+     143.  00:A0FD                    < ptr_explosion		DW		0	;realiza cambios en caso de muerte (energía = 0)
+     144.  00:A0FD                    < pos_x				DB		0	;pos x para mover y punto central del sprite para revisar disparo
+     145.  00:A0FD                    < pos_y				DB		0	;pos y para mover y punto central del sprite para revisar disparo
+     146.  00:A0FD                    < inc_x				DB		0	;incremento x para mover
+     147.  00:A0FD                    < inx_y				DB		0	;incremento y para mover
+     148.  00:A0FD                    < direccion			DB		0	;?? (duda por si no tendría espacio para tanto sprite en memoria)
+     149.  00:A0FD                    < ptr_mover			DW		0	;puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
+     150.  00:A0FD                    < ;se pondrán 8 sprites: 4 por si hay enemigos de hasta 4 sprites y por 2 por usar 2 escenas... si se usan 3 habría que ampliar
+     151.  00:A0FD                    < sprite_1a			DB		0
+     152.  00:A0FD                    < sprite_2a			DB		0
+     153.  00:A0FD                    < sprite_3a			DB		0
+     154.  00:A0FD                    < sprite_4a			DB		0
+     155.  00:A0FD                    < sprite_1b			DB		0
+     156.  00:A0FD                    < sprite_2b			DB		0
+     157.  00:A0FD                    < sprite_3b			DB		0
+     158.  00:A0FD                    < sprite_4b			DB		0
+     159.  00:A0FD                    < sprite_1c			DB		0
+     160.  00:A0FD                    < sprite_2c			DB		0
+     161.  00:A0FD                    < sprite_3c			DB		0
+     162.  00:A0FD                    < sprite_4c			DB		0
+     163.  00:A0FD                    < sprite_1d			DB		0
+     164.  00:A0FD                    < sprite_2d			DB		0
+     165.  00:A0FD                    < sprite_3d			DB		0
+     166.  00:A0FD                    < sprite_4d			DB		0
+     167.  00:A0FD                    < color1				DB		0	;color sprite 1
+     168.  00:A0FD                    < color2				DB		0	;color sprite 1
+     169.  00:A0FD                    < color3				DB		0	;color sprite 1
+     170.  00:A0FD                    < color4				DB		0	;color sprite 1
+     171.  00:A0FD                    < 	ENDSTRUCT;ESTRUCTURA_ENEMIGO
+     172.  00:A0FD                      
+     173.  00:A0FD                      array_dano:
+     174.  00:A0FD                      		DB			0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+     174.  00:A0FD  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+     175.  00:A10D                      
+     176.  00:A10D                      
      156   00:A10D                      
      157   00:A10D                      	
      158   00:A10D                      ;;=====================================================
