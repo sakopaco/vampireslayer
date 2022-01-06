@@ -652,5 +652,9 @@ accion_ballesta:
 		;cambio daño a daño mejorado
 		LD		 A, DANO2
 		LD		(dano_actual), A
+		
+		LD		IX, (puntero_ayuda_actual)
+		XOR		 A
+		LD		(IX), A
+		JP		pinta_obj_ayuda			;se le pasa A = 0 para que pinte desactivado
 fin_accion_ballesta:
-		RET

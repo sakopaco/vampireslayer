@@ -66,7 +66,7 @@ fin_carga_patrones_sprites:
 
 
 ;;=====================================================
-;;ACTUALIZA_ARRAY_SPRITES_VRAM
+;;RENDER_SPRITES // ACTUALIZA_ARRAY_SPRITES_VRAM
 ;;=====================================================	
 ; función: 	copia el array con los valores de los sprites (pos, color, plano) en VRAM
 ; entrada: 	-
