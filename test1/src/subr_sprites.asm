@@ -7,8 +7,6 @@
 ;; PREGUNTAR SI A FERNANDO SI ES MEJOR USAR LISTAS O ALGO PARA AHORRAR CÓDIGO
 
 
-
-
 ;;=====================================================
 ;;CARGA_PATRONES_SPRITES_NIVEL
 ;;=====================================================	

@@ -123,7 +123,7 @@ sprite_murcielago_2:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
 
-;; LOBO 4 + 4
+;; LOBO 4 + 4 (dos escenas derecha y dos esceas izquierda)
 sprite_lobo1_1:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
@@ -291,28 +291,17 @@ sprite_caballero2_2:
 
 sprite_caballero2_3:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF;; ARAÑA 2
-sprite_arana_1:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	
-sprite_arana_2:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 
-sprite_caballero_4:
+sprite_caballero2_4:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	
-;; FUEGO 4
+;; FUEGO 4 (2 escenas 2 sprites vert)
 sprite_fuego_1:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
@@ -337,7 +326,7 @@ sprite_fuego_4:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	
-;; MAGIA 4
+;; MAGIA 4 (2 escenas 2 sprites hort)
 sprite_magia_1:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
@@ -362,3 +351,515 @@ sprite_magia_4:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	
+;; JEFE LOBO (4 sprites 2 escenas 2 direcciones)
+sprite_jefelobo1_1:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefelobo1_2:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefelobo1_3:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefelobo1_4:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefelobo1_5:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefelobo1_6:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefelobo1_7:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefelobo1_8:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
+	
+sprite_jefelobo2_1:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefelobo2_2:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefelobo2_3:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefelobo2_4:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefelobo2_5:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefelobo2_6:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefelobo2_7:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefelobo2_8:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
+	
+;; JEFE MURCIËLAGO (4 sprites 2 escenas)
+sprite_jefemurcielago_1:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefemurcielago_2:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefemurcielago_3:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefemurcielago_4:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefemurcielago_5:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefemurcielago_6:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefemurcielago_7:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefemurcielago_8:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
+	
+;; JEFE FANTASMA (4 sprites 2 escenas)
+sprite_jefefantasma_1:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefefantasma_2:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefefantasma_3:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefefantasma_4:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefefantasma_5:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefefantasma_6:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefefantasma_7:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefefantasma_8:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
+	
+;; JEFE ZOMBI (4 sprites 2 escenas 2 direcciones)
+sprite_jefezombi1_1:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefezombi1_2:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefezombi1_3:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefezombi1_4:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefezombi1_5:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefezombi1_6:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefezombi1_7:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefezombi1_8:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
+	
+sprite_jefezombi2_1:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefezombi2_2:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefezombi2_3:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefezombi2_4:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefezombi2_5:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefezombi2_6:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefezombi2_7:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefezombi2_8:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
+	
+;; JEFE CABALLERO (4 sprites 2 escenas 2 direcciones)
+sprite_jefecaballero1_1:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefecaballero1_2:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefecaballero1_3:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefecaballero1_4:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefecaballero1_5:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefecaballero1_6:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefecaballero1_7:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefecaballero1_8:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
+	
+sprite_jefecaballero2_1:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefecaballero2_2:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefecaballero2_3:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefecaballero2_4:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefecaballero2_5:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefecaballero2_6:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefecaballero2_7:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefecaballero2_8:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF		
+	
+;; JEFE BEHOLDER (4 sprites 2 escenas)
+sprite_jefebeholder_1:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefebeholder_2:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefebeholder_3:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefebeholder_4:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefebeholder_5:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefebeholder_6:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefebeholder_7:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_jefebeholder_8:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
+
+;; MANOIZQ 4 (2 escenas 2 sprites vert)
+sprite_manoizquierda_1:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_manoizquierda_2:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_manoizquierda_3:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_manoizquierda_4:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+;; MANODER 4 (2 escenas 2 sprites vert)
+sprite_manoderecha_1:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_manoderecha_2:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_manoderecha_3:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_manoderecha_4:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+;; CONDE 4 (2 escenas 2 sprites vert)
+sprite_conde_1:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_conde_2:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_conde_3:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_conde_4:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF

@@ -84,8 +84,9 @@ ancho				DB		0	;ancho en tiles del dibujo de la puerta (columnas)
 ;	16 - jefe zombie gigante
 ;	17 - jefe caballero
 ;	18 - jefe beholder
-;	19 - manos conde drácula
-;	20 - conde drácula
+;	19 - mano derecha conde drácula
+;	20 - izquierda conde drácula
+;	21 - conde drácula
 ;
 ;Sprites que usa (16x16):
 ;	2  - ciempiés: 1
@@ -105,8 +106,9 @@ ancho				DB		0	;ancho en tiles del dibujo de la puerta (columnas)
 ;	16 - jefe zombie gigante: 4
 ;	17 - jefe caballero: 4
 ;	18 - jefe beholder: 4
-;	19 - manos conde drácula: 2 (vert)
-;	20 - conde drácula: 2 (vert)
+;	19 - mano derecha conde drácula: 2 (vert)
+;	21 - mano izquierda conde drácula: 2 (vert)
+;	22 - conde drácula: 2 (vert)
 ;		
 ;movimiento:
 ;	1 - ciempiés
@@ -145,6 +147,7 @@ pos_x				DB		0	;pos x para mover y punto central del sprite para revisar disparo
 pos_y				DB		0	;pos y para mover y punto central del sprite para revisar disparo
 inc_x				DB		0	;incremento x para mover
 inx_y				DB		0	;incremento y para mover
+radio				DB		0	;radio para movimientos circulares
 direccion			DB		0	;?? (duda por si no tendría espacio para tanto sprite en memoria)
 ptr_mover			DW		0	;puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 ;se pondrán 8 sprites: 4 por si hay enemigos de hasta 4 sprites y por 2 por usar 2 escenas... si se usan 3 habría que ampliar
@@ -169,8 +172,4 @@ color2				DB		0	;color sprite 1
 color3				DB		0	;color sprite 1
 color4				DB		0	;color sprite 1
 	ENDSTRUCT;ESTRUCTURA_ENEMIGO
-
-array_dano:
-		DB			0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-
 
