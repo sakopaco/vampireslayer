@@ -111,28 +111,33 @@ ancho				DB		0	;ancho en tiles del dibujo de la puerta (columnas)
 ;	22 - conde drácula: 2 (vert)
 ;		
 ;movimiento:
-;	1 - ciempiés
+;	1 - fijo_aleatorio
+;		ciempiés
 ;		beholder
 ;		posiciones aleatoriaas precalculadas (duran en posición cont_sig_escena)
-;	2 - murciélago
+;	2 - vertical
+;		murciélago
 ;		araña 
 ;		"precalculadas en horizontal" de 8 posibles (para usar R) desde la parte superior e irán bajando y 
 ;		subiendo verticalmente y con pos aleatorias horizontales para que no vayan todos al unísono
 ;		NOTA: para el murciélado me gustaría una onda senoidal a la altura de un tercio 				?? investigar
-;	3 - serpiente
+;	3 - horizontal
+;		serpiente
 ;		lobo
 ;		zombie
 ;		cabalero gris y negro
 ;		"precalculadas en vertical" de 8 posibles (para usar R) desde la parte izquierda a la derecha moviéndose
 ;		horizontalmente y con pos aleatorias verticales para que no vayan todos al unísono
-;	4 - fantasma
+;	4 - circular
+;		fantasma
 ;		fuego
-;		describe círculos desde un punto central con radios (pseudoaleatorios) a cada vuelta
-;	5 - magia
 ;		manos del conde drácula
-;		posiciones "pseudoaleatorias" por pantalla estando un contador en cada posición
-;	6 - conde drácula
-;		posiciones aleatoriaas precalculadas (duran en posición cont_sig_escena)
+;		describe círculos desde un punto central con radios (pseudoaleatorios) a cada vuelta
+;	5 - variable_aleatorio
+;		magia
+;		conde drácula
+;		posiciones "pseudoaleatorias (aleatorias precalculadas)" por pantalla estando un contador en cada posición (duran en posición cont_sig_escena)
+
 
 
 	STRUCT ESTRUCTURA_ENEMIGO
@@ -140,15 +145,18 @@ activo_tipo			DB		0	;si inactivo = 0 si <> 0 es el tipo de enemigo
 escena				DB		0	;sprite a mostrar 1/2
 cont_sig_escena		DB		0	;retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
 tiemp_cam_escena	DB		0	;cada cuantas iteraciones se cambiará la escena
-ptr_sig_escena		DW		0	;funcion que cambia los sprites de la escena (según el nº de sprites será distinta)
 energia				DB		0	;energía del enemigo antes de morir
-ptr_explosion		DW		0	;realiza cambios en caso de muerte (energía = 0)
+ptr_accion_dano		DW		0	;realiza cambios en caso daño o de muerte (energía = 0)
 pos_x				DB		0	;pos x para mover y punto central del sprite para revisar disparo
 pos_y				DB		0	;pos y para mover y punto central del sprite para revisar disparo
+radiox				DB		0	;radio x del enemigo para cuando se dispare encima
+radioy				DB		0	;radio y del enemigo para cuando se dispare encima
 inc_x				DB		0	;incremento x para mover
 inx_y				DB		0	;incremento y para mover
 radio				DB		0	;radio para movimientos circulares
 direccion			DB		0	;?? (duda por si no tendría espacio para tanto sprite en memoria)
+;mezclo el ptr_sig_escena con el mover ya que son obligatorias no erece la pena tener 2
+;ptr_sig_escena		DW		0	;funcion que cambia los sprites de la escena (según el nº de sprites será distinta)
 ptr_mover			DW		0	;puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 ;se pondrán 8 sprites: 4 por si hay enemigos de hasta 4 sprites y por 2 por usar 2 escenas... si se usan 3 habría que ampliar
 sprite_1a			DB		0
@@ -168,8 +176,8 @@ sprite_2d			DB		0
 sprite_3d			DB		0
 sprite_4d			DB		0
 color1				DB		0	;color sprite 1
-color2				DB		0	;color sprite 1
-color3				DB		0	;color sprite 1
-color4				DB		0	;color sprite 1
+color2				DB		0	;color sprite 2
+color3				DB		0	;color sprite 3
+color4				DB		0	;color sprite 4
 	ENDSTRUCT;ESTRUCTURA_ENEMIGO
 

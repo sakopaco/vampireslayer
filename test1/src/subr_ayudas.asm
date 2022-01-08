@@ -194,7 +194,7 @@ fin_inicializa_ayudas:
 ;;CARGA_DATOS_AYUDA
 ;;=====================================================	
 ; función: 	carga los datos de la ayuda de una variable dentro de la variable estructura (más carga y espacio que rellenar a pelo desde IX en adelante pero más simple)
-;entrada
+; entrada
 ;  hl: origen de datos
 ;  de: destino de datos
 ; salida: 	-
