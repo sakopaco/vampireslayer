@@ -64,12 +64,25 @@ fin_inicializa_enemigos_fase:
 ;;=====================================================
 ;;CARGA_DATOS_ENEMIGO
 ;;=====================================================	
-; función: 	carga los datos de la ayuda de una variable dentro de la variable estructura (más carga y espacio que rellenar a pelo desde IX en adelante pero más simple)
+; función: 	carga los datos del enemigo de una variable dentro de la variable estructura (más carga y espacio que rellenar a pelo desde IX en adelante pero más simple)
 ; entrada
 ;  hl: origen de datos
 ;  de: destino de datos
 ; salida: 	-
 ; toca:		HL, DE, BC
+carga_datos_ayuda:
+		LD			BC, ESTRUCTURA_ENEMIGO
+		LDIR
+fin_carga_datos_ayuda:
+	RET
+	
+
+;;=====================================================
+;;CARGA_DATOS_ENEMIGO_FASE1
+;;=====================================================	
+; función: 	carga los datos del enemigo de una variable dentro de la variable estructura (más carga y espacio que rellenar a pelo desde IX en adelante pero más simple)
+; entrada
+;  hl: origen de datos
 carga_datos_ayuda:
 		LD			BC, ESTRUCTURA_ENEMIGO
 		LDIR

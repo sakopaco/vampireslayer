@@ -72,21 +72,22 @@ ancho				DB		0	;ancho en tiles del dibujo de la puerta (columnas)
 ;	4  - araña
 ;	5  - murciélago
 ;	6  - lobo
-;	7  - zombi
-;	8  - fantasma
-;	9  - caballero gris
-;	10 - caballero negro
-;	11 - fuego
-;	12 - magia
-;	13 - jefe lobo gigante
-;	14 - jefe murciélago gigante
-;	15 - jefe fantasma gigante
-;	16 - jefe zombie gigante
-;	17 - jefe caballero
-;	18 - jefe beholder
-;	19 - mano derecha conde drácula
-;	20 - izquierda conde drácula
-;	21 - conde drácula
+;	7  - esqueleto
+;	8  - zombi
+;	9  - fantasma
+;	10 - caballero gris
+;	11 - caballero negro
+;	12 - fuego
+;	13 - magia
+;	14 - jefe lobo gigante
+;	15 - jefe murciélago gigante
+;	16 - jefe fantasma gigante
+;	17 - jefe zombie gigante
+;	18 - jefe caballero
+;	19 - jefe beholder
+;	20 - mano derecha conde drácula
+;	21 - izquierda conde drácula
+;	22 - conde drácula
 ;
 ;Sprites que usa (16x16):
 ;	2  - ciempiés: 1
@@ -94,19 +95,20 @@ ancho				DB		0	;ancho en tiles del dibujo de la puerta (columnas)
 ;	4  - araña: 1
 ;	5  - murciélago: 1
 ;	6  - lobo: 2 (horz)
-;	7  - zombi: 2 (vert)
-;	8  - fantasma: 3 (triángulo invertido)
-;	9  - caballero gris: 2 (vert)
-;	10 - caballero negro: 2 (vert)
-;	11 - fuego: 2 (vert)
-;	12 - magia: 2 (horz)
-;	13 - jefe lobo gigante: 4
-;	14 - jefe murciélago gigante: 4
-;	15 - jefe fantasma gigante: 4
-;	16 - jefe zombie gigante: 4
-;	17 - jefe caballero: 4
-;	18 - jefe beholder: 4
-;	19 - mano derecha conde drácula: 2 (vert)
+;	7  - esqueleto: 2 (vert)
+;	8  - zombi: 2 (vert)
+;	9  - fantasma: 2 (horz)
+;	10 - caballero gris: 2 (vert)
+;	11 - caballero negro: 2 (vert)
+;	12 - fuego: 2 (vert)
+;	13 - magia: 2 (horz)
+;	14 - jefe lobo gigante: 4
+;	15 - jefe murciélago gigante: 4
+;	16 - jefe fantasma gigante: 4
+;	17 - jefe zombie gigante: 4
+;	18 - jefe caballero: 4
+;	19 - jefe beholder: 4
+;	20 - mano derecha conde drácula: 2 (vert)
 ;	21 - mano izquierda conde drácula: 2 (vert)
 ;	22 - conde drácula: 2 (vert)
 ;		
@@ -155,6 +157,13 @@ inc_x				DB		0	;incremento x para mover
 inx_y				DB		0	;incremento y para mover
 radio				DB		0	;radio para movimientos circulares
 direccion			DB		0	;?? (duda por si no tendría espacio para tanto sprite en memoria)
+
+;PASOS *****
+
+bit tiempo
+xor
+posición par de sprites
+
 ;mezclo el ptr_sig_escena con el mover ya que son obligatorias no erece la pena tener 2
 ;ptr_sig_escena		DW		0	;funcion que cambia los sprites de la escena (según el nº de sprites será distinta)
 ptr_mover			DW		0	;puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)

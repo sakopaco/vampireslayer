@@ -2,19 +2,6 @@
 ;;DEFINICIÓN DE SPRITES
 ;;=====================================================	
 
-
-;; NOTA:
-;~ sprite_reliquia_oracion: on/off
-;~ sprite_reliquia_cruz: on/off
-;~ sprite_reliquia_agua: on/off
-;~ sprite_peto: on/off
-;~ sprite_planta: on/off
-;~ sprite_vida_extra: on/off
-;~ sprite_ballesta_mejorada: on/off
-
-;~ iban a ser sprites pero por falta de recursos serán tiles
-
-
 sprites_pantantalla:
 
 ;; PARTE 1: SPRITES COMUNES
@@ -32,25 +19,19 @@ sprite_punto_mira_2: 	;color 15
 	DB #00,#00,#00,#00,#C0,#20,#10,#10
 	DB #10,#10,#20,#C0,#00,#00,#00,#00
 	
-sprite_punto_mira_1_mejorado:
+sprite_punto_mira_1_mejorado:	;color 8
 	DB #00,#06,#19,#21,#20,#41,#41,#36
 	DB #36,#41,#41,#20,#21,#19,#06,#00
 	DB #00,#60,#98,#84,#04,#82,#82,#6C
 	DB #6C,#82,#82,#04,#84,#98,#60,#00 
 
-sprite_punto_mira_2_mejorado:
+sprite_punto_mira_2_mejorado:	;color 15
 	DB #00,#41,#00,#00,#03,#04,#08,#49
 	DB #49,#08,#04,#03,#00,#00,#41,#00
 	DB #00,#82,#00,#00,#C0,#20,#10,#92
 	DB #92,#10,#20,#C0,#00,#00,#82,#00 
 	
-sprite_explosion_1:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
-
-sprite_explosion_2:
+sprite_explosion:				;color 8
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
@@ -172,6 +153,55 @@ sprite_lobo2_4:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	
+;; ESQUELETO 4 + 4 (dos escenas derecha y dos escenas izquierda)
+sprite_esqueleto1_1:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+
+sprite_esqueleto1_2:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+
+sprite_esqueleto1_3:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+
+sprite_esqueleto1_4:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
+sprite_esqueleto2_1:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+
+sprite_esqueleto2_2:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+
+sprite_esqueleto2_3:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+
+sprite_esqueleto2_4:
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	
 ;; ZOMBI 4 + 4
 sprite_zombi1_1:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
@@ -221,7 +251,7 @@ sprite_zombi2_4:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	
-;; FANTASMA 5: (forma triángulo invertido) sólo mueve los dos de arriba el de abajo es constante
+;; FANTASMA 5: 2 en horizotal con 2 escenas
 sprite_fantasma_1:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
@@ -245,12 +275,7 @@ sprite_fantasma_4:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	
-sprite_fantasma_5:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+
 
 ;; CABALLERO 4 + 4: es el mismo sprite... cambia el color
 sprite_caballero1_1:
