@@ -158,11 +158,11 @@ inx_y				DB		0	;incremento y para mover
 radio				DB		0	;radio para movimientos circulares
 direccion			DB		0	;?? (duda por si no tendría espacio para tanto sprite en memoria)
 
-;PASOS *****
+;~ ;PASOS *****
 
-bit tiempo
-xor
-posición par de sprites
+;~ bit tiempo
+;~ xor
+;~ posición par de sprites
 
 ;mezclo el ptr_sig_escena con el mover ya que son obligatorias no erece la pena tener 2
 ;ptr_sig_escena		DW		0	;funcion que cambia los sprites de la escena (según el nº de sprites será distinta)

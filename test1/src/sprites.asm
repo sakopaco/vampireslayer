@@ -2,10 +2,9 @@
 ;;DEFINICIÓN DE SPRITES
 ;;=====================================================	
 
-sprites_pantantalla:
+;sprites_pantantalla
 
 ;; PARTE 1: SPRITES COMUNES
-
 sprites_comunes:
 sprite_punto_mira_1:	;color 8
 	DB #00,#06,#18,#21,#20,#40,#40,#11
@@ -39,8 +38,8 @@ sprite_explosion:				;color 8
 fin_sprites_comunes:
 
 ;; PARTE 2: SPRITES NO COMUNES
-
 ;; CIENPIÉS 2
+sprite_cienpies:
 sprite_cienpies_1:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
@@ -52,8 +51,10 @@ sprite_cienpies_2:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	
+fin_sprite_cienpies:
+
 ;; SERPIENTE 2 + 2
+sprite_serpiente:
 sprite_serpiente1_1:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
@@ -77,8 +78,10 @@ sprite_serpiente2_2:
 	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+fin_sprite_serpiente:
 
 ;; ARAÑA 2
+sprite_arana:
 sprite_arana_1:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
@@ -90,8 +93,10 @@ sprite_arana_2:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+fin_sprite_arana:
 
 ;; MURCIELAGO 2
+sprite_murcielago:
 sprite_murcielago_1:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
@@ -103,8 +108,10 @@ sprite_murcielago_2:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
+fin_sprite_murcielago:
 
 ;; LOBO 4 + 4 (dos escenas derecha y dos esceas izquierda)
+sprite_lobo:
 sprite_lobo1_1:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
@@ -152,8 +159,10 @@ sprite_lobo2_4:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+fin_sprite_lobo:
 	
 ;; ESQUELETO 4 + 4 (dos escenas derecha y dos escenas izquierda)
+sprite_esqueleto:
 sprite_esqueleto1_1:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
@@ -201,8 +210,10 @@ sprite_esqueleto2_4:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+fin_sprite_esqueleto:
 	
 ;; ZOMBI 4 + 4
+sprite_zombi:
 sprite_zombi1_1:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
@@ -250,8 +261,10 @@ sprite_zombi2_4:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+fin_sprite_zombi:
 	
 ;; FANTASMA 5: 2 en horizotal con 2 escenas
+sprite_fantasma:
 sprite_fantasma_1:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
@@ -275,9 +288,11 @@ sprite_fantasma_4:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+fin_sprite_fantasma:
 
 
 ;; CABALLERO 4 + 4: es el mismo sprite... cambia el color
+sprite_caballero:
 sprite_caballero1_1:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
@@ -325,8 +340,10 @@ sprite_caballero2_4:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+fin_sprite_caballero:
 	
 ;; FUEGO 4 (2 escenas 2 sprites vert)
+sprite_fuego:
 sprite_fuego_1:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
@@ -350,8 +367,10 @@ sprite_fuego_4:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+fin_sprite_fuego:
 	
 ;; MAGIA 4 (2 escenas 2 sprites hort)
+sprite_magia:
 sprite_magia_1:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
@@ -375,8 +394,10 @@ sprite_magia_4:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+fin_sprite_magia:
 	
 ;; JEFE LOBO (4 sprites 2 escenas 2 direcciones)
+sprite_jefelobo:
 sprite_jefelobo1_1:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
@@ -471,9 +492,11 @@ sprite_jefelobo2_8:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+fin_sprite_jefelobo:
 	
 ;; JEFE MURCIËLAGO (4 sprites 2 escenas)
+sprite_jefemurcielago:
 sprite_jefemurcielago_1:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
@@ -520,9 +543,11 @@ sprite_jefemurcielago_8:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+fin_sprite_jefemurcielago:
 	
 ;; JEFE FANTASMA (4 sprites 2 escenas)
+sprite_jefefantasma:
 sprite_jefefantasma_1:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
@@ -569,9 +594,11 @@ sprite_jefefantasma_8:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+fin_sprite_jefefantasma:
 	
 ;; JEFE ZOMBI (4 sprites 2 escenas 2 direcciones)
+sprite_jefezombi:
 sprite_jefezombi1_1:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
@@ -666,9 +693,11 @@ sprite_jefezombi2_8:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+fin_sprite_jefezombi:
 	
 ;; JEFE CABALLERO (4 sprites 2 escenas 2 direcciones)
+sprite_jefecaballero:
 sprite_jefecaballero1_1:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
@@ -763,9 +792,11 @@ sprite_jefecaballero2_8:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF		
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+fin_sprite_jefecaballero:
 	
 ;; JEFE BEHOLDER (4 sprites 2 escenas)
+sprite_jefebeholder:
 sprite_jefebeholder_1:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
@@ -812,9 +843,11 @@ sprite_jefebeholder_8:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+fin_sprite_jefebeholder:
 
 ;; MANOIZQ 4 (2 escenas 2 sprites vert)
+sprite_manoizquierda:
 sprite_manoizquierda_1:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
@@ -838,8 +871,10 @@ sprite_manoizquierda_4:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+fin_sprite_manoizquierda:
 	
 ;; MANODER 4 (2 escenas 2 sprites vert)
+sprite_manoderecha:
 sprite_manoderecha_1:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
@@ -863,8 +898,10 @@ sprite_manoderecha_4:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+fin_sprite_manoderecha:
 	
 ;; CONDE 4 (2 escenas 2 sprites vert)
+sprite_conde:
 sprite_conde_1:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
@@ -888,3 +925,144 @@ sprite_conde_4:
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+fin_sprite_conde:
+
+
+
+;;=====================================================
+;;CARGA PATRONES SPRITES
+;;=====================================================	
+
+carga_patrones_cienpies:
+		LD			HL, sprite_cienpies
+		LD			DE, #38C0
+		LD			BC, fin_sprite_cienpies - sprite_cienpies
+		JP			LDIRMV
+fin_carga_patrones_cienpies:
+
+carga_patrones_serpiente:
+		LD			HL, sprite_serpiente
+		LD			DE, #3900
+		LD			BC, fin_sprite_serpiente - sprite_serpiente
+		JP			LDIRMV
+fin_carga_patrones_serpiete:
+
+carga_patrones_arana:
+		LD			HL, sprite_arana
+		LD			DE, #3980
+		LD			BC, fin_sprite_arana - sprite_arana
+		JP			LDIRMV
+fin_carga_patrones_arana:
+
+carga_patrones_murcielago:
+		LD			HL, sprite_murcielago
+		LD			DE, #39C0
+		LD			BC, fin_sprite_murcielago - sprite_murcielago
+		JP			LDIRMV
+fin_carga_patrones_murcielago:
+
+carga_patrones_lobo:
+		LD			HL, sprite_lobo
+		LD			DE, #3A00
+		LD			BC, fin_sprite_lobo - sprite_lobo
+		JP			LDIRMV
+fin_carga_patrones_lobo:
+
+carga_patrones_lobo_fase5:
+		LD			HL, sprite_lobo
+		LD			DE, #3B00
+		LD			BC, fin_sprite_lobo - sprite_lobo
+		JP			LDIRMV
+fin_carga_patrones_lobo_fase5:
+
+carga_patrones_esqueleto:
+		LD			HL, sprite_esqueleto
+		LD			DE, #3B00
+		LD			BC, fin_sprite_esqueleto - sprite_esqueleto
+		JP			LDIRMV
+fin_carga_patrones_esqueleto:
+
+carga_patrones_zombi:
+		LD			HL, sprite_zombi
+		LD			DE, #3C00
+		LD			BC, fin_sprite_zombi - sprite_zombi
+		JP			LDIRMV
+fin_carga_patrones_zombi:
+
+carga_patrones_fantasma:
+		LD			HL, sprite_fantasma
+		LD			DE, #3D00
+		LD			BC, fin_sprite_fantasma - sprite_fantasma
+		JP			LDIRMV
+fin_carga_patrones_fantasma:
+
+carga_patrones_caballero:
+		LD			HL, sprite_caballero
+		LD			DE, #3A00
+		LD			BC, fin_sprite_caballero - sprite_caballero
+		JP			LDIRMV
+fin_carga_patrones_caballero:
+
+carga_patrones_fuego:
+		LD			HL, sprite_fuego
+		LD			DE, #3D80
+		LD			BC, fin_sprite_fuego - sprite_fuego
+		JP			LDIRMV
+fin_carga_patrones_fuego:
+
+carga_patrones_magia:
+		LD			HL, sprite_magia
+		LD			DE, #3900
+		LD			BC, fin_sprite_magia - sprite_magia
+		JP			LDIRMV
+fin_carga_patrones_magia:
+
+carga_patrones_jefelobo:
+		LD			HL, sprite_jefelobo
+		LD			DE, #3E00
+		LD			BC, fin_sprite_jefelobo - sprite_jefelobo
+		JP			LDIRMV
+fin_carga_patrones_jefelobo:
+
+carga_patrones_jefemurcielago:
+		LD			HL, sprite_jefemurcielago
+		LD			DE, #3F00
+		LD			BC, fin_sprite_jefemurcielago - sprite_jefemurcielago
+		JP			LDIRMV
+fin_carga_patrones_jefemurcielago:
+
+carga_patrones_jefefantasma:
+		LD			HL, sprite_jefefantasma
+		LD			DE, #3F00
+		LD			BC, fin_sprite_jefefantasma - sprite_jefefantasma
+		JP			LDIRMV
+fin_carga_patrones_jefefantasma:
+
+carga_patrones_jefezombi:
+		LD			HL, sprite_jefezombi
+		LD			DE, #3E00
+		LD			BC, fin_sprite_jefezombi - sprite_jefezombi
+		JP			LDIRMV
+fin_carga_patrones_jefezombi:
+
+carga_patrones_jefecaballero:
+		LD			HL, sprite_jefecaballero
+		LD			DE, #3E00
+		LD			BC, fin_sprite_jefecaballero - sprite_jefecaballero
+		JP			LDIRMV
+fin_carga_patrones_jefecaballero:
+
+carga_patrones_jefebeholder:
+		LD			HL, sprite_jefebeholder
+		LD			DE, #3F00
+		LD			BC, fin_sprite_jefebeholder - sprite_jefebeholder
+		JP			LDIRMV
+fin_carga_patrones_jefebeholder:
+
+carga_patrones_condecompleto:
+		LD			HL, sprite_manoizquierda
+		LD			DE, #3F00
+		LD			BC, fin_sprite_conde - sprite_manoizquierda
+		JP			LDIRMV
+fin_carga_patrones_condecompleto
+
