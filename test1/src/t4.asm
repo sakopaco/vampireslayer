@@ -17,6 +17,9 @@ START:
 	;inicializa variables para parametrizar funciones y que lo que se muestre sea variable (nº vidas, mapa, puertas, pantalla, etc...)
 	CALL	inicializa_variables_pruebas
 	
+	;carga los patrones de los sprites de los enemigos según el nivel
+	CALL	carga_patrones_enemigos_fase
+	
 	;inicializa el punto de mira
 	CALL	inicializa_punto_mira
 	
@@ -72,6 +75,11 @@ loop_principal:
 
 	CALL	check_player			;MIRA EL CONTROL Y APLICA LA LOGICA DE MOVIMIENTO DEL PROTAGONISTA
 	
+	; incrementa el hearbeat para el movimiento de los enemigos
+	LD		 A, (heartbeat)
+	INC		 A
+	LD		(heartbeat), A
+	
 	JP		loop_principal
 fin_programa_principal:
 	;no necesita RET
@@ -111,7 +119,11 @@ fin_inicializa_variables_pruebas:
 
 
 
-
+carga_patrones_enemigos_fase:
+		LD			 A, (prota_nivel)
+		
+fin_carga_patrones_enemigos_fase:
+		RET
 
 
 

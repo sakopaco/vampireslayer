@@ -148,7 +148,8 @@ escena				DB		0	;sprite a mostrar 1/2
 cont_sig_escena		DB		0	;retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
 tiemp_cam_escena	DB		0	;cada cuantas iteraciones se cambiará la escena
 energia				DB		0	;energía del enemigo antes de morir
-ptr_accion_dano		DW		0	;realiza cambios en caso daño o de muerte (energía = 0)
+;como será común la saco de la estructura y el daño está en un array
+;ptr_accion_dano		DW		0	;realiza cambios en caso daño o de muerte (energía = 0)
 pos_x				DB		0	;pos x para mover y punto central del sprite para revisar disparo
 pos_y				DB		0	;pos y para mover y punto central del sprite para revisar disparo
 radiox				DB		0	;radio x del enemigo para cuando se dispare encima
@@ -156,9 +157,8 @@ radioy				DB		0	;radio y del enemigo para cuando se dispare encima
 inc_x				DB		0	;incremento x para mover
 inx_y				DB		0	;incremento y para mover
 radio				DB		0	;radio para movimientos circulares
-direccion			DB		0	;?? (duda por si no tendría espacio para tanto sprite en memoria)
-
-;~ ;PASOS *****
+direccion			DB		0	;0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+pasos				DB		0	;pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 
 ;~ bit tiempo
 ;~ xor

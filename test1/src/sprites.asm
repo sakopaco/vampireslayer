@@ -1066,3 +1066,69 @@ carga_patrones_condecompleto:
 		JP			LDIRMV
 fin_carga_patrones_condecompleto
 
+carga_patrones_fase0:
+		CALL		carga_patrones_cienpies
+		CALL		carga_patrones_serpiente
+		CALL		carga_patrones_arana
+		CALL		carga_patrones_murcielago
+		CALL		carga_patrones_lobo
+		JP			carga_patrones_jefelobo
+fin_carga_patrones_fase0:
+
+carga_patrones_fase1:
+		CALL		carga_patrones_serpiente
+		CALL		carga_patrones_arana
+		CALL		carga_patrones_murcielago
+		CALL		carga_patrones_lobo
+		CALL		carga_patrones_esqueleto
+		CALL		carga_patrones_zombi
+		JP			carga_patrones_jefemurcielago
+fin_carga_patrones_fase1:
+
+carga_patrones_fase2:
+		CALL		carga_patrones_serpiente
+		CALL		carga_patrones_murcielago
+		CALL		carga_patrones_lobo
+		CALL		carga_patrones_esqueleto
+		CALL		carga_patrones_zombi
+		CALL		carga_patrones_fantasma
+		JP			carga_patrones_jefefantasma
+fin_carga_patrones_fase2:
+
+carga_patrones_fase3:
+		CALL		carga_patrones_serpiente
+		CALL		carga_patrones_arana
+		CALL		carga_patrones_caballero
+		CALL		carga_patrones_esqueleto
+		CALL		carga_patrones_zombi
+		CALL		carga_patrones_fantasma
+		JP			carga_patrones_jefezombi
+fin_carga_patrones_fase3:
+
+carga_patrones_fase4:
+		CALL		carga_patrones_murcielago
+		CALL		carga_patrones_caballero 		;(gris)
+		CALL		carga_patrones_esqueleto
+		CALL		carga_patrones_zombi
+		CALL		carga_patrones_fantasma
+		JP			carga_patrones_jefecaballero
+fin_carga_patrones_fase4:
+
+carga_patrones_fase5:
+		CALL		carga_patrones_magia
+		CALL		carga_patrones_caballero 		;(negro)
+		CALL		carga_patrones_lobo_fase5
+		CALL		carga_patrones_zombi
+		CALL		carga_patrones_fantasma
+		CALL		carga_patrones_fuego
+		JP			carga_patrones_jefebeholder
+fin_carga_patrones_fase5:
+
+carga_patrones_fase6:
+		CALL		carga_patrones_magia
+		CALL		carga_patrones_murcielago
+		CALL		carga_patrones_caballero 		;(negro)
+		CALL		carga_patrones_fantasma
+		CALL		carga_patrones_fuego
+		JP			carga_patrones_condecompleto
+fin_carga_patrones_fase6:
