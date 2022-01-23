@@ -55,27 +55,27 @@ datos_cienpies:
 ;ptr_sig_escena		DW		0	;funcion que cambia los sprites de la escena (según el nº de sprites será distinta)
 					DW		mover_cienpies	;(ptr_mover)puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 ;se pondrán 8 sprites: 4 por si hay enemigos de hasta 4 sprites y por 2 por usar 2 escenas... si se usan 3 habría que ampliar
-sprite_1a			DB		0
-sprite_2a			DB		0
-sprite_3a			DB		0
-sprite_4a			DB		0
-sprite_1b			DB		0
-sprite_2b			DB		0
-sprite_3b			DB		0
-sprite_4b			DB		0
-sprite_1c			DB		0
-sprite_2c			DB		0
-sprite_3c			DB		0
-sprite_4c			DB		0
-sprite_1d			DB		0
-sprite_2d			DB		0
-sprite_3d			DB		0
-sprite_4d			DB		0
-color1				DB		0	;color sprite 1
-color2				DB		0	;color sprite 2
-color3				DB		0	;color sprite 3
-color4				DB		0	;color sprite 4
-	ENDSTRUCT;ESTRUCTURA_ENEMIGO
+					DB		0 	;(sprite_1a)
+					DB		0 	;(sprite_2a)
+					DB		0 	;(sprite_3a)
+					DB		0 	;(sprite_4a)
+					DB		0 	;(sprite_1b)
+					DB		0 	;(sprite_2b)
+					DB		0 	;(sprite_3b)
+					DB		0 	;(sprite_4b)
+					DB		0 	;(sprite_1c)
+					DB		0 	;(sprite_2c)
+					DB		0 	;(sprite_3c)
+					DB		0 	;(sprite_4c)
+					DB		0 	;(sprite_1d)
+					DB		0 	;(sprite_2d)
+					DB		0 	;(sprite_3d)
+					DB		0 	;(sprite_4d)
+					DB		0	;(color1) color sprite 1
+					DB		0	;(color2) color sprite 2
+					DB		0	;(color3) color sprite 3
+					DB		0	;(color4) color sprite 4
+
 
 datos_muerto:
 		
@@ -95,11 +95,11 @@ datos_muerto:
 ; entrada:	-
 ; salida: 	-
 ; toca:		-
-inicializa_enemigos_fase:
+inicializa_enemigos_fase1:
 		LD			HL, datos_cienpies
 		LD			DE, cienpies
 		CALL		carga_datos_enemigo
-fin_inicializa_enemigos_fase:
+fin_inicializa_enemigos_fase1:
 		RET
 		
 
@@ -119,14 +119,3 @@ fin_carga_datos_ayuda:
 	RET
 	
 
-;;=====================================================
-;;CARGA_DATOS_ENEMIGO_FASE1
-;;=====================================================	
-; función: 	carga los datos del enemigo de una variable dentro de la variable estructura (más carga y espacio que rellenar a pelo desde IX en adelante pero más simple)
-; entrada
-;  hl: origen de datos
-carga_datos_ayuda:
-		LD			BC, ESTRUCTURA_ENEMIGO
-		LDIR
-fin_carga_datos_ayuda:
-	RET
