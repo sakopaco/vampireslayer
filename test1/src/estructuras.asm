@@ -150,12 +150,12 @@ tiemp_cam_escena	DB		0	;cada cuantas iteraciones se cambiará la escena
 energia				DB		0	;energía del enemigo antes de morir
 ;como será común la saco de la estructura y el daño está en un array
 ;ptr_accion_dano		DW		0	;realiza cambios en caso daño o de muerte (energía = 0)
-pos_x				DB		0	;pos x para mover y punto central del sprite para revisar disparo
-pos_y				DB		0	;pos y para mover y punto central del sprite para revisar disparo
+posx				DB		0	;pos x para mover y punto central del sprite para revisar disparo
+posy				DB		0	;pos y para mover y punto central del sprite para revisar disparo
 radiox				DB		0	;radio x del enemigo para cuando se dispare encima
 radioy				DB		0	;radio y del enemigo para cuando se dispare encima
-inc_x				DB		0	;incremento x para mover
-inx_y				DB		0	;incremento y para mover
+incx				DB		0	;incremento x para mover
+inxy				DB		0	;incremento y para mover
 radio				DB		0	;radio para movimientos circulares
 direccion			DB		0	;0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 pasos				DB		0	;pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
@@ -188,5 +188,9 @@ color1				DB		0	;color sprite 1
 color2				DB		0	;color sprite 2
 color3				DB		0	;color sprite 3
 color4				DB		0	;color sprite 4
+planosprite1		DB		0	;plano sprite 1
+planosprite2		DB		0	;plano sprite 2
+planosprite3		DB		0	;plano sprite 3
+planosprite4		DB		0	;plano sprite 4
 	ENDSTRUCT;ESTRUCTURA_ENEMIGO
 

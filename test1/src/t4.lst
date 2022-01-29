@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.01.23 - 19:03:46]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.01.29 - 14:27:34]
 
 t4.asm
 Errors: 0
@@ -304,7 +304,7 @@ Errors: 0
        5.  00:8000                      ;;CABECERA FICHERO BIN
        6.  00:8000  FE                  	DB	#FE
        7.  00:8001  00 80               	DW	START
-       8.  00:8003  80 CB               	DW	END
+       8.  00:8003  A8 CB               	DW	END
        9.  00:8005  00 80               	DW	START
       10.  00:8007                      
       11.  00:8007                      ;;INICIO CÓDIGO PROGRAMA	
@@ -1119,79 +1119,79 @@ Errors: 0
      111.  00:830C  3D                  	DEC		 A
      112.  00:830D                      	
      113.  00:830D                      .carga_nivel_0:
-     114.  00:830D  21 AD B9            	LD		HL, tiles_patrones_nivel0
+     114.  00:830D  21 D5 B9            	LD		HL, tiles_patrones_nivel0
      115.  00:8310  22 F4 83            	LD		(tiles_patrones), HL
-     116.  00:8313  21 D7 BB            	LD		HL, tiles_color_nivel0
+     116.  00:8313  21 FF BB            	LD		HL, tiles_color_nivel0
      117.  00:8316  22 F6 83            	LD		(tiles_colores), HL
-     118.  00:8319  21 AD B9            	LD		HL, tiles_patrones_nivel0
+     118.  00:8319  21 D5 B9            	LD		HL, tiles_patrones_nivel0
      119.  00:831C  22 F4 83            	LD		(tiles_patrones), HL
-     120.  00:831F  21 42 BC            	LD		HL, tiles_mapa_nivel0
+     120.  00:831F  21 6A BC            	LD		HL, tiles_mapa_nivel0
      121.  00:8322  22 F8 83            	LD		(tiles_mapa), HL
      122.  00:8325  C3 C7 83            	JP		.fin_carga_niveles
      123.  00:8328                      
      124.  00:8328                      .carga_nivel_1:
-     125.  00:8328  21 77 BC            	LD		HL, tiles_patrones_nivel1
+     125.  00:8328  21 9F BC            	LD		HL, tiles_patrones_nivel1
      126.  00:832B  22 F4 83            	LD		(tiles_patrones), HL
-     127.  00:832E  21 2C BE            	LD		HL, tiles_color_nivel1
+     127.  00:832E  21 54 BE            	LD		HL, tiles_color_nivel1
      128.  00:8331  22 F6 83            	LD		(tiles_colores), HL
-     129.  00:8334  21 77 BC            	LD		HL, tiles_patrones_nivel1
+     129.  00:8334  21 9F BC            	LD		HL, tiles_patrones_nivel1
      130.  00:8337  22 F4 83            	LD		(tiles_patrones), HL
-     131.  00:833A  21 73 BE            	LD		HL, tiles_mapa_nivel1
+     131.  00:833A  21 9B BE            	LD		HL, tiles_mapa_nivel1
      132.  00:833D  22 F8 83            	LD		(tiles_mapa), HL
      133.  00:8340  C3 C7 83            	JP		.fin_carga_niveles
      134.  00:8343                      	
      135.  00:8343                      .carga_nivel_2:
-     136.  00:8343  21 A8 BE            	LD		HL, tiles_patrones_nivel2
+     136.  00:8343  21 D0 BE            	LD		HL, tiles_patrones_nivel2
      137.  00:8346  22 F4 83            	LD		(tiles_patrones), HL
-     138.  00:8349  21 5D C0            	LD		HL, tiles_color_nivel2
+     138.  00:8349  21 85 C0            	LD		HL, tiles_color_nivel2
      139.  00:834C  22 F6 83            	LD		(tiles_colores), HL
-     140.  00:834F  21 A8 BE            	LD		HL, tiles_patrones_nivel2
+     140.  00:834F  21 D0 BE            	LD		HL, tiles_patrones_nivel2
      141.  00:8352  22 F4 83            	LD		(tiles_patrones), HL
-     142.  00:8355  21 A4 C0            	LD		HL, tiles_mapa_nivel2
+     142.  00:8355  21 CC C0            	LD		HL, tiles_mapa_nivel2
      143.  00:8358  22 F8 83            	LD		(tiles_mapa), HL
      144.  00:835B  C3 C7 83            	JP		.fin_carga_niveles
      145.  00:835E                      	
      146.  00:835E                      .carga_nivel_3:
-     147.  00:835E  21 D9 C0            	LD		HL, tiles_patrones_nivel3
+     147.  00:835E  21 01 C1            	LD		HL, tiles_patrones_nivel3
      148.  00:8361  22 F4 83            	LD		(tiles_patrones), HL
-     149.  00:8364  21 8E C2            	LD		HL, tiles_color_nivel3
+     149.  00:8364  21 B6 C2            	LD		HL, tiles_color_nivel3
      150.  00:8367  22 F6 83            	LD		(tiles_colores), HL
-     151.  00:836A  21 D9 C0            	LD		HL, tiles_patrones_nivel3
+     151.  00:836A  21 01 C1            	LD		HL, tiles_patrones_nivel3
      152.  00:836D  22 F4 83            	LD		(tiles_patrones), HL
-     153.  00:8370  21 D5 C2            	LD		HL, tiles_mapa_nivel3
+     153.  00:8370  21 FD C2            	LD		HL, tiles_mapa_nivel3
      154.  00:8373  22 F8 83            	LD		(tiles_mapa), HL
      155.  00:8376  C3 C7 83            	JP		.fin_carga_niveles
      156.  00:8379                      	
      157.  00:8379                      .carga_nivel_4:
-     158.  00:8379  21 0A C3            	LD		HL, tiles_patrones_nivel4
+     158.  00:8379  21 32 C3            	LD		HL, tiles_patrones_nivel4
      159.  00:837C  22 F4 83            	LD		(tiles_patrones), HL
-     160.  00:837F  21 BF C4            	LD		HL, tiles_color_nivel4
+     160.  00:837F  21 E7 C4            	LD		HL, tiles_color_nivel4
      161.  00:8382  22 F6 83            	LD		(tiles_colores), HL
-     162.  00:8385  21 0A C3            	LD		HL, tiles_patrones_nivel4
+     162.  00:8385  21 32 C3            	LD		HL, tiles_patrones_nivel4
      163.  00:8388  22 F4 83            	LD		(tiles_patrones), HL
-     164.  00:838B  21 06 C5            	LD		HL, tiles_mapa_nivel4
+     164.  00:838B  21 2E C5            	LD		HL, tiles_mapa_nivel4
      165.  00:838E  22 F8 83            	LD		(tiles_mapa), HL
      166.  00:8391  C3 C7 83            	JP		.fin_carga_niveles
      167.  00:8394                      	
      168.  00:8394                      .carga_nivel_5:
-     169.  00:8394  21 3B C5            	LD		HL, tiles_patrones_nivel5
+     169.  00:8394  21 63 C5            	LD		HL, tiles_patrones_nivel5
      170.  00:8397  22 F4 83            	LD		(tiles_patrones), HL
-     171.  00:839A  21 F0 C6            	LD		HL, tiles_color_nivel5
+     171.  00:839A  21 18 C7            	LD		HL, tiles_color_nivel5
      172.  00:839D  22 F6 83            	LD		(tiles_colores), HL
-     173.  00:83A0  21 3B C5            	LD		HL, tiles_patrones_nivel5
+     173.  00:83A0  21 63 C5            	LD		HL, tiles_patrones_nivel5
      174.  00:83A3  22 F4 83            	LD		(tiles_patrones), HL
-     175.  00:83A6  21 37 C7            	LD		HL, tiles_mapa_nivel5
+     175.  00:83A6  21 5F C7            	LD		HL, tiles_mapa_nivel5
      176.  00:83A9  22 F8 83            	LD		(tiles_mapa), HL
      177.  00:83AC  C3 C7 83            	JP		.fin_carga_niveles
      178.  00:83AF                      	
      179.  00:83AF                      .carga_nivel_6:
-     180.  00:83AF  21 6C C7            	LD		HL, tiles_patrones_nivel6
+     180.  00:83AF  21 94 C7            	LD		HL, tiles_patrones_nivel6
      181.  00:83B2  22 F4 83            	LD		(tiles_patrones), HL
-     182.  00:83B5  21 21 C9            	LD		HL, tiles_color_nivel6
+     182.  00:83B5  21 49 C9            	LD		HL, tiles_color_nivel6
      183.  00:83B8  22 F6 83            	LD		(tiles_colores), HL
-     184.  00:83BB  21 6C C7            	LD		HL, tiles_patrones_nivel6
+     184.  00:83BB  21 94 C7            	LD		HL, tiles_patrones_nivel6
      185.  00:83BE  22 F4 83            	LD		(tiles_patrones), HL
-     186.  00:83C1  21 68 C9            	LD		HL, tiles_mapa_nivel6
+     186.  00:83C1  21 90 C9            	LD		HL, tiles_mapa_nivel6
      187.  00:83C4  22 F8 83            	LD		(tiles_mapa), HL
      188.  00:83C7                      ;	JP		.fin_carga niveles			;no necesario
      189.  00:83C7                      .fin_carga_niveles:
@@ -1236,15 +1236,15 @@ Errors: 0
      228.  00:83FA                      pinta_parte_inferior_pantalla:
      229.  00:83FA                      	;cangando banco 3
      230.  00:83FA                      	;cargamos los patrones
-     231.  00:83FA  21 9D C9            	LD		HL,tiles_patrones_marcador
+     231.  00:83FA  21 C5 C9            	LD		HL,tiles_patrones_marcador
      232.  00:83FD  11 00 10            	LD		DE,CHRTBL + #1000
      233.  00:8400  CD 2B A0            	CALL	depack_VRAM	
      234.  00:8403                      	;cargamos mapa de pantalla
-     235.  00:8403  21 1E CB            	LD		HL,tiles_mapa_marcador
+     235.  00:8403  21 46 CB            	LD		HL,tiles_mapa_marcador
      236.  00:8406  11 00 1A            	LD		DE,TILMAP + #0200
      237.  00:8409  CD 2B A0            	CALL	depack_VRAM
      238.  00:840C                      	;cargamos los colores de los patrones
-     239.  00:840C  21 E9 CA            	LD		HL,tiles_color_marcador
+     239.  00:840C  21 11 CB            	LD		HL,tiles_color_marcador
      240.  00:840F  11 00 30            	LD		DE,CLRTBL + #1000
      241.  00:8412  C3 2B A0            	JP		depack_VRAM
      242.  00:8415                      fin_pinta_parte_inferior_pantalla:
@@ -5363,12 +5363,12 @@ Errors: 0
      150.  00:A10B                    < energia				DB		0	;energía del enemigo antes de morir
      151.  00:A10B                    < ;como será común la saco de la estructura y el daño está en un array
      152.  00:A10B                    < ;ptr_accion_dano		DW		0	;realiza cambios en caso daño o de muerte (energía = 0)
-     153.  00:A10B                    < pos_x				DB		0	;pos x para mover y punto central del sprite para revisar disparo
-     154.  00:A10B                    < pos_y				DB		0	;pos y para mover y punto central del sprite para revisar disparo
+     153.  00:A10B                    < posx				DB		0	;pos x para mover y punto central del sprite para revisar disparo
+     154.  00:A10B                    < posy				DB		0	;pos y para mover y punto central del sprite para revisar disparo
      155.  00:A10B                    < radiox				DB		0	;radio x del enemigo para cuando se dispare encima
      156.  00:A10B                    < radioy				DB		0	;radio y del enemigo para cuando se dispare encima
-     157.  00:A10B                    < inc_x				DB		0	;incremento x para mover
-     158.  00:A10B                    < inx_y				DB		0	;incremento y para mover
+     157.  00:A10B                    < incx				DB		0	;incremento x para mover
+     158.  00:A10B                    < inxy				DB		0	;incremento y para mover
      159.  00:A10B                    < radio				DB		0	;radio para movimientos circulares
      160.  00:A10B                    < direccion			DB		0	;0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
      161.  00:A10B                    < pasos				DB		0	;pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
@@ -5401,8 +5401,12 @@ Errors: 0
      188.  00:A10B                    < color2				DB		0	;color sprite 2
      189.  00:A10B                    < color3				DB		0	;color sprite 3
      190.  00:A10B                    < color4				DB		0	;color sprite 4
-     191.  00:A10B                    < 	ENDSTRUCT;ESTRUCTURA_ENEMIGO
-     192.  00:A10B                      
+     191.  00:A10B                    < planosprite1		DB		0	;plano sprite 1
+     192.  00:A10B                    < planosprite2		DB		0	;plano sprite 2
+     193.  00:A10B                    < planosprite3		DB		0	;plano sprite 3
+     194.  00:A10B                    < planosprite4		DB		0	;plano sprite 4
+     195.  00:A10B                    < 	ENDSTRUCT;ESTRUCTURA_ENEMIGO
+     196.  00:A10B                      
      168   00:A10B                      
      169   00:A10B                      	
      170   00:A10B                      ;;=====================================================
@@ -7339,76 +7343,78 @@ Errors: 0
       52.  00:B7B2  C2 00 C3 A0 A4 A1 00 A3 00 C1 A2 C0 
       53.  00:B7BE  A4 A5 A4 A6         lista_escenas_calavera:		DB	164, 165, 164, 166
       54.  00:B7C2                      
-      55.  00:B7C2  00                  heartbeat			DB		0;					;reloj central que moverá los enemigos
-      56.  00:B7C3                      
-      57.  00:B7C3                      
-      58.  00:B7C3                      ;array de 4 bytes x 32 sprites posibles en pantalla que sobreescribirá la tabla de sprites actualizando VRAM
-      59.  00:B7C3                      array_sprites:
-      60.  00:B7C3  00 (8)              array_sprites_pm:				DS	2 * 4
-      61.  00:B7CB  00 (120)            array_sprites_enem:				DS	30 * 4
-      62.  00:B843  00 (360)            lista_enemigos:					DS	10 * ESTRUCTURA_ENEMIGO
-      63.  00:B9AB                      ; puntero al array a pintar en VRAM
-      64.  00:B9AB  00 00               puntero_array_atrib_array_VRAM: DW	0	;ARRAYSPTRIES + 8
-      65.  00:B9AD                      
-      66.  00:B9AD                      
-      67.  00:B9AD                      
-      68.  00:B9AD                      
-      69.  00:B9AD                      
-     178   00:B9AD                      
-     179   00:B9AD                      
-     180   00:B9AD                      ;;=====================================================
-     181   00:B9AD                      ;;DEFINICIÓN DE PANTALLAS
-     182   00:B9AD                      ;;=====================================================		
-     183   00:B9AD                      	include "pantallas.asm"
-       1.  00:B9AD                      ;;=====================================================
-       2.  00:B9AD                      ;;DEFINICIÓN DE PANTALLAS
-       3.  00:B9AD                      ;;=====================================================		
-       4.  00:B9AD                      
-       5.  00:B9AD                      ; bancos 1 y 2 y de pantalla 1 
-       6.  00:B9AD                      ; se usa un banco común (en este caso el banco 1)
-       7.  00:B9AD                      ; el mapa afecta al banco 1 y 2
-       8.  00:B9AD  (022A)              tiles_patrones_nivel0:	incbin "pantallas/nivel0.bank1.til.bin.chr.plet5"
-       9.  00:BBD7  (006B)              tiles_color_nivel0:		incbin "pantallas/nivel0.bank1.til.bin.clr.plet5"
-      10.  00:BC42  (0035)              tiles_mapa_nivel0:		incbin "pantallas/nivel0.bank01.map.bin.plet5"
-      11.  00:BC77                      
-      12.  00:BC77  (01B5)              tiles_patrones_nivel1:	incbin "pantallas/nivel1.bank1.til.bin.chr.plet5"
-      13.  00:BE2C  (0047)              tiles_color_nivel1:		incbin "pantallas/nivel1.bank1.til.bin.clr.plet5"
-      14.  00:BE73  (0035)              tiles_mapa_nivel1:		incbin "pantallas/nivel1.bank01.map.bin.plet5"
-      15.  00:BEA8                      
-      16.  00:BEA8  (01B5)              tiles_patrones_nivel2:	incbin "pantallas/nivel2.bank1.til.bin.chr.plet5"
-      17.  00:C05D  (0047)              tiles_color_nivel2:		incbin "pantallas/nivel2.bank1.til.bin.clr.plet5"
-      18.  00:C0A4  (0035)              tiles_mapa_nivel2:		incbin "pantallas/nivel2.bank01.map.bin.plet5"
-      19.  00:C0D9                      
-      20.  00:C0D9  (01B5)              tiles_patrones_nivel3:	incbin "pantallas/nivel3.bank1.til.bin.chr.plet5"
-      21.  00:C28E  (0047)              tiles_color_nivel3:		incbin "pantallas/nivel3.bank1.til.bin.clr.plet5"
-      22.  00:C2D5  (0035)              tiles_mapa_nivel3:		incbin "pantallas/nivel3.bank01.map.bin.plet5"
-      23.  00:C30A                      
-      24.  00:C30A  (01B5)              tiles_patrones_nivel4:	incbin "pantallas/nivel4.bank1.til.bin.chr.plet5"
-      25.  00:C4BF  (0047)              tiles_color_nivel4:		incbin "pantallas/nivel4.bank1.til.bin.clr.plet5"
-      26.  00:C506  (0035)              tiles_mapa_nivel4:		incbin "pantallas/nivel4.bank01.map.bin.plet5"
-      27.  00:C53B                      
-      28.  00:C53B  (01B5)              tiles_patrones_nivel5:	incbin "pantallas/nivel5.bank1.til.bin.chr.plet5"
-      29.  00:C6F0  (0047)              tiles_color_nivel5:		incbin "pantallas/nivel5.bank1.til.bin.clr.plet5"
-      30.  00:C737  (0035)              tiles_mapa_nivel5:		incbin "pantallas/nivel5.bank01.map.bin.plet5"
-      31.  00:C76C                      
-      32.  00:C76C  (01B5)              tiles_patrones_nivel6:	incbin "pantallas/nivel6.bank1.til.bin.chr.plet5"
-      33.  00:C921  (0047)              tiles_color_nivel6:		incbin "pantallas/nivel6.bank1.til.bin.clr.plet5"
-      34.  00:C968  (0035)              tiles_mapa_nivel6:		incbin "pantallas/nivel6.bank01.map.bin.plet5"
-      35.  00:C99D                      
-      36.  00:C99D                      ; 3º banco que es la parte de puntos, vidas, mapas, etc... es común
-      37.  00:C99D  (014C)              tiles_patrones_marcador:	incbin "pantallas/marcador.til.bin.chr.plet5"
-      38.  00:CAE9  (0035)              tiles_color_marcador:		incbin "pantallas/marcador.til.bin.clr.plet5"
-      39.  00:CB1E  (0062)              tiles_mapa_marcador:		incbin "pantallas/marcador.map.bin.plet5"
-      40.  00:CB80                      
-      41.  00:CB80                      ;NOTA: FALTARÍAN PANTALLAS ESPECIALES (POR DEFINIR)
-      42.  00:CB80                      ; INICIO
-      43.  00:CB80                      ; GAME OVER
-      44.  00:CB80                      ; HUIDA
-      45.  00:CB80                      ; 2 FINAL BUENO
-      46.  00:CB80                      ; 1 FINAL MALO
-     184   00:CB80                      
-     185   00:CB80                      
-     186   00:CB80                      END:
+      55.  00:B7C2                      ;; parte de los enemigos
+      56.  00:B7C2                      ; para movmiento
+      57.  00:B7C2  00                  heartbeat			DB		0;					;reloj central que moverá los enemigos
+      58.  00:B7C3                      
+      59.  00:B7C3                      
+      60.  00:B7C3                      ;array de 4 bytes x 32 sprites posibles en pantalla que sobreescribirá la tabla de sprites actualizando VRAM
+      61.  00:B7C3                      array_sprites:
+      62.  00:B7C3  00 (8)              array_sprites_pm:				DS	2 * 4
+      63.  00:B7CB  00 (120)            array_sprites_enem:				DS	30 * 4
+      64.  00:B843  00 (400)            lista_enemigos:					DS	10 * ESTRUCTURA_ENEMIGO
+      65.  00:B9D3                      ; puntero al array a pintar en VRAM
+      66.  00:B9D3  00 00               puntero_array_atrib_array_VRAM: DW	0	;ARRAYSPTRIES + 8
+      67.  00:B9D5                      
+      68.  00:B9D5                      
+      69.  00:B9D5                      
+      70.  00:B9D5                      
+      71.  00:B9D5                      
+     178   00:B9D5                      
+     179   00:B9D5                      
+     180   00:B9D5                      ;;=====================================================
+     181   00:B9D5                      ;;DEFINICIÓN DE PANTALLAS
+     182   00:B9D5                      ;;=====================================================		
+     183   00:B9D5                      	include "pantallas.asm"
+       1.  00:B9D5                      ;;=====================================================
+       2.  00:B9D5                      ;;DEFINICIÓN DE PANTALLAS
+       3.  00:B9D5                      ;;=====================================================		
+       4.  00:B9D5                      
+       5.  00:B9D5                      ; bancos 1 y 2 y de pantalla 1 
+       6.  00:B9D5                      ; se usa un banco común (en este caso el banco 1)
+       7.  00:B9D5                      ; el mapa afecta al banco 1 y 2
+       8.  00:B9D5  (022A)              tiles_patrones_nivel0:	incbin "pantallas/nivel0.bank1.til.bin.chr.plet5"
+       9.  00:BBFF  (006B)              tiles_color_nivel0:		incbin "pantallas/nivel0.bank1.til.bin.clr.plet5"
+      10.  00:BC6A  (0035)              tiles_mapa_nivel0:		incbin "pantallas/nivel0.bank01.map.bin.plet5"
+      11.  00:BC9F                      
+      12.  00:BC9F  (01B5)              tiles_patrones_nivel1:	incbin "pantallas/nivel1.bank1.til.bin.chr.plet5"
+      13.  00:BE54  (0047)              tiles_color_nivel1:		incbin "pantallas/nivel1.bank1.til.bin.clr.plet5"
+      14.  00:BE9B  (0035)              tiles_mapa_nivel1:		incbin "pantallas/nivel1.bank01.map.bin.plet5"
+      15.  00:BED0                      
+      16.  00:BED0  (01B5)              tiles_patrones_nivel2:	incbin "pantallas/nivel2.bank1.til.bin.chr.plet5"
+      17.  00:C085  (0047)              tiles_color_nivel2:		incbin "pantallas/nivel2.bank1.til.bin.clr.plet5"
+      18.  00:C0CC  (0035)              tiles_mapa_nivel2:		incbin "pantallas/nivel2.bank01.map.bin.plet5"
+      19.  00:C101                      
+      20.  00:C101  (01B5)              tiles_patrones_nivel3:	incbin "pantallas/nivel3.bank1.til.bin.chr.plet5"
+      21.  00:C2B6  (0047)              tiles_color_nivel3:		incbin "pantallas/nivel3.bank1.til.bin.clr.plet5"
+      22.  00:C2FD  (0035)              tiles_mapa_nivel3:		incbin "pantallas/nivel3.bank01.map.bin.plet5"
+      23.  00:C332                      
+      24.  00:C332  (01B5)              tiles_patrones_nivel4:	incbin "pantallas/nivel4.bank1.til.bin.chr.plet5"
+      25.  00:C4E7  (0047)              tiles_color_nivel4:		incbin "pantallas/nivel4.bank1.til.bin.clr.plet5"
+      26.  00:C52E  (0035)              tiles_mapa_nivel4:		incbin "pantallas/nivel4.bank01.map.bin.plet5"
+      27.  00:C563                      
+      28.  00:C563  (01B5)              tiles_patrones_nivel5:	incbin "pantallas/nivel5.bank1.til.bin.chr.plet5"
+      29.  00:C718  (0047)              tiles_color_nivel5:		incbin "pantallas/nivel5.bank1.til.bin.clr.plet5"
+      30.  00:C75F  (0035)              tiles_mapa_nivel5:		incbin "pantallas/nivel5.bank01.map.bin.plet5"
+      31.  00:C794                      
+      32.  00:C794  (01B5)              tiles_patrones_nivel6:	incbin "pantallas/nivel6.bank1.til.bin.chr.plet5"
+      33.  00:C949  (0047)              tiles_color_nivel6:		incbin "pantallas/nivel6.bank1.til.bin.clr.plet5"
+      34.  00:C990  (0035)              tiles_mapa_nivel6:		incbin "pantallas/nivel6.bank01.map.bin.plet5"
+      35.  00:C9C5                      
+      36.  00:C9C5                      ; 3º banco que es la parte de puntos, vidas, mapas, etc... es común
+      37.  00:C9C5  (014C)              tiles_patrones_marcador:	incbin "pantallas/marcador.til.bin.chr.plet5"
+      38.  00:CB11  (0035)              tiles_color_marcador:		incbin "pantallas/marcador.til.bin.clr.plet5"
+      39.  00:CB46  (0062)              tiles_mapa_marcador:		incbin "pantallas/marcador.map.bin.plet5"
+      40.  00:CBA8                      
+      41.  00:CBA8                      ;NOTA: FALTARÍAN PANTALLAS ESPECIALES (POR DEFINIR)
+      42.  00:CBA8                      ; INICIO
+      43.  00:CBA8                      ; GAME OVER
+      44.  00:CBA8                      ; HUIDA
+      45.  00:CBA8                      ; 2 FINAL BUENO
+      46.  00:CBA8                      ; 1 FINAL MALO
+     184   00:CBA8                      
+     185   00:CBA8                      
+     186   00:CBA8                      END:
 
     LABELS
 -------------------------------------------------
@@ -8229,12 +8235,12 @@ Errors: 0
 00:00000002 X ESTRUCTURA_ENEMIGO.cont_sig_escena
 00:00000003 X ESTRUCTURA_ENEMIGO.tiemp_cam_escena
 00:00000004 X ESTRUCTURA_ENEMIGO.energia
-00:00000005 X ESTRUCTURA_ENEMIGO.pos_x
-00:00000006 X ESTRUCTURA_ENEMIGO.pos_y
+00:00000005 X ESTRUCTURA_ENEMIGO.posx
+00:00000006 X ESTRUCTURA_ENEMIGO.posy
 00:00000007 X ESTRUCTURA_ENEMIGO.radiox
 00:00000008 X ESTRUCTURA_ENEMIGO.radioy
-00:00000009 X ESTRUCTURA_ENEMIGO.inc_x
-00:0000000A X ESTRUCTURA_ENEMIGO.inx_y
+00:00000009 X ESTRUCTURA_ENEMIGO.incx
+00:0000000A X ESTRUCTURA_ENEMIGO.inxy
 00:0000000B X ESTRUCTURA_ENEMIGO.radio
 00:0000000C X ESTRUCTURA_ENEMIGO.direccion
 00:0000000D X ESTRUCTURA_ENEMIGO.pasos
@@ -8259,7 +8265,11 @@ Errors: 0
 00:00000021 X ESTRUCTURA_ENEMIGO.color2
 00:00000022 X ESTRUCTURA_ENEMIGO.color3
 00:00000023 X ESTRUCTURA_ENEMIGO.color4
-00:00000024   ESTRUCTURA_ENEMIGO
+00:00000024 X ESTRUCTURA_ENEMIGO.planosprite1
+00:00000025 X ESTRUCTURA_ENEMIGO.planosprite2
+00:00000026 X ESTRUCTURA_ENEMIGO.planosprite3
+00:00000027 X ESTRUCTURA_ENEMIGO.planosprite4
+00:00000028   ESTRUCTURA_ENEMIGO
 00:0000A10B   sprites_comunes
 00:0000A10B X sprite_punto_mira_1
 00:0000A12B X sprite_punto_mira_2
@@ -8536,32 +8546,32 @@ Errors: 0
 00:0000B7C3   array_sprites_pm
 00:0000B7CB X array_sprites_enem
 00:0000B843 X lista_enemigos
-00:0000B9AB X puntero_array_atrib_array_VRAM
-00:0000B9AD   tiles_patrones_nivel0
-00:0000BBD7   tiles_color_nivel0
-00:0000BC42   tiles_mapa_nivel0
-00:0000BC77   tiles_patrones_nivel1
-00:0000BE2C   tiles_color_nivel1
-00:0000BE73   tiles_mapa_nivel1
-00:0000BEA8   tiles_patrones_nivel2
-00:0000C05D   tiles_color_nivel2
-00:0000C0A4   tiles_mapa_nivel2
-00:0000C0D9   tiles_patrones_nivel3
-00:0000C28E   tiles_color_nivel3
-00:0000C2D5   tiles_mapa_nivel3
-00:0000C30A   tiles_patrones_nivel4
-00:0000C4BF   tiles_color_nivel4
-00:0000C506   tiles_mapa_nivel4
-00:0000C53B   tiles_patrones_nivel5
-00:0000C6F0   tiles_color_nivel5
-00:0000C737   tiles_mapa_nivel5
-00:0000C76C   tiles_patrones_nivel6
-00:0000C921   tiles_color_nivel6
-00:0000C968   tiles_mapa_nivel6
-00:0000C99D   tiles_patrones_marcador
-00:0000CAE9   tiles_color_marcador
-00:0000CB1E   tiles_mapa_marcador
-00:0000CB80   END
+00:0000B9D3 X puntero_array_atrib_array_VRAM
+00:0000B9D5   tiles_patrones_nivel0
+00:0000BBFF   tiles_color_nivel0
+00:0000BC6A   tiles_mapa_nivel0
+00:0000BC9F   tiles_patrones_nivel1
+00:0000BE54   tiles_color_nivel1
+00:0000BE9B   tiles_mapa_nivel1
+00:0000BED0   tiles_patrones_nivel2
+00:0000C085   tiles_color_nivel2
+00:0000C0CC   tiles_mapa_nivel2
+00:0000C101   tiles_patrones_nivel3
+00:0000C2B6   tiles_color_nivel3
+00:0000C2FD   tiles_mapa_nivel3
+00:0000C332   tiles_patrones_nivel4
+00:0000C4E7   tiles_color_nivel4
+00:0000C52E   tiles_mapa_nivel4
+00:0000C563   tiles_patrones_nivel5
+00:0000C718   tiles_color_nivel5
+00:0000C75F   tiles_mapa_nivel5
+00:0000C794   tiles_patrones_nivel6
+00:0000C949   tiles_color_nivel6
+00:0000C990   tiles_mapa_nivel6
+00:0000C9C5   tiles_patrones_marcador
+00:0000CB11   tiles_color_marcador
+00:0000CB46   tiles_mapa_marcador
+00:0000CBA8   END
 
 
  Output: t4.out
@@ -8576,7 +8586,7 @@ Errors: 0
 -------------------------------------------------
 
  Page: 00
-  Org: 00008000  Size: *  Used: 00004B87
+  Org: 00008000  Size: *  Used: 00004BAF
 
    Address   Length Align   Label
-   00008000   19335         START
+   00008000   19375         START
