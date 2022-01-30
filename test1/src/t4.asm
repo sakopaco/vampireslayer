@@ -71,7 +71,9 @@ loop_principal:
 	
 	CALL	render_sprites			;actualiza array de sprites y los pinta en pantalla
 	
-	CALL	actualiza_elementos_fondo
+	CALL	actualiza_elementos_fondo;como antorchas o esqueletos
+	
+	CALL	check_enemigos			;examina los enemigos por pantalla y los pone e su sitio
 
 	CALL	check_player			;MIRA EL CONTROL Y APLICA LA LOGICA DE MOVIMIENTO DEL PROTAGONISTA
 	
@@ -119,7 +121,7 @@ fin_inicializa_variables_pruebas:
 
 
 
-inicializa_enemigos_fase0:
+inicializa_enemigos_fase0:	;; para no poner más complejo se hace uno por fase que se actualiza al pasar por escaleras o puerta inferior
 .nivel0:
 		LD			 A, (prota_pos_mapy)
 		SUB			 A, 7
@@ -130,6 +132,23 @@ fin_inicializa_enemigos:
 		RET
 
 
+check_enemigos: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
+.check_enemigo1:
+		LD			IX, enemigo1
+		LD			 A, (IX)
+		OR			 A
+		JP			 Z, .check_enemigo2
+		
+.check_enemigo2:
+.check_enemigo3:
+.check_enemigo4:
+.check_enemigo5:
+.check_enemigo6:
+.check_enemigo7:
+.check_enemigo8:
+.check_enemigo9:
+fin_check_enemigos:
+		RET			
 
 
 

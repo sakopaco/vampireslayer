@@ -100,6 +100,36 @@ datos_conde:
 ;;=====================================================
 ;;SUBRUTINAS
 ;;=====================================================
+;;=====================================================
+;;RESETEA_ENEMIGOS
+;;=====================================================	
+; función: 	inicializa todos los enemigos a tipo 0 (muerto) ... incluso los que no van a salir porque se verifican todos
+; entrada:	-
+; salida: 	-
+; toca:		-
+resetea_enemigos:
+		XOR			 A
+		LD			IX, enemigo1
+		LD			(IX), A
+		LD			IX, enemigo2
+		LD			(IX), A
+		LD			IX, enemigo3
+		LD			(IX), A
+		LD			IX, enemigo4
+		LD			(IX), A
+		LD			IX, enemigo5
+		LD			(IX), A
+		LD			IX, enemigo6
+		LD			(IX), A
+		LD			IX, enemigo7
+		LD			(IX), A
+		LD			IX, enemigo8
+		LD			(IX), A
+		LD			IX, enemigo9
+		LD			(IX), A
+fin_resetea_enemigos:
+		RET
+
 
 ;;=====================================================
 ;;INICIALIZA_ENEMIGOS_FASE1
@@ -109,21 +139,40 @@ datos_conde:
 ; salida: 	-
 ; toca:		-
 inicializa_enemigos_fase0_nivel0:
+		CALL		resetea_enemigos
+		
 		LD			DE, enemigo1
 		CALL		anade_enemigo_cienpies
 		LD			IX, enemigo1
-		JP			actualiza_valores_aleatorios_cienpies
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo1
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo1
+		JP			actualiza_valores_cienpies2
 fin_inicializa_enemigos_fase0_nivel0:
 		
 
 ;;=====================================================
-;;ACTUALIZA_VALORES_ALEATORIOS_CIENPIES
+;;ACTUALIZA_VALORES_CIENPIES
 ;;=====================================================	
 ; función: 	inicializa valores aleatorios del cienpies: posicion inicial (posx, posy) en la posición de enemigo que se le pase por IX
+;	 nota:  la versión 2 lo que hace es cambiar el plano para cuando hay dos cienpies en la misma pantalla
 ; entrada:	IX que equivaldrá a qué nº de enemigo estamos inicializando (por ejemplo enemigo1)
 ; salida: 	-
 ; toca:		-
-actualiza_valores_aleatorios_cienpies:		
+actualiza_valores_cienpies:
+		LD			 A, 3
+		LD			(IX + ESTRUCTURA_ENEMIGO.planosprite1), A
+		JP			actualiza_valores_aleatorios_cienpies
+fin_actualiza_valores_cienpies:
+actualiza_valores_cienpies2:
+		LD			 A, 3
+		LD			(IX + ESTRUCTURA_ENEMIGO.planosprite1), A
+		JP			actualiza_valores_aleatorios_cienpies
+fin_actualiza_valores_cienpies2:
+
+actualiza_valores_aleatorios_cienpies:
 		LD			 A, R
 		AND			00000111b
 		LD			 B, A
@@ -145,7 +194,7 @@ actualiza_valores_aleatorios_cienpies:
 		LD			 A, (HL)
 		LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
 fin_actualiza_valores_aleatorios_cienpies:
-		RET		
+		RET	
 
 
 ;;=====================================================
