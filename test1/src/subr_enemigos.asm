@@ -14,15 +14,15 @@ posiciones_iniciales_cienpies_x:
 posiciones_iniciales_cienpies_y:
 		DB			0,0,0,0,0,0,0,0,0
 
-enemigo1			ESTRUCTURA_ENEMIGO
-enemigo2			ESTRUCTURA_ENEMIGO
-enemigo3			ESTRUCTURA_ENEMIGO
-enemigo4			ESTRUCTURA_ENEMIGO
-enemigo5			ESTRUCTURA_ENEMIGO
-enemigo6			ESTRUCTURA_ENEMIGO
-enemigo7			ESTRUCTURA_ENEMIGO
-enemigo8			ESTRUCTURA_ENEMIGO
-enemigo9			ESTRUCTURA_ENEMIGO
+enemigo1			DS	ESTRUCTURA_ENEMIGO
+enemigo2			DS	ESTRUCTURA_ENEMIGO
+enemigo3			DS	ESTRUCTURA_ENEMIGO
+enemigo4			DS	ESTRUCTURA_ENEMIGO
+enemigo5			DS	ESTRUCTURA_ENEMIGO
+enemigo6			DS	ESTRUCTURA_ENEMIGO
+enemigo7			DS	ESTRUCTURA_ENEMIGO
+enemigo8			DS	ESTRUCTURA_ENEMIGO
+enemigo9			DS	ESTRUCTURA_ENEMIGO
 
 
 ;;=====================================================
@@ -133,7 +133,8 @@ actualiza_valores_aleatorios_cienpies:
 		INC			HL
 		DJNZ		.incrementa_posx
 		
-		LD			(IX + ESTRUCTURA_ENEMIGO.posx), (HL)
+		LD			 A, (HL)
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
 		
 		LD			 B, D
 		LD			HL, posiciones_iniciales_cienpies_y
@@ -141,7 +142,8 @@ actualiza_valores_aleatorios_cienpies:
 		INC			HL
 		DJNZ		.incrementa_posy	
 		
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), (HL)
+		LD			 A, (HL)
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
 fin_actualiza_valores_aleatorios_cienpies:
 		RET		
 
@@ -160,6 +162,17 @@ anade_enemigo_cienpies
 fin_anade_enemigo_cienpies:
 		RET
 
+
+;;=====================================================
+;;MOVER_CIENPIES
+;;=====================================================	
+; función: hace todo lo que haga falta de acciones cada vez que le toca al prograa enfocarse en el cienpies: su ataque, su sptrite, etc...
+; entrada: E (enemigo en concreto al que poner los datos, por ejemplo, enemigo1)
+; salida: 	-
+; toca:		-
+mover_cienpies:
+fin_mover_cienpies:
+		RET
 
 
 

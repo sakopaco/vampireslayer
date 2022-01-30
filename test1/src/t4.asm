@@ -18,7 +18,7 @@ START:
 	CALL	inicializa_variables_pruebas
 	
 	;carga los patrones de los sprites de los enemigos según el nivel
-	CALL	carga_patrones_enemigos_fase
+	CALL	inicializa_enemigos_fase0
 	
 	;inicializa el punto de mira
 	CALL	inicializa_punto_mira
@@ -119,10 +119,14 @@ fin_inicializa_variables_pruebas:
 
 
 
-carga_patrones_enemigos_fase:
-		LD			 A, (prota_nivel)
-		
-fin_carga_patrones_enemigos_fase:
+inicializa_enemigos_fase0:
+.nivel0:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 7
+		JP			NC, .nivel1
+		CALL		inicializa_enemigos_fase0_nivel0
+.nivel1:		
+fin_inicializa_enemigos:
 		RET
 
 
@@ -143,6 +147,8 @@ fin_carga_patrones_enemigos_fase:
 	include "subr_puertas.asm"
 	
 	include "subr_sprites.asm"
+	
+	include "subr_enemigos.asm"
 	
 	include "subr_teclado_joy.asm"
 	

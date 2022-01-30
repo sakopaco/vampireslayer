@@ -61,9 +61,7 @@ heartbeat			DB		0;					;reloj central que moverá los enemigos
 array_sprites:
 array_sprites_pm:				DS	2 * 4
 array_sprites_enem:				DS	30 * 4
-lista_enemigos:					DS	10 * ESTRUCTURA_ENEMIGO
-; puntero al array a pintar en VRAM
-puntero_array_atrib_array_VRAM: DW	0	;ARRAYSPTRIES + 8
+
 
 
 
