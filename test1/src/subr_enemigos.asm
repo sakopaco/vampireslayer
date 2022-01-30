@@ -101,7 +101,6 @@ datos_conde:
 ;;SUBRUTINAS
 ;;=====================================================
 
-
 ;;=====================================================
 ;;INICIALIZA_ENEMIGOS_FASE1
 ;;=====================================================	
@@ -109,55 +108,22 @@ datos_conde:
 ; entrada:	-
 ; salida: 	-
 ; toca:		-
-inicializa_enemigos_fase1:
-		call		actualiza_valores_aleatorios_cienpies
-		LD			HL, datos_cienpies
+inicializa_enemigos_fase0_nivel0:
 		LD			DE, enemigo1
-		LD			BC, ESTRUCTURA_ENEMIGO
-		LDIR
-		call		actualiza_valores_aleatorios_cienpies
-		LD			HL, datos_cienpies
-		LD			DE, enemigo2
-		LD			BC, ESTRUCTURA_ENEMIGO
-		LDIR
-		call		actualiza_valores_aleatorios_cienpies
-		LD			HL, datos_cienpies
-		LD			DE, enemigo3
-		LD			BC, ESTRUCTURA_ENEMIGO
-		LDIR
-		call		actualiza_valores_aleatorios_cienpies
-		LD			HL, datos_cienpies
-		LD			DE, enemigo4
-		LD			BC, ESTRUCTURA_ENEMIGO
-		LDIR
-		call		actualiza_valores_aleatorios_cienpies
-		LD			HL, datos_cienpies
-		LD			DE, enemigo5
-		LD			BC, ESTRUCTURA_ENEMIGO
-		LDIR
-		call		actualiza_valores_aleatorios_cienpies
-		LD			HL, datos_cienpies
-		LD			DE, enemigo6
-		LD			BC, ESTRUCTURA_ENEMIGO
-		call		actualiza_valores_aleatorios_cienpies
-		LDIR
-		LD			HL, datos_cienpies
-		LD			DE, enemigo7
-		LD			BC, ESTRUCTURA_ENEMIGO
-		LDIR
-fin_inicializa_enemigos_fase1:
-		RET
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo1
+		JP			actualiza_valores_aleatorios_cienpies
+fin_inicializa_enemigos_fase0_nivel0:
 		
+
 ;;=====================================================
 ;;ACTUALIZA_VALORES_ALEATORIOS_CIENPIES
 ;;=====================================================	
-; función: 	inicializa valores aleatorios del cienpies: posicion inicial (posx, posy)
-; entrada:	-
+; función: 	inicializa valores aleatorios del cienpies: posicion inicial (posx, posy) en la posición de enemigo que se le pase por IX
+; entrada:	IX que equivaldrá a qué nº de enemigo estamos inicializando (por ejemplo enemigo1)
 ; salida: 	-
 ; toca:		-
-actualiza_valores_aleatorios_cienpies:
-		LD			IX, datos_cienpies
-		
+actualiza_valores_aleatorios_cienpies:		
 		LD			 A, R
 		AND			00000111b
 		LD			 B, A
@@ -175,13 +141,29 @@ actualiza_valores_aleatorios_cienpies:
 		INC			HL
 		DJNZ		.incrementa_posy	
 		
-		
 		LD			(IX + ESTRUCTURA_ENEMIGO.posy), (HL)
 fin_actualiza_valores_aleatorios_cienpies:
 		RET		
 
 
-inicializa_enemigos_fase0_nivel1:
+;;=====================================================
+;;ANADE_ENEMIGO_CIENPIES
+;;=====================================================	
+; función: 	mete en memoria la plantilla de datos base del cienpies en el enemigo que se le pase por DE
+; entrada:	DE (enemigo en concreto al que poner los datos, por ejemplo, enemigo1)
+; salida: 	-
+; toca:		-
+anade_enemigo_cienpies
+		LD			HL, datos_cienpies
+		LD			BC, ESTRUCTURA_ENEMIGO
+		LDIR
+fin_anade_enemigo_cienpies:
+		RET
+
+
+
+
+
 inicializa_enemigos_fase0_nivel2:
 inicializa_enemigos_fase0_nivel3:
 inicializa_enemigos_fase0_nivel4:
