@@ -168,6 +168,7 @@ pasos				DB		0	;pasos para no comprobar los límites de pentalla, sólo si pasos
 ;ptr_sig_escena		DW		0	;funcion que cambia los sprites de la escena (según el nº de sprites será distinta)
 ptr_mover			DW		0	;puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 ;se pondrán 8 sprites: 4 por si hay enemigos de hasta 4 sprites y por 2 por usar 2 escenas... si se usan 3 habría que ampliar
+;(en realidad estos son los nº de patrón 0 - 63)
 sprite_1a			DB		0
 sprite_2a			DB		0
 sprite_3a			DB		0

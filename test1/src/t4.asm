@@ -139,6 +139,16 @@ check_enemigos: ;; aquí se ponen los valores de enemigos (si están activos) en
 		OR			 A
 		JP			 Z, .check_enemigo2
 		
+		LD			IY, array_sprites_enem
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
+		LD			(IY), A
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
+		LD			(IY), A
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_1a)
+		LD			(IY), A
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.color1)
+
+		
 .check_enemigo2:
 .check_enemigo3:
 .check_enemigo4:

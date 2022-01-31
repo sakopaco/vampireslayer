@@ -108,6 +108,7 @@ datos_conde:
 ; salida: 	-
 ; toca:		-
 resetea_enemigos:
+;resetea tipo (no activo)
 		XOR			 A
 		LD			IX, enemigo1
 		LD			(IX), A
@@ -127,6 +128,11 @@ resetea_enemigos:
 		LD			(IX), A
 		LD			IX, enemigo9
 		LD			(IX), A
+		
+;reseta array (coulta todos) 208 o 209
+
+
+ljsdlejlsdjdslkj
 fin_resetea_enemigos:
 		RET
 
