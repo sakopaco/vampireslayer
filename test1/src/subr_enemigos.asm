@@ -104,35 +104,41 @@ datos_conde:
 ;;RESETEA_ENEMIGOS
 ;;=====================================================	
 ; función: 	inicializa todos los enemigos a tipo 0 (muerto) ... incluso los que no van a salir porque se verifican todos
+;			también los oculta sacándolos de pantalla (y = 208)
 ; entrada:	-
 ; salida: 	-
 ; toca:		-
 resetea_enemigos:
 ;resetea tipo (no activo)
+;y de paso los oculta
 		XOR			 A
 		LD			IX, enemigo1
 		LD			(IX), A
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), BORRASPRITE
 		LD			IX, enemigo2
 		LD			(IX), A
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), BORRASPRITE
 		LD			IX, enemigo3
 		LD			(IX), A
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), BORRASPRITE
 		LD			IX, enemigo4
 		LD			(IX), A
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), BORRASPRITE
 		LD			IX, enemigo5
 		LD			(IX), A
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), BORRASPRITE
 		LD			IX, enemigo6
 		LD			(IX), A
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), BORRASPRITE
 		LD			IX, enemigo7
 		LD			(IX), A
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), BORRASPRITE
 		LD			IX, enemigo8
 		LD			(IX), A
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), BORRASPRITE
 		LD			IX, enemigo9
 		LD			(IX), A
-		
-;reseta array (coulta todos) 208 o 209
-
-
-ljsdlejlsdjdslkj
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), BORRASPRITE
 fin_resetea_enemigos:
 		RET
 
@@ -168,13 +174,13 @@ fin_inicializa_enemigos_fase0_nivel0:
 ; salida: 	-
 ; toca:		-
 actualiza_valores_cienpies:
-		LD			 A, 3
-		LD			(IX + ESTRUCTURA_ENEMIGO.planosprite1), A
+		LD			(IX), 2
+		LD			(IX + ESTRUCTURA_ENEMIGO.planosprite1), 3
 		JP			actualiza_valores_aleatorios_cienpies
 fin_actualiza_valores_cienpies:
 actualiza_valores_cienpies2:
-		LD			 A, 3
-		LD			(IX + ESTRUCTURA_ENEMIGO.planosprite1), A
+		LD			(IX), 2
+		LD			(IX + ESTRUCTURA_ENEMIGO.planosprite1), 4
 		JP			actualiza_valores_aleatorios_cienpies
 fin_actualiza_valores_cienpies2:
 
