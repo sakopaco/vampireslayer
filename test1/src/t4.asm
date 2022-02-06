@@ -73,7 +73,7 @@ loop_principal:
 	
 	CALL	actualiza_elementos_fondo;como antorchas o esqueletos
 	
-	CALL	check_enemigos			;examina los enemigos por pantalla y los pone e su sitio
+	CALL	check_enemigos_fase0	;examina los enemigos por pantalla y los pone e su sitio
 
 	CALL	check_player			;MIRA EL CONTROL Y APLICA LA LOGICA DE MOVIMIENTO DEL PROTAGONISTA
 	
@@ -132,21 +132,34 @@ fin_inicializa_enemigos:
 		RET
 
 
-check_enemigos: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
+check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
 .check_enemigo1:
-		LD			IX, enemigo1
-		LD			 A, (IX)
-		OR			 A
-		JP			 Z, .check_enemigo2
+		;~ LD			IX, enemigo1
+		;~ LD			 A, (IX)
+		;~ OR			 A
+		;~ JP			 Z, .check_enemigo2
 		
 		LD			IY, array_sprites_enem
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-		LD			(IY), A
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
-		LD			(IY), A
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_1a)
-		LD			(IY), A
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.color1)
+		LD			(IY + 0), 100
+		LD			(IY + 1), 100
+		
+		LD		 A, (heartbeat)
+		LD			(IY + 2), A
+		
+		;LD			(IY + 2), 24
+		LD			(IY + 3), 4
+		
+		CALL		test_OK
+		
+		
+		
+		;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
+		;~ LD			(IY + 1), A
+		;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
+		;~ LD			(IY + 2), A
+		;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_1a)
+		;~ LD			(IY + 3), A
+		;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.color1)
 
 		
 .check_enemigo2:
@@ -157,7 +170,7 @@ check_enemigos: ;; aquí se ponen los valores de enemigos (si están activos) en
 .check_enemigo7:
 .check_enemigo8:
 .check_enemigo9:
-fin_check_enemigos:
+fin_check_enemigos_fase0:
 		RET			
 
 
