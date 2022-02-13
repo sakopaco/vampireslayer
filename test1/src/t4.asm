@@ -39,7 +39,7 @@ START:
 	;pinta la pantalla (la primera o algunas especiales se pintan completamente)
 	CALL	pinta_pantalla_completa
 	
-	;carga sprites en memoria (SE HA RETRASADO HASTA PARAMETRIZAR LA CARGA DE PANTALLAS)
+	;carga sprites en memoria
 	CALL 	carga_patrones_sprites_nivel
 	
 	;funciones que modificarian el marcador si se produce un evento cuando toque y cuando se pinta la pantalla ya se mira
@@ -143,13 +143,13 @@ check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activ
 		LD			(IY + 0), 100
 		LD			(IY + 1), 100
 		
-		LD		 A, (heartbeat)
+		LD		 A, 28
 		LD			(IY + 2), A
 		
 		;LD			(IY + 2), 24
-		LD			(IY + 3), 4
+		LD			(IY + 3), 15
 		
-		CALL		test_OK
+		;CALL		test_OK
 		
 		
 		

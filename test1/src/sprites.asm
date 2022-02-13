@@ -6,13 +6,13 @@
 
 ;; PARTE 1: SPRITES COMUNES
 sprites_comunes:
-sprite_punto_mira_1:	;color 8
+sprite_punto_mira_1:			;color 8
 	DB #00,#06,#18,#21,#20,#40,#40,#11
 	DB #11,#40,#40,#20,#21,#18,#06,#00
 	DB #00,#60,#18,#84,#04,#02,#02,#88
 	DB #88,#02,#02,#04,#84,#18,#60,#00 
 	
-sprite_punto_mira_2: 	;color 15
+sprite_punto_mira_2: 			;color 15
 	DB #00,#00,#00,#00,#03,#04,#08,#08
 	DB #08,#08,#04,#03,#00,#00,#00,#00
 	DB #00,#00,#00,#00,#C0,#20,#10,#10
@@ -31,26 +31,26 @@ sprite_punto_mira_2_mejorado:	;color 15
 	DB #92,#10,#20,#C0,#00,#00,#82,#00 
 	
 sprite_explosion:				;color 8
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
+	DB  #00,#FF,#00,#FF,#00,#FF,#00,#FF
+	DB  #FF,#00,#FF,#00,#FF,#00,#FF,#00
+	DB  #00,#FF,#00,#00,#00,#00,#FF,#00
+	DB  #FF,#00,#00,#00,#FF,#00,#FF,#00	
 fin_sprites_comunes:
 
 ;; PARTE 2: SPRITES NO COMUNES
 ;; CIENPIÉS 2
 sprite_cienpies:
 sprite_cienpies_1:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#FF,#00,#FF,#00,#FF,#00,#FF
+	DB  #FF,#00,#FF,#00,#FF,#00,#FF,#00
+	DB  #00,#FF,#00,#00,#00,#00,#FF,#00
+	DB  #FF,#00,#00,#00,#FF,#00,#FF,#00	
 	
 sprite_cienpies_2:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#FF,#00,#FF,#00,#FF,#00,#FF
+	DB  #FF,#00,#FF,#00,#FF,#00,#FF,#00
+	DB  #00,#FF,#00,#00,#00,#00,#FF,#00
+	DB  #FF,#00,#00,#00,#FF,#00,#FF,#00	
 fin_sprite_cienpies:
 
 ;; SERPIENTE 2 + 2

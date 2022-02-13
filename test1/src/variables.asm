@@ -52,10 +52,10 @@ esqueletos:			DS		ESTRUCTURA_ESQUELETO
 array_esqueleto:			DB	194, 0, 195, 160, 164, 161, 0, 163, 0, 193, 162, 192
 lista_escenas_calavera:		DB	164, 165, 164, 166
 
+
 ;; parte de los enemigos
 ; para movmiento
 heartbeat			DB		0;					;reloj central que moverá los enemigos
-
 
 ;array de 4 bytes x 32 sprites posibles en pantalla que sobreescribirá la tabla de sprites actualizando VRAM
 array_sprites:

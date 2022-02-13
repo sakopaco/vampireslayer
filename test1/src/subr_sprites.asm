@@ -4,9 +4,6 @@
 ;;=====================================================	
 
 
-;; PREGUNTAR SI A FERNANDO SI ES MEJOR USAR LISTAS O ALGO PARA AHORRAR CÓDIGO
-
-
 ;;=====================================================
 ;;CARGA_PATRONES_SPRITES_NIVEL
 ;;=====================================================	
@@ -15,18 +12,43 @@
 ; salida: 	-
 ; toca: 	-
 carga_patrones_sprites_nivel:
-	CALL 	carga_patrones_nivel_comunes
-	
-	;POR AHORA ES TODO COMÚN ... CUANDO EL JUGADOR SE MUEVA LOS PATRONES SERÁN DEPENDIENDO DEL NIVEL
-	; O NO Y LO QUE SE HACE ES PERSONALIZAR LA PANTALLA USANDO LOS MISMOS PATRONES PERO PINTANDO DISTINTOS
-	; EN DISTINTOS SITIOS SEGÚN NIVEL
-	
-	;~ ;carga patrones no comunes
-	;~ LD		 A, (prota_nivel)
-	;~ OR		 A
-	;~ JP		 Z, carga_patrones_sprites_nivel donde esté el prota
+		CALL 		carga_patrones_nivel_comunes
+
+		;carga patrones no comunes según nivel donde está el prota
+		LD		 	 A, (prota_nivel)
+		OR		 	 A
+		JP		 	NZ, .examina_nivel1
+		CALL		carga_patrones_sprites_nivel0	
+		RET
+.examina_nivel1:
+		DEC			 A
+		JP			NZ, .examina_nivel2
+		CALL		carga_patrones_sprites_nivel1
+		RET
+.examina_nivel2:
+		DEC			 A
+		JP			NZ, .examina_nivel3
+		CALL		carga_patrones_sprites_nivel2
+		RET
+.examina_nivel3:
+		DEC			 A
+		JP			NZ, .examina_nivel4
+		CALL		carga_patrones_sprites_nivel3
+		RET
+.examina_nivel4:
+		DEC			 A
+		JP			NZ, .examina_nivel5
+		CALL		carga_patrones_sprites_nivel4
+		RET
+.examina_nivel5:
+		DEC			 A
+		JP			NZ, .carga_nivel6
+		CALL		carga_patrones_sprites_nivel5
+		RET
+.carga_nivel6:
+		JP			carga_patrones_sprites_nivel5
 fin_carga_patrones_sprites_nivel:
-	RET	
+
 
 
 ;;=====================================================
@@ -45,22 +67,240 @@ fin_carga_patrones_nivel_comunes:
 
 
 ;;=====================================================
-;;CARGA_PATRONES_SPRITES_NIVEL1
+;;CARGA_PATRONES_SPRITES_NIVELX
 ;;=====================================================	
-; función: 	copia los patrones de los sprites que e van a usar en el nivel 1 en vram
+; función: 	copia los patrones de los sprites que se van a usar en el nivel 1 en vram
 ; entrada: 	-
 ; salida: 	-
 ; toca: 	-
-carga_patrones_sprites_nivel1:
+carga_patrones_sprites_nivel0:
+		LD			HL, sprite_cienpies
+		LD			DE, #38C0 + fin_sprite_cienpies - sprite_cienpies
+		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_serpiente
+		LD			DE, #3900 + fin_sprite_serpiente - sprite_serpiente
+		LD			BC, 128			;32 * 4 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_arana
+		LD			DE, #3980 + fin_sprite_arana - sprite_arana
+		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_murcielago
+		LD			DE, #39C0 + fin_sprite_murcielago - sprite_murcielago
+		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_lobo
+		LD			DE, #3A00 + fin_sprite_lobo - sprite_lobo
+		LD			BC, 256			;32 * 8 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_jefelobo
+		LD			DE, #3A00 + fin_sprite_jefelobo - sprite_jefelobo
+		LD			BC, 512			;32 * 16 sprites de 4 x 4				
+		JP			LDIRVM
+fin_carga_patrones_sprites_nivel0:
+	
+carga_patrones_sprites_nivel1:		
+		LD			HL, sprite_cienpies
+		LD			DE, #38C0 + fin_sprite_cienpies - sprite_cienpies
+		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_serpiente
+		LD			DE, #3900 + fin_sprite_serpiente - sprite_serpiente
+		LD			BC, 128			;32 * 4 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_arana
+		LD			DE, #3980 + fin_sprite_arana - sprite_arana
+		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_murcielago
+		LD			DE, #39C0 + fin_sprite_murcielago - sprite_murcielago
+		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_lobo
+		LD			DE, #3A00 + fin_sprite_lobo - sprite_lobo
+		LD			BC, 256			;32 * 8 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_jefelobo
+		LD			DE, #3A00 + fin_sprite_jefelobo - sprite_jefelobo
+		LD			BC, 512			;32 * 16 sprites de 4 x 4				
+		JP			LDIRVM
+fin_carga_patrones_sprites_nivel1:
+	
+	
+carga_patrones_sprites_nivel2:
+		LD			HL, sprite_cienpies
+		LD			DE, #38C0 + fin_sprite_cienpies - sprite_cienpies
+		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_serpiente
+		LD			DE, #3900 + fin_sprite_serpiente - sprite_serpiente
+		LD			BC, 128			;32 * 4 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_arana
+		LD			DE, #3980 + fin_sprite_arana - sprite_arana
+		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_murcielago
+		LD			DE, #39C0 + fin_sprite_murcielago - sprite_murcielago
+		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_lobo
+		LD			DE, #3A00 + fin_sprite_lobo - sprite_lobo
+		LD			BC, 256			;32 * 8 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_jefelobo
+		LD			DE, #3A00 + fin_sprite_jefelobo - sprite_jefelobo
+		LD			BC, 512			;32 * 16 sprites de 4 x 4				
+		JP			LDIRVM
+fin_carga_patrones_sprites_nivel2:
 
-	;~ ;sprite sprite_reliquia
-	;~ LD		HL,sprite_reliquia
-	;~ LD		DE,#3880
-	;~ LD		BC,32				;32 bytes (sprites de 2 x 2)
-	;~ CALL	LDIRVM
+	
+carga_patrones_sprites_nivel3:
+		LD			HL, sprite_cienpies
+		LD			DE, #38C0 + fin_sprite_cienpies - sprite_cienpies
+		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_serpiente
+		LD			DE, #3900 + fin_sprite_serpiente - sprite_serpiente
+		LD			BC, 128			;32 * 4 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_arana
+		LD			DE, #3980 + fin_sprite_arana - sprite_arana
+		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_murcielago
+		LD			DE, #39C0 + fin_sprite_murcielago - sprite_murcielago
+		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_lobo
+		LD			DE, #3A00 + fin_sprite_lobo - sprite_lobo
+		LD			BC, 256			;32 * 8 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_jefelobo
+		LD			DE, #3A00 + fin_sprite_jefelobo - sprite_jefelobo
+		LD			BC, 512			;32 * 16 sprites de 4 x 4				
+		JP			LDIRVM
+fin_carga_patrones_sprites_nivel3:
 
-fin_carga_patrones_sprites:
-	RET
+	
+carga_patrones_sprites_nivel4:
+		LD			HL, sprite_cienpies
+		LD			DE, #38C0 + fin_sprite_cienpies - sprite_cienpies
+		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_serpiente
+		LD			DE, #3900 + fin_sprite_serpiente - sprite_serpiente
+		LD			BC, 128			;32 * 4 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_arana
+		LD			DE, #3980 + fin_sprite_arana - sprite_arana
+		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_murcielago
+		LD			DE, #39C0 + fin_sprite_murcielago - sprite_murcielago
+		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_lobo
+		LD			DE, #3A00 + fin_sprite_lobo - sprite_lobo
+		LD			BC, 256			;32 * 8 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_jefelobo
+		LD			DE, #3A00 + fin_sprite_jefelobo - sprite_jefelobo
+		LD			BC, 512			;32 * 16 sprites de 4 x 4				
+		JP			LDIRVM
+fin_carga_patrones_sprites_nivel4:
+
+	
+carga_patrones_sprites_nivel5:
+		LD			HL, sprite_cienpies
+		LD			DE, #38C0 + fin_sprite_cienpies - sprite_cienpies
+		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_serpiente
+		LD			DE, #3900 + fin_sprite_serpiente - sprite_serpiente
+		LD			BC, 128			;32 * 4 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_arana
+		LD			DE, #3980 + fin_sprite_arana - sprite_arana
+		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_murcielago
+		LD			DE, #39C0 + fin_sprite_murcielago - sprite_murcielago
+		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_lobo
+		LD			DE, #3A00 + fin_sprite_lobo - sprite_lobo
+		LD			BC, 256			;32 * 8 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_jefelobo
+		LD			DE, #3A00 + fin_sprite_jefelobo - sprite_jefelobo
+		LD			BC, 512			;32 * 16 sprites de 4 x 4				
+		JP			LDIRVM
+fin_carga_patrones_sprites_nivel5:
+	
+	
+carga_patrones_sprites_nivel6:
+		LD			HL, sprite_cienpies
+		LD			DE, #38C0 + fin_sprite_cienpies - sprite_cienpies
+		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_serpiente
+		LD			DE, #3900 + fin_sprite_serpiente - sprite_serpiente
+		LD			BC, 128			;32 * 4 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_arana
+		LD			DE, #3980 + fin_sprite_arana - sprite_arana
+		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_murcielago
+		LD			DE, #39C0 + fin_sprite_murcielago - sprite_murcielago
+		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_lobo
+		LD			DE, #3A00 + fin_sprite_lobo - sprite_lobo
+		LD			BC, 256			;32 * 8 sprites de 4 x 4				
+		CALL		LDIRVM
+		
+		LD			HL, sprite_jefelobo
+		LD			DE, #3A00 + fin_sprite_jefelobo - sprite_jefelobo
+		LD			BC, 512			;32 * 16 sprites de 4 x 4				
+		JP			LDIRVM
+fin_carga_patrones_sprites_nivel6:
 
 
 ;;=====================================================
@@ -74,15 +314,13 @@ render_sprites:
 	;volcando el array con toda la info de los sprites a la zona de atributos de sprites
 	LD			HL, array_sprites
 	LD			DE, SPRART
-	LD			BC, 4 * 32			;32 sprites x 4 bytes controlando el sprite (Y, X, plano, color)
-	JP			LDIRVM
+	LD			BC, 4 * 4			;32 sprites x 4 bytes controlando el sprite (Y, X, plano, color)
+	CALL		LDIRVM
 
-	;~ LD			HL, array_sprites_enem
-	;~ LD			DE, SPRART + 8
-	;~ LD			BC, 4 * 30			;32 sprites x 4 bytes controlando el sprite (Y, X, plano, color)
-	;~ JP			LDIRVM
-	
-	
+	LD			HL, array_sprites_enem
+	LD			DE, SPRART + 8
+	LD			BC, 4 * 28			;32 sprites x 4 bytes controlando el sprite (Y, X, plano, color)
+	JP			LDIRVM
 fin_actualiza_array_sprites_vram:
 
 
