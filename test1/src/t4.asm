@@ -143,7 +143,7 @@ check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activ
 		LD			(IY + 0), 100
 		LD			(IY + 1), 100
 		
-		LD		 A, 28
+		LD		 	 A, 32
 		LD			(IY + 2), A
 		
 		;LD			(IY + 2), 24

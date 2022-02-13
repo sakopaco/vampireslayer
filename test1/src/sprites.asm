@@ -31,20 +31,20 @@ sprite_punto_mira_2_mejorado:	;color 15
 	DB #92,#10,#20,#C0,#00,#00,#82,#00 
 	
 sprite_explosion:				;color 8
-	DB  #00,#FF,#00,#FF,#00,#FF,#00,#FF
-	DB  #FF,#00,#FF,#00,#FF,#00,#FF,#00
-	DB  #00,#FF,#00,#00,#00,#00,#FF,#00
-	DB  #FF,#00,#00,#00,#FF,#00,#FF,#00	
+	DB  #00,#00,#00,#00,#00,#00,#00,#00
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#00,#00,#00,#00,#00,#00,#00	
 fin_sprites_comunes:
 
 ;; PARTE 2: SPRITES NO COMUNES
 ;; CIENPIÉS 2
 sprite_cienpies:
 sprite_cienpies_1:
-	DB  #00,#FF,#00,#FF,#00,#FF,#00,#FF
-	DB  #FF,#00,#FF,#00,#FF,#00,#FF,#00
-	DB  #00,#FF,#00,#00,#00,#00,#FF,#00
-	DB  #FF,#00,#00,#00,#FF,#00,#FF,#00	
+	DB #00,#00,#00,#00,#00,#04,#02,#09
+	DB #25,#13,#8F,#5E,#3D,#78,#E4,#C2
+	DB #38,#41,#39,#45,#83,#82,#82,#E4
+	DB #F8,#E0,#90,#48,#20,#80,#00,#00
 	
 sprite_cienpies_2:
 	DB  #00,#FF,#00,#FF,#00,#FF,#00,#FF
