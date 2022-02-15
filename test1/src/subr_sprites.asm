@@ -75,230 +75,230 @@ fin_carga_patrones_nivel_comunes:
 ; toca: 	-
 carga_patrones_sprites_nivel0:
 		LD			HL, sprite_cienpies
-		LD			DE, #38C0 + fin_sprite_cienpies - sprite_cienpies
-		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		LD			DE, #38C0
+		LD			BC, fin_sprite_cienpies - sprite_cienpies			;32 * 2 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_serpiente
-		LD			DE, #3900 + fin_sprite_serpiente - sprite_serpiente
-		LD			BC, 128			;32 * 4 sprites de 4 x 4				
+		LD			DE, #3900
+		LD			BC, fin_sprite_serpiente - sprite_serpiente			;32 * 4 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_arana
-		LD			DE, #3980 + fin_sprite_arana - sprite_arana
-		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		LD			DE, #3980
+		LD			BC, fin_sprite_arana - sprite_arana					;32 * 2 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_murcielago
-		LD			DE, #39C0 + fin_sprite_murcielago - sprite_murcielago
-		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		LD			DE, #39C0
+		LD			BC, fin_sprite_murcielago - sprite_murcielago		;32 * 2 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_lobo
-		LD			DE, #3A00 + fin_sprite_lobo - sprite_lobo
-		LD			BC, 256			;32 * 8 sprites de 4 x 4				
+		LD			DE, #3A00
+		LD			BC, fin_sprite_lobo - sprite_lobo					;32 * 8 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_jefelobo
-		LD			DE, #3A00 + fin_sprite_jefelobo - sprite_jefelobo
-		LD			BC, 512			;32 * 16 sprites de 4 x 4				
+		LD			DE, #3A00
+		LD			BC, fin_sprite_jefelobo - sprite_jefelobo			;32 * 16 sprites de 4 x 4		
 		JP			LDIRVM
 fin_carga_patrones_sprites_nivel0:
 	
 carga_patrones_sprites_nivel1:		
 		LD			HL, sprite_cienpies
-		LD			DE, #38C0 + fin_sprite_cienpies - sprite_cienpies
-		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		LD			DE, #38C0
+		LD			BC, fin_sprite_cienpies - sprite_cienpies			;32 * 2 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_serpiente
-		LD			DE, #3900 + fin_sprite_serpiente - sprite_serpiente
-		LD			BC, 128			;32 * 4 sprites de 4 x 4				
+		LD			DE, #3900
+		LD			BC, fin_sprite_serpiente - sprite_serpiente			;32 * 4 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_arana
-		LD			DE, #3980 + fin_sprite_arana - sprite_arana
-		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		LD			DE, #3980
+		LD			BC, fin_sprite_arana - sprite_arana					;32 * 2 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_murcielago
-		LD			DE, #39C0 + fin_sprite_murcielago - sprite_murcielago
-		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		LD			DE, #39C0
+		LD			BC, fin_sprite_murcielago - sprite_murcielago		;32 * 2 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_lobo
-		LD			DE, #3A00 + fin_sprite_lobo - sprite_lobo
-		LD			BC, 256			;32 * 8 sprites de 4 x 4				
+		LD			DE, #3A00
+		LD			BC, fin_sprite_lobo - sprite_lobo					;32 * 8 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_jefelobo
-		LD			DE, #3A00 + fin_sprite_jefelobo - sprite_jefelobo
-		LD			BC, 512			;32 * 16 sprites de 4 x 4				
+		LD			DE, #3A00
+		LD			BC, fin_sprite_jefelobo - sprite_jefelobo			;32 * 16 sprites de 4 x 4		
 		JP			LDIRVM
 fin_carga_patrones_sprites_nivel1:
 	
 	
 carga_patrones_sprites_nivel2:
 		LD			HL, sprite_cienpies
-		LD			DE, #38C0 + fin_sprite_cienpies - sprite_cienpies
-		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		LD			DE, #38C0
+		LD			BC, fin_sprite_cienpies - sprite_cienpies			;32 * 2 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_serpiente
-		LD			DE, #3900 + fin_sprite_serpiente - sprite_serpiente
-		LD			BC, 128			;32 * 4 sprites de 4 x 4				
+		LD			DE, #3900
+		LD			BC, fin_sprite_serpiente - sprite_serpiente			;32 * 4 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_arana
-		LD			DE, #3980 + fin_sprite_arana - sprite_arana
-		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		LD			DE, #3980
+		LD			BC, fin_sprite_arana - sprite_arana					;32 * 2 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_murcielago
-		LD			DE, #39C0 + fin_sprite_murcielago - sprite_murcielago
-		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		LD			DE, #39C0
+		LD			BC, fin_sprite_murcielago - sprite_murcielago		;32 * 2 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_lobo
-		LD			DE, #3A00 + fin_sprite_lobo - sprite_lobo
-		LD			BC, 256			;32 * 8 sprites de 4 x 4				
+		LD			DE, #3A00
+		LD			BC, fin_sprite_lobo - sprite_lobo					;32 * 8 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_jefelobo
-		LD			DE, #3A00 + fin_sprite_jefelobo - sprite_jefelobo
-		LD			BC, 512			;32 * 16 sprites de 4 x 4				
+		LD			DE, #3A00
+		LD			BC, fin_sprite_jefelobo - sprite_jefelobo			;32 * 16 sprites de 4 x 4		
 		JP			LDIRVM
 fin_carga_patrones_sprites_nivel2:
 
 	
 carga_patrones_sprites_nivel3:
 		LD			HL, sprite_cienpies
-		LD			DE, #38C0 + fin_sprite_cienpies - sprite_cienpies
-		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		LD			DE, #38C0
+		LD			BC, fin_sprite_cienpies - sprite_cienpies			;32 * 2 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_serpiente
-		LD			DE, #3900 + fin_sprite_serpiente - sprite_serpiente
-		LD			BC, 128			;32 * 4 sprites de 4 x 4				
+		LD			DE, #3900
+		LD			BC, fin_sprite_serpiente - sprite_serpiente			;32 * 4 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_arana
-		LD			DE, #3980 + fin_sprite_arana - sprite_arana
-		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		LD			DE, #3980
+		LD			BC, fin_sprite_arana - sprite_arana					;32 * 2 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_murcielago
-		LD			DE, #39C0 + fin_sprite_murcielago - sprite_murcielago
-		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		LD			DE, #39C0
+		LD			BC, fin_sprite_murcielago - sprite_murcielago		;32 * 2 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_lobo
-		LD			DE, #3A00 + fin_sprite_lobo - sprite_lobo
-		LD			BC, 256			;32 * 8 sprites de 4 x 4				
+		LD			DE, #3A00
+		LD			BC, fin_sprite_lobo - sprite_lobo					;32 * 8 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_jefelobo
-		LD			DE, #3A00 + fin_sprite_jefelobo - sprite_jefelobo
-		LD			BC, 512			;32 * 16 sprites de 4 x 4				
+		LD			DE, #3A00
+		LD			BC, fin_sprite_jefelobo - sprite_jefelobo			;32 * 16 sprites de 4 x 4		
 		JP			LDIRVM
 fin_carga_patrones_sprites_nivel3:
 
 	
 carga_patrones_sprites_nivel4:
 		LD			HL, sprite_cienpies
-		LD			DE, #38C0 + fin_sprite_cienpies - sprite_cienpies
-		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		LD			DE, #38C0
+		LD			BC, fin_sprite_cienpies - sprite_cienpies			;32 * 2 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_serpiente
-		LD			DE, #3900 + fin_sprite_serpiente - sprite_serpiente
-		LD			BC, 128			;32 * 4 sprites de 4 x 4				
+		LD			DE, #3900
+		LD			BC, fin_sprite_serpiente - sprite_serpiente			;32 * 4 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_arana
-		LD			DE, #3980 + fin_sprite_arana - sprite_arana
-		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		LD			DE, #3980
+		LD			BC, fin_sprite_arana - sprite_arana					;32 * 2 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_murcielago
-		LD			DE, #39C0 + fin_sprite_murcielago - sprite_murcielago
-		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		LD			DE, #39C0
+		LD			BC, fin_sprite_murcielago - sprite_murcielago		;32 * 2 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_lobo
-		LD			DE, #3A00 + fin_sprite_lobo - sprite_lobo
-		LD			BC, 256			;32 * 8 sprites de 4 x 4				
+		LD			DE, #3A00
+		LD			BC, fin_sprite_lobo - sprite_lobo					;32 * 8 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_jefelobo
-		LD			DE, #3A00 + fin_sprite_jefelobo - sprite_jefelobo
-		LD			BC, 512			;32 * 16 sprites de 4 x 4				
+		LD			DE, #3A00
+		LD			BC, fin_sprite_jefelobo - sprite_jefelobo			;32 * 16 sprites de 4 x 4		
 		JP			LDIRVM
 fin_carga_patrones_sprites_nivel4:
 
 	
 carga_patrones_sprites_nivel5:
 		LD			HL, sprite_cienpies
-		LD			DE, #38C0 + fin_sprite_cienpies - sprite_cienpies
-		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		LD			DE, #38C0
+		LD			BC, fin_sprite_cienpies - sprite_cienpies			;32 * 2 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_serpiente
-		LD			DE, #3900 + fin_sprite_serpiente - sprite_serpiente
-		LD			BC, 128			;32 * 4 sprites de 4 x 4				
+		LD			DE, #3900
+		LD			BC, fin_sprite_serpiente - sprite_serpiente			;32 * 4 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_arana
-		LD			DE, #3980 + fin_sprite_arana - sprite_arana
-		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		LD			DE, #3980
+		LD			BC, fin_sprite_arana - sprite_arana					;32 * 2 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_murcielago
-		LD			DE, #39C0 + fin_sprite_murcielago - sprite_murcielago
-		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		LD			DE, #39C0
+		LD			BC, fin_sprite_murcielago - sprite_murcielago		;32 * 2 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_lobo
-		LD			DE, #3A00 + fin_sprite_lobo - sprite_lobo
-		LD			BC, 256			;32 * 8 sprites de 4 x 4				
+		LD			DE, #3A00
+		LD			BC, fin_sprite_lobo - sprite_lobo					;32 * 8 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_jefelobo
-		LD			DE, #3A00 + fin_sprite_jefelobo - sprite_jefelobo
-		LD			BC, 512			;32 * 16 sprites de 4 x 4				
+		LD			DE, #3A00
+		LD			BC, fin_sprite_jefelobo - sprite_jefelobo			;32 * 16 sprites de 4 x 4		
 		JP			LDIRVM
 fin_carga_patrones_sprites_nivel5:
 	
 	
 carga_patrones_sprites_nivel6:
 		LD			HL, sprite_cienpies
-		LD			DE, #38C0 + fin_sprite_cienpies - sprite_cienpies
-		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		LD			DE, #38C0
+		LD			BC, fin_sprite_cienpies - sprite_cienpies			;32 * 2 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_serpiente
-		LD			DE, #3900 + fin_sprite_serpiente - sprite_serpiente
-		LD			BC, 128			;32 * 4 sprites de 4 x 4				
+		LD			DE, #3900
+		LD			BC, fin_sprite_serpiente - sprite_serpiente			;32 * 4 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_arana
-		LD			DE, #3980 + fin_sprite_arana - sprite_arana
-		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		LD			DE, #3980
+		LD			BC, fin_sprite_arana - sprite_arana					;32 * 2 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_murcielago
-		LD			DE, #39C0 + fin_sprite_murcielago - sprite_murcielago
-		LD			BC, 64			;32 * 2 sprites de 4 x 4				
+		LD			DE, #39C0
+		LD			BC, fin_sprite_murcielago - sprite_murcielago		;32 * 2 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_lobo
-		LD			DE, #3A00 + fin_sprite_lobo - sprite_lobo
-		LD			BC, 256			;32 * 8 sprites de 4 x 4				
+		LD			DE, #3A00
+		LD			BC, fin_sprite_lobo - sprite_lobo					;32 * 8 sprites de 4 x 4				
 		CALL		LDIRVM
 		
 		LD			HL, sprite_jefelobo
-		LD			DE, #3A00 + fin_sprite_jefelobo - sprite_jefelobo
-		LD			BC, 512			;32 * 16 sprites de 4 x 4				
+		LD			DE, #3A00
+		LD			BC, fin_sprite_jefelobo - sprite_jefelobo			;32 * 16 sprites de 4 x 4		
 		JP			LDIRVM
 fin_carga_patrones_sprites_nivel6:
 

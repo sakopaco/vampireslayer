@@ -9,10 +9,10 @@
 ;las posiciones iniciales dependerán de los últimos 3 bits del registro R
 ;nota: se pone un 0 de más para simplificar el bucle de selección
 posiciones_iniciales_cienpies_x:
-		DB			0,0,0,0,0,0,0,0,0
+		DB			10,20,30,40,50,60,70,80,90
 
 posiciones_iniciales_cienpies_y:
-		DB			0,0,0,0,0,0,0,0,0
+		DB			10,20,30,40,50,60,70,80,90
 
 enemigo1			DS	ESTRUCTURA_ENEMIGO
 enemigo2			DS	ESTRUCTURA_ENEMIGO
@@ -161,7 +161,7 @@ inicializa_enemigos_fase0_nivel0:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_cienpies
 		LD			IX, enemigo1
-		JP			actualiza_valores_cienpies2
+		JP			actualiza_valores_cienpies
 fin_inicializa_enemigos_fase0_nivel0:
 		
 
@@ -174,15 +174,9 @@ fin_inicializa_enemigos_fase0_nivel0:
 ; salida: 	-
 ; toca:		-
 actualiza_valores_cienpies:
-		LD			(IX), 2
-		LD			(IX + ESTRUCTURA_ENEMIGO.planosprite1), 3
-		JP			actualiza_valores_aleatorios_cienpies
-fin_actualiza_valores_cienpies:
-actualiza_valores_cienpies2:
-		LD			(IX), 2
-		LD			(IX + ESTRUCTURA_ENEMIGO.planosprite1), 4
-		JP			actualiza_valores_aleatorios_cienpies
-fin_actualiza_valores_cienpies2:
+		LD			(IX + ESTRUCTURA_ENEMIGO.planosprite1), 2;********************************++++ parece que sobra este valor ....
+		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_1a), 24
+		LD			(IX + ESTRUCTURA_ENEMIGO.color1), COLAMAROSC
 
 actualiza_valores_aleatorios_cienpies:
 		LD			 A, R
