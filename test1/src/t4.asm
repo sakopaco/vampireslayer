@@ -135,36 +135,22 @@ fin_inicializa_enemigos:
 check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
 .check_enemigo1:
 		LD			IX, enemigo1
-		;~ LD			 A, (IX)
-		;~ OR			 A
-		;~ JP			 Z, .check_enemigo2
+		LD			 A, (IX)
+		OR			 A
+		JP			 Z, .check_enemigo2
 		
 		LD			IY, array_sprites_enem
-		;~ LD			(IY + 0), 100
-		;~ LD			(IY + 1), 100
-		
-		;~ LD		 	 A, 24
-		;~ LD			(IY + 2), A
-		
-		;~ ;LD			(IY + 2), 24
-		;~ LD			(IY + 3), 15
-		
-		;~ ;CALL		test_OK
-		
-		
-		;~ LD			(IX + ESTRUCTURA_ENEMIGO.sprite_1a), 24
-		;~ LD			(IX + ESTRUCTURA_ENEMIGO.color1), COLAMAROSC
-		
-		
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-		LD			(IY), A
+
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
+		LD			(IY), A
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
 		LD			(IY + 1), A
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_1a)
 		LD			(IY + 2), A
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.color1)
 		LD			(IY + 3), A
 
+		;acciones enemigos
 		
 .check_enemigo2:
 .check_enemigo3:

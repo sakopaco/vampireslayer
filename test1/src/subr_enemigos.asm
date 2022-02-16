@@ -9,10 +9,9 @@
 ;las posiciones iniciales dependerán de los últimos 3 bits del registro R
 ;nota: se pone un 0 de más para simplificar el bucle de selección
 posiciones_iniciales_cienpies_x:
-		DB			10,20,30,40,50,60,70,80,90
-
+		DB			0,128, 16,128,224, 64, 96,160,224
 posiciones_iniciales_cienpies_y:
-		DB			10,20,30,40,50,60,70,80,90
+		DB			0,  8, 72, 40, 72,104,106,106,104
 
 enemigo1			DS	ESTRUCTURA_ENEMIGO
 enemigo2			DS	ESTRUCTURA_ENEMIGO
@@ -169,20 +168,19 @@ fin_inicializa_enemigos_fase0_nivel0:
 ;;ACTUALIZA_VALORES_CIENPIES
 ;;=====================================================	
 ; función: 	inicializa valores aleatorios del cienpies: posicion inicial (posx, posy) en la posición de enemigo que se le pase por IX
-;	 nota:  la versión 2 lo que hace es cambiar el plano para cuando hay dos cienpies en la misma pantalla
 ; entrada:	IX que equivaldrá a qué nº de enemigo estamos inicializando (por ejemplo enemigo1)
 ; salida: 	-
 ; toca:		-
 actualiza_valores_cienpies:
 		LD			(IX + ESTRUCTURA_ENEMIGO.planosprite1), 2;********************************++++ parece que sobra este valor ....
 		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_1a), 24
-		LD			(IX + ESTRUCTURA_ENEMIGO.color1), COLAMAROSC
+		LD			(IX + ESTRUCTURA_ENEMIGO.color1), COLVERDOSC
 
 actualiza_valores_aleatorios_cienpies:
 		LD			 A, R
 		AND			00000111b
 		LD			 B, A
-		LD			 D, A
+		LD			 C, B
 		LD			HL, posiciones_iniciales_cienpies_x
 .incrementa_posx:
 		INC			HL
@@ -191,7 +189,7 @@ actualiza_valores_aleatorios_cienpies:
 		LD			 A, (HL)
 		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
 		
-		LD			 B, D
+		LD			 B, C
 		LD			HL, posiciones_iniciales_cienpies_y
 .incrementa_posy:
 		INC			HL
