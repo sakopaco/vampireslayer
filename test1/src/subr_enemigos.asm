@@ -9,9 +9,9 @@
 ;las posiciones iniciales dependerán de los últimos 3 bits del registro R
 ;nota: se pone un 0 de más para simplificar el bucle de selección
 posiciones_iniciales_cienpies_x:
-		DB			0,128, 16,128,224, 64, 96,160,224
+		DB			128,128, 16,128,224, 64, 96,160,224
 posiciones_iniciales_cienpies_y:
-		DB			0,  8, 72, 40, 72,104,106,106,104
+		DB			  8,  8, 72, 40, 72,104,106,106,104
 
 enemigo1			DS	ESTRUCTURA_ENEMIGO
 enemigo2			DS	ESTRUCTURA_ENEMIGO
