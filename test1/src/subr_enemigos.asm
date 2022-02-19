@@ -172,8 +172,10 @@ fin_inicializa_enemigos_fase0_nivel0:
 ; salida: 	-
 ; toca:		-
 actualiza_valores_cienpies:
-		LD			(IX + ESTRUCTURA_ENEMIGO.planosprite1), 2;********************************++++ parece que sobra este valor ....
+		;LD			(IX + ESTRUCTURA_ENEMIGO.planosprite1), 2;********************************++++ parece que sobra este valor ....
+		LD			(IX + ESTRUCTURA_ENEMIGO.cont_sig_escena), 8
 		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_1a), 24
+		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_2a), 28
 		LD			(IX + ESTRUCTURA_ENEMIGO.color1), COLVERDOSC
 
 actualiza_valores_aleatorios_cienpies:

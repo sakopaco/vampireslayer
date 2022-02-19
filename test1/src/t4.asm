@@ -145,10 +145,25 @@ check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activ
 		LD			(IY), A
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
 		LD			(IY + 1), A
+		
+		LD			 A, (heartbeat)
+		AND			00001000b ;ESTRUCTURA_ENEMIGO.cont_sig_escena
+		JP			 Z, .fin_cambia_escena_enemigo1   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
+	
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_1a)
+			CP			24
+			JP			 Z, .enemigo1_poner_escena2			; IF ESCENA 1 THEN
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_1a), 24
+			JP			.fin_enemigo1_poner_escena2
+.enemigo1_poner_escena2:									; ELSE
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_1a), 28
+.fin_enemigo1_poner_escena2:								; END IF
+.fin_cambia_escena_enemigo1:							; END IF
+		
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_1a)
 		LD			(IY + 2), A
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.color1)
-		LD			(IY + 3), A
+		
+		LD			(IY + 3), COLVERDOSC
 
 		;acciones enemigos
 		
