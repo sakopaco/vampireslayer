@@ -142,25 +142,27 @@ check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activ
 		LD			IY, array_sprites_enem
 
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
-		LD			(IY), A
+		LD			(IY), 0;A
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-		LD			(IY + 1), A
+		LD			(IY + 1), 0;A
 		
+		LD			 B, (IX + ESTRUCTURA_ENEMIGO.cont_sig_escena)
 		LD			 A, (heartbeat)
-		AND			00001000b ;ESTRUCTURA_ENEMIGO.cont_sig_escena
+		AND			 B
 		JP			 Z, .fin_cambia_escena_enemigo1   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
-	
-			LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_1a)
-			CP			24
+			; cambio de escena
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+			XOR			00000001b
+			LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
+			
 			JP			 Z, .enemigo1_poner_escena2			; IF ESCENA 1 THEN
-			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_1a), 24
-			JP			.fin_enemigo1_poner_escena2
+				LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_1b)
+				JP			.fin_enemigo1_poner_escena2
 .enemigo1_poner_escena2:									; ELSE
-			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_1a), 28
+				LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_1a)
 .fin_enemigo1_poner_escena2:								; END IF
-.fin_cambia_escena_enemigo1:							; END IF
-		
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_1a)
+.fin_cambia_escena_enemigo1:							; END IF			
+
 		LD			(IY + 2), A
 		
 		LD			(IY + 3), COLVERDOSC

@@ -31,7 +31,7 @@ datos_cienpies:
 					DB		2	;(activo_tipo)si inactivo = 0 si <> 0 es el tipo de enemigo
 					;aquí se usará el xor
 					DB		0	;(escena) sprite a mostrar 1/2 
-					DB		0	;(cont_sig_escena)retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
+					DB		8	;(cont_sig_escena)retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
 					DB		0	;(tiemp_cam_escena)cada cuantas iteraciones se cambiará la escena
 					DB		10	;(energia)energía del enemigo antes de morir
 					DB		0	;(pos_x)pos x para mover y punto central del sprite para revisar disparo
@@ -43,15 +43,13 @@ datos_cienpies:
 					DB		0	;(radio)radio para movimientos circulares
 					DB		0	;(direccion) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 					DB		0	;(pasos)pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
-;mezclo el ptr_sig_escena con el mover ya que son obligatorias no merece la pena tener 2
-;ptr_sig_escena		DW		0	;funcion que cambia los sprites de la escena (según el nº de sprites será distinta)
 					DW		mover_cienpies	;(ptr_mover)puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 ;se pondrán 8 sprites: 4 por si hay enemigos de hasta 4 sprites y por 2 por usar 2 escenas... si se usan 3 habría que ampliar
-					DB		7 	;(sprite_1a)
+					DB		24 	;(sprite_1a)
 					DB		0 	;(sprite_2a)
 					DB		0 	;(sprite_3a)
 					DB		0 	;(sprite_4a)
-					DB		8 	;(sprite_1b)
+					DB		28 	;(sprite_1b)
 					DB		0 	;(sprite_2b)
 					DB		0 	;(sprite_3b)
 					DB		0 	;(sprite_4b)
@@ -173,10 +171,10 @@ fin_inicializa_enemigos_fase0_nivel0:
 ; toca:		-
 actualiza_valores_cienpies:
 		;LD			(IX + ESTRUCTURA_ENEMIGO.planosprite1), 2;********************************++++ parece que sobra este valor ....
-		LD			(IX + ESTRUCTURA_ENEMIGO.cont_sig_escena), 8
-		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_1a), 24
-		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_2a), 28
-		LD			(IX + ESTRUCTURA_ENEMIGO.color1), COLVERDOSC
+		;~ LD			(IX + ESTRUCTURA_ENEMIGO.cont_sig_escena), 8
+		;~ LD			(IX + ESTRUCTURA_ENEMIGO.sprite_1a), 24
+		;~ LD			(IX + ESTRUCTURA_ENEMIGO.sprite_2a), 28
+		;~ LD			(IX + ESTRUCTURA_ENEMIGO.color1), COLVERDOSC
 
 actualiza_valores_aleatorios_cienpies:
 		LD			 A, R
