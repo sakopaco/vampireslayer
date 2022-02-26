@@ -85,30 +85,7 @@ datos_cienpies:
 			DB		0		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 			DB		0		;(radio) radio para movimientos circulares
 			DW		mover_cienpies	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
-			DB		24
-			DB		0
-			DB		0
-			DB		0
-			DB		28
-			DB		0
-			DB		0
-			DB		0
-			DB		0
-			DB		0
-			DB		0
-			DB		0
-			DB		0
-			DB		0
-			DB		0
-			DB		0
-			DB		COLVERDOSC;color sprite 1
-			DB		0		;color sprite 2
-			DB		0		;color sprite 3
-			DB		0		;color sprite 4
-			DB		3		;plano sprite 1
-			DB		0		;plano sprite 2
-			DB		0		;plano sprite 3
-			DB		0		;plano sprite 4
+
 
 
 datos_serpiente:

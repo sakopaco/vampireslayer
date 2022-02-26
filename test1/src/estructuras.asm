@@ -163,29 +163,5 @@ radio				DB		0	;radio para movimientos circulares
 ptr_mover			DW		0	;puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 ;se pondrán 8 sprites: 4 por si hay enemigos de hasta 4 sprites y por 2 por usar 2 escenas... si se usan 3 habría que ampliar
 ;(en realidad estos son los nº de patrón 0 - 63)
-sprite_1a			DB		0
-sprite_2a			DB		0
-sprite_3a			DB		0
-sprite_4a			DB		0
-sprite_1b			DB		0
-sprite_2b			DB		0
-sprite_3b			DB		0
-sprite_4b			DB		0
-sprite_1c			DB		0
-sprite_2c			DB		0
-sprite_3c			DB		0
-sprite_4c			DB		0
-sprite_1d			DB		0
-sprite_2d			DB		0
-sprite_3d			DB		0
-sprite_4d			DB		0
-color1				DB		0	;color sprite 1
-color2				DB		0	;color sprite 2
-color3				DB		0	;color sprite 3
-color4				DB		0	;color sprite 4
-planosprite1		DB		0	;plano sprite 1
-planosprite2		DB		0	;plano sprite 2
-planosprite3		DB		0	;plano sprite 3
-planosprite4		DB		0	;plano sprite 4
 	ENDSTRUCT;ESTRUCTURA_ENEMIGO
 
