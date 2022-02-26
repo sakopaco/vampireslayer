@@ -4,6 +4,7 @@
 ;;DEFINICIÓN DE CONSTANTES
 ;;=====================================================	
 	include "constantes.asm"
+	include "constantesenemigos.asm"
 
 ;;=====================================================
 ;;DEFINICIÓN DE CABECERA DE ARCHIVO BIN
@@ -69,8 +70,6 @@ START:
 loop_principal:
 	HALT							;espera VBLANK y sincroniza
 	
-	CALL	render_sprites			;actualiza array de sprites y los pinta en pantalla
-	
 	CALL	actualiza_elementos_fondo;como antorchas o esqueletos
 	
 	CALL	check_enemigos_fase0	;examina los enemigos por pantalla y los pone e su sitio
@@ -81,6 +80,9 @@ loop_principal:
 	LD		 A, (heartbeat)
 	INC		 A
 	LD		(heartbeat), A
+	
+	;poner arriba
+	CALL	render_sprites			;actualiza array de sprites y los pinta en pantalla
 	
 	JP		loop_principal
 fin_programa_principal:
@@ -146,9 +148,8 @@ check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activ
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
 		LD			(IY + 1), 0;A
 		
-		LD			 B, (IX + ESTRUCTURA_ENEMIGO.cont_sig_escena)
 		LD			 A, (heartbeat)
-		AND			 B
+		OR			00000001b
 		JP			 Z, .fin_cambia_escena_enemigo1   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
 			; cambio de escena
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
@@ -156,16 +157,15 @@ check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activ
 			LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
 			
 			JP			 Z, .enemigo1_poner_escena2			; IF ESCENA 1 THEN
-				LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_1b)
+				LD			 A, CIENPIES_SPRITE1A			
 				JP			.fin_enemigo1_poner_escena2
 .enemigo1_poner_escena2:									; ELSE
-				LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_1a)
+				LD			 A, CIENPIES_SPRITE2A
 .fin_enemigo1_poner_escena2:								; END IF
 .fin_cambia_escena_enemigo1:							; END IF			
 
-		LD			(IY + 2), A
-		
-		LD			(IY + 3), COLVERDOSC
+		LD			(IY + 2), A		
+		LD			(IY + 3), CIENPIES_COLOR
 
 		;acciones enemigos
 		
