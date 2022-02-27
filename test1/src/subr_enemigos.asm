@@ -27,50 +27,7 @@ enemigo9			DS	ESTRUCTURA_ENEMIGO
 ;;=====================================================
 ;;DATOS_ENEMIGOS (EQUIVALE A PLANTILLAS)
 ;;=====================================================
-datos_cienpies:
-					;~ DB		2	;(activo_tipo)si inactivo = 0 si <> 0 es el tipo de enemigo
-					;~ ;aquí se usará el xor
-					;~ DB		0	;(escena) sprite a mostrar 1/2 
-					;~ DB		8	;(cont_sig_escena)retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
-					;~ DB		0	;(tiemp_cam_escena)cada cuantas iteraciones se cambiará la escena
-					;~ DB		10	;(energia)energía del enemigo antes de morir
-					;~ DB		0	;(pos_x)pos x para mover y punto central del sprite para revisar disparo
-					;~ DB		0	;(pos_y)pos y para mover y punto central del sprite para revisar disparo
-					;~ DB		8	;(radiox)radio x del enemigo para cuando se dispare encima
-					;~ DB		8	;(radioy)radio y del enemigo para cuando se dispare encima
-					;~ DB		0	;(inc_x)incremento x para mover
-					;~ DB		0	;(inx_y)incremento y para mover
-					;~ DB		0	;(radio)radio para movimientos circulares
-					;~ DB		0	;(direccion) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
-					;~ DB		0	;(pasos)pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
-					;~ DW		mover_cienpies	;(ptr_mover)puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
-;~ ;se pondrán 8 sprites: 4 por si hay enemigos de hasta 4 sprites y por 2 por usar 2 escenas... si se usan 3 habría que ampliar
-					;~ DB		24 	;(sprite_1a)
-					;~ DB		0 	;(sprite_2a)
-					;~ DB		0 	;(sprite_3a)
-					;~ DB		0 	;(sprite_4a)
-					;~ DB		28 	;(sprite_1b)
-					;~ DB		0 	;(sprite_2b)
-					;~ DB		0 	;(sprite_3b)
-					;~ DB		0 	;(sprite_4b)
-					;~ DB		0 	;(sprite_1c)
-					;~ DB		0 	;(sprite_2c)
-					;~ DB		0 	;(sprite_3c)
-					;~ DB		0 	;(sprite_4c)
-					;~ DB		0 	;(sprite_1d)
-					;~ DB		0 	;(sprite_2d)
-					;~ DB		0 	;(sprite_3d)
-					;~ DB		0 	;(sprite_4d)
-					;~ DB		2	;(color1) color sprite 1
-					;~ DB		0	;(color2) color sprite 2
-					;~ DB		0	;(color3) color sprite 3
-					;~ DB		0	;(color4) color sprite 4
-					;~ DB		3	;(plano sprite_1)
-					;~ DB		0	;(plano sprite_2)
-					;~ DB		0	;(plano sprite_3)
-					;~ DB		0	;(plano sprite_4)
-					
-					
+datos_cienpies:	
 			DB		2		;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
 			DB		0		;(escena) sprite a mostrar 1/2
 			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
@@ -156,13 +113,26 @@ fin_resetea_enemigos:
 		RET
 
 
+
+
+
 ;;=====================================================
-;;INICIALIZA_ENEMIGOS_FASE1
+;;INICIALIZA_ENEMIGOS_FASE0
 ;;=====================================================	
-; función: 	inicializa las variables que serán usadas e el array en la fase
+; función: 	inicializa las variables que serán usadas en el array en la fase
 ; entrada:	-
 ; salida: 	-
 ; toca:		-
+inicializa_enemigos_fase0:	;; para no poner más complejo se hace uno por fase que se actualiza al pasar por escaleras o puerta inferior
+.nivel0:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 7
+		JP			NC, .nivel1
+		CALL		inicializa_enemigos_fase0_nivel0
+.nivel1:		
+fin_inicializa_enemigos_fase0:
+		RET
+
 inicializa_enemigos_fase0_nivel0:
 		CALL		resetea_enemigos
 		
@@ -171,12 +141,33 @@ inicializa_enemigos_fase0_nivel0:
 		LD			IX, enemigo1
 		CALL		actualiza_valores_cienpies
 		
-		LD			DE, enemigo1
-		CALL		anade_enemigo_cienpies
-		LD			IX, enemigo1
-		JP			actualiza_valores_cienpies
-fin_inicializa_enemigos_fase0_nivel0:
+		;~ LD			DE, enemigo2
+		;~ CALL		anade_enemigo_cienpies
+		;~ LD			IX, enemigo2
+		;~ CALL		actualiza_valores_cienpies
 		
+		;~ LD			DE, enemigo3
+		;~ CALL		anade_enemigo_cienpies
+		;~ LD			IX, enemigo3
+		;~ CALL		actualiza_valores_cienpies
+fin_inicializa_enemigos_fase0_nivel0:
+		RET
+
+
+;;=====================================================
+;;ANADE_ENEMIGO_CIENPIES
+;;=====================================================	
+; función: 	mete en memoria la plantilla de datos base del cienpies en el enemigo que se le pase por DE
+; entrada:	DE (enemigo en concreto al que poner los datos, por ejemplo, enemigo1)
+; salida: 	-
+; toca:		-
+anade_enemigo_cienpies
+		LD			HL, datos_cienpies
+		LD			BC, ESTRUCTURA_ENEMIGO
+		LDIR
+fin_anade_enemigo_cienpies:
+		RET
+
 
 ;;=====================================================
 ;;ACTUALIZA_VALORES_CIENPIES
@@ -186,13 +177,13 @@ fin_inicializa_enemigos_fase0_nivel0:
 ; salida: 	-
 ; toca:		-
 actualiza_valores_cienpies:
-		;LD			(IX + ESTRUCTURA_ENEMIGO.planosprite1), 2;********************************++++ parece que sobra este valor ....
-		;~ LD			(IX + ESTRUCTURA_ENEMIGO.cont_sig_escena), 8
-		;~ LD			(IX + ESTRUCTURA_ENEMIGO.sprite_1a), 24
-		;~ LD			(IX + ESTRUCTURA_ENEMIGO.sprite_2a), 28
-		;~ LD			(IX + ESTRUCTURA_ENEMIGO.color1), COLVERDOSC
 
-actualiza_valores_aleatorios_cienpies:
+
+
+* rehacer sumando....
+
+
+;actualiza_valores_aleatorios_cienpies
 		LD			 A, R
 		AND			00000111b
 		LD			 B, A
@@ -213,23 +204,12 @@ actualiza_valores_aleatorios_cienpies:
 		
 		LD			 A, (HL)
 		LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
-fin_actualiza_valores_aleatorios_cienpies:
+
+fin_actualiza_valores_cienpies:
 		RET	
 
 
-;;=====================================================
-;;ANADE_ENEMIGO_CIENPIES
-;;=====================================================	
-; función: 	mete en memoria la plantilla de datos base del cienpies en el enemigo que se le pase por DE
-; entrada:	DE (enemigo en concreto al que poner los datos, por ejemplo, enemigo1)
-; salida: 	-
-; toca:		-
-anade_enemigo_cienpies
-		LD			HL, datos_cienpies
-		LD			BC, ESTRUCTURA_ENEMIGO
-		LDIR
-fin_anade_enemigo_cienpies:
-		RET
+
 
 
 ;;=====================================================
@@ -240,6 +220,29 @@ fin_anade_enemigo_cienpies:
 ; salida: 	-
 ; toca:		-
 mover_cienpies:
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
+		LD			(IY), A
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
+		LD			(IY + 1), A
+		
+		LD			 A, (heartbeat)
+		OR			00000001b
+		JP			 Z, .fin_cambia_escena_enemigo1   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
+			; cambio de escena
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+			XOR			00000001b
+			LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
+			
+			JP			 Z, .enemigo1_poner_escena2			; IF ESCENA 1 THEN
+				LD			 A, CIENPIES_SPRITE1A			
+				JP			.fin_enemigo1_poner_escena2
+.enemigo1_poner_escena2:									; ELSE
+				LD			 A, CIENPIES_SPRITE2A
+.fin_enemigo1_poner_escena2:								; END IF
+.fin_cambia_escena_enemigo1:							; END IF			
+
+		LD			(IY + 2), A		
+		LD			(IY + 3), CIENPIES_COLOR
 fin_mover_cienpies:
 		RET
 
@@ -300,3 +303,59 @@ inicializa_enemigos_fase6_nivel4:
 inicializa_enemigos_fase6_nivel5:
 inicializa_enemigos_fase6_nivel6:
 inicializa_enemigos_fase6_nivelboss:
+
+
+
+
+
+
+check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
+.check_enemigo1:
+		LD			IX, enemigo1
+		LD			 A, (IX)
+		OR			 A
+		JP			 Z, .check_enemigo2
+		
+		LD			IY, array_sprites_enem
+
+		CALL		mover_cienpies
+
+		;acciones enemigos
+		
+.check_enemigo2:
+		LD			IX, enemigo2
+		LD			 A, (IX)
+		OR			 A
+		JP			 Z, .check_enemigo3
+		
+		LD			IY, array_sprites_enem + 4
+
+		CALL		mover_cienpies
+
+		;acciones enemigos
+
+.check_enemigo3:
+		LD			IX, enemigo3
+		LD			 A, (IX)
+		OR			 A
+		JP			 Z, .check_enemigo4
+		
+		LD			IY, array_sprites_enem + 8
+
+		CALL		mover_cienpies
+
+		;acciones enemigos
+
+.check_enemigo4:
+.check_enemigo5:
+.check_enemigo6:
+.check_enemigo7:
+.check_enemigo8:
+.check_enemigo9:
+fin_check_enemigos_fase0:
+		RET			
+
+
+
+
+
