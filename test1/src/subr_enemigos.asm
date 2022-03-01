@@ -141,15 +141,15 @@ inicializa_enemigos_fase0_nivel0:
 		LD			IX, enemigo1
 		CALL		actualiza_valores_cienpies
 		
-		;~ LD			DE, enemigo2
-		;~ CALL		anade_enemigo_cienpies
-		;~ LD			IX, enemigo2
-		;~ CALL		actualiza_valores_cienpies
+		LD			DE, enemigo2
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo2
+		CALL		actualiza_valores_cienpies
 		
-		;~ LD			DE, enemigo3
-		;~ CALL		anade_enemigo_cienpies
-		;~ LD			IX, enemigo3
-		;~ CALL		actualiza_valores_cienpies
+		LD			DE, enemigo3
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo3
+		CALL		actualiza_valores_cienpies
 fin_inicializa_enemigos_fase0_nivel0:
 		RET
 
@@ -177,38 +177,22 @@ fin_anade_enemigo_cienpies:
 ; salida: 	-
 ; toca:		-
 actualiza_valores_cienpies:
-
-
-
-* rehacer sumando....
-
-
 ;actualiza_valores_aleatorios_cienpies
 		LD			 A, R
 		AND			00000111b
 		LD			 B, A
-		LD			 C, B
 		LD			HL, posiciones_iniciales_cienpies_x
-.incrementa_posx:
-		INC			HL
-		DJNZ		.incrementa_posx
-		
+		CALL		suma_A_HL
 		LD			 A, (HL)
 		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
 		
-		LD			 B, C
+		LD			 A, B
 		LD			HL, posiciones_iniciales_cienpies_y
-.incrementa_posy:
-		INC			HL
-		DJNZ		.incrementa_posy	
-		
+		CALL		suma_A_HL
 		LD			 A, (HL)
 		LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
-
 fin_actualiza_valores_cienpies:
-		RET	
-
-
+		RET
 
 
 
@@ -328,7 +312,7 @@ check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activ
 		OR			 A
 		JP			 Z, .check_enemigo3
 		
-		LD			IY, array_sprites_enem + 4
+		LD			IY, array_sprites_enem ;+ 4
 
 		CALL		mover_cienpies
 
