@@ -57,59 +57,63 @@ fin_sprite_cienpies:
 ;; SERPIENTE 2 + 2
 sprite_serpiente:
 sprite_serpiente1_1:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB #00,#00,#00,#00,#40,#20,#30,#10
+	DB #10,#30,#60,#60,#70,#78,#3F,#1F
+	DB #00,#0E,#1B,#3B,#7E,#38,#3C,#1E
+	DB #0F,#07,#07,#0F,#3E,#FE,#F8,#F0
 	
 sprite_serpiente1_2:
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB #00,#01,#03,#33,#41,#20,#40,#60
+	DB #60,#E0,#C0,#C0,#E0,#F1,#7F,#3F
+	DB #00,#C0,#6A,#75,#C0,#E0,#78,#3C
+	DB #1C,#1E,#1E,#1C,#7C,#FC,#F0,#E0
 	
 sprite_serpiente2_1:
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB #00,#70,#D8,#DC,#7E,#1C,#3C,#78
+	DB #F0,#E0,#E0,#F0,#7C,#7F,#1F,#0F
+	DB #00,#00,#00,#00,#02,#04,#0C,#08
+	DB #08,#0C,#06,#06,#0E,#1E,#FC,#F8
 	
 sprite_serpiente2_2:
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB #00,#03,#56,#AE,#03,#07,#1E,#3C
+	DB #38,#78,#78,#38,#3E,#3F,#0F,#07
+	DB #00,#80,#C0,#CC,#82,#04,#02,#06
+	DB #06,#07,#03,#03,#07,#8F,#FE,#FC
 fin_sprite_serpiente:
+
+
 
 ;; ARAÑA 2
 sprite_arana:
 sprite_arana_1:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB #00,#01,#03,#05,#07,#75,#8F,#04
+	DB #1D,#27,#4B,#91,#20,#10,#00,#00
+	DB #00,#80,#C0,#A0,#E0,#AE,#F1,#20
+	DB #B8,#E4,#D2,#89,#04,#08,#00,#00
 	
 sprite_arana_2:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB #00,#01,#03,#05,#77,#8D,#07,#1C
+	DB #25,#C7,#0B,#31,#40,#00,#00,#00
+	DB #00,#80,#C0,#A0,#EE,#B1,#E0,#38
+	DB #A4,#E3,#D0,#8C,#02,#00,#00,#00
 fin_sprite_arana:
+
 
 ;; MURCIELAGO 2
 sprite_murcielago:
 sprite_murcielago_1:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB #08,#0E,#02,#05,#0F,#0C,#0D,#07
+	DB #1B,#3F,#5F,#FB,#F3,#65,#21,#00
+	DB #10,#70,#40,#A0,#F0,#30,#B0,#E0
+	DB #D8,#FC,#FA,#DF,#CF,#A6,#84,#00
 	
 sprite_murcielago_2:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
+	DB #08,#0E,#02,#05,#0F,#0E,#4D,#E7
+	DB #FB,#FF,#7F,#7B,#33,#05,#01,#00
+	DB #10,#70,#40,#A0,#F0,#70,#B2,#E7
+	DB #DF,#FF,#FE,#DE,#CC,#A0,#80,#00
 fin_sprite_murcielago:
+
 
 ;; LOBO 4 + 4 (dos escenas derecha y dos esceas izquierda)
 sprite_lobo:

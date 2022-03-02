@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.03.01 - 20:58:15]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.03.02 - 22:09:32]
 
 t4.asm
 Errors: 0
@@ -6071,1626 +6071,1630 @@ Errors: 0
       57.  00:A5EF                      ;; SERPIENTE 2 + 2
       58.  00:A5EF                      sprite_serpiente:
       59.  00:A5EF                      sprite_serpiente1_1:
-      60.  00:A5EF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      60.  00:A5EF  FF FF FF FF FF FF FF FF 
-      61.  00:A5F7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      61.  00:A5F7  FF FF FF FF FF FF FF FF 
-      62.  00:A5FF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      62.  00:A5FF  FF FF FF FF FF FF FF FF 
-      63.  00:A607                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      63.  00:A607  FF FF FF FF FF FF FF FF 
+      60.  00:A5EF                      	DB #00,#00,#00,#00,#40,#20,#30,#10
+      60.  00:A5EF  00 00 00 00 40 20 30 10 
+      61.  00:A5F7                      	DB #10,#30,#60,#60,#70,#78,#3F,#1F
+      61.  00:A5F7  10 30 60 60 70 78 3F 1F 
+      62.  00:A5FF                      	DB #00,#0E,#1B,#3B,#7E,#38,#3C,#1E
+      62.  00:A5FF  00 0E 1B 3B 7E 38 3C 1E 
+      63.  00:A607                      	DB #0F,#07,#07,#0F,#3E,#FE,#F8,#F0
+      63.  00:A607  0F 07 07 0F 3E FE F8 F0 
       64.  00:A60F                      	
       65.  00:A60F                      sprite_serpiente1_2:
-      66.  00:A60F                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      66.  00:A60F  FF FF FF FF FF FF FF FF 
-      67.  00:A617                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      67.  00:A617  FF FF FF FF FF FF FF FF 
-      68.  00:A61F                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      68.  00:A61F  FF FF FF FF FF FF FF FF 
-      69.  00:A627                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      69.  00:A627  FF FF FF FF FF FF FF FF 
+      66.  00:A60F                      	DB #00,#01,#03,#33,#41,#20,#40,#60
+      66.  00:A60F  00 01 03 33 41 20 40 60 
+      67.  00:A617                      	DB #60,#E0,#C0,#C0,#E0,#F1,#7F,#3F
+      67.  00:A617  60 E0 C0 C0 E0 F1 7F 3F 
+      68.  00:A61F                      	DB #00,#C0,#6A,#75,#C0,#E0,#78,#3C
+      68.  00:A61F  00 C0 6A 75 C0 E0 78 3C 
+      69.  00:A627                      	DB #1C,#1E,#1E,#1C,#7C,#FC,#F0,#E0
+      69.  00:A627  1C 1E 1E 1C 7C FC F0 E0 
       70.  00:A62F                      	
       71.  00:A62F                      sprite_serpiente2_1:
-      72.  00:A62F                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      72.  00:A62F  FF FF FF FF FF FF FF FF 
-      73.  00:A637                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      73.  00:A637  FF FF FF FF FF FF FF FF 
-      74.  00:A63F                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      74.  00:A63F  FF FF FF FF FF FF FF FF 
-      75.  00:A647                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      75.  00:A647  FF FF FF FF FF FF FF FF 
+      72.  00:A62F                      	DB #00,#70,#D8,#DC,#7E,#1C,#3C,#78
+      72.  00:A62F  00 70 D8 DC 7E 1C 3C 78 
+      73.  00:A637                      	DB #F0,#E0,#E0,#F0,#7C,#7F,#1F,#0F
+      73.  00:A637  F0 E0 E0 F0 7C 7F 1F 0F 
+      74.  00:A63F                      	DB #00,#00,#00,#00,#02,#04,#0C,#08
+      74.  00:A63F  00 00 00 00 02 04 0C 08 
+      75.  00:A647                      	DB #08,#0C,#06,#06,#0E,#1E,#FC,#F8
+      75.  00:A647  08 0C 06 06 0E 1E FC F8 
       76.  00:A64F                      	
       77.  00:A64F                      sprite_serpiente2_2:
-      78.  00:A64F                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      78.  00:A64F  FF FF FF FF FF FF FF FF 
-      79.  00:A657                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      79.  00:A657  FF FF FF FF FF FF FF FF 
-      80.  00:A65F                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      80.  00:A65F  FF FF FF FF FF FF FF FF 
-      81.  00:A667                      	db  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      81.  00:A667  FF FF FF FF FF FF FF FF 
+      78.  00:A64F                      	DB #00,#03,#56,#AE,#03,#07,#1E,#3C
+      78.  00:A64F  00 03 56 AE 03 07 1E 3C 
+      79.  00:A657                      	DB #38,#78,#78,#38,#3E,#3F,#0F,#07
+      79.  00:A657  38 78 78 38 3E 3F 0F 07 
+      80.  00:A65F                      	DB #00,#80,#C0,#CC,#82,#04,#02,#06
+      80.  00:A65F  00 80 C0 CC 82 04 02 06 
+      81.  00:A667                      	DB #06,#07,#03,#03,#07,#8F,#FE,#FC
+      81.  00:A667  06 07 03 03 07 8F FE FC 
       82.  00:A66F                      fin_sprite_serpiente:
       83.  00:A66F                      
-      84.  00:A66F                      ;; ARAÑA 2
-      85.  00:A66F                      sprite_arana:
-      86.  00:A66F                      sprite_arana_1:
-      87.  00:A66F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      87.  00:A66F  FF FF FF FF FF FF FF FF 
-      88.  00:A677                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      88.  00:A677  FF FF FF FF FF FF FF FF 
-      89.  00:A67F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      89.  00:A67F  FF FF FF FF FF FF FF FF 
-      90.  00:A687                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      90.  00:A687  FF FF FF FF FF FF FF FF 
-      91.  00:A68F                      	
-      92.  00:A68F                      sprite_arana_2:
-      93.  00:A68F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      93.  00:A68F  FF FF FF FF FF FF FF FF 
-      94.  00:A697                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      94.  00:A697  FF FF FF FF FF FF FF FF 
-      95.  00:A69F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      95.  00:A69F  FF FF FF FF FF FF FF FF 
-      96.  00:A6A7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-      96.  00:A6A7  FF FF FF FF FF FF FF FF 
-      97.  00:A6AF                      fin_sprite_arana:
-      98.  00:A6AF                      
-      99.  00:A6AF                      ;; MURCIELAGO 2
-     100.  00:A6AF                      sprite_murcielago:
-     101.  00:A6AF                      sprite_murcielago_1:
-     102.  00:A6AF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     102.  00:A6AF  FF FF FF FF FF FF FF FF 
-     103.  00:A6B7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     103.  00:A6B7  FF FF FF FF FF FF FF FF 
-     104.  00:A6BF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     104.  00:A6BF  FF FF FF FF FF FF FF FF 
-     105.  00:A6C7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     105.  00:A6C7  FF FF FF FF FF FF FF FF 
-     106.  00:A6CF                      	
-     107.  00:A6CF                      sprite_murcielago_2:
-     108.  00:A6CF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     108.  00:A6CF  FF FF FF FF FF FF FF FF 
-     109.  00:A6D7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     109.  00:A6D7  FF FF FF FF FF FF FF FF 
-     110.  00:A6DF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     110.  00:A6DF  FF FF FF FF FF FF FF FF 
-     111.  00:A6E7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
-     111.  00:A6E7  FF FF FF FF FF FF FF FF 
-     112.  00:A6EF                      fin_sprite_murcielago:
-     113.  00:A6EF                      
-     114.  00:A6EF                      ;; LOBO 4 + 4 (dos escenas derecha y dos esceas izquierda)
-     115.  00:A6EF                      sprite_lobo:
-     116.  00:A6EF                      sprite_lobo1_1:
-     117.  00:A6EF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     117.  00:A6EF  FF FF FF FF FF FF FF FF 
-     118.  00:A6F7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     118.  00:A6F7  FF FF FF FF FF FF FF FF 
-     119.  00:A6FF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     119.  00:A6FF  FF FF FF FF FF FF FF FF 
-     120.  00:A707                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     120.  00:A707  FF FF FF FF FF FF FF FF 
-     121.  00:A70F                      
-     122.  00:A70F                      sprite_lobo1_2:
-     123.  00:A70F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     123.  00:A70F  FF FF FF FF FF FF FF FF 
-     124.  00:A717                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     124.  00:A717  FF FF FF FF FF FF FF FF 
-     125.  00:A71F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     125.  00:A71F  FF FF FF FF FF FF FF FF 
-     126.  00:A727                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     126.  00:A727  FF FF FF FF FF FF FF FF 
-     127.  00:A72F                      
-     128.  00:A72F                      sprite_lobo1_3:
-     129.  00:A72F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     129.  00:A72F  FF FF FF FF FF FF FF FF 
-     130.  00:A737                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     130.  00:A737  FF FF FF FF FF FF FF FF 
-     131.  00:A73F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     131.  00:A73F  FF FF FF FF FF FF FF FF 
-     132.  00:A747                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     132.  00:A747  FF FF FF FF FF FF FF FF 
-     133.  00:A74F                      
-     134.  00:A74F                      sprite_lobo1_4:
-     135.  00:A74F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     135.  00:A74F  FF FF FF FF FF FF FF FF 
-     136.  00:A757                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     136.  00:A757  FF FF FF FF FF FF FF FF 
-     137.  00:A75F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     137.  00:A75F  FF FF FF FF FF FF FF FF 
-     138.  00:A767                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     138.  00:A767  FF FF FF FF FF FF FF FF 
-     139.  00:A76F                      	
-     140.  00:A76F                      sprite_lobo2_1:
-     141.  00:A76F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     141.  00:A76F  FF FF FF FF FF FF FF FF 
-     142.  00:A777                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     142.  00:A777  FF FF FF FF FF FF FF FF 
-     143.  00:A77F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     143.  00:A77F  FF FF FF FF FF FF FF FF 
-     144.  00:A787                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     144.  00:A787  FF FF FF FF FF FF FF FF 
-     145.  00:A78F                      
-     146.  00:A78F                      sprite_lobo2_2:
-     147.  00:A78F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     147.  00:A78F  FF FF FF FF FF FF FF FF 
-     148.  00:A797                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     148.  00:A797  FF FF FF FF FF FF FF FF 
-     149.  00:A79F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     149.  00:A79F  FF FF FF FF FF FF FF FF 
-     150.  00:A7A7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     150.  00:A7A7  FF FF FF FF FF FF FF FF 
-     151.  00:A7AF                      
-     152.  00:A7AF                      sprite_lobo2_3:
-     153.  00:A7AF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     153.  00:A7AF  FF FF FF FF FF FF FF FF 
-     154.  00:A7B7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     154.  00:A7B7  FF FF FF FF FF FF FF FF 
-     155.  00:A7BF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     155.  00:A7BF  FF FF FF FF FF FF FF FF 
-     156.  00:A7C7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     156.  00:A7C7  FF FF FF FF FF FF FF FF 
-     157.  00:A7CF                      
-     158.  00:A7CF                      sprite_lobo2_4:
-     159.  00:A7CF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     159.  00:A7CF  FF FF FF FF FF FF FF FF 
-     160.  00:A7D7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     160.  00:A7D7  FF FF FF FF FF FF FF FF 
-     161.  00:A7DF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     161.  00:A7DF  FF FF FF FF FF FF FF FF 
-     162.  00:A7E7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     162.  00:A7E7  FF FF FF FF FF FF FF FF 
-     163.  00:A7EF                      fin_sprite_lobo:
-     164.  00:A7EF                      	
-     165.  00:A7EF                      ;; ESQUELETO 4 + 4 (dos escenas derecha y dos escenas izquierda)
-     166.  00:A7EF                      sprite_esqueleto:
-     167.  00:A7EF                      sprite_esqueleto1_1:
-     168.  00:A7EF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     168.  00:A7EF  FF FF FF FF FF FF FF FF 
-     169.  00:A7F7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     169.  00:A7F7  FF FF FF FF FF FF FF FF 
-     170.  00:A7FF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     170.  00:A7FF  FF FF FF FF FF FF FF FF 
-     171.  00:A807                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     171.  00:A807  FF FF FF FF FF FF FF FF 
-     172.  00:A80F                      
-     173.  00:A80F                      sprite_esqueleto1_2:
-     174.  00:A80F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     174.  00:A80F  FF FF FF FF FF FF FF FF 
-     175.  00:A817                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     175.  00:A817  FF FF FF FF FF FF FF FF 
-     176.  00:A81F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     176.  00:A81F  FF FF FF FF FF FF FF FF 
-     177.  00:A827                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     177.  00:A827  FF FF FF FF FF FF FF FF 
-     178.  00:A82F                      
-     179.  00:A82F                      sprite_esqueleto1_3:
-     180.  00:A82F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     180.  00:A82F  FF FF FF FF FF FF FF FF 
-     181.  00:A837                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     181.  00:A837  FF FF FF FF FF FF FF FF 
-     182.  00:A83F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     182.  00:A83F  FF FF FF FF FF FF FF FF 
-     183.  00:A847                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     183.  00:A847  FF FF FF FF FF FF FF FF 
-     184.  00:A84F                      
-     185.  00:A84F                      sprite_esqueleto1_4:
-     186.  00:A84F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     186.  00:A84F  FF FF FF FF FF FF FF FF 
-     187.  00:A857                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     187.  00:A857  FF FF FF FF FF FF FF FF 
-     188.  00:A85F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     188.  00:A85F  FF FF FF FF FF FF FF FF 
-     189.  00:A867                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     189.  00:A867  FF FF FF FF FF FF FF FF 
-     190.  00:A86F                      	
-     191.  00:A86F                      sprite_esqueleto2_1:
-     192.  00:A86F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     192.  00:A86F  FF FF FF FF FF FF FF FF 
-     193.  00:A877                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     193.  00:A877  FF FF FF FF FF FF FF FF 
-     194.  00:A87F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     194.  00:A87F  FF FF FF FF FF FF FF FF 
-     195.  00:A887                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     195.  00:A887  FF FF FF FF FF FF FF FF 
-     196.  00:A88F                      
-     197.  00:A88F                      sprite_esqueleto2_2:
-     198.  00:A88F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     198.  00:A88F  FF FF FF FF FF FF FF FF 
-     199.  00:A897                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     199.  00:A897  FF FF FF FF FF FF FF FF 
-     200.  00:A89F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     200.  00:A89F  FF FF FF FF FF FF FF FF 
-     201.  00:A8A7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     201.  00:A8A7  FF FF FF FF FF FF FF FF 
-     202.  00:A8AF                      
-     203.  00:A8AF                      sprite_esqueleto2_3:
-     204.  00:A8AF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     204.  00:A8AF  FF FF FF FF FF FF FF FF 
-     205.  00:A8B7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     205.  00:A8B7  FF FF FF FF FF FF FF FF 
-     206.  00:A8BF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     206.  00:A8BF  FF FF FF FF FF FF FF FF 
-     207.  00:A8C7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     207.  00:A8C7  FF FF FF FF FF FF FF FF 
-     208.  00:A8CF                      
-     209.  00:A8CF                      sprite_esqueleto2_4:
-     210.  00:A8CF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     210.  00:A8CF  FF FF FF FF FF FF FF FF 
-     211.  00:A8D7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     211.  00:A8D7  FF FF FF FF FF FF FF FF 
-     212.  00:A8DF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     212.  00:A8DF  FF FF FF FF FF FF FF FF 
-     213.  00:A8E7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     213.  00:A8E7  FF FF FF FF FF FF FF FF 
-     214.  00:A8EF                      fin_sprite_esqueleto:
-     215.  00:A8EF                      	
-     216.  00:A8EF                      ;; ZOMBI 4 + 4
-     217.  00:A8EF                      sprite_zombi:
-     218.  00:A8EF                      sprite_zombi1_1:
-     219.  00:A8EF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     219.  00:A8EF  FF FF FF FF FF FF FF FF 
-     220.  00:A8F7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     220.  00:A8F7  FF FF FF FF FF FF FF FF 
-     221.  00:A8FF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     221.  00:A8FF  FF FF FF FF FF FF FF FF 
-     222.  00:A907                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     222.  00:A907  FF FF FF FF FF FF FF FF 
-     223.  00:A90F                      
-     224.  00:A90F                      sprite_zombi1_2:
-     225.  00:A90F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     225.  00:A90F  FF FF FF FF FF FF FF FF 
-     226.  00:A917                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     226.  00:A917  FF FF FF FF FF FF FF FF 
-     227.  00:A91F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     227.  00:A91F  FF FF FF FF FF FF FF FF 
-     228.  00:A927                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     228.  00:A927  FF FF FF FF FF FF FF FF 
-     229.  00:A92F                      
-     230.  00:A92F                      sprite_zombi1_3:
-     231.  00:A92F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     231.  00:A92F  FF FF FF FF FF FF FF FF 
-     232.  00:A937                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     232.  00:A937  FF FF FF FF FF FF FF FF 
-     233.  00:A93F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     233.  00:A93F  FF FF FF FF FF FF FF FF 
-     234.  00:A947                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     234.  00:A947  FF FF FF FF FF FF FF FF 
-     235.  00:A94F                      
-     236.  00:A94F                      sprite_zombi1_4:
-     237.  00:A94F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     237.  00:A94F  FF FF FF FF FF FF FF FF 
-     238.  00:A957                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     238.  00:A957  FF FF FF FF FF FF FF FF 
-     239.  00:A95F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     239.  00:A95F  FF FF FF FF FF FF FF FF 
-     240.  00:A967                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     240.  00:A967  FF FF FF FF FF FF FF FF 
-     241.  00:A96F                      	
-     242.  00:A96F                      sprite_zombi2_1:
-     243.  00:A96F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     243.  00:A96F  FF FF FF FF FF FF FF FF 
-     244.  00:A977                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     244.  00:A977  FF FF FF FF FF FF FF FF 
-     245.  00:A97F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     245.  00:A97F  FF FF FF FF FF FF FF FF 
-     246.  00:A987                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     246.  00:A987  FF FF FF FF FF FF FF FF 
-     247.  00:A98F                      
-     248.  00:A98F                      sprite_zombi2_2:
-     249.  00:A98F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     249.  00:A98F  FF FF FF FF FF FF FF FF 
-     250.  00:A997                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     250.  00:A997  FF FF FF FF FF FF FF FF 
-     251.  00:A99F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     251.  00:A99F  FF FF FF FF FF FF FF FF 
-     252.  00:A9A7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     252.  00:A9A7  FF FF FF FF FF FF FF FF 
-     253.  00:A9AF                      
-     254.  00:A9AF                      sprite_zombi2_3:
-     255.  00:A9AF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     255.  00:A9AF  FF FF FF FF FF FF FF FF 
-     256.  00:A9B7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     256.  00:A9B7  FF FF FF FF FF FF FF FF 
-     257.  00:A9BF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     257.  00:A9BF  FF FF FF FF FF FF FF FF 
-     258.  00:A9C7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     258.  00:A9C7  FF FF FF FF FF FF FF FF 
-     259.  00:A9CF                      
-     260.  00:A9CF                      sprite_zombi2_4:
-     261.  00:A9CF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     261.  00:A9CF  FF FF FF FF FF FF FF FF 
-     262.  00:A9D7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     262.  00:A9D7  FF FF FF FF FF FF FF FF 
-     263.  00:A9DF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     263.  00:A9DF  FF FF FF FF FF FF FF FF 
-     264.  00:A9E7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     264.  00:A9E7  FF FF FF FF FF FF FF FF 
-     265.  00:A9EF                      fin_sprite_zombi:
-     266.  00:A9EF                      	
-     267.  00:A9EF                      ;; FANTASMA 5: 2 en horizotal con 2 escenas
-     268.  00:A9EF                      sprite_fantasma:
-     269.  00:A9EF                      sprite_fantasma_1:
-     270.  00:A9EF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     270.  00:A9EF  FF FF FF FF FF FF FF FF 
-     271.  00:A9F7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     271.  00:A9F7  FF FF FF FF FF FF FF FF 
-     272.  00:A9FF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     272.  00:A9FF  FF FF FF FF FF FF FF FF 
-     273.  00:AA07                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     273.  00:AA07  FF FF FF FF FF FF FF FF 
-     274.  00:AA0F                      
-     275.  00:AA0F                      sprite_fantasma_2:
-     276.  00:AA0F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     276.  00:AA0F  FF FF FF FF FF FF FF FF 
-     277.  00:AA17                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     277.  00:AA17  FF FF FF FF FF FF FF FF 
-     278.  00:AA1F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     278.  00:AA1F  FF FF FF FF FF FF FF FF 
-     279.  00:AA27                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     279.  00:AA27  FF FF FF FF FF FF FF FF 
-     280.  00:AA2F                      
-     281.  00:AA2F                      sprite_fantasma_3:
-     282.  00:AA2F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     282.  00:AA2F  FF FF FF FF FF FF FF FF 
-     283.  00:AA37                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     283.  00:AA37  FF FF FF FF FF FF FF FF 
-     284.  00:AA3F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     284.  00:AA3F  FF FF FF FF FF FF FF FF 
-     285.  00:AA47                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     285.  00:AA47  FF FF FF FF FF FF FF FF 
-     286.  00:AA4F                      
-     287.  00:AA4F                      sprite_fantasma_4:
-     288.  00:AA4F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     288.  00:AA4F  FF FF FF FF FF FF FF FF 
-     289.  00:AA57                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     289.  00:AA57  FF FF FF FF FF FF FF FF 
-     290.  00:AA5F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     290.  00:AA5F  FF FF FF FF FF FF FF FF 
-     291.  00:AA67                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     291.  00:AA67  FF FF FF FF FF FF FF FF 
-     292.  00:AA6F                      fin_sprite_fantasma:
-     293.  00:AA6F                      
-     294.  00:AA6F                      
-     295.  00:AA6F                      ;; CABALLERO 4 + 4: es el mismo sprite... cambia el color
-     296.  00:AA6F                      sprite_caballero:
-     297.  00:AA6F                      sprite_caballero1_1:
-     298.  00:AA6F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     298.  00:AA6F  FF FF FF FF FF FF FF FF 
-     299.  00:AA77                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     299.  00:AA77  FF FF FF FF FF FF FF FF 
-     300.  00:AA7F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     300.  00:AA7F  FF FF FF FF FF FF FF FF 
-     301.  00:AA87                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     301.  00:AA87  FF FF FF FF FF FF FF FF 
-     302.  00:AA8F                      
-     303.  00:AA8F                      sprite_caballero1_2:
-     304.  00:AA8F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     304.  00:AA8F  FF FF FF FF FF FF FF FF 
-     305.  00:AA97                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     305.  00:AA97  FF FF FF FF FF FF FF FF 
-     306.  00:AA9F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     306.  00:AA9F  FF FF FF FF FF FF FF FF 
-     307.  00:AAA7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     307.  00:AAA7  FF FF FF FF FF FF FF FF 
-     308.  00:AAAF                      
-     309.  00:AAAF                      sprite_caballero1_3:
-     310.  00:AAAF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     310.  00:AAAF  FF FF FF FF FF FF FF FF 
-     311.  00:AAB7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     311.  00:AAB7  FF FF FF FF FF FF FF FF 
-     312.  00:AABF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     312.  00:AABF  FF FF FF FF FF FF FF FF 
-     313.  00:AAC7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     313.  00:AAC7  FF FF FF FF FF FF FF FF 
-     314.  00:AACF                      
-     315.  00:AACF                      sprite_caballero1_4:
-     316.  00:AACF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     316.  00:AACF  FF FF FF FF FF FF FF FF 
-     317.  00:AAD7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     317.  00:AAD7  FF FF FF FF FF FF FF FF 
-     318.  00:AADF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     318.  00:AADF  FF FF FF FF FF FF FF FF 
-     319.  00:AAE7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     319.  00:AAE7  FF FF FF FF FF FF FF FF 
-     320.  00:AAEF                      	
-     321.  00:AAEF                      sprite_caballero2_1:
-     322.  00:AAEF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     322.  00:AAEF  FF FF FF FF FF FF FF FF 
-     323.  00:AAF7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     323.  00:AAF7  FF FF FF FF FF FF FF FF 
-     324.  00:AAFF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     324.  00:AAFF  FF FF FF FF FF FF FF FF 
-     325.  00:AB07                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     325.  00:AB07  FF FF FF FF FF FF FF FF 
-     326.  00:AB0F                      
-     327.  00:AB0F                      sprite_caballero2_2:
-     328.  00:AB0F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     328.  00:AB0F  FF FF FF FF FF FF FF FF 
-     329.  00:AB17                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     329.  00:AB17  FF FF FF FF FF FF FF FF 
-     330.  00:AB1F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     330.  00:AB1F  FF FF FF FF FF FF FF FF 
-     331.  00:AB27                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     331.  00:AB27  FF FF FF FF FF FF FF FF 
-     332.  00:AB2F                      
-     333.  00:AB2F                      sprite_caballero2_3:
-     334.  00:AB2F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     334.  00:AB2F  FF FF FF FF FF FF FF FF 
-     335.  00:AB37                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     335.  00:AB37  FF FF FF FF FF FF FF FF 
-     336.  00:AB3F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     336.  00:AB3F  FF FF FF FF FF FF FF FF 
-     337.  00:AB47                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     337.  00:AB47  FF FF FF FF FF FF FF FF 
-     338.  00:AB4F                      
-     339.  00:AB4F                      sprite_caballero2_4:
-     340.  00:AB4F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     340.  00:AB4F  FF FF FF FF FF FF FF FF 
-     341.  00:AB57                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     341.  00:AB57  FF FF FF FF FF FF FF FF 
-     342.  00:AB5F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     342.  00:AB5F  FF FF FF FF FF FF FF FF 
-     343.  00:AB67                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     343.  00:AB67  FF FF FF FF FF FF FF FF 
-     344.  00:AB6F                      fin_sprite_caballero:
-     345.  00:AB6F                      	
-     346.  00:AB6F                      ;; FUEGO 4 (2 escenas 2 sprites vert)
-     347.  00:AB6F                      sprite_fuego:
-     348.  00:AB6F                      sprite_fuego_1:
-     349.  00:AB6F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     349.  00:AB6F  FF FF FF FF FF FF FF FF 
-     350.  00:AB77                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     350.  00:AB77  FF FF FF FF FF FF FF FF 
-     351.  00:AB7F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     351.  00:AB7F  FF FF FF FF FF FF FF FF 
-     352.  00:AB87                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     352.  00:AB87  FF FF FF FF FF FF FF FF 
-     353.  00:AB8F                      	
-     354.  00:AB8F                      sprite_fuego_2:
-     355.  00:AB8F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     355.  00:AB8F  FF FF FF FF FF FF FF FF 
-     356.  00:AB97                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     356.  00:AB97  FF FF FF FF FF FF FF FF 
-     357.  00:AB9F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     357.  00:AB9F  FF FF FF FF FF FF FF FF 
-     358.  00:ABA7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     358.  00:ABA7  FF FF FF FF FF FF FF FF 
-     359.  00:ABAF                      	
-     360.  00:ABAF                      sprite_fuego_3:
-     361.  00:ABAF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     361.  00:ABAF  FF FF FF FF FF FF FF FF 
-     362.  00:ABB7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     362.  00:ABB7  FF FF FF FF FF FF FF FF 
-     363.  00:ABBF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     363.  00:ABBF  FF FF FF FF FF FF FF FF 
-     364.  00:ABC7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     364.  00:ABC7  FF FF FF FF FF FF FF FF 
-     365.  00:ABCF                      	
-     366.  00:ABCF                      sprite_fuego_4:
-     367.  00:ABCF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     367.  00:ABCF  FF FF FF FF FF FF FF FF 
-     368.  00:ABD7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     368.  00:ABD7  FF FF FF FF FF FF FF FF 
-     369.  00:ABDF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     369.  00:ABDF  FF FF FF FF FF FF FF FF 
-     370.  00:ABE7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     370.  00:ABE7  FF FF FF FF FF FF FF FF 
-     371.  00:ABEF                      fin_sprite_fuego:
-     372.  00:ABEF                      	
-     373.  00:ABEF                      ;; MAGIA 4 (2 escenas 2 sprites hort)
-     374.  00:ABEF                      sprite_magia:
-     375.  00:ABEF                      sprite_magia_1:
-     376.  00:ABEF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     376.  00:ABEF  FF FF FF FF FF FF FF FF 
-     377.  00:ABF7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     377.  00:ABF7  FF FF FF FF FF FF FF FF 
-     378.  00:ABFF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     378.  00:ABFF  FF FF FF FF FF FF FF FF 
-     379.  00:AC07                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     379.  00:AC07  FF FF FF FF FF FF FF FF 
-     380.  00:AC0F                      	
-     381.  00:AC0F                      sprite_magia_2:
-     382.  00:AC0F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     382.  00:AC0F  FF FF FF FF FF FF FF FF 
-     383.  00:AC17                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     383.  00:AC17  FF FF FF FF FF FF FF FF 
-     384.  00:AC1F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     384.  00:AC1F  FF FF FF FF FF FF FF FF 
-     385.  00:AC27                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     385.  00:AC27  FF FF FF FF FF FF FF FF 
-     386.  00:AC2F                      	
-     387.  00:AC2F                      sprite_magia_3:
-     388.  00:AC2F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     388.  00:AC2F  FF FF FF FF FF FF FF FF 
-     389.  00:AC37                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     389.  00:AC37  FF FF FF FF FF FF FF FF 
-     390.  00:AC3F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     390.  00:AC3F  FF FF FF FF FF FF FF FF 
-     391.  00:AC47                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     391.  00:AC47  FF FF FF FF FF FF FF FF 
-     392.  00:AC4F                      	
-     393.  00:AC4F                      sprite_magia_4:
-     394.  00:AC4F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     394.  00:AC4F  FF FF FF FF FF FF FF FF 
-     395.  00:AC57                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     395.  00:AC57  FF FF FF FF FF FF FF FF 
-     396.  00:AC5F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     396.  00:AC5F  FF FF FF FF FF FF FF FF 
-     397.  00:AC67                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     397.  00:AC67  FF FF FF FF FF FF FF FF 
-     398.  00:AC6F                      fin_sprite_magia:
-     399.  00:AC6F                      	
-     400.  00:AC6F                      ;; JEFE LOBO (4 sprites 2 escenas 2 direcciones)
-     401.  00:AC6F                      sprite_jefelobo:
-     402.  00:AC6F                      sprite_jefelobo1_1:
-     403.  00:AC6F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     403.  00:AC6F  FF FF FF FF FF FF FF FF 
-     404.  00:AC77                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     404.  00:AC77  FF FF FF FF FF FF FF FF 
-     405.  00:AC7F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     405.  00:AC7F  FF FF FF FF FF FF FF FF 
-     406.  00:AC87                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     406.  00:AC87  FF FF FF FF FF FF FF FF 
-     407.  00:AC8F                      	
-     408.  00:AC8F                      sprite_jefelobo1_2:
-     409.  00:AC8F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     409.  00:AC8F  FF FF FF FF FF FF FF FF 
-     410.  00:AC97                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     410.  00:AC97  FF FF FF FF FF FF FF FF 
-     411.  00:AC9F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     411.  00:AC9F  FF FF FF FF FF FF FF FF 
-     412.  00:ACA7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     412.  00:ACA7  FF FF FF FF FF FF FF FF 
-     413.  00:ACAF                      	
-     414.  00:ACAF                      sprite_jefelobo1_3:
-     415.  00:ACAF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     415.  00:ACAF  FF FF FF FF FF FF FF FF 
-     416.  00:ACB7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     416.  00:ACB7  FF FF FF FF FF FF FF FF 
-     417.  00:ACBF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     417.  00:ACBF  FF FF FF FF FF FF FF FF 
-     418.  00:ACC7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     418.  00:ACC7  FF FF FF FF FF FF FF FF 
-     419.  00:ACCF                      	
-     420.  00:ACCF                      sprite_jefelobo1_4:
-     421.  00:ACCF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     421.  00:ACCF  FF FF FF FF FF FF FF FF 
-     422.  00:ACD7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     422.  00:ACD7  FF FF FF FF FF FF FF FF 
-     423.  00:ACDF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     423.  00:ACDF  FF FF FF FF FF FF FF FF 
-     424.  00:ACE7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     424.  00:ACE7  FF FF FF FF FF FF FF FF 
-     425.  00:ACEF                      	
-     426.  00:ACEF                      sprite_jefelobo1_5:
-     427.  00:ACEF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     427.  00:ACEF  FF FF FF FF FF FF FF FF 
-     428.  00:ACF7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     428.  00:ACF7  FF FF FF FF FF FF FF FF 
-     429.  00:ACFF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     429.  00:ACFF  FF FF FF FF FF FF FF FF 
-     430.  00:AD07                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     430.  00:AD07  FF FF FF FF FF FF FF FF 
-     431.  00:AD0F                      	
-     432.  00:AD0F                      sprite_jefelobo1_6:
-     433.  00:AD0F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     433.  00:AD0F  FF FF FF FF FF FF FF FF 
-     434.  00:AD17                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     434.  00:AD17  FF FF FF FF FF FF FF FF 
-     435.  00:AD1F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     435.  00:AD1F  FF FF FF FF FF FF FF FF 
-     436.  00:AD27                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     436.  00:AD27  FF FF FF FF FF FF FF FF 
-     437.  00:AD2F                      	
-     438.  00:AD2F                      sprite_jefelobo1_7:
-     439.  00:AD2F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     439.  00:AD2F  FF FF FF FF FF FF FF FF 
-     440.  00:AD37                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     440.  00:AD37  FF FF FF FF FF FF FF FF 
-     441.  00:AD3F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     441.  00:AD3F  FF FF FF FF FF FF FF FF 
-     442.  00:AD47                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     442.  00:AD47  FF FF FF FF FF FF FF FF 
-     443.  00:AD4F                      	
-     444.  00:AD4F                      sprite_jefelobo1_8:
-     445.  00:AD4F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     445.  00:AD4F  FF FF FF FF FF FF FF FF 
-     446.  00:AD57                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     446.  00:AD57  FF FF FF FF FF FF FF FF 
-     447.  00:AD5F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     447.  00:AD5F  FF FF FF FF FF FF FF FF 
-     448.  00:AD67                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
-     448.  00:AD67  FF FF FF FF FF FF FF FF 
-     449.  00:AD6F                      	
-     450.  00:AD6F                      sprite_jefelobo2_1:
-     451.  00:AD6F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     451.  00:AD6F  FF FF FF FF FF FF FF FF 
-     452.  00:AD77                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     452.  00:AD77  FF FF FF FF FF FF FF FF 
-     453.  00:AD7F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     453.  00:AD7F  FF FF FF FF FF FF FF FF 
-     454.  00:AD87                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     454.  00:AD87  FF FF FF FF FF FF FF FF 
-     455.  00:AD8F                      	
-     456.  00:AD8F                      sprite_jefelobo2_2:
-     457.  00:AD8F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     457.  00:AD8F  FF FF FF FF FF FF FF FF 
-     458.  00:AD97                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     458.  00:AD97  FF FF FF FF FF FF FF FF 
-     459.  00:AD9F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     459.  00:AD9F  FF FF FF FF FF FF FF FF 
-     460.  00:ADA7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     460.  00:ADA7  FF FF FF FF FF FF FF FF 
-     461.  00:ADAF                      	
-     462.  00:ADAF                      sprite_jefelobo2_3:
-     463.  00:ADAF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     463.  00:ADAF  FF FF FF FF FF FF FF FF 
-     464.  00:ADB7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     464.  00:ADB7  FF FF FF FF FF FF FF FF 
-     465.  00:ADBF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     465.  00:ADBF  FF FF FF FF FF FF FF FF 
-     466.  00:ADC7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     466.  00:ADC7  FF FF FF FF FF FF FF FF 
-     467.  00:ADCF                      	
-     468.  00:ADCF                      sprite_jefelobo2_4:
-     469.  00:ADCF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     469.  00:ADCF  FF FF FF FF FF FF FF FF 
-     470.  00:ADD7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     470.  00:ADD7  FF FF FF FF FF FF FF FF 
-     471.  00:ADDF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     471.  00:ADDF  FF FF FF FF FF FF FF FF 
-     472.  00:ADE7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     472.  00:ADE7  FF FF FF FF FF FF FF FF 
-     473.  00:ADEF                      	
-     474.  00:ADEF                      sprite_jefelobo2_5:
-     475.  00:ADEF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     475.  00:ADEF  FF FF FF FF FF FF FF FF 
-     476.  00:ADF7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     476.  00:ADF7  FF FF FF FF FF FF FF FF 
-     477.  00:ADFF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     477.  00:ADFF  FF FF FF FF FF FF FF FF 
-     478.  00:AE07                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     478.  00:AE07  FF FF FF FF FF FF FF FF 
-     479.  00:AE0F                      	
-     480.  00:AE0F                      sprite_jefelobo2_6:
-     481.  00:AE0F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     481.  00:AE0F  FF FF FF FF FF FF FF FF 
-     482.  00:AE17                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     482.  00:AE17  FF FF FF FF FF FF FF FF 
-     483.  00:AE1F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     483.  00:AE1F  FF FF FF FF FF FF FF FF 
-     484.  00:AE27                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     484.  00:AE27  FF FF FF FF FF FF FF FF 
-     485.  00:AE2F                      	
-     486.  00:AE2F                      sprite_jefelobo2_7:
-     487.  00:AE2F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     487.  00:AE2F  FF FF FF FF FF FF FF FF 
-     488.  00:AE37                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     488.  00:AE37  FF FF FF FF FF FF FF FF 
-     489.  00:AE3F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     489.  00:AE3F  FF FF FF FF FF FF FF FF 
-     490.  00:AE47                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     490.  00:AE47  FF FF FF FF FF FF FF FF 
-     491.  00:AE4F                      	
-     492.  00:AE4F                      sprite_jefelobo2_8:
-     493.  00:AE4F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     493.  00:AE4F  FF FF FF FF FF FF FF FF 
-     494.  00:AE57                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     494.  00:AE57  FF FF FF FF FF FF FF FF 
-     495.  00:AE5F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     495.  00:AE5F  FF FF FF FF FF FF FF FF 
-     496.  00:AE67                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     496.  00:AE67  FF FF FF FF FF FF FF FF 
-     497.  00:AE6F                      fin_sprite_jefelobo:
-     498.  00:AE6F                      	
-     499.  00:AE6F                      ;; JEFE MURCIËLAGO (4 sprites 2 escenas)
-     500.  00:AE6F                      sprite_jefemurcielago:
-     501.  00:AE6F                      sprite_jefemurcielago_1:
-     502.  00:AE6F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     502.  00:AE6F  FF FF FF FF FF FF FF FF 
-     503.  00:AE77                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     503.  00:AE77  FF FF FF FF FF FF FF FF 
-     504.  00:AE7F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     504.  00:AE7F  FF FF FF FF FF FF FF FF 
-     505.  00:AE87                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     505.  00:AE87  FF FF FF FF FF FF FF FF 
-     506.  00:AE8F                      	
-     507.  00:AE8F                      sprite_jefemurcielago_2:
-     508.  00:AE8F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     508.  00:AE8F  FF FF FF FF FF FF FF FF 
-     509.  00:AE97                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     509.  00:AE97  FF FF FF FF FF FF FF FF 
-     510.  00:AE9F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     510.  00:AE9F  FF FF FF FF FF FF FF FF 
-     511.  00:AEA7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     511.  00:AEA7  FF FF FF FF FF FF FF FF 
-     512.  00:AEAF                      	
-     513.  00:AEAF                      sprite_jefemurcielago_3:
-     514.  00:AEAF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     514.  00:AEAF  FF FF FF FF FF FF FF FF 
-     515.  00:AEB7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     515.  00:AEB7  FF FF FF FF FF FF FF FF 
-     516.  00:AEBF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     516.  00:AEBF  FF FF FF FF FF FF FF FF 
-     517.  00:AEC7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     517.  00:AEC7  FF FF FF FF FF FF FF FF 
-     518.  00:AECF                      	
-     519.  00:AECF                      sprite_jefemurcielago_4:
-     520.  00:AECF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     520.  00:AECF  FF FF FF FF FF FF FF FF 
-     521.  00:AED7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     521.  00:AED7  FF FF FF FF FF FF FF FF 
-     522.  00:AEDF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     522.  00:AEDF  FF FF FF FF FF FF FF FF 
-     523.  00:AEE7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     523.  00:AEE7  FF FF FF FF FF FF FF FF 
-     524.  00:AEEF                      	
-     525.  00:AEEF                      sprite_jefemurcielago_5:
-     526.  00:AEEF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     526.  00:AEEF  FF FF FF FF FF FF FF FF 
-     527.  00:AEF7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     527.  00:AEF7  FF FF FF FF FF FF FF FF 
-     528.  00:AEFF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     528.  00:AEFF  FF FF FF FF FF FF FF FF 
-     529.  00:AF07                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     529.  00:AF07  FF FF FF FF FF FF FF FF 
-     530.  00:AF0F                      	
-     531.  00:AF0F                      sprite_jefemurcielago_6:
-     532.  00:AF0F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     532.  00:AF0F  FF FF FF FF FF FF FF FF 
-     533.  00:AF17                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     533.  00:AF17  FF FF FF FF FF FF FF FF 
-     534.  00:AF1F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     534.  00:AF1F  FF FF FF FF FF FF FF FF 
-     535.  00:AF27                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     535.  00:AF27  FF FF FF FF FF FF FF FF 
-     536.  00:AF2F                      	
-     537.  00:AF2F                      sprite_jefemurcielago_7:
-     538.  00:AF2F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     538.  00:AF2F  FF FF FF FF FF FF FF FF 
-     539.  00:AF37                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     539.  00:AF37  FF FF FF FF FF FF FF FF 
-     540.  00:AF3F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     540.  00:AF3F  FF FF FF FF FF FF FF FF 
-     541.  00:AF47                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     541.  00:AF47  FF FF FF FF FF FF FF FF 
-     542.  00:AF4F                      	
-     543.  00:AF4F                      sprite_jefemurcielago_8:
-     544.  00:AF4F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     544.  00:AF4F  FF FF FF FF FF FF FF FF 
-     545.  00:AF57                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     545.  00:AF57  FF FF FF FF FF FF FF FF 
-     546.  00:AF5F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     546.  00:AF5F  FF FF FF FF FF FF FF FF 
-     547.  00:AF67                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     547.  00:AF67  FF FF FF FF FF FF FF FF 
-     548.  00:AF6F                      fin_sprite_jefemurcielago:
-     549.  00:AF6F                      	
-     550.  00:AF6F                      ;; JEFE FANTASMA (4 sprites 2 escenas)
-     551.  00:AF6F                      sprite_jefefantasma:
-     552.  00:AF6F                      sprite_jefefantasma_1:
-     553.  00:AF6F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     553.  00:AF6F  FF FF FF FF FF FF FF FF 
-     554.  00:AF77                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     554.  00:AF77  FF FF FF FF FF FF FF FF 
-     555.  00:AF7F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     555.  00:AF7F  FF FF FF FF FF FF FF FF 
-     556.  00:AF87                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     556.  00:AF87  FF FF FF FF FF FF FF FF 
-     557.  00:AF8F                      	
-     558.  00:AF8F                      sprite_jefefantasma_2:
-     559.  00:AF8F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     559.  00:AF8F  FF FF FF FF FF FF FF FF 
-     560.  00:AF97                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     560.  00:AF97  FF FF FF FF FF FF FF FF 
-     561.  00:AF9F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     561.  00:AF9F  FF FF FF FF FF FF FF FF 
-     562.  00:AFA7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     562.  00:AFA7  FF FF FF FF FF FF FF FF 
-     563.  00:AFAF                      	
-     564.  00:AFAF                      sprite_jefefantasma_3:
-     565.  00:AFAF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     565.  00:AFAF  FF FF FF FF FF FF FF FF 
-     566.  00:AFB7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     566.  00:AFB7  FF FF FF FF FF FF FF FF 
-     567.  00:AFBF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     567.  00:AFBF  FF FF FF FF FF FF FF FF 
-     568.  00:AFC7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     568.  00:AFC7  FF FF FF FF FF FF FF FF 
-     569.  00:AFCF                      	
-     570.  00:AFCF                      sprite_jefefantasma_4:
-     571.  00:AFCF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     571.  00:AFCF  FF FF FF FF FF FF FF FF 
-     572.  00:AFD7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     572.  00:AFD7  FF FF FF FF FF FF FF FF 
-     573.  00:AFDF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     573.  00:AFDF  FF FF FF FF FF FF FF FF 
-     574.  00:AFE7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     574.  00:AFE7  FF FF FF FF FF FF FF FF 
-     575.  00:AFEF                      	
-     576.  00:AFEF                      sprite_jefefantasma_5:
-     577.  00:AFEF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     577.  00:AFEF  FF FF FF FF FF FF FF FF 
-     578.  00:AFF7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     578.  00:AFF7  FF FF FF FF FF FF FF FF 
-     579.  00:AFFF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     579.  00:AFFF  FF FF FF FF FF FF FF FF 
-     580.  00:B007                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     580.  00:B007  FF FF FF FF FF FF FF FF 
-     581.  00:B00F                      	
-     582.  00:B00F                      sprite_jefefantasma_6:
-     583.  00:B00F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     583.  00:B00F  FF FF FF FF FF FF FF FF 
-     584.  00:B017                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     584.  00:B017  FF FF FF FF FF FF FF FF 
-     585.  00:B01F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     585.  00:B01F  FF FF FF FF FF FF FF FF 
-     586.  00:B027                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     586.  00:B027  FF FF FF FF FF FF FF FF 
-     587.  00:B02F                      	
-     588.  00:B02F                      sprite_jefefantasma_7:
-     589.  00:B02F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     589.  00:B02F  FF FF FF FF FF FF FF FF 
-     590.  00:B037                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     590.  00:B037  FF FF FF FF FF FF FF FF 
-     591.  00:B03F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     591.  00:B03F  FF FF FF FF FF FF FF FF 
-     592.  00:B047                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     592.  00:B047  FF FF FF FF FF FF FF FF 
-     593.  00:B04F                      	
-     594.  00:B04F                      sprite_jefefantasma_8:
-     595.  00:B04F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     595.  00:B04F  FF FF FF FF FF FF FF FF 
-     596.  00:B057                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     596.  00:B057  FF FF FF FF FF FF FF FF 
-     597.  00:B05F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     597.  00:B05F  FF FF FF FF FF FF FF FF 
-     598.  00:B067                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     598.  00:B067  FF FF FF FF FF FF FF FF 
-     599.  00:B06F                      fin_sprite_jefefantasma:
-     600.  00:B06F                      	
-     601.  00:B06F                      ;; JEFE ZOMBI (4 sprites 2 escenas 2 direcciones)
-     602.  00:B06F                      sprite_jefezombi:
-     603.  00:B06F                      sprite_jefezombi1_1:
-     604.  00:B06F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     604.  00:B06F  FF FF FF FF FF FF FF FF 
-     605.  00:B077                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     605.  00:B077  FF FF FF FF FF FF FF FF 
-     606.  00:B07F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     606.  00:B07F  FF FF FF FF FF FF FF FF 
-     607.  00:B087                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     607.  00:B087  FF FF FF FF FF FF FF FF 
-     608.  00:B08F                      	
-     609.  00:B08F                      sprite_jefezombi1_2:
-     610.  00:B08F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     610.  00:B08F  FF FF FF FF FF FF FF FF 
-     611.  00:B097                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     611.  00:B097  FF FF FF FF FF FF FF FF 
-     612.  00:B09F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     612.  00:B09F  FF FF FF FF FF FF FF FF 
-     613.  00:B0A7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     613.  00:B0A7  FF FF FF FF FF FF FF FF 
-     614.  00:B0AF                      	
-     615.  00:B0AF                      sprite_jefezombi1_3:
-     616.  00:B0AF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     616.  00:B0AF  FF FF FF FF FF FF FF FF 
-     617.  00:B0B7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     617.  00:B0B7  FF FF FF FF FF FF FF FF 
-     618.  00:B0BF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     618.  00:B0BF  FF FF FF FF FF FF FF FF 
-     619.  00:B0C7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     619.  00:B0C7  FF FF FF FF FF FF FF FF 
-     620.  00:B0CF                      	
-     621.  00:B0CF                      sprite_jefezombi1_4:
-     622.  00:B0CF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     622.  00:B0CF  FF FF FF FF FF FF FF FF 
-     623.  00:B0D7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     623.  00:B0D7  FF FF FF FF FF FF FF FF 
-     624.  00:B0DF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     624.  00:B0DF  FF FF FF FF FF FF FF FF 
-     625.  00:B0E7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     625.  00:B0E7  FF FF FF FF FF FF FF FF 
-     626.  00:B0EF                      	
-     627.  00:B0EF                      sprite_jefezombi1_5:
-     628.  00:B0EF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     628.  00:B0EF  FF FF FF FF FF FF FF FF 
-     629.  00:B0F7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     629.  00:B0F7  FF FF FF FF FF FF FF FF 
-     630.  00:B0FF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     630.  00:B0FF  FF FF FF FF FF FF FF FF 
-     631.  00:B107                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     631.  00:B107  FF FF FF FF FF FF FF FF 
-     632.  00:B10F                      	
-     633.  00:B10F                      sprite_jefezombi1_6:
-     634.  00:B10F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     634.  00:B10F  FF FF FF FF FF FF FF FF 
-     635.  00:B117                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     635.  00:B117  FF FF FF FF FF FF FF FF 
-     636.  00:B11F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     636.  00:B11F  FF FF FF FF FF FF FF FF 
-     637.  00:B127                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     637.  00:B127  FF FF FF FF FF FF FF FF 
-     638.  00:B12F                      	
-     639.  00:B12F                      sprite_jefezombi1_7:
-     640.  00:B12F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     640.  00:B12F  FF FF FF FF FF FF FF FF 
-     641.  00:B137                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     641.  00:B137  FF FF FF FF FF FF FF FF 
-     642.  00:B13F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     642.  00:B13F  FF FF FF FF FF FF FF FF 
-     643.  00:B147                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     643.  00:B147  FF FF FF FF FF FF FF FF 
-     644.  00:B14F                      	
-     645.  00:B14F                      sprite_jefezombi1_8:
-     646.  00:B14F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     646.  00:B14F  FF FF FF FF FF FF FF FF 
-     647.  00:B157                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     647.  00:B157  FF FF FF FF FF FF FF FF 
-     648.  00:B15F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     648.  00:B15F  FF FF FF FF FF FF FF FF 
-     649.  00:B167                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
-     649.  00:B167  FF FF FF FF FF FF FF FF 
-     650.  00:B16F                      	
-     651.  00:B16F                      sprite_jefezombi2_1:
-     652.  00:B16F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     652.  00:B16F  FF FF FF FF FF FF FF FF 
-     653.  00:B177                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     653.  00:B177  FF FF FF FF FF FF FF FF 
-     654.  00:B17F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     654.  00:B17F  FF FF FF FF FF FF FF FF 
-     655.  00:B187                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     655.  00:B187  FF FF FF FF FF FF FF FF 
-     656.  00:B18F                      	
-     657.  00:B18F                      sprite_jefezombi2_2:
-     658.  00:B18F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     658.  00:B18F  FF FF FF FF FF FF FF FF 
-     659.  00:B197                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     659.  00:B197  FF FF FF FF FF FF FF FF 
-     660.  00:B19F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     660.  00:B19F  FF FF FF FF FF FF FF FF 
-     661.  00:B1A7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     661.  00:B1A7  FF FF FF FF FF FF FF FF 
-     662.  00:B1AF                      	
-     663.  00:B1AF                      sprite_jefezombi2_3:
-     664.  00:B1AF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     664.  00:B1AF  FF FF FF FF FF FF FF FF 
-     665.  00:B1B7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     665.  00:B1B7  FF FF FF FF FF FF FF FF 
-     666.  00:B1BF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     666.  00:B1BF  FF FF FF FF FF FF FF FF 
-     667.  00:B1C7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     667.  00:B1C7  FF FF FF FF FF FF FF FF 
-     668.  00:B1CF                      	
-     669.  00:B1CF                      sprite_jefezombi2_4:
-     670.  00:B1CF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     670.  00:B1CF  FF FF FF FF FF FF FF FF 
-     671.  00:B1D7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     671.  00:B1D7  FF FF FF FF FF FF FF FF 
-     672.  00:B1DF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     672.  00:B1DF  FF FF FF FF FF FF FF FF 
-     673.  00:B1E7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     673.  00:B1E7  FF FF FF FF FF FF FF FF 
-     674.  00:B1EF                      	
-     675.  00:B1EF                      sprite_jefezombi2_5:
-     676.  00:B1EF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     676.  00:B1EF  FF FF FF FF FF FF FF FF 
-     677.  00:B1F7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     677.  00:B1F7  FF FF FF FF FF FF FF FF 
-     678.  00:B1FF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     678.  00:B1FF  FF FF FF FF FF FF FF FF 
-     679.  00:B207                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     679.  00:B207  FF FF FF FF FF FF FF FF 
-     680.  00:B20F                      	
-     681.  00:B20F                      sprite_jefezombi2_6:
-     682.  00:B20F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     682.  00:B20F  FF FF FF FF FF FF FF FF 
-     683.  00:B217                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     683.  00:B217  FF FF FF FF FF FF FF FF 
-     684.  00:B21F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     684.  00:B21F  FF FF FF FF FF FF FF FF 
-     685.  00:B227                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     685.  00:B227  FF FF FF FF FF FF FF FF 
-     686.  00:B22F                      	
-     687.  00:B22F                      sprite_jefezombi2_7:
-     688.  00:B22F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     688.  00:B22F  FF FF FF FF FF FF FF FF 
-     689.  00:B237                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     689.  00:B237  FF FF FF FF FF FF FF FF 
-     690.  00:B23F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     690.  00:B23F  FF FF FF FF FF FF FF FF 
-     691.  00:B247                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     691.  00:B247  FF FF FF FF FF FF FF FF 
-     692.  00:B24F                      	
-     693.  00:B24F                      sprite_jefezombi2_8:
-     694.  00:B24F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     694.  00:B24F  FF FF FF FF FF FF FF FF 
-     695.  00:B257                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     695.  00:B257  FF FF FF FF FF FF FF FF 
-     696.  00:B25F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     696.  00:B25F  FF FF FF FF FF FF FF FF 
-     697.  00:B267                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     697.  00:B267  FF FF FF FF FF FF FF FF 
-     698.  00:B26F                      fin_sprite_jefezombi:
-     699.  00:B26F                      	
-     700.  00:B26F                      ;; JEFE CABALLERO (4 sprites 2 escenas 2 direcciones)
-     701.  00:B26F                      sprite_jefecaballero:
-     702.  00:B26F                      sprite_jefecaballero1_1:
-     703.  00:B26F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     703.  00:B26F  FF FF FF FF FF FF FF FF 
-     704.  00:B277                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     704.  00:B277  FF FF FF FF FF FF FF FF 
-     705.  00:B27F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     705.  00:B27F  FF FF FF FF FF FF FF FF 
-     706.  00:B287                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     706.  00:B287  FF FF FF FF FF FF FF FF 
-     707.  00:B28F                      	
-     708.  00:B28F                      sprite_jefecaballero1_2:
-     709.  00:B28F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     709.  00:B28F  FF FF FF FF FF FF FF FF 
-     710.  00:B297                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     710.  00:B297  FF FF FF FF FF FF FF FF 
-     711.  00:B29F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     711.  00:B29F  FF FF FF FF FF FF FF FF 
-     712.  00:B2A7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     712.  00:B2A7  FF FF FF FF FF FF FF FF 
-     713.  00:B2AF                      	
-     714.  00:B2AF                      sprite_jefecaballero1_3:
-     715.  00:B2AF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     715.  00:B2AF  FF FF FF FF FF FF FF FF 
-     716.  00:B2B7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     716.  00:B2B7  FF FF FF FF FF FF FF FF 
-     717.  00:B2BF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     717.  00:B2BF  FF FF FF FF FF FF FF FF 
-     718.  00:B2C7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     718.  00:B2C7  FF FF FF FF FF FF FF FF 
-     719.  00:B2CF                      	
-     720.  00:B2CF                      sprite_jefecaballero1_4:
-     721.  00:B2CF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     721.  00:B2CF  FF FF FF FF FF FF FF FF 
-     722.  00:B2D7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     722.  00:B2D7  FF FF FF FF FF FF FF FF 
-     723.  00:B2DF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     723.  00:B2DF  FF FF FF FF FF FF FF FF 
-     724.  00:B2E7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     724.  00:B2E7  FF FF FF FF FF FF FF FF 
-     725.  00:B2EF                      	
-     726.  00:B2EF                      sprite_jefecaballero1_5:
-     727.  00:B2EF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     727.  00:B2EF  FF FF FF FF FF FF FF FF 
-     728.  00:B2F7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     728.  00:B2F7  FF FF FF FF FF FF FF FF 
-     729.  00:B2FF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     729.  00:B2FF  FF FF FF FF FF FF FF FF 
-     730.  00:B307                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     730.  00:B307  FF FF FF FF FF FF FF FF 
-     731.  00:B30F                      	
-     732.  00:B30F                      sprite_jefecaballero1_6:
-     733.  00:B30F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     733.  00:B30F  FF FF FF FF FF FF FF FF 
-     734.  00:B317                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     734.  00:B317  FF FF FF FF FF FF FF FF 
-     735.  00:B31F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     735.  00:B31F  FF FF FF FF FF FF FF FF 
-     736.  00:B327                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     736.  00:B327  FF FF FF FF FF FF FF FF 
-     737.  00:B32F                      	
-     738.  00:B32F                      sprite_jefecaballero1_7:
-     739.  00:B32F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     739.  00:B32F  FF FF FF FF FF FF FF FF 
-     740.  00:B337                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     740.  00:B337  FF FF FF FF FF FF FF FF 
-     741.  00:B33F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     741.  00:B33F  FF FF FF FF FF FF FF FF 
-     742.  00:B347                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     742.  00:B347  FF FF FF FF FF FF FF FF 
-     743.  00:B34F                      	
-     744.  00:B34F                      sprite_jefecaballero1_8:
-     745.  00:B34F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     745.  00:B34F  FF FF FF FF FF FF FF FF 
-     746.  00:B357                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     746.  00:B357  FF FF FF FF FF FF FF FF 
-     747.  00:B35F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     747.  00:B35F  FF FF FF FF FF FF FF FF 
-     748.  00:B367                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
-     748.  00:B367  FF FF FF FF FF FF FF FF 
-     749.  00:B36F                      	
-     750.  00:B36F                      sprite_jefecaballero2_1:
-     751.  00:B36F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     751.  00:B36F  FF FF FF FF FF FF FF FF 
-     752.  00:B377                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     752.  00:B377  FF FF FF FF FF FF FF FF 
-     753.  00:B37F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     753.  00:B37F  FF FF FF FF FF FF FF FF 
-     754.  00:B387                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     754.  00:B387  FF FF FF FF FF FF FF FF 
-     755.  00:B38F                      	
-     756.  00:B38F                      sprite_jefecaballero2_2:
-     757.  00:B38F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     757.  00:B38F  FF FF FF FF FF FF FF FF 
-     758.  00:B397                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     758.  00:B397  FF FF FF FF FF FF FF FF 
-     759.  00:B39F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     759.  00:B39F  FF FF FF FF FF FF FF FF 
-     760.  00:B3A7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     760.  00:B3A7  FF FF FF FF FF FF FF FF 
-     761.  00:B3AF                      	
-     762.  00:B3AF                      sprite_jefecaballero2_3:
-     763.  00:B3AF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     763.  00:B3AF  FF FF FF FF FF FF FF FF 
-     764.  00:B3B7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     764.  00:B3B7  FF FF FF FF FF FF FF FF 
-     765.  00:B3BF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     765.  00:B3BF  FF FF FF FF FF FF FF FF 
-     766.  00:B3C7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     766.  00:B3C7  FF FF FF FF FF FF FF FF 
-     767.  00:B3CF                      	
-     768.  00:B3CF                      sprite_jefecaballero2_4:
-     769.  00:B3CF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     769.  00:B3CF  FF FF FF FF FF FF FF FF 
-     770.  00:B3D7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     770.  00:B3D7  FF FF FF FF FF FF FF FF 
-     771.  00:B3DF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     771.  00:B3DF  FF FF FF FF FF FF FF FF 
-     772.  00:B3E7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     772.  00:B3E7  FF FF FF FF FF FF FF FF 
-     773.  00:B3EF                      	
-     774.  00:B3EF                      sprite_jefecaballero2_5:
-     775.  00:B3EF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     775.  00:B3EF  FF FF FF FF FF FF FF FF 
-     776.  00:B3F7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     776.  00:B3F7  FF FF FF FF FF FF FF FF 
-     777.  00:B3FF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     777.  00:B3FF  FF FF FF FF FF FF FF FF 
-     778.  00:B407                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     778.  00:B407  FF FF FF FF FF FF FF FF 
-     779.  00:B40F                      	
-     780.  00:B40F                      sprite_jefecaballero2_6:
-     781.  00:B40F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     781.  00:B40F  FF FF FF FF FF FF FF FF 
-     782.  00:B417                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     782.  00:B417  FF FF FF FF FF FF FF FF 
-     783.  00:B41F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     783.  00:B41F  FF FF FF FF FF FF FF FF 
-     784.  00:B427                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     784.  00:B427  FF FF FF FF FF FF FF FF 
-     785.  00:B42F                      	
-     786.  00:B42F                      sprite_jefecaballero2_7:
-     787.  00:B42F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     787.  00:B42F  FF FF FF FF FF FF FF FF 
-     788.  00:B437                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     788.  00:B437  FF FF FF FF FF FF FF FF 
-     789.  00:B43F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     789.  00:B43F  FF FF FF FF FF FF FF FF 
-     790.  00:B447                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     790.  00:B447  FF FF FF FF FF FF FF FF 
-     791.  00:B44F                      	
-     792.  00:B44F                      sprite_jefecaballero2_8:
-     793.  00:B44F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     793.  00:B44F  FF FF FF FF FF FF FF FF 
-     794.  00:B457                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     794.  00:B457  FF FF FF FF FF FF FF FF 
-     795.  00:B45F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     795.  00:B45F  FF FF FF FF FF FF FF FF 
-     796.  00:B467                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     796.  00:B467  FF FF FF FF FF FF FF FF 
-     797.  00:B46F                      fin_sprite_jefecaballero:
-     798.  00:B46F                      	
-     799.  00:B46F                      ;; JEFE BEHOLDER (4 sprites 2 escenas)
-     800.  00:B46F                      sprite_jefebeholder:
-     801.  00:B46F                      sprite_jefebeholder_1:
-     802.  00:B46F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     802.  00:B46F  FF FF FF FF FF FF FF FF 
-     803.  00:B477                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     803.  00:B477  FF FF FF FF FF FF FF FF 
-     804.  00:B47F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     804.  00:B47F  FF FF FF FF FF FF FF FF 
-     805.  00:B487                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     805.  00:B487  FF FF FF FF FF FF FF FF 
-     806.  00:B48F                      	
-     807.  00:B48F                      sprite_jefebeholder_2:
-     808.  00:B48F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     808.  00:B48F  FF FF FF FF FF FF FF FF 
-     809.  00:B497                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     809.  00:B497  FF FF FF FF FF FF FF FF 
-     810.  00:B49F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     810.  00:B49F  FF FF FF FF FF FF FF FF 
-     811.  00:B4A7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     811.  00:B4A7  FF FF FF FF FF FF FF FF 
-     812.  00:B4AF                      	
-     813.  00:B4AF                      sprite_jefebeholder_3:
-     814.  00:B4AF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     814.  00:B4AF  FF FF FF FF FF FF FF FF 
-     815.  00:B4B7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     815.  00:B4B7  FF FF FF FF FF FF FF FF 
-     816.  00:B4BF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     816.  00:B4BF  FF FF FF FF FF FF FF FF 
-     817.  00:B4C7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     817.  00:B4C7  FF FF FF FF FF FF FF FF 
-     818.  00:B4CF                      	
-     819.  00:B4CF                      sprite_jefebeholder_4:
-     820.  00:B4CF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     820.  00:B4CF  FF FF FF FF FF FF FF FF 
-     821.  00:B4D7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     821.  00:B4D7  FF FF FF FF FF FF FF FF 
-     822.  00:B4DF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     822.  00:B4DF  FF FF FF FF FF FF FF FF 
-     823.  00:B4E7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     823.  00:B4E7  FF FF FF FF FF FF FF FF 
-     824.  00:B4EF                      	
-     825.  00:B4EF                      sprite_jefebeholder_5:
-     826.  00:B4EF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     826.  00:B4EF  FF FF FF FF FF FF FF FF 
-     827.  00:B4F7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     827.  00:B4F7  FF FF FF FF FF FF FF FF 
-     828.  00:B4FF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     828.  00:B4FF  FF FF FF FF FF FF FF FF 
-     829.  00:B507                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     829.  00:B507  FF FF FF FF FF FF FF FF 
-     830.  00:B50F                      	
-     831.  00:B50F                      sprite_jefebeholder_6:
-     832.  00:B50F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     832.  00:B50F  FF FF FF FF FF FF FF FF 
-     833.  00:B517                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     833.  00:B517  FF FF FF FF FF FF FF FF 
-     834.  00:B51F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     834.  00:B51F  FF FF FF FF FF FF FF FF 
-     835.  00:B527                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     835.  00:B527  FF FF FF FF FF FF FF FF 
-     836.  00:B52F                      	
-     837.  00:B52F                      sprite_jefebeholder_7:
-     838.  00:B52F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     838.  00:B52F  FF FF FF FF FF FF FF FF 
-     839.  00:B537                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     839.  00:B537  FF FF FF FF FF FF FF FF 
-     840.  00:B53F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     840.  00:B53F  FF FF FF FF FF FF FF FF 
-     841.  00:B547                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     841.  00:B547  FF FF FF FF FF FF FF FF 
-     842.  00:B54F                      	
-     843.  00:B54F                      sprite_jefebeholder_8:
-     844.  00:B54F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     844.  00:B54F  FF FF FF FF FF FF FF FF 
-     845.  00:B557                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     845.  00:B557  FF FF FF FF FF FF FF FF 
-     846.  00:B55F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     846.  00:B55F  FF FF FF FF FF FF FF FF 
-     847.  00:B567                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     847.  00:B567  FF FF FF FF FF FF FF FF 
-     848.  00:B56F                      fin_sprite_jefebeholder:
-     849.  00:B56F                      
-     850.  00:B56F                      ;; MANOIZQ 4 (2 escenas 2 sprites vert)
-     851.  00:B56F                      sprite_manoizquierda:
-     852.  00:B56F                      sprite_manoizquierda_1:
-     853.  00:B56F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     853.  00:B56F  FF FF FF FF FF FF FF FF 
-     854.  00:B577                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     854.  00:B577  FF FF FF FF FF FF FF FF 
-     855.  00:B57F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     855.  00:B57F  FF FF FF FF FF FF FF FF 
-     856.  00:B587                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     856.  00:B587  FF FF FF FF FF FF FF FF 
-     857.  00:B58F                      	
-     858.  00:B58F                      sprite_manoizquierda_2:
-     859.  00:B58F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     859.  00:B58F  FF FF FF FF FF FF FF FF 
-     860.  00:B597                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     860.  00:B597  FF FF FF FF FF FF FF FF 
-     861.  00:B59F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     861.  00:B59F  FF FF FF FF FF FF FF FF 
-     862.  00:B5A7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     862.  00:B5A7  FF FF FF FF FF FF FF FF 
-     863.  00:B5AF                      	
-     864.  00:B5AF                      sprite_manoizquierda_3:
-     865.  00:B5AF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     865.  00:B5AF  FF FF FF FF FF FF FF FF 
-     866.  00:B5B7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     866.  00:B5B7  FF FF FF FF FF FF FF FF 
-     867.  00:B5BF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     867.  00:B5BF  FF FF FF FF FF FF FF FF 
-     868.  00:B5C7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     868.  00:B5C7  FF FF FF FF FF FF FF FF 
-     869.  00:B5CF                      	
-     870.  00:B5CF                      sprite_manoizquierda_4:
-     871.  00:B5CF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     871.  00:B5CF  FF FF FF FF FF FF FF FF 
-     872.  00:B5D7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     872.  00:B5D7  FF FF FF FF FF FF FF FF 
-     873.  00:B5DF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     873.  00:B5DF  FF FF FF FF FF FF FF FF 
-     874.  00:B5E7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     874.  00:B5E7  FF FF FF FF FF FF FF FF 
-     875.  00:B5EF                      fin_sprite_manoizquierda:
-     876.  00:B5EF                      	
-     877.  00:B5EF                      ;; MANODER 4 (2 escenas 2 sprites vert)
-     878.  00:B5EF                      sprite_manoderecha:
-     879.  00:B5EF                      sprite_manoderecha_1:
-     880.  00:B5EF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     880.  00:B5EF  FF FF FF FF FF FF FF FF 
-     881.  00:B5F7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     881.  00:B5F7  FF FF FF FF FF FF FF FF 
-     882.  00:B5FF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     882.  00:B5FF  FF FF FF FF FF FF FF FF 
-     883.  00:B607                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     883.  00:B607  FF FF FF FF FF FF FF FF 
-     884.  00:B60F                      	
-     885.  00:B60F                      sprite_manoderecha_2:
-     886.  00:B60F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     886.  00:B60F  FF FF FF FF FF FF FF FF 
-     887.  00:B617                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     887.  00:B617  FF FF FF FF FF FF FF FF 
-     888.  00:B61F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     888.  00:B61F  FF FF FF FF FF FF FF FF 
-     889.  00:B627                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     889.  00:B627  FF FF FF FF FF FF FF FF 
-     890.  00:B62F                      	
-     891.  00:B62F                      sprite_manoderecha_3:
-     892.  00:B62F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     892.  00:B62F  FF FF FF FF FF FF FF FF 
-     893.  00:B637                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     893.  00:B637  FF FF FF FF FF FF FF FF 
-     894.  00:B63F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     894.  00:B63F  FF FF FF FF FF FF FF FF 
-     895.  00:B647                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     895.  00:B647  FF FF FF FF FF FF FF FF 
-     896.  00:B64F                      	
-     897.  00:B64F                      sprite_manoderecha_4:
-     898.  00:B64F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     898.  00:B64F  FF FF FF FF FF FF FF FF 
-     899.  00:B657                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     899.  00:B657  FF FF FF FF FF FF FF FF 
-     900.  00:B65F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     900.  00:B65F  FF FF FF FF FF FF FF FF 
-     901.  00:B667                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     901.  00:B667  FF FF FF FF FF FF FF FF 
-     902.  00:B66F                      fin_sprite_manoderecha:
-     903.  00:B66F                      	
-     904.  00:B66F                      ;; CONDE 4 (2 escenas 2 sprites vert)
-     905.  00:B66F                      sprite_conde:
-     906.  00:B66F                      sprite_conde_1:
-     907.  00:B66F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     907.  00:B66F  FF FF FF FF FF FF FF FF 
-     908.  00:B677                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     908.  00:B677  FF FF FF FF FF FF FF FF 
-     909.  00:B67F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     909.  00:B67F  FF FF FF FF FF FF FF FF 
-     910.  00:B687                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     910.  00:B687  FF FF FF FF FF FF FF FF 
-     911.  00:B68F                      	
-     912.  00:B68F                      sprite_conde_2:
-     913.  00:B68F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     913.  00:B68F  FF FF FF FF FF FF FF FF 
-     914.  00:B697                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     914.  00:B697  FF FF FF FF FF FF FF FF 
-     915.  00:B69F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     915.  00:B69F  FF FF FF FF FF FF FF FF 
-     916.  00:B6A7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     916.  00:B6A7  FF FF FF FF FF FF FF FF 
-     917.  00:B6AF                      	
-     918.  00:B6AF                      sprite_conde_3:
-     919.  00:B6AF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     919.  00:B6AF  FF FF FF FF FF FF FF FF 
-     920.  00:B6B7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     920.  00:B6B7  FF FF FF FF FF FF FF FF 
-     921.  00:B6BF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     921.  00:B6BF  FF FF FF FF FF FF FF FF 
-     922.  00:B6C7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     922.  00:B6C7  FF FF FF FF FF FF FF FF 
-     923.  00:B6CF                      	
-     924.  00:B6CF                      sprite_conde_4:
-     925.  00:B6CF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     925.  00:B6CF  FF FF FF FF FF FF FF FF 
-     926.  00:B6D7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     926.  00:B6D7  FF FF FF FF FF FF FF FF 
-     927.  00:B6DF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     927.  00:B6DF  FF FF FF FF FF FF FF FF 
-     928.  00:B6E7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     928.  00:B6E7  FF FF FF FF FF FF FF FF 
-     929.  00:B6EF                      fin_sprite_conde:
-     930.  00:B6EF                      
-     931.  00:B6EF                      
-     932.  00:B6EF                      
-     933.  00:B6EF                      ;;=====================================================
-     934.  00:B6EF                      ;;CARGA PATRONES SPRITES
-     935.  00:B6EF                      ;;=====================================================	
+      84.  00:A66F                      
+      85.  00:A66F                      
+      86.  00:A66F                      ;; ARAÑA 2
+      87.  00:A66F                      sprite_arana:
+      88.  00:A66F                      sprite_arana_1:
+      89.  00:A66F                      	DB #00,#01,#03,#05,#07,#75,#8F,#04
+      89.  00:A66F  00 01 03 05 07 75 8F 04 
+      90.  00:A677                      	DB #1D,#27,#4B,#91,#20,#10,#00,#00
+      90.  00:A677  1D 27 4B 91 20 10 00 00 
+      91.  00:A67F                      	DB #00,#80,#C0,#A0,#E0,#AE,#F1,#20
+      91.  00:A67F  00 80 C0 A0 E0 AE F1 20 
+      92.  00:A687                      	DB #B8,#E4,#D2,#89,#04,#08,#00,#00
+      92.  00:A687  B8 E4 D2 89 04 08 00 00 
+      93.  00:A68F                      	
+      94.  00:A68F                      sprite_arana_2:
+      95.  00:A68F                      	DB #00,#01,#03,#05,#77,#8D,#07,#1C
+      95.  00:A68F  00 01 03 05 77 8D 07 1C 
+      96.  00:A697                      	DB #25,#C7,#0B,#31,#40,#00,#00,#00
+      96.  00:A697  25 C7 0B 31 40 00 00 00 
+      97.  00:A69F                      	DB #00,#80,#C0,#A0,#EE,#B1,#E0,#38
+      97.  00:A69F  00 80 C0 A0 EE B1 E0 38 
+      98.  00:A6A7                      	DB #A4,#E3,#D0,#8C,#02,#00,#00,#00
+      98.  00:A6A7  A4 E3 D0 8C 02 00 00 00 
+      99.  00:A6AF                      fin_sprite_arana:
+     100.  00:A6AF                      
+     101.  00:A6AF                      
+     102.  00:A6AF                      ;; MURCIELAGO 2
+     103.  00:A6AF                      sprite_murcielago:
+     104.  00:A6AF                      sprite_murcielago_1:
+     105.  00:A6AF                      	DB #08,#0E,#02,#05,#0F,#0C,#0D,#07
+     105.  00:A6AF  08 0E 02 05 0F 0C 0D 07 
+     106.  00:A6B7                      	DB #1B,#3F,#5F,#FB,#F3,#65,#21,#00
+     106.  00:A6B7  1B 3F 5F FB F3 65 21 00 
+     107.  00:A6BF                      	DB #10,#70,#40,#A0,#F0,#30,#B0,#E0
+     107.  00:A6BF  10 70 40 A0 F0 30 B0 E0 
+     108.  00:A6C7                      	DB #D8,#FC,#FA,#DF,#CF,#A6,#84,#00
+     108.  00:A6C7  D8 FC FA DF CF A6 84 00 
+     109.  00:A6CF                      	
+     110.  00:A6CF                      sprite_murcielago_2:
+     111.  00:A6CF                      	DB #08,#0E,#02,#05,#0F,#0E,#4D,#E7
+     111.  00:A6CF  08 0E 02 05 0F 0E 4D E7 
+     112.  00:A6D7                      	DB #FB,#FF,#7F,#7B,#33,#05,#01,#00
+     112.  00:A6D7  FB FF 7F 7B 33 05 01 00 
+     113.  00:A6DF                      	DB #10,#70,#40,#A0,#F0,#70,#B2,#E7
+     113.  00:A6DF  10 70 40 A0 F0 70 B2 E7 
+     114.  00:A6E7                      	DB #DF,#FF,#FE,#DE,#CC,#A0,#80,#00
+     114.  00:A6E7  DF FF FE DE CC A0 80 00 
+     115.  00:A6EF                      fin_sprite_murcielago:
+     116.  00:A6EF                      
+     117.  00:A6EF                      
+     118.  00:A6EF                      ;; LOBO 4 + 4 (dos escenas derecha y dos esceas izquierda)
+     119.  00:A6EF                      sprite_lobo:
+     120.  00:A6EF                      sprite_lobo1_1:
+     121.  00:A6EF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     121.  00:A6EF  FF FF FF FF FF FF FF FF 
+     122.  00:A6F7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     122.  00:A6F7  FF FF FF FF FF FF FF FF 
+     123.  00:A6FF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     123.  00:A6FF  FF FF FF FF FF FF FF FF 
+     124.  00:A707                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     124.  00:A707  FF FF FF FF FF FF FF FF 
+     125.  00:A70F                      
+     126.  00:A70F                      sprite_lobo1_2:
+     127.  00:A70F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     127.  00:A70F  FF FF FF FF FF FF FF FF 
+     128.  00:A717                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     128.  00:A717  FF FF FF FF FF FF FF FF 
+     129.  00:A71F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     129.  00:A71F  FF FF FF FF FF FF FF FF 
+     130.  00:A727                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     130.  00:A727  FF FF FF FF FF FF FF FF 
+     131.  00:A72F                      
+     132.  00:A72F                      sprite_lobo1_3:
+     133.  00:A72F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     133.  00:A72F  FF FF FF FF FF FF FF FF 
+     134.  00:A737                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     134.  00:A737  FF FF FF FF FF FF FF FF 
+     135.  00:A73F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     135.  00:A73F  FF FF FF FF FF FF FF FF 
+     136.  00:A747                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     136.  00:A747  FF FF FF FF FF FF FF FF 
+     137.  00:A74F                      
+     138.  00:A74F                      sprite_lobo1_4:
+     139.  00:A74F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     139.  00:A74F  FF FF FF FF FF FF FF FF 
+     140.  00:A757                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     140.  00:A757  FF FF FF FF FF FF FF FF 
+     141.  00:A75F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     141.  00:A75F  FF FF FF FF FF FF FF FF 
+     142.  00:A767                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     142.  00:A767  FF FF FF FF FF FF FF FF 
+     143.  00:A76F                      	
+     144.  00:A76F                      sprite_lobo2_1:
+     145.  00:A76F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     145.  00:A76F  FF FF FF FF FF FF FF FF 
+     146.  00:A777                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     146.  00:A777  FF FF FF FF FF FF FF FF 
+     147.  00:A77F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     147.  00:A77F  FF FF FF FF FF FF FF FF 
+     148.  00:A787                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     148.  00:A787  FF FF FF FF FF FF FF FF 
+     149.  00:A78F                      
+     150.  00:A78F                      sprite_lobo2_2:
+     151.  00:A78F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     151.  00:A78F  FF FF FF FF FF FF FF FF 
+     152.  00:A797                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     152.  00:A797  FF FF FF FF FF FF FF FF 
+     153.  00:A79F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     153.  00:A79F  FF FF FF FF FF FF FF FF 
+     154.  00:A7A7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     154.  00:A7A7  FF FF FF FF FF FF FF FF 
+     155.  00:A7AF                      
+     156.  00:A7AF                      sprite_lobo2_3:
+     157.  00:A7AF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     157.  00:A7AF  FF FF FF FF FF FF FF FF 
+     158.  00:A7B7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     158.  00:A7B7  FF FF FF FF FF FF FF FF 
+     159.  00:A7BF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     159.  00:A7BF  FF FF FF FF FF FF FF FF 
+     160.  00:A7C7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     160.  00:A7C7  FF FF FF FF FF FF FF FF 
+     161.  00:A7CF                      
+     162.  00:A7CF                      sprite_lobo2_4:
+     163.  00:A7CF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     163.  00:A7CF  FF FF FF FF FF FF FF FF 
+     164.  00:A7D7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     164.  00:A7D7  FF FF FF FF FF FF FF FF 
+     165.  00:A7DF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     165.  00:A7DF  FF FF FF FF FF FF FF FF 
+     166.  00:A7E7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     166.  00:A7E7  FF FF FF FF FF FF FF FF 
+     167.  00:A7EF                      fin_sprite_lobo:
+     168.  00:A7EF                      	
+     169.  00:A7EF                      ;; ESQUELETO 4 + 4 (dos escenas derecha y dos escenas izquierda)
+     170.  00:A7EF                      sprite_esqueleto:
+     171.  00:A7EF                      sprite_esqueleto1_1:
+     172.  00:A7EF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     172.  00:A7EF  FF FF FF FF FF FF FF FF 
+     173.  00:A7F7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     173.  00:A7F7  FF FF FF FF FF FF FF FF 
+     174.  00:A7FF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     174.  00:A7FF  FF FF FF FF FF FF FF FF 
+     175.  00:A807                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     175.  00:A807  FF FF FF FF FF FF FF FF 
+     176.  00:A80F                      
+     177.  00:A80F                      sprite_esqueleto1_2:
+     178.  00:A80F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     178.  00:A80F  FF FF FF FF FF FF FF FF 
+     179.  00:A817                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     179.  00:A817  FF FF FF FF FF FF FF FF 
+     180.  00:A81F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     180.  00:A81F  FF FF FF FF FF FF FF FF 
+     181.  00:A827                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     181.  00:A827  FF FF FF FF FF FF FF FF 
+     182.  00:A82F                      
+     183.  00:A82F                      sprite_esqueleto1_3:
+     184.  00:A82F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     184.  00:A82F  FF FF FF FF FF FF FF FF 
+     185.  00:A837                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     185.  00:A837  FF FF FF FF FF FF FF FF 
+     186.  00:A83F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     186.  00:A83F  FF FF FF FF FF FF FF FF 
+     187.  00:A847                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     187.  00:A847  FF FF FF FF FF FF FF FF 
+     188.  00:A84F                      
+     189.  00:A84F                      sprite_esqueleto1_4:
+     190.  00:A84F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     190.  00:A84F  FF FF FF FF FF FF FF FF 
+     191.  00:A857                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     191.  00:A857  FF FF FF FF FF FF FF FF 
+     192.  00:A85F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     192.  00:A85F  FF FF FF FF FF FF FF FF 
+     193.  00:A867                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     193.  00:A867  FF FF FF FF FF FF FF FF 
+     194.  00:A86F                      	
+     195.  00:A86F                      sprite_esqueleto2_1:
+     196.  00:A86F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     196.  00:A86F  FF FF FF FF FF FF FF FF 
+     197.  00:A877                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     197.  00:A877  FF FF FF FF FF FF FF FF 
+     198.  00:A87F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     198.  00:A87F  FF FF FF FF FF FF FF FF 
+     199.  00:A887                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     199.  00:A887  FF FF FF FF FF FF FF FF 
+     200.  00:A88F                      
+     201.  00:A88F                      sprite_esqueleto2_2:
+     202.  00:A88F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     202.  00:A88F  FF FF FF FF FF FF FF FF 
+     203.  00:A897                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     203.  00:A897  FF FF FF FF FF FF FF FF 
+     204.  00:A89F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     204.  00:A89F  FF FF FF FF FF FF FF FF 
+     205.  00:A8A7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     205.  00:A8A7  FF FF FF FF FF FF FF FF 
+     206.  00:A8AF                      
+     207.  00:A8AF                      sprite_esqueleto2_3:
+     208.  00:A8AF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     208.  00:A8AF  FF FF FF FF FF FF FF FF 
+     209.  00:A8B7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     209.  00:A8B7  FF FF FF FF FF FF FF FF 
+     210.  00:A8BF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     210.  00:A8BF  FF FF FF FF FF FF FF FF 
+     211.  00:A8C7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     211.  00:A8C7  FF FF FF FF FF FF FF FF 
+     212.  00:A8CF                      
+     213.  00:A8CF                      sprite_esqueleto2_4:
+     214.  00:A8CF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     214.  00:A8CF  FF FF FF FF FF FF FF FF 
+     215.  00:A8D7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     215.  00:A8D7  FF FF FF FF FF FF FF FF 
+     216.  00:A8DF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     216.  00:A8DF  FF FF FF FF FF FF FF FF 
+     217.  00:A8E7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     217.  00:A8E7  FF FF FF FF FF FF FF FF 
+     218.  00:A8EF                      fin_sprite_esqueleto:
+     219.  00:A8EF                      	
+     220.  00:A8EF                      ;; ZOMBI 4 + 4
+     221.  00:A8EF                      sprite_zombi:
+     222.  00:A8EF                      sprite_zombi1_1:
+     223.  00:A8EF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     223.  00:A8EF  FF FF FF FF FF FF FF FF 
+     224.  00:A8F7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     224.  00:A8F7  FF FF FF FF FF FF FF FF 
+     225.  00:A8FF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     225.  00:A8FF  FF FF FF FF FF FF FF FF 
+     226.  00:A907                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     226.  00:A907  FF FF FF FF FF FF FF FF 
+     227.  00:A90F                      
+     228.  00:A90F                      sprite_zombi1_2:
+     229.  00:A90F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     229.  00:A90F  FF FF FF FF FF FF FF FF 
+     230.  00:A917                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     230.  00:A917  FF FF FF FF FF FF FF FF 
+     231.  00:A91F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     231.  00:A91F  FF FF FF FF FF FF FF FF 
+     232.  00:A927                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     232.  00:A927  FF FF FF FF FF FF FF FF 
+     233.  00:A92F                      
+     234.  00:A92F                      sprite_zombi1_3:
+     235.  00:A92F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     235.  00:A92F  FF FF FF FF FF FF FF FF 
+     236.  00:A937                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     236.  00:A937  FF FF FF FF FF FF FF FF 
+     237.  00:A93F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     237.  00:A93F  FF FF FF FF FF FF FF FF 
+     238.  00:A947                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     238.  00:A947  FF FF FF FF FF FF FF FF 
+     239.  00:A94F                      
+     240.  00:A94F                      sprite_zombi1_4:
+     241.  00:A94F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     241.  00:A94F  FF FF FF FF FF FF FF FF 
+     242.  00:A957                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     242.  00:A957  FF FF FF FF FF FF FF FF 
+     243.  00:A95F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     243.  00:A95F  FF FF FF FF FF FF FF FF 
+     244.  00:A967                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     244.  00:A967  FF FF FF FF FF FF FF FF 
+     245.  00:A96F                      	
+     246.  00:A96F                      sprite_zombi2_1:
+     247.  00:A96F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     247.  00:A96F  FF FF FF FF FF FF FF FF 
+     248.  00:A977                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     248.  00:A977  FF FF FF FF FF FF FF FF 
+     249.  00:A97F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     249.  00:A97F  FF FF FF FF FF FF FF FF 
+     250.  00:A987                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     250.  00:A987  FF FF FF FF FF FF FF FF 
+     251.  00:A98F                      
+     252.  00:A98F                      sprite_zombi2_2:
+     253.  00:A98F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     253.  00:A98F  FF FF FF FF FF FF FF FF 
+     254.  00:A997                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     254.  00:A997  FF FF FF FF FF FF FF FF 
+     255.  00:A99F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     255.  00:A99F  FF FF FF FF FF FF FF FF 
+     256.  00:A9A7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     256.  00:A9A7  FF FF FF FF FF FF FF FF 
+     257.  00:A9AF                      
+     258.  00:A9AF                      sprite_zombi2_3:
+     259.  00:A9AF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     259.  00:A9AF  FF FF FF FF FF FF FF FF 
+     260.  00:A9B7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     260.  00:A9B7  FF FF FF FF FF FF FF FF 
+     261.  00:A9BF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     261.  00:A9BF  FF FF FF FF FF FF FF FF 
+     262.  00:A9C7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     262.  00:A9C7  FF FF FF FF FF FF FF FF 
+     263.  00:A9CF                      
+     264.  00:A9CF                      sprite_zombi2_4:
+     265.  00:A9CF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     265.  00:A9CF  FF FF FF FF FF FF FF FF 
+     266.  00:A9D7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     266.  00:A9D7  FF FF FF FF FF FF FF FF 
+     267.  00:A9DF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     267.  00:A9DF  FF FF FF FF FF FF FF FF 
+     268.  00:A9E7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     268.  00:A9E7  FF FF FF FF FF FF FF FF 
+     269.  00:A9EF                      fin_sprite_zombi:
+     270.  00:A9EF                      	
+     271.  00:A9EF                      ;; FANTASMA 5: 2 en horizotal con 2 escenas
+     272.  00:A9EF                      sprite_fantasma:
+     273.  00:A9EF                      sprite_fantasma_1:
+     274.  00:A9EF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     274.  00:A9EF  FF FF FF FF FF FF FF FF 
+     275.  00:A9F7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     275.  00:A9F7  FF FF FF FF FF FF FF FF 
+     276.  00:A9FF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     276.  00:A9FF  FF FF FF FF FF FF FF FF 
+     277.  00:AA07                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     277.  00:AA07  FF FF FF FF FF FF FF FF 
+     278.  00:AA0F                      
+     279.  00:AA0F                      sprite_fantasma_2:
+     280.  00:AA0F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     280.  00:AA0F  FF FF FF FF FF FF FF FF 
+     281.  00:AA17                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     281.  00:AA17  FF FF FF FF FF FF FF FF 
+     282.  00:AA1F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     282.  00:AA1F  FF FF FF FF FF FF FF FF 
+     283.  00:AA27                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     283.  00:AA27  FF FF FF FF FF FF FF FF 
+     284.  00:AA2F                      
+     285.  00:AA2F                      sprite_fantasma_3:
+     286.  00:AA2F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     286.  00:AA2F  FF FF FF FF FF FF FF FF 
+     287.  00:AA37                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     287.  00:AA37  FF FF FF FF FF FF FF FF 
+     288.  00:AA3F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     288.  00:AA3F  FF FF FF FF FF FF FF FF 
+     289.  00:AA47                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     289.  00:AA47  FF FF FF FF FF FF FF FF 
+     290.  00:AA4F                      
+     291.  00:AA4F                      sprite_fantasma_4:
+     292.  00:AA4F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     292.  00:AA4F  FF FF FF FF FF FF FF FF 
+     293.  00:AA57                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     293.  00:AA57  FF FF FF FF FF FF FF FF 
+     294.  00:AA5F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     294.  00:AA5F  FF FF FF FF FF FF FF FF 
+     295.  00:AA67                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     295.  00:AA67  FF FF FF FF FF FF FF FF 
+     296.  00:AA6F                      fin_sprite_fantasma:
+     297.  00:AA6F                      
+     298.  00:AA6F                      
+     299.  00:AA6F                      ;; CABALLERO 4 + 4: es el mismo sprite... cambia el color
+     300.  00:AA6F                      sprite_caballero:
+     301.  00:AA6F                      sprite_caballero1_1:
+     302.  00:AA6F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     302.  00:AA6F  FF FF FF FF FF FF FF FF 
+     303.  00:AA77                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     303.  00:AA77  FF FF FF FF FF FF FF FF 
+     304.  00:AA7F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     304.  00:AA7F  FF FF FF FF FF FF FF FF 
+     305.  00:AA87                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     305.  00:AA87  FF FF FF FF FF FF FF FF 
+     306.  00:AA8F                      
+     307.  00:AA8F                      sprite_caballero1_2:
+     308.  00:AA8F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     308.  00:AA8F  FF FF FF FF FF FF FF FF 
+     309.  00:AA97                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     309.  00:AA97  FF FF FF FF FF FF FF FF 
+     310.  00:AA9F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     310.  00:AA9F  FF FF FF FF FF FF FF FF 
+     311.  00:AAA7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     311.  00:AAA7  FF FF FF FF FF FF FF FF 
+     312.  00:AAAF                      
+     313.  00:AAAF                      sprite_caballero1_3:
+     314.  00:AAAF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     314.  00:AAAF  FF FF FF FF FF FF FF FF 
+     315.  00:AAB7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     315.  00:AAB7  FF FF FF FF FF FF FF FF 
+     316.  00:AABF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     316.  00:AABF  FF FF FF FF FF FF FF FF 
+     317.  00:AAC7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     317.  00:AAC7  FF FF FF FF FF FF FF FF 
+     318.  00:AACF                      
+     319.  00:AACF                      sprite_caballero1_4:
+     320.  00:AACF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     320.  00:AACF  FF FF FF FF FF FF FF FF 
+     321.  00:AAD7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     321.  00:AAD7  FF FF FF FF FF FF FF FF 
+     322.  00:AADF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     322.  00:AADF  FF FF FF FF FF FF FF FF 
+     323.  00:AAE7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     323.  00:AAE7  FF FF FF FF FF FF FF FF 
+     324.  00:AAEF                      	
+     325.  00:AAEF                      sprite_caballero2_1:
+     326.  00:AAEF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     326.  00:AAEF  FF FF FF FF FF FF FF FF 
+     327.  00:AAF7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     327.  00:AAF7  FF FF FF FF FF FF FF FF 
+     328.  00:AAFF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     328.  00:AAFF  FF FF FF FF FF FF FF FF 
+     329.  00:AB07                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     329.  00:AB07  FF FF FF FF FF FF FF FF 
+     330.  00:AB0F                      
+     331.  00:AB0F                      sprite_caballero2_2:
+     332.  00:AB0F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     332.  00:AB0F  FF FF FF FF FF FF FF FF 
+     333.  00:AB17                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     333.  00:AB17  FF FF FF FF FF FF FF FF 
+     334.  00:AB1F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     334.  00:AB1F  FF FF FF FF FF FF FF FF 
+     335.  00:AB27                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     335.  00:AB27  FF FF FF FF FF FF FF FF 
+     336.  00:AB2F                      
+     337.  00:AB2F                      sprite_caballero2_3:
+     338.  00:AB2F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     338.  00:AB2F  FF FF FF FF FF FF FF FF 
+     339.  00:AB37                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     339.  00:AB37  FF FF FF FF FF FF FF FF 
+     340.  00:AB3F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     340.  00:AB3F  FF FF FF FF FF FF FF FF 
+     341.  00:AB47                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     341.  00:AB47  FF FF FF FF FF FF FF FF 
+     342.  00:AB4F                      
+     343.  00:AB4F                      sprite_caballero2_4:
+     344.  00:AB4F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     344.  00:AB4F  FF FF FF FF FF FF FF FF 
+     345.  00:AB57                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     345.  00:AB57  FF FF FF FF FF FF FF FF 
+     346.  00:AB5F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     346.  00:AB5F  FF FF FF FF FF FF FF FF 
+     347.  00:AB67                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     347.  00:AB67  FF FF FF FF FF FF FF FF 
+     348.  00:AB6F                      fin_sprite_caballero:
+     349.  00:AB6F                      	
+     350.  00:AB6F                      ;; FUEGO 4 (2 escenas 2 sprites vert)
+     351.  00:AB6F                      sprite_fuego:
+     352.  00:AB6F                      sprite_fuego_1:
+     353.  00:AB6F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     353.  00:AB6F  FF FF FF FF FF FF FF FF 
+     354.  00:AB77                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     354.  00:AB77  FF FF FF FF FF FF FF FF 
+     355.  00:AB7F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     355.  00:AB7F  FF FF FF FF FF FF FF FF 
+     356.  00:AB87                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     356.  00:AB87  FF FF FF FF FF FF FF FF 
+     357.  00:AB8F                      	
+     358.  00:AB8F                      sprite_fuego_2:
+     359.  00:AB8F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     359.  00:AB8F  FF FF FF FF FF FF FF FF 
+     360.  00:AB97                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     360.  00:AB97  FF FF FF FF FF FF FF FF 
+     361.  00:AB9F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     361.  00:AB9F  FF FF FF FF FF FF FF FF 
+     362.  00:ABA7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     362.  00:ABA7  FF FF FF FF FF FF FF FF 
+     363.  00:ABAF                      	
+     364.  00:ABAF                      sprite_fuego_3:
+     365.  00:ABAF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     365.  00:ABAF  FF FF FF FF FF FF FF FF 
+     366.  00:ABB7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     366.  00:ABB7  FF FF FF FF FF FF FF FF 
+     367.  00:ABBF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     367.  00:ABBF  FF FF FF FF FF FF FF FF 
+     368.  00:ABC7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     368.  00:ABC7  FF FF FF FF FF FF FF FF 
+     369.  00:ABCF                      	
+     370.  00:ABCF                      sprite_fuego_4:
+     371.  00:ABCF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     371.  00:ABCF  FF FF FF FF FF FF FF FF 
+     372.  00:ABD7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     372.  00:ABD7  FF FF FF FF FF FF FF FF 
+     373.  00:ABDF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     373.  00:ABDF  FF FF FF FF FF FF FF FF 
+     374.  00:ABE7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     374.  00:ABE7  FF FF FF FF FF FF FF FF 
+     375.  00:ABEF                      fin_sprite_fuego:
+     376.  00:ABEF                      	
+     377.  00:ABEF                      ;; MAGIA 4 (2 escenas 2 sprites hort)
+     378.  00:ABEF                      sprite_magia:
+     379.  00:ABEF                      sprite_magia_1:
+     380.  00:ABEF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     380.  00:ABEF  FF FF FF FF FF FF FF FF 
+     381.  00:ABF7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     381.  00:ABF7  FF FF FF FF FF FF FF FF 
+     382.  00:ABFF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     382.  00:ABFF  FF FF FF FF FF FF FF FF 
+     383.  00:AC07                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     383.  00:AC07  FF FF FF FF FF FF FF FF 
+     384.  00:AC0F                      	
+     385.  00:AC0F                      sprite_magia_2:
+     386.  00:AC0F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     386.  00:AC0F  FF FF FF FF FF FF FF FF 
+     387.  00:AC17                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     387.  00:AC17  FF FF FF FF FF FF FF FF 
+     388.  00:AC1F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     388.  00:AC1F  FF FF FF FF FF FF FF FF 
+     389.  00:AC27                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     389.  00:AC27  FF FF FF FF FF FF FF FF 
+     390.  00:AC2F                      	
+     391.  00:AC2F                      sprite_magia_3:
+     392.  00:AC2F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     392.  00:AC2F  FF FF FF FF FF FF FF FF 
+     393.  00:AC37                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     393.  00:AC37  FF FF FF FF FF FF FF FF 
+     394.  00:AC3F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     394.  00:AC3F  FF FF FF FF FF FF FF FF 
+     395.  00:AC47                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     395.  00:AC47  FF FF FF FF FF FF FF FF 
+     396.  00:AC4F                      	
+     397.  00:AC4F                      sprite_magia_4:
+     398.  00:AC4F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     398.  00:AC4F  FF FF FF FF FF FF FF FF 
+     399.  00:AC57                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     399.  00:AC57  FF FF FF FF FF FF FF FF 
+     400.  00:AC5F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     400.  00:AC5F  FF FF FF FF FF FF FF FF 
+     401.  00:AC67                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     401.  00:AC67  FF FF FF FF FF FF FF FF 
+     402.  00:AC6F                      fin_sprite_magia:
+     403.  00:AC6F                      	
+     404.  00:AC6F                      ;; JEFE LOBO (4 sprites 2 escenas 2 direcciones)
+     405.  00:AC6F                      sprite_jefelobo:
+     406.  00:AC6F                      sprite_jefelobo1_1:
+     407.  00:AC6F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     407.  00:AC6F  FF FF FF FF FF FF FF FF 
+     408.  00:AC77                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     408.  00:AC77  FF FF FF FF FF FF FF FF 
+     409.  00:AC7F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     409.  00:AC7F  FF FF FF FF FF FF FF FF 
+     410.  00:AC87                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     410.  00:AC87  FF FF FF FF FF FF FF FF 
+     411.  00:AC8F                      	
+     412.  00:AC8F                      sprite_jefelobo1_2:
+     413.  00:AC8F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     413.  00:AC8F  FF FF FF FF FF FF FF FF 
+     414.  00:AC97                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     414.  00:AC97  FF FF FF FF FF FF FF FF 
+     415.  00:AC9F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     415.  00:AC9F  FF FF FF FF FF FF FF FF 
+     416.  00:ACA7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     416.  00:ACA7  FF FF FF FF FF FF FF FF 
+     417.  00:ACAF                      	
+     418.  00:ACAF                      sprite_jefelobo1_3:
+     419.  00:ACAF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     419.  00:ACAF  FF FF FF FF FF FF FF FF 
+     420.  00:ACB7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     420.  00:ACB7  FF FF FF FF FF FF FF FF 
+     421.  00:ACBF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     421.  00:ACBF  FF FF FF FF FF FF FF FF 
+     422.  00:ACC7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     422.  00:ACC7  FF FF FF FF FF FF FF FF 
+     423.  00:ACCF                      	
+     424.  00:ACCF                      sprite_jefelobo1_4:
+     425.  00:ACCF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     425.  00:ACCF  FF FF FF FF FF FF FF FF 
+     426.  00:ACD7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     426.  00:ACD7  FF FF FF FF FF FF FF FF 
+     427.  00:ACDF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     427.  00:ACDF  FF FF FF FF FF FF FF FF 
+     428.  00:ACE7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     428.  00:ACE7  FF FF FF FF FF FF FF FF 
+     429.  00:ACEF                      	
+     430.  00:ACEF                      sprite_jefelobo1_5:
+     431.  00:ACEF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     431.  00:ACEF  FF FF FF FF FF FF FF FF 
+     432.  00:ACF7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     432.  00:ACF7  FF FF FF FF FF FF FF FF 
+     433.  00:ACFF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     433.  00:ACFF  FF FF FF FF FF FF FF FF 
+     434.  00:AD07                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     434.  00:AD07  FF FF FF FF FF FF FF FF 
+     435.  00:AD0F                      	
+     436.  00:AD0F                      sprite_jefelobo1_6:
+     437.  00:AD0F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     437.  00:AD0F  FF FF FF FF FF FF FF FF 
+     438.  00:AD17                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     438.  00:AD17  FF FF FF FF FF FF FF FF 
+     439.  00:AD1F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     439.  00:AD1F  FF FF FF FF FF FF FF FF 
+     440.  00:AD27                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     440.  00:AD27  FF FF FF FF FF FF FF FF 
+     441.  00:AD2F                      	
+     442.  00:AD2F                      sprite_jefelobo1_7:
+     443.  00:AD2F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     443.  00:AD2F  FF FF FF FF FF FF FF FF 
+     444.  00:AD37                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     444.  00:AD37  FF FF FF FF FF FF FF FF 
+     445.  00:AD3F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     445.  00:AD3F  FF FF FF FF FF FF FF FF 
+     446.  00:AD47                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     446.  00:AD47  FF FF FF FF FF FF FF FF 
+     447.  00:AD4F                      	
+     448.  00:AD4F                      sprite_jefelobo1_8:
+     449.  00:AD4F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     449.  00:AD4F  FF FF FF FF FF FF FF FF 
+     450.  00:AD57                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     450.  00:AD57  FF FF FF FF FF FF FF FF 
+     451.  00:AD5F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     451.  00:AD5F  FF FF FF FF FF FF FF FF 
+     452.  00:AD67                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
+     452.  00:AD67  FF FF FF FF FF FF FF FF 
+     453.  00:AD6F                      	
+     454.  00:AD6F                      sprite_jefelobo2_1:
+     455.  00:AD6F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     455.  00:AD6F  FF FF FF FF FF FF FF FF 
+     456.  00:AD77                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     456.  00:AD77  FF FF FF FF FF FF FF FF 
+     457.  00:AD7F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     457.  00:AD7F  FF FF FF FF FF FF FF FF 
+     458.  00:AD87                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     458.  00:AD87  FF FF FF FF FF FF FF FF 
+     459.  00:AD8F                      	
+     460.  00:AD8F                      sprite_jefelobo2_2:
+     461.  00:AD8F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     461.  00:AD8F  FF FF FF FF FF FF FF FF 
+     462.  00:AD97                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     462.  00:AD97  FF FF FF FF FF FF FF FF 
+     463.  00:AD9F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     463.  00:AD9F  FF FF FF FF FF FF FF FF 
+     464.  00:ADA7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     464.  00:ADA7  FF FF FF FF FF FF FF FF 
+     465.  00:ADAF                      	
+     466.  00:ADAF                      sprite_jefelobo2_3:
+     467.  00:ADAF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     467.  00:ADAF  FF FF FF FF FF FF FF FF 
+     468.  00:ADB7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     468.  00:ADB7  FF FF FF FF FF FF FF FF 
+     469.  00:ADBF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     469.  00:ADBF  FF FF FF FF FF FF FF FF 
+     470.  00:ADC7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     470.  00:ADC7  FF FF FF FF FF FF FF FF 
+     471.  00:ADCF                      	
+     472.  00:ADCF                      sprite_jefelobo2_4:
+     473.  00:ADCF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     473.  00:ADCF  FF FF FF FF FF FF FF FF 
+     474.  00:ADD7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     474.  00:ADD7  FF FF FF FF FF FF FF FF 
+     475.  00:ADDF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     475.  00:ADDF  FF FF FF FF FF FF FF FF 
+     476.  00:ADE7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     476.  00:ADE7  FF FF FF FF FF FF FF FF 
+     477.  00:ADEF                      	
+     478.  00:ADEF                      sprite_jefelobo2_5:
+     479.  00:ADEF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     479.  00:ADEF  FF FF FF FF FF FF FF FF 
+     480.  00:ADF7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     480.  00:ADF7  FF FF FF FF FF FF FF FF 
+     481.  00:ADFF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     481.  00:ADFF  FF FF FF FF FF FF FF FF 
+     482.  00:AE07                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     482.  00:AE07  FF FF FF FF FF FF FF FF 
+     483.  00:AE0F                      	
+     484.  00:AE0F                      sprite_jefelobo2_6:
+     485.  00:AE0F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     485.  00:AE0F  FF FF FF FF FF FF FF FF 
+     486.  00:AE17                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     486.  00:AE17  FF FF FF FF FF FF FF FF 
+     487.  00:AE1F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     487.  00:AE1F  FF FF FF FF FF FF FF FF 
+     488.  00:AE27                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     488.  00:AE27  FF FF FF FF FF FF FF FF 
+     489.  00:AE2F                      	
+     490.  00:AE2F                      sprite_jefelobo2_7:
+     491.  00:AE2F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     491.  00:AE2F  FF FF FF FF FF FF FF FF 
+     492.  00:AE37                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     492.  00:AE37  FF FF FF FF FF FF FF FF 
+     493.  00:AE3F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     493.  00:AE3F  FF FF FF FF FF FF FF FF 
+     494.  00:AE47                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     494.  00:AE47  FF FF FF FF FF FF FF FF 
+     495.  00:AE4F                      	
+     496.  00:AE4F                      sprite_jefelobo2_8:
+     497.  00:AE4F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     497.  00:AE4F  FF FF FF FF FF FF FF FF 
+     498.  00:AE57                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     498.  00:AE57  FF FF FF FF FF FF FF FF 
+     499.  00:AE5F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     499.  00:AE5F  FF FF FF FF FF FF FF FF 
+     500.  00:AE67                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     500.  00:AE67  FF FF FF FF FF FF FF FF 
+     501.  00:AE6F                      fin_sprite_jefelobo:
+     502.  00:AE6F                      	
+     503.  00:AE6F                      ;; JEFE MURCIËLAGO (4 sprites 2 escenas)
+     504.  00:AE6F                      sprite_jefemurcielago:
+     505.  00:AE6F                      sprite_jefemurcielago_1:
+     506.  00:AE6F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     506.  00:AE6F  FF FF FF FF FF FF FF FF 
+     507.  00:AE77                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     507.  00:AE77  FF FF FF FF FF FF FF FF 
+     508.  00:AE7F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     508.  00:AE7F  FF FF FF FF FF FF FF FF 
+     509.  00:AE87                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     509.  00:AE87  FF FF FF FF FF FF FF FF 
+     510.  00:AE8F                      	
+     511.  00:AE8F                      sprite_jefemurcielago_2:
+     512.  00:AE8F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     512.  00:AE8F  FF FF FF FF FF FF FF FF 
+     513.  00:AE97                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     513.  00:AE97  FF FF FF FF FF FF FF FF 
+     514.  00:AE9F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     514.  00:AE9F  FF FF FF FF FF FF FF FF 
+     515.  00:AEA7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     515.  00:AEA7  FF FF FF FF FF FF FF FF 
+     516.  00:AEAF                      	
+     517.  00:AEAF                      sprite_jefemurcielago_3:
+     518.  00:AEAF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     518.  00:AEAF  FF FF FF FF FF FF FF FF 
+     519.  00:AEB7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     519.  00:AEB7  FF FF FF FF FF FF FF FF 
+     520.  00:AEBF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     520.  00:AEBF  FF FF FF FF FF FF FF FF 
+     521.  00:AEC7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     521.  00:AEC7  FF FF FF FF FF FF FF FF 
+     522.  00:AECF                      	
+     523.  00:AECF                      sprite_jefemurcielago_4:
+     524.  00:AECF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     524.  00:AECF  FF FF FF FF FF FF FF FF 
+     525.  00:AED7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     525.  00:AED7  FF FF FF FF FF FF FF FF 
+     526.  00:AEDF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     526.  00:AEDF  FF FF FF FF FF FF FF FF 
+     527.  00:AEE7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     527.  00:AEE7  FF FF FF FF FF FF FF FF 
+     528.  00:AEEF                      	
+     529.  00:AEEF                      sprite_jefemurcielago_5:
+     530.  00:AEEF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     530.  00:AEEF  FF FF FF FF FF FF FF FF 
+     531.  00:AEF7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     531.  00:AEF7  FF FF FF FF FF FF FF FF 
+     532.  00:AEFF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     532.  00:AEFF  FF FF FF FF FF FF FF FF 
+     533.  00:AF07                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     533.  00:AF07  FF FF FF FF FF FF FF FF 
+     534.  00:AF0F                      	
+     535.  00:AF0F                      sprite_jefemurcielago_6:
+     536.  00:AF0F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     536.  00:AF0F  FF FF FF FF FF FF FF FF 
+     537.  00:AF17                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     537.  00:AF17  FF FF FF FF FF FF FF FF 
+     538.  00:AF1F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     538.  00:AF1F  FF FF FF FF FF FF FF FF 
+     539.  00:AF27                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     539.  00:AF27  FF FF FF FF FF FF FF FF 
+     540.  00:AF2F                      	
+     541.  00:AF2F                      sprite_jefemurcielago_7:
+     542.  00:AF2F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     542.  00:AF2F  FF FF FF FF FF FF FF FF 
+     543.  00:AF37                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     543.  00:AF37  FF FF FF FF FF FF FF FF 
+     544.  00:AF3F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     544.  00:AF3F  FF FF FF FF FF FF FF FF 
+     545.  00:AF47                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     545.  00:AF47  FF FF FF FF FF FF FF FF 
+     546.  00:AF4F                      	
+     547.  00:AF4F                      sprite_jefemurcielago_8:
+     548.  00:AF4F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     548.  00:AF4F  FF FF FF FF FF FF FF FF 
+     549.  00:AF57                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     549.  00:AF57  FF FF FF FF FF FF FF FF 
+     550.  00:AF5F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     550.  00:AF5F  FF FF FF FF FF FF FF FF 
+     551.  00:AF67                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     551.  00:AF67  FF FF FF FF FF FF FF FF 
+     552.  00:AF6F                      fin_sprite_jefemurcielago:
+     553.  00:AF6F                      	
+     554.  00:AF6F                      ;; JEFE FANTASMA (4 sprites 2 escenas)
+     555.  00:AF6F                      sprite_jefefantasma:
+     556.  00:AF6F                      sprite_jefefantasma_1:
+     557.  00:AF6F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     557.  00:AF6F  FF FF FF FF FF FF FF FF 
+     558.  00:AF77                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     558.  00:AF77  FF FF FF FF FF FF FF FF 
+     559.  00:AF7F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     559.  00:AF7F  FF FF FF FF FF FF FF FF 
+     560.  00:AF87                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     560.  00:AF87  FF FF FF FF FF FF FF FF 
+     561.  00:AF8F                      	
+     562.  00:AF8F                      sprite_jefefantasma_2:
+     563.  00:AF8F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     563.  00:AF8F  FF FF FF FF FF FF FF FF 
+     564.  00:AF97                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     564.  00:AF97  FF FF FF FF FF FF FF FF 
+     565.  00:AF9F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     565.  00:AF9F  FF FF FF FF FF FF FF FF 
+     566.  00:AFA7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     566.  00:AFA7  FF FF FF FF FF FF FF FF 
+     567.  00:AFAF                      	
+     568.  00:AFAF                      sprite_jefefantasma_3:
+     569.  00:AFAF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     569.  00:AFAF  FF FF FF FF FF FF FF FF 
+     570.  00:AFB7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     570.  00:AFB7  FF FF FF FF FF FF FF FF 
+     571.  00:AFBF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     571.  00:AFBF  FF FF FF FF FF FF FF FF 
+     572.  00:AFC7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     572.  00:AFC7  FF FF FF FF FF FF FF FF 
+     573.  00:AFCF                      	
+     574.  00:AFCF                      sprite_jefefantasma_4:
+     575.  00:AFCF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     575.  00:AFCF  FF FF FF FF FF FF FF FF 
+     576.  00:AFD7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     576.  00:AFD7  FF FF FF FF FF FF FF FF 
+     577.  00:AFDF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     577.  00:AFDF  FF FF FF FF FF FF FF FF 
+     578.  00:AFE7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     578.  00:AFE7  FF FF FF FF FF FF FF FF 
+     579.  00:AFEF                      	
+     580.  00:AFEF                      sprite_jefefantasma_5:
+     581.  00:AFEF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     581.  00:AFEF  FF FF FF FF FF FF FF FF 
+     582.  00:AFF7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     582.  00:AFF7  FF FF FF FF FF FF FF FF 
+     583.  00:AFFF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     583.  00:AFFF  FF FF FF FF FF FF FF FF 
+     584.  00:B007                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     584.  00:B007  FF FF FF FF FF FF FF FF 
+     585.  00:B00F                      	
+     586.  00:B00F                      sprite_jefefantasma_6:
+     587.  00:B00F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     587.  00:B00F  FF FF FF FF FF FF FF FF 
+     588.  00:B017                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     588.  00:B017  FF FF FF FF FF FF FF FF 
+     589.  00:B01F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     589.  00:B01F  FF FF FF FF FF FF FF FF 
+     590.  00:B027                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     590.  00:B027  FF FF FF FF FF FF FF FF 
+     591.  00:B02F                      	
+     592.  00:B02F                      sprite_jefefantasma_7:
+     593.  00:B02F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     593.  00:B02F  FF FF FF FF FF FF FF FF 
+     594.  00:B037                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     594.  00:B037  FF FF FF FF FF FF FF FF 
+     595.  00:B03F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     595.  00:B03F  FF FF FF FF FF FF FF FF 
+     596.  00:B047                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     596.  00:B047  FF FF FF FF FF FF FF FF 
+     597.  00:B04F                      	
+     598.  00:B04F                      sprite_jefefantasma_8:
+     599.  00:B04F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     599.  00:B04F  FF FF FF FF FF FF FF FF 
+     600.  00:B057                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     600.  00:B057  FF FF FF FF FF FF FF FF 
+     601.  00:B05F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     601.  00:B05F  FF FF FF FF FF FF FF FF 
+     602.  00:B067                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     602.  00:B067  FF FF FF FF FF FF FF FF 
+     603.  00:B06F                      fin_sprite_jefefantasma:
+     604.  00:B06F                      	
+     605.  00:B06F                      ;; JEFE ZOMBI (4 sprites 2 escenas 2 direcciones)
+     606.  00:B06F                      sprite_jefezombi:
+     607.  00:B06F                      sprite_jefezombi1_1:
+     608.  00:B06F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     608.  00:B06F  FF FF FF FF FF FF FF FF 
+     609.  00:B077                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     609.  00:B077  FF FF FF FF FF FF FF FF 
+     610.  00:B07F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     610.  00:B07F  FF FF FF FF FF FF FF FF 
+     611.  00:B087                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     611.  00:B087  FF FF FF FF FF FF FF FF 
+     612.  00:B08F                      	
+     613.  00:B08F                      sprite_jefezombi1_2:
+     614.  00:B08F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     614.  00:B08F  FF FF FF FF FF FF FF FF 
+     615.  00:B097                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     615.  00:B097  FF FF FF FF FF FF FF FF 
+     616.  00:B09F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     616.  00:B09F  FF FF FF FF FF FF FF FF 
+     617.  00:B0A7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     617.  00:B0A7  FF FF FF FF FF FF FF FF 
+     618.  00:B0AF                      	
+     619.  00:B0AF                      sprite_jefezombi1_3:
+     620.  00:B0AF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     620.  00:B0AF  FF FF FF FF FF FF FF FF 
+     621.  00:B0B7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     621.  00:B0B7  FF FF FF FF FF FF FF FF 
+     622.  00:B0BF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     622.  00:B0BF  FF FF FF FF FF FF FF FF 
+     623.  00:B0C7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     623.  00:B0C7  FF FF FF FF FF FF FF FF 
+     624.  00:B0CF                      	
+     625.  00:B0CF                      sprite_jefezombi1_4:
+     626.  00:B0CF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     626.  00:B0CF  FF FF FF FF FF FF FF FF 
+     627.  00:B0D7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     627.  00:B0D7  FF FF FF FF FF FF FF FF 
+     628.  00:B0DF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     628.  00:B0DF  FF FF FF FF FF FF FF FF 
+     629.  00:B0E7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     629.  00:B0E7  FF FF FF FF FF FF FF FF 
+     630.  00:B0EF                      	
+     631.  00:B0EF                      sprite_jefezombi1_5:
+     632.  00:B0EF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     632.  00:B0EF  FF FF FF FF FF FF FF FF 
+     633.  00:B0F7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     633.  00:B0F7  FF FF FF FF FF FF FF FF 
+     634.  00:B0FF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     634.  00:B0FF  FF FF FF FF FF FF FF FF 
+     635.  00:B107                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     635.  00:B107  FF FF FF FF FF FF FF FF 
+     636.  00:B10F                      	
+     637.  00:B10F                      sprite_jefezombi1_6:
+     638.  00:B10F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     638.  00:B10F  FF FF FF FF FF FF FF FF 
+     639.  00:B117                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     639.  00:B117  FF FF FF FF FF FF FF FF 
+     640.  00:B11F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     640.  00:B11F  FF FF FF FF FF FF FF FF 
+     641.  00:B127                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     641.  00:B127  FF FF FF FF FF FF FF FF 
+     642.  00:B12F                      	
+     643.  00:B12F                      sprite_jefezombi1_7:
+     644.  00:B12F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     644.  00:B12F  FF FF FF FF FF FF FF FF 
+     645.  00:B137                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     645.  00:B137  FF FF FF FF FF FF FF FF 
+     646.  00:B13F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     646.  00:B13F  FF FF FF FF FF FF FF FF 
+     647.  00:B147                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     647.  00:B147  FF FF FF FF FF FF FF FF 
+     648.  00:B14F                      	
+     649.  00:B14F                      sprite_jefezombi1_8:
+     650.  00:B14F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     650.  00:B14F  FF FF FF FF FF FF FF FF 
+     651.  00:B157                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     651.  00:B157  FF FF FF FF FF FF FF FF 
+     652.  00:B15F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     652.  00:B15F  FF FF FF FF FF FF FF FF 
+     653.  00:B167                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
+     653.  00:B167  FF FF FF FF FF FF FF FF 
+     654.  00:B16F                      	
+     655.  00:B16F                      sprite_jefezombi2_1:
+     656.  00:B16F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     656.  00:B16F  FF FF FF FF FF FF FF FF 
+     657.  00:B177                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     657.  00:B177  FF FF FF FF FF FF FF FF 
+     658.  00:B17F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     658.  00:B17F  FF FF FF FF FF FF FF FF 
+     659.  00:B187                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     659.  00:B187  FF FF FF FF FF FF FF FF 
+     660.  00:B18F                      	
+     661.  00:B18F                      sprite_jefezombi2_2:
+     662.  00:B18F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     662.  00:B18F  FF FF FF FF FF FF FF FF 
+     663.  00:B197                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     663.  00:B197  FF FF FF FF FF FF FF FF 
+     664.  00:B19F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     664.  00:B19F  FF FF FF FF FF FF FF FF 
+     665.  00:B1A7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     665.  00:B1A7  FF FF FF FF FF FF FF FF 
+     666.  00:B1AF                      	
+     667.  00:B1AF                      sprite_jefezombi2_3:
+     668.  00:B1AF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     668.  00:B1AF  FF FF FF FF FF FF FF FF 
+     669.  00:B1B7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     669.  00:B1B7  FF FF FF FF FF FF FF FF 
+     670.  00:B1BF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     670.  00:B1BF  FF FF FF FF FF FF FF FF 
+     671.  00:B1C7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     671.  00:B1C7  FF FF FF FF FF FF FF FF 
+     672.  00:B1CF                      	
+     673.  00:B1CF                      sprite_jefezombi2_4:
+     674.  00:B1CF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     674.  00:B1CF  FF FF FF FF FF FF FF FF 
+     675.  00:B1D7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     675.  00:B1D7  FF FF FF FF FF FF FF FF 
+     676.  00:B1DF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     676.  00:B1DF  FF FF FF FF FF FF FF FF 
+     677.  00:B1E7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     677.  00:B1E7  FF FF FF FF FF FF FF FF 
+     678.  00:B1EF                      	
+     679.  00:B1EF                      sprite_jefezombi2_5:
+     680.  00:B1EF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     680.  00:B1EF  FF FF FF FF FF FF FF FF 
+     681.  00:B1F7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     681.  00:B1F7  FF FF FF FF FF FF FF FF 
+     682.  00:B1FF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     682.  00:B1FF  FF FF FF FF FF FF FF FF 
+     683.  00:B207                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     683.  00:B207  FF FF FF FF FF FF FF FF 
+     684.  00:B20F                      	
+     685.  00:B20F                      sprite_jefezombi2_6:
+     686.  00:B20F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     686.  00:B20F  FF FF FF FF FF FF FF FF 
+     687.  00:B217                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     687.  00:B217  FF FF FF FF FF FF FF FF 
+     688.  00:B21F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     688.  00:B21F  FF FF FF FF FF FF FF FF 
+     689.  00:B227                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     689.  00:B227  FF FF FF FF FF FF FF FF 
+     690.  00:B22F                      	
+     691.  00:B22F                      sprite_jefezombi2_7:
+     692.  00:B22F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     692.  00:B22F  FF FF FF FF FF FF FF FF 
+     693.  00:B237                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     693.  00:B237  FF FF FF FF FF FF FF FF 
+     694.  00:B23F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     694.  00:B23F  FF FF FF FF FF FF FF FF 
+     695.  00:B247                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     695.  00:B247  FF FF FF FF FF FF FF FF 
+     696.  00:B24F                      	
+     697.  00:B24F                      sprite_jefezombi2_8:
+     698.  00:B24F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     698.  00:B24F  FF FF FF FF FF FF FF FF 
+     699.  00:B257                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     699.  00:B257  FF FF FF FF FF FF FF FF 
+     700.  00:B25F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     700.  00:B25F  FF FF FF FF FF FF FF FF 
+     701.  00:B267                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     701.  00:B267  FF FF FF FF FF FF FF FF 
+     702.  00:B26F                      fin_sprite_jefezombi:
+     703.  00:B26F                      	
+     704.  00:B26F                      ;; JEFE CABALLERO (4 sprites 2 escenas 2 direcciones)
+     705.  00:B26F                      sprite_jefecaballero:
+     706.  00:B26F                      sprite_jefecaballero1_1:
+     707.  00:B26F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     707.  00:B26F  FF FF FF FF FF FF FF FF 
+     708.  00:B277                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     708.  00:B277  FF FF FF FF FF FF FF FF 
+     709.  00:B27F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     709.  00:B27F  FF FF FF FF FF FF FF FF 
+     710.  00:B287                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     710.  00:B287  FF FF FF FF FF FF FF FF 
+     711.  00:B28F                      	
+     712.  00:B28F                      sprite_jefecaballero1_2:
+     713.  00:B28F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     713.  00:B28F  FF FF FF FF FF FF FF FF 
+     714.  00:B297                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     714.  00:B297  FF FF FF FF FF FF FF FF 
+     715.  00:B29F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     715.  00:B29F  FF FF FF FF FF FF FF FF 
+     716.  00:B2A7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     716.  00:B2A7  FF FF FF FF FF FF FF FF 
+     717.  00:B2AF                      	
+     718.  00:B2AF                      sprite_jefecaballero1_3:
+     719.  00:B2AF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     719.  00:B2AF  FF FF FF FF FF FF FF FF 
+     720.  00:B2B7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     720.  00:B2B7  FF FF FF FF FF FF FF FF 
+     721.  00:B2BF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     721.  00:B2BF  FF FF FF FF FF FF FF FF 
+     722.  00:B2C7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     722.  00:B2C7  FF FF FF FF FF FF FF FF 
+     723.  00:B2CF                      	
+     724.  00:B2CF                      sprite_jefecaballero1_4:
+     725.  00:B2CF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     725.  00:B2CF  FF FF FF FF FF FF FF FF 
+     726.  00:B2D7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     726.  00:B2D7  FF FF FF FF FF FF FF FF 
+     727.  00:B2DF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     727.  00:B2DF  FF FF FF FF FF FF FF FF 
+     728.  00:B2E7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     728.  00:B2E7  FF FF FF FF FF FF FF FF 
+     729.  00:B2EF                      	
+     730.  00:B2EF                      sprite_jefecaballero1_5:
+     731.  00:B2EF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     731.  00:B2EF  FF FF FF FF FF FF FF FF 
+     732.  00:B2F7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     732.  00:B2F7  FF FF FF FF FF FF FF FF 
+     733.  00:B2FF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     733.  00:B2FF  FF FF FF FF FF FF FF FF 
+     734.  00:B307                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     734.  00:B307  FF FF FF FF FF FF FF FF 
+     735.  00:B30F                      	
+     736.  00:B30F                      sprite_jefecaballero1_6:
+     737.  00:B30F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     737.  00:B30F  FF FF FF FF FF FF FF FF 
+     738.  00:B317                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     738.  00:B317  FF FF FF FF FF FF FF FF 
+     739.  00:B31F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     739.  00:B31F  FF FF FF FF FF FF FF FF 
+     740.  00:B327                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     740.  00:B327  FF FF FF FF FF FF FF FF 
+     741.  00:B32F                      	
+     742.  00:B32F                      sprite_jefecaballero1_7:
+     743.  00:B32F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     743.  00:B32F  FF FF FF FF FF FF FF FF 
+     744.  00:B337                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     744.  00:B337  FF FF FF FF FF FF FF FF 
+     745.  00:B33F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     745.  00:B33F  FF FF FF FF FF FF FF FF 
+     746.  00:B347                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     746.  00:B347  FF FF FF FF FF FF FF FF 
+     747.  00:B34F                      	
+     748.  00:B34F                      sprite_jefecaballero1_8:
+     749.  00:B34F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     749.  00:B34F  FF FF FF FF FF FF FF FF 
+     750.  00:B357                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     750.  00:B357  FF FF FF FF FF FF FF FF 
+     751.  00:B35F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     751.  00:B35F  FF FF FF FF FF FF FF FF 
+     752.  00:B367                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
+     752.  00:B367  FF FF FF FF FF FF FF FF 
+     753.  00:B36F                      	
+     754.  00:B36F                      sprite_jefecaballero2_1:
+     755.  00:B36F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     755.  00:B36F  FF FF FF FF FF FF FF FF 
+     756.  00:B377                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     756.  00:B377  FF FF FF FF FF FF FF FF 
+     757.  00:B37F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     757.  00:B37F  FF FF FF FF FF FF FF FF 
+     758.  00:B387                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     758.  00:B387  FF FF FF FF FF FF FF FF 
+     759.  00:B38F                      	
+     760.  00:B38F                      sprite_jefecaballero2_2:
+     761.  00:B38F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     761.  00:B38F  FF FF FF FF FF FF FF FF 
+     762.  00:B397                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     762.  00:B397  FF FF FF FF FF FF FF FF 
+     763.  00:B39F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     763.  00:B39F  FF FF FF FF FF FF FF FF 
+     764.  00:B3A7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     764.  00:B3A7  FF FF FF FF FF FF FF FF 
+     765.  00:B3AF                      	
+     766.  00:B3AF                      sprite_jefecaballero2_3:
+     767.  00:B3AF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     767.  00:B3AF  FF FF FF FF FF FF FF FF 
+     768.  00:B3B7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     768.  00:B3B7  FF FF FF FF FF FF FF FF 
+     769.  00:B3BF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     769.  00:B3BF  FF FF FF FF FF FF FF FF 
+     770.  00:B3C7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     770.  00:B3C7  FF FF FF FF FF FF FF FF 
+     771.  00:B3CF                      	
+     772.  00:B3CF                      sprite_jefecaballero2_4:
+     773.  00:B3CF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     773.  00:B3CF  FF FF FF FF FF FF FF FF 
+     774.  00:B3D7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     774.  00:B3D7  FF FF FF FF FF FF FF FF 
+     775.  00:B3DF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     775.  00:B3DF  FF FF FF FF FF FF FF FF 
+     776.  00:B3E7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     776.  00:B3E7  FF FF FF FF FF FF FF FF 
+     777.  00:B3EF                      	
+     778.  00:B3EF                      sprite_jefecaballero2_5:
+     779.  00:B3EF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     779.  00:B3EF  FF FF FF FF FF FF FF FF 
+     780.  00:B3F7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     780.  00:B3F7  FF FF FF FF FF FF FF FF 
+     781.  00:B3FF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     781.  00:B3FF  FF FF FF FF FF FF FF FF 
+     782.  00:B407                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     782.  00:B407  FF FF FF FF FF FF FF FF 
+     783.  00:B40F                      	
+     784.  00:B40F                      sprite_jefecaballero2_6:
+     785.  00:B40F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     785.  00:B40F  FF FF FF FF FF FF FF FF 
+     786.  00:B417                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     786.  00:B417  FF FF FF FF FF FF FF FF 
+     787.  00:B41F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     787.  00:B41F  FF FF FF FF FF FF FF FF 
+     788.  00:B427                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     788.  00:B427  FF FF FF FF FF FF FF FF 
+     789.  00:B42F                      	
+     790.  00:B42F                      sprite_jefecaballero2_7:
+     791.  00:B42F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     791.  00:B42F  FF FF FF FF FF FF FF FF 
+     792.  00:B437                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     792.  00:B437  FF FF FF FF FF FF FF FF 
+     793.  00:B43F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     793.  00:B43F  FF FF FF FF FF FF FF FF 
+     794.  00:B447                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     794.  00:B447  FF FF FF FF FF FF FF FF 
+     795.  00:B44F                      	
+     796.  00:B44F                      sprite_jefecaballero2_8:
+     797.  00:B44F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     797.  00:B44F  FF FF FF FF FF FF FF FF 
+     798.  00:B457                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     798.  00:B457  FF FF FF FF FF FF FF FF 
+     799.  00:B45F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     799.  00:B45F  FF FF FF FF FF FF FF FF 
+     800.  00:B467                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     800.  00:B467  FF FF FF FF FF FF FF FF 
+     801.  00:B46F                      fin_sprite_jefecaballero:
+     802.  00:B46F                      	
+     803.  00:B46F                      ;; JEFE BEHOLDER (4 sprites 2 escenas)
+     804.  00:B46F                      sprite_jefebeholder:
+     805.  00:B46F                      sprite_jefebeholder_1:
+     806.  00:B46F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     806.  00:B46F  FF FF FF FF FF FF FF FF 
+     807.  00:B477                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     807.  00:B477  FF FF FF FF FF FF FF FF 
+     808.  00:B47F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     808.  00:B47F  FF FF FF FF FF FF FF FF 
+     809.  00:B487                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     809.  00:B487  FF FF FF FF FF FF FF FF 
+     810.  00:B48F                      	
+     811.  00:B48F                      sprite_jefebeholder_2:
+     812.  00:B48F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     812.  00:B48F  FF FF FF FF FF FF FF FF 
+     813.  00:B497                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     813.  00:B497  FF FF FF FF FF FF FF FF 
+     814.  00:B49F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     814.  00:B49F  FF FF FF FF FF FF FF FF 
+     815.  00:B4A7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     815.  00:B4A7  FF FF FF FF FF FF FF FF 
+     816.  00:B4AF                      	
+     817.  00:B4AF                      sprite_jefebeholder_3:
+     818.  00:B4AF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     818.  00:B4AF  FF FF FF FF FF FF FF FF 
+     819.  00:B4B7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     819.  00:B4B7  FF FF FF FF FF FF FF FF 
+     820.  00:B4BF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     820.  00:B4BF  FF FF FF FF FF FF FF FF 
+     821.  00:B4C7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     821.  00:B4C7  FF FF FF FF FF FF FF FF 
+     822.  00:B4CF                      	
+     823.  00:B4CF                      sprite_jefebeholder_4:
+     824.  00:B4CF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     824.  00:B4CF  FF FF FF FF FF FF FF FF 
+     825.  00:B4D7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     825.  00:B4D7  FF FF FF FF FF FF FF FF 
+     826.  00:B4DF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     826.  00:B4DF  FF FF FF FF FF FF FF FF 
+     827.  00:B4E7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     827.  00:B4E7  FF FF FF FF FF FF FF FF 
+     828.  00:B4EF                      	
+     829.  00:B4EF                      sprite_jefebeholder_5:
+     830.  00:B4EF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     830.  00:B4EF  FF FF FF FF FF FF FF FF 
+     831.  00:B4F7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     831.  00:B4F7  FF FF FF FF FF FF FF FF 
+     832.  00:B4FF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     832.  00:B4FF  FF FF FF FF FF FF FF FF 
+     833.  00:B507                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     833.  00:B507  FF FF FF FF FF FF FF FF 
+     834.  00:B50F                      	
+     835.  00:B50F                      sprite_jefebeholder_6:
+     836.  00:B50F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     836.  00:B50F  FF FF FF FF FF FF FF FF 
+     837.  00:B517                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     837.  00:B517  FF FF FF FF FF FF FF FF 
+     838.  00:B51F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     838.  00:B51F  FF FF FF FF FF FF FF FF 
+     839.  00:B527                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     839.  00:B527  FF FF FF FF FF FF FF FF 
+     840.  00:B52F                      	
+     841.  00:B52F                      sprite_jefebeholder_7:
+     842.  00:B52F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     842.  00:B52F  FF FF FF FF FF FF FF FF 
+     843.  00:B537                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     843.  00:B537  FF FF FF FF FF FF FF FF 
+     844.  00:B53F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     844.  00:B53F  FF FF FF FF FF FF FF FF 
+     845.  00:B547                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     845.  00:B547  FF FF FF FF FF FF FF FF 
+     846.  00:B54F                      	
+     847.  00:B54F                      sprite_jefebeholder_8:
+     848.  00:B54F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     848.  00:B54F  FF FF FF FF FF FF FF FF 
+     849.  00:B557                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     849.  00:B557  FF FF FF FF FF FF FF FF 
+     850.  00:B55F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     850.  00:B55F  FF FF FF FF FF FF FF FF 
+     851.  00:B567                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     851.  00:B567  FF FF FF FF FF FF FF FF 
+     852.  00:B56F                      fin_sprite_jefebeholder:
+     853.  00:B56F                      
+     854.  00:B56F                      ;; MANOIZQ 4 (2 escenas 2 sprites vert)
+     855.  00:B56F                      sprite_manoizquierda:
+     856.  00:B56F                      sprite_manoizquierda_1:
+     857.  00:B56F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     857.  00:B56F  FF FF FF FF FF FF FF FF 
+     858.  00:B577                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     858.  00:B577  FF FF FF FF FF FF FF FF 
+     859.  00:B57F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     859.  00:B57F  FF FF FF FF FF FF FF FF 
+     860.  00:B587                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     860.  00:B587  FF FF FF FF FF FF FF FF 
+     861.  00:B58F                      	
+     862.  00:B58F                      sprite_manoizquierda_2:
+     863.  00:B58F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     863.  00:B58F  FF FF FF FF FF FF FF FF 
+     864.  00:B597                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     864.  00:B597  FF FF FF FF FF FF FF FF 
+     865.  00:B59F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     865.  00:B59F  FF FF FF FF FF FF FF FF 
+     866.  00:B5A7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     866.  00:B5A7  FF FF FF FF FF FF FF FF 
+     867.  00:B5AF                      	
+     868.  00:B5AF                      sprite_manoizquierda_3:
+     869.  00:B5AF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     869.  00:B5AF  FF FF FF FF FF FF FF FF 
+     870.  00:B5B7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     870.  00:B5B7  FF FF FF FF FF FF FF FF 
+     871.  00:B5BF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     871.  00:B5BF  FF FF FF FF FF FF FF FF 
+     872.  00:B5C7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     872.  00:B5C7  FF FF FF FF FF FF FF FF 
+     873.  00:B5CF                      	
+     874.  00:B5CF                      sprite_manoizquierda_4:
+     875.  00:B5CF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     875.  00:B5CF  FF FF FF FF FF FF FF FF 
+     876.  00:B5D7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     876.  00:B5D7  FF FF FF FF FF FF FF FF 
+     877.  00:B5DF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     877.  00:B5DF  FF FF FF FF FF FF FF FF 
+     878.  00:B5E7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     878.  00:B5E7  FF FF FF FF FF FF FF FF 
+     879.  00:B5EF                      fin_sprite_manoizquierda:
+     880.  00:B5EF                      	
+     881.  00:B5EF                      ;; MANODER 4 (2 escenas 2 sprites vert)
+     882.  00:B5EF                      sprite_manoderecha:
+     883.  00:B5EF                      sprite_manoderecha_1:
+     884.  00:B5EF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     884.  00:B5EF  FF FF FF FF FF FF FF FF 
+     885.  00:B5F7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     885.  00:B5F7  FF FF FF FF FF FF FF FF 
+     886.  00:B5FF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     886.  00:B5FF  FF FF FF FF FF FF FF FF 
+     887.  00:B607                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     887.  00:B607  FF FF FF FF FF FF FF FF 
+     888.  00:B60F                      	
+     889.  00:B60F                      sprite_manoderecha_2:
+     890.  00:B60F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     890.  00:B60F  FF FF FF FF FF FF FF FF 
+     891.  00:B617                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     891.  00:B617  FF FF FF FF FF FF FF FF 
+     892.  00:B61F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     892.  00:B61F  FF FF FF FF FF FF FF FF 
+     893.  00:B627                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     893.  00:B627  FF FF FF FF FF FF FF FF 
+     894.  00:B62F                      	
+     895.  00:B62F                      sprite_manoderecha_3:
+     896.  00:B62F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     896.  00:B62F  FF FF FF FF FF FF FF FF 
+     897.  00:B637                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     897.  00:B637  FF FF FF FF FF FF FF FF 
+     898.  00:B63F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     898.  00:B63F  FF FF FF FF FF FF FF FF 
+     899.  00:B647                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     899.  00:B647  FF FF FF FF FF FF FF FF 
+     900.  00:B64F                      	
+     901.  00:B64F                      sprite_manoderecha_4:
+     902.  00:B64F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     902.  00:B64F  FF FF FF FF FF FF FF FF 
+     903.  00:B657                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     903.  00:B657  FF FF FF FF FF FF FF FF 
+     904.  00:B65F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     904.  00:B65F  FF FF FF FF FF FF FF FF 
+     905.  00:B667                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     905.  00:B667  FF FF FF FF FF FF FF FF 
+     906.  00:B66F                      fin_sprite_manoderecha:
+     907.  00:B66F                      	
+     908.  00:B66F                      ;; CONDE 4 (2 escenas 2 sprites vert)
+     909.  00:B66F                      sprite_conde:
+     910.  00:B66F                      sprite_conde_1:
+     911.  00:B66F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     911.  00:B66F  FF FF FF FF FF FF FF FF 
+     912.  00:B677                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     912.  00:B677  FF FF FF FF FF FF FF FF 
+     913.  00:B67F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     913.  00:B67F  FF FF FF FF FF FF FF FF 
+     914.  00:B687                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     914.  00:B687  FF FF FF FF FF FF FF FF 
+     915.  00:B68F                      	
+     916.  00:B68F                      sprite_conde_2:
+     917.  00:B68F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     917.  00:B68F  FF FF FF FF FF FF FF FF 
+     918.  00:B697                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     918.  00:B697  FF FF FF FF FF FF FF FF 
+     919.  00:B69F                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     919.  00:B69F  FF FF FF FF FF FF FF FF 
+     920.  00:B6A7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     920.  00:B6A7  FF FF FF FF FF FF FF FF 
+     921.  00:B6AF                      	
+     922.  00:B6AF                      sprite_conde_3:
+     923.  00:B6AF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     923.  00:B6AF  FF FF FF FF FF FF FF FF 
+     924.  00:B6B7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     924.  00:B6B7  FF FF FF FF FF FF FF FF 
+     925.  00:B6BF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     925.  00:B6BF  FF FF FF FF FF FF FF FF 
+     926.  00:B6C7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     926.  00:B6C7  FF FF FF FF FF FF FF FF 
+     927.  00:B6CF                      	
+     928.  00:B6CF                      sprite_conde_4:
+     929.  00:B6CF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     929.  00:B6CF  FF FF FF FF FF FF FF FF 
+     930.  00:B6D7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     930.  00:B6D7  FF FF FF FF FF FF FF FF 
+     931.  00:B6DF                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     931.  00:B6DF  FF FF FF FF FF FF FF FF 
+     932.  00:B6E7                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+     932.  00:B6E7  FF FF FF FF FF FF FF FF 
+     933.  00:B6EF                      fin_sprite_conde:
+     934.  00:B6EF                      
+     935.  00:B6EF                      
      936.  00:B6EF                      
-     937.  00:B6EF                      carga_patrones_cienpies:
-     938.  00:B6EF  21 AF A5            		LD			HL, sprite_cienpies
-     939.  00:B6F2  11 C0 38            		LD			DE, #38C0
-     940.  00:B6F5  01 40 00            		LD			BC, fin_sprite_cienpies - sprite_cienpies
-     941.  00:B6F8  C3 59 00            		JP			LDIRMV
-     942.  00:B6FB                      fin_carga_patrones_cienpies:
-     943.  00:B6FB                      
-     944.  00:B6FB                      carga_patrones_serpiente:
-     945.  00:B6FB  21 EF A5            		LD			HL, sprite_serpiente
-     946.  00:B6FE  11 00 39            		LD			DE, #3900
-     947.  00:B701  01 80 00            		LD			BC, fin_sprite_serpiente - sprite_serpiente
-     948.  00:B704  C3 59 00            		JP			LDIRMV
-     949.  00:B707                      fin_carga_patrones_serpiete:
-     950.  00:B707                      
-     951.  00:B707                      carga_patrones_arana:
-     952.  00:B707  21 6F A6            		LD			HL, sprite_arana
-     953.  00:B70A  11 80 39            		LD			DE, #3980
-     954.  00:B70D  01 40 00            		LD			BC, fin_sprite_arana - sprite_arana
-     955.  00:B710  C3 59 00            		JP			LDIRMV
-     956.  00:B713                      fin_carga_patrones_arana:
-     957.  00:B713                      
-     958.  00:B713                      carga_patrones_murcielago:
-     959.  00:B713  21 AF A6            		LD			HL, sprite_murcielago
-     960.  00:B716  11 C0 39            		LD			DE, #39C0
-     961.  00:B719  01 40 00            		LD			BC, fin_sprite_murcielago - sprite_murcielago
-     962.  00:B71C  C3 59 00            		JP			LDIRMV
-     963.  00:B71F                      fin_carga_patrones_murcielago:
-     964.  00:B71F                      
-     965.  00:B71F                      carga_patrones_lobo:
-     966.  00:B71F  21 EF A6            		LD			HL, sprite_lobo
-     967.  00:B722  11 00 3A            		LD			DE, #3A00
-     968.  00:B725  01 00 01            		LD			BC, fin_sprite_lobo - sprite_lobo
-     969.  00:B728  C3 59 00            		JP			LDIRMV
-     970.  00:B72B                      fin_carga_patrones_lobo:
-     971.  00:B72B                      
-     972.  00:B72B                      carga_patrones_lobo_fase5:
-     973.  00:B72B  21 EF A6            		LD			HL, sprite_lobo
-     974.  00:B72E  11 00 3B            		LD			DE, #3B00
-     975.  00:B731  01 00 01            		LD			BC, fin_sprite_lobo - sprite_lobo
-     976.  00:B734  C3 59 00            		JP			LDIRMV
-     977.  00:B737                      fin_carga_patrones_lobo_fase5:
-     978.  00:B737                      
-     979.  00:B737                      carga_patrones_esqueleto:
-     980.  00:B737  21 EF A7            		LD			HL, sprite_esqueleto
-     981.  00:B73A  11 00 3B            		LD			DE, #3B00
-     982.  00:B73D  01 00 01            		LD			BC, fin_sprite_esqueleto - sprite_esqueleto
-     983.  00:B740  C3 59 00            		JP			LDIRMV
-     984.  00:B743                      fin_carga_patrones_esqueleto:
-     985.  00:B743                      
-     986.  00:B743                      carga_patrones_zombi:
-     987.  00:B743  21 EF A8            		LD			HL, sprite_zombi
-     988.  00:B746  11 00 3C            		LD			DE, #3C00
-     989.  00:B749  01 00 01            		LD			BC, fin_sprite_zombi - sprite_zombi
-     990.  00:B74C  C3 59 00            		JP			LDIRMV
-     991.  00:B74F                      fin_carga_patrones_zombi:
-     992.  00:B74F                      
-     993.  00:B74F                      carga_patrones_fantasma:
-     994.  00:B74F  21 EF A9            		LD			HL, sprite_fantasma
-     995.  00:B752  11 00 3D            		LD			DE, #3D00
-     996.  00:B755  01 80 00            		LD			BC, fin_sprite_fantasma - sprite_fantasma
-     997.  00:B758  C3 59 00            		JP			LDIRMV
-     998.  00:B75B                      fin_carga_patrones_fantasma:
-     999.  00:B75B                      
-    1000.  00:B75B                      carga_patrones_caballero:
-    1001.  00:B75B  21 6F AA            		LD			HL, sprite_caballero
-    1002.  00:B75E  11 00 3A            		LD			DE, #3A00
-    1003.  00:B761  01 00 01            		LD			BC, fin_sprite_caballero - sprite_caballero
-    1004.  00:B764  C3 59 00            		JP			LDIRMV
-    1005.  00:B767                      fin_carga_patrones_caballero:
-    1006.  00:B767                      
-    1007.  00:B767                      carga_patrones_fuego:
-    1008.  00:B767  21 6F AB            		LD			HL, sprite_fuego
-    1009.  00:B76A  11 80 3D            		LD			DE, #3D80
-    1010.  00:B76D  01 80 00            		LD			BC, fin_sprite_fuego - sprite_fuego
-    1011.  00:B770  C3 59 00            		JP			LDIRMV
-    1012.  00:B773                      fin_carga_patrones_fuego:
-    1013.  00:B773                      
-    1014.  00:B773                      carga_patrones_magia:
-    1015.  00:B773  21 EF AB            		LD			HL, sprite_magia
-    1016.  00:B776  11 00 39            		LD			DE, #3900
-    1017.  00:B779  01 80 00            		LD			BC, fin_sprite_magia - sprite_magia
-    1018.  00:B77C  C3 59 00            		JP			LDIRMV
-    1019.  00:B77F                      fin_carga_patrones_magia:
-    1020.  00:B77F                      
-    1021.  00:B77F                      carga_patrones_jefelobo:
-    1022.  00:B77F  21 6F AC            		LD			HL, sprite_jefelobo
-    1023.  00:B782  11 00 3E            		LD			DE, #3E00
-    1024.  00:B785  01 00 02            		LD			BC, fin_sprite_jefelobo - sprite_jefelobo
-    1025.  00:B788  C3 59 00            		JP			LDIRMV
-    1026.  00:B78B                      fin_carga_patrones_jefelobo:
-    1027.  00:B78B                      
-    1028.  00:B78B                      carga_patrones_jefemurcielago:
-    1029.  00:B78B  21 6F AE            		LD			HL, sprite_jefemurcielago
-    1030.  00:B78E  11 00 3F            		LD			DE, #3F00
-    1031.  00:B791  01 00 01            		LD			BC, fin_sprite_jefemurcielago - sprite_jefemurcielago
-    1032.  00:B794  C3 59 00            		JP			LDIRMV
-    1033.  00:B797                      fin_carga_patrones_jefemurcielago:
-    1034.  00:B797                      
-    1035.  00:B797                      carga_patrones_jefefantasma:
-    1036.  00:B797  21 6F AF            		LD			HL, sprite_jefefantasma
-    1037.  00:B79A  11 00 3F            		LD			DE, #3F00
-    1038.  00:B79D  01 00 01            		LD			BC, fin_sprite_jefefantasma - sprite_jefefantasma
-    1039.  00:B7A0  C3 59 00            		JP			LDIRMV
-    1040.  00:B7A3                      fin_carga_patrones_jefefantasma:
-    1041.  00:B7A3                      
-    1042.  00:B7A3                      carga_patrones_jefezombi:
-    1043.  00:B7A3  21 6F B0            		LD			HL, sprite_jefezombi
-    1044.  00:B7A6  11 00 3E            		LD			DE, #3E00
-    1045.  00:B7A9  01 00 02            		LD			BC, fin_sprite_jefezombi - sprite_jefezombi
-    1046.  00:B7AC  C3 59 00            		JP			LDIRMV
-    1047.  00:B7AF                      fin_carga_patrones_jefezombi:
-    1048.  00:B7AF                      
-    1049.  00:B7AF                      carga_patrones_jefecaballero:
-    1050.  00:B7AF  21 6F B2            		LD			HL, sprite_jefecaballero
-    1051.  00:B7B2  11 00 3E            		LD			DE, #3E00
-    1052.  00:B7B5  01 00 02            		LD			BC, fin_sprite_jefecaballero - sprite_jefecaballero
-    1053.  00:B7B8  C3 59 00            		JP			LDIRMV
-    1054.  00:B7BB                      fin_carga_patrones_jefecaballero:
-    1055.  00:B7BB                      
-    1056.  00:B7BB                      carga_patrones_jefebeholder:
-    1057.  00:B7BB  21 6F B4            		LD			HL, sprite_jefebeholder
-    1058.  00:B7BE  11 00 3F            		LD			DE, #3F00
-    1059.  00:B7C1  01 00 01            		LD			BC, fin_sprite_jefebeholder - sprite_jefebeholder
-    1060.  00:B7C4  C3 59 00            		JP			LDIRMV
-    1061.  00:B7C7                      fin_carga_patrones_jefebeholder:
-    1062.  00:B7C7                      
-    1063.  00:B7C7                      carga_patrones_condecompleto:
-    1064.  00:B7C7  21 6F B5            		LD			HL, sprite_manoizquierda
-    1065.  00:B7CA  11 00 3F            		LD			DE, #3F00
-    1066.  00:B7CD  01 80 01            		LD			BC, fin_sprite_conde - sprite_manoizquierda
-    1067.  00:B7D0  C3 59 00            		JP			LDIRMV
-    1068.  00:B7D3                      fin_carga_patrones_condecompleto
-    1069.  00:B7D3                      
-    1070.  00:B7D3                      carga_patrones_fase0:
-    1071.  00:B7D3  CD EF B6            		CALL		carga_patrones_cienpies
-    1072.  00:B7D6  CD FB B6            		CALL		carga_patrones_serpiente
-    1073.  00:B7D9  CD 07 B7            		CALL		carga_patrones_arana
-    1074.  00:B7DC  CD 13 B7            		CALL		carga_patrones_murcielago
-    1075.  00:B7DF  CD 1F B7            		CALL		carga_patrones_lobo
-    1076.  00:B7E2  C3 7F B7            		JP			carga_patrones_jefelobo
-    1077.  00:B7E5                      fin_carga_patrones_fase0:
-    1078.  00:B7E5                      
-    1079.  00:B7E5                      carga_patrones_fase1:
-    1080.  00:B7E5  CD FB B6            		CALL		carga_patrones_serpiente
-    1081.  00:B7E8  CD 07 B7            		CALL		carga_patrones_arana
-    1082.  00:B7EB  CD 13 B7            		CALL		carga_patrones_murcielago
-    1083.  00:B7EE  CD 1F B7            		CALL		carga_patrones_lobo
-    1084.  00:B7F1  CD 37 B7            		CALL		carga_patrones_esqueleto
-    1085.  00:B7F4  CD 43 B7            		CALL		carga_patrones_zombi
-    1086.  00:B7F7  C3 8B B7            		JP			carga_patrones_jefemurcielago
-    1087.  00:B7FA                      fin_carga_patrones_fase1:
-    1088.  00:B7FA                      
-    1089.  00:B7FA                      carga_patrones_fase2:
-    1090.  00:B7FA  CD FB B6            		CALL		carga_patrones_serpiente
-    1091.  00:B7FD  CD 13 B7            		CALL		carga_patrones_murcielago
-    1092.  00:B800  CD 1F B7            		CALL		carga_patrones_lobo
-    1093.  00:B803  CD 37 B7            		CALL		carga_patrones_esqueleto
-    1094.  00:B806  CD 43 B7            		CALL		carga_patrones_zombi
-    1095.  00:B809  CD 4F B7            		CALL		carga_patrones_fantasma
-    1096.  00:B80C  C3 97 B7            		JP			carga_patrones_jefefantasma
-    1097.  00:B80F                      fin_carga_patrones_fase2:
-    1098.  00:B80F                      
-    1099.  00:B80F                      carga_patrones_fase3:
-    1100.  00:B80F  CD FB B6            		CALL		carga_patrones_serpiente
-    1101.  00:B812  CD 07 B7            		CALL		carga_patrones_arana
-    1102.  00:B815  CD 5B B7            		CALL		carga_patrones_caballero
-    1103.  00:B818  CD 37 B7            		CALL		carga_patrones_esqueleto
-    1104.  00:B81B  CD 43 B7            		CALL		carga_patrones_zombi
-    1105.  00:B81E  CD 4F B7            		CALL		carga_patrones_fantasma
-    1106.  00:B821  C3 A3 B7            		JP			carga_patrones_jefezombi
-    1107.  00:B824                      fin_carga_patrones_fase3:
-    1108.  00:B824                      
-    1109.  00:B824                      carga_patrones_fase4:
-    1110.  00:B824  CD 13 B7            		CALL		carga_patrones_murcielago
-    1111.  00:B827  CD 5B B7            		CALL		carga_patrones_caballero 		;(gris)
-    1112.  00:B82A  CD 37 B7            		CALL		carga_patrones_esqueleto
-    1113.  00:B82D  CD 43 B7            		CALL		carga_patrones_zombi
-    1114.  00:B830  CD 4F B7            		CALL		carga_patrones_fantasma
-    1115.  00:B833  C3 AF B7            		JP			carga_patrones_jefecaballero
-    1116.  00:B836                      fin_carga_patrones_fase4:
-    1117.  00:B836                      
-    1118.  00:B836                      carga_patrones_fase5:
-    1119.  00:B836  CD 73 B7            		CALL		carga_patrones_magia
-    1120.  00:B839  CD 5B B7            		CALL		carga_patrones_caballero 		;(negro)
-    1121.  00:B83C  CD 2B B7            		CALL		carga_patrones_lobo_fase5
-    1122.  00:B83F  CD 43 B7            		CALL		carga_patrones_zombi
-    1123.  00:B842  CD 4F B7            		CALL		carga_patrones_fantasma
-    1124.  00:B845  CD 67 B7            		CALL		carga_patrones_fuego
-    1125.  00:B848  C3 BB B7            		JP			carga_patrones_jefebeholder
-    1126.  00:B84B                      fin_carga_patrones_fase5:
-    1127.  00:B84B                      
-    1128.  00:B84B                      carga_patrones_fase6:
-    1129.  00:B84B  CD 73 B7            		CALL		carga_patrones_magia
-    1130.  00:B84E  CD 13 B7            		CALL		carga_patrones_murcielago
-    1131.  00:B851  CD 5B B7            		CALL		carga_patrones_caballero 		;(negro)
-    1132.  00:B854  CD 4F B7            		CALL		carga_patrones_fantasma
-    1133.  00:B857  CD 67 B7            		CALL		carga_patrones_fuego
-    1134.  00:B85A  C3 C7 B7            		JP			carga_patrones_condecompleto
-    1135.  00:B85D                      fin_carga_patrones_fase6:
+     937.  00:B6EF                      ;;=====================================================
+     938.  00:B6EF                      ;;CARGA PATRONES SPRITES
+     939.  00:B6EF                      ;;=====================================================	
+     940.  00:B6EF                      
+     941.  00:B6EF                      carga_patrones_cienpies:
+     942.  00:B6EF  21 AF A5            		LD			HL, sprite_cienpies
+     943.  00:B6F2  11 C0 38            		LD			DE, #38C0
+     944.  00:B6F5  01 40 00            		LD			BC, fin_sprite_cienpies - sprite_cienpies
+     945.  00:B6F8  C3 59 00            		JP			LDIRMV
+     946.  00:B6FB                      fin_carga_patrones_cienpies:
+     947.  00:B6FB                      
+     948.  00:B6FB                      carga_patrones_serpiente:
+     949.  00:B6FB  21 EF A5            		LD			HL, sprite_serpiente
+     950.  00:B6FE  11 00 39            		LD			DE, #3900
+     951.  00:B701  01 80 00            		LD			BC, fin_sprite_serpiente - sprite_serpiente
+     952.  00:B704  C3 59 00            		JP			LDIRMV
+     953.  00:B707                      fin_carga_patrones_serpiete:
+     954.  00:B707                      
+     955.  00:B707                      carga_patrones_arana:
+     956.  00:B707  21 6F A6            		LD			HL, sprite_arana
+     957.  00:B70A  11 80 39            		LD			DE, #3980
+     958.  00:B70D  01 40 00            		LD			BC, fin_sprite_arana - sprite_arana
+     959.  00:B710  C3 59 00            		JP			LDIRMV
+     960.  00:B713                      fin_carga_patrones_arana:
+     961.  00:B713                      
+     962.  00:B713                      carga_patrones_murcielago:
+     963.  00:B713  21 AF A6            		LD			HL, sprite_murcielago
+     964.  00:B716  11 C0 39            		LD			DE, #39C0
+     965.  00:B719  01 40 00            		LD			BC, fin_sprite_murcielago - sprite_murcielago
+     966.  00:B71C  C3 59 00            		JP			LDIRMV
+     967.  00:B71F                      fin_carga_patrones_murcielago:
+     968.  00:B71F                      
+     969.  00:B71F                      carga_patrones_lobo:
+     970.  00:B71F  21 EF A6            		LD			HL, sprite_lobo
+     971.  00:B722  11 00 3A            		LD			DE, #3A00
+     972.  00:B725  01 00 01            		LD			BC, fin_sprite_lobo - sprite_lobo
+     973.  00:B728  C3 59 00            		JP			LDIRMV
+     974.  00:B72B                      fin_carga_patrones_lobo:
+     975.  00:B72B                      
+     976.  00:B72B                      carga_patrones_lobo_fase5:
+     977.  00:B72B  21 EF A6            		LD			HL, sprite_lobo
+     978.  00:B72E  11 00 3B            		LD			DE, #3B00
+     979.  00:B731  01 00 01            		LD			BC, fin_sprite_lobo - sprite_lobo
+     980.  00:B734  C3 59 00            		JP			LDIRMV
+     981.  00:B737                      fin_carga_patrones_lobo_fase5:
+     982.  00:B737                      
+     983.  00:B737                      carga_patrones_esqueleto:
+     984.  00:B737  21 EF A7            		LD			HL, sprite_esqueleto
+     985.  00:B73A  11 00 3B            		LD			DE, #3B00
+     986.  00:B73D  01 00 01            		LD			BC, fin_sprite_esqueleto - sprite_esqueleto
+     987.  00:B740  C3 59 00            		JP			LDIRMV
+     988.  00:B743                      fin_carga_patrones_esqueleto:
+     989.  00:B743                      
+     990.  00:B743                      carga_patrones_zombi:
+     991.  00:B743  21 EF A8            		LD			HL, sprite_zombi
+     992.  00:B746  11 00 3C            		LD			DE, #3C00
+     993.  00:B749  01 00 01            		LD			BC, fin_sprite_zombi - sprite_zombi
+     994.  00:B74C  C3 59 00            		JP			LDIRMV
+     995.  00:B74F                      fin_carga_patrones_zombi:
+     996.  00:B74F                      
+     997.  00:B74F                      carga_patrones_fantasma:
+     998.  00:B74F  21 EF A9            		LD			HL, sprite_fantasma
+     999.  00:B752  11 00 3D            		LD			DE, #3D00
+    1000.  00:B755  01 80 00            		LD			BC, fin_sprite_fantasma - sprite_fantasma
+    1001.  00:B758  C3 59 00            		JP			LDIRMV
+    1002.  00:B75B                      fin_carga_patrones_fantasma:
+    1003.  00:B75B                      
+    1004.  00:B75B                      carga_patrones_caballero:
+    1005.  00:B75B  21 6F AA            		LD			HL, sprite_caballero
+    1006.  00:B75E  11 00 3A            		LD			DE, #3A00
+    1007.  00:B761  01 00 01            		LD			BC, fin_sprite_caballero - sprite_caballero
+    1008.  00:B764  C3 59 00            		JP			LDIRMV
+    1009.  00:B767                      fin_carga_patrones_caballero:
+    1010.  00:B767                      
+    1011.  00:B767                      carga_patrones_fuego:
+    1012.  00:B767  21 6F AB            		LD			HL, sprite_fuego
+    1013.  00:B76A  11 80 3D            		LD			DE, #3D80
+    1014.  00:B76D  01 80 00            		LD			BC, fin_sprite_fuego - sprite_fuego
+    1015.  00:B770  C3 59 00            		JP			LDIRMV
+    1016.  00:B773                      fin_carga_patrones_fuego:
+    1017.  00:B773                      
+    1018.  00:B773                      carga_patrones_magia:
+    1019.  00:B773  21 EF AB            		LD			HL, sprite_magia
+    1020.  00:B776  11 00 39            		LD			DE, #3900
+    1021.  00:B779  01 80 00            		LD			BC, fin_sprite_magia - sprite_magia
+    1022.  00:B77C  C3 59 00            		JP			LDIRMV
+    1023.  00:B77F                      fin_carga_patrones_magia:
+    1024.  00:B77F                      
+    1025.  00:B77F                      carga_patrones_jefelobo:
+    1026.  00:B77F  21 6F AC            		LD			HL, sprite_jefelobo
+    1027.  00:B782  11 00 3E            		LD			DE, #3E00
+    1028.  00:B785  01 00 02            		LD			BC, fin_sprite_jefelobo - sprite_jefelobo
+    1029.  00:B788  C3 59 00            		JP			LDIRMV
+    1030.  00:B78B                      fin_carga_patrones_jefelobo:
+    1031.  00:B78B                      
+    1032.  00:B78B                      carga_patrones_jefemurcielago:
+    1033.  00:B78B  21 6F AE            		LD			HL, sprite_jefemurcielago
+    1034.  00:B78E  11 00 3F            		LD			DE, #3F00
+    1035.  00:B791  01 00 01            		LD			BC, fin_sprite_jefemurcielago - sprite_jefemurcielago
+    1036.  00:B794  C3 59 00            		JP			LDIRMV
+    1037.  00:B797                      fin_carga_patrones_jefemurcielago:
+    1038.  00:B797                      
+    1039.  00:B797                      carga_patrones_jefefantasma:
+    1040.  00:B797  21 6F AF            		LD			HL, sprite_jefefantasma
+    1041.  00:B79A  11 00 3F            		LD			DE, #3F00
+    1042.  00:B79D  01 00 01            		LD			BC, fin_sprite_jefefantasma - sprite_jefefantasma
+    1043.  00:B7A0  C3 59 00            		JP			LDIRMV
+    1044.  00:B7A3                      fin_carga_patrones_jefefantasma:
+    1045.  00:B7A3                      
+    1046.  00:B7A3                      carga_patrones_jefezombi:
+    1047.  00:B7A3  21 6F B0            		LD			HL, sprite_jefezombi
+    1048.  00:B7A6  11 00 3E            		LD			DE, #3E00
+    1049.  00:B7A9  01 00 02            		LD			BC, fin_sprite_jefezombi - sprite_jefezombi
+    1050.  00:B7AC  C3 59 00            		JP			LDIRMV
+    1051.  00:B7AF                      fin_carga_patrones_jefezombi:
+    1052.  00:B7AF                      
+    1053.  00:B7AF                      carga_patrones_jefecaballero:
+    1054.  00:B7AF  21 6F B2            		LD			HL, sprite_jefecaballero
+    1055.  00:B7B2  11 00 3E            		LD			DE, #3E00
+    1056.  00:B7B5  01 00 02            		LD			BC, fin_sprite_jefecaballero - sprite_jefecaballero
+    1057.  00:B7B8  C3 59 00            		JP			LDIRMV
+    1058.  00:B7BB                      fin_carga_patrones_jefecaballero:
+    1059.  00:B7BB                      
+    1060.  00:B7BB                      carga_patrones_jefebeholder:
+    1061.  00:B7BB  21 6F B4            		LD			HL, sprite_jefebeholder
+    1062.  00:B7BE  11 00 3F            		LD			DE, #3F00
+    1063.  00:B7C1  01 00 01            		LD			BC, fin_sprite_jefebeholder - sprite_jefebeholder
+    1064.  00:B7C4  C3 59 00            		JP			LDIRMV
+    1065.  00:B7C7                      fin_carga_patrones_jefebeholder:
+    1066.  00:B7C7                      
+    1067.  00:B7C7                      carga_patrones_condecompleto:
+    1068.  00:B7C7  21 6F B5            		LD			HL, sprite_manoizquierda
+    1069.  00:B7CA  11 00 3F            		LD			DE, #3F00
+    1070.  00:B7CD  01 80 01            		LD			BC, fin_sprite_conde - sprite_manoizquierda
+    1071.  00:B7D0  C3 59 00            		JP			LDIRMV
+    1072.  00:B7D3                      fin_carga_patrones_condecompleto
+    1073.  00:B7D3                      
+    1074.  00:B7D3                      carga_patrones_fase0:
+    1075.  00:B7D3  CD EF B6            		CALL		carga_patrones_cienpies
+    1076.  00:B7D6  CD FB B6            		CALL		carga_patrones_serpiente
+    1077.  00:B7D9  CD 07 B7            		CALL		carga_patrones_arana
+    1078.  00:B7DC  CD 13 B7            		CALL		carga_patrones_murcielago
+    1079.  00:B7DF  CD 1F B7            		CALL		carga_patrones_lobo
+    1080.  00:B7E2  C3 7F B7            		JP			carga_patrones_jefelobo
+    1081.  00:B7E5                      fin_carga_patrones_fase0:
+    1082.  00:B7E5                      
+    1083.  00:B7E5                      carga_patrones_fase1:
+    1084.  00:B7E5  CD FB B6            		CALL		carga_patrones_serpiente
+    1085.  00:B7E8  CD 07 B7            		CALL		carga_patrones_arana
+    1086.  00:B7EB  CD 13 B7            		CALL		carga_patrones_murcielago
+    1087.  00:B7EE  CD 1F B7            		CALL		carga_patrones_lobo
+    1088.  00:B7F1  CD 37 B7            		CALL		carga_patrones_esqueleto
+    1089.  00:B7F4  CD 43 B7            		CALL		carga_patrones_zombi
+    1090.  00:B7F7  C3 8B B7            		JP			carga_patrones_jefemurcielago
+    1091.  00:B7FA                      fin_carga_patrones_fase1:
+    1092.  00:B7FA                      
+    1093.  00:B7FA                      carga_patrones_fase2:
+    1094.  00:B7FA  CD FB B6            		CALL		carga_patrones_serpiente
+    1095.  00:B7FD  CD 13 B7            		CALL		carga_patrones_murcielago
+    1096.  00:B800  CD 1F B7            		CALL		carga_patrones_lobo
+    1097.  00:B803  CD 37 B7            		CALL		carga_patrones_esqueleto
+    1098.  00:B806  CD 43 B7            		CALL		carga_patrones_zombi
+    1099.  00:B809  CD 4F B7            		CALL		carga_patrones_fantasma
+    1100.  00:B80C  C3 97 B7            		JP			carga_patrones_jefefantasma
+    1101.  00:B80F                      fin_carga_patrones_fase2:
+    1102.  00:B80F                      
+    1103.  00:B80F                      carga_patrones_fase3:
+    1104.  00:B80F  CD FB B6            		CALL		carga_patrones_serpiente
+    1105.  00:B812  CD 07 B7            		CALL		carga_patrones_arana
+    1106.  00:B815  CD 5B B7            		CALL		carga_patrones_caballero
+    1107.  00:B818  CD 37 B7            		CALL		carga_patrones_esqueleto
+    1108.  00:B81B  CD 43 B7            		CALL		carga_patrones_zombi
+    1109.  00:B81E  CD 4F B7            		CALL		carga_patrones_fantasma
+    1110.  00:B821  C3 A3 B7            		JP			carga_patrones_jefezombi
+    1111.  00:B824                      fin_carga_patrones_fase3:
+    1112.  00:B824                      
+    1113.  00:B824                      carga_patrones_fase4:
+    1114.  00:B824  CD 13 B7            		CALL		carga_patrones_murcielago
+    1115.  00:B827  CD 5B B7            		CALL		carga_patrones_caballero 		;(gris)
+    1116.  00:B82A  CD 37 B7            		CALL		carga_patrones_esqueleto
+    1117.  00:B82D  CD 43 B7            		CALL		carga_patrones_zombi
+    1118.  00:B830  CD 4F B7            		CALL		carga_patrones_fantasma
+    1119.  00:B833  C3 AF B7            		JP			carga_patrones_jefecaballero
+    1120.  00:B836                      fin_carga_patrones_fase4:
+    1121.  00:B836                      
+    1122.  00:B836                      carga_patrones_fase5:
+    1123.  00:B836  CD 73 B7            		CALL		carga_patrones_magia
+    1124.  00:B839  CD 5B B7            		CALL		carga_patrones_caballero 		;(negro)
+    1125.  00:B83C  CD 2B B7            		CALL		carga_patrones_lobo_fase5
+    1126.  00:B83F  CD 43 B7            		CALL		carga_patrones_zombi
+    1127.  00:B842  CD 4F B7            		CALL		carga_patrones_fantasma
+    1128.  00:B845  CD 67 B7            		CALL		carga_patrones_fuego
+    1129.  00:B848  C3 BB B7            		JP			carga_patrones_jefebeholder
+    1130.  00:B84B                      fin_carga_patrones_fase5:
+    1131.  00:B84B                      
+    1132.  00:B84B                      carga_patrones_fase6:
+    1133.  00:B84B  CD 73 B7            		CALL		carga_patrones_magia
+    1134.  00:B84E  CD 13 B7            		CALL		carga_patrones_murcielago
+    1135.  00:B851  CD 5B B7            		CALL		carga_patrones_caballero 		;(negro)
+    1136.  00:B854  CD 4F B7            		CALL		carga_patrones_fantasma
+    1137.  00:B857  CD 67 B7            		CALL		carga_patrones_fuego
+    1138.  00:B85A  C3 C7 B7            		JP			carga_patrones_condecompleto
+    1139.  00:B85D                      fin_carga_patrones_fase6:
      171   00:B85D                      	
      172   00:B85D                      	include "habitaciones.asm"
        1.  00:B85D                      ;;=====================================================
