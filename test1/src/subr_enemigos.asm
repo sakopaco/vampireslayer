@@ -117,7 +117,7 @@ fin_resetea_enemigos:
 
 
 ;;=====================================================
-;;INICIALIZA_ENEMIGOS_FASE0
+;;INICIALIZA_ENEMIGOS_FASEX
 ;;=====================================================	
 ; función: 	inicializa las variables que serán usadas en el array en la fase
 ; entrada:	-
@@ -126,13 +126,300 @@ fin_resetea_enemigos:
 inicializa_enemigos_fase0:	;; para no poner más complejo se hace uno por fase que se actualiza al pasar por escaleras o puerta inferior
 .nivel0:
 		LD			 A, (prota_pos_mapy)
-		SUB			 A, 7
+		SUB			 A, 6
 		JP			NC, .nivel1
 		CALL		inicializa_enemigos_fase0_nivel0
-.nivel1:		
+.nivel1:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 5
+		JP			NC, .nivel2
+		CALL		inicializa_enemigos_fase0_nivel1
+.nivel2:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 4
+		JP			NC, .nivel3
+		CALL		inicializa_enemigos_fase0_nivel2
+.nivel3:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 3
+		JP			NC, .nivel4
+		CALL		inicializa_enemigos_fase0_nivel3
+.nivel4:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 2
+		JP			NC, .nivel5
+		CALL		inicializa_enemigos_fase0_nivel4
+.nivel5:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 1
+		JP			NC, .nivel3
+		CALL		inicializa_enemigos_fase0_nivel5
+.nivel6:
+		LD			 A, (prota_pos_mapx)
+		CP			 3
+		JP			NC, .nivelboss
+		CALL		inicializa_enemigos_fase0_nivel6
+		JP			fin_inicializa_enemigos_fase0
+.nivelboss:
+		CALL		inicializa_enemigos_fase0_nivelboss
 fin_inicializa_enemigos_fase0:
 		RET
+		
+inicializa_enemigos_fase1:	;; para no poner más complejo se hace uno por fase que se actualiza al pasar por escaleras o puerta inferior
+.nivel0:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 6
+		JP			NC, .nivel1
+		CALL		inicializa_enemigos_fase1_nivel0
+.nivel1:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 5
+		JP			NC, .nivel2
+		CALL		inicializa_enemigos_fase1_nivel1
+.nivel2:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 4
+		JP			NC, .nivel3
+		CALL		inicializa_enemigos_fase1_nivel2
+.nivel3:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 3
+		JP			NC, .nivel4
+		CALL		inicializa_enemigos_fase1_nivel3
+.nivel4:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 2
+		JP			NC, .nivel5
+		CALL		inicializa_enemigos_fase1_nivel4
+.nivel5:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 1
+		JP			NC, .nivel3
+		CALL		inicializa_enemigos_fase1_nivel5
+.nivel6:
+		LD			 A, (prota_pos_mapx)
+		CP			 3
+		JP			NC, .nivelboss
+		CALL		inicializa_enemigos_fase1_nivel6
+		JP			fin_inicializa_enemigos_fase1
+.nivelboss:
+		CALL		inicializa_enemigos_fase1_nivelboss
+fin_inicializa_enemigos_fase1:
+		RET
+		
+inicializa_enemigos_fase2:	;; para no poner más complejo se hace uno por fase que se actualiza al pasar por escaleras o puerta inferior
+.nivel0:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 6
+		JP			NC, .nivel1
+		CALL		inicializa_enemigos_fase2_nivel0
+.nivel1:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 5
+		JP			NC, .nivel2
+		CALL		inicializa_enemigos_fase2_nivel1
+.nivel2:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 4
+		JP			NC, .nivel3
+		CALL		inicializa_enemigos_fase2_nivel2
+.nivel3:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 3
+		JP			NC, .nivel4
+		CALL		inicializa_enemigos_fase2_nivel3
+.nivel4:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 2
+		JP			NC, .nivel5
+		CALL		inicializa_enemigos_fase2_nivel4
+.nivel5:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 1
+		JP			NC, .nivel3
+		CALL		inicializa_enemigos_fase2_nivel5
+.nivel6:
+		LD			 A, (prota_pos_mapx)
+		CP			 3
+		JP			NC, .nivelboss
+		CALL		inicializa_enemigos_fase2_nivel6
+		JP			fin_inicializa_enemigos_fase1
+.nivelboss:
+		CALL		inicializa_enemigos_fase2_nivelboss
+fin_inicializa_enemigos_fase2:
+		RET
 
+inicializa_enemigos_fase3:	;; para no poner más complejo se hace uno por fase que se actualiza al pasar por escaleras o puerta inferior
+.nivel0:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 6
+		JP			NC, .nivel1
+		CALL		inicializa_enemigos_fase3_nivel0
+.nivel1:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 5
+		JP			NC, .nivel2
+		CALL		inicializa_enemigos_fase3_nivel1
+.nivel2:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 4
+		JP			NC, .nivel3
+		CALL		inicializa_enemigos_fase3_nivel2
+.nivel3:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 3
+		JP			NC, .nivel4
+		CALL		inicializa_enemigos_fase3_nivel3
+.nivel4:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 2
+		JP			NC, .nivel5
+		CALL		inicializa_enemigos_fase3_nivel4
+.nivel5:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 1
+		JP			NC, .nivel3
+		CALL		inicializa_enemigos_fase3_nivel5
+.nivel6:
+		LD			 A, (prota_pos_mapx)
+		CP			 3
+		JP			NC, .nivelboss
+		CALL		inicializa_enemigos_fase3_nivel6
+		JP			fin_inicializa_enemigos_fase1
+.nivelboss:
+		CALL		inicializa_enemigos_fase3_nivelboss
+fin_inicializa_enemigos_fase3:
+		RET
+		
+inicializa_enemigos_fase4:	;; para no poner más complejo se hace uno por fase que se actualiza al pasar por escaleras o puerta inferior
+.nivel0:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 6
+		JP			NC, .nivel1
+		CALL		inicializa_enemigos_fase4_nivel0
+.nivel1:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 5
+		JP			NC, .nivel2
+		CALL		inicializa_enemigos_fase4_nivel1
+.nivel2:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 4
+		JP			NC, .nivel3
+		CALL		inicializa_enemigos_fase4_nivel2
+.nivel3:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 3
+		JP			NC, .nivel4
+		CALL		inicializa_enemigos_fase4_nivel3
+.nivel4:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 2
+		JP			NC, .nivel5
+		CALL		inicializa_enemigos_fase4_nivel4
+.nivel5:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 1
+		JP			NC, .nivel3
+		CALL		inicializa_enemigos_fase4_nivel5
+.nivel6:
+		LD			 A, (prota_pos_mapx)
+		CP			 3
+		JP			NC, .nivelboss
+		CALL		inicializa_enemigos_fase4_nivel6
+		JP			fin_inicializa_enemigos_fase1
+.nivelboss:
+		CALL		inicializa_enemigos_fase3_nivelboss
+fin_inicializa_enemigos_fase4:
+		RET
+
+inicializa_enemigos_fase5:	;; para no poner más complejo se hace uno por fase que se actualiza al pasar por escaleras o puerta inferior
+.nivel0:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 6
+		JP			NC, .nivel1
+		CALL		inicializa_enemigos_fase5_nivel0
+.nivel1:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 5
+		JP			NC, .nivel2
+		CALL		inicializa_enemigos_fase5_nivel1
+.nivel2:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 4
+		JP			NC, .nivel3
+		CALL		inicializa_enemigos_fase5_nivel2
+.nivel3:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 3
+		JP			NC, .nivel4
+		CALL		inicializa_enemigos_fase5_nivel3
+.nivel4:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 2
+		JP			NC, .nivel5
+		CALL		inicializa_enemigos_fase5_nivel4
+.nivel5:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 1
+		JP			NC, .nivel3
+		CALL		inicializa_enemigos_fase5_nivel5
+.nivel6:
+		LD			 A, (prota_pos_mapx)
+		CP			 3
+		JP			NC, .nivelboss
+		CALL		inicializa_enemigos_fase5_nivel6
+		JP			fin_inicializa_enemigos_fase1
+.nivelboss:
+		CALL		inicializa_enemigos_fase5_nivelboss
+fin_inicializa_enemigos_fase5:
+		RET
+
+inicializa_enemigos_fase6:	;; para no poner más complejo se hace uno por fase que se actualiza al pasar por escaleras o puerta inferior
+.nivel0:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 6
+		JP			NC, .nivel1
+		CALL		inicializa_enemigos_fase6_nivel0
+.nivel1:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 5
+		JP			NC, .nivel2
+		CALL		inicializa_enemigos_fase6_nivel1
+.nivel2:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 4
+		JP			NC, .nivel3
+		CALL		inicializa_enemigos_fase6_nivel2
+.nivel3:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 3
+		JP			NC, .nivel4
+		CALL		inicializa_enemigos_fase6_nivel3
+.nivel4:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 2
+		JP			NC, .nivel5
+		CALL		inicializa_enemigos_fase6_nivel4
+.nivel5:
+		LD			 A, (prota_pos_mapy)
+		SUB			 A, 1
+		JP			NC, .nivel3
+		CALL		inicializa_enemigos_fase6_nivel5
+.nivel6:
+		LD			 A, (prota_pos_mapx)
+		CP			 3
+		JP			NC, .nivelboss
+		CALL		inicializa_enemigos_fase6_nivel6
+		JP			fin_inicializa_enemigos_fase1
+.nivelboss:
+		CALL		inicializa_enemigos_fase6_nivelboss
+fin_inicializa_enemigos_fase6:
+		RET
+
+;;=====================================================
+;;INICIALIZA_ENEMIGOS_FASE0_NIVEL0
+;;=====================================================	
 inicializa_enemigos_fase0_nivel0:
 		CALL		resetea_enemigos
 		
@@ -232,7 +519,7 @@ fin_mover_cienpies:
 
 
 
-
+inicializa_enemigos_fase0_nivel1:
 inicializa_enemigos_fase0_nivel2:
 inicializa_enemigos_fase0_nivel3:
 inicializa_enemigos_fase0_nivel4:
@@ -240,6 +527,7 @@ inicializa_enemigos_fase0_nivel5:
 inicializa_enemigos_fase0_nivel6:
 inicializa_enemigos_fase0_nivelboss:
 
+inicializa_enemigos_fase1_nivel0:
 inicializa_enemigos_fase1_nivel1:
 inicializa_enemigos_fase1_nivel2:
 inicializa_enemigos_fase1_nivel3:
@@ -248,6 +536,7 @@ inicializa_enemigos_fase1_nivel5:
 inicializa_enemigos_fase1_nivel6:
 inicializa_enemigos_fase1_nivelboss:
 
+inicializa_enemigos_fase2_nivel0:
 inicializa_enemigos_fase2_nivel1:
 inicializa_enemigos_fase2_nivel2:
 inicializa_enemigos_fase2_nivel3:
@@ -256,6 +545,7 @@ inicializa_enemigos_fase2_nivel5:
 inicializa_enemigos_fase2_nivel6:
 inicializa_enemigos_fase2_nivelboss:
 
+inicializa_enemigos_fase3_nivel0:
 inicializa_enemigos_fase3_nivel1:
 inicializa_enemigos_fase3_nivel2:
 inicializa_enemigos_fase3_nivel3:
@@ -264,6 +554,7 @@ inicializa_enemigos_fase3_nivel5:
 inicializa_enemigos_fase3_nivel6:
 inicializa_enemigos_fase3_nivelboss:
 
+inicializa_enemigos_fase4_nivel0:
 inicializa_enemigos_fase4_nivel1:
 inicializa_enemigos_fase4_nivel2:
 inicializa_enemigos_fase4_nivel3:
@@ -272,6 +563,7 @@ inicializa_enemigos_fase4_nivel5:
 inicializa_enemigos_fase4_nivel6:
 inicializa_enemigos_fase4_nivelboss:
 
+inicializa_enemigos_fase5_nivel0:
 inicializa_enemigos_fase5_nivel1:
 inicializa_enemigos_fase5_nivel2:
 inicializa_enemigos_fase5_nivel3:
@@ -280,6 +572,7 @@ inicializa_enemigos_fase5_nivel5:
 inicializa_enemigos_fase5_nivel6:
 inicializa_enemigos_fase5_nivelboss:
 
+inicializa_enemigos_fase6_nivel0:
 inicializa_enemigos_fase6_nivel1:
 inicializa_enemigos_fase6_nivel2:
 inicializa_enemigos_fase6_nivel3:

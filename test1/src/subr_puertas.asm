@@ -192,12 +192,12 @@ fin_carga_datos_puerta:
 ; entrada: 	
 ; salida: 	
 accion_puerta_arriba:
-	CALL	pinta_blanco_mapa
+	CALL		pinta_blanco_mapa
 	
-	LD		 A, (prota_pos_mapy)
-	INC		 A
+	LD		 	 A, (prota_pos_mapy)
+	INC		 	 A
 	
-	CP		 7
+	CP		 	 6
 	JP		NZ, .no_cambia_nivel
 .si_cambia_nivel:	
 	;aquí hay que poner texto de cambio de nivel  ;***************************************************************
