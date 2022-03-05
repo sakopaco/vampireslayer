@@ -169,7 +169,6 @@ fin_inicializa_puertas:
 	RET
 
 
-
 ;;=====================================================
 ;;CARGA_DATOS_PUERTA
 ;;=====================================================	
@@ -184,6 +183,7 @@ carga_datos_puerta:
 	LDIR
 fin_carga_datos_puerta:
 	RET
+
 
 ;;=====================================================
 ;;ACCION_PUERTA_ARRIBA
@@ -554,9 +554,6 @@ check_colision_puerta:
 	LD		 A, SI
 fin_check_colision_puerta:
 	RET
-
-
-
 
 	
 ;;=====================================================

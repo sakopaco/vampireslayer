@@ -81,39 +81,35 @@ datos_conde:
 resetea_enemigos:
 ;resetea tipo (no activo)
 ;y de paso los oculta
-		XOR			 A
 		LD			IX, enemigo1
-		LD			(IX), A
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), BORRASPRITE
+		LD			(IX), INACTIVA ; 0
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), INACTIVA ; 0
 		LD			IX, enemigo2
-		LD			(IX), A
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), BORRASPRITE
+		LD			(IX), INACTIVA
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), INACTIVA ; 0
 		LD			IX, enemigo3
-		LD			(IX), A
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), BORRASPRITE
+		LD			(IX), INACTIVA
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), INACTIVA ; 0
 		LD			IX, enemigo4
-		LD			(IX), A
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), BORRASPRITE
+		LD			(IX), INACTIVA
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), INACTIVA ; 0
 		LD			IX, enemigo5
-		LD			(IX), A
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), BORRASPRITE
+		LD			(IX), INACTIVA
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), INACTIVA ; 0
 		LD			IX, enemigo6
-		LD			(IX), A
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), BORRASPRITE
+		LD			(IX), INACTIVA
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), INACTIVA ; 0
 		LD			IX, enemigo7
-		LD			(IX), A
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), BORRASPRITE
+		LD			(IX), INACTIVA
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), INACTIVA ; 0
 		LD			IX, enemigo8
-		LD			(IX), A
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), BORRASPRITE
+		LD			(IX), INACTIVA
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), INACTIVA ; 0
 		LD			IX, enemigo9
-		LD			(IX), A
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), BORRASPRITE
+		LD			(IX), INACTIVA
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), INACTIVA ; 0
 fin_resetea_enemigos:
 		RET
-
-
-
 
 
 ;;=====================================================
@@ -124,46 +120,60 @@ fin_resetea_enemigos:
 ; salida: 	-
 ; toca:		-
 inicializa_enemigos_fase0:	;; para no poner más complejo se hace uno por fase que se actualiza al pasar por escaleras o puerta inferior
+
+
+		CALL		test_OK
+
+
 .nivel0:
 		LD			 A, (prota_pos_mapy)
-		SUB			 A, 6
-		JP			NC, .nivel1
+		OR			 A
+		JP			NZ, .nivel1
+		
+		;*********************************************************************************************************************************************
+		CALL		test_OK
+		
+		
 		CALL		inicializa_enemigos_fase0_nivel0
+		RET
 .nivel1:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 5
-		JP			NC, .nivel2
+		
+		
+
+		DEC			 A
+		JP			NZ, .nivel2
 		CALL		inicializa_enemigos_fase0_nivel1
+		RET
 .nivel2:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 4
-		JP			NC, .nivel3
+		DEC			 A
+		JP			NZ, .nivel3
 		CALL		inicializa_enemigos_fase0_nivel2
+		RET
 .nivel3:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 3
-		JP			NC, .nivel4
+		DEC			 A
+		JP			NZ, .nivel4
 		CALL		inicializa_enemigos_fase0_nivel3
+		RET
 .nivel4:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 2
-		JP			NC, .nivel5
+		DEC			 A
+		JP			NZ, .nivel5
 		CALL		inicializa_enemigos_fase0_nivel4
+		RET
 .nivel5:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 1
-		JP			NC, .nivel3
+		DEC			 A
+		JP			NZ, .nivel3
 		CALL		inicializa_enemigos_fase0_nivel5
+		RET
 .nivel6:
 		LD			 A, (prota_pos_mapx)
 		CP			 3
-		JP			NC, .nivelboss
+		JP			 Z, .nivelboss
 		CALL		inicializa_enemigos_fase0_nivel6
-		JP			fin_inicializa_enemigos_fase0
-.nivelboss:
-		CALL		inicializa_enemigos_fase0_nivelboss
-fin_inicializa_enemigos_fase0:
 		RET
+.nivelboss:
+		JP			inicializa_enemigos_fase0_nivelboss
+fin_inicializa_enemigos_fase0:
+
 		
 inicializa_enemigos_fase1:	;; para no poner más complejo se hace uno por fase que se actualiza al pasar por escaleras o puerta inferior
 .nivel0:
@@ -418,11 +428,16 @@ fin_inicializa_enemigos_fase6:
 		RET
 
 ;;=====================================================
-;;INICIALIZA_ENEMIGOS_FASE0_NIVEL0
+;;INICIALIZA_ENEMIGOS_FASE0_NIVELX
 ;;=====================================================	
 inicializa_enemigos_fase0_nivel0:
-		CALL		resetea_enemigos
-		
+		LD			DE, enemigo1
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo1
+		JP			actualiza_valores_cienpies
+fin_inicializa_enemigos_fase0_nivel0:
+
+inicializa_enemigos_fase0_nivel1:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_cienpies
 		LD			IX, enemigo1
@@ -431,13 +446,122 @@ inicializa_enemigos_fase0_nivel0:
 		LD			DE, enemigo2
 		CALL		anade_enemigo_cienpies
 		LD			IX, enemigo2
-		CALL		actualiza_valores_cienpies
+		JP			actualiza_valores_cienpies
+fin_inicializa_enemigos_fase0_nivel1:
+
+inicializa_enemigos_fase0_nivel2:
+		;~ LD			DE, enemigo1
+		;~ CALL		anade_enemigo_cienpies
+		;~ LD			IX, enemigo1
+		;~ CALL		actualiza_valores_cienpies
 		
-		LD			DE, enemigo3
-		CALL		anade_enemigo_cienpies
-		LD			IX, enemigo3
-		CALL		actualiza_valores_cienpies
-fin_inicializa_enemigos_fase0_nivel0:
+		;~ LD			DE, enemigo2
+		;~ CALL		anade_enemigo_cienpies
+		;~ LD			IX, enemigo2
+		;~ CALL		actualiza_valores_cienpies
+		
+		;~ LD			DE, enemigo3
+		;~ CALL		anade_enemigo_cienpies
+		;~ LD			IX, enemigo3
+		;~ JP			actualiza_valores_cienpies
+		
+		
+fin_inicializa_enemigos_fase0_nivel2:
+		RET
+
+inicializa_enemigos_fase0_nivel3:
+		;~ LD			DE, enemigo1
+		;~ CALL		anade_enemigo_cienpies
+		;~ LD			IX, enemigo1
+		;~ CALL		actualiza_valores_cienpies
+		
+		;~ LD			DE, enemigo2
+		;~ CALL		anade_enemigo_cienpies
+		;~ LD			IX, enemigo2
+		;~ CALL		actualiza_valores_cienpies
+		
+		;~ LD			DE, enemigo3
+		;~ CALL		anade_enemigo_cienpies
+		;~ LD			IX, enemigo3
+		;~ JP			actualiza_valores_cienpies
+		
+		
+fin_inicializa_enemigos_fase0_nivel3:
+		RET
+
+inicializa_enemigos_fase0_nivel4:
+		;~ LD			DE, enemigo1
+		;~ CALL		anade_enemigo_cienpies
+		;~ LD			IX, enemigo1
+		;~ CALL		actualiza_valores_cienpies
+		
+		;~ LD			DE, enemigo2
+		;~ CALL		anade_enemigo_cienpies
+		;~ LD			IX, enemigo2
+		;~ CALL		actualiza_valores_cienpies
+		
+		;~ LD			DE, enemigo3
+		;~ CALL		anade_enemigo_cienpies
+		;~ LD			IX, enemigo3
+		;~ JP			actualiza_valores_cienpies
+fin_inicializa_enemigos_fase0_nivel4:
+		RET
+
+inicializa_enemigos_fase0_nivel5:
+		;~ LD			DE, enemigo1
+		;~ CALL		anade_enemigo_cienpies
+		;~ LD			IX, enemigo1
+		;~ CALL		actualiza_valores_cienpies
+		
+		;~ LD			DE, enemigo2
+		;~ CALL		anade_enemigo_cienpies
+		;~ LD			IX, enemigo2
+		;~ CALL		actualiza_valores_cienpies
+		
+		;~ LD			DE, enemigo3
+		;~ CALL		anade_enemigo_cienpies
+		;~ LD			IX, enemigo3
+		;~ JP			actualiza_valores_cienpies
+fin_inicializa_enemigos_fase0_nivel5:
+		RET
+
+inicializa_enemigos_fase0_nivel6:
+		;~ LD			DE, enemigo1
+		;~ CALL		anade_enemigo_cienpies
+		;~ LD			IX, enemigo1
+		;~ CALL		actualiza_valores_cienpies
+		
+		;~ LD			DE, enemigo2
+		;~ CALL		anade_enemigo_cienpies
+		;~ LD			IX, enemigo2
+		;~ CALL		actualiza_valores_cienpies
+		
+		;~ LD			DE, enemigo3
+		;~ CALL		anade_enemigo_cienpies
+		;~ LD			IX, enemigo3
+		;~ JP			actualiza_valores_cienpies
+		
+		CALL		test_OK
+fin_inicializa_enemigos_fase0_nivel6:
+		RET
+inicializa_enemigos_fase0_nivelboss:	
+		;~ LD			DE, enemigo1
+		;~ CALL		anade_enemigo_cienpies
+		;~ LD			IX, enemigo1
+		;~ CALL		actualiza_valores_cienpies
+		
+		;~ LD			DE, enemigo2
+		;~ CALL		anade_enemigo_cienpies
+		;~ LD			IX, enemigo2
+		;~ CALL		actualiza_valores_cienpies
+		
+		;~ LD			DE, enemigo3
+		;~ CALL		anade_enemigo_cienpies
+		;~ LD			IX, enemigo3
+		;~ JP			actualiza_valores_cienpies
+		
+		
+fin_inicializa_enemigos_fase0_nivelboss:
 		RET
 
 
@@ -465,6 +589,7 @@ fin_anade_enemigo_cienpies:
 ; toca:		-
 actualiza_valores_cienpies:
 ;actualiza_valores_aleatorios_cienpies
+		EXX
 		LD			 A, R
 		AND			00000111b
 		LD			 B, A
@@ -478,6 +603,7 @@ actualiza_valores_cienpies:
 		CALL		suma_A_HL
 		LD			 A, (HL)
 		LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
+		EXX
 fin_actualiza_valores_cienpies:
 		RET
 
@@ -518,14 +644,8 @@ fin_mover_cienpies:
 		RET
 
 
-
-inicializa_enemigos_fase0_nivel1:
-inicializa_enemigos_fase0_nivel2:
-inicializa_enemigos_fase0_nivel3:
-inicializa_enemigos_fase0_nivel4:
-inicializa_enemigos_fase0_nivel5:
-inicializa_enemigos_fase0_nivel6:
-inicializa_enemigos_fase0_nivelboss:
+	
+	
 
 inicializa_enemigos_fase1_nivel0:
 inicializa_enemigos_fase1_nivel1:
@@ -605,7 +725,7 @@ check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activ
 		OR			 A
 		JP			 Z, .check_enemigo3
 		
-		LD			IY, array_sprites_enem ;+ 4
+		LD			IY, array_sprites_enem + 4
 
 		CALL		mover_cienpies
 

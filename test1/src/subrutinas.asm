@@ -425,32 +425,35 @@ fin_terminada_habitacion_recorrida:
 ; entrada: 	prota_pos_mapy, prota_pos_mapy, prota_nivel
 ; salida: 	
 entra_habitacion:
+		CALL		resetea_enemigos  
+
+.mira_nivel0:
 		LD			 A, (prota_nivel)
 		JP			NZ, .mira_nivel1
 		CALL		inicializa_enemigos_fase0
 .mira_nivel1:
-		CP			 1
-		JP			NZ, .mira_nivel2
-		CALL		inicializa_enemigos_fase1
-.mira_nivel2:
-		CP			 2
-		JP			NZ, .mira_nivel3
-		CALL		inicializa_enemigos_fase2		
-.mira_nivel3:
-		CP			 3
-		JP			NZ, .mira_nivel4
-		CALL		inicializa_enemigos_fase3
-.mira_nivel4:
-		CP			 4
-		JP			NZ, .mira_nivel5
-		CALL		inicializa_enemigos_fase4
-.mira_nivel5:
-		CP			 5
-		JP			NZ, .mira_nivel6
-		CALL		inicializa_enemigos_fase5
-.mira_nivel6:
-		CALL		inicializa_enemigos_fase6
-.fin_mira_nivel:
+		;~ CP			 1
+		;~ JP			NZ, .mira_nivel2
+		;~ CALL		inicializa_enemigos_fase1
+;~ .mira_nivel2:
+		;~ CP			 2
+		;~ JP			NZ, .mira_nivel3
+		;~ CALL		inicializa_enemigos_fase2		
+;~ .mira_nivel3:
+		;~ CP			 3
+		;~ JP			NZ, .mira_nivel4
+		;~ CALL		inicializa_enemigos_fase3
+;~ .mira_nivel4:
+		;~ CP			 4
+		;~ JP			NZ, .mira_nivel5
+		;~ CALL		inicializa_enemigos_fase4
+;~ .mira_nivel5:
+		;~ CP			 5
+		;~ JP			NZ, .mira_nivel6
+		;~ CALL		inicializa_enemigos_fase5
+;~ .mira_nivel6:
+		;~ CALL		inicializa_enemigos_fase6
+;~ .fin_mira_nivel:
 
 		CALL		pinta_parte_superior_pantalla
 		CALL		pinta_puertas
