@@ -120,26 +120,13 @@ fin_resetea_enemigos:
 ; salida: 	-
 ; toca:		-
 inicializa_enemigos_fase0:	;; para no poner más complejo se hace uno por fase que se actualiza al pasar por escaleras o puerta inferior
-
-
-		CALL		test_OK
-
-
-.nivel0:
 		LD			 A, (prota_pos_mapy)
 		OR			 A
+.nivel0:
 		JP			NZ, .nivel1
-		
-		;*********************************************************************************************************************************************
-		CALL		test_OK
-		
-		
 		CALL		inicializa_enemigos_fase0_nivel0
 		RET
 .nivel1:
-		
-		
-
 		DEC			 A
 		JP			NZ, .nivel2
 		CALL		inicializa_enemigos_fase0_nivel1
@@ -450,119 +437,77 @@ inicializa_enemigos_fase0_nivel1:
 fin_inicializa_enemigos_fase0_nivel1:
 
 inicializa_enemigos_fase0_nivel2:
-		;~ LD			DE, enemigo1
-		;~ CALL		anade_enemigo_cienpies
-		;~ LD			IX, enemigo1
-		;~ CALL		actualiza_valores_cienpies
+		LD			DE, enemigo1
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo1
+		CALL		actualiza_valores_cienpies
 		
-		;~ LD			DE, enemigo2
-		;~ CALL		anade_enemigo_cienpies
-		;~ LD			IX, enemigo2
-		;~ CALL		actualiza_valores_cienpies
-		
-		;~ LD			DE, enemigo3
-		;~ CALL		anade_enemigo_cienpies
-		;~ LD			IX, enemigo3
-		;~ JP			actualiza_valores_cienpies
-		
-		
+		LD			DE, enemigo2
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo2
+		JP			actualiza_valores_cienpies
 fin_inicializa_enemigos_fase0_nivel2:
-		RET
 
 inicializa_enemigos_fase0_nivel3:
-		;~ LD			DE, enemigo1
-		;~ CALL		anade_enemigo_cienpies
-		;~ LD			IX, enemigo1
-		;~ CALL		actualiza_valores_cienpies
+		LD			DE, enemigo1
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo1
+		CALL		actualiza_valores_cienpies
 		
-		;~ LD			DE, enemigo2
-		;~ CALL		anade_enemigo_cienpies
-		;~ LD			IX, enemigo2
-		;~ CALL		actualiza_valores_cienpies
-		
-		;~ LD			DE, enemigo3
-		;~ CALL		anade_enemigo_cienpies
-		;~ LD			IX, enemigo3
-		;~ JP			actualiza_valores_cienpies
-		
-		
+		LD			DE, enemigo2
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo2
+		JP			actualiza_valores_cienpies
 fin_inicializa_enemigos_fase0_nivel3:
-		RET
 
 inicializa_enemigos_fase0_nivel4:
-		;~ LD			DE, enemigo1
-		;~ CALL		anade_enemigo_cienpies
-		;~ LD			IX, enemigo1
-		;~ CALL		actualiza_valores_cienpies
+		LD			DE, enemigo1
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo1
+		CALL		actualiza_valores_cienpies
 		
-		;~ LD			DE, enemigo2
-		;~ CALL		anade_enemigo_cienpies
-		;~ LD			IX, enemigo2
-		;~ CALL		actualiza_valores_cienpies
-		
-		;~ LD			DE, enemigo3
-		;~ CALL		anade_enemigo_cienpies
-		;~ LD			IX, enemigo3
-		;~ JP			actualiza_valores_cienpies
+		LD			DE, enemigo2
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo2
+		JP			actualiza_valores_cienpies
 fin_inicializa_enemigos_fase0_nivel4:
-		RET
 
 inicializa_enemigos_fase0_nivel5:
-		;~ LD			DE, enemigo1
-		;~ CALL		anade_enemigo_cienpies
-		;~ LD			IX, enemigo1
-		;~ CALL		actualiza_valores_cienpies
+		LD			DE, enemigo1
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo1
+		CALL		actualiza_valores_cienpies
 		
-		;~ LD			DE, enemigo2
-		;~ CALL		anade_enemigo_cienpies
-		;~ LD			IX, enemigo2
-		;~ CALL		actualiza_valores_cienpies
-		
-		;~ LD			DE, enemigo3
-		;~ CALL		anade_enemigo_cienpies
-		;~ LD			IX, enemigo3
-		;~ JP			actualiza_valores_cienpies
+		LD			DE, enemigo2
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo2
+		JP			actualiza_valores_cienpies
 fin_inicializa_enemigos_fase0_nivel5:
-		RET
 
 inicializa_enemigos_fase0_nivel6:
-		;~ LD			DE, enemigo1
-		;~ CALL		anade_enemigo_cienpies
-		;~ LD			IX, enemigo1
-		;~ CALL		actualiza_valores_cienpies
+		LD			DE, enemigo1
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo1
+		CALL		actualiza_valores_cienpies
 		
-		;~ LD			DE, enemigo2
-		;~ CALL		anade_enemigo_cienpies
-		;~ LD			IX, enemigo2
-		;~ CALL		actualiza_valores_cienpies
-		
-		;~ LD			DE, enemigo3
-		;~ CALL		anade_enemigo_cienpies
-		;~ LD			IX, enemigo3
-		;~ JP			actualiza_valores_cienpies
-		
-		CALL		test_OK
+		LD			DE, enemigo2
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo2
+		JP			actualiza_valores_cienpies
 fin_inicializa_enemigos_fase0_nivel6:
-		RET
+
 inicializa_enemigos_fase0_nivelboss:	
-		;~ LD			DE, enemigo1
-		;~ CALL		anade_enemigo_cienpies
-		;~ LD			IX, enemigo1
-		;~ CALL		actualiza_valores_cienpies
+		LD			DE, enemigo1
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo1
+		CALL		actualiza_valores_cienpies
 		
-		;~ LD			DE, enemigo2
-		;~ CALL		anade_enemigo_cienpies
-		;~ LD			IX, enemigo2
-		;~ CALL		actualiza_valores_cienpies
-		
-		;~ LD			DE, enemigo3
-		;~ CALL		anade_enemigo_cienpies
-		;~ LD			IX, enemigo3
-		;~ JP			actualiza_valores_cienpies
-		
-		
+		LD			DE, enemigo2
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo2
+		JP			actualiza_valores_cienpies
 fin_inicializa_enemigos_fase0_nivelboss:
-		RET
+
 
 
 ;;=====================================================

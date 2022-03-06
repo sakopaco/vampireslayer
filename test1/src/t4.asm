@@ -19,7 +19,7 @@ START:
 		CALL	inicializa_variables_pruebas
 	
 		;carga los patrones de los sprites de los enemigos según el nivel
-		CALL	inicializa_enemigos_fase0
+;		CALL	inicializa_enemigos_fase0
 	
 		;inicializa el punto de mira
 		CALL	inicializa_punto_mira
@@ -40,8 +40,7 @@ START:
 		;pinta la pantalla (la primera o algunas especiales se pintan completamente)
 		CALL	pinta_pantalla_completa
 	
-		;carga sprites en memoria
-		CALL 		carga_patrones_sprites_nivel
+		
 	
 		;funciones que modificarian el marcador si se produce un evento cuando toque y cuando se pinta la pantalla ya se mira
 		;una variable para ver si el array hay que actualizarlo en pantalla o no
@@ -55,11 +54,11 @@ START:
 		CALL		posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.posx y posy
 	
 		CALL		pinta_energia
-		;CALL	pinta_puertas
-		;CALL	pinta_ayudas_habitacion
-		;CALL	pinta_extra_fondo
+		
+		;carga sprites en memoria
+		CALL 		carga_patrones_sprites_nivel
 	
-		CALL		entra_habitacion
+		CALL		entra_habitacion 		;CALL	pinta_puertas + CALL	pinta_ayudas_habitacion + CALL	pinta_extra_fondo
 	
 		;esta función no va aquí sino en check colisiones pero se pone aquí para realizar pruebas
 		CALL		terminada_habitacion_recorrida ;para cuando se maten todos los enemigos de la habitación
