@@ -160,6 +160,7 @@ inicializa_enemigos_fase0:	;; para no poner más complejo se hace uno por fase q
 .nivelboss:
 		JP			inicializa_enemigos_fase0_nivelboss
 fin_inicializa_enemigos_fase0:
+		RET
 
 		
 inicializa_enemigos_fase1:	;; para no poner más complejo se hace uno por fase que se actualiza al pasar por escaleras o puerta inferior
@@ -445,6 +446,11 @@ inicializa_enemigos_fase0_nivel2:
 		LD			DE, enemigo2
 		CALL		anade_enemigo_cienpies
 		LD			IX, enemigo2
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo3
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo3
 		JP			actualiza_valores_cienpies
 fin_inicializa_enemigos_fase0_nivel2:
 
@@ -457,6 +463,16 @@ inicializa_enemigos_fase0_nivel3:
 		LD			DE, enemigo2
 		CALL		anade_enemigo_cienpies
 		LD			IX, enemigo2
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo3
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo3
+		CALL		actualiza_valores_cienpies
+
+		LD			DE, enemigo4
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo4
 		JP			actualiza_valores_cienpies
 fin_inicializa_enemigos_fase0_nivel3:
 
@@ -469,6 +485,21 @@ inicializa_enemigos_fase0_nivel4:
 		LD			DE, enemigo2
 		CALL		anade_enemigo_cienpies
 		LD			IX, enemigo2
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo3
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo3
+		CALL		actualiza_valores_cienpies
+
+		LD			DE, enemigo4
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo5
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo4
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo5
 		JP			actualiza_valores_cienpies
 fin_inicializa_enemigos_fase0_nivel4:
 
@@ -481,6 +512,26 @@ inicializa_enemigos_fase0_nivel5:
 		LD			DE, enemigo2
 		CALL		anade_enemigo_cienpies
 		LD			IX, enemigo2
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo3
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo3
+		CALL		actualiza_valores_cienpies
+
+		LD			DE, enemigo4
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo4
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo5
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo5
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo6
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo6
 		JP			actualiza_valores_cienpies
 fin_inicializa_enemigos_fase0_nivel5:
 
@@ -493,7 +544,32 @@ inicializa_enemigos_fase0_nivel6:
 		LD			DE, enemigo2
 		CALL		anade_enemigo_cienpies
 		LD			IX, enemigo2
-		JP			actualiza_valores_cienpies
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo3
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo3
+		CALL		actualiza_valores_cienpies
+
+		LD			DE, enemigo4
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo4
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo5
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo5
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo6
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo6
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo6
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo6
+		JP		actualiza_valores_cienpies
 fin_inicializa_enemigos_fase0_nivel6:
 
 inicializa_enemigos_fase0_nivelboss:	
@@ -689,10 +765,61 @@ check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activ
 		;acciones enemigos
 
 .check_enemigo4:
+		LD			IX, enemigo4
+		LD			 A, (IX)
+		OR			 A
+		JP			 Z, .check_enemigo5
+		
+		LD			IY, array_sprites_enem + 12
+
+		CALL		mover_cienpies
+
+		;acciones enemigos
+		
 .check_enemigo5:
+		LD			IX, enemigo5
+		LD			 A, (IX)
+		OR			 A
+		JP			 Z, .check_enemigo6
+		
+		LD			IY, array_sprites_enem + 16
+
+		CALL		mover_cienpies
+
+		;acciones enemigos
 .check_enemigo6:
+		LD			IX, enemigo6
+		LD			 A, (IX)
+		OR			 A
+		JP			 Z, .check_enemigo7
+		
+		LD			IY, array_sprites_enem + 20
+
+		CALL		mover_cienpies
+
+		;acciones enemigos
 .check_enemigo7:
+		LD			IX, enemigo7
+		LD			 A, (IX)
+		OR			 A
+		JP			 Z, .check_enemigo8
+		
+		LD			IY, array_sprites_enem + 24
+
+		CALL		mover_cienpies
+
+		;acciones enemigos
 .check_enemigo8:
+		LD			IX, enemigo8
+		LD			 A, (IX)
+		OR			 A
+		JP			 Z, .check_enemigo9
+		
+		LD			IY, array_sprites_enem + 28
+
+		CALL		mover_cienpies
+
+		;acciones enemigos
 .check_enemigo9:
 fin_check_enemigos_fase0:
 		RET			

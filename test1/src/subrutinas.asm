@@ -432,31 +432,37 @@ entra_habitacion:
 		OR			 A
 		JP			NZ, .mira_nivel1
 		CALL		inicializa_enemigos_fase0
+		JP			.fin_mira_nivel
 .mira_nivel1:
 		CP			 1
 		OR			 A
 		JP			NZ, .mira_nivel2
 		CALL		inicializa_enemigos_fase1
+		JP			.fin_mira_nivel
 .mira_nivel2:
 		CP			 2
 		OR			 A
 		JP			NZ, .mira_nivel3
-		CALL		inicializa_enemigos_fase2		
+		CALL		inicializa_enemigos_fase2
+		JP			.fin_mira_nivel
 .mira_nivel3:
 		CP			 3
 		OR			 A
 		JP			NZ, .mira_nivel4
 		CALL		inicializa_enemigos_fase3
+		JP			.fin_mira_nivel
 .mira_nivel4:
 		CP			 4
 		OR			 A
 		JP			NZ, .mira_nivel5
 		CALL		inicializa_enemigos_fase4
+		JP			.fin_mira_nivel		
 .mira_nivel5:
 		CP			 5
 		OR			 A
 		JP			NZ, .mira_nivel6
 		CALL		inicializa_enemigos_fase5
+		JP			.fin_mira_nivel
 .mira_nivel6:
 		CALL		inicializa_enemigos_fase6
 .fin_mira_nivel:
