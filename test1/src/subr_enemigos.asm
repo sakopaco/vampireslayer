@@ -12,6 +12,10 @@ posiciones_iniciales_cienpies_x:
 		DB			128,128, 16,128,224, 64, 96,160,224
 posiciones_iniciales_cienpies_y:
 		DB			  8,  8, 72, 40, 72,104,106,106,104
+;para que cuando salgan 2 cienpiés no salgan en el mismo sitio
+posicion_cienpies1_x:
+		DB			  0
+
 
 enemigo1			DS	ESTRUCTURA_ENEMIGO
 enemigo2			DS	ESTRUCTURA_ENEMIGO
@@ -108,6 +112,9 @@ resetea_enemigos:
 		LD			IX, enemigo9
 		LD			(IX), INACTIVA
 		LD			(IX + ESTRUCTURA_ENEMIGO.posy), INACTIVA ; 0
+		
+		XOR			 A
+		LD			(posicion_cienpies1_x), A
 fin_resetea_enemigos:
 		RET
 
@@ -611,19 +618,32 @@ fin_anade_enemigo_cienpies:
 actualiza_valores_cienpies:
 ;actualiza_valores_aleatorios_cienpies
 		EXX
+.calcula_posicion:
 		LD			 A, R
 		AND			00000111b
 		LD			 B, A
 		LD			HL, posiciones_iniciales_cienpies_x
 		CALL		suma_A_HL
 		LD			 A, (HL)
+		LD			 D, A
 		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
 		
+		LD			 A, (posicion_cienpies1_x)
+		OR			 A
+		JP			 Z, .continua_calculo 	;SI posicion_cienpies1_x = 0 calcula la coordenada y
+											;SINO
+			CP			 D						;SI la posición x es la misma busco otra
+			JP			 Z, .calcula_posicion
+												;FIN_SI
+											;FIN SI
+
+.continua_calculo:		
 		LD			 A, B
 		LD			HL, posiciones_iniciales_cienpies_y
 		CALL		suma_A_HL
 		LD			 A, (HL)
 		LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
+
 		EXX
 fin_actualiza_valores_cienpies:
 		RET
