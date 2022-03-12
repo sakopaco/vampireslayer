@@ -9,11 +9,11 @@
 ;las posiciones iniciales dependerán de los últimos 3 bits del registro R
 ;nota: se pone un 0 de más para simplificar el bucle de selección
 posiciones_iniciales_cienpies_x:
-		DB			128,128, 16,128,224, 64, 96,160,224
+		DB			240,100,175,150,200,75,0,125,25
 posiciones_iniciales_cienpies_y:
-		DB			  8,  8, 72, 40, 72,104,106,106,104
+		DB			 60,72,24,36,108,84,12,96,48
 ;para que cuando salgan 2 cienpiés no salgan en el mismo sitio
-posicion_cienpies1_x:
+posicion_anterior_cienpies:
 		DB			  0
 
 
@@ -85,36 +85,38 @@ datos_conde:
 resetea_enemigos:
 ;resetea tipo (no activo)
 ;y de paso los oculta
+;nota: si cuando se matan se ocultan ya no hace falta... hay que estudiarlo porque para enemigos de más de 1 sprite hará falta
 		LD			IX, enemigo1
 		LD			(IX), INACTIVA ; 0
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), INACTIVA ; 0
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), OCULTA ; 208
 		LD			IX, enemigo2
 		LD			(IX), INACTIVA
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), INACTIVA ; 0
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), OCULTA 
 		LD			IX, enemigo3
 		LD			(IX), INACTIVA
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), INACTIVA ; 0
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), OCULTA 
 		LD			IX, enemigo4
 		LD			(IX), INACTIVA
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), INACTIVA ; 0
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), OCULTA 
 		LD			IX, enemigo5
 		LD			(IX), INACTIVA
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), INACTIVA ; 0
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), OCULTA 
 		LD			IX, enemigo6
 		LD			(IX), INACTIVA
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), INACTIVA ; 0
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), OCULTA 
 		LD			IX, enemigo7
 		LD			(IX), INACTIVA
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), INACTIVA ; 0
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), OCULTA 
 		LD			IX, enemigo8
 		LD			(IX), INACTIVA
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), INACTIVA ; 0
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), OCULTA 
 		LD			IX, enemigo9
 		LD			(IX), INACTIVA
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), INACTIVA ; 0
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), OCULTA 
 		
+;reseteamos posiciones anteriores de enemigos. cuando se entra en una habitación nueva no hay enemigo anterior y 
 		XOR			 A
-		LD			(posicion_cienpies1_x), A
+		LD			(posicion_anterior_cienpies), A
 fin_resetea_enemigos:
 		RET
 
@@ -611,33 +613,36 @@ fin_anade_enemigo_cienpies:
 ;;=====================================================
 ;;ACTUALIZA_VALORES_CIENPIES
 ;;=====================================================	
-; función: 	inicializa valores aleatorios del cienpies: posicion inicial (posx, posy) en la posición de enemigo que se le pase por IX
-; entrada:	IX que equivaldrá a qué nº de enemigo estamos inicializando (por ejemplo enemigo1)
-; salida: 	-
+; función: 	inicializa valores aleatorios del cienpies: si posicion_anterior_cienpies es 0 calcula posición entre 0 y 8 y saca los valores de posiciones_iniciales_cienpies_x y posiciones_iniciales_cienpies_y
+;			si posicion_anterior_cienpies <> 0 usa el siguiente valor de posicion_anterior_cienpies y saca los valores de posiciones_iniciales_cienpies_x y posiciones_iniciales_cienpies_y
+; entrada:	IX que equivaldrá a qué nº de enemigo estamos inicializando (por ejemplo enemigo1), posicion_anterior_cienpies, posiciones_iniciales_cienpies_x, posiciones_iniciales_cienpies_y
+; salida: 	posicion_anterior_cienpies
 ; toca:		-
 actualiza_valores_cienpies:
 ;actualiza_valores_aleatorios_cienpies
 		EXX
 .calcula_posicion:
+		LD			 A, (posicion_anterior_cienpies)
+		OR			 A
+		JP			NZ, .siguiente_posicion
+		;calcula posición de 0 a 8 porque es el primer cienpies
 		LD			 A, R
 		AND			00000111b
-		LD			 B, A
+		LD			(posicion_anterior_cienpies), A
+		JP			.asigna_valores_posicion_x
+.siguiente_posicion:
+		;coje la siguente posición al primer cienpies
+		INC			 A
+
+.asigna_valores_posicion_x:
+		LD			 B, A ; dejo un copia en B del valor de A 
+
 		LD			HL, posiciones_iniciales_cienpies_x
 		CALL		suma_A_HL
 		LD			 A, (HL)
-		LD			 D, A
 		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
-		
-		LD			 A, (posicion_cienpies1_x)
-		OR			 A
-		JP			 Z, .continua_calculo 	;SI posicion_cienpies1_x = 0 calcula la coordenada y
-											;SINO
-			CP			 D						;SI la posición x es la misma busco otra
-			JP			 Z, .calcula_posicion
-												;FIN_SI
-											;FIN SI
 
-.continua_calculo:		
+.asigna_valores_posicion_y:
 		LD			 A, B
 		LD			HL, posiciones_iniciales_cienpies_y
 		CALL		suma_A_HL
