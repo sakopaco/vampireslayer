@@ -15,8 +15,7 @@ posiciones_cienpies_y:
 
 posiciones_arana_x: 	;16 posisiones iniciales posibles
 		DB			 0,16,32,48,64,80,96,112,128,144,160,176,192,208,224,240
-posiciones_arana_y:		;29 posiciones posibles
-		DB			 0,4,8,12,16,20,24,28,32,36,40,44,48,52,56,60,64,68,72,76,80,84,88,92,96,100,104,108,112
+
 
 
 
@@ -685,7 +684,7 @@ actualiza_valores_arana:
 		EXX
 ;actualiza_valores_aleatorios_arana
 .calcula_posicion:
-		;calcula posición de 0 a 8 porque es el primer cienpies
+		;calcula posición de 0 a 16
 		LD			 A, R
 		AND			00001111b
 		LD			 B, A ; dejo un copia en B del valor de A 
@@ -695,13 +694,8 @@ actualiza_valores_arana:
 		CALL		suma_A_HL
 		LD			 A, (HL)
 		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
-
-.asigna_valores_posicion_y:
-		LD			 A, B
-		LD			HL, posiciones_arana_y
-		CALL		suma_A_HL
-		LD			 A, (HL)
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
+.asigna_valores_posicion_y:		
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), LIMITEPANTALLASUP
 
 		EXX
 fin_actualiza_valores_arana:
@@ -752,8 +746,45 @@ fin_mover_cienpies:
 ; salida: 	-
 ; toca:		-
 mover_arana:
+;SI DIRECCION = ABAJO
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccion)
+		OR			 A
+		JP			 Z, .arana_baja
+.arana_sube:
+		;DECREMENTA Y => ARANA SUBE
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
+		DEC			 A
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
+		
+		;SI Y = LIMITE SUPERIOR = 0 = LIMITEPANTALLASUP
+		OR			 A
+		JP			NZ, .fin_evalua_incrementoy
+		;DIRECCION = ARRIBA
+			LD			(IX + ESTRUCTURA_ENEMIGO.direccion), DIRABAJO
+		;FIN SI
+		JP			.fin_evalua_incrementoy
+;SINO
+.arana_baja:
+
+		;INCREMENTA Y => ARANA BAJA
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
+		INC			 A
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
+		
+		;SI Y = LIMITE INFERIOR
+		OR			 A
+		CP			112
+		JP			NZ, .fin_evalua_incrementoy
+		;DIRECCION = ABAJO
+			LD			(IX + ESTRUCTURA_ENEMIGO.direccion), DIRARRIBA
+	;FIN SI
+;FIN SI
+.fin_evalua_incrementoy:
+		
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
 		LD			(IY), A
+		
+		
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
 		LD			(IY + 1), A
 		
