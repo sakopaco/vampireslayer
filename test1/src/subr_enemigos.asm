@@ -12,11 +12,10 @@ posiciones_cienpies_x:
 		DB			240,100,175,150,200,75,0,125,25
 posiciones_cienpies_y:
 		DB			 60,72,24,36,108,84,12,96,48
-
 posiciones_arana_x: 	;16 posisiones iniciales posibles
 		DB			 0,16,32,48,64,80,96,112,128,144,160,176,192,208,224,240
-
-
+posiciones_serpiente_y:	;16 posisiones iniciales posibles
+		DB			80,83,86,89,92,95,98,101,104,107,110,113,116,119,122,125
 
 
 enemigo1			DS	ESTRUCTURA_ENEMIGO
@@ -49,9 +48,22 @@ datos_cienpies:
 			DB		0		;(radio) radio para movimientos circulares
 			DW		mover_cienpies	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 
-
-
 datos_serpiente:
+			DB		3		;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
+			DB		0		;(escena) sprite a mostrar 1/2
+			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
+			DB		10		;(energia) energía del enemigo antes de morir
+			DB		0		;(posx) pos x para mover y punto central del sprite para revisar disparo
+			DB		0		;(posy) pos y para mover y punto central del sprite para revisar disparo
+			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
+			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
+			DB		0		;(incx) incremento x para mover
+			DB		0		;(inxy) incremento y para mover
+			DB		0		;(direccion) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		0		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
+			DB		0		;(radio) radio para movimientos circulares
+			DW		mover_serpiente	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
+
 datos_arana:
 			DB		4		;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
 			DB		0		;(escena) sprite a mostrar 1/2
@@ -64,7 +76,7 @@ datos_arana:
 			DB		0		;(incx) incremento x para mover
 			DB		0		;(inxy) incremento y para mover
 			DB		0		;(direccion) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
-			DB		29		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
+			DB		0		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 			DB		0		;(radio) radio para movimientos circulares
 			DW		mover_arana	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 			
@@ -466,14 +478,14 @@ inicializa_enemigos_fase0_nivel2:
 		CALL		actualiza_valores_cienpies
 		
 		LD			DE, enemigo2
-		CALL		anade_enemigo_cienpies
+		CALL		anade_enemigo_arana
 		LD			IX, enemigo2
-		CALL		actualiza_valores_cienpies
+		CALL		actualiza_valores_arana
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_cienpies
+		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo3
-		JP			actualiza_valores_cienpies
+		JP			actualiza_valores_serpiente
 fin_inicializa_enemigos_fase0_nivel2:
 
 inicializa_enemigos_fase0_nivel3:
@@ -609,7 +621,7 @@ fin_inicializa_enemigos_fase0_nivelboss:
 
 
 ;;=====================================================
-;;ANADE_ENEMIGO_CIENPIES
+;;ANADE_ENEMIGO_CIENPIES/ARANA/SERPIENTE
 ;;=====================================================	
 ; función: 	mete en memoria la plantilla de datos base del cienpies en el enemigo que se le pase por DE
 ; entrada:	DE (enemigo en concreto al que poner los datos, por ejemplo, enemigo1)
@@ -622,14 +634,6 @@ anade_enemigo_cienpies:
 fin_anade_enemigo_cienpies:
 		RET
 
-
-;;=====================================================
-;;ANADE_ENEMIGO_ARANA
-;;=====================================================	
-; función: 	mete en memoria la plantilla de datos base del cienpies en el enemigo que se le pase por DE
-; entrada:	DE (enemigo en concreto al que poner los datos, por ejemplo, enemigo1)
-; salida: 	-
-; toca:		-
 anade_enemigo_arana:
 		LD			HL, datos_arana
 		LD			BC, ESTRUCTURA_ENEMIGO
@@ -637,6 +641,12 @@ anade_enemigo_arana:
 fin_anade_enemigo_arana:
 		RET
 
+anade_enemigo_serpiente:
+		LD			HL, datos_serpiente
+		LD			BC, ESTRUCTURA_ENEMIGO
+		LDIR
+fin_anade_enemigo_serpiente:
+		RET
 
 ;;=====================================================
 ;;ACTUALIZA_VALORES_CIENPIES
@@ -672,12 +682,11 @@ fin_actualiza_valores_cienpies:
 		RET
 
 
-
 ;;=====================================================
 ;;ACTUALIZA_VALORES_ARANA
 ;;=====================================================	
 ; función: 	inicializa valores aleatorios de la arana
-; entrada:	IX que equivaldrá a qué nº de enemigo estamos inicializando (por ejemplo enemigo1), posiciones_iniciales_cienpies_x, posiciones_iniciales_cienpies_y
+; entrada:	IX que equivaldrá a qué nº de enemigo estamos inicializando (por ejemplo enemigo1), posiciones_iniciales_arana_x
 ; salida: 	posicion_anterior_cienpies
 ; toca:		-
 actualiza_valores_arana:
@@ -699,6 +708,36 @@ actualiza_valores_arana:
 
 		EXX
 fin_actualiza_valores_arana:
+		RET
+
+
+;;=====================================================
+;;ACTUALIZA_VALORES_SERPIENTE
+;;=====================================================	
+; función: 	inicializa valores aleatorios de la serpiente
+; entrada:	IX que equivaldrá a qué nº de enemigo estamos inicializando (por ejemplo enemigo1), posiciones_iniciales_serpiente_y
+; salida: 	posicion_anterior_cienpies
+; toca:		-
+actualiza_valores_serpiente:
+		EXX
+;actualiza_valores_aleatorios_arana
+.calcula_posicion:
+.asigna_valores_posicion_x:		
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), LIMITEPANTALLAIZQ
+
+		;calcula posición de 0 a 16
+		LD			 A, R
+		AND			00001111b
+		LD			 B, A ; dejo un copia en B del valor de A 
+		
+.asigna_valores_posicion_y:
+		LD			HL, posiciones_serpiente_y
+		CALL		suma_A_HL
+		LD			 A, (HL)
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
+
+		EXX
+fin_actualiza_valores_serpiente:
 		RET
 
 
@@ -735,7 +774,6 @@ mover_cienpies:
 		LD			(IY + 3), CIENPIES_COLOR
 fin_mover_cienpies:
 		RET
-
 
 
 ;;=====================================================
@@ -809,7 +847,41 @@ mover_arana:
 fin_mover_arana:
 		RET
 
-	
+
+;;=====================================================
+;;MOVER_SERPIENTE
+;;=====================================================	
+; función: hace todo lo que haga falta de acciones cada vez que le toca al prograa enfocarse en el cienpies: su ataque, su sptrite, etc...
+; entrada: E (enemigo en concreto al que poner los datos, por ejemplo, enemigo1)
+; salida: 	-
+; toca:		-
+mover_serpiente:
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
+		LD			(IY), A
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
+		LD			(IY + 1), A
+		
+		LD			 A, (heartbeat)
+		OR			00000001b
+		JP			 Z, .fin_cambia_escena_enemigo1   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
+			; cambio de escena
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+			XOR			00000001b
+			LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
+			
+			JP			 Z, .enemigo1_poner_escena2			; IF ESCENA 1 THEN
+				LD			 A, SERPIENTE_SPRITE1A			
+				JP			.fin_enemigo1_poner_escena2
+.enemigo1_poner_escena2:									; ELSE
+				LD			 A, SERPIENTE_SPRITE2A
+.fin_enemigo1_poner_escena2:								; END IF
+.fin_cambia_escena_enemigo1:							; END IF			
+
+		LD			(IY + 2), A		
+		LD			(IY + 3), SERPIENTE_COLOR
+fin_mover_serpiente:
+		RET
+		
 
 inicializa_enemigos_fase1_nivel0:
 inicializa_enemigos_fase1_nivel1:
@@ -903,7 +975,7 @@ check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activ
 		
 		LD			IY, array_sprites_enem + 8
 
-		CALL		mover_cienpies
+		CALL		mover_serpiente
 
 		;acciones enemigos
 
