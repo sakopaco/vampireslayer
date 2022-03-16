@@ -47,6 +47,10 @@ datos_cienpies:
 			DB		0		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 			DB		0		;(radio) radio para movimientos circulares
 			DW		mover_cienpies	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
+			DB		0		;izq arriba
+			DB		0		;izq abajo
+			DB		0		;der_arriba
+			DB		0		;der_abajo
 
 datos_serpiente:
 			DB		3		;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
@@ -63,6 +67,10 @@ datos_serpiente:
 			DB		0		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 			DB		0		;(radio) radio para movimientos circulares
 			DW		mover_serpiente	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
+			DB		0		;izq arriba
+			DB		0		;izq abajo
+			DB		0		;der_arriba
+			DB		0		;der_abajo
 
 datos_arana:
 			DB		4		;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
@@ -79,6 +87,10 @@ datos_arana:
 			DB		0		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 			DB		0		;(radio) radio para movimientos circulares
 			DW		mover_arana	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
+			DB		0		;izq arriba
+			DB		0		;izq abajo
+			DB		0		;der_arriba
+			DB		0		;der_abajo
 			
 datos_murcielago:
 datos_lobo:
@@ -720,21 +732,20 @@ fin_actualiza_valores_arana:
 ; toca:		-
 actualiza_valores_serpiente:
 		EXX
-;actualiza_valores_aleatorios_arana
+;actualiza_valores_aleatorios_serpiente
 .calcula_posicion:
 .asigna_valores_posicion_x:		
-		LD			(IX + ESTRUCTURA_ENEMIGO.posx), LIMITEPANTALLAIZQ
-
-		;calcula posición de 0 a 16
+		;calcula posición inicial sumando a su líete izq un offset
 		LD			 A, R
-		AND			00001111b
+		AND			00011111b
 		LD			 B, A ; dejo un copia en B del valor de A 
+		LD			 A, SERPIENTE_LIMIZQ
+		ADD			 B
+		
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
 		
 .asigna_valores_posicion_y:
-		LD			HL, posiciones_serpiente_y
-		CALL		suma_A_HL
-		LD			 A, (HL)
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), SERPIENTE_POSY
 
 		EXX
 fin_actualiza_valores_serpiente:
@@ -751,9 +762,12 @@ fin_actualiza_valores_serpiente:
 mover_cienpies:
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
 		LD			(IY), A
+		
+.cambiando_posx:		
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
 		LD			(IY + 1), A
-		
+
+.cambiando_escena:
 		LD			 A, (heartbeat)
 		OR			00000001b
 		JP			 Z, .fin_cambia_escena_enemigo1   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
@@ -784,44 +798,9 @@ fin_mover_cienpies:
 ; salida: 	-
 ; toca:		-
 mover_arana:
-;SI DIRECCION = ABAJO
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccion)
-		OR			 A
-		JP			 Z, .arana_baja
-.arana_sube:
-		;DECREMENTA Y => ARANA SUBE
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
-		DEC			 A
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
-		
-		;SI Y = LIMITE SUPERIOR = 0 = LIMITEPANTALLASUP
-		OR			 A
-		JP			NZ, .fin_evalua_incrementoy
-		;DIRECCION = ARRIBA
-			LD			(IX + ESTRUCTURA_ENEMIGO.direccion), DIRABAJO
-		;FIN SI
-		JP			.fin_evalua_incrementoy
-;SINO
-.arana_baja:
-
-		;INCREMENTA Y => ARANA BAJA
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
-		INC			 A
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
-		
-		;SI Y = LIMITE INFERIOR
-		OR			 A
-		CP			112
-		JP			NZ, .fin_evalua_incrementoy
-		;DIRECCION = ABAJO
-			LD			(IX + ESTRUCTURA_ENEMIGO.direccion), DIRARRIBA
-	;FIN SI
-;FIN SI
-.fin_evalua_incrementoy:
-		
+		CALL		calcula_arana_incrementoy		
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
 		LD			(IY), A
-		
 		
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
 		LD			(IY + 1), A
@@ -848,6 +827,44 @@ fin_mover_arana:
 		RET
 
 
+calcula_arana_incrementoy:
+		;SI DIRECCION = ABAJO
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccion)
+		OR			 A
+		JP			 Z, .arana_baja
+.arana_sube:
+		;DECREMENTA Y => ARANA SUBE
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
+		DEC			 A
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
+		
+		;SI Y = LIMITE SUPERIOR = 0 = LIMITEPANTALLASUP
+		OR			 A
+		RET			NZ
+		;DIRECCION = ABAJO
+			LD			(IX + ESTRUCTURA_ENEMIGO.direccion), DIRABAJO
+		;FIN SI
+		RET
+;SINO
+.arana_baja:
+		;INCREMENTA Y => ARANA BAJA
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
+		INC			 A
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
+		
+		;SI Y = LIMITE INFERIOR
+		OR			 A
+		CP			LIMITEPANTALLAINF
+		RET			NZ
+		;DIRECCION = ARRIBA
+			LD			(IX + ESTRUCTURA_ENEMIGO.direccion), DIRARRIBA
+	;FIN SI
+;FIN SI
+fin_calcula_arana_incrementoy:
+		RET
+
+
+
 ;;=====================================================
 ;;MOVER_SERPIENTE
 ;;=====================================================	
@@ -858,30 +875,92 @@ fin_mover_arana:
 mover_serpiente:
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
 		LD			(IY), A
+		
+		CALL		calcula_serpiente_incrementox
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
 		LD			(IY + 1), A
 		
-		LD			 A, (heartbeat)
-		OR			00000001b
-		JP			 Z, .fin_cambia_escena_enemigo1   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
-			; cambio de escena
-			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
-			XOR			00000001b
-			LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
-			
-			JP			 Z, .enemigo1_poner_escena2			; IF ESCENA 1 THEN
-				LD			 A, SERPIENTE_SPRITE1A			
-				JP			.fin_enemigo1_poner_escena2
-.enemigo1_poner_escena2:									; ELSE
-				LD			 A, SERPIENTE_SPRITE2A
-.fin_enemigo1_poner_escena2:								; END IF
-.fin_cambia_escena_enemigo1:							; END IF			
+		CALL		calcula_serpiente_escena
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_a)
 
 		LD			(IY + 2), A		
 		LD			(IY + 3), SERPIENTE_COLOR
 fin_mover_serpiente:
 		RET
+
+calcula_serpiente_incrementox:
+;SI DIRECCION = DERECHA
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccion)
+		OR			 A
+		JP			 Z, .serpiente_derecha
+.serpiente_izquierda:
+		;DECREMENTA X => ARANA IZQUIERDA
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
+		DEC			 A
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
 		
+		;SI X = SERPIENTE_LIMIZQ 
+		CP			SERPIENTE_LIMIZQ
+		RET			NZ
+		;DIRECCION = DERECHA
+			LD			(IX + ESTRUCTURA_ENEMIGO.direccion), DIRDERECHA
+		;FIN SI
+		RET
+;SINO
+.serpiente_derecha:
+		;INCREMENTA X => ARANA DERECHA
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
+		INC			 A
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
+		
+		;SI Y = SERPIENTE_LIMDER
+		CP			SERPIENTE_LIMDER
+		RET			NZ
+		;DIRECCION = IZQUIERDA
+			LD			(IX + ESTRUCTURA_ENEMIGO.direccion), DIRIZQUIERDA
+	;FIN SI
+;FIN SI
+fin_calcula_serpiente_incrementox:
+		RET
+		
+calcula_serpiente_escena:
+		LD			 A, (heartbeat)
+		OR			00010000b
+		RET			 Z
+			
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccion)
+		OR			 A
+		JP			 Z, .direccion_derecha
+.direccion_izquierda:
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+			XOR			00000001b
+			LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
+			
+			OR			 A
+			JP			 Z, .escena_izquierda2
+.escena_izquierda1:
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), SERPIENTE_SPRITE1B
+			RET
+.escena_izquierda2:
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), SERPIENTE_SPRITE2B
+			RET
+			
+.direccion_derecha:
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+			XOR			00000001b
+			LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
+			
+			OR			 A
+			JP			 Z, .escena_derecha2
+.escena_derecha1:
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), SERPIENTE_SPRITE1A
+			RET
+.escena_derecha2:
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), SERPIENTE_SPRITE2A
+			RET
+fin_calcula_serpiente_escena:
+
+
 
 inicializa_enemigos_fase1_nivel0:
 inicializa_enemigos_fase1_nivel1:
