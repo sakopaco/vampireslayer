@@ -61,7 +61,7 @@ START:
 		CALL		terminada_habitacion_recorrida ;para cuando se maten todos los enemigos de la habitación
 
 		;incializacion de replayer con interrupciones
-		CALL		inicializa_replayer_efectos_interrupciones
+;		CALL		inicializa_replayer_efectos_interrupciones
 
 loop_principal:
 		HALT								;espera VBLANK y sincroniza

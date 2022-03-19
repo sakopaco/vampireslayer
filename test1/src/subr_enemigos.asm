@@ -17,7 +17,8 @@ posiciones_arana_x: 	;16 posisiones iniciales posibles
 posiciones_serpiente_y:	;16 posisiones iniciales posibles
 		DB			80,83,86,89,92,95,98,101,104,107,110,113,116,119,122,125
 seno_murcielago:
-		DB			 #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+		DB			 #00,#00,#00,#00,#FF,#FF,#FF,#FF
+		;DB			 #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 coseno_murcielago:
 		DB			 #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
 
@@ -797,10 +798,18 @@ mover_cienpies:
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
 		LD			(IY + 1), A
 
-.cambiando_escena:
+		
+		CALL		calcula_cienpies_escena
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_a)
+		LD			(IY + 2), A		
+		LD			(IY + 3), CIENPIES_COLOR
+fin_mover_cienpies:
+		RET
+
+calcula_cienpies_escena:
 		LD			 A, (heartbeat)
 		OR			00000001b
-		JP			 Z, .fin_cambia_escena_enemigo1   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
+		RET			 Z	   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
 			; cambio de escena
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
 			XOR			00000001b
@@ -812,11 +821,9 @@ mover_cienpies:
 .enemigo1_poner_escena2:									; ELSE
 				LD			 A, CIENPIES_SPRITE2A
 .fin_enemigo1_poner_escena2:								; END IF
-.fin_cambia_escena_enemigo1:							; END IF			
-
-		LD			(IY + 2), A		
-		LD			(IY + 3), CIENPIES_COLOR
-fin_mover_cienpies:
+.fin_cambia_escena_enemigo1:							; END IF	
+		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), A
+fin_calcula_cienpies_escena:
 		RET
 
 
@@ -835,9 +842,18 @@ mover_arana:
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
 		LD			(IY + 1), A
 		
+		CALL		calcula_arana_escena
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_a)
+		LD			(IY + 2), A		
+		
+		LD			(IY + 3), ARANA_COLOR
+fin_mover_arana:
+		RET
+
+calcula_arana_escena:
 		LD			 A, (heartbeat)
 		OR			00000001b
-		JP			 Z, .fin_cambia_escena_enemigo1   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
+		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
 			; cambio de escena
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
 			XOR			00000001b
@@ -850,12 +866,9 @@ mover_arana:
 				LD			 A, ARANA_SPRITE2A
 .fin_enemigo1_poner_escena2:								; END IF
 .fin_cambia_escena_enemigo1:							; END IF			
-
-		LD			(IY + 2), A		
-		LD			(IY + 3), ARANA_COLOR
-fin_mover_arana:
+		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), A
+fin_calcula_arana_escena:
 		RET
-
 
 calcula_arana_incrementoy:
 		;SI DIRECCION = ABAJO
@@ -1030,27 +1043,14 @@ mover_murcielago:
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
 		LD			(IY + 1), A
 
-		;CALL		calcula_murcielago_incrementoy
+		CALL		calcula_murcielago_incrementoy
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
 		LD			(IY), A
 		
-		LD			 A, (heartbeat)
-		OR			00000001b
-		JP			 Z, .fin_cambia_escena_enemigo1   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
-			; cambio de escena
-			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
-			XOR			00000001b
-			LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
-			
-			JP			 Z, .enemigo1_poner_escena2			; IF ESCENA 1 THEN
-				LD			 A, MURCIELAGO_SPRITE1A
-				JP			.fin_enemigo1_poner_escena2
-.enemigo1_poner_escena2:									; ELSE
-				LD			 A, MURCIELAGO_SPRITE2A
-.fin_enemigo1_poner_escena2:								; END IF
-.fin_cambia_escena_enemigo1:							; END IF			
-
-		LD			(IY + 2), A		
+		CALL		calcula_murcielago_escena
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_a)
+		LD			(IY + 2), A
+		
 		LD			(IY + 3), MURCIELAGO_COLOR
 fin_mover_murcielago:
 		RET
@@ -1083,22 +1083,46 @@ fin_calcula_murcielago_incrementox:
 
 
 calcula_murcielago_incrementoy:
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccion)
-		OR			 A
-		JP			 Z, .direccion_derecha
-.direccion_izquierda:
-		LD			HL, coseno_murcielago
-		JP			.fin_direccion
-.direccion_derecha:
+		;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccion)
+		;~ OR			 A
+		;~ JP			 Z, .direccion_derecha
+;~ .direccion_izquierda:
+		;~ LD			HL, coseno_murcielago
+		;~ JP			.fin_direccion
+;~ .direccion_derecha:
 		LD			HL, seno_murcielago
-.fin_direccion:
+;~ .fin_direccion:
 		
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-		AND			00001111b
+		AND			00111111b
 		CALL		suma_A_HL
+		
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
+		ADD			(HL)
 		LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
 fin_calcula_murcielago_incrementoy:
 		RET
+
+calcula_murcielago_escena:
+		LD			 A, (heartbeat)
+		OR			00000001b
+		JP			 Z, .fin_cambia_escena_enemigo1   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
+			; cambio de escena
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+			XOR			00000001b
+			LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
+			
+			JP			 Z, .enemigo1_poner_escena2			; IF ESCENA 1 THEN
+				LD			 A, MURCIELAGO_SPRITE1A
+				JP			.fin_enemigo1_poner_escena2
+.enemigo1_poner_escena2:									; ELSE
+				LD			 A, MURCIELAGO_SPRITE2A
+.fin_enemigo1_poner_escena2:								; END IF
+.fin_cambia_escena_enemigo1:							; END IF	
+		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), A
+fin_calcula_murcielago_escena:
+		RET
+
 
 
 
