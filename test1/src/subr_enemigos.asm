@@ -16,6 +16,10 @@ posiciones_arana_x: 	;16 posisiones iniciales posibles
 		DB			 0,16,32,48,64,80,96,112,128,144,160,176,192,208,224,240
 posiciones_serpiente_y:	;16 posisiones iniciales posibles
 		DB			80,83,86,89,92,95,98,101,104,107,110,113,116,119,122,125
+seno_murcielago:
+		DB			 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+coseno_murcielago:
+		DB			 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 
 
 enemigo1			DS	ESTRUCTURA_ENEMIGO
@@ -93,6 +97,25 @@ datos_arana:
 			DB		0		;der_abajo
 			
 datos_murcielago:
+			DB		5		;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
+			DB		0		;(escena) sprite a mostrar 1/2
+			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
+			DB		10		;(energia) energía del enemigo antes de morir
+			DB		0		;(posx) pos x para mover y punto central del sprite para revisar disparo
+			DB		0		;(posy) pos y para mover y punto central del sprite para revisar disparo
+			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
+			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
+			DB		0		;(incx) incremento x para mover
+			DB		0		;(inxy) incremento y para mover
+			DB		0		;(direccion) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		0		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
+			DB		0		;(radio) radio para movimientos circulares
+			DW		mover_murcielago	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
+			DB		0		;izq arriba
+			DB		0		;izq abajo
+			DB		0		;der_arriba
+			DB		0		;der_abajo
+
 datos_lobo:
 datos_esqueleto:
 datos_zombi:
@@ -507,19 +530,19 @@ inicializa_enemigos_fase0_nivel3:
 		CALL		actualiza_valores_cienpies
 		
 		LD			DE, enemigo2
-		CALL		anade_enemigo_cienpies
+		CALL		anade_enemigo_arana
 		LD			IX, enemigo2
-		CALL		actualiza_valores_cienpies
+		CALL		actualiza_valores_arana
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_cienpies
+		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo3
-		CALL		actualiza_valores_cienpies
-
+		CALL		actualiza_valores_serpiente
+		
 		LD			DE, enemigo4
-		CALL		anade_enemigo_cienpies
+		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo4
-		JP			actualiza_valores_cienpies
+		JP			actualiza_valores_murcielago
 fin_inicializa_enemigos_fase0_nivel3:
 
 inicializa_enemigos_fase0_nivel4:
@@ -659,6 +682,13 @@ anade_enemigo_serpiente:
 		LDIR
 fin_anade_enemigo_serpiente:
 		RET
+		
+anade_enemigo_murcielago:
+		LD			HL, datos_serpiente
+		LD			BC, ESTRUCTURA_ENEMIGO
+		LDIR
+fin_anade_enemigo_murcielago:
+		RET
 
 ;;=====================================================
 ;;ACTUALIZA_VALORES_CIENPIES
@@ -756,7 +786,7 @@ fin_actualiza_valores_serpiente:
 ;;MOVER_CIENPIES
 ;;=====================================================	
 ; función: hace todo lo que haga falta de acciones cada vez que le toca al prograa enfocarse en el cienpies: su ataque, su sptrite, etc...
-; entrada: E (enemigo en concreto al que poner los datos, por ejemplo, enemigo1)
+; entrada: IX (enemigo en concreto al que poner los datos, por ejemplo, enemigo1)
 ; salida: 	-
 ; toca:		-
 mover_cienpies:
@@ -794,7 +824,7 @@ fin_mover_cienpies:
 ;;MOVER_ARANA
 ;;=====================================================	
 ; función: hace todo lo que haga falta de acciones cada vez que le toca al prograa enfocarse en el cienpies: su ataque, su sptrite, etc...
-; entrada: E (enemigo en concreto al que poner los datos, por ejemplo, enemigo1)
+; entrada: IX (enemigo en concreto al que poner los datos, por ejemplo, enemigo1)
 ; salida: 	-
 ; toca:		-
 mover_arana:
@@ -961,6 +991,109 @@ calcula_serpiente_escena:
 fin_calcula_serpiente_escena:
 
 
+;;=====================================================
+;;ACTUALIZA_VALORES_MURCIELAGO
+;;=====================================================	
+; función: 	inicializa valores aleatorios de la serpiente
+; entrada:	IX que equivaldrá a qué nº de enemigo estamos inicializando (por ejemplo enemigo1), posiciones_iniciales_serpiente_y
+; salida: 	posicion_anterior_cienpies
+; toca:		-
+actualiza_valores_murcielago:
+		EXX
+;actualiza_valores_aleatorios_serpiente
+.calcula_posicion:
+.asigna_valores_posicion_x:		
+		;calcula posición inicial sumando a su líete izq un offset
+		LD			 A, R
+		AND			00011111b
+		LD			 B, A ; dejo un copia en B del valor de A 
+		LD			 A, SERPIENTE_LIMIZQ
+		ADD			 B
+		
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
+		
+.asigna_valores_posicion_y:
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), SERPIENTE_POSY
+
+		EXX
+fin_actualiza_valores_murcielago:
+		RET
+
+
+;=====================================================
+;;MOVER_ARANA
+;;=====================================================	
+; función: hace todo lo que haga falta de acciones cada vez que le toca al prograa enfocarse en el cienpies: su ataque, su sptrite, etc...
+; entrada: IX (enemigo en concreto al que poner los datos, por ejemplo, enemigo1)
+; salida: 	-
+; toca:		-
+mover_murcielago:
+		CALL		calcula_murcielago_incrementoy		
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
+		LD			(IY), A
+		
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
+		LD			(IY + 1), A
+		
+		LD			 A, (heartbeat)
+		OR			00000001b
+		JP			 Z, .fin_cambia_escena_enemigo1   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
+			; cambio de escena
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+			XOR			00000001b
+			LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
+			
+			JP			 Z, .enemigo1_poner_escena2			; IF ESCENA 1 THEN
+				LD			 A, MURCIELAGO_SPRITE1A
+				JP			.fin_enemigo1_poner_escena2
+.enemigo1_poner_escena2:									; ELSE
+				LD			 A, MURCIELAGO_SPRITE2A
+.fin_enemigo1_poner_escena2:								; END IF
+.fin_cambia_escena_enemigo1:							; END IF			
+
+		LD			(IY + 2), A		
+		LD			(IY + 3), MURCIELAGO_COLOR
+fin_mover_murcielago:
+		RET
+
+
+calcula_murcielago_incrementoy:
+		;SI DIRECCION = ABAJO
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccion)
+		OR			 A
+		JP			 Z, .arana_baja
+.arana_sube:
+		;DECREMENTA Y => ARANA SUBE
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
+		DEC			 A
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
+		
+		;SI Y = LIMITE SUPERIOR = 0 = LIMITEPANTALLASUP
+		OR			 A
+		RET			NZ
+		;DIRECCION = ABAJO
+			LD			(IX + ESTRUCTURA_ENEMIGO.direccion), DIRABAJO
+		;FIN SI
+		RET
+;SINO
+.arana_baja:
+		;INCREMENTA Y => ARANA BAJA
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
+		INC			 A
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
+		
+		;SI Y = LIMITE INFERIOR
+		OR			 A
+		CP			LIMITEPANTALLAINF
+		RET			NZ
+		;DIRECCION = ARRIBA
+			LD			(IX + ESTRUCTURA_ENEMIGO.direccion), DIRARRIBA
+	;FIN SI
+;FIN SI
+fin_calcula_murcielago_incrementoy:
+		RET
+
+
 
 inicializa_enemigos_fase1_nivel0:
 inicializa_enemigos_fase1_nivel1:
@@ -1066,7 +1199,7 @@ check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activ
 		
 		LD			IY, array_sprites_enem + 12
 
-		CALL		mover_cienpies
+		CALL		mover_murcielago
 
 		;acciones enemigos
 		
