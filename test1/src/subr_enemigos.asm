@@ -16,11 +16,8 @@ posiciones_arana_x: 	;16 posisiones iniciales posibles
 		DB			 0,16,32,48,64,80,96,112,128,144,160,176,192,208,224,240
 posiciones_serpiente_y:	;16 posisiones iniciales posibles
 		DB			80,83,86,89,92,95,98,101,104,107,110,113,116,119,122,125
-seno_murcielago:
-		DB			 #00,#00,#00,#00,#FF,#FF,#FF,#FF
-		;DB			 #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-coseno_murcielago:
-		DB			 #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
+variacion_murcielagoy:
+		DB			 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
 
 
 enemigo1			DS	ESTRUCTURA_ENEMIGO
@@ -1081,24 +1078,16 @@ calcula_murcielago_incrementox:
 fin_calcula_murcielago_incrementox:
 		RET
 
-
 calcula_murcielago_incrementoy:
-		;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccion)
-		;~ OR			 A
-		;~ JP			 Z, .direccion_derecha
-;~ .direccion_izquierda:
-		;~ LD			HL, coseno_murcielago
-		;~ JP			.fin_direccion
-;~ .direccion_derecha:
-		LD			HL, seno_murcielago
-;~ .fin_direccion:
+		LD			HL, variacion_murcielagoy
 		
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-		AND			00111111b
+		AND			00011111b
 		CALL		suma_A_HL
 		
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
-		ADD			(HL)
+		LD			 B, (IX + ESTRUCTURA_ENEMIGO.posy)
+		LD			 A, (HL)
+		ADD			 B
 		LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
 fin_calcula_murcielago_incrementoy:
 		RET
