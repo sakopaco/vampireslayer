@@ -21,7 +21,7 @@ fin_suma_A_BC:
 ;;=====================================================
 ;;SUMA_A_HL
 ;;=====================================================	
-; función: 	suma A a BC por si da más de 255
+; función: 	suma A a HL por si da más de 255
 ; entrada: 	A, HL
 ; salida: 	A + HL
 ; toca:		A, HL

@@ -17,9 +17,9 @@ posiciones_arana_x: 	;16 posisiones iniciales posibles
 posiciones_serpiente_y:	;16 posisiones iniciales posibles
 		DB			80,83,86,89,92,95,98,101,104,107,110,113,116,119,122,125
 seno_murcielago:
-		DB			 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+		DB			 #00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 coseno_murcielago:
-		DB			 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+		DB			 #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00,#00
 
 
 enemigo1			DS	ESTRUCTURA_ENEMIGO
@@ -101,13 +101,13 @@ datos_murcielago:
 			DB		0		;(escena) sprite a mostrar 1/2
 			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
 			DB		10		;(energia) energía del enemigo antes de morir
-			DB		0		;(posx) pos x para mover y punto central del sprite para revisar disparo
-			DB		0		;(posy) pos y para mover y punto central del sprite para revisar disparo
+			DB		MURCIELAGO_LIMIZQ	;(posx) pos x para mover y punto central del sprite para revisar disparo
+			DB		24		;(posy) pos y para mover y punto central del sprite para revisar disparo
 			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
 			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
 			DB		0		;(incx) incremento x para mover
 			DB		0		;(inxy) incremento y para mover
-			DB		0		;(direccion) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		DIRDERECHA			;(direccion) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		0		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 			DB		0		;(radio) radio para movimientos circulares
 			DW		mover_murcielago	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
@@ -1002,38 +1002,37 @@ actualiza_valores_murcielago:
 		EXX
 ;actualiza_valores_aleatorios_serpiente
 .calcula_posicion:
-.asigna_valores_posicion_x:		
-		;calcula posición inicial sumando a su líete izq un offset
-		LD			 A, R
-		AND			00011111b
-		LD			 B, A ; dejo un copia en B del valor de A 
-		LD			 A, SERPIENTE_LIMIZQ
-		ADD			 B
+		EXX
 		
+.asigna_valores_posicion_x:
+		LD			 A, R
+		AND			01111111b
+		ADD			MURCIELAGO_LIMIZQ
 		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
 		
 .asigna_valores_posicion_y:
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), SERPIENTE_POSY
-
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), MURCIELAGO_HORIZON
+		
 		EXX
 fin_actualiza_valores_murcielago:
 		RET
 
 
 ;=====================================================
-;;MOVER_ARANA
+;;MOVER_MURCIEAGO
 ;;=====================================================	
 ; función: hace todo lo que haga falta de acciones cada vez que le toca al prograa enfocarse en el cienpies: su ataque, su sptrite, etc...
 ; entrada: IX (enemigo en concreto al que poner los datos, por ejemplo, enemigo1)
 ; salida: 	-
 ; toca:		-
 mover_murcielago:
-		CALL		calcula_murcielago_incrementoy		
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
-		LD			(IY), A
-		
+		CALL		calcula_murcielago_incrementox
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
 		LD			(IY + 1), A
+
+		;CALL		calcula_murcielago_incrementoy
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
+		LD			(IY), A
 		
 		LD			 A, (heartbeat)
 		OR			00000001b
@@ -1056,40 +1055,48 @@ mover_murcielago:
 fin_mover_murcielago:
 		RET
 
-
-calcula_murcielago_incrementoy:
-		;SI DIRECCION = ABAJO
+calcula_murcielago_incrementox:
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccion)
 		OR			 A
-		JP			 Z, .arana_baja
-.arana_sube:
-		;DECREMENTA Y => ARANA SUBE
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
-		DEC			 A
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
-		
-		;SI Y = LIMITE SUPERIOR = 0 = LIMITEPANTALLASUP
-		OR			 A
-		RET			NZ
-		;DIRECCION = ABAJO
-			LD			(IX + ESTRUCTURA_ENEMIGO.direccion), DIRABAJO
-		;FIN SI
+		JP			 Z, .mueve_derecha
+.mueve_izquierda:
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
+			DEC			 A
+			JP			.fin_mueve
+.mueve_derecha:
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
+			INC			 A
+.fin_mueve:		
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
+
+		CP			MURCIELAGO_LIMIZQ
+		JP			NZ, .no_gira_derecha
+		LD			(IX + ESTRUCTURA_ENEMIGO.direccion), DIRDERECHA
+.no_gira_derecha:
+
+		CP			MURCIELAGO_LIMDER
+		JP			NZ, .no_gira_izquierda
+		LD			(IX + ESTRUCTURA_ENEMIGO.direccion), DIRIZQUIERDA
+.no_gira_izquierda:
+fin_calcula_murcielago_incrementox:
 		RET
-;SINO
-.arana_baja:
-		;INCREMENTA Y => ARANA BAJA
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
-		INC			 A
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
-		
-		;SI Y = LIMITE INFERIOR
+
+
+calcula_murcielago_incrementoy:
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccion)
 		OR			 A
-		CP			LIMITEPANTALLAINF
-		RET			NZ
-		;DIRECCION = ARRIBA
-			LD			(IX + ESTRUCTURA_ENEMIGO.direccion), DIRARRIBA
-	;FIN SI
-;FIN SI
+		JP			 Z, .direccion_derecha
+.direccion_izquierda:
+		LD			HL, coseno_murcielago
+		JP			.fin_direccion
+.direccion_derecha:
+		LD			HL, seno_murcielago
+.fin_direccion:
+		
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
+		AND			00001111b
+		CALL		suma_A_HL
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
 fin_calcula_murcielago_incrementoy:
 		RET
 

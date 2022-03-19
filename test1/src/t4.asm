@@ -18,9 +18,6 @@ START:
 		;inicializa variables para parametrizar funciones y que lo que se muestre sea variable (nº vidas, mapa, puertas, pantalla, etc...)
 		CALL	inicializa_variables_pruebas
 	
-		;carga los patrones de los sprites de los enemigos según el nivel
-;		CALL	inicializa_enemigos_fase0
-	
 		;inicializa el punto de mira
 		CALL	inicializa_punto_mira
 	
@@ -64,7 +61,7 @@ START:
 		CALL		terminada_habitacion_recorrida ;para cuando se maten todos los enemigos de la habitación
 
 		;incializacion de replayer con interrupciones
-;		CALL		inicializa_replayer_efectos_interrupciones
+		CALL		inicializa_replayer_efectos_interrupciones
 
 loop_principal:
 		HALT								;espera VBLANK y sincroniza
