@@ -150,37 +150,38 @@ resetea_enemigos:
 ;nota: si cuando se matan se ocultan ya no hace falta... hay que estudiarlo porque para enemigos de más de 1 sprite hará falta
 		LD			IX, enemigo1
 		LD			(IX), INACTIVA ; 0
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), OCULTA ; 208
 		LD			IX, enemigo2
 		LD			(IX), INACTIVA
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), OCULTA 
 		LD			IX, enemigo3
 		LD			(IX), INACTIVA
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), OCULTA 
 		LD			IX, enemigo4
 		LD			(IX), INACTIVA
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), OCULTA 
 		LD			IX, enemigo5
 		LD			(IX), INACTIVA
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), OCULTA 
 		LD			IX, enemigo6
 		LD			(IX), INACTIVA
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), OCULTA 
 		LD			IX, enemigo7
 		LD			(IX), INACTIVA
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), OCULTA 
 		LD			IX, enemigo8
 		LD			(IX), INACTIVA
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), OCULTA 
 		LD			IX, enemigo9
 		LD			(IX), INACTIVA
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), OCULTA 
+		
+		XOR			 A
+		LD			 B, 127
+		LD			HL, array_sprites
+.loop:
+		LD			(HL), A
+		INC			HL
+		DJNZ		.loop
+		
+		CALL		render_sprites
 fin_resetea_enemigos:
 		RET
 
 
 ;;=====================================================
-;;INICIALIZA_ENEMIGOS_FASEX
+;;INICIALIZA_ENEMIGOS_FASE X
 ;;=====================================================	
 ; función: 	inicializa las variables que serán usadas en el array en la fase
 ; entrada:	-

@@ -21,7 +21,7 @@ BAKCLR  	equ		#F3EA	;zona memoria color background
 BDRCLR 		equ		#F3EB	;zona memoria bordercolor
 CLS			equ		#00C3	;limpia pantalla (necesita A=0)
 
-BORRASPRITE equ		#00D1	;si se pone en la Y de un sprite hace que desaparezca de pantalla
+BORRASPRITE    equ	#00D1	;si se pone en la Y de un sprite hace que desaparezca de pantalla
 BORRASPRITESIG equ	#00D0	;si se pone en la Y de un sprite hace que desaparezca de pantalla y los de los planos siguientes
 
 ;;ETIQUETAS/CONSTANTES REGISTROS VDP

@@ -298,7 +298,6 @@ pinta_nivel:
 fin_pinta_nivel:
 
 
-
 ;;=====================================================
 ;;PINTA_TILE_SUELTO
 ;;=====================================================	
@@ -318,9 +317,6 @@ pinta_tile_suelto:
 	OUT		(REGESCVDP),A	;escribe A en VRAM en la posición indicada por los dos OUT anteriores
 fin_pinta_tile_suelto:
 	RET
-
-
-
 
 
 ;;=====================================================

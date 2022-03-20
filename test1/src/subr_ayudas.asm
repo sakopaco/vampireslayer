@@ -644,6 +644,14 @@ fin_accion_vidaextra:
 ; entrada: 	
 ; salida: 	-
 accion_ballesta:
+		;desactivo ayuda en array para que no vuelva a aparecer
+		LD			HL, (puntero_extras_habitacion_actual)
+		LD		 	 A, (HL)
+		RES		 	 1, A					;elimino la ayuda del mapa, personalizar para cada ayuda
+		LD			(HL), A
+		XOR		 	 A
+		LD			(habitacion_extras), A	;para no tener que verificar ayudas
+	
 		;cambio sprites a ballesta mejorada
 		LD		IX, puntomira
 		LD		(IX + ESTRUCTURA_PUNTOMIRA.spritea), SPRI_DANO2A
@@ -653,6 +661,7 @@ accion_ballesta:
 		LD		 A, DANO2
 		LD		(dano_actual), A
 		
+		;desactiva ayuda
 		LD		IX, (puntero_ayuda_actual)
 		XOR		 A
 		LD		(IX), A
