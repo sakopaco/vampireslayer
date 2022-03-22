@@ -115,6 +115,25 @@ datos_murcielago:
 			DB		0		;der_abajo
 
 datos_lobo:
+			DB		6		;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
+			DB		0		;(escena) sprite a mostrar 1/2
+			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
+			DB		10		;(energia) energía del enemigo antes de morir
+			DB		LOBO_LIMIZQ1	;(posx) pos x para mover y punto central del sprite para revisar disparo
+			DB		LOBO_POSY		;(posy) pos y para mover y punto central del sprite para revisar disparo
+			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
+			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
+			DB		0		;(incx) incremento x para mover
+			DB		0		;(inxy) incremento y para mover
+			DB		DIRDERECHA		;(direccion) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		0		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
+			DB		0		;(radio) radio para movimientos circulares
+			DW		mover_lobo		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
+			DB		LOBO_SPRITE1A	;izq arriba
+			DB		LOBO_SPRITE2A	;der_arriba
+			DB		LOBO_SPRITE3A	;izq abajo
+			DB		LOBO_SPRITE4A	;der_abajo
+			
 datos_esqueleto:
 datos_zombi:
 datos_fantasma:
@@ -551,24 +570,24 @@ inicializa_enemigos_fase0_nivel4:
 		CALL		actualiza_valores_cienpies
 		
 		LD			DE, enemigo2
-		CALL		anade_enemigo_cienpies
+		CALL		anade_enemigo_arana
 		LD			IX, enemigo2
-		CALL		actualiza_valores_cienpies
+		CALL		actualiza_valores_arana
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_cienpies
+		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo3
-		CALL		actualiza_valores_cienpies
-
-		LD			DE, enemigo4
-		CALL		anade_enemigo_cienpies
-		LD			IX, enemigo5
-		CALL		actualiza_valores_cienpies
+		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo4
-		CALL		anade_enemigo_cienpies
-		LD			IX, enemigo5
-		JP			actualiza_valores_cienpies
+		CALL		anade_enemigo_murcielago
+		LD			IX, enemigo4
+		CALL		actualiza_valores_murcielago
+		
+		LD			DE, enemigo5
+		CALL		anade_enemigo_lobo
+		LD			IX, enemigo4
+		JP			actualiza_valores_lobo		
 fin_inicializa_enemigos_fase0_nivel4:
 
 inicializa_enemigos_fase0_nivel5:
@@ -655,7 +674,7 @@ fin_inicializa_enemigos_fase0_nivelboss:
 
 
 ;;=====================================================
-;;ANADE_ENEMIGO_CIENPIES/ARANA/SERPIENTE
+;;ANADE_ENEMIGO_CIENPIES/ARANA/SERPIENTE/MURCIELAGO/LOBO
 ;;=====================================================	
 ; función: 	mete en memoria la plantilla de datos base del cienpies en el enemigo que se le pase por DE
 ; entrada:	DE (enemigo en concreto al que poner los datos, por ejemplo, enemigo1)
@@ -687,6 +706,13 @@ anade_enemigo_murcielago:
 		LD			BC, ESTRUCTURA_ENEMIGO
 		LDIR
 fin_anade_enemigo_murcielago:
+		RET
+
+anade_enemigo_lobo:
+		LD			HL, datos_serpiente
+		LD			BC, ESTRUCTURA_ENEMIGO
+		LDIR
+fin_anade_enemigo_lobo:
 		RET
 
 ;;=====================================================
@@ -778,6 +804,32 @@ actualiza_valores_serpiente:
 
 		EXX
 fin_actualiza_valores_serpiente:
+		RET
+
+
+;;=====================================================
+;;ACTUALIZA_VALORES_LOBO
+;;=====================================================	
+; función: 	inicializa valores aleatorios del lobo
+; entrada:	IX que equivaldrá a qué nº de enemigo estamos inicializando (por ejemplo enemigo1), posiciones_iniciales_serpiente_y
+; salida: 	posicion_anterior_cienpies
+; toca:		-
+actualiza_valores_lobo:
+		EXX
+;actualiza_valores_aleatorios_serpiente
+.calcula_posicion:
+.asigna_valores_posicion_x:		
+		;calcula posición inicial sumando a su líete izq un offset
+		LD			 A, R
+		AND			00111111b
+		ADD			LOBO_LIMIZQ2
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
+		
+.asigna_valores_posicion_y:
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), LOBO_POSY
+
+		EXX
+fin_actualiza_valores_lobo:
 		RET
 
 
@@ -1030,7 +1082,7 @@ fin_actualiza_valores_murcielago:
 
 
 ;=====================================================
-;;MOVER_MURCIEAGO
+;;MOVER_MURCIELAGO
 ;;=====================================================	
 ; función: hace todo lo que haga falta de acciones cada vez que le toca al prograa enfocarse en el cienpies: su ataque, su sptrite, etc...
 ; entrada: IX (enemigo en concreto al que poner los datos, por ejemplo, enemigo1)
@@ -1113,6 +1165,47 @@ calcula_murcielago_escena:
 fin_calcula_murcielago_escena:
 		RET
 
+
+;;=====================================================
+;;MOVER_LOBO
+;;=====================================================	
+; función: hace todo lo que haga falta de acciones cada vez que le toca al prograa enfocarse en el cienpies: su ataque, su sptrite, etc...
+; entrada: IX (enemigo en concreto al que poner los datos, por ejemplo, enemigo1)
+; salida: 	-
+; toca:		-
+mover_lobo:	
+		;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
+		;~ LD			(IY), A
+		;~ LD			(IY + 4), A
+		
+		;~ ;CALL		calcula_lobo_incrementox	
+		;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
+		;~ LD			(IY + 1), A
+		;~ ADD			32
+		;~ LD			(IY + 5), A
+		
+		;~ ;CALL		calcula_lobo_escena
+		;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_a)
+		;~ LD			(IY + 2), A
+		;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_b)
+		;~ LD			(IY + 6), A
+		
+		;~ LD			(IY + 3), LOBO_COLOR
+		;~ LD			(IY + 7), LOBO_COLOR
+		
+		LD			(IY), LOBO_POSY
+		;~ LD			(IY + 4), LOBO_POSY
+		
+		LD			(IY + 1), 0
+		;~ LD			(IY + 5), 32
+		
+		LD			(IY + 2), 64
+		;~ LD			(IY + 6), LOBO_SPRITE1B
+		
+		LD			(IY + 3), 1
+		;~ LD			(IY + 7), LOBO_COLOR
+fin_mover_lobo:
+		RET
 
 
 
@@ -1232,40 +1325,40 @@ check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activ
 		
 		LD			IY, array_sprites_enem + 16
 
-		CALL		mover_cienpies
+		CALL		mover_lobo
 
 		;acciones enemigos
 .check_enemigo6:
-		LD			IX, enemigo6
-		LD			 A, (IX)
-		OR			 A
-		JP			 Z, .check_enemigo7
+		;~ LD			IX, enemigo6
+		;~ LD			 A, (IX)
+		;~ OR			 A
+		;~ JP			 Z, .check_enemigo7
 		
-		LD			IY, array_sprites_enem + 20
+		;~ LD			IY, array_sprites_enem + 24
 
-		CALL		mover_cienpies
+		;~ CALL		mover_cienpies
 
 		;acciones enemigos
 .check_enemigo7:
-		LD			IX, enemigo7
-		LD			 A, (IX)
-		OR			 A
-		JP			 Z, .check_enemigo8
+		;~ LD			IX, enemigo7
+		;~ LD			 A, (IX)
+		;~ OR			 A
+		;~ JP			 Z, .check_enemigo8
 		
-		LD			IY, array_sprites_enem + 24
+		;~ LD			IY, array_sprites_enem + 24
 
-		CALL		mover_cienpies
+		;~ CALL		mover_cienpies
 
 		;acciones enemigos
 .check_enemigo8:
-		LD			IX, enemigo8
-		LD			 A, (IX)
-		OR			 A
-		JP			 Z, .check_enemigo9
+		;~ LD			IX, enemigo8
+		;~ LD			 A, (IX)
+		;~ OR			 A
+		;~ JP			 Z, .check_enemigo9
 		
-		LD			IY, array_sprites_enem + 28
+		;~ LD			IY, array_sprites_enem + 28
 
-		CALL		mover_cienpies
+		;~ CALL		mover_cienpies
 
 		;acciones enemigos
 .check_enemigo9:

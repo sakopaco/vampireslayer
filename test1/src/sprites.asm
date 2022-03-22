@@ -82,7 +82,6 @@ sprite_serpiente2_2:
 fin_sprite_serpiente:
 
 
-
 ;; ARAÑA 2
 sprite_arana:
 sprite_arana_1:
@@ -115,7 +114,7 @@ sprite_murcielago_2:
 fin_sprite_murcielago:
 
 
-;; LOBO 4 + 4 (dos escenas derecha y dos esceas izquierda)
+;; LOBO 4 + 4 (dos escenas derecha y dos escenas izquierda)
 sprite_lobo:
 sprite_lobo1_1:
 	DB #00,#00,#01,#07,#0F,#1F,#1F,#3F
@@ -933,207 +932,157 @@ sprite_conde_4:
 fin_sprite_conde:
 
 
-
 ;;=====================================================
 ;;CARGA PATRONES SPRITES
 ;;=====================================================	
-
 carga_patrones_cienpies:
 		LD			HL, sprite_cienpies
 		LD			DE, #38C0
-		LD			BC, fin_sprite_cienpies - sprite_cienpies
-		JP			LDIRMV
+		LD			BC, fin_sprite_cienpies - sprite_cienpies			;32 * 2 sprites de 4 x 4				
+		CALL		LDIRVM
 fin_carga_patrones_cienpies:
+		RET
 
 carga_patrones_serpiente:
 		LD			HL, sprite_serpiente
 		LD			DE, #3900
-		LD			BC, fin_sprite_serpiente - sprite_serpiente
-		JP			LDIRMV
+		LD			BC, fin_sprite_serpiente - sprite_serpiente			;32 * 4 sprites de 4 x 4				
+		CALL		LDIRVM
 fin_carga_patrones_serpiete:
+		RET
 
 carga_patrones_arana:
 		LD			HL, sprite_arana
 		LD			DE, #3980
-		LD			BC, fin_sprite_arana - sprite_arana
-		JP			LDIRMV
+		LD			BC, fin_sprite_arana - sprite_arana					;32 * 2 sprites de 4 x 4				
+		CALL		LDIRVM
 fin_carga_patrones_arana:
+		RET
 
 carga_patrones_murcielago:
 		LD			HL, sprite_murcielago
 		LD			DE, #39C0
 		LD			BC, fin_sprite_murcielago - sprite_murcielago
-		JP			LDIRMV
+		CALL		LDIRVM
 fin_carga_patrones_murcielago:
+		RET
 
 carga_patrones_lobo:
-		LD			HL, sprite_lobo
+		LD			HL, sprite_murcielago
 		LD			DE, #3A00
 		LD			BC, fin_sprite_lobo - sprite_lobo
-		JP			LDIRMV
+		CALL		LDIRVM
 fin_carga_patrones_lobo:
+		RET
 
 carga_patrones_lobo_fase5:
 		LD			HL, sprite_lobo
 		LD			DE, #3B00
 		LD			BC, fin_sprite_lobo - sprite_lobo
-		JP			LDIRMV
+		CALL		LDIRVM
 fin_carga_patrones_lobo_fase5:
+		RET
 
 carga_patrones_esqueleto:
 		LD			HL, sprite_esqueleto
 		LD			DE, #3B00
 		LD			BC, fin_sprite_esqueleto - sprite_esqueleto
-		JP			LDIRMV
+		CALL		LDIRVM
 fin_carga_patrones_esqueleto:
+		RET
 
 carga_patrones_zombi:
 		LD			HL, sprite_zombi
 		LD			DE, #3C00
 		LD			BC, fin_sprite_zombi - sprite_zombi
-		JP			LDIRMV
+		CALL		LDIRVM
 fin_carga_patrones_zombi:
+		RET
 
 carga_patrones_fantasma:
 		LD			HL, sprite_fantasma
 		LD			DE, #3D00
 		LD			BC, fin_sprite_fantasma - sprite_fantasma
-		JP			LDIRMV
+		CALL		LDIRVM
 fin_carga_patrones_fantasma:
+		RET
 
 carga_patrones_caballero:
 		LD			HL, sprite_caballero
 		LD			DE, #3A00
 		LD			BC, fin_sprite_caballero - sprite_caballero
-		JP			LDIRMV
+		CALL		LDIRVM
 fin_carga_patrones_caballero:
+		RET
 
 carga_patrones_fuego:
 		LD			HL, sprite_fuego
 		LD			DE, #3D80
 		LD			BC, fin_sprite_fuego - sprite_fuego
-		JP			LDIRMV
+		CALL		LDIRVM
 fin_carga_patrones_fuego:
+		RET
 
 carga_patrones_magia:
 		LD			HL, sprite_magia
 		LD			DE, #3900
 		LD			BC, fin_sprite_magia - sprite_magia
-		JP			LDIRMV
+		CALL		LDIRVM
 fin_carga_patrones_magia:
+		RET
 
 carga_patrones_jefelobo:
 		LD			HL, sprite_jefelobo
 		LD			DE, #3E00
 		LD			BC, fin_sprite_jefelobo - sprite_jefelobo
-		JP			LDIRMV
+		CALL		LDIRVM
 fin_carga_patrones_jefelobo:
+		RET
 
 carga_patrones_jefemurcielago:
 		LD			HL, sprite_jefemurcielago
 		LD			DE, #3F00
 		LD			BC, fin_sprite_jefemurcielago - sprite_jefemurcielago
-		JP			LDIRMV
+		CALL		LDIRVM
 fin_carga_patrones_jefemurcielago:
+		RET
 
 carga_patrones_jefefantasma:
 		LD			HL, sprite_jefefantasma
 		LD			DE, #3F00
 		LD			BC, fin_sprite_jefefantasma - sprite_jefefantasma
-		JP			LDIRMV
+		CALL		LDIRVM
 fin_carga_patrones_jefefantasma:
+		RET
 
 carga_patrones_jefezombi:
 		LD			HL, sprite_jefezombi
 		LD			DE, #3E00
 		LD			BC, fin_sprite_jefezombi - sprite_jefezombi
-		JP			LDIRMV
+		CALL		LDIRVM
 fin_carga_patrones_jefezombi:
+		RET
 
 carga_patrones_jefecaballero:
 		LD			HL, sprite_jefecaballero
 		LD			DE, #3E00
 		LD			BC, fin_sprite_jefecaballero - sprite_jefecaballero
-		JP			LDIRMV
+		CALL		LDIRVM
 fin_carga_patrones_jefecaballero:
+		RET
 
 carga_patrones_jefebeholder:
 		LD			HL, sprite_jefebeholder
 		LD			DE, #3F00
 		LD			BC, fin_sprite_jefebeholder - sprite_jefebeholder
-		JP			LDIRMV
+		CALL		LDIRVM
 fin_carga_patrones_jefebeholder:
+		RET
 
 carga_patrones_condecompleto:
 		LD			HL, sprite_manoizquierda
 		LD			DE, #3F00
 		LD			BC, fin_sprite_conde - sprite_manoizquierda
-		JP			LDIRMV
+		CALL		LDIRVM
 fin_carga_patrones_condecompleto
-
-carga_patrones_fase0:
-		CALL		carga_patrones_cienpies
-		CALL		carga_patrones_serpiente
-		CALL		carga_patrones_arana
-		CALL		carga_patrones_murcielago
-		CALL		carga_patrones_lobo
-		JP			carga_patrones_jefelobo
-fin_carga_patrones_fase0:
-
-carga_patrones_fase1:
-		CALL		carga_patrones_serpiente
-		CALL		carga_patrones_arana
-		CALL		carga_patrones_murcielago
-		CALL		carga_patrones_lobo
-		CALL		carga_patrones_esqueleto
-		CALL		carga_patrones_zombi
-		JP			carga_patrones_jefemurcielago
-fin_carga_patrones_fase1:
-
-carga_patrones_fase2:
-		CALL		carga_patrones_serpiente
-		CALL		carga_patrones_murcielago
-		CALL		carga_patrones_lobo
-		CALL		carga_patrones_esqueleto
-		CALL		carga_patrones_zombi
-		CALL		carga_patrones_fantasma
-		JP			carga_patrones_jefefantasma
-fin_carga_patrones_fase2:
-
-carga_patrones_fase3:
-		CALL		carga_patrones_serpiente
-		CALL		carga_patrones_arana
-		CALL		carga_patrones_caballero
-		CALL		carga_patrones_esqueleto
-		CALL		carga_patrones_zombi
-		CALL		carga_patrones_fantasma
-		JP			carga_patrones_jefezombi
-fin_carga_patrones_fase3:
-
-carga_patrones_fase4:
-		CALL		carga_patrones_murcielago
-		CALL		carga_patrones_caballero 		;(gris)
-		CALL		carga_patrones_esqueleto
-		CALL		carga_patrones_zombi
-		CALL		carga_patrones_fantasma
-		JP			carga_patrones_jefecaballero
-fin_carga_patrones_fase4:
-
-carga_patrones_fase5:
-		CALL		carga_patrones_magia
-		CALL		carga_patrones_caballero 		;(negro)
-		CALL		carga_patrones_lobo_fase5
-		CALL		carga_patrones_zombi
-		CALL		carga_patrones_fantasma
-		CALL		carga_patrones_fuego
-		JP			carga_patrones_jefebeholder
-fin_carga_patrones_fase5:
-
-carga_patrones_fase6:
-		CALL		carga_patrones_magia
-		CALL		carga_patrones_murcielago
-		CALL		carga_patrones_caballero 		;(negro)
-		CALL		carga_patrones_fantasma
-		CALL		carga_patrones_fuego
-		JP			carga_patrones_condecompleto
-fin_carga_patrones_fase6:
+		RET
