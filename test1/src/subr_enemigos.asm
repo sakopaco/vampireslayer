@@ -115,7 +115,7 @@ datos_murcielago:
 			DB		0		;der_abajo
 
 datos_lobo:
-			DB		6		;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
+			DB		TIPOLOBO		;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
 			DB		0		;(escena) sprite a mostrar 1/2
 			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
 			DB		10		;(energia) energía del enemigo antes de morir
@@ -586,7 +586,7 @@ inicializa_enemigos_fase0_nivel4:
 		
 		LD			DE, enemigo5
 		CALL		anade_enemigo_lobo
-		LD			IX, enemigo4
+		LD			IX, enemigo5
 		JP			actualiza_valores_lobo		
 fin_inicializa_enemigos_fase0_nivel4:
 
@@ -827,6 +827,9 @@ actualiza_valores_lobo:
 		
 .asigna_valores_posicion_y:
 		LD			(IX + ESTRUCTURA_ENEMIGO.posy), LOBO_POSY
+		
+.asigna_valores_sprite_inicial:		
+		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), LOBO_SPRITE1A
 
 		EXX
 fin_actualiza_valores_lobo:
@@ -1174,39 +1177,34 @@ fin_calcula_murcielago_escena:
 ; salida: 	-
 ; toca:		-
 mover_lobo:	
-		;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
-		;~ LD			(IY), A
-		;~ LD			(IY + 4), A
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
+		LD			(IY), A
+		LD			(IY + 4), A
 		
-		;~ ;CALL		calcula_lobo_incrementox	
-		;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-		;~ LD			(IY + 1), A
-		;~ ADD			32
-		;~ LD			(IY + 5), A
+		CALL		calcula_lobo_incrementox
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
+		LD			(IY + 1), A
+		ADD			16
+		LD			(IY + 5), A
 		
-		;~ ;CALL		calcula_lobo_escena
-		;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_a)
-		;~ LD			(IY + 2), A
-		;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_b)
-		;~ LD			(IY + 6), A
+		CALL		calcula_lobo_escena		
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_a)
+		LD			(IY + 2), A
+		ADD			 4
+		LD			(IY + 6), A
 		
-		;~ LD			(IY + 3), LOBO_COLOR
-		;~ LD			(IY + 7), LOBO_COLOR
-		
-		LD			(IY), LOBO_POSY
-		;~ LD			(IY + 4), LOBO_POSY
-		
-		LD			(IY + 1), 0
-		;~ LD			(IY + 5), 32
-		
-		LD			(IY + 2), 64
-		;~ LD			(IY + 6), LOBO_SPRITE1B
-		
-		LD			(IY + 3), 1
-		;~ LD			(IY + 7), LOBO_COLOR
+		LD			(IY + 3), LOBO_COLOR
+		LD			(IY + 7), LOBO_COLOR
 fin_mover_lobo:
 		RET
 
+calcula_lobo_incrementox:
+fin_calcula_lobo_incrementox:
+		RET
+		
+calcula_lobo_escena:
+fin_calcula_lobo_escena:
+		RET
 
 
 inicializa_enemigos_fase1_nivel0:

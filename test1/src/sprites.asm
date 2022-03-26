@@ -968,7 +968,7 @@ fin_carga_patrones_murcielago:
 		RET
 
 carga_patrones_lobo:
-		LD			HL, sprite_murcielago
+		LD			HL, sprite_lobo
 		LD			DE, #3A00
 		LD			BC, fin_sprite_lobo - sprite_lobo
 		CALL		LDIRVM
