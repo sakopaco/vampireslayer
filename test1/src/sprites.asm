@@ -141,28 +141,28 @@ sprite_lobo1_4:
 	DB #80,#00,#00,#00,#00,#00,#00,#00
 	
 sprite_lobo2_1:
-	DB  #3F,#1F,#1F,#0F,#07,#01,#00,#00
-	DB  #0E,#0C,#18,#1C,#0E,#EF,#E7,#77
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#00,#00
-	DB  #18,#30,#60,#E0,#70,#79,#FF,#FF
-
+	DB #00,#03,#07,#0F,#1B,#7F,#7F,#07
+	DB #01,#00,#00,#00,#00,#01,#03,#03
+	DB #80,#80,#FF,#FF,#FF,#FF,#FF,#FF
+	DB #FF,#7F,#6F,#E7,#C3,#83,#02,#06 
+	
 sprite_lobo2_2:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#01,#01
-	DB  #60,#40,#C1,#C3,#E7,#F6,#FE,#FF
-	DB  #E0,#FE,#FE,#D8,#F0,#E0,#C0,#00
-	DB  #C0,#C0,#80,#00,#00,#00,#00,#80
+	DB #00,#00,#FF,#FF,#FF,#FF,#FF,#FF
+	DB #FF,#FF,#9E,#0E,#07,#06,#0C,#18
+	DB #00,#00,#80,#E0,#F0,#F8,#F8,#FC
+	DB #EE,#E7,#F7,#70,#38,#18,#30,#70
 
 sprite_lobo2_3:
-	DB  #7F,#3F,#1F,#0F,#07,#01,#00,#00
-	DB  #01,#03,#03,#07,#06,#83,#C7,#F7
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#00,#00
-	DB  #B8,#30,#60,#60,#30,#39,#FF,#FF
+	DB #00,#03,#07,#0F,#1B,#7F,#7F,#07
+	DB #01,#00,#00,#00,#00,#00,#00,#00
+	DB #60,#C0,#FF,#FF,#FF,#FF,#FF,#FF
+	DB #FF,#7F,#6E,#66,#77,#77,#66,#EE 
 
 sprite_lobo2_4:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#03,#06
-	DB  #77,#66,#EE,#EE,#66,#76,#FE,#FF
-	DB  #E0,#FE,#FE,#D8,#F0,#E0,#C0,#00
-	DB  #00,#00,#00,#00,#00,#00,#00,#80
+	DB #00,#00,#FF,#FF,#FF,#FF,#FF,#FF
+	DB #FF,#FF,#9C,#0C,#06,#06,#0C,#1D
+	DB #00,#00,#80,#E0,#F0,#F8,#FC,#FE
+	DB #EF,#E3,#C1,#60,#E0,#C0,#C0,#80
 fin_sprite_lobo:
 	
 ;; ESQUELETO 4 + 4 (dos escenas derecha y dos escenas izquierda)

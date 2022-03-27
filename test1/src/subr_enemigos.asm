@@ -119,7 +119,7 @@ datos_lobo:
 			DB		0		;(escena) sprite a mostrar 1/2
 			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
 			DB		10		;(energia) energía del enemigo antes de morir
-			DB		LOBO_LIMIZQ1	;(posx) pos x para mover y punto central del sprite para revisar disparo
+			DB		LOBO_LIMIZQ		;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		LOBO_POSY		;(posy) pos y para mover y punto central del sprite para revisar disparo
 			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
 			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
@@ -822,7 +822,7 @@ actualiza_valores_lobo:
 		;calcula posición inicial sumando a su líete izq un offset
 		LD			 A, R
 		AND			00111111b
-		ADD			LOBO_LIMIZQ2
+		ADD			LOBO_LIMIZQ
 		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
 		
 .asigna_valores_posicion_y:
@@ -1199,10 +1199,75 @@ fin_mover_lobo:
 		RET
 
 calcula_lobo_incrementox:
+;SI DIRECCION = DERECHA
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccion)
+		OR			 A
+		JP			 Z, .lobo_derecha
+.lobo_izquierda:
+		;DECREMENTA X => LOBO IZQUIERDA
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
+		DEC			 A
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
+		
+		;SI X = LOBO_LIMIZQ 
+		CP			LOBO_LIMIZQ
+			RET			NZ
+		;DIRECCION = DERECHA
+			LD			(IX + ESTRUCTURA_ENEMIGO.direccion), DIRDERECHA
+		;FIN SI
+		RET
+;SINO
+.lobo_derecha:
+		;INCREMENTA X => LOBO DERECHA
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
+		INC			 A
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
+		
+		;SI Y = SERPIENTE_LIMDER
+		CP			LOBO_LIMDER
+			RET			NZ
+		;DIRECCION = LOBO
+			LD			(IX + ESTRUCTURA_ENEMIGO.direccion), DIRIZQUIERDA
+	;FIN SI
+;FIN SI
 fin_calcula_lobo_incrementox:
 		RET
 		
 calcula_lobo_escena:
+		LD			 A, (heartbeat)
+		OR			00010000b
+		RET			 Z
+			
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccion)
+		OR			 A
+		JP			 Z, .direccion_derecha
+.direccion_izquierda:
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+			XOR			00000001b
+			LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
+			
+			OR			 A
+			JP			 Z, .escena_izquierda2
+.escena_izquierda1:
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), LOBO_SPRITE1B
+			RET
+.escena_izquierda2:
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), LOBO_SPRITE3B
+			RET
+			
+.direccion_derecha:
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+			XOR			00000001b
+			LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
+			
+			OR			 A
+			JP			 Z, .escena_derecha2
+.escena_derecha1:
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), LOBO_SPRITE1A
+			RET
+.escena_derecha2:
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), LOBO_SPRITE3A
+			RET
 fin_calcula_lobo_escena:
 		RET
 
