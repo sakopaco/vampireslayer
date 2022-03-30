@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Sprites animation="" animationtiming="2" displaymarkers="True">
-<Sprite name="sprite_1" groupname="jefelobo" layer1="0080C0607FFFFFFFFFFF7F6E6C4C4EC60033123FFFEDFFE2FEFCFC646C486C28" colour1="1" />
-<Sprite name="sprite_2" groupname="jefelobo" layer1="C0E0E0607FFFFFFFFFFF7F6E6C4C4EC60033123FFFEDFFE2E2FCFC646C486C28" colour1="1" />
+<Sprite name="sprite_1" groupname="jefelobo" layer1="
+0080C0607FFFFFFFFFFF7F6E6C4C4EC6
+
+0033123FFFEDFFE2FEFCFC646C486C28
+" colour1="1" />
+<Sprite name="sprite_2" groupname="jefelobo" layer1="
+C0E0E0607FFFFFFFFFFF7F6E6C4C4EC6
+
+0033123FFFEDFFE2E2FCFC646C486C28
+" colour1="1" />
 <Sprite name="sprite_3" groupname="jefelobo" layer1="00CC48FCFFB7FF477F3F3F263612361400010306FEFFFFFFFFFFFE7636327263" colour1="1" />
 <Sprite name="sprite_2" groupname="jefelobo" layer1="00CC48FCFFB7FF47473F3F263612361403070706FEFFFFFFFFFFFE7636327263" colour1="1" />
 <Sprite name="sprite_1" groupname="jefemurcielago" layer1="0204033573FE7D7F7F776777230102004020C0ACCE7FBEFEFEEEE6EEC4804000" colour1="1" />

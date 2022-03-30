@@ -26,9 +26,6 @@ enemigo3			DS	ESTRUCTURA_ENEMIGO
 enemigo4			DS	ESTRUCTURA_ENEMIGO
 enemigo5			DS	ESTRUCTURA_ENEMIGO
 enemigo6			DS	ESTRUCTURA_ENEMIGO
-enemigo7			DS	ESTRUCTURA_ENEMIGO
-enemigo8			DS	ESTRUCTURA_ENEMIGO
-enemigo9			DS	ESTRUCTURA_ENEMIGO
 
 
 ;;=====================================================
@@ -141,7 +138,27 @@ datos_caballerogris:
 datos_caballeronegro:
 datos_fuego:
 datos_magia:
+
 datos_jefelobo:
+			DB		TIPOLOBO		;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
+			DB		0		;(escena) sprite a mostrar 1/2
+			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
+			DB		10		;(energia) energía del enemigo antes de morir
+			DB		LOBO_LIMIZQ		;(posx) pos x para mover y punto central del sprite para revisar disparo
+			DB		LOBO_POSY		;(posy) pos y para mover y punto central del sprite para revisar disparo
+			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
+			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
+			DB		0		;(incx) incremento x para mover
+			DB		0		;(inxy) incremento y para mover
+			DB		DIRDERECHA		;(direccion) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		0		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
+			DB		0		;(radio) radio para movimientos circulares
+			DW		mover_lobo		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
+			DB		LOBO_SPRITE1A	;izq arriba
+			DB		LOBO_SPRITE2A	;der_arriba
+			DB		LOBO_SPRITE3A	;izq abajo
+			DB		LOBO_SPRITE4A	;der_abajo
+			
 datos_jefemurcielago:
 datos_jefefatasma:
 datos_jefezombie:
@@ -239,15 +256,9 @@ inicializa_enemigos_fase0:	;; para no poner más complejo se hace uno por fase q
 		CALL		inicializa_enemigos_fase0_nivel5
 		RET
 .nivel6:
-		LD			 A, (prota_pos_mapx)
-		CP			 3
-		JP			 Z, .nivelboss
-		CALL		inicializa_enemigos_fase0_nivel6
-		RET
-.nivelboss:
-		JP			inicializa_enemigos_fase0_nivelboss
+		JP			inicializa_enemigos_fase0_nivel6
 fin_inicializa_enemigos_fase0:
-		RET
+
 
 		
 inicializa_enemigos_fase1:	;; para no poner más complejo se hace uno por fase que se actualiza al pasar por escaleras o puerta inferior
@@ -360,21 +371,21 @@ inicializa_enemigos_fase3:	;; para no poner más complejo se hace uno por fase q
 		SUB			 A, 2
 		JP			NC, .nivel5
 		CALL		inicializa_enemigos_fase3_nivel4
+		RET
 .nivel5:
 		LD			 A, (prota_pos_mapy)
 		SUB			 A, 1
 		JP			NC, .nivel3
 		CALL		inicializa_enemigos_fase3_nivel5
+		RET
 .nivel6:
 		LD			 A, (prota_pos_mapx)
 		CP			 3
 		JP			NC, .nivelboss
 		CALL		inicializa_enemigos_fase3_nivel6
 		JP			fin_inicializa_enemigos_fase1
-.nivelboss:
-		CALL		inicializa_enemigos_fase3_nivelboss
 fin_inicializa_enemigos_fase3:
-		RET
+		
 		
 inicializa_enemigos_fase4:	;; para no poner más complejo se hace uno por fase que se actualiza al pasar por escaleras o puerta inferior
 .nivel0:
@@ -624,52 +635,11 @@ fin_inicializa_enemigos_fase0_nivel5:
 
 inicializa_enemigos_fase0_nivel6:
 		LD			DE, enemigo1
-		CALL		anade_enemigo_cienpies
+		CALL		anade_enemigo_jefelobo
 		LD			IX, enemigo1
 		CALL		actualiza_valores_cienpies
-		
-		LD			DE, enemigo2
-		CALL		anade_enemigo_cienpies
-		LD			IX, enemigo2
-		CALL		actualiza_valores_cienpies
-		
-		LD			DE, enemigo3
-		CALL		anade_enemigo_cienpies
-		LD			IX, enemigo3
-		CALL		actualiza_valores_cienpies
-
-		LD			DE, enemigo4
-		CALL		anade_enemigo_cienpies
-		LD			IX, enemigo4
-		CALL		actualiza_valores_cienpies
-		
-		LD			DE, enemigo5
-		CALL		anade_enemigo_cienpies
-		LD			IX, enemigo5
-		CALL		actualiza_valores_cienpies
-		
-		LD			DE, enemigo6
-		CALL		anade_enemigo_cienpies
-		LD			IX, enemigo6
-		CALL		actualiza_valores_cienpies
-		
-		LD			DE, enemigo6
-		CALL		anade_enemigo_cienpies
-		LD			IX, enemigo6
-		JP		actualiza_valores_cienpies
 fin_inicializa_enemigos_fase0_nivel6:
 
-inicializa_enemigos_fase0_nivelboss:	
-		LD			DE, enemigo1
-		CALL		anade_enemigo_cienpies
-		LD			IX, enemigo1
-		CALL		actualiza_valores_cienpies
-		
-		LD			DE, enemigo2
-		CALL		anade_enemigo_cienpies
-		LD			IX, enemigo2
-		JP			actualiza_valores_cienpies
-fin_inicializa_enemigos_fase0_nivelboss:
 
 
 
