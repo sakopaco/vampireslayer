@@ -196,12 +196,6 @@ resetea_enemigos:
 		LD			(IX), INACTIVA
 		LD			IX, enemigo6
 		LD			(IX), INACTIVA
-		LD			IX, enemigo7
-		LD			(IX), INACTIVA
-		LD			IX, enemigo8
-		LD			(IX), INACTIVA
-		LD			IX, enemigo9
-		LD			(IX), INACTIVA
 		
 		XOR			 A
 		LD			 B, 127
@@ -379,9 +373,6 @@ inicializa_enemigos_fase3:	;; para no poner más complejo se hace uno por fase q
 		CALL		inicializa_enemigos_fase3_nivel5
 		RET
 .nivel6:
-		LD			 A, (prota_pos_mapx)
-		CP			 3
-		JP			NC, .nivelboss
 		CALL		inicializa_enemigos_fase3_nivel6
 		JP			fin_inicializa_enemigos_fase1
 fin_inicializa_enemigos_fase3:
@@ -672,17 +663,24 @@ fin_anade_enemigo_serpiente:
 		RET
 		
 anade_enemigo_murcielago:
-		LD			HL, datos_serpiente
+		LD			HL, datos_murcielago
 		LD			BC, ESTRUCTURA_ENEMIGO
 		LDIR
 fin_anade_enemigo_murcielago:
 		RET
 
 anade_enemigo_lobo:
-		LD			HL, datos_serpiente
+		LD			HL, datos_lobo
 		LD			BC, ESTRUCTURA_ENEMIGO
 		LDIR
 fin_anade_enemigo_lobo:
+		RET
+
+anade_enemigo_jefelobo:
+		LD			HL, datos_jefelobo
+		LD			BC, ESTRUCTURA_ENEMIGO
+		LDIR
+fin_anade_enemigo_jefelobo:
 		RET
 
 ;;=====================================================
