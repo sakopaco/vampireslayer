@@ -140,12 +140,12 @@ datos_fuego:
 datos_magia:
 
 datos_jefelobo:
-			DB		TIPOLOBO		;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
+			DB		TIPOJEFELOBO	;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
 			DB		0		;(escena) sprite a mostrar 1/2
 			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
 			DB		10		;(energia) energía del enemigo antes de morir
-			DB		LOBO_LIMIZQ		;(posx) pos x para mover y punto central del sprite para revisar disparo
-			DB		LOBO_POSY		;(posy) pos y para mover y punto central del sprite para revisar disparo
+			DB		JEFELOBO_LIMIZQ1;(posx) pos x para mover y punto central del sprite para revisar disparo
+			DB		JEFELOBO_POSY	;(posy) pos y para mover y punto central del sprite para revisar disparo
 			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
 			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
 			DB		0		;(incx) incremento x para mover
@@ -153,11 +153,11 @@ datos_jefelobo:
 			DB		DIRDERECHA		;(direccion) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		0		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 			DB		0		;(radio) radio para movimientos circulares
-			DW		mover_lobo		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
-			DB		LOBO_SPRITE1A	;izq arriba
-			DB		LOBO_SPRITE2A	;der_arriba
-			DB		LOBO_SPRITE3A	;izq abajo
-			DB		LOBO_SPRITE4A	;der_abajo
+			DW		mover_jefelobo		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
+			DB		JEFELOBO_SPRITE1A	;izq arriba
+			DB		JEFELOBO_SPRITE2A	;der_arriba
+			DB		JEFELOBO_SPRITE3A	;izq abajo
+			DB		JEFELOBO_SPRITE4A	;der_abajo
 			
 datos_jefemurcielago:
 datos_jefefatasma:
@@ -616,22 +616,15 @@ inicializa_enemigos_fase0_nivel5:
 		LD			DE, enemigo5
 		CALL		anade_enemigo_cienpies
 		LD			IX, enemigo5
-		CALL		actualiza_valores_cienpies
-		
-		LD			DE, enemigo6
-		CALL		anade_enemigo_cienpies
-		LD			IX, enemigo6
 		JP			actualiza_valores_cienpies
 fin_inicializa_enemigos_fase0_nivel5:
 
 inicializa_enemigos_fase0_nivel6:
-		LD			DE, enemigo1
+		LD			DE, enemigo6
 		CALL		anade_enemigo_jefelobo
-		LD			IX, enemigo1
-		CALL		actualiza_valores_cienpies
+		LD			IX, enemigo6
+		JP			actualiza_valores_jefelobo
 fin_inicializa_enemigos_fase0_nivel6:
-
-
 
 
 ;;=====================================================
@@ -717,13 +710,6 @@ fin_actualiza_valores_cienpies:
 		RET
 
 
-;;=====================================================
-;;ACTUALIZA_VALORES_ARANA
-;;=====================================================	
-; función: 	inicializa valores aleatorios de la arana
-; entrada:	IX que equivaldrá a qué nº de enemigo estamos inicializando (por ejemplo enemigo1), posiciones_iniciales_arana_x
-; salida: 	posicion_anterior_cienpies
-; toca:		-
 actualiza_valores_arana:
 		EXX
 ;actualiza_valores_aleatorios_arana
@@ -746,13 +732,6 @@ fin_actualiza_valores_arana:
 		RET
 
 
-;;=====================================================
-;;ACTUALIZA_VALORES_SERPIENTE
-;;=====================================================	
-; función: 	inicializa valores aleatorios de la serpiente
-; entrada:	IX que equivaldrá a qué nº de enemigo estamos inicializando (por ejemplo enemigo1), posiciones_iniciales_serpiente_y
-; salida: 	posicion_anterior_cienpies
-; toca:		-
 actualiza_valores_serpiente:
 		EXX
 ;actualiza_valores_aleatorios_serpiente
@@ -775,13 +754,6 @@ fin_actualiza_valores_serpiente:
 		RET
 
 
-;;=====================================================
-;;ACTUALIZA_VALORES_LOBO
-;;=====================================================	
-; función: 	inicializa valores aleatorios del lobo
-; entrada:	IX que equivaldrá a qué nº de enemigo estamos inicializando (por ejemplo enemigo1), posiciones_iniciales_serpiente_y
-; salida: 	posicion_anterior_cienpies
-; toca:		-
 actualiza_valores_lobo:
 		EXX
 ;actualiza_valores_aleatorios_serpiente
@@ -795,14 +767,35 @@ actualiza_valores_lobo:
 		
 .asigna_valores_posicion_y:
 		LD			(IX + ESTRUCTURA_ENEMIGO.posy), LOBO_POSY
-		
-.asigna_valores_sprite_inicial:		
-		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), LOBO_SPRITE1A
 
 		EXX
 fin_actualiza_valores_lobo:
 		RET
 
+actualiza_valores_jefelobo:
+		EXX
+;actualiza_valores_aleatorios_serpiente
+.calcula_posicion:
+.asigna_valores_posicion_x:		
+		;calcula posición inicial sumando a su líete izq un offset
+		LD			 A, R
+		AND			00111111b
+		ADD			LOBO_LIMIZQ
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
+		
+.asigna_valores_posicion_y:
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), JEFELOBO_POSY
+		
+.asigna_valores_sprite_inicial:		
+		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE1A
+		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), JEFELOBO_SPRITE2A
+		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_c), JEFELOBO_SPRITE3A
+		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_d), JEFELOBO_SPRITE4A
+
+		EXX
+fin_actualiza_valores_jefelobo:
+		RET
+		
 
 ;;=====================================================
 ;;MOVER_CIENPIES
@@ -926,7 +919,6 @@ calcula_arana_incrementoy:
 ;FIN SI
 fin_calcula_arana_incrementoy:
 		RET
-
 
 
 ;;=====================================================
@@ -1161,8 +1153,9 @@ mover_lobo:
 		ADD			 4
 		LD			(IY + 6), A
 		
-		LD			(IY + 3), LOBO_COLOR
-		LD			(IY + 7), LOBO_COLOR
+		LD			 A, LOBO_COLOR
+		LD			(IY + 3), A
+		LD			(IY + 7), A
 fin_mover_lobo:
 		RET
 
@@ -1237,6 +1230,54 @@ calcula_lobo_escena:
 			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), LOBO_SPRITE3A
 			RET
 fin_calcula_lobo_escena:
+		RET
+
+
+mover_jefelobo:	
+		;CALL		calcula_jefelobo_incrementoy
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
+		LD			(IY), A
+		LD			(IY + 8), A
+		ADD			16
+		LD			(IY + 4), A
+		LD			(IY + 12), A
+		
+		;CALL		calcula_jefelobo_incrementox
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
+		LD			(IY), A
+		LD			(IY + 5), A
+		ADD			16
+		LD			(IY + 9), A
+		LD			(IY + 3), A
+		
+		;CALL		calcula_jefelobo_escena
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_a)
+		LD			(IY + 2), A
+		ADD			 4
+		LD			(IY + 6), A
+		ADD			 4
+		LD			(IY + 10), A
+		ADD			 4
+		LD			(IY + 14), A
+		
+		LD			 A, JEFELOBO_COLOR
+		LD			(IY + 3),  A
+		LD			(IY + 7),  A
+		LD			(IY + 11), A
+		LD			(IY + 15), A
+fin_mover_jefelobo:
+		RET
+		
+calcula_jefelobo_incrementoy:
+fin_calcula_jefelobo_incrementoy:
+		RET
+
+calcula_jefelobo_incrementox:
+fin_calcula_jefelobo_incrementox:
+		RET
+		
+calcula_jefelobo_escena:
+fin_calcula_jefelobo_escena:
 		RET
 
 
@@ -1360,39 +1401,16 @@ check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activ
 
 		;acciones enemigos
 .check_enemigo6:
-		;~ LD			IX, enemigo6
-		;~ LD			 A, (IX)
-		;~ OR			 A
-		;~ JP			 Z, .check_enemigo7
+		LD			IX, enemigo6
+		LD			 A, (IX)
+		OR			 A
+		RET			 Z
 		
-		;~ LD			IY, array_sprites_enem + 24
+		LD			IY, array_sprites_enem + 20
 
-		;~ CALL		mover_cienpies
+		CALL		mover_jefelobo
 
 		;acciones enemigos
-.check_enemigo7:
-		;~ LD			IX, enemigo7
-		;~ LD			 A, (IX)
-		;~ OR			 A
-		;~ JP			 Z, .check_enemigo8
-		
-		;~ LD			IY, array_sprites_enem + 24
-
-		;~ CALL		mover_cienpies
-
-		;acciones enemigos
-.check_enemigo8:
-		;~ LD			IX, enemigo8
-		;~ LD			 A, (IX)
-		;~ OR			 A
-		;~ JP			 Z, .check_enemigo9
-		
-		;~ LD			IY, array_sprites_enem + 28
-
-		;~ CALL		mover_cienpies
-
-		;acciones enemigos
-.check_enemigo9:
 fin_check_enemigos_fase0:
 		RET			
 
