@@ -19,7 +19,6 @@ posiciones_serpiente_y:	;16 posisiones iniciales posibles
 variacion_murcielagoy:
 		DB			 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
 
-
 enemigo1			DS	ESTRUCTURA_ENEMIGO
 enemigo2			DS	ESTRUCTURA_ENEMIGO
 enemigo3			DS	ESTRUCTURA_ENEMIGO
@@ -246,11 +245,11 @@ inicializa_enemigos_fase0:	;; para no poner más complejo se hace uno por fase q
 		RET
 .nivel5:
 		DEC			 A
-		JP			NZ, .nivel3
+		JP			NZ, .nivel6
 		CALL		inicializa_enemigos_fase0_nivel5
 		RET
 .nivel6:
-		JP			inicializa_enemigos_fase0_nivel6
+		JP			inicializa_enemigos_fase0_niveljefe
 fin_inicializa_enemigos_fase0:
 
 
@@ -284,18 +283,19 @@ inicializa_enemigos_fase1:	;; para no poner más complejo se hace uno por fase q
 .nivel5:
 		LD			 A, (prota_pos_mapy)
 		SUB			 A, 1
-		JP			NC, .nivel3
+		JP			NC, .nivel6
 		CALL		inicializa_enemigos_fase1_nivel5
 .nivel6:
-		LD			 A, (prota_pos_mapx)
-		CP			 3
-		JP			NC, .nivelboss
-		CALL		inicializa_enemigos_fase1_nivel6
-		JP			fin_inicializa_enemigos_fase1
-.nivelboss:
-		CALL		inicializa_enemigos_fase1_nivelboss
+		;~ LD			 A, (prota_pos_mapx)
+		;~ CP			 3
+		;~ JP			NC, .nivelboss
+		;~ CALL		inicializa_enemigos_fase1_nivel6
+		;~ JP			fin_inicializa_enemigos_fase1
+;~ .nivelboss:
+		;~ CALL		inicializa_enemigos_fase1_nivelboss
+		JP			inicializa_enemigos_fase1_nivelboss
 fin_inicializa_enemigos_fase1:
-		RET
+		;~ RET
 		
 inicializa_enemigos_fase2:	;; para no poner más complejo se hace uno por fase que se actualiza al pasar por escaleras o puerta inferior
 .nivel0:
@@ -599,27 +599,29 @@ inicializa_enemigos_fase0_nivel5:
 		CALL		actualiza_valores_cienpies
 		
 		LD			DE, enemigo2
-		CALL		anade_enemigo_cienpies
+		CALL		anade_enemigo_arana
 		LD			IX, enemigo2
-		CALL		actualiza_valores_cienpies
+		CALL		actualiza_valores_arana
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_cienpies
+		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo3
-		CALL		actualiza_valores_cienpies
-
+		CALL		actualiza_valores_serpiente
+		
 		LD			DE, enemigo4
-		CALL		anade_enemigo_cienpies
+		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo4
-		CALL		actualiza_valores_cienpies
+		CALL		actualiza_valores_murcielago
 		
 		LD			DE, enemigo5
-		CALL		anade_enemigo_cienpies
+		CALL		anade_enemigo_lobo
 		LD			IX, enemigo5
-		JP			actualiza_valores_cienpies
+		JP			actualiza_valores_lobo	
 fin_inicializa_enemigos_fase0_nivel5:
 
-inicializa_enemigos_fase0_nivel6:
+;; no hay nivel 6 porque el 5 se repite
+
+inicializa_enemigos_fase0_niveljefe:	
 		LD			DE, enemigo6
 		CALL		anade_enemigo_jefelobo
 		LD			IX, enemigo6

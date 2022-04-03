@@ -119,7 +119,6 @@ datos_puerta_izquierda:
 					DB		3			;ancho/columnas
 
 
-
 ;;=====================================================
 ;;SUBRUTINAS
 ;;=====================================================
@@ -192,30 +191,30 @@ fin_carga_datos_puerta:
 ; entrada: 	
 ; salida: 	
 accion_puerta_arriba:
-	CALL		pinta_blanco_mapa
+		CALL			pinta_blanco_mapa
 	
-	LD		 	 A, (prota_pos_mapy)
-	INC		 	 A
-	
-	CP		 	 6
-	JP		NZ, .no_cambia_nivel
+		LD		 	 	 A, (prota_pos_mapy)
+		INC		 	 	 A
+		CP		 	 	 7
+		JP				NZ, .no_cambia_nivel
 .si_cambia_nivel:	
+	
 	;aquí hay que poner texto de cambio de nivel  ;***************************************************************
 
-	;reseteo fila
-	XOR		 A
-	LD		(prota_pos_mapy), A
-	;incremento nivel
-	LD		 A, (prota_nivel)
-	INC		 A
-	LD		(prota_nivel), A
-	;reflejo en pantalla cambio de nivel
-	CALL	cambio_nivel
-	JP		.fin_cambia_nivel
+		;reseteo fila
+		XOR		 		 A
+		LD				(prota_pos_mapy), A
+		;incremento nivel
+		LD		 		 A, (prota_nivel)
+		INC		 		 A
+		LD				(prota_nivel), A
+		;reflejo en pantalla cambio de nivel
+		CALL			cambio_nivel
+		JP				.fin_cambia_nivel
 .no_cambia_nivel:
-	LD		 (prota_pos_mapy), A
+		LD		 		(prota_pos_mapy), A
 .fin_cambia_nivel:
-	JP		entra_habitacion
+		JP				entra_habitacion
 fin_accion_puerta_arriba:
 
 
