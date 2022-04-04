@@ -19,12 +19,14 @@ posiciones_serpiente_y:	;16 posisiones iniciales posibles
 variacion_murcielagoy:
 		DB			 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
 
+
 enemigo1			DS	ESTRUCTURA_ENEMIGO
 enemigo2			DS	ESTRUCTURA_ENEMIGO
 enemigo3			DS	ESTRUCTURA_ENEMIGO
 enemigo4			DS	ESTRUCTURA_ENEMIGO
 enemigo5			DS	ESTRUCTURA_ENEMIGO
 enemigo6			DS	ESTRUCTURA_ENEMIGO
+enemigo7			DS	ESTRUCTURA_ENEMIGO
 
 
 ;;=====================================================
@@ -153,10 +155,10 @@ datos_jefelobo:
 			DB		0		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 			DB		0		;(radio) radio para movimientos circulares
 			DW		mover_jefelobo		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
-			DB		JEFELOBO_SPRITE1A	;izq arriba
-			DB		JEFELOBO_SPRITE2A	;der_arriba
-			DB		JEFELOBO_SPRITE3A	;izq abajo
-			DB		JEFELOBO_SPRITE4A	;der_abajo
+			DB		24;JEFELOBO_SPRITE1A	;izq arriba
+			DB		24;JEFELOBO_SPRITE2A	;der_arriba
+			DB		24;JEFELOBO_SPRITE3A	;izq abajo
+			DB		24;JEFELOBO_SPRITE4A	;der_abajo
 			
 datos_jefemurcielago:
 datos_jefefatasma:
@@ -194,6 +196,8 @@ resetea_enemigos:
 		LD			IX, enemigo5
 		LD			(IX), INACTIVA
 		LD			IX, enemigo6
+		LD			(IX), INACTIVA
+		LD			IX, enemigo7
 		LD			(IX), INACTIVA
 		
 		XOR			 A
@@ -253,254 +257,27 @@ inicializa_enemigos_fase0:	;; para no poner más complejo se hace uno por fase q
 fin_inicializa_enemigos_fase0:
 
 
-		
 inicializa_enemigos_fase1:	;; para no poner más complejo se hace uno por fase que se actualiza al pasar por escaleras o puerta inferior
-.nivel0:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 6
-		JP			NC, .nivel1
-		CALL		inicializa_enemigos_fase1_nivel0
-.nivel1:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 5
-		JP			NC, .nivel2
-		CALL		inicializa_enemigos_fase1_nivel1
-.nivel2:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 4
-		JP			NC, .nivel3
-		CALL		inicializa_enemigos_fase1_nivel2
-.nivel3:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 3
-		JP			NC, .nivel4
-		CALL		inicializa_enemigos_fase1_nivel3
-.nivel4:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 2
-		JP			NC, .nivel5
-		CALL		inicializa_enemigos_fase1_nivel4
-.nivel5:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 1
-		JP			NC, .nivel6
-		CALL		inicializa_enemigos_fase1_nivel5
-.nivel6:
-		;~ LD			 A, (prota_pos_mapx)
-		;~ CP			 3
-		;~ JP			NC, .nivelboss
-		;~ CALL		inicializa_enemigos_fase1_nivel6
-		;~ JP			fin_inicializa_enemigos_fase1
-;~ .nivelboss:
-		;~ CALL		inicializa_enemigos_fase1_nivelboss
-		JP			inicializa_enemigos_fase1_nivelboss
 fin_inicializa_enemigos_fase1:
-		;~ RET
+		RET
 		
 inicializa_enemigos_fase2:	;; para no poner más complejo se hace uno por fase que se actualiza al pasar por escaleras o puerta inferior
-.nivel0:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 6
-		JP			NC, .nivel1
-		CALL		inicializa_enemigos_fase2_nivel0
-.nivel1:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 5
-		JP			NC, .nivel2
-		CALL		inicializa_enemigos_fase2_nivel1
-.nivel2:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 4
-		JP			NC, .nivel3
-		CALL		inicializa_enemigos_fase2_nivel2
-.nivel3:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 3
-		JP			NC, .nivel4
-		CALL		inicializa_enemigos_fase2_nivel3
-.nivel4:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 2
-		JP			NC, .nivel5
-		CALL		inicializa_enemigos_fase2_nivel4
-.nivel5:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 1
-		JP			NC, .nivel3
-		CALL		inicializa_enemigos_fase2_nivel5
-.nivel6:
-		LD			 A, (prota_pos_mapx)
-		CP			 3
-		JP			NC, .nivelboss
-		CALL		inicializa_enemigos_fase2_nivel6
-		JP			fin_inicializa_enemigos_fase1
-.nivelboss:
-		CALL		inicializa_enemigos_fase2_nivelboss
 fin_inicializa_enemigos_fase2:
 		RET
 
 inicializa_enemigos_fase3:	;; para no poner más complejo se hace uno por fase que se actualiza al pasar por escaleras o puerta inferior
-.nivel0:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 6
-		JP			NC, .nivel1
-		CALL		inicializa_enemigos_fase3_nivel0
-.nivel1:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 5
-		JP			NC, .nivel2
-		CALL		inicializa_enemigos_fase3_nivel1
-.nivel2:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 4
-		JP			NC, .nivel3
-		CALL		inicializa_enemigos_fase3_nivel2
-.nivel3:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 3
-		JP			NC, .nivel4
-		CALL		inicializa_enemigos_fase3_nivel3
-.nivel4:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 2
-		JP			NC, .nivel5
-		CALL		inicializa_enemigos_fase3_nivel4
-		RET
-.nivel5:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 1
-		JP			NC, .nivel3
-		CALL		inicializa_enemigos_fase3_nivel5
-		RET
-.nivel6:
-		CALL		inicializa_enemigos_fase3_nivel6
-		JP			fin_inicializa_enemigos_fase1
 fin_inicializa_enemigos_fase3:
-		
+		RET
 		
 inicializa_enemigos_fase4:	;; para no poner más complejo se hace uno por fase que se actualiza al pasar por escaleras o puerta inferior
-.nivel0:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 6
-		JP			NC, .nivel1
-		CALL		inicializa_enemigos_fase4_nivel0
-.nivel1:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 5
-		JP			NC, .nivel2
-		CALL		inicializa_enemigos_fase4_nivel1
-.nivel2:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 4
-		JP			NC, .nivel3
-		CALL		inicializa_enemigos_fase4_nivel2
-.nivel3:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 3
-		JP			NC, .nivel4
-		CALL		inicializa_enemigos_fase4_nivel3
-.nivel4:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 2
-		JP			NC, .nivel5
-		CALL		inicializa_enemigos_fase4_nivel4
-.nivel5:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 1
-		JP			NC, .nivel3
-		CALL		inicializa_enemigos_fase4_nivel5
-.nivel6:
-		LD			 A, (prota_pos_mapx)
-		CP			 3
-		JP			NC, .nivelboss
-		CALL		inicializa_enemigos_fase4_nivel6
-		JP			fin_inicializa_enemigos_fase1
-.nivelboss:
-		CALL		inicializa_enemigos_fase3_nivelboss
 fin_inicializa_enemigos_fase4:
 		RET
 
 inicializa_enemigos_fase5:	;; para no poner más complejo se hace uno por fase que se actualiza al pasar por escaleras o puerta inferior
-.nivel0:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 6
-		JP			NC, .nivel1
-		CALL		inicializa_enemigos_fase5_nivel0
-.nivel1:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 5
-		JP			NC, .nivel2
-		CALL		inicializa_enemigos_fase5_nivel1
-.nivel2:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 4
-		JP			NC, .nivel3
-		CALL		inicializa_enemigos_fase5_nivel2
-.nivel3:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 3
-		JP			NC, .nivel4
-		CALL		inicializa_enemigos_fase5_nivel3
-.nivel4:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 2
-		JP			NC, .nivel5
-		CALL		inicializa_enemigos_fase5_nivel4
-.nivel5:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 1
-		JP			NC, .nivel3
-		CALL		inicializa_enemigos_fase5_nivel5
-.nivel6:
-		LD			 A, (prota_pos_mapx)
-		CP			 3
-		JP			NC, .nivelboss
-		CALL		inicializa_enemigos_fase5_nivel6
-		JP			fin_inicializa_enemigos_fase1
-.nivelboss:
-		CALL		inicializa_enemigos_fase5_nivelboss
 fin_inicializa_enemigos_fase5:
 		RET
 
 inicializa_enemigos_fase6:	;; para no poner más complejo se hace uno por fase que se actualiza al pasar por escaleras o puerta inferior
-.nivel0:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 6
-		JP			NC, .nivel1
-		CALL		inicializa_enemigos_fase6_nivel0
-.nivel1:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 5
-		JP			NC, .nivel2
-		CALL		inicializa_enemigos_fase6_nivel1
-.nivel2:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 4
-		JP			NC, .nivel3
-		CALL		inicializa_enemigos_fase6_nivel2
-.nivel3:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 3
-		JP			NC, .nivel4
-		CALL		inicializa_enemigos_fase6_nivel3
-.nivel4:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 2
-		JP			NC, .nivel5
-		CALL		inicializa_enemigos_fase6_nivel4
-.nivel5:
-		LD			 A, (prota_pos_mapy)
-		SUB			 A, 1
-		JP			NC, .nivel3
-		CALL		inicializa_enemigos_fase6_nivel5
-.nivel6:
-		LD			 A, (prota_pos_mapx)
-		CP			 3
-		JP			NC, .nivelboss
-		CALL		inicializa_enemigos_fase6_nivel6
-		JP			fin_inicializa_enemigos_fase1
-.nivelboss:
-		CALL		inicializa_enemigos_fase6_nivelboss
 fin_inicializa_enemigos_fase6:
 		RET
 
@@ -622,10 +399,15 @@ fin_inicializa_enemigos_fase0_nivel5:
 ;; no hay nivel 6 porque el 5 se repite
 
 inicializa_enemigos_fase0_niveljefe:	
+		;~ LD			DE, enemigo6
+		;~ CALL		anade_enemigo_jefelobo
+		;~ LD			IX, enemigo6
+		;~ JP			actualiza_valores_jefelobo
 		LD			DE, enemigo6
 		CALL		anade_enemigo_jefelobo
 		LD			IX, enemigo6
 		JP			actualiza_valores_jefelobo
+		RET
 fin_inicializa_enemigos_fase0_nivel6:
 
 
@@ -736,7 +518,6 @@ fin_actualiza_valores_arana:
 
 actualiza_valores_serpiente:
 		EXX
-;actualiza_valores_aleatorios_serpiente
 .calcula_posicion:
 .asigna_valores_posicion_x:		
 		;calcula posición inicial sumando a su líete izq un offset
@@ -758,7 +539,6 @@ fin_actualiza_valores_serpiente:
 
 actualiza_valores_lobo:
 		EXX
-;actualiza_valores_aleatorios_serpiente
 .calcula_posicion:
 .asigna_valores_posicion_x:		
 		;calcula posición inicial sumando a su líete izq un offset
@@ -774,25 +554,26 @@ actualiza_valores_lobo:
 fin_actualiza_valores_lobo:
 		RET
 
+
+
 actualiza_valores_jefelobo:
 		EXX
-;actualiza_valores_aleatorios_serpiente
 .calcula_posicion:
-.asigna_valores_posicion_x:		
-		;calcula posición inicial sumando a su líete izq un offset
-		LD			 A, R
-		AND			00111111b
-		ADD			LOBO_LIMIZQ
-		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
+;~ .asigna_valores_posicion_x:		
+		;~ ;calcula posición inicial sumando a su líete izq un offset
+		;~ LD			 A, R
+		;~ AND			00111111b
+		;~ ADD			LOBO_LIMIZQ
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), 0
 		
-.asigna_valores_posicion_y:
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), JEFELOBO_POSY
+;~ .asigna_valores_posicion_y:
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), 0
 		
-.asigna_valores_sprite_inicial:		
-		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE1A
-		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), JEFELOBO_SPRITE2A
-		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_c), JEFELOBO_SPRITE3A
-		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_d), JEFELOBO_SPRITE4A
+;~ .asigna_valores_sprite_inicial:		
+		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), 18
+		;~ LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), JEFELOBO_SPRITE2A
+		;~ LD			(IX + ESTRUCTURA_ENEMIGO.sprite_c), JEFELOBO_SPRITE3A
+		;~ LD			(IX + ESTRUCTURA_ENEMIGO.sprite_d), JEFELOBO_SPRITE4A
 
 		EXX
 fin_actualiza_valores_jefelobo:
@@ -1235,50 +1016,114 @@ fin_calcula_lobo_escena:
 		RET
 
 
+;;=====================================================
+;;MOVER_JEFELOBO
+;;=====================================================	
 mover_jefelobo:	
 		;CALL		calcula_jefelobo_incrementoy
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
+		LD			 A, 50
 		LD			(IY), A
 		LD			(IY + 8), A
-		ADD			16
+		LD			 A, 66
 		LD			(IY + 4), A
 		LD			(IY + 12), A
 		
 		;CALL		calcula_jefelobo_incrementox
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-		LD			(IY), A
+		LD			 A, 50
+		LD			(IY + 1), A
 		LD			(IY + 5), A
-		ADD			16
+		LD			 A, 66
 		LD			(IY + 9), A
-		LD			(IY + 3), A
+		LD			(IY + 13), A
 		
-		;CALL		calcula_jefelobo_escena
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_a)
+		;CALL		calcula_jefelobo_escena		
+		LD			 A, 192
 		LD			(IY + 2), A
-		ADD			 4
+		LD			 A, 196
 		LD			(IY + 6), A
-		ADD			 4
+		LD			 A, 200
 		LD			(IY + 10), A
-		ADD			 4
+		LD			 A, 204
 		LD			(IY + 14), A
-		
+
 		LD			 A, JEFELOBO_COLOR
-		LD			(IY + 3),  A
-		LD			(IY + 7),  A
+		LD			(IY + 3), A
+		LD			(IY + 7), A
 		LD			(IY + 11), A
 		LD			(IY + 15), A
 fin_mover_jefelobo:
 		RET
-		
-calcula_jefelobo_incrementoy:
-fin_calcula_jefelobo_incrementoy:
-		RET
 
-calcula_jefelobo_incrementox:
+calcula_lobo_jefeincrementox:
+;SI DIRECCION = DERECHA
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccion)
+		OR			 A
+		JP			 Z, .lobo_derecha
+.lobo_izquierda:
+		;DECREMENTA X => LOBO IZQUIERDA
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
+		DEC			 A
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
+		
+		;SI X = LOBO_LIMIZQ 
+		CP			LOBO_LIMIZQ
+			RET			NZ
+		;DIRECCION = DERECHA
+			LD			(IX + ESTRUCTURA_ENEMIGO.direccion), DIRDERECHA
+		;FIN SI
+		RET
+;SINO
+.lobo_derecha:
+		;INCREMENTA X => LOBO DERECHA
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
+		INC			 A
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
+		
+		;SI Y = SERPIENTE_LIMDER
+		CP			LOBO_LIMDER
+			RET			NZ
+		;DIRECCION = LOBO
+			LD			(IX + ESTRUCTURA_ENEMIGO.direccion), DIRIZQUIERDA
+	;FIN SI
+;FIN SI
 fin_calcula_jefelobo_incrementox:
 		RET
 		
 calcula_jefelobo_escena:
+		LD			 A, (heartbeat)
+		OR			00010000b
+		RET			 Z
+			
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccion)
+		OR			 A
+		JP			 Z, .direccion_derecha
+.direccion_izquierda:
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+			XOR			00000001b
+			LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
+			
+			OR			 A
+			JP			 Z, .escena_izquierda2
+.escena_izquierda1:
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), LOBO_SPRITE1B
+			RET
+.escena_izquierda2:
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), LOBO_SPRITE3B
+			RET
+			
+.direccion_derecha:
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+			XOR			00000001b
+			LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
+			
+			OR			 A
+			JP			 Z, .escena_derecha2
+.escena_derecha1:
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), LOBO_SPRITE1A
+			RET
+.escena_derecha2:
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), LOBO_SPRITE3A
+			RET
 fin_calcula_jefelobo_escena:
 		RET
 
@@ -1350,11 +1195,9 @@ check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activ
 		JP			 Z, .check_enemigo2
 		
 		LD			IY, array_sprites_enem
-
 		CALL		mover_cienpies
 
 		;acciones enemigos
-		
 .check_enemigo2:
 		LD			IX, enemigo2
 		LD			 A, (IX)
@@ -1362,11 +1205,9 @@ check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activ
 		JP			 Z, .check_enemigo3
 		
 		LD			IY, array_sprites_enem + 4
-
 		CALL		mover_arana
 
 		;acciones enemigos
-
 .check_enemigo3:
 		LD			IX, enemigo3
 		LD			 A, (IX)
@@ -1374,7 +1215,6 @@ check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activ
 		JP			 Z, .check_enemigo4
 		
 		LD			IY, array_sprites_enem + 8
-
 		CALL		mover_serpiente
 
 		;acciones enemigos
@@ -1386,11 +1226,9 @@ check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activ
 		JP			 Z, .check_enemigo5
 		
 		LD			IY, array_sprites_enem + 12
-
 		CALL		mover_murcielago
 
 		;acciones enemigos
-		
 .check_enemigo5:
 		LD			IX, enemigo5
 		LD			 A, (IX)
@@ -1406,13 +1244,22 @@ check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activ
 		LD			IX, enemigo6
 		LD			 A, (IX)
 		OR			 A
-		RET			 Z
+		JP			 Z, .check_enemigo7
 		
-		LD			IY, array_sprites_enem + 20
-
+		LD			IY, array_sprites_enem + 24 ;************************************************** seguramente haya que cambiarlo
 		CALL		mover_jefelobo
 
 		;acciones enemigos
+.check_enemigo7:
+		LD			IX, enemigo7
+		LD			 A, (IX)
+		OR			 A
+		JP			 Z, fin_check_enemigos_fase0
+		
+		LD			IY, array_sprites_enem + 28
+		CALL		mover_jefelobo
+		
+		;acciones enemigos		
 fin_check_enemigos_fase0:
 		RET			
 

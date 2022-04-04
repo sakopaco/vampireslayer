@@ -103,7 +103,7 @@ inicializa_variables_pruebas:
 	LD		 A, 0				;los niveles (matrices) son 7 del 0 al 6
 	LD		(prota_nivel), A	;nivel empieza en 0 para usar las posiciones ascii
 
-	LD		 A, 0				;los subniveles (filas) son 7 del 0 al 6
+	LD		 A, 6;0				;los subniveles (filas) son 7 del 0 al 6
 	LD		(prota_pos_mapy), A	;pos Y dentro del nivel (se empieza en 0)
 
 	LD		 A, 3				;columnas 7: del 0 al 6
