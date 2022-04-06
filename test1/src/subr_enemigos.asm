@@ -1036,14 +1036,18 @@ mover_jefelobo:
 		LD			(IY + 9), A
 		LD			(IY + 13), A
 		
-		;CALL		calcula_jefelobo_escena		
-		LD			 A, 192
+		CALL		calcula_jefelobo_escena		
+		;LD			 A, 192
+		LD			A, (IX + ESTRUCTURA_ENEMIGO.sprite_a)
 		LD			(IY + 2), A
-		LD			 A, 196
+		;LD			 A, 196
+		LD			A, (IX + ESTRUCTURA_ENEMIGO.sprite_b)
 		LD			(IY + 6), A
-		LD			 A, 200
+		;LD			 A, 200
+		LD			A, (IX + ESTRUCTURA_ENEMIGO.sprite_c)
 		LD			(IY + 10), A
-		LD			 A, 204
+		;LD			 A, 204
+		LD			A, (IX + ESTRUCTURA_ENEMIGO.sprite_d)
 		LD			(IY + 14), A
 
 		LD			 A, JEFELOBO_COLOR
@@ -1105,10 +1109,16 @@ calcula_jefelobo_escena:
 			OR			 A
 			JP			 Z, .escena_izquierda2
 .escena_izquierda1:
-			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), LOBO_SPRITE1B
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE1C
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_b), JEFELOBO_SPRITE2C
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_c), JEFELOBO_SPRITE3C
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_d), JEFELOBO_SPRITE4C
 			RET
 .escena_izquierda2:
-			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), LOBO_SPRITE3B
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE1D
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE2D
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE3D
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE4D
 			RET
 			
 .direccion_derecha:
@@ -1119,10 +1129,16 @@ calcula_jefelobo_escena:
 			OR			 A
 			JP			 Z, .escena_derecha2
 .escena_derecha1:
-			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), LOBO_SPRITE1A
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE1A
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE2A
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE3A
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE4A
 			RET
 .escena_derecha2:
-			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), LOBO_SPRITE3A
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE1B
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE2B
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE3B
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE4B
 			RET
 fin_calcula_jefelobo_escena:
 		RET
