@@ -155,10 +155,10 @@ datos_jefelobo:
 			DB		0		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 			DB		0		;(radio) radio para movimientos circulares
 			DW		mover_jefelobo		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
-			DB		24;JEFELOBO_SPRITE1A	;izq arriba
-			DB		24;JEFELOBO_SPRITE2A	;der_arriba
-			DB		24;JEFELOBO_SPRITE3A	;izq abajo
-			DB		24;JEFELOBO_SPRITE4A	;der_abajo
+			DB		JEFELOBO_SPRITE1A	;izq arriba
+			DB		JEFELOBO_SPRITE2A	;der_arriba
+			DB		JEFELOBO_SPRITE3A	;izq abajo
+			DB		JEFELOBO_SPRITE4A	;der_abajo
 			
 datos_jefemurcielago:
 datos_jefefatasma:
@@ -399,14 +399,10 @@ fin_inicializa_enemigos_fase0_nivel5:
 ;; no hay nivel 6 porque el 5 se repite
 
 inicializa_enemigos_fase0_niveljefe:	
-		;~ LD			DE, enemigo6
-		;~ CALL		anade_enemigo_jefelobo
-		;~ LD			IX, enemigo6
-		;~ JP			actualiza_valores_jefelobo
 		LD			DE, enemigo6
 		CALL		anade_enemigo_jefelobo
 		LD			IX, enemigo6
-		JP			actualiza_valores_jefelobo
+		JP			actualiza_valores_lobo	;se reutiliza la inicialización de valores iniciales de lobo para jefelobo
 		RET
 fin_inicializa_enemigos_fase0_nivel6:
 
@@ -552,31 +548,6 @@ actualiza_valores_lobo:
 
 		EXX
 fin_actualiza_valores_lobo:
-		RET
-
-
-
-actualiza_valores_jefelobo:
-		EXX
-.calcula_posicion:
-;~ .asigna_valores_posicion_x:		
-		;~ ;calcula posición inicial sumando a su líete izq un offset
-		;~ LD			 A, R
-		;~ AND			00111111b
-		;~ ADD			LOBO_LIMIZQ
-		LD			(IX + ESTRUCTURA_ENEMIGO.posx), 0
-		
-;~ .asigna_valores_posicion_y:
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), 0
-		
-;~ .asigna_valores_sprite_inicial:		
-		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), 18
-		;~ LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), JEFELOBO_SPRITE2A
-		;~ LD			(IX + ESTRUCTURA_ENEMIGO.sprite_c), JEFELOBO_SPRITE3A
-		;~ LD			(IX + ESTRUCTURA_ENEMIGO.sprite_d), JEFELOBO_SPRITE4A
-
-		EXX
-fin_actualiza_valores_jefelobo:
 		RET
 		
 
@@ -1021,33 +992,29 @@ fin_calcula_lobo_escena:
 ;;=====================================================	
 mover_jefelobo:	
 		;CALL		calcula_jefelobo_incrementoy
-		LD			 A, 50
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
 		LD			(IY), A
 		LD			(IY + 8), A
-		LD			 A, 66
+		ADD			16
 		LD			(IY + 4), A
 		LD			(IY + 12), A
 		
-		;CALL		calcula_jefelobo_incrementox
-		LD			 A, 50
+		CALL		calcula_lobo_incrementox		;se reutiliza calcula_lobo_incrementox que valdría como calcula_jefelobo_incrementox
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
 		LD			(IY + 1), A
 		LD			(IY + 5), A
-		LD			 A, 66
+		ADD 		16
 		LD			(IY + 9), A
 		LD			(IY + 13), A
 		
 		CALL		calcula_jefelobo_escena		
-		;LD			 A, 192
-		LD			A, (IX + ESTRUCTURA_ENEMIGO.sprite_a)
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_a)
 		LD			(IY + 2), A
-		;LD			 A, 196
-		LD			A, (IX + ESTRUCTURA_ENEMIGO.sprite_b)
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_b)
 		LD			(IY + 6), A
-		;LD			 A, 200
-		LD			A, (IX + ESTRUCTURA_ENEMIGO.sprite_c)
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_c)
 		LD			(IY + 10), A
-		;LD			 A, 204
-		LD			A, (IX + ESTRUCTURA_ENEMIGO.sprite_d)
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_d)
 		LD			(IY + 14), A
 
 		LD			 A, JEFELOBO_COLOR
@@ -1057,46 +1024,11 @@ mover_jefelobo:
 		LD			(IY + 15), A
 fin_mover_jefelobo:
 		RET
-
-calcula_lobo_jefeincrementox:
-;SI DIRECCION = DERECHA
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccion)
-		OR			 A
-		JP			 Z, .lobo_derecha
-.lobo_izquierda:
-		;DECREMENTA X => LOBO IZQUIERDA
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-		DEC			 A
-		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
-		
-		;SI X = LOBO_LIMIZQ 
-		CP			LOBO_LIMIZQ
-			RET			NZ
-		;DIRECCION = DERECHA
-			LD			(IX + ESTRUCTURA_ENEMIGO.direccion), DIRDERECHA
-		;FIN SI
-		RET
-;SINO
-.lobo_derecha:
-		;INCREMENTA X => LOBO DERECHA
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-		INC			 A
-		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
-		
-		;SI Y = SERPIENTE_LIMDER
-		CP			LOBO_LIMDER
-			RET			NZ
-		;DIRECCION = LOBO
-			LD			(IX + ESTRUCTURA_ENEMIGO.direccion), DIRIZQUIERDA
-	;FIN SI
-;FIN SI
-fin_calcula_jefelobo_incrementox:
-		RET
 		
 calcula_jefelobo_escena:
 		LD			 A, (heartbeat)
 		OR			00010000b
-		RET			 Z
+		RET			Z
 			
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccion)
 		OR			 A
@@ -1116,9 +1048,9 @@ calcula_jefelobo_escena:
 			RET
 .escena_izquierda2:
 			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE1D
-			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE2D
-			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE3D
-			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE4D
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_b), JEFELOBO_SPRITE2D
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_c), JEFELOBO_SPRITE3D
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_d), JEFELOBO_SPRITE4D
 			RET
 			
 .direccion_derecha:
@@ -1130,15 +1062,15 @@ calcula_jefelobo_escena:
 			JP			 Z, .escena_derecha2
 .escena_derecha1:
 			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE1A
-			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE2A
-			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE3A
-			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE4A
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_b), JEFELOBO_SPRITE2A
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_c), JEFELOBO_SPRITE3A
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_d), JEFELOBO_SPRITE4A
 			RET
 .escena_derecha2:
 			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE1B
-			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE2B
-			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE3B
-			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE4B
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_b), JEFELOBO_SPRITE2B
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_c), JEFELOBO_SPRITE3B
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_d), JEFELOBO_SPRITE4B
 			RET
 fin_calcula_jefelobo_escena:
 		RET
@@ -1267,13 +1199,13 @@ check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activ
 
 		;acciones enemigos
 .check_enemigo7:
-		LD			IX, enemigo7
-		LD			 A, (IX)
-		OR			 A
-		JP			 Z, fin_check_enemigos_fase0
+		;~ LD			IX, enemigo7
+		;~ LD			 A, (IX)
+		;~ OR			 A
+		;~ JP			 Z, fin_check_enemigos_fase0
 		
-		LD			IY, array_sprites_enem + 28
-		CALL		mover_jefelobo
+		;~ LD			IY, array_sprites_enem + 28
+		;~ CALL		mover_jefelobo
 		
 		;acciones enemigos		
 fin_check_enemigos_fase0:
