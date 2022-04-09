@@ -43,7 +43,8 @@ datos_cienpies:
 			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
 			DB		0		;(incx) incremento x para mover
 			DB		0		;(inxy) incremento y para mover
-			DB		0		;(direccion) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		0		;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		0		;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		0		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 			DB		0		;(radio) radio para movimientos circulares
 			DW		mover_cienpies	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
@@ -63,7 +64,8 @@ datos_serpiente:
 			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
 			DB		0		;(incx) incremento x para mover
 			DB		0		;(inxy) incremento y para mover
-			DB		0		;(direccion) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		0		;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		0		;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		0		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 			DB		0		;(radio) radio para movimientos circulares
 			DW		mover_serpiente	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
@@ -82,8 +84,9 @@ datos_arana:
 			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
 			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
 			DB		0		;(incx) incremento x para mover
-			DB		0		;(inxy) incremento y para mover
-			DB		0		;(direccion) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		DIRABAJO	;(inxy) incremento y para mover
+			DB		0		;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		0		;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		0		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 			DB		0		;(radio) radio para movimientos circulares
 			DW		mover_arana	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
@@ -103,7 +106,8 @@ datos_murcielago:
 			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
 			DB		0		;(incx) incremento x para mover
 			DB		0		;(inxy) incremento y para mover
-			DB		DIRDERECHA			;(direccion) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		DIRDERECHA			;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		0		;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		0		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 			DB		0		;(radio) radio para movimientos circulares
 			DW		mover_murcielago	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
@@ -123,7 +127,8 @@ datos_lobo:
 			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
 			DB		0		;(incx) incremento x para mover
 			DB		0		;(inxy) incremento y para mover
-			DB		DIRDERECHA		;(direccion) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		DIRDERECHA		;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		0		;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		0		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 			DB		0		;(radio) radio para movimientos circulares
 			DW		mover_lobo		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
@@ -151,7 +156,8 @@ datos_jefelobo:
 			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
 			DB		0		;(incx) incremento x para mover
 			DB		0		;(inxy) incremento y para mover
-			DB		DIRDERECHA		;(direccion) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		DIRDERECHA		;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		0		;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		0		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 			DB		0		;(radio) radio para movimientos circulares
 			DW		mover_jefelobo		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
@@ -640,7 +646,7 @@ fin_calcula_arana_escena:
 
 calcula_arana_incrementoy:
 		;SI DIRECCION = ABAJO
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccion)
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direcciony)
 		OR			 A
 		JP			 Z, .arana_baja
 .arana_sube:
@@ -653,7 +659,7 @@ calcula_arana_incrementoy:
 		OR			 A
 		RET			NZ
 		;DIRECCION = ABAJO
-			LD			(IX + ESTRUCTURA_ENEMIGO.direccion), DIRABAJO
+			LD			(IX + ESTRUCTURA_ENEMIGO.direcciony), DIRABAJO
 		;FIN SI
 		RET
 ;SINO
@@ -668,7 +674,7 @@ calcula_arana_incrementoy:
 		CP			LIMITEPANTALLAINF
 		RET			NZ
 		;DIRECCION = ARRIBA
-			LD			(IX + ESTRUCTURA_ENEMIGO.direccion), DIRARRIBA
+			LD			(IX + ESTRUCTURA_ENEMIGO.direcciony), DIRARRIBA
 	;FIN SI
 ;FIN SI
 fin_calcula_arana_incrementoy:
@@ -700,7 +706,7 @@ fin_mover_serpiente:
 
 calcula_serpiente_incrementox:
 ;SI DIRECCION = DERECHA
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccion)
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
 		OR			 A
 		JP			 Z, .serpiente_derecha
 .serpiente_izquierda:
@@ -713,7 +719,7 @@ calcula_serpiente_incrementox:
 		CP			SERPIENTE_LIMIZQ
 		RET			NZ
 		;DIRECCION = DERECHA
-			LD			(IX + ESTRUCTURA_ENEMIGO.direccion), DIRDERECHA
+			LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), DIRDERECHA
 		;FIN SI
 		RET
 ;SINO
@@ -727,7 +733,7 @@ calcula_serpiente_incrementox:
 		CP			SERPIENTE_LIMDER
 		RET			NZ
 		;DIRECCION = IZQUIERDA
-			LD			(IX + ESTRUCTURA_ENEMIGO.direccion), DIRIZQUIERDA
+			LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), DIRIZQUIERDA
 	;FIN SI
 ;FIN SI
 fin_calcula_serpiente_incrementox:
@@ -738,7 +744,7 @@ calcula_serpiente_escena:
 		OR			00010000b
 		RET			 Z
 			
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccion)
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
 		OR			 A
 		JP			 Z, .direccion_derecha
 .direccion_izquierda:
@@ -823,7 +829,7 @@ fin_mover_murcielago:
 		RET
 
 calcula_murcielago_incrementox:
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccion)
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
 		OR			 A
 		JP			 Z, .mueve_derecha
 .mueve_izquierda:
@@ -838,12 +844,12 @@ calcula_murcielago_incrementox:
 
 		CP			MURCIELAGO_LIMIZQ
 		JP			NZ, .no_gira_derecha
-		LD			(IX + ESTRUCTURA_ENEMIGO.direccion), DIRDERECHA
+		LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), DIRDERECHA
 .no_gira_derecha:
 
 		CP			MURCIELAGO_LIMDER
 		JP			NZ, .no_gira_izquierda
-		LD			(IX + ESTRUCTURA_ENEMIGO.direccion), DIRIZQUIERDA
+		LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), DIRIZQUIERDA
 .no_gira_izquierda:
 fin_calcula_murcielago_incrementox:
 		RET
@@ -915,7 +921,7 @@ fin_mover_lobo:
 
 calcula_lobo_incrementox:
 ;SI DIRECCION = DERECHA
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccion)
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
 		OR			 A
 		JP			 Z, .lobo_derecha
 .lobo_izquierda:
@@ -928,7 +934,7 @@ calcula_lobo_incrementox:
 		CP			LOBO_LIMIZQ
 			RET			NZ
 		;DIRECCION = DERECHA
-			LD			(IX + ESTRUCTURA_ENEMIGO.direccion), DIRDERECHA
+			LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), DIRDERECHA
 		;FIN SI
 		RET
 ;SINO
@@ -942,7 +948,7 @@ calcula_lobo_incrementox:
 		CP			LOBO_LIMDER
 			RET			NZ
 		;DIRECCION = LOBO
-			LD			(IX + ESTRUCTURA_ENEMIGO.direccion), DIRIZQUIERDA
+			LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), DIRIZQUIERDA
 	;FIN SI
 ;FIN SI
 fin_calcula_lobo_incrementox:
@@ -953,7 +959,7 @@ calcula_lobo_escena:
 		OR			00010000b
 		RET			 Z
 			
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccion)
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
 		OR			 A
 		JP			 Z, .direccion_derecha
 .direccion_izquierda:
@@ -991,7 +997,7 @@ fin_calcula_lobo_escena:
 ;;MOVER_JEFELOBO
 ;;=====================================================	
 mover_jefelobo:	
-		;CALL		calcula_jefelobo_incrementoy
+		CALL		calcula_jefelobo_incrementoy
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
 		LD			(IY), A
 		LD			(IY + 8), A
@@ -1028,9 +1034,9 @@ fin_mover_jefelobo:
 calcula_jefelobo_escena:
 		LD			 A, (heartbeat)
 		OR			00010000b
-		RET			Z
+		RET			 Z
 			
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccion)
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
 		OR			 A
 		JP			 Z, .direccion_derecha
 .direccion_izquierda:
@@ -1041,16 +1047,16 @@ calcula_jefelobo_escena:
 			OR			 A
 			JP			 Z, .escena_izquierda2
 .escena_izquierda1:
-			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE1C
-			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_b), JEFELOBO_SPRITE2C
-			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_c), JEFELOBO_SPRITE3C
-			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_d), JEFELOBO_SPRITE4C
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE1C
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), JEFELOBO_SPRITE2C
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_c), JEFELOBO_SPRITE3C
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_d), JEFELOBO_SPRITE4C
 			RET
 .escena_izquierda2:
-			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE1D
-			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_b), JEFELOBO_SPRITE2D
-			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_c), JEFELOBO_SPRITE3D
-			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_d), JEFELOBO_SPRITE4D
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE1D
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), JEFELOBO_SPRITE2D
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_c), JEFELOBO_SPRITE3D
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_d), JEFELOBO_SPRITE4D
 			RET
 			
 .direccion_derecha:
@@ -1061,19 +1067,47 @@ calcula_jefelobo_escena:
 			OR			 A
 			JP			 Z, .escena_derecha2
 .escena_derecha1:
-			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE1A
-			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_b), JEFELOBO_SPRITE2A
-			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_c), JEFELOBO_SPRITE3A
-			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_d), JEFELOBO_SPRITE4A
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE1A
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), JEFELOBO_SPRITE2A
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_c), JEFELOBO_SPRITE3A
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_d), JEFELOBO_SPRITE4A
 			RET
 .escena_derecha2:
-			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE1B
-			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_b), JEFELOBO_SPRITE2B
-			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_c), JEFELOBO_SPRITE3B
-			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_d), JEFELOBO_SPRITE4B
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE1B
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), JEFELOBO_SPRITE2B
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_c), JEFELOBO_SPRITE3B
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_d), JEFELOBO_SPRITE4B
 			RET
 fin_calcula_jefelobo_escena:
-		RET
+
+		
+calcula_jefelobo_incrementoy:
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
+			OR			 A
+			RET			 Z
+			
+			LD			 B, (IX + ESTRUCTURA_ENEMIGO.posx)
+			
+.examina_mov_izquierda_sube:
+			LD			 A, 168
+			CP			 B
+			JP			NC, .examina_mov_izquierda_baja
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
+			SUB			 1
+			LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
+			RET
+			
+.examina_mov_izquierda_baja:
+			LD			 A, 56
+			CP			 B
+			RET			 C
+
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
+			ADD			 1
+			LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
+			RET
+fin_calcula_jefelobo_incrementoy:
+			
 
 
 inicializa_enemigos_fase1_nivel0:

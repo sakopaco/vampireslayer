@@ -155,7 +155,8 @@ radiox				DB		0	;radio x del enemigo para cuando se dispare encima
 radioy				DB		0	;radio y del enemigo para cuando se dispare encima
 incx				DB		0	;incremento x para mover
 inxy				DB		0	;incremento y para mover
-direccion			DB		0	;0 derecha <> 1 izquierda // 0 abajo <> 1 arriba
+direccionx			DB		0	;0 derecha <> 1 izquierda // 0 abajo <> 1 arriba
+direcciony			DB		0	;0 derecha <> 1 izquierda // 0 abajo <> 1 arriba
 pasos				DB		0	;pasos para no comprobar los límites de pantalla, sólo si pasos ha llegado a 0
 radio				DB		0	;radio para movimientos circulares
 ;mezclo el ptr_sig_escena con el mover ya que son obligatorias no erece la pena tener 2
