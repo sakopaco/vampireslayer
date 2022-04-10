@@ -132,7 +132,7 @@ fin_inicializa_variables_pruebas:
 	
 	include "subr_sprites.asm"
 	
-	include "subr_enemigos.asm"
+	include "enemigos/subr_enemigos.asm"
 	
 	include "subr_teclado_joy.asm"
 	
