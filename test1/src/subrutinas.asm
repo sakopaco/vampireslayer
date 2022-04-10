@@ -499,6 +499,7 @@ fin_pinta_blanco_mapa:
 ;;CAMBIO_NIVEL
 ;;=====================================================	
 ; función: 	pinta el iconito del heroe en el mapa o un espacio en blanco
+;			cambia el número de nivel
 ; entrada: 	
 ; salida: 	
 ; toca:		todo	

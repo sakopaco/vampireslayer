@@ -13,9 +13,7 @@ enemigo5			DS	ESTRUCTURA_ENEMIGO
 enemigo6			DS	ESTRUCTURA_ENEMIGO
 enemigo7			DS	ESTRUCTURA_ENEMIGO
 
-
-
-			
+		
 datos_esqueleto:
 datos_zombi:
 datos_fantasma:
@@ -31,6 +29,7 @@ datos_jefebeholder:
 datos_manoderecha:
 datos_manoizquierda:
 datos_conde:
+
 
 ;;=====================================================
 ;;INCLUDES AGRUPACION DATOS+SUBRUTINAS ENEMIGOS
@@ -87,7 +86,7 @@ fin_resetea_enemigos:
 
 
 ;;=====================================================
-;;INICIALIZA_ENEMIGOS_FASE X
+;;INICIALIZA_ENEMIGOS_FASE 0
 ;;=====================================================	
 ; función: 	inicializa las variables que serán usadas en el array en la fase
 ; entrada:	-
@@ -130,10 +129,50 @@ inicializa_enemigos_fase0:	;; para no poner más complejo se hace uno por fase q
 fin_inicializa_enemigos_fase0:
 
 
+;;=====================================================
+;;INICIALIZA_ENEMIGOS_FASE 1
+;;=====================================================	
+; función: 	inicializa las variables que serán usadas en el array en la fase
+; entrada:	-
+; salida: 	-
+; toca:		-
 inicializa_enemigos_fase1:	;; para no poner más complejo se hace uno por fase que se actualiza al pasar por escaleras o puerta inferior
-fin_inicializa_enemigos_fase1:
+		LD			 A, (prota_pos_mapy)
+		OR			 A
+.nivel0:
+		JP			NZ, .nivel1
+		CALL		inicializa_enemigos_fase1_nivel0
 		RET
+.nivel1:
+		DEC			 A
+		JP			NZ, .nivel2
+		CALL		inicializa_enemigos_fase1_nivel1
+		RET
+.nivel2:
+		DEC			 A
+		JP			NZ, .nivel3
+		CALL		inicializa_enemigos_fase1_nivel2
+		RET
+.nivel3:
+		DEC			 A
+		JP			NZ, .nivel4
+		CALL		inicializa_enemigos_fase1_nivel3
+		RET
+.nivel4:
+		DEC			 A
+		JP			NZ, .nivel5
+		CALL		inicializa_enemigos_fase1_nivel4
+		RET
+.nivel5:
+		DEC			 A
+		JP			NZ, .nivel6
+		CALL		inicializa_enemigos_fase1_nivel5
+		RET
+.nivel6:
+		JP			inicializa_enemigos_fase1_niveljefe
+fin_inicializa_enemigos_fase1:
 		
+
 inicializa_enemigos_fase2:	;; para no poner más complejo se hace uno por fase que se actualiza al pasar por escaleras o puerta inferior
 fin_inicializa_enemigos_fase2:
 		RET
@@ -153,6 +192,7 @@ fin_inicializa_enemigos_fase5:
 inicializa_enemigos_fase6:	;; para no poner más complejo se hace uno por fase que se actualiza al pasar por escaleras o puerta inferior
 fin_inicializa_enemigos_fase6:
 		RET
+
 
 ;;=====================================================
 ;;INICIALIZA_ENEMIGOS_FASE0_NIVELX
@@ -280,15 +320,133 @@ inicializa_enemigos_fase0_niveljefe:
 fin_inicializa_enemigos_fase0_nivel6:
 	
 
-
+;;=====================================================
+;;INICIALIZA_ENEMIGOS_FASE1_NIVELX
+;;=====================================================	
 inicializa_enemigos_fase1_nivel0:
+		LD			DE, enemigo1
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo1
+		JP			actualiza_valores_cienpies
+fin_inicializa_enemigos_fase1_nivel0:
+
 inicializa_enemigos_fase1_nivel1:
+		LD			DE, enemigo1
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo1
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo2
+		CALL		anade_enemigo_arana
+		LD			IX, enemigo2
+		JP			actualiza_valores_arana
+fin_inicializa_enemigos_fase1_nivel1:
+
 inicializa_enemigos_fase1_nivel2:
+		LD			DE, enemigo1
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo1
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo2
+		CALL		anade_enemigo_arana
+		LD			IX, enemigo2
+		CALL		actualiza_valores_arana
+		
+		LD			DE, enemigo3
+		CALL		anade_enemigo_serpiente
+		LD			IX, enemigo3
+		JP			actualiza_valores_serpiente
+fin_inicializa_enemigos_fase1_nivel2:
+
 inicializa_enemigos_fase1_nivel3:
+		LD			DE, enemigo1
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo1
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo2
+		CALL		anade_enemigo_arana
+		LD			IX, enemigo2
+		CALL		actualiza_valores_arana
+		
+		LD			DE, enemigo3
+		CALL		anade_enemigo_serpiente
+		LD			IX, enemigo3
+		CALL		actualiza_valores_serpiente
+		
+		LD			DE, enemigo4
+		CALL		anade_enemigo_murcielago
+		LD			IX, enemigo4
+		JP			actualiza_valores_murcielago
+fin_inicializa_enemigos_fase1_nivel3:
+
 inicializa_enemigos_fase1_nivel4:
+		LD			DE, enemigo1
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo1
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo2
+		CALL		anade_enemigo_arana
+		LD			IX, enemigo2
+		CALL		actualiza_valores_arana
+		
+		LD			DE, enemigo3
+		CALL		anade_enemigo_serpiente
+		LD			IX, enemigo3
+		CALL		actualiza_valores_serpiente
+		
+		LD			DE, enemigo4
+		CALL		anade_enemigo_murcielago
+		LD			IX, enemigo4
+		CALL		actualiza_valores_murcielago
+		
+		LD			DE, enemigo5
+		CALL		anade_enemigo_lobo
+		LD			IX, enemigo5
+		JP			actualiza_valores_lobo		
+fin_inicializa_enemigos_fase1_nivel4:
+
 inicializa_enemigos_fase1_nivel5:
-inicializa_enemigos_fase1_nivel6:
-inicializa_enemigos_fase1_nivelboss:
+		LD			DE, enemigo1
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo1
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo2
+		CALL		anade_enemigo_arana
+		LD			IX, enemigo2
+		CALL		actualiza_valores_arana
+		
+		LD			DE, enemigo3
+		CALL		anade_enemigo_serpiente
+		LD			IX, enemigo3
+		CALL		actualiza_valores_serpiente
+		
+		LD			DE, enemigo4
+		CALL		anade_enemigo_murcielago
+		LD			IX, enemigo4
+		CALL		actualiza_valores_murcielago
+		
+		LD			DE, enemigo5
+		CALL		anade_enemigo_lobo
+		LD			IX, enemigo5
+		JP			actualiza_valores_lobo	
+fin_inicializa_enemigos_fase1_nivel5:
+
+;; no hay nivel 6 porque el 5 se repite
+
+inicializa_enemigos_fase1_niveljefe:	
+		LD			DE, enemigo6
+		CALL		anade_enemigo_jefelobo
+		LD			IX, enemigo6
+		JP			actualiza_valores_lobo	;se reutiliza la inicialización de valores iniciales de lobo para jefelobo
+		RET
+fin_inicializa_enemigos_fase1_nivel6:
+
+
+
 
 inicializa_enemigos_fase2_nivel0:
 inicializa_enemigos_fase2_nivel1:
@@ -337,7 +495,9 @@ inicializa_enemigos_fase6_nivelboss:
 
 
 
-
+;;=====================================================
+;;CHECK_ENEMIGOS_FASE0
+;;=====================================================	
 check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
 .check_enemigo1:
 		LD			IX, enemigo1
@@ -395,26 +555,83 @@ check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activ
 		LD			IX, enemigo6
 		LD			 A, (IX)
 		OR			 A
-		JP			 Z, .check_enemigo7
+		JP			 Z, fin_check_enemigos_fase0
 		
-		LD			IY, array_sprites_enem + 24 ;************************************************** seguramente haya que cambiarlo
+		LD			IY, array_sprites_enem + 24
 		CALL		mover_jefelobo
 
 		;acciones enemigos
-.check_enemigo7:
-		;~ LD			IX, enemigo7
-		;~ LD			 A, (IX)
-		;~ OR			 A
-		;~ JP			 Z, fin_check_enemigos_fase0
-		
-		;~ LD			IY, array_sprites_enem + 28
-		;~ CALL		mover_jefelobo
-		
-		;acciones enemigos		
 fin_check_enemigos_fase0:
 		RET			
 
 
+;;=====================================================
+;;CHECK_ENEMIGOS_FASE1
+;;=====================================================	
+check_enemigos_fase1: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
+.check_enemigo1:
+		LD			IX, enemigo1
+		LD			 A, (IX)
+		OR			 A
+		JP			 Z, .check_enemigo2
+		
+		LD			IY, array_sprites_enem
+		CALL		mover_cienpies
 
+		;acciones enemigos
+.check_enemigo2:
+		LD			IX, enemigo2
+		LD			 A, (IX)
+		OR			 A
+		JP			 Z, .check_enemigo3
+		
+		LD			IY, array_sprites_enem + 4
+		CALL		mover_arana
+
+		;acciones enemigos
+.check_enemigo3:
+		LD			IX, enemigo3
+		LD			 A, (IX)
+		OR			 A
+		JP			 Z, .check_enemigo4
+		
+		LD			IY, array_sprites_enem + 8
+		CALL		mover_serpiente
+
+		;acciones enemigos
+
+.check_enemigo4:
+		LD			IX, enemigo4
+		LD			 A, (IX)
+		OR			 A
+		JP			 Z, .check_enemigo5
+		
+		LD			IY, array_sprites_enem + 12
+		CALL		mover_murcielago
+
+		;acciones enemigos
+.check_enemigo5:
+		LD			IX, enemigo5
+		LD			 A, (IX)
+		OR			 A
+		JP			 Z, .check_enemigo6
+		
+		LD			IY, array_sprites_enem + 16
+
+		CALL		mover_lobo
+
+		;acciones enemigos
+.check_enemigo6:
+		LD			IX, enemigo6
+		LD			 A, (IX)
+		OR			 A
+		JP			 Z, fin_check_enemigos_fase1
+		
+		LD			IY, array_sprites_enem + 24
+		CALL		mover_jefelobo
+
+		;acciones enemigos
+fin_check_enemigos_fase1:
+		RET	
 
 
