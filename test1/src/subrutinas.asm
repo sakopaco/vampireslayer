@@ -403,7 +403,7 @@ terminada_habitacion_recorrida:
 		LD			 A, HABTERMIN	;da igual qué bit mientras sea distinto de 0 pero se pone 1
 		LD			(is_habitacion_terminada), A
 		
-		;este trozo no sirve de nada pero ya e quedo más tranquilo si lo pongo, por ser exacto y completo
+		;este trozo no sirve de nada pero ya me quedo más tranquilo si lo pongo, por ser exacto y completo
 		;no sirve porque se cambiará de habitación y se perderá/actualizará el dato
 		LD			 A, (habitacion_actual)
 		SET			 4, A
@@ -435,31 +435,26 @@ entra_habitacion:
 		JP			.fin_mira_nivel
 .mira_nivel1:
 		CP			 1
-		OR			 A
 		JP			NZ, .mira_nivel2
 		CALL		inicializa_enemigos_fase1
 		JP			.fin_mira_nivel
 .mira_nivel2:
 		CP			 2
-		OR			 A
 		JP			NZ, .mira_nivel3
 		CALL		inicializa_enemigos_fase2
 		JP			.fin_mira_nivel
 .mira_nivel3:
 		CP			 3
-		OR			 A
 		JP			NZ, .mira_nivel4
 		CALL		inicializa_enemigos_fase3
 		JP			.fin_mira_nivel
 .mira_nivel4:
 		CP			 4
-		OR			 A
 		JP			NZ, .mira_nivel5
 		CALL		inicializa_enemigos_fase4
 		JP			.fin_mira_nivel		
 .mira_nivel5:
 		CP			 5
-		OR			 A
 		JP			NZ, .mira_nivel6
 		CALL		inicializa_enemigos_fase5
 		JP			.fin_mira_nivel
@@ -505,9 +500,12 @@ fin_pinta_blanco_mapa:
 ; toca:		todo	
 cambio_nivel:
 		;MIRAR CUANDO EL NIVEL SEA -1 (SE SALE DEL CASTILLO Y PUEDE QUE SEA POR TERMINAR JUEGO O SALIR ANTES DE TIEMPO)
-	
 ;		*****************************************************************************************************************************+
+
 		CALL		pinta_nivel
+		
+		;carga sprites en memoria
+		CALL 		carga_patrones_sprites_nivel
 	
 		JP			borra_mapa	
 fin_cabio_nivel:

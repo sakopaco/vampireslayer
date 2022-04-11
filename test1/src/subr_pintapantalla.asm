@@ -260,7 +260,6 @@ pinta_vidas:
 fin_pinta_vidas:
 	
 	
-
 ;;=====================================================
 ;;PINTA_RELIQUIAS
 ;;=====================================================	
@@ -278,8 +277,6 @@ pinta_reliquias:
 fin_pinta_reliquias:
 	
 
-
-	
 ;;=====================================================
 ;;PINTA_NIVEL
 ;;=====================================================	
@@ -329,7 +326,6 @@ fin_pinta_tile_suelto:
 ; toca:		ninguno porque usa EXX
 
 ; nota importante... lo mismo interesa hacer esto con un array para comparar y un bucle
-
 mira_pinta_energia:
 	EXX							;por si acaso guardo el contenido de HL (si veo que no es necesario guardarlo lo quito) uso esto en vez de push por el nº ciclos
 	
@@ -428,7 +424,6 @@ pinta_energia:
 fin_pinta_energia:
 
 
-
 ;;=====================================================
 ;;BORRA_MAPA
 ;;=====================================================	
@@ -477,11 +472,6 @@ borra_mapa:
 	EXX
 fin_borra_mapa:
 	RET
-
-
-
-
-
 
 
 ;;=====================================================
@@ -546,7 +536,6 @@ posiciona_en_mapa:
 .fila_6:
 	;pongo fila_6 por poner ya que si es la fila 6 equiv. a primera fila del mapa y por tanto no suma fila
 	
-	
 .sumar_columna:
 	LD 		 A, (prota_pos_mapx) ;POS X
 	LD		 D, 0
@@ -569,8 +558,6 @@ pinta_pos_mapa_vacio:
 fin_pinta_pos_mapa:
 	JP		pinta_tile_suelto
 fin_posiciona_en_mapa:
-
-
 
 
 ;;=====================================================
@@ -598,7 +585,6 @@ efecto_imagen_tira_reliquia:
 	;~ POP		BC
 	HALT
 
-	
 	LD		HL, color_bomba2
 	CALL	color_pantalla
 	POP		BC
@@ -607,8 +593,6 @@ efecto_imagen_tira_reliquia:
 	LD		HL, color_base
 	JP		color_pantalla
 fin_efecto_imagen_tira_reliquia:
-
-
 
 
 ;=====================================================
@@ -695,8 +679,6 @@ wordaux1:		DW	0	;almacena la posición en el tilemap 0 al 675
 wordaux2:		DW	0	;almacena puntero a array de tiles (posiciones en realidad) a pintar (posiciones repetidas en los 2 primeros bancos)
 byteaux1:		DB	0	;nº filas Registro D
 byteaux2:		DB	0	;nº columnas Registro E
-
-
 
 
 ;;=====================================================
@@ -816,7 +798,6 @@ fin_pinta_extra_fondo:
 	RET
 
 
-
 ;;=====================================================
 ;;ACTUALIZA_ELEMENTOS_FONDO
 ;;=====================================================	
@@ -841,8 +822,6 @@ actualiza_elementos_fondo:
 	
 	JP		flip_calavera_esqueletos
 fin_actualiza_elementos_fondo:
-
-
 
 
 ;;=====================================================

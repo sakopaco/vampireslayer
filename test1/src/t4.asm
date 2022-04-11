@@ -21,7 +21,7 @@ START:
 		;inicializa el punto de mira
 		CALL	inicializa_punto_mira
 	
-		;inicializa los niveles por partida
+		;inicializa los niveles por partida (habitaciones)
 		CALL	inicializa_niveles			;no es necesario parametrizarlo según el nivel del usuario ya que se cargan todos
 
 		;inicializa los valores de cada puerta excepto si están activas o no (eso ocurre cuando se matan todos los enemigos de la hab. y sólo a las puertas que se muestren)
@@ -37,25 +37,16 @@ START:
 		;pinta la pantalla (la primera o algunas especiales se pintan completamente)
 		CALL	pinta_pantalla_completa
 	
-		
-	
 		;funciones que modificarian el marcador si se produce un evento cuando toque y cuando se pinta la pantalla ya se mira
 		;una variable para ver si el array hay que actualizarlo en pantalla o no
 		CALL		pinta_vidas
 		CALL 		pinta_reliquias
-		CALL		pinta_nivel
-		CALL		borra_mapa
-
-		LD		 	 A, TILEPROTAM
-		LD			(elemento_pintar_mapa), A
-		CALL		posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.posx y posy
+		
+		CALL		cambio_nivel
 	
 		CALL		pinta_energia
-		
-		;carga sprites en memoria
-		CALL 		carga_patrones_sprites_nivel
 	
-		CALL		entra_habitacion 		;CALL	pinta_puertas + CALL	pinta_ayudas_habitacion + CALL	pinta_extra_fondo
+		CALL		entra_habitacion 		;CALL resetea enemigos + CALL inicializa_enemigos_fase + CALL	pinta_puertas + CALL pinta_ayudas_habitacion + CALL	pinta_extra_fondo 
 	
 		;esta función no va aquí sino en check colisiones pero se pone aquí para realizar pruebas
 		CALL		terminada_habitacion_recorrida ;para cuando se maten todos los enemigos de la habitación
@@ -72,7 +63,7 @@ loop_principal:
 
 		CALL		check_player			;MIRA EL CONTROL Y APLICA LA LOGICA DE MOVIMIENTO DEL PROTAGONISTA
 	
-		; incrementa el hearbeat para el movimiento de los enemigos
+		;incrementa el hearbeat para el movimiento de los enemigos
 		LD		 	 A, (heartbeat)
 		INC		 	 A
 		LD			(heartbeat), A
@@ -103,7 +94,7 @@ inicializa_variables_pruebas:
 	LD		 A, 0				;los niveles (matrices) son 7 del 0 al 6
 	LD		(prota_nivel), A	;nivel empieza en 0 para usar las posiciones ascii
 
-	LD		 A, 0;				;los subniveles (filas) son 7 del 0 al 6
+	LD		 A, 6;0				;los subniveles (filas) son 7 del 0 al 6
 	LD		(prota_pos_mapy), A	;pos Y dentro del nivel (se empieza en 0)
 
 	LD		 A, 3				;columnas 7: del 0 al 6

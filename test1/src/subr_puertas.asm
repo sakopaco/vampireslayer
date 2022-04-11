@@ -49,7 +49,6 @@ array_escalera:
 	DB	5,4,4,4,4,4,4,5
 
 
-
 lista_puertas:
 puerta_arriba:		DS		ESTRUCTURA_PUERTA
 puerta_derecha:		DS		ESTRUCTURA_PUERTA
@@ -297,6 +296,7 @@ fin_accion_puerta_izquierda:
 pinta_puertas:
 	CALL	localiza_info_habitacion	;busca qué puertas debe pintar y lo mete en habitación_actual
 
+	;*********************************************************************+ SÓLO SI HABITACIÓN NO COPLETADA
 	CALL	desactiva_todas_puertas
 
 	;examina puerta arrba
