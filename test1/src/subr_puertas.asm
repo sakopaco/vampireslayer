@@ -241,12 +241,15 @@ fin_accion_puerta_derecha:
 ; entrada: 	
 ; salida: 	
 accion_puerta_abajo:
+
+
+;AQUÍ HAY QUE TENER EN CUENTA LO DE SALIR SIN TERMINAR EL JUEGO
+
+
 	CALL	pinta_blanco_mapa
 	
 	LD		 A, (prota_pos_mapy)
 	DEC		 A
-	;~ OR		 A
-	;~ JP		NC, .no_cambia_nivel				;no entiendo por qué no funciona... preguntar fernando
 	CP		-1
 	JR		NZ, .no_cambia_nivel
 .si_cambia_nivel:	
@@ -360,17 +363,17 @@ fin_pinta_puerta_aba:
 ; salida: 	-
 ; toca:		IX
 pinta_puerta_arr:
-	LD		 A, (prota_pos_mapy)
-	CP		 6								;en la fila 6 la única puerta arriba será una escalera
-	JP		NZ, .pinta_puerta_normal
+		LD			 A, (prota_pos_mapy)
+		CP			 6	;en la fila 6 la única puerta arriba será una escalera
+		JP			NZ, .pinta_puerta_normal
 .pinta_puerta_escalera
-		LD		IX, puerta_escalera
-		JP		.fin_si
+			LD			IX, puerta_escalera
+			JP			.fin_si
 .pinta_puerta_normal
-		LD		IX, puerta_arriba	
+			LD			IX, puerta_arriba	
 .fin_si
-	CALL	actualiza_variables_pinta_array
-	JP		pinta_array
+		CALL		actualiza_variables_pinta_array
+		JP			pinta_array
 fin_pinta_puerta_arr:
 
 
@@ -405,7 +408,7 @@ fin_pinta_puerta_izq:
 
 
 ;;=====================================================
-;;FIN_ACTUALIZA_VARIABLES_PINTA_ARRAY
+;;ACTUALIZA_VARIABLES_PINTA_ARRAY
 ;;=====================================================	
 ; función: 	como el código es el mismo en esta subrutia se actualizan los valores de wordaux2, wordaux1, byteaux1, byteaux2
 ; entrada: 	IX apuntando a la estructura de una puerta
