@@ -2,6 +2,41 @@
 ;;SUBRUTINAS MANEJO DE MURCIÉLAGO
 ;;=====================================================	
 
+;;=====================================================
+;;VARIABLES
+;;=====================================================
+variacion_murcielagoy:
+		DB			 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+		
+		
+;;=====================================================
+;;DATOS_ENEMIGOS (EQUIVALE A PLANTILLAS)
+;;=====================================================
+datos_murcielago:
+			DB		5		;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
+			DB		0		;(escena) sprite a mostrar 1/2
+			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
+			DB		10		;(energia) energía del enemigo antes de morir
+			DB		MURCIELAGO_LIMIZQ	;(posx) pos x para mover y punto central del sprite para revisar disparo
+			DB		24		;(posy) pos y para mover y punto central del sprite para revisar disparo
+			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
+			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
+			DB		0		;(incx) incremento x para mover
+			DB		0		;(inxy) incremento y para mover
+			DB		DIRDERECHA			;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		0		;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		0		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
+			DB		0		;(radio) radio para movimientos circulares
+			DW		mover_murcielago	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
+			DB		0		;izq arriba
+			DB		0		;izq abajo
+			DB		0		;der_arriba
+			DB		0		;der_abajo
+
+
+;;=====================================================
+;;SUBRUTINAS
+;;=====================================================
 
 ;;=====================================================
 ;;ANADE_ENEMIGO_MURCIELAGO
@@ -131,12 +166,12 @@ calcula_murcielago_incrementox:
 
 		CP			MURCIELAGO_LIMIZQ
 		JP			NZ, .no_gira_derecha
-			LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), DIRDERECHA
-
+		LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), DIRDERECHA
 .no_gira_derecha:
+
 		CP			MURCIELAGO_LIMDER
 		JP			NZ, .no_gira_izquierda
-			LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), DIRIZQUIERDA
+		LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), DIRIZQUIERDA
 .no_gira_izquierda:
 fin_calcula_murcielago_incrementox:
 		RET

@@ -2,6 +2,33 @@
 ;;SUBRUTINAS MANEJO DE ENEMIGOS
 ;;=====================================================	
 
+;;=====================================================
+;;VARIABLES
+;;=====================================================
+enemigo1			DS	ESTRUCTURA_ENEMIGO
+enemigo2			DS	ESTRUCTURA_ENEMIGO
+enemigo3			DS	ESTRUCTURA_ENEMIGO
+enemigo4			DS	ESTRUCTURA_ENEMIGO
+enemigo5			DS	ESTRUCTURA_ENEMIGO
+enemigo6			DS	ESTRUCTURA_ENEMIGO
+enemigo7			DS	ESTRUCTURA_ENEMIGO
+
+		
+datos_esqueleto:
+datos_zombi:
+datos_fantasma:
+datos_caballerogris:
+datos_caballeronegro:
+datos_fuego:
+datos_magia:		
+datos_jefemurcielago:
+datos_jefefatasma:
+datos_jefezombie:
+datos_jefecaballero:
+datos_jefebeholder:
+datos_manoderecha:
+datos_manoizquierda:
+datos_conde:
 
 
 ;;=====================================================
@@ -18,8 +45,6 @@ include "subr_enemigo_jefelobo.asm"
 ;;=====================================================
 ;;SUBRUTINAS
 ;;=====================================================
-
-
 ;;=====================================================
 ;;RESETEA_ENEMIGOS
 ;;=====================================================	
@@ -43,6 +68,8 @@ resetea_enemigos:
 		LD			IX, enemigo5
 		LD			(IX), INACTIVA
 		LD			IX, enemigo6
+		LD			(IX), INACTIVA
+		LD			IX, enemigo7
 		LD			(IX), INACTIVA
 		
 		XOR			 A

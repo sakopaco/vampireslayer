@@ -223,28 +223,28 @@ fin_iniciliza_niveles:
 ; salida: 	array_aux_vidas
 ; toca:		A,B,HL
 actualiza_marcador_vidas:
-		;para no andar restando pongo todos los huecos a negro y luego en otro bucle las caras
-		;1-pinto todo en blanco
-		LD			HL,array_aux_vidas
-		LD			 B,NMAXVIDREL
+	;para no andar restando pongo todos los huecos a negro y luego en otro bucle las caras
+	;1-pinto todo en blanco
+	LD		HL,array_aux_vidas
+	LD		 B,NMAXVIDREL
 loop_marcador_caras_negro:	;asignar espacios en negro
-		LD			(HL),0			;0 posición mapa tiles para nada (es transparente pero el fondo es negro)
-		INC			HL
-		DJNZ		loop_marcador_caras_negro
+	LD		(HL),0			;0 posición mapa tiles para nada (es transparente pero el fondo es negro)
+	INC		HL
+	DJNZ	loop_marcador_caras_negro
 fin_loop_marcador_caras_negro:
-		;2-pinto las caras según el n de vidas
-		LD			 A, (prota_vidas)
-		OR			 A
-		RET 		 Z
-		LD			 B, A
-		LD			HL, array_aux_vidas
+	;2-pinto las caras según el n de vidas
+	LD		 A, (prota_vidas)
+	OR		 A
+	RET 	 Z
+	LD		 B, A
+	LD		HL, array_aux_vidas
 loop_marcador_caras: ;asignar caras
-		LD			(HL), POSCARAMAP	;13 posición mapa tiles para cara
-		INC			HL
-		DJNZ		loop_marcador_caras
+	LD		(HL), POSCARAMAP	;13 posición mapa tiles para cara
+	INC		HL
+	DJNZ	loop_marcador_caras
 fin_loop_marcador_caras:
 fin_actualiza_marcador_vidas:
-		RET
+	RET
 
 
 ;;=====================================================
@@ -289,6 +289,9 @@ fin_actualiza_buffer_reliquias:
 ;ejemplo: nivel 4, posy 5 y posx 3
 ;3 + 5 x 8 + 4 x 49
 localiza_info_habitacion:
+	;~ PUSH	AF
+	;~ PUSH	BC
+	;~ PUSH	DE
 	PUSH	HL
 
 ;primera posición: me coloco en la columna correcta
@@ -376,6 +379,9 @@ localiza_info_habitacion:
 	LD		(habitacion_extras), A
 
 	POP		HL	
+	;~ POP		DE
+	;~ POP		BC
+	;~ POP		AF
 fin_localiza_info_habitacion:
 	RET
 	
@@ -407,7 +413,7 @@ fin_terminada_habitacion_recorrida:
 
 
 ;;=====================================================
-;;ENTRA_HABITACION
+;;ENTRA_HABITACION												*no terminada
 ;;=====================================================	
 ; función: 	actualiza elementos en pantalla cuando hay cambios en habitación
 ;			fondo
@@ -473,14 +479,14 @@ fin_entra_habitacion:
 ; salida: 	
 ; toca:		todo
 pinta_heroe_mapa:
-		LD			 A, TILEPROTAM
-		LD			(elemento_pintar_mapa), A
-		JP			posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.posx y posy
+		LD		 A, TILEPROTAM
+		LD		(elemento_pintar_mapa), A
+		JP		posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.posx y posy
 fin_pinta_heroe_mapa:
 pinta_blanco_mapa:
-		LD			 A, TILEGRISM
-		LD			(elemento_pintar_mapa), A
-		JP			posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.posx y posy
+		LD		 A, TILEGRISM
+		LD		(elemento_pintar_mapa), A
+		JP		posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.posx y posy
 fin_pinta_blanco_mapa:
 	
 
@@ -513,28 +519,28 @@ fin_cabio_nivel:
 ; salida: 	-
 ; toca:		HL,BC, DE
 check_colisiones_objetos:
-		;pantalla limpia?
-		LD			 A, (is_habitacion_terminada)
-		OR			 0
-		JP			 Z, .habitacion_no_terminada
-		;SI 
-			;recorre puertas y sale
-			CALL		check_colisiones_puertas
-		;NO 
+	;pantalla limpia?
+	LD		 A, (is_habitacion_terminada)
+	OR		 0
+	JP		 Z, .habitacion_no_terminada
+	;SI 
+	;recorre puertas y sale
+		CALL	check_colisiones_puertas
+	;NO 
 .habitacion_no_terminada:
-		;recorre ayudas
-		;SI ;mira si hay colisiones con la ayuda que haya puntero_ayuda_actual
-		LD			 A, (hay_ayudas_en_pantalla)
-		OR			 0
-		JP			 Z, .habitacion_sin_ayudas
-		;THEN
-			CALL		check_colision_ayudas
-		;ENDIF
+	;recorre ayudas
+	;SI ;mira si hay colisiones con la ayuda que haya puntero_ayuda_actual
+	LD		 A, (hay_ayudas_en_pantalla)
+	OR		 0
+	JP		 Z, .habitacion_sin_ayudas
+	;THEN
+		CALL	check_colision_ayudas
+	;ENDIF
 .habitacion_sin_ayudas:
 	
-		;recorre enemigos
+	;recorre enemigos
 
 fin_check_colisiones_objetos:	
-		RET
+	RET
 
 	

@@ -2,6 +2,45 @@
 ;;SUBRUTINAS MANEJO DE CIENPIES
 ;;=====================================================	
 
+;;=====================================================
+;;VARIABLES
+;;=====================================================
+
+;las posiciones iniciales dependerán de los últimos 3 bits del registro R
+;nota: se pone un 0 de más para simplificar el bucle de selección
+posiciones_cienpies_x:
+		DB			240,100,175,150,200,75,0,125,25
+posiciones_cienpies_y:
+		DB			 60,72,24,36,108,84,12,96,48
+		
+;;=====================================================
+;;DATOS_ENEMIGOS (EQUIVALE A PLANTILLAS)
+;;=====================================================
+datos_cienpies:	
+			DB		2		;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
+			DB		0		;(escena) sprite a mostrar 1/2
+			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
+			DB		10		;(energia) energía del enemigo antes de morir
+			DB		0		;(posx) pos x para mover y punto central del sprite para revisar disparo
+			DB		0		;(posy) pos y para mover y punto central del sprite para revisar disparo
+			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
+			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
+			DB		0		;(incx) incremento x para mover
+			DB		0		;(inxy) incremento y para mover
+			DB		0		;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		0		;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		0		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
+			DB		0		;(radio) radio para movimientos circulares
+			DW		mover_cienpies	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
+			DB		0		;izq arriba
+			DB		0		;izq abajo
+			DB		0		;der_arriba
+			DB		0		;der_abajo
+			
+
+;;=====================================================
+;;SUBRUTINAS
+;;=====================================================
 
 ;;=====================================================
 ;;ANADE_ENEMIGO_CIENPIES/ARANA/SERPIENTE/MURCIELAGO/LOBO

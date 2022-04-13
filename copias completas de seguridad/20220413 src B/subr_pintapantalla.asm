@@ -213,9 +213,9 @@ pinta_parte_superior_pantalla:
 	LD		DE, TILMAP
 	JP		depack_VRAM
 fin_pinta_parte_superior_pantalla:
-;tiles_patrones:		DW	0
-;tiles_colores:			DW	0
-;tiles_mapa:			DW	0
+tiles_patrones:		DW	0
+tiles_colores:		DW	0
+tiles_mapa:			DW	0
 
 
 ;;=====================================================
@@ -240,6 +240,7 @@ pinta_parte_inferior_pantalla:
 	LD		DE,CLRTBL + #1000
 	JP		depack_VRAM
 fin_pinta_parte_inferior_pantalla:
+
 
 
 ;;=====================================================
@@ -673,10 +674,11 @@ pinta_array:
 fin_pinta_array:
 	RET
 ;;variables asocidas a la función pinta_array
-;wordaux1:		DW	0	;almacena la posición en el tilemap 0 al 675
-;wordaux2:		DW	0	;almacena puntero a array de tiles (posiciones en realidad) a pintar (posiciones repetidas en los 2 primeros bancos)
-;byteaux1:		DB	0	;nº filas Registro D
-;byteaux2:		DB	0	;nº columnas Registro E
+;; por de pronto la dejo aquí
+wordaux1:		DW	0	;almacena la posición en el tilemap 0 al 675
+wordaux2:		DW	0	;almacena puntero a array de tiles (posiciones en realidad) a pintar (posiciones repetidas en los 2 primeros bancos)
+byteaux1:		DB	0	;nº filas Registro D
+byteaux2:		DB	0	;nº columnas Registro E
 
 
 ;;=====================================================
@@ -793,6 +795,7 @@ pinta_extra_fondo:
 	
 	JP		pinta_array 				;no ecesita CALL ya que la subrutina termina aquí
 fin_pinta_extra_fondo:
+	RET
 
 
 ;;=====================================================
@@ -829,65 +832,65 @@ fin_actualiza_elementos_fondo:
 ; salida: 	
 ; toca:		
 flip_llamas_antorchas:
-		LD		IX, antorchas
-		;tiene que cambiar de llama?
-		LD		 A, (IX + 6)
-		DEC		 A
-		LD		 (IX + 6), A
-		;no
-		RET		NZ
-		;si
-		PUSH	BC
-		PUSH	DE
+	LD		IX, antorchas
+	;tiene que cambiar de llama?
+	LD		 A, (IX + 6)
+	DEC		 A
+	LD		 (IX + 6), A
+	;no
+	RET		NZ
+	;si
+	PUSH	BC
+	PUSH	DE
 	
-		LD		(IX + 6), RESETLLAMA	
+	LD		(IX + 6), RESETLLAMA	
 	
-		;qué llama toca?
-		LD		 A, (IX + 5)
-		OR		 A
-		JP		 Z, .llama_par
+	;qué llama toca?
+	LD		 A, (IX + 5)
+	OR		 A
+	JP		 Z, .llama_par
 .llama_impar
-		;cambio a llama par
-		XOR		 A
-		LD		(IX + 5), A
-		;pinto llamas
-		LD		BC, TILMAP
-		LD		 A, POSANTOR1
-		CALL	suma_A_BC
-		LD		 D, MAPLLAMA1
-		CALL	pinta_tile_suelto
-		
-		LD		BC, TILMAP
-		LD		 A, POSANTOR2
-		CALL	suma_A_BC
-		LD		 D, MAPLLAMA2
-		CALL	pinta_tile_suelto	
-		JP		fin_flip_llamas_antorchas
+	;cambio a llama par
+ 	XOR		 A
+	LD		(IX + 5), A
+	;pinto llamas
+	LD		BC, TILMAP
+	LD		 A, POSANTOR1
+	CALL	suma_A_BC
+	LD		 D, MAPLLAMA1
+	CALL	pinta_tile_suelto
+	
+	LD		BC, TILMAP
+	LD		 A, POSANTOR2
+	CALL	suma_A_BC
+	LD		 D, MAPLLAMA2
+	CALL	pinta_tile_suelto	
+	JP		fin_flip_llamas_antorchas
 	
 .llama_par
-		;cambio a llama par
-		LD		 A, 1
-		LD		(IX + 5), A
-		;pinto llamas
-		LD		BC, TILMAP
-		LD		 A, POSANTOR1
-		CALL	suma_A_BC
-		LD		 D, MAPLLAMA2
-		CALL	pinta_tile_suelto
+	;cambio a llama par
+ 	LD		 A, 1
+	LD		(IX + 5), A
+	;pinto llamas
+	LD		BC, TILMAP
+	LD		 A, POSANTOR1
+	CALL	suma_A_BC
+	LD		 D, MAPLLAMA2
+	CALL	pinta_tile_suelto
 	
-		LD		BC, TILMAP
-		LD		 A, POSANTOR2
-		CALL	suma_A_BC
-		LD		 D, MAPLLAMA1
-		CALL	pinta_tile_suelto
+	LD		BC, TILMAP
+	LD		 A, POSANTOR2
+	CALL	suma_A_BC
+	LD		 D, MAPLLAMA1
+	CALL	pinta_tile_suelto
 
 fin_flip_llamas_antorchas:
-		;restauro los balores de los registros tocados antes
-		POP		DE
-		POP		BC
-		POP		AF
+	;restauro los balores de los registros tocados antes
+	POP		DE
+	POP		BC
+	POP		AF
 
-		RET
+	RET
 
 
 ;;=====================================================
@@ -898,35 +901,35 @@ fin_flip_llamas_antorchas:
 ; salida: 	
 ; toca:		TODOS.... muy importante DE
 flip_calavera_esqueletos:
-		LD		IX, esqueletos
+	LD		IX, esqueletos
 	
-		;tiene que cambiar de calavera?
-		LD		 A, (IX + ESTRUCTURA_ESQUELETO.cont_sig_escena)
-		DEC		 A
-		LD		 (IX + ESTRUCTURA_ESQUELETO.cont_sig_escena), A
-		;no
-		RET		NZ
-		;si
-		LD		(IX + ESTRUCTURA_ESQUELETO.cont_sig_escena), RESETESQUEL		;resetea contador de nueve escena
+	;tiene que cambiar de calavera?
+	LD		 A, (IX + ESTRUCTURA_ESQUELETO.cont_sig_escena)
+	DEC		 A
+	LD		 (IX + ESTRUCTURA_ESQUELETO.cont_sig_escena), A
+	;no
+	RET		NZ
+	;si
+	LD		(IX + ESTRUCTURA_ESQUELETO.cont_sig_escena), RESETESQUEL		;resetea contador de nueve escena
 	
-		CALL	actualiza_escena_calavera
+	CALL	actualiza_escena_calavera
 
-		;pinto calaveras
-		LD		BC, TILMAP
-		LD		 A, POSCALAVE1
-		CALL	suma_A_BC
-		PUSH	DE
-		LD		 D, (HL)
-		CALL	pinta_tile_suelto
+	;pinto calaveras
+	LD		BC, TILMAP
+	LD		 A, POSCALAVE1
+	CALL	suma_A_BC
+	PUSH	DE
+	LD		 D, (HL)
+	CALL	pinta_tile_suelto
 	
-		LD		BC, TILMAP
-		LD		 A, POSCALAVE2
-		CALL	suma_A_BC
-		POP		HL
-		LD		 D, (HL)
-		JP		pinta_tile_suelto	
+	LD		BC, TILMAP
+	LD		 A, POSCALAVE2
+	CALL	suma_A_BC
+	POP		HL
+	LD		 D, (HL)
+	JP		pinta_tile_suelto	
 fin_flip_calavera_esqueletos:
-;var_aux_calavera	DB	0;
+var_aux_calavera	DB	0;
 
 
 ;;=====================================================

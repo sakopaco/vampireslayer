@@ -165,32 +165,32 @@ fin_actualiza_array_sprites_vram:
 ; salida: 	-
 ; toca: 	-
 vuelca_resultado_puntomira_array:
-	LD			IX, array_sprites_pm
-	LD			IY, puntomira
+	LD		IX, array_sprites_pm
+	LD		IY, puntomira
 	;posición y de los dos sprites que conforman el punto de mira
-	LD			 A, (IY + ESTRUCTURA_PUNTOMIRA.posy)
-	LD			(IX  ), A
-	LD			(IX+4), A
+	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posy)
+	LD		(IX  ), A
+	LD		(IX+4), A
 	;posición x de los dos sprites que conforman el punto de mira
-	LD			 A, (IY + ESTRUCTURA_PUNTOMIRA.posx)
-	LD			(IX+1), A
-	LD			(IX+5), A
+	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posx)
+	LD		(IX+1), A
+	LD		(IX+5), A
 	;plano
-	LD			 A, (IY + ESTRUCTURA_PUNTOMIRA.spritea)
-	LD			(IX+2), A
-	LD			 A, (IY + ESTRUCTURA_PUNTOMIRA.spriteb)
-	LD			(IX+6), A
+	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.spritea)
+	LD		(IX+2), A
+	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.spriteb)
+	LD		(IX+6), A
 	;color
-	LD			 A, (IY + ESTRUCTURA_PUNTOMIRA.escena)
-	OR			 A
-	JP			NZ,.codigo_color_2
+	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.escena)
+	OR		 A
+	JP		NZ,.codigo_color_2
 .codigo_color_1:
-	LD			(IX+3), COLBLANCO
-	LD			(IX+7), COLROJO
+	LD		(IX+3), COLBLANCO
+	LD		(IX+7), COLROJO
 	RET
 .codigo_color_2:
-	LD			(IX+3), COLROJO
-	LD			(IX+7), COLBLANCO
+	LD		(IX+3), COLROJO
+	LD		(IX+7), COLBLANCO
 	RET
 fin_vuelca_resultado_puntomira_array:
 
@@ -203,24 +203,24 @@ fin_vuelca_resultado_puntomira_array:
 ; salida: 	-
 ; toca: 	A
 check_player:
-		CALL		update_controllers_status
-		OR			 A
-		RET			 Z					;si no se ha pulsado nada no se necesita mirar nada
+	CALL	update_controllers_status
+	OR		 A
+	RET		 Z						;si no se ha pulsado nada no se necesita mirar nada
 
-		LD			IX, puntomira		;variable de entrada para las subrutinas mueve_dirección
-		RR			 A
-		CALL		 C, mueve_arriba
-		RR			 A
-		CALL		 C, mueve_abajo
-		RR			 A
-		CALL		 C, mueve_izquierda
-		RR			 A
-		CALL		 C, mueve_derecha
+	LD		IX, puntomira		;variable de entrada para las subrutinas mueve_dirección
+	RR		 A
+	CALL	 C, mueve_arriba
+	RR		 A
+	CALL	 C, mueve_abajo
+	RR		 A
+	CALL	 C, mueve_izquierda
+	RR		 A
+	CALL	 C, mueve_derecha
 	
-		;zona para mirar disparo Recibe A que tendrá 0000 0 0 X-letra M X-espacio 
-		CALL		mira_disparo
+	;zona para mirar disparo Recibe A que tendrá 0000 0 0 X-letra M X-espacio 
+	CALL	mira_disparo
 
-		JP			vuelca_resultado_puntomira_array
-fin_check_player:
-
+	JP		vuelca_resultado_puntomira_array
+f;in_check_player:
+	RET
 

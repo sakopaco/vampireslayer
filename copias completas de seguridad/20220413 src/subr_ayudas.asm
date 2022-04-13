@@ -2,6 +2,148 @@
 ;;SUBRUTINAS MANEJO DE OBJETOS AYUDA
 ;;=====================================================	
 
+;;=====================================================
+;;VARIABLES
+;;=====================================================
+
+hay_ayudas_en_pantalla				DB	0		;1 => hay / 0 => no hay; variable que se actualiza cuando cambiemos de habitación para no mirar el bit de habitación cada vez
+puntero_ayuda_actual:				DW	0		;puntero a ayuda que se muestra en pantalla (sólo se muestra una a la vez)
+
+
+;array de ayudas
+;posición dentro del bank1 (o 0 que son iguales) de los tiles de la ayuda (cómo en los sprites de 2x2)
+array_ayudas:
+array_oracionon:			DB	200,202
+array_oracionon1:			DB	201,203
+array_oracionoff:			DB	204,206
+array_oracionoff1:			DB	205,207
+array_cruzon:				DB	208,210
+array_cruzon1:				DB	209,211
+array_cruzoff:				DB	212,214
+array_cruzoff1:				DB	213,215
+array_aguaon:				DB	216,218
+array_aguaon1:				DB	217,219
+array_aguaoff:				DB	220,222
+array_aguaoff1:				DB	221,223
+array_armaduraon:			DB	224,226
+array_armaduraon1:			DB	225,227
+array_armaduraoff:			DB	228,230
+array_armaduraoff1:			DB	229,231
+array_plantaon:				DB	232,234
+array_plantaon1:			DB	233,235
+array_plantaoff:			DB	236,238
+array_plantaoff1:			DB	237,239
+array_vidaextraon:			DB	240,242
+array_vidaextraon1:			DB	241,243
+array_vidaextraoff:			DB	244,246
+array_vidaextraoff1:		DB	245,247
+array_ballestaon:			DB	248,250
+array_ballestaon1:			DB	249,251
+array_ballestaoff:			DB	252,254
+array_ballestaoff1:			DB	253,255
+
+
+lista_ayudas:
+ayuda_oracion:		DS		ESTRUCTURA_AYUDA		
+ayuda_cruz:			DS		ESTRUCTURA_AYUDA
+ayuda_aguabendita:	DS		ESTRUCTURA_AYUDA
+ayuda_armadura:		DS		ESTRUCTURA_AYUDA
+ayuda_planta:		DS		ESTRUCTURA_AYUDA
+ayuda_vidaextra		DS		ESTRUCTURA_AYUDA
+ayuda_ballesta:		DS		ESTRUCTURA_AYUDA
+
+datos_ayudas:
+datos_oracion:			
+				DB		ACTIVA				;0 no activa <>0 activo (y muestra tiles ayudaoff)
+				DB		POSORACIONX			;punto x de la ayuda para cuando se dispare encima
+				DB		POSORACIONY			;punto y de la ayuda para cuando se dispare encima
+				DB		RADIOAYUDAX			;radio x de la ayuda para cuando se dispare encima
+				DB		RADIOAYUDAY			;radio y de la ayuda para cuando se dispare encima
+				DW		accion_oracion		;función para acción de cada tipo de ayuda
+				DW		array_oracionon		;puntero al array con los tiles de las ayudas sin usar para wordaux2
+				DW		array_oracionoff	;puntero al array con los tiles de las ayudas sin usar para wordaux2
+				DW		TILMAP + POSORACION ;calcula posición en tilemap para wordaux1
+				DB		ALTOAYUDA			;alto en tiles del dibujo de la puerta (filas)
+				DB		ANCHOAYUDA			;ancho en tiles del dibujo de la puerta (columnas)
+
+datos_cruz:
+				DB		ACTIVA				;0 no activa <>0 activo (y muestra tiles ayudaoff)
+				DB		POSCRUZX			;punto x de la ayuda para cuando se dispare encima
+				DB		POSCRUZY			;punto y de la ayuda para cuando se dispare encima
+				DB		RADIOAYUDAX			;radio x de la ayuda para cuando se dispare encima
+				DB		RADIOAYUDAY			;radio y de la ayuda para cuando se dispare encima
+				DW		accion_cruz			;función para acción de cada tipo de ayuda
+				DW		array_cruzon		;puntero al array con los tiles de las ayudas sin usar para wordaux2
+				DW		array_cruzoff		;puntero al array con los tiles de las ayudas sin usar para wordaux2
+				DW		TILMAP + POSCRUZ	;calcula posición en tilemap para wordaux1
+				DB		ALTOAYUDA			;alto en tiles del dibujo de la puerta (filas)
+				DB		ANCHOAYUDA			;ancho en tiles del dibujo de la puerta (columnas)
+					
+datos_aguabendita:
+				DB		ACTIVA				;0 no activa <>0 activo (y muestra tiles ayudaoff)
+				DB		POSAGUAX			;punto x de la ayuda para cuando se dispare encima
+				DB		POSAGUAY			;punto y de la ayuda para cuando se dispare encima
+				DB		RADIOAYUDAX			;radio x de la ayuda para cuando se dispare encima
+				DB		RADIOAYUDAY			;radio y de la ayuda para cuando se dispare encima
+				DW		accion_aguabendita	;función para acción de cada tipo de ayuda
+				DW		array_aguaon		;puntero al array con los tiles de las ayudas sin usar para wordaux2
+				DW		array_aguaoff		;puntero al array con los tiles de las ayudas sin usar para wordaux2
+				DW		TILMAP + POSAGUA	;calcula posición en tilemap para wordaux1
+				DB		ALTOAYUDA			;alto en tiles del dibujo de la puerta (filas)
+				DB		ANCHOAYUDA			;ancho en tiles del dibujo de la puerta (columnas)
+
+datos_armadura:
+				DB		ACTIVA				;0 no activa <>0 activo (y muestra tiles ayudaoff)
+				DB		POSARMADURAX		;punto x de la ayuda para cuando se dispare encima
+				DB		POSARMADURAY		;punto y de la ayuda para cuando se dispare encima
+				DB		RADIOAYUDAX			;radio x de la ayuda para cuando se dispare encima
+				DB		RADIOAYUDAY			;radio y de la ayuda para cuando se dispare encima
+				DW		accion_armadura		;función para acción de cada tipo de ayuda
+				DW		array_armaduraon	;puntero al array con los tiles de las ayudas sin usar para wordaux2
+				DW		array_armaduraoff	;puntero al array con los tiles de las ayudas sin usar para wordaux2
+				DW		TILMAP + POSARMADURA;calcula posición en tilemap para wordaux1
+				DB		ALTOAYUDA			;alto en tiles del dibujo de la puerta (filas)
+				DB		ANCHOAYUDA			;ancho en tiles del dibujo de la puerta (columnas)
+
+datos_planta:
+				DB		ACTIVA				;0 no activa <>0 activo (y muestra tiles ayudaoff)
+				DB		POSPLANTAX			;punto x de la ayuda para cuando se dispare encima
+				DB		POSPLANTAY			;punto y de la ayuda para cuando se dispare encima
+				DB		RADIOAYUDAX			;radio x de la ayuda para cuando se dispare encima
+				DB		RADIOAYUDAY			;radio y de la ayuda para cuando se dispare encima
+				DW		accion_planta		;función para acción de cada tipo de ayuda
+				DW		array_plantaon		;puntero al array con los tiles de las ayudas sin usar para wordaux2
+				DW		array_plantaoff		;puntero al array con los tiles de las ayudas sin usar para wordaux2
+				DW		TILMAP + POSPLANTA	;calcula posición en tilemap para wordaux1
+				DB		ALTOAYUDA			;alto en tiles del dibujo de la puerta (filas)
+				DB		ANCHOAYUDA			;ancho en tiles del dibujo de la puerta (columnas)
+
+datos_vidaextra:
+				DB		ACTIVA				;0 no activa <>0 activo (y muestra tiles ayudaoff)
+				DB		POSVIDAEXTX			;punto x de la ayuda para cuando se dispare encima
+				DB		POSVIDAEXTY			;punto y de la ayuda para cuando se dispare encima
+				DB		RADIOAYUDAX			;radio x de la ayuda para cuando se dispare encima
+				DB		RADIOAYUDAY			;radio y de la ayuda para cuando se dispare encima
+				DW		accion_vidaextra	;función para acción de cada tipo de ayuda
+				DW		array_vidaextraon	;puntero al array con los tiles de las ayudas sin usar para wordaux2
+				DW		array_vidaextraoff	;puntero al array con los tiles de las ayudas sin usar para wordaux2
+				DW		TILMAP + POSVIDAEXT ;calcula posición en tilemap para wordaux1
+				DB		ALTOAYUDA			;alto en tiles del dibujo de la puerta (filas)
+				DB		ANCHOAYUDA			;ancho en tiles del dibujo de la puerta (columnas)
+  
+datos_ballesta:
+				DB		ACTIVA				;0 no activa <>0 activo (y muestra tiles ayudaoff)
+				DB		POSBALLESTAX		;punto x de la ayuda para cuando se dispare encima
+				DB		POSBALLESTAY		;punto y de la ayuda para cuando se dispare encima
+				DB		RADIOAYUDAX			;radio x de la ayuda para cuando se dispare encima
+				DB		RADIOAYUDAY			;radio y de la ayuda para cuando se dispare encima
+				DW		accion_ballesta		;función para acción de cada tipo de ayuda
+				DW		array_ballestaon	;puntero al array con los tiles de las ayudas sin usar para wordaux2
+				DW		array_ballestaoff	;puntero al array con los tiles de las ayudas sin usar para wordaux2
+				DW		TILMAP + POSBALLESTA;calcula posición en tilemap para wordaux1
+				DB		ALTOAYUDA			;alto en tiles del dibujo de la puerta (filas)
+				DB		ANCHOAYUDA			;ancho en tiles del dibujo de la puerta (columnas)  
+
 
 ;;=====================================================
 ;;INICIALIZA_AYUDAS
@@ -216,6 +358,8 @@ fin_pinta_ayudas_habitacion:
 	RET
 
 
+
+
 ;;=====================================================
 ;;CHECK_COLISION_AYUDAS
 ;;=====================================================	
@@ -244,6 +388,8 @@ check_colision_ayudas:
 fin_check_colision_ayudas:
 	RET
 	
+	
+
 
 ;;=====================================================
 ;;CHECK_COLISION_AYUDA
@@ -296,6 +442,8 @@ check_colision_ayuda:
 	LD		 A, SI
 fin_check_colision_ayuda:
 	RET
+
+
 
 
 ;;=====================================================
