@@ -218,7 +218,6 @@ inicializa_enemigos_fase2:	;; para no poner más complejo se hace uno por fase q
 fin_inicializa_enemigos_fase2:
 
 
-
 ;;=====================================================
 ;;INICIALIZA_ENEMIGOS_FASE 3
 ;;=====================================================	
@@ -263,7 +262,6 @@ inicializa_enemigos_fase3:	;; para no poner más complejo se hace uno por fase q
 fin_inicializa_enemigos_fase3:
 
 		
-
 ;;=====================================================
 ;;INICIALIZA_ENEMIGOS_FASE 4
 ;;=====================================================	
@@ -306,7 +304,6 @@ inicializa_enemigos_fase4:	;; para no poner más complejo se hace uno por fase q
 .nivel6:
 		JP			inicializa_enemigos_fase4_niveljefe
 fin_inicializa_enemigos_fase4:
-
 
 
 ;;=====================================================
@@ -688,24 +685,90 @@ inicializa_enemigos_fase2_nivel2:
 		JP			actualiza_valores_serpiente
 fin_inicializa_enemigos_fase2_nivel2:
 
-
 inicializa_enemigos_fase2_nivel3:
-
+		LD			DE, enemigo1
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo1
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo2
+		CALL		anade_enemigo_arana
+		LD			IX, enemigo2
+		CALL		actualiza_valores_arana
+		
+		LD			DE, enemigo3
+		CALL		anade_enemigo_serpiente
+		LD			IX, enemigo3
+		CALL		actualiza_valores_serpiente
+		
+		LD			DE, enemigo4
+		CALL		anade_enemigo_murcielago
+		LD			IX, enemigo4
+		JP			actualiza_valores_murcielago
 fin_inicializa_enemigos_fase2_nivel3:
 
 inicializa_enemigos_fase2_nivel4:
+		LD			DE, enemigo1
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo1
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo2
+		CALL		anade_enemigo_arana
+		LD			IX, enemigo2
+		CALL		actualiza_valores_arana
+		
+		LD			DE, enemigo3
+		CALL		anade_enemigo_serpiente
+		LD			IX, enemigo3
+		CALL		actualiza_valores_serpiente
+		
+		LD			DE, enemigo4
+		CALL		anade_enemigo_murcielago
+		LD			IX, enemigo4
+		CALL		actualiza_valores_murcielago
+		
+		LD			DE, enemigo5
+		CALL		anade_enemigo_lobo
+		LD			IX, enemigo5
+		JP			actualiza_valores_lobo
 fin_inicializa_enemigos_fase2_nivel4:
-	RET
 
 inicializa_enemigos_fase2_nivel5:
+		LD			DE, enemigo1
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo1
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo2
+		CALL		anade_enemigo_arana
+		LD			IX, enemigo2
+		CALL		actualiza_valores_arana
+		
+		LD			DE, enemigo3
+		CALL		anade_enemigo_serpiente
+		LD			IX, enemigo3
+		CALL		actualiza_valores_serpiente
+		
+		LD			DE, enemigo4
+		CALL		anade_enemigo_murcielago
+		LD			IX, enemigo4
+		CALL		actualiza_valores_murcielago
+		
+		LD			DE, enemigo5
+		CALL		anade_enemigo_lobo
+		LD			IX, enemigo5
+		JP			actualiza_valores_lobo	
 fin_inicializa_enemigos_fase2_nivel5:
-	RET
 
 ;; no hay nivel 6 porque el 5 se repite
 
-inicializa_enemigos_fase2_niveljefe:	
+inicializa_enemigos_fase2_niveljefe:
+		LD			DE, enemigo6
+		CALL		anade_enemigo_jefelobo
+		LD			IX, enemigo6
+		JP			actualiza_valores_lobo	;se reutiliza la inicialización de valores iniciales de lobo para jefelobo
 fin_inicializa_enemigos_fase2_nivel6:
-	RET
 
 
 ;;=====================================================
@@ -747,24 +810,90 @@ inicializa_enemigos_fase3_nivel2:
 		JP			actualiza_valores_serpiente
 fin_inicializa_enemigos_fase3_nivel2:
 
-
 inicializa_enemigos_fase3_nivel3:
+		LD			DE, enemigo1
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo1
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo2
+		CALL		anade_enemigo_arana
+		LD			IX, enemigo2
+		CALL		actualiza_valores_arana
+		
+		LD			DE, enemigo3
+		CALL		anade_enemigo_serpiente
+		LD			IX, enemigo3
+		CALL		actualiza_valores_serpiente
+		
+		LD			DE, enemigo4
+		CALL		anade_enemigo_murcielago
+		LD			IX, enemigo4
+		JP			actualiza_valores_murcielago
 fin_inicializa_enemigos_fase3_nivel3:
-		RET
 
 inicializa_enemigos_fase3_nivel4:
+		LD			DE, enemigo1
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo1
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo2
+		CALL		anade_enemigo_arana
+		LD			IX, enemigo2
+		CALL		actualiza_valores_arana
+		
+		LD			DE, enemigo3
+		CALL		anade_enemigo_serpiente
+		LD			IX, enemigo3
+		CALL		actualiza_valores_serpiente
+		
+		LD			DE, enemigo4
+		CALL		anade_enemigo_murcielago
+		LD			IX, enemigo4
+		CALL		actualiza_valores_murcielago
+		
+		LD			DE, enemigo5
+		CALL		anade_enemigo_lobo
+		LD			IX, enemigo5
+		JP			actualiza_valores_lobo
 fin_inicializa_enemigos_fase3_nivel4:
-		RET
 
 inicializa_enemigos_fase3_nivel5:
+		LD			DE, enemigo1
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo1
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo2
+		CALL		anade_enemigo_arana
+		LD			IX, enemigo2
+		CALL		actualiza_valores_arana
+		
+		LD			DE, enemigo3
+		CALL		anade_enemigo_serpiente
+		LD			IX, enemigo3
+		CALL		actualiza_valores_serpiente
+		
+		LD			DE, enemigo4
+		CALL		anade_enemigo_murcielago
+		LD			IX, enemigo4
+		CALL		actualiza_valores_murcielago
+		
+		LD			DE, enemigo5
+		CALL		anade_enemigo_lobo
+		LD			IX, enemigo5
+		JP			actualiza_valores_lobo	
 fin_inicializa_enemigos_fase3_nivel5:
-		RET
 
 ;; no hay nivel 6 porque el 5 se repite
 
-inicializa_enemigos_fase3_niveljefe:	
+inicializa_enemigos_fase3_niveljefe:
+		LD			DE, enemigo6
+		CALL		anade_enemigo_jefelobo
+		LD			IX, enemigo6
+		JP			actualiza_valores_lobo	;se reutiliza la inicialización de valores iniciales de lobo para jefelobo
 fin_inicializa_enemigos_fase3_nivel6:
-		RET
 
 
 ;;=====================================================
@@ -790,23 +919,107 @@ inicializa_enemigos_fase4_nivel1:
 fin_inicializa_enemigos_fase4_nivel1:
 
 inicializa_enemigos_fase4_nivel2:
+		LD			DE, enemigo1
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo1
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo2
+		CALL		anade_enemigo_arana
+		LD			IX, enemigo2
+		CALL		actualiza_valores_arana
+		
+		LD			DE, enemigo3
+		CALL		anade_enemigo_serpiente
+		LD			IX, enemigo3
+		JP			actualiza_valores_serpiente
 fin_inicializa_enemigos_fase4_nivel2:
-		RET
+
 inicializa_enemigos_fase4_nivel3:
+		LD			DE, enemigo1
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo1
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo2
+		CALL		anade_enemigo_arana
+		LD			IX, enemigo2
+		CALL		actualiza_valores_arana
+		
+		LD			DE, enemigo3
+		CALL		anade_enemigo_serpiente
+		LD			IX, enemigo3
+		CALL		actualiza_valores_serpiente
+		
+		LD			DE, enemigo4
+		CALL		anade_enemigo_murcielago
+		LD			IX, enemigo4
+		JP			actualiza_valores_murcielago
 fin_inicializa_enemigos_fase4_nivel3:
-		RET
+
 inicializa_enemigos_fase4_nivel4:
+		LD			DE, enemigo1
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo1
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo2
+		CALL		anade_enemigo_arana
+		LD			IX, enemigo2
+		CALL		actualiza_valores_arana
+		
+		LD			DE, enemigo3
+		CALL		anade_enemigo_serpiente
+		LD			IX, enemigo3
+		CALL		actualiza_valores_serpiente
+		
+		LD			DE, enemigo4
+		CALL		anade_enemigo_murcielago
+		LD			IX, enemigo4
+		CALL		actualiza_valores_murcielago
+		
+		LD			DE, enemigo5
+		CALL		anade_enemigo_lobo
+		LD			IX, enemigo5
+		JP			actualiza_valores_lobo
 fin_inicializa_enemigos_fase4_nivel4:
-		RET
 
 inicializa_enemigos_fase4_nivel5:
+		LD			DE, enemigo1
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo1
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo2
+		CALL		anade_enemigo_arana
+		LD			IX, enemigo2
+		CALL		actualiza_valores_arana
+		
+		LD			DE, enemigo3
+		CALL		anade_enemigo_serpiente
+		LD			IX, enemigo3
+		CALL		actualiza_valores_serpiente
+		
+		LD			DE, enemigo4
+		CALL		anade_enemigo_murcielago
+		LD			IX, enemigo4
+		CALL		actualiza_valores_murcielago
+		
+		LD			DE, enemigo5
+		CALL		anade_enemigo_lobo
+		LD			IX, enemigo5
+		JP			actualiza_valores_lobo	
 fin_inicializa_enemigos_fase4_nivel5:
-		RET
+
 ;; no hay nivel 6 porque el 5 se repite
 
-inicializa_enemigos_fase4_niveljefe:	
+inicializa_enemigos_fase4_niveljefe:
+		LD			DE, enemigo6
+		CALL		anade_enemigo_jefelobo
+		LD			IX, enemigo6
+		JP			actualiza_valores_lobo	;se reutiliza la inicialización de valores iniciales de lobo para jefelobo
 fin_inicializa_enemigos_fase4_nivel6:
-		RET
+
 
 ;;=====================================================
 ;;INICIALIZA_ENEMIGOS_FASE5_NIVELX
@@ -831,20 +1044,105 @@ inicializa_enemigos_fase5_nivel1:
 fin_inicializa_enemigos_fase5_nivel1:
 
 inicializa_enemigos_fase5_nivel2:
+		LD			DE, enemigo1
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo1
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo2
+		CALL		anade_enemigo_arana
+		LD			IX, enemigo2
+		CALL		actualiza_valores_arana
+		
+		LD			DE, enemigo3
+		CALL		anade_enemigo_serpiente
+		LD			IX, enemigo3
+		JP			actualiza_valores_serpiente
 fin_inicializa_enemigos_fase5_nivel2:
-		RET
+
 inicializa_enemigos_fase5_nivel3:
+		LD			DE, enemigo1
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo1
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo2
+		CALL		anade_enemigo_arana
+		LD			IX, enemigo2
+		CALL		actualiza_valores_arana
+		
+		LD			DE, enemigo3
+		CALL		anade_enemigo_serpiente
+		LD			IX, enemigo3
+		CALL		actualiza_valores_serpiente
+		
+		LD			DE, enemigo4
+		CALL		anade_enemigo_murcielago
+		LD			IX, enemigo4
+		JP			actualiza_valores_murcielago
 fin_inicializa_enemigos_fase5_nivel3:
-		RET
+
 inicializa_enemigos_fase5_nivel4:
+		LD			DE, enemigo1
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo1
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo2
+		CALL		anade_enemigo_arana
+		LD			IX, enemigo2
+		CALL		actualiza_valores_arana
+		
+		LD			DE, enemigo3
+		CALL		anade_enemigo_serpiente
+		LD			IX, enemigo3
+		CALL		actualiza_valores_serpiente
+		
+		LD			DE, enemigo4
+		CALL		anade_enemigo_murcielago
+		LD			IX, enemigo4
+		CALL		actualiza_valores_murcielago
+		
+		LD			DE, enemigo5
+		CALL		anade_enemigo_lobo
+		LD			IX, enemigo5
+		JP			actualiza_valores_lobo
 fin_inicializa_enemigos_fase5_nivel4:
-		RET
+
 inicializa_enemigos_fase5_nivel5:
+		LD			DE, enemigo1
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo1
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo2
+		CALL		anade_enemigo_arana
+		LD			IX, enemigo2
+		CALL		actualiza_valores_arana
+		
+		LD			DE, enemigo3
+		CALL		anade_enemigo_serpiente
+		LD			IX, enemigo3
+		CALL		actualiza_valores_serpiente
+		
+		LD			DE, enemigo4
+		CALL		anade_enemigo_murcielago
+		LD			IX, enemigo4
+		CALL		actualiza_valores_murcielago
+		
+		LD			DE, enemigo5
+		CALL		anade_enemigo_lobo
+		LD			IX, enemigo5
+		JP			actualiza_valores_lobo	
 fin_inicializa_enemigos_fase5_nivel5:
-		RET
+
 ;; no hay nivel 6 porque el 5 se repite
 
-inicializa_enemigos_fase5_niveljefe:	
+inicializa_enemigos_fase5_niveljefe:
+		LD			DE, enemigo6
+		CALL		anade_enemigo_jefelobo
+		LD			IX, enemigo6
+		JP			actualiza_valores_lobo	;se reutiliza la inicialización de valores iniciales de lobo para jefelobo
 fin_inicializa_enemigos_fase5_nivel6:
 		RET
 
@@ -872,21 +1170,103 @@ fin_inicializa_enemigos_fase6_nivel1:
 
 inicializa_enemigos_fase6_nivel2:
 fin_inicializa_enemigos_fase6_nivel2:
-		RET
+
 inicializa_enemigos_fase6_nivel3:
+		LD			DE, enemigo1
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo1
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo2
+		CALL		anade_enemigo_arana
+		LD			IX, enemigo2
+		CALL		actualiza_valores_arana
+		
+		LD			DE, enemigo3
+		CALL		anade_enemigo_serpiente
+		LD			IX, enemigo3
+		CALL		actualiza_valores_serpiente
+		
+		LD			DE, enemigo4
+		CALL		anade_enemigo_murcielago
+		LD			IX, enemigo4
+		JP			actualiza_valores_murcielago
 fin_inicializa_enemigos_fase6_nivel3:
-		RET
+
 inicializa_enemigos_fase6_nivel4:
+		LD			DE, enemigo1
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo1
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo2
+		CALL		anade_enemigo_arana
+		LD			IX, enemigo2
+		CALL		actualiza_valores_arana
+		
+		LD			DE, enemigo3
+		CALL		anade_enemigo_serpiente
+		LD			IX, enemigo3
+		CALL		actualiza_valores_serpiente
+		
+		LD			DE, enemigo4
+		CALL		anade_enemigo_murcielago
+		LD			IX, enemigo4
+		CALL		actualiza_valores_murcielago
+		
+		LD			DE, enemigo5
+		CALL		anade_enemigo_lobo
+		LD			IX, enemigo5
+		JP			actualiza_valores_lobo
 fin_inicializa_enemigos_fase6_nivel4:
-		RET
+
 inicializa_enemigos_fase6_nivel5:
+		LD			DE, enemigo1
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo1
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo2
+		CALL		anade_enemigo_arana
+		LD			IX, enemigo2
+		CALL		actualiza_valores_arana
+		
+		LD			DE, enemigo3
+		CALL		anade_enemigo_serpiente
+		LD			IX, enemigo3
+		CALL		actualiza_valores_serpiente
+		
+		LD			DE, enemigo4
+		CALL		anade_enemigo_murcielago
+		LD			IX, enemigo4
+		CALL		actualiza_valores_murcielago
+		
+		LD			DE, enemigo5
+		CALL		anade_enemigo_lobo
+		LD			IX, enemigo5
+		JP			actualiza_valores_lobo	
 fin_inicializa_enemigos_fase6_nivel5:
-		RET
+
 ;; no hay nivel 6 porque el 5 se repite
 
-inicializa_enemigos_fase6_niveljefe:	
+inicializa_enemigos_fase6_niveljefe:
+;las manos y el dracula son enemigos distintos (3) y hasta que no ueran las anos no muere drácula
+		LD			DE, enemigo1
+		CALL		anade_enemigo_cienpies
+		LD			IX, enemigo1
+		CALL		actualiza_valores_cienpies
+		
+		LD			DE, enemigo2
+		CALL		anade_enemigo_arana
+		LD			IX, enemigo2
+		CALL		actualiza_valores_arana
+		
+		LD			DE, enemigo3
+		CALL		anade_enemigo_serpiente
+		LD			IX, enemigo3
+		JP			actualiza_valores_serpiente
 fin_inicializa_enemigos_fase6_nivel6:
-		RET
+
 
 ;;=====================================================
 ;;CHECK_ENEMIGOS_FASE0
