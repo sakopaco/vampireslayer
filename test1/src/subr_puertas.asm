@@ -108,13 +108,13 @@ fin_accion_puerta_arriba:
 ; entrada: 	
 ; salida: 	
 accion_puerta_derecha:
-		CALL	pinta_blanco_mapa
+		CALL		pinta_blanco_mapa
 	
-		LD		 A, (prota_pos_mapx)
-		INC		 A
-		LD		 (prota_pos_mapx), A
+		LD		 	 A, (prota_pos_mapx)
+		INC		 	 A
+		LD		 	(prota_pos_mapx), A
 
-		JP		entra_habitacion
+		JP			entra_habitacion
 fin_accion_puerta_derecha:
 	
 
@@ -163,13 +163,13 @@ fin_accion_puerta_abajo:
 ; entrada: 	
 ; salida: 	
 accion_puerta_izquierda:
-		CALL	pinta_blanco_mapa
+		CALL		pinta_blanco_mapa
 
-		LD		 A, (prota_pos_mapx)
-		DEC		 A
-		LD		(prota_pos_mapx), A
+		LD			 A, (prota_pos_mapx)
+		DEC			 A
+		LD			(prota_pos_mapx), A
 
-		JP		entra_habitacion
+		JP			entra_habitacion
 fin_accion_puerta_izquierda:
 	
 
@@ -232,10 +232,10 @@ fin_pinta_puertas:
 ; salida: 	-
 ; toca:		A, HL,BC, DE
 pinta_puerta_aba:
-	LD		IX, puerta_abajo
-	CALL	actualiza_variables_pinta_array
+	LD			IX, puerta_abajo
+	CALL		actualiza_variables_pinta_array
 		
-	JP		pinta_array
+	JP			pinta_array
 fin_pinta_puerta_aba:
 
 
@@ -269,10 +269,10 @@ fin_pinta_puerta_arr:
 ; salida: 	-
 ; toca:		HL,BC, DE
 pinta_puerta_der:
-		LD		IX, puerta_derecha
-		CALL	actualiza_variables_pinta_array
+		LD			IX, puerta_derecha
+		CALL		actualiza_variables_pinta_array
 	
-		JP		pinta_array
+		JP			pinta_array
 fin_pinta_puerta_der:
 
 	
@@ -284,10 +284,10 @@ fin_pinta_puerta_der:
 ; salida: 	-
 ; toca:		HL,BC, DE
 pinta_puerta_izq:
-		LD		IX, puerta_izquierda
-		CALL	actualiza_variables_pinta_array
+		LD			IX, puerta_izquierda
+		CALL		actualiza_variables_pinta_array
 	
-		JP		pinta_array
+		JP			pinta_array
 fin_pinta_puerta_izq:
 
 
