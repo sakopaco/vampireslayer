@@ -1,0 +1,18 @@
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.04.19 - 20:01:06]
+
+variables.asm
+Errors: 1
+
+Error opening file: variables.asm
+
+    LABELS
+-------------------------------------------------
+
+
+ Output: variables.out
+-------------------------------------------------
+
+ Page: 00
+  Org: 00000000  Size: *  Used: 00000000
+
+    No output

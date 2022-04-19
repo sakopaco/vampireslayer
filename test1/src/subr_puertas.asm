@@ -1,6 +1,116 @@
 ;;=====================================================
+;;CONTANTES PUERTAS
+;;=====================================================
+datos_puertas:
+datos_puerta_escalera:
+					DB		#00;0		; 0 no activa <>0 activo
+					DB		#80;128		;punto x de la puerta para cuando se dispare encima
+					DB		#30;48		;punto y de la puerta para cuando se dispare encima
+					DB		#20;32		;radio x de la puerta para cuando se dispare encima
+					DB		#18;24		;radio y de la puerta para cuando se dispare encima
+					DW		accion_puerta_arriba;función para acción de cada tipo de puerta
+					DW		array_escalera		;puntero al array con los tiles de las puertas
+					DW		TILMAP + POSESCALERA
+					DB		7			;alto/filas
+					DB		8			;ancho/columnas
+
+datos_puerta_arriba:
+					DB		#00;0		;0 no activa <>0 activo
+					DB		#80;128		;punto x de la puerta para cuando se dispare encima
+					DB		#34;52		;punto y de la puerta para cuando se dispare encima
+					DB		#10;16		;radio x de la puerta para cuando se dispare encima
+					DB		#14;20		;radio y de la puerta para cuando se dispare encima
+					DW		accion_puerta_arriba	;función para acción de cada tipo de puerta
+					DW		array_puerta_arriba		;puntero al array con los tiles de las puertas
+					DW		TILMAP + POSPUERARRI
+					DB		6			;alto/filas
+					DB		4			;ancho/columnas
+
+datos_puerta_derecha:
+					DB		#00;0		;0 no activa <>0 activo
+					DB		#EC;236		;punto x de la puerta para cuando se dispare encima
+					DB		#54;84		;punto y de la puerta para cuando se dispare encima
+					DB		#0C;12		;radio x de la puerta para cuando se dispare encima
+					DB		#14;20		;radio y de la puerta para cuando se dispare encima
+					DW		accion_puerta_derecha	;función para acción de cada tipo de puerta
+					DW		array_puerta_derecha	;puntero al array con los tiles de las puertas
+					DW		TILMAP + POSPUERDERE
+					DB		8			;alto/filas
+					DB		3			;ancho/columnas
+					
+datos_puerta_abajo:
+					DB		#00;0		;0 no activa <>0 activo
+					DB		#80;128		;punto x de la puerta para cuando se dispare encima
+					DB		#7C;124		;punto y de la puerta para cuando se dispare encima
+					DB		#11;		;radio x de la puerta para cuando se dispare encima
+					DB		#06;		;radio y de la puerta para cuando se dispare encima
+					DW		accion_puerta_abajo		;función para acción de cada tipo de puerta
+					DW		array_puerta_abajo		;puntero al array con los tiles de las puertas
+					DW		TILMAP + POSPUERABAJ
+					DB		1			;alto/filas
+					DB		4			;ancho/columnas
+
+datos_puerta_izquierda:
+					DB		#00;0		;0 no activa <>0 activo
+					DB		#18;24		;punto x de la puerta para cuando se dispare encima
+					DB		#54;84		;punto y de la puerta para cuando se dispare encima
+					DB		#0C;12		;radio x de la puerta para cuando se dispare encima
+					DB		#14;20		;radio y de la puerta para cuando se dispare encima
+					DW		accion_puerta_izquierda	;función para acción de cada tipo de puerta
+					DW		array_puerta_izquierda	;puntero al array con los tiles de las puertas
+					DW		TILMAP + POSPUERIZQU
+					DB		8			;alto/filas
+					DB		3			;ancho/columnas
+					
+					
+;;=====================================================
 ;;SUBRUTINAS RELACIONADAS CON LAS PUERTAS
 ;;=====================================================
+
+
+;;=====================================================
+;;CONTANTES PUERTAS
+;;=====================================================
+;; arrays con mapa de tiles de las puertas
+array_puerta_arriba:
+		DB	3,1,1,3
+		DB	1,1,1,1
+		DB	1,1,1,1
+		DB	1,1,1,1
+		DB	1,1,1,1
+		DB	1,1,1,1
+
+array_puerta_derecha:
+		DB	1,3,3
+		DB	1,1,3
+		DB	1,1,1
+		DB	1,1,1
+		DB	1,1,1
+		DB	1,1,1
+		DB	4,1,1
+		DB	4,4,1
+	
+array_puerta_abajo:			
+		DB	1,1,1,1
+
+array_puerta_izquierda:
+		DB	3,3,1
+		DB	3,1,1
+		DB	1,1,1
+		DB	1,1,1
+		DB	1,1,1
+		DB	1,1,1
+		DB	1,1,4
+		DB	1,4,4
+
+array_escalera:
+		DB	5,5,5,5,5,5,5,5
+		DB	5,0,0,0,1,1,1,5
+		DB	5,0,0,0,1,1,1,5
+		DB	5,0,0,6,6,6,6,5
+		DB	5,0,6,6,6,6,6,5
+		DB	5,6,6,6,6,6,6,5
+		DB	5,4,4,4,4,4,4,5
 
 
 ;;=====================================================

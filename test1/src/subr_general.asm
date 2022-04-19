@@ -10,13 +10,14 @@
 ; salida: 	A + BC
 ; toca:		A, BC
 suma_A_BC:
-	ADD		 C
-	LD		 C, A
-	ADC		 B
-	SUB		 C
-	LD		 B, A
+		ADD		 	 C
+		LD			 C, A
+		ADC			 B
+		SUB			 C
+		LD		 	 B, A
 fin_suma_A_BC:
-	RET
+		RET
+	
 	
 ;;=====================================================
 ;;SUMA_A_HL
@@ -26,13 +27,13 @@ fin_suma_A_BC:
 ; salida: 	A + HL
 ; toca:		A, HL
 suma_A_HL:
-	ADD		 L
-	LD		 L, A
-	ADC		 H
-	SUB		 L
-	LD		 H, A
+		ADD		 	 L
+		LD		 	 L, A
+		ADC		 	 H
+		SUB		 	 L
+		LD		 	 H, A
 fin_suma_A_HL:
-	RET
+		RET
 	
 	
 ;;=====================================================
@@ -58,3 +59,19 @@ test_OK:
 	EXX
 fin_test_OK:
 	RET
+
+
+;;=====================================================
+;;CARGA_VALORES_INICIALES_VARIABLES
+;;=====================================================	
+; función: 	subrutina para poder usar la página 2 de memoria
+; entrada: 	
+; salida: 	
+; toca:		HL, A, C (y seguramente más)
+carga_valores_iniciales_variables:
+		LD			HL, inicializacion_variables
+		LD			DE, #C000
+		LD			BC, fin_inicializacion_variables - inicializacion_variables
+		LDIR
+fin_carga_valores_iniciales_variables:
+		RET

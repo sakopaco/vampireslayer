@@ -1,4 +1,17 @@
 ;;=====================================================
+;;CONTANTES PUNTOMIRA
+;;=====================================================
+datos_puntomira:			
+				DB		POSXPM		;posición X de los sprites del punto de mira
+				DB		POSYPM		;posición Y de los sprites del punto de mira
+				DB		0			;valores posibles 0 (blanco+rojo en punto de mira) y NEG 0 (al revés)
+				DB		0			;velocidad (por si lo pongo variable)
+				DB		4			;cadencia
+				DB		SPRI_DANO1A	;valor en pos de memoria del sprite grande del punto de mira
+				DB		SPRI_DANO1B	;valor en pos de memoria del sprite pequeño del punto de mira
+				
+				
+;;=====================================================
 ;;SUBRUTINAS MANEJO DE OBJETOS AYUDA
 ;;=====================================================	
 			
