@@ -7,15 +7,9 @@
 ; VRAM address setup
 	ld	a,e
 	out	[099h],a
-;;------------------------
-[2]	NOP
-;;------------------------
 	ld	a,d
 	or	040h
 	out	[099h],a
-;;------------------------
-[2]	NOP
-;;------------------------
 
 ; Initialization
 	ld	a,[hl]
@@ -44,9 +38,6 @@
 ; Main depack loop
 literal:ld	c,098h
 	outi
-;;------------------------
-[2]	NOP
-;;------------------------
 	inc	de
 loop:	add	a,a
   	call	z,getbit
@@ -118,36 +109,21 @@ offsok: inc	bc
 	push	af
 .loop:	ld	a,l
 	out	[099h],a
-;;------------------------
-[2]	NOP
-;;------------------------
 	ld	a,h
 	nop                     ; VDP timing
 	out	[099h],a
-;;------------------------
-[2]	NOP
-;;------------------------
 	nop                     ; VDP timing
 	in	a,[098h]
 	ex	af,af'
 	ld	a,e
 	nop			; VDP timing
 	out	[099h],a
-;;------------------------
-[2]	NOP
-;;------------------------
 	ld	a,d
 	or	040h
 	out	[099h],a
-;;------------------------
-[2]	NOP
-;;------------------------
 	ex	af,af'
 	nop			; VDP timing
 	out	[098h],a
-;;------------------------
-[2]	NOP
-;;------------------------
 	inc	de
 	cpi
 	jp	pe,.loop

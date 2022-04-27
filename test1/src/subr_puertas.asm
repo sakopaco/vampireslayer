@@ -218,13 +218,13 @@ fin_accion_puerta_arriba:
 ; entrada: 	
 ; salida: 	
 accion_puerta_derecha:
-		CALL		pinta_blanco_mapa
+		CALL			pinta_blanco_mapa
 	
-		LD		 	 A, (prota_pos_mapx)
-		INC		 	 A
-		LD		 	(prota_pos_mapx), A
+		LD		 	 	 A, (prota_pos_mapx)
+		INC		 	 	 A
+		LD		 		(prota_pos_mapx), A
 
-		JP			entra_habitacion
+		JP				entra_habitacion
 fin_accion_puerta_derecha:
 	
 
@@ -240,29 +240,29 @@ accion_puerta_abajo:
 ;AQUÍ HAY QUE TENER EN CUENTA LO DE SALIR SIN TERMINAR EL JUEGO
 
 
-		CALL	pinta_blanco_mapa
+		CALL			pinta_blanco_mapa
 	
-		LD		 A, (prota_pos_mapy)
-		DEC		 A
-		CP		-1
-		JR		NZ, .no_cambia_nivel
+		LD		 		 A, (prota_pos_mapy)
+		DEC			 	 A
+		CP				-1
+		JR				NZ, .no_cambia_nivel
 .si_cambia_nivel:	
 		;aquí hay que poner texto de cambio de nivel  ;***************************************************************
 
 		;reseteo fila
-		LD		 A, 6
-		LD		(prota_pos_mapy), A
+		LD			 	 A, 6
+		LD				(prota_pos_mapy), A
 		;decremento nivel
-		LD		 A, (prota_nivel)
-		DEC		 A
-		LD		(prota_nivel), A
+		LD		 		 A, (prota_nivel)
+		DEC			 	 A
+		LD				(prota_nivel), A
 		;reflejo en pantalla cambio de nivel
-		CALL	cambio_nivel
-		JP		.fin_cambia_nivel
+		CALL			cambio_nivel
+		JP				.fin_cambia_nivel
 .no_cambia_nivel:
-		LD		 (prota_pos_mapy), A
+		LD			 	(prota_pos_mapy), A
 .fin_cambia_nivel:
-		JP		entra_habitacion
+		JP				entra_habitacion
 fin_accion_puerta_abajo:
 	
 	
@@ -273,13 +273,13 @@ fin_accion_puerta_abajo:
 ; entrada: 	
 ; salida: 	
 accion_puerta_izquierda:
-		CALL		pinta_blanco_mapa
+		CALL			pinta_blanco_mapa
 
-		LD			 A, (prota_pos_mapx)
-		DEC			 A
-		LD			(prota_pos_mapx), A
+		LD				 A, (prota_pos_mapx)
+		DEC				 A
+		LD				(prota_pos_mapx), A
 
-		JP			entra_habitacion
+		JP				entra_habitacion
 fin_accion_puerta_izquierda:
 	
 

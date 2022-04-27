@@ -502,7 +502,7 @@ cambio_nivel:
 		CALL 		carga_patrones_sprites_nivel
 	
 		JP			borra_mapa	
-fin_cabio_nivel:
+fin_cambio_nivel:
 
 
 ;;=====================================================

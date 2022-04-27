@@ -12,7 +12,7 @@
 ;;=====================================================
 ;;DEFINICIÓN DE CABECERA DE ARCHIVO BIN
 ;;=====================================================		
-	include "cabecerabin.asm"
+	include "cabecerarom.asm"
 	
 	
 START:
@@ -51,36 +51,35 @@ START:
 
 		EI
 ;;
-;;INTRODUCCIÓN DE CÓDIGO PARA PODER USAR 32K
+;;FIN INTRODUCCIÓN DE CÓDIGO PARA PODER USAR 32K
 ;;
+		;inicializa variables
+		CALL		carga_valores_iniciales_variables
 
 		;inicializa pantalla y entonrno
 		CALL		sub_preparapantalla			;screen 2,2 sin click al pulsar tecla y color 16,1,1
-	
-		;inicializa variables
-		CALL		carga_valores_iniciales_variables
 		
 		;inicializa variables para parametrizar funciones y que lo que se muestre sea variable (nº vidas, mapa, puertas, pantalla, etc...)
-		CALL	inicializa_variables_pruebas
+		CALL		inicializa_variables_pruebas
 	
 		;inicializa el punto de mira
-		CALL	inicializa_punto_mira
+		CALL		inicializa_punto_mira
 	
 		;inicializa los niveles por partida (habitaciones)
-		CALL	inicializa_niveles			;no es necesario parametrizarlo según el nivel del usuario ya que se cargan todos
+		CALL		inicializa_niveles			;no es necesario parametrizarlo según el nivel del usuario ya que se cargan todos
 
 		;inicializa los valores de cada puerta excepto si están activas o no (eso ocurre cuando se matan todos los enemigos de la hab. y sólo a las puertas que se muestren)
-		CALL	inicializa_puertas
+		CALL		inicializa_puertas
 	
 		;inicializa las estructuras de forma particular según ayuda pero sin poner valores de posición
-		CALL	inicializa_ayudas
+		CALL		inicializa_ayudas
 	
 		;inicializa las estructuras de las antorchas y esqueletos
-		CALL	inicializa_antorchas
-		CALL	inicializa_esqueletos
+		CALL		inicializa_antorchas
+		CALL		inicializa_esqueletos
 	
 		;pinta la pantalla (la primera o algunas especiales se pintan completamente)
-		CALL	pinta_pantalla_completa
+		CALL		pinta_pantalla_completa
 	
 		;funciones que modificarian el marcador si se produce un evento cuando toque y cuando se pinta la pantalla ya se mira
 		;una variable para ver si el array hay que actualizarlo en pantalla o no
@@ -195,6 +194,7 @@ depack_VRAM:
 ;;CONTANTES DATOS SPRITES
 ;;=====================================================
 	include "datos/sprites.asm"
+	
 	
 ;;=====================================================
 ;;DEFINICIÓN DE VARIABLES

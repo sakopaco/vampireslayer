@@ -1,4 +1,15 @@
 ;;=====================================================
+;;CONTANTES PANTALLAS
+;;=====================================================
+;colores base de la pantalla
+color_base:					DB		COLNEGRO,COLNEGRO,COLNEGRO
+
+;colores de pantalla cuando se tira bomba
+color_bomba1:				DB		COLROJO,COLROJO,COLROJO
+color_bomba2:				DB		COLROJOOSC,COLROJOOSC,COLROJOOSC
+
+
+;;=====================================================
 ;;DEFINICIÓN DE SUBRUTINAS
 ;;=====================================================	
 ;relacionadas con pintado en pantalla (y no sprites)
