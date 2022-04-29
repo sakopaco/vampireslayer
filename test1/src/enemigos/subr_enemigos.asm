@@ -371,18 +371,10 @@ fin_inicializa_enemigos_fase6:
 ;;INICIALIZA_ENEMIGOS_FASE0_NIVELX
 ;;=====================================================	
 inicializa_enemigos_fase0_nivel0:
-		;~ LD			DE, enemigo1
-		;~ CALL		anade_enemigo_cienpies
-		;~ LD			IX, enemigo1
-		;~ JP			actualiza_valores_cienpies
-		
-		
 		LD			DE, enemigo1
-		CALL		anade_enemigo_serpiente
+		CALL		anade_enemigo_cienpies
 		LD			IX, enemigo1
-		CALL		actualiza_valores_serpiente
-		
-		
+		JP			actualiza_valores_cienpies
 fin_inicializa_enemigos_fase0_nivel0:
 
 inicializa_enemigos_fase0_nivel1:
@@ -1319,7 +1311,7 @@ check_enemigos_fase1: ;; aquí se ponen los valores de enemigos (si están activ
 		JP			 Z, .check_enemigo2
 		
 		LD			IY, array_sprites_enem
-		CALL		mover_cienpies
+		CALL		mover_serpiente
 
 		;acciones enemigos
 .check_enemigo2:

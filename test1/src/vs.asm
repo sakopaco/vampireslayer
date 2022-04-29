@@ -103,7 +103,7 @@ loop_principal:
 
 		CALL		actualiza_elementos_fondo;como antorchas o esqueletos
 		
-		CALL		check_enemigos_fase0	;examina los enemigos por pantalla y los pone en su sitio  **************************** MODIFICAR PARA VARIAS FASES
+		CALL		check_enemigos			;examina los enemigos por pantalla y los pone en su sitio  **************************** MODIFICAR PARA VARIAS FASES
 
 		CALL		check_player			;MIRA EL CONTROL Y APLICA LA LOGICA DE MOVIMIENTO DEL PROTAGONISTA
 	
@@ -118,6 +118,29 @@ loop_principal:
 		JP			loop_principal
 fin_programa_principal:
 	;no necesita RET
+
+
+check_enemigos:
+		LD			 A, (prota_nivel)
+.mira_nivel0		
+		OR			 A
+		JP			NZ, .mira_nivel1
+		CALL		check_enemigos_fase0
+		RET
+.mira_nivel1:
+		DEC			 A
+		JP			NZ, .mira_nivel2
+		CALL		check_enemigos_fase1
+		RET		
+.mira_nivel2:
+.mira_nivel3:
+.mira_nivel4:
+.mira_nivel5:
+.mira_nivel6:
+fin_check_enemigos:
+		RET
+
+
 
 
 ;;*******************************************************************
@@ -138,7 +161,7 @@ inicializa_variables_pruebas:
 	LD		 A, 0				;los niveles (matrices) son 7 del 0 al 6
 	LD		(prota_nivel), A	;nivel empieza en 0 para usar las posiciones ascii
 
-	LD		 A, 6;0				;los subniveles (filas) son 7 del 0 al 6
+	LD		 A, 0				;los subniveles (filas) son 7 del 0 al 6
 	LD		(prota_pos_mapy), A	;pos Y dentro del nivel (se empieza en 0)
 
 	LD		 A, 3				;columnas 7: del 0 al 6

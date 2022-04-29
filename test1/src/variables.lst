@@ -1,6 +1,6 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.04.27 - 18:44:38]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.04.29 - 23:02:55]
 
-./src/variables.asm
+./variables.asm
 Errors: 0
 
        1   00:0000                      	output 	"variables.dat"
@@ -1239,7 +1239,7 @@ Errors: 0
 00:0000C507 X enemigo6
 
 
- Output: ./src/variables.out
+ Output: ./variables.out
 -------------------------------------------------
 
  Page: 00
