@@ -53,6 +53,7 @@ START:
 ;;
 ;;FIN INTRODUCCIÓN DE CÓDIGO PARA PODER USAR 32K
 ;;
+
 		;inicializa variables
 		CALL		carga_valores_iniciales_variables
 
@@ -120,29 +121,6 @@ fin_programa_principal:
 	;no necesita RET
 
 
-check_enemigos:
-		LD			 A, (prota_nivel)
-.mira_nivel0		
-		OR			 A
-		JP			NZ, .mira_nivel1
-		CALL		check_enemigos_fase0
-		RET
-.mira_nivel1:
-		DEC			 A
-		JP			NZ, .mira_nivel2
-		CALL		check_enemigos_fase1
-		RET		
-.mira_nivel2:
-.mira_nivel3:
-.mira_nivel4:
-.mira_nivel5:
-.mira_nivel6:
-fin_check_enemigos:
-		RET
-
-
-
-
 ;;*******************************************************************
 ; sólo para hacer pruebas y pintar la parte de las vidas y demás
 inicializa_variables_pruebas:
@@ -158,10 +136,10 @@ inicializa_variables_pruebas:
 	;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
 	;será igual la posición inicial en todos los niveles
 	
-	LD		 A, 0				;los niveles (matrices) son 7 del 0 al 6
+	LD		 A, 1				;los niveles (matrices) son 7 del 0 al 6
 	LD		(prota_nivel), A	;nivel empieza en 0 para usar las posiciones ascii
 
-	LD		 A, 6				;los subniveles (filas) son 7 del 0 al 6
+	LD		 A, 0				;los subniveles (filas) son 7 del 0 al 6
 	LD		(prota_pos_mapy), A	;pos Y dentro del nivel (se empieza en 0)
 
 	LD		 A, 3				;columnas 7: del 0 al 6
@@ -228,10 +206,6 @@ fin_inicializacion_variables:
 
 
 
-
-
-
-
 ;~ datos_zombi:
 ;~ datos_fantasma:
 ;~ datos_caballerogris:
@@ -246,9 +220,6 @@ fin_inicializacion_variables:
 ;~ datos_manoderecha:
 ;~ datos_manoizquierda:
 ;~ datos_conde:
-
-
-
 
 
 

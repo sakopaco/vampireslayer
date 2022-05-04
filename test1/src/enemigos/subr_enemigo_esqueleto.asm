@@ -61,7 +61,7 @@ actualiza_valores_esqueleto:
 		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
 		
 .asigna_valores_posicion_y:
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), LOBO_POSY
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), ESQUELETO_POSY
 
 		EXX
 fin_actualiza_valores_esqueleto:
@@ -79,21 +79,21 @@ mover_esqueleto:
 		;no se mueve en el eje y
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
 		LD			(IY), A
+		ADD			16
 		LD			(IY + 4), A
 		
 		CALL		calcula_lobo_incrementox
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
 		LD			(IY + 1), A
-		ADD			16
 		LD			(IY + 5), A
 		
-		CALL		calcula_lobo_escena		
+		CALL		calcula_esqueleto_escena		
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_a)
 		LD			(IY + 2), A
 		ADD			 4
 		LD			(IY + 6), A
 		
-		LD			 A, LOBO_COLOR
+		LD			 A, ESQUELETO_COLOR
 		LD			(IY + 3), A
 		LD			(IY + 7), A
 fin_mover_esqueleto:
@@ -101,7 +101,7 @@ fin_mover_esqueleto:
 
 
 ;;=====================================================
-;;CALCULA_LOBO_ESCENA
+;;CALCULA_ESQUELETO_ESCENA
 ;;=====================================================	
 calcula_esqueleto_escena:
 		LD			 A, (heartbeat)
@@ -119,10 +119,10 @@ calcula_esqueleto_escena:
 			OR			 A
 			JP			 Z, .escena_izquierda2
 .escena_izquierda1:
-				LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), LOBO_SPRITE1B
+				LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), ESQUELETO_SPRITE1B
 				RET
 .escena_izquierda2:
-				LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), LOBO_SPRITE3B
+				LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), ESQUELETO_SPRITE3B
 				RET
 			
 .direccion_derecha:
@@ -133,10 +133,10 @@ calcula_esqueleto_escena:
 			OR			 A
 			JP			 Z, .escena_derecha2
 .escena_derecha1:
-				LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), LOBO_SPRITE1A
+				LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), ESQUELETO_SPRITE1A
 				RET
 .escena_derecha2:
-				LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), LOBO_SPRITE3A
+				LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), ESQUELETO_SPRITE3A
 				RET
 fin_calcula_esqueleto_escena:
 		RET

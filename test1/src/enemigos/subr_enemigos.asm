@@ -1237,6 +1237,30 @@ fin_inicializa_enemigos_fase6_nivel6:
 
 
 ;;=====================================================
+;;CHECK_ENEMIGOS
+;;=====================================================	
+check_enemigos:
+		LD			 A, (prota_nivel)
+.mira_nivel0		
+		OR			 A
+		JP			NZ, .mira_nivel1
+		CALL		check_enemigos_fase0
+		RET
+.mira_nivel1:
+		DEC			 A
+		JP			NZ, .mira_nivel2
+		CALL		check_enemigos_fase1
+		RET		
+.mira_nivel2:
+.mira_nivel3:
+.mira_nivel4:
+.mira_nivel5:
+.mira_nivel6:
+fin_check_enemigos:
+		RET
+
+
+;;=====================================================
 ;;CHECK_ENEMIGOS_FASE0
 ;;=====================================================	
 check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
@@ -1358,7 +1382,7 @@ check_enemigos_fase1: ;; aquí se ponen los valores de enemigos (si están activ
 		JP			 Z, .check_enemigo6
 		
 		LD			IY, array_sprites_enem + 24
-		CALL		mover_lobo
+		CALL		mover_esqueleto
 
 		;acciones enemigos
 .check_enemigo6:
