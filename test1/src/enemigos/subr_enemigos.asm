@@ -574,7 +574,12 @@ inicializa_enemigos_fase1_nivel4:
 		LD			DE, enemigo4
 		CALL		anade_enemigo_lobo
 		LD			IX, enemigo4
-		JP			actualiza_valores_lobo		
+		CALL		actualiza_valores_lobo		
+		
+		LD			DE, enemigo5
+		CALL		anade_enemigo_esqueleto
+		LD			IX, enemigo5
+		JP			actualiza_valores_esqueleto
 fin_inicializa_enemigos_fase1_nivel4:
 
 inicializa_enemigos_fase1_nivel5:

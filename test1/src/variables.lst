@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.05.01 - 14:35:25]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.05.04 - 12:20:57]
 
 ./variables.asm
 Errors: 0
@@ -398,7 +398,7 @@ Errors: 0
       98.  00:C000  (00:005C)           ESQUELETO_SPRITE4B	equ		92
       99.  00:C000  (00:0008)           ESQUELETO_LIMIZQ	equ		8
      100.  00:C000  (00:00D8)           ESQUELETO_LIMDER	equ		216
-     101.  00:C000  (00:0060)           ESQUELETO_POSY		equ		96
+     101.  00:C000  (00:0050)           ESQUELETO_POSY		equ		80
      102.  00:C000                      
      103.  00:C000                      
      104.  00:C000                      
@@ -1130,7 +1130,7 @@ Errors: 0
 00:0000005C X ESQUELETO_SPRITE4B
 00:00000008 X ESQUELETO_LIMIZQ
 00:000000D8 X ESQUELETO_LIMDER
-00:00000060 X ESQUELETO_POSY
+00:00000050 X ESQUELETO_POSY
 00:00000000 X ESTRUCTURA_PUNTOMIRA.posx
 00:00000001 X ESTRUCTURA_PUNTOMIRA.posy
 00:00000002 X ESTRUCTURA_PUNTOMIRA.escena

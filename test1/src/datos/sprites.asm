@@ -168,236 +168,236 @@ fin_sprite_lobo:
 ;; ESQUELETO 4 + 4 (dos escenas derecha y dos escenas izquierda)
 sprite_esqueleto:
 sprite_esqueleto1_1:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#00,#39,#39,#20,#20,#20,#38
+	DB  #38,#20,#20,#20,#38,#39,#00,#00
+	DB  #00,#00,#9E,#92,#92,#92,#92,#92
+	DB  #9E,#92,#92,#92,#92,#D2,#00,#00
 
 sprite_esqueleto1_2:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#00,#39,#39,#20,#20,#20,#38
+	DB  #38,#20,#20,#20,#38,#39,#00,#00
+	DB  #00,#00,#9C,#92,#92,#92,#92,#92
+	DB  #9E,#92,#92,#92,#92,#DC,#00,#00
 
 sprite_esqueleto1_3:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#00,#3B,#3B,#20,#20,#20,#38
+	DB  #3B,#22,#22,#22,#3B,#3B,#00,#00
+	DB  #00,#00,#DE,#D2,#52,#52,#52,#52
+	DB  #DE,#12,#12,#12,#D2,#D2,#00,#00
 
 sprite_esqueleto1_4:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#00,#3B,#3B,#20,#20,#20,#38
+	DB  #3B,#22,#22,#22,#3B,#3B,#00,#00
+	DB  #00,#00,#DC,#D2,#52,#52,#52,#52
+	DB  #DE,#12,#12,#12,#D2,#DC,#00,#00
 	
 sprite_esqueleto2_1:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#00,#79,#49,#49,#49,#49,#49
+	DB  #79,#49,#49,#49,#49,#4B,#00,#00
+	DB  #00,#00,#9C,#9C,#04,#04,#04,#1C
+	DB  #1C,#04,#04,#04,#1C,#9C,#00,#00
 
 sprite_esqueleto2_2:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#00,#39,#49,#49,#49,#49,#49
+	DB  #79,#49,#49,#49,#49,#3B,#00,#00
+	DB  #00,#00,#9C,#9C,#04,#04,#04,#1C
+	DB  #1C,#04,#04,#04,#1C,#9C,#00,#00
 
 sprite_esqueleto2_3:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#00,#7B,#4B,#4A,#4A,#4A,#4A
+	DB  #7B,#48,#48,#48,#4B,#4B,#00,#00
+	DB  #00,#00,#DC,#DC,#04,#04,#04,#1C
+	DB  #DC,#44,#44,#44,#DC,#DC,#00,#00
 
 sprite_esqueleto2_4:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#00,#3B,#4B,#4A,#4A,#4A,#4A
+	DB  #7B,#48,#48,#48,#4B,#3B,#00,#00
+	DB  #00,#00,#DC,#DC,#04,#04,#04,#1C
+	DB  #DC,#44,#44,#44,#DC,#DC,#00,#00
 fin_sprite_esqueleto:
 	
 ;; ZOMBI 4 + 4
 sprite_zombi:
 sprite_zombi1_1:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#F8,#09,#08,#18,#30,#20,#20
+	DB  #60,#40,#80,#80,#80,#80,#F9,#00
+	DB  #00,#8F,#89,#89,#89,#89,#89,#8F
+	DB  #8F,#89,#89,#89,#89,#89,#C9,#00
 
 sprite_zombi1_2:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#F8,#09,#08,#18,#30,#20,#20
+	DB  #60,#40,#80,#80,#80,#80,#F9,#00
+	DB  #00,#8E,#89,#89,#89,#89,#89,#8F
+	DB  #8F,#89,#89,#89,#89,#89,#CE,#00
 
 sprite_zombi1_3:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#FB,#0A,#0A,#18,#30,#20,#20
+	DB  #61,#41,#83,#82,#82,#82,#FB,#00
+	DB  #00,#EF,#29,#29,#29,#29,#69,#EF
+	DB  #8F,#09,#09,#09,#09,#09,#E9,#00
 
 sprite_zombi1_4:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#FB,#0A,#0A,#18,#30,#20,#20
+	DB  #61,#41,#83,#82,#82,#82,#FB,#00
+	DB  #00,#EE,#29,#29,#29,#29,#69,#EF
+	DB  #8F,#09,#09,#09,#09,#09,#EE,#00
 	
 sprite_zombi2_1:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#F1,#91,#91,#91,#91,#91,#F1
+	DB  #F1,#91,#91,#91,#91,#91,#93,#00
+	DB  #00,#1F,#90,#10,#18,#0C,#04,#04
+	DB  #06,#02,#01,#01,#01,#01,#9F,#00
 
 sprite_zombi2_2:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#71,#91,#91,#91,#91,#91,#F1
+	DB  #F1,#91,#91,#91,#91,#91,#73,#00
+	DB  #00,#1F,#90,#10,#18,#0C,#04,#04
+	DB  #06,#02,#01,#01,#01,#01,#9F,#00
 
 sprite_zombi2_3:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#F7,#94,#94,#94,#94,#96,#F7
+	DB  #F1,#90,#90,#90,#90,#90,#97,#00
+	DB  #00,#DF,#50,#50,#18,#0C,#04,#04
+	DB  #86,#82,#C1,#41,#41,#41,#DF,#00
 
 sprite_zombi2_4:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#77,#94,#94,#94,#94,#96,#F7
+	DB  #F1,#90,#90,#90,#90,#90,#77,#00
+	DB  #00,#DF,#50,#50,#18,#0C,#04,#04
+	DB  #86,#82,#C1,#41,#41,#41,#DF,#00
 fin_sprite_zombi:
 	
 ;; FANTASMA 5: 2 en horizotal con 2 escenas
 sprite_fantasma:
 sprite_fantasma_1:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#F1,#83,#80,#80,#80,#80,#F0
+	DB  #F0,#80,#80,#80,#80,#80,#81,#00
+	DB  #00,#8F,#89,#89,#89,#89,#89,#8F
+	DB  #8F,#89,#89,#89,#89,#89,#C9,#00
 
 sprite_fantasma_2:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#F1,#83,#80,#80,#80,#80,#F0
+	DB  #F0,#80,#80,#80,#80,#80,#81,#00
+	DB  #00,#8E,#8B,#89,#89,#89,#89,#8F
+	DB  #8F,#89,#89,#89,#89,#8B,#CE,#00
 
 sprite_fantasma_3:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#F3,#87,#84,#80,#80,#80,#F0
+	DB  #F0,#80,#81,#83,#86,#84,#87,#00
+	DB  #00,#CF,#C9,#49,#49,#49,#C9,#8F
+	DB  #8F,#89,#89,#09,#09,#09,#C9,#00
 
 sprite_fantasma_4:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#F3,#87,#84,#80,#80,#80,#F0
+	DB  #F0,#80,#81,#83,#86,#84,#87,#00
+	DB  #00,#CE,#CB,#49,#49,#49,#C9,#8F
+	DB  #8F,#89,#89,#09,#09,#0B,#CE,#00
 fin_sprite_fantasma:
 
 
 ;; CABALLERO 4 + 4: es el mismo sprite... cambia el color
 sprite_caballero:
 sprite_caballero1_1:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #F8,#81,#80,#80,#80,#80,#80,#80
+	DB  #80,#80,#80,#80,#80,#80,#80,#F9
+	DB  #8F,#89,#89,#89,#89,#89,#89,#8F
+	DB  #8F,#89,#89,#89,#89,#89,#89,#C9
 
 sprite_caballero1_2:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #F8,#81,#80,#80,#80,#80,#80,#80
+	DB  #80,#80,#80,#80,#80,#80,#80,#F9
+	DB  #8E,#89,#89,#89,#89,#89,#89,#8F
+	DB  #8F,#89,#89,#89,#89,#89,#89,#CE
 
 sprite_caballero1_3:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FB,#82,#80,#80,#80,#80,#80,#81
+	DB  #83,#82,#82,#82,#82,#82,#82,#FB
+	DB  #CF,#49,#49,#49,#49,#49,#49,#CF
+	DB  #0F,#09,#09,#09,#09,#09,#09,#C9
 
 sprite_caballero1_4:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #FB,#82,#80,#80,#80,#80,#80,#81
+	DB  #83,#82,#82,#82,#82,#82,#82,#FB
+	DB  #CE,#4B,#49,#49,#49,#49,#49,#CF
+	DB  #0F,#09,#09,#09,#09,#09,#0B,#CE
 	
 sprite_caballero2_1:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #F1,#91,#91,#91,#91,#91,#91,#F1
+	DB  #F1,#91,#91,#91,#91,#91,#91,#93
+	DB  #1F,#81,#01,#01,#01,#01,#01,#01
+	DB  #01,#01,#01,#01,#01,#01,#01,#9F
 
 sprite_caballero2_2:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #71,#91,#91,#91,#91,#91,#91,#F1
+	DB  #F1,#91,#91,#91,#91,#91,#91,#73
+	DB  #1F,#81,#01,#01,#01,#01,#01,#01
+	DB  #01,#01,#01,#01,#01,#01,#01,#9F
 
 sprite_caballero2_3:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #F3,#92,#92,#92,#92,#92,#92,#F3
+	DB  #F0,#90,#90,#90,#90,#90,#90,#93
+	DB  #DF,#41,#01,#01,#01,#01,#01,#81
+	DB  #C1,#41,#41,#41,#41,#41,#41,#DF
 
 sprite_caballero2_4:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #73,#D2,#92,#92,#92,#92,#92,#F3
+	DB  #F0,#90,#90,#90,#90,#90,#D0,#73
+	DB  #DF,#41,#01,#01,#01,#01,#01,#81
+	DB  #C1,#41,#41,#41,#41,#41,#41,#DF
 fin_sprite_caballero:
 	
 ;; FUEGO 4 (2 escenas 2 sprites vert)
 sprite_fuego:
 sprite_fuego_1:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#F1,#83,#80,#80,#80,#80,#F0
+	DB  #F0,#80,#80,#80,#A8,#A8,#B9,#00
+	DB  #00,#8F,#89,#89,#89,#89,#89,#8F
+	DB  #8F,#89,#89,#89,#89,#89,#C9,#00
 	
 sprite_fuego_2:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#F1,#83,#80,#80,#80,#80,#F0
+	DB  #F0,#80,#80,#80,#A8,#A8,#B9,#00
+	DB  #00,#8E,#8B,#89,#89,#89,#89,#8F
+	DB  #8F,#89,#89,#89,#89,#8B,#CE,#00
 	
 sprite_fuego_3:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#F3,#84,#84,#80,#80,#80,#F0
+	DB  #F1,#82,#82,#82,#AA,#AA,#BB,#00
+	DB  #00,#CF,#49,#49,#49,#49,#49,#8F
+	DB  #8F,#09,#09,#09,#09,#09,#C9,#00
 	
 sprite_fuego_4:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#F3,#84,#84,#80,#80,#80,#F0
+	DB  #F1,#82,#82,#82,#AA,#AA,#BB,#00
+	DB  #00,#CE,#4B,#49,#49,#49,#49,#8F
+	DB  #8F,#09,#09,#09,#09,#0B,#CE,#00
 fin_sprite_fuego:
 	
 ;; MAGIA 4 (2 escenas 2 sprites hort)
 sprite_magia:
 sprite_magia_1:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#D9,#FB,#A8,#88,#88,#88,#88
+	DB  #88,#88,#88,#88,#88,#88,#89,#00
+	DB  #00,#8F,#89,#89,#89,#89,#89,#8F
+	DB  #8F,#89,#89,#89,#89,#89,#C9,#00
 	
 sprite_magia_2:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#D9,#FB,#A8,#88,#88,#88,#88
+	DB  #88,#88,#88,#88,#88,#88,#89,#00
+	DB  #00,#8E,#8B,#89,#89,#89,#89,#8F
+	DB  #8F,#89,#89,#89,#89,#8B,#CE,#00
 	
 sprite_magia_3:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#D9,#FA,#AA,#88,#88,#88,#88
+	DB  #89,#8B,#8A,#8A,#8A,#8A,#8B,#00
+	DB  #00,#CF,#69,#29,#29,#29,#29,#CF
+	DB  #8F,#09,#09,#09,#09,#09,#C9,#00
 	
 sprite_magia_4:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#D9,#FA,#AA,#88,#88,#88,#88
+	DB  #89,#8B,#8A,#8A,#8A,#8A,#8B,#00
+	DB  #00,#CE,#6B,#29,#29,#29,#29,#CF
+	DB  #8F,#09,#09,#09,#09,#0B,#CE,#00
 fin_sprite_magia:
 	
 ;; JEFE LOBO (4 sprites 2 escenas 2 direcciones)
@@ -855,82 +855,82 @@ fin_sprite_jefebeholder:
 ;; MANOIZQ 4 (2 escenas 2 sprites vert)
 sprite_manoizquierda:
 sprite_manoizquierda_1:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#D9,#FB,#A8,#88,#88,#88,#88
+	DB  #88,#88,#A8,#A8,#A8,#A8,#AD,#00
+	DB  #00,#8F,#89,#89,#89,#89,#89,#8F
+	DB  #8F,#89,#89,#89,#89,#89,#C9,#00
 	
 sprite_manoizquierda_2:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#D9,#FB,#A8,#88,#88,#88,#88
+	DB  #88,#88,#A8,#A8,#A8,#A8,#AD,#00
+	DB  #00,#8E,#8B,#89,#89,#89,#89,#8F
+	DB  #8F,#89,#89,#89,#89,#8B,#CE,#00
 	
 sprite_manoizquierda_3:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#DB,#FA,#AA,#88,#88,#88,#88
+	DB  #88,#89,#A9,#A9,#A9,#A9,#AD,#00
+	DB  #00,#CF,#29,#29,#29,#29,#29,#6F
+	DB  #CF,#89,#09,#09,#09,#09,#E9,#00
 	
 sprite_manoizquierda_4:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#DB,#FA,#AA,#88,#88,#88,#88
+	DB  #88,#89,#A9,#A9,#A9,#A9,#AD,#00
+	DB  #00,#CE,#2B,#29,#29,#29,#29,#6F
+	DB  #CF,#89,#09,#09,#09,#0B,#EE,#00
 fin_sprite_manoizquierda:
 	
 ;; MANODER 4 (2 escenas 2 sprites vert)
 sprite_manoderecha:
 sprite_manoderecha_1:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#F1,#91,#91,#91,#91,#91,#F1
+	DB  #F1,#91,#91,#91,#91,#91,#93,#00
+	DB  #00,#9B,#DF,#15,#11,#11,#11,#11
+	DB  #11,#11,#15,#15,#15,#15,#B5,#00
 	
 sprite_manoderecha_2:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#71,#D1,#91,#91,#91,#91,#F1
+	DB  #F1,#91,#91,#91,#91,#D1,#73,#00
+	DB  #00,#9B,#DF,#15,#11,#11,#11,#11
+	DB  #11,#11,#15,#15,#15,#15,#B5,#00
 	
 sprite_manoderecha_3:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#F3,#94,#94,#94,#94,#94,#F6
+	DB  #F3,#91,#90,#90,#90,#90,#97,#00
+	DB  #00,#DB,#5F,#55,#11,#11,#11,#11
+	DB  #11,#91,#95,#95,#95,#95,#B5,#00
 	
 sprite_manoderecha_4:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#73,#D4,#94,#94,#94,#94,#F6
+	DB  #F3,#91,#90,#90,#90,#D0,#77,#00
+	DB  #00,#DB,#5F,#55,#11,#11,#11,#11
+	DB  #11,#91,#95,#95,#95,#95,#B5,#00
 fin_sprite_manoderecha:
 	
 ;; CONDE 4 (2 escenas 2 sprites vert)
 sprite_conde:
 sprite_conde_1:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#E1,#93,#88,#88,#88,#88,#88
+	DB  #88,#88,#88,#88,#88,#88,#F1,#00
+	DB  #00,#8F,#89,#89,#89,#89,#89,#8F
+	DB  #8F,#89,#89,#89,#89,#89,#C9,#00
 	
 sprite_conde_2:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#E1,#93,#88,#88,#88,#88,#88
+	DB  #88,#88,#88,#88,#88,#88,#F1,#00
+	DB  #00,#8E,#8B,#89,#89,#89,#89,#8F
+	DB  #8F,#89,#89,#89,#89,#8B,#CE,#00
 	
 sprite_conde_3:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#E1,#93,#88,#88,#88,#88,#88
+	DB  #88,#88,#88,#88,#88,#88,#F1,#00
+	DB  #00,#8E,#8B,#89,#89,#89,#89,#8F
+	DB  #8F,#89,#89,#89,#89,#8B,#CE,#00 
 	
 sprite_conde_4:
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#E3,#92,#8A,#88,#88,#88,#88
+	DB  #88,#88,#89,#89,#8B,#8A,#F3,#00
+	DB  #00,#CE,#4B,#49,#49,#49,#49,#4F
+	DB  #4F,#C9,#89,#09,#09,#0B,#CE,#00
 fin_sprite_conde:
 
 
