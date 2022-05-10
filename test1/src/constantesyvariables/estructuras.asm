@@ -1,9 +1,6 @@
 ;;=====================================================
 ;;DEFINICIÓN DE ESTRUCTURAS
 ;;=====================================================
-
-;crear estructura
-
 	STRUCT ESTRUCTURA_PUNTOMIRA
 posx			DB		POSXPM
 posy			DB		POSYPM

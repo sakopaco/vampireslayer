@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.05.10 - 19:27:33]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.05.10 - 20:17:06]
 
 ./variables.asm
 Errors: 0
@@ -385,195 +385,207 @@ Errors: 0
       85.  00:C000                      
       86.  00:C000                      
       87.  00:C000                      ;;ETIQUETAS/CONSTANTES ESQUELETO
-      88.  00:C000                      
-      89.  00:C000  (00:0007)           TIPOESQUELETO		equ		7
-      90.  00:C000  (00:000F)           ESQUELETO_COLOR		equ		15		;15 - BLANCO
-      91.  00:C000  (00:0060)           ESQUELETO_SPRITE1A	equ		96
-      92.  00:C000  (00:0064)           ESQUELETO_SPRITE2A	equ		100
-      93.  00:C000  (00:0068)           ESQUELETO_SPRITE3A	equ		104
-      94.  00:C000  (00:006C)           ESQUELETO_SPRITE4A	equ		108
-      95.  00:C000  (00:0070)           ESQUELETO_SPRITE1B	equ		112
-      96.  00:C000  (00:0074)           ESQUELETO_SPRITE2B	equ		116
-      97.  00:C000  (00:0078)           ESQUELETO_SPRITE3B	equ		120
-      98.  00:C000  (00:007C)           ESQUELETO_SPRITE4B	equ		124
-      99.  00:C000  (00:0000)           ESQUELETO_POSX		equ		0
-     100.  00:C000  (00:0060)           ESQUELETO_POSY		equ		96
+      88.  00:C000  (00:0007)           TIPOESQUELETO		equ		7
+      89.  00:C000  (00:000F)           ESQUELETO_COLOR		equ		15		;15 - BLANCO
+      90.  00:C000  (00:0060)           ESQUELETO_SPRITE1A	equ		96
+      91.  00:C000  (00:0064)           ESQUELETO_SPRITE2A	equ		100
+      92.  00:C000  (00:0068)           ESQUELETO_SPRITE3A	equ		104
+      93.  00:C000  (00:006C)           ESQUELETO_SPRITE4A	equ		108
+      94.  00:C000  (00:0070)           ESQUELETO_SPRITE1B	equ		112
+      95.  00:C000  (00:0074)           ESQUELETO_SPRITE2B	equ		116
+      96.  00:C000  (00:0078)           ESQUELETO_SPRITE3B	equ		120
+      97.  00:C000  (00:007C)           ESQUELETO_SPRITE4B	equ		124
+      98.  00:C000  (00:0000)           ESQUELETO_POSX		equ		0
+      99.  00:C000  (00:0060)           ESQUELETO_POSY		equ		96
+     100.  00:C000                      
      101.  00:C000                      
-     102.  00:C000                      
-     103.  00:C000                      
+     102.  00:C000                      ;;ETIQUETAS/CONSTANTES ZOMBI
+     103.  00:C000  (00:0008)           TIPOZOMBI			equ		8
+     104.  00:C000  (00:000F)           ZOMBI_COLOR_A		equ		15		;15 - BLANCO
+     105.  00:C000  (00:000F)           ZOMBI_COLOR_B		equ		15		;15 - BLANCO
+     106.  00:C000  (00:0080)           ZOMBI_SPRITE1A		equ		128
+     107.  00:C000  (00:0084)           ZOMBI_SPRITE2A		equ		132
+     108.  00:C000  (00:0088)           ZOMBI_SPRITE3A		equ		136
+     109.  00:C000  (00:008C)           ZOMBI_SPRITE4A		equ		140
+     110.  00:C000  (00:0090)           ZOMBI_SPRITE1B		equ		144
+     111.  00:C000  (00:0094)           ZOMBI_SPRITE2B		equ		148
+     112.  00:C000  (00:0098)           ZOMBI_SPRITE3B		equ		152
+     113.  00:C000  (00:009C)           ZOMBI_SPRITE4B		equ		156
+     114.  00:C000  (00:0000)           ZOMBI_POSX			equ		0
+     115.  00:C000  (00:0060)           ZOMBI_POSY			equ		96
+     116.  00:C000                      
+     117.  00:C000                      
+     118.  00:C000                      
       12   00:C000                      include "constantesyvariables/estructuras.asm"
        1.  00:C000                      ;;=====================================================
        2.  00:C000                      ;;DEFINICIÓN DE ESTRUCTURAS
        3.  00:C000                      ;;=====================================================
-       4.  00:C000                      
-       5.  00:C000                      ;crear estructura
-       6.  00:C000                      
-       7.  00:C000                      	STRUCT ESTRUCTURA_PUNTOMIRA
-       8.  00:C000                    < posx			DB		POSXPM
-       9.  00:C000                    < posy			DB		POSYPM
-      10.  00:C000                    < escena			DB		0	;valores porsibles 0 (blanco+rojo en punto de mira) y NEG 0 (al revés)
-      11.  00:C000                    < velocidad		DB		0
-      12.  00:C000                    < cadencia		DB		0	;velocidad de disparo si botón pulsado
-      13.  00:C000                    < spritea			DB		0	;valor en pos de memoria del sprite grande del punto de mira
-      14.  00:C000                    < spriteb			DB		0 	;valor en pos de memoria del sprite pequeño del punto de mira
-      15.  00:C000                    < 	ENDSTRUCT;ESTRUCTURA_PUNTOMIRA
-      16.  00:C000                      
-      17.  00:C000                      
-      18.  00:C000                      	STRUCT ESTRUCTURA_ANTORCHA
-      19.  00:C000                    < activo				DB		0	;0 no activa <>0 activo
-      20.  00:C000                    < postilemem_antor1	DW		0	;pos en memoria ver array_antorcha de cómo se mostrará (wordaux2)	1,2
-      21.  00:C000                    < pospantalla_antor1	DB		0	;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	3
-      22.  00:C000                    < pospantalla_antor2	DB		0	;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	4
-      23.  00:C000                    < escena				DB		0	;(va entre 0 y 1 - 0=>llama1 y llama2 o 1=>llama2 y llama1	7 - tiles 196 y 197)	5
-      24.  00:C000                    < cont_sig_escena		DB		10	;	6
-      25.  00:C000                    < 	ENDSTRUCT;ESTRUCTURA_ANTORCHA
-      26.  00:C000                      
-      27.  00:C000                      
-      28.  00:C000                      	STRUCT ESTRUCTURA_ESQUELETO
-      29.  00:C000                    < activo				DB		0	;0 no activa <>0 activo
-      30.  00:C000                    < postilemem_antor1	DW		0	;pos en memoria ver array_antorcha de cómo se mostrará (wordaux2)	1,2
-      31.  00:C000                    < pospantalla_esquel1	DB		0	;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	3
-      32.  00:C000                    < pospantalla_esquel2	DB		0	;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	4
-      33.  00:C000                    < escena				DB		0	;(va entre 0 y 4 - tiles 164, 165, 164, 166)	5
-      34.  00:C000                    < cont_sig_escena		DB		0	;	6
-      35.  00:C000                    < 	ENDSTRUCT;ESTRUCTURA_ESQUELETO
-      36.  00:C000                      	
-      37.  00:C000                      
-      38.  00:C000                      	STRUCT ESTRUCTURA_AYUDA	
-      39.  00:C000                    < activa				DB		0	;0 no activa <>0 activo (y muestra tiles ayudaoff)
-      40.  00:C000                    < posx				DB		0	;punto x de la ayuda para cuando se dispare encima
-      41.  00:C000                    < posy				DB		112	;punto y de la ayuda para cuando se dispare encima
-      42.  00:C000                    < radiox				DB		0	;radio x de la ayuda para cuando se dispare encima
-      43.  00:C000                    < radioy				DB		0	;radio y de la ayuda para cuando se dispare encima
-      44.  00:C000                    < accion				DW		0	;función para acción de cada tipo de ayuda
-      45.  00:C000                    < tiles_ayudaon		DW		0	;puntero al array con los tiles de las ayudas sin usar para wordaux2
-      46.  00:C000                    < tiles_ayudaoff		DW		0	;puntero al array con los tiles de las ayudas sin usar para wordaux2
-      47.  00:C000                    < pos_en_tilemap		DW		0	;calcula posición en tilemap para wordaux1
-      48.  00:C000                    < alto				DB		2	;alto en tiles del dibujo de la puerta (filas)
-      49.  00:C000                    < ancho				DB		2	;ancho en tiles del dibujo de la puerta (columnas)
-      50.  00:C000                    < 	ENDSTRUCT;ESTRUCTURA_PUERTA
-      51.  00:C000                      
-      52.  00:C000                      
-      53.  00:C000                      	STRUCT ESTRUCTURA_PUERTA	;también servirá para la escalera
-      54.  00:C000                    < activa				DB		0	;0 no activa <>0 activo
-      55.  00:C000                    < posx				DB		0	;punto x de la puerta para cuando se dispare encima
-      56.  00:C000                    < posy				DB		0	;punto y de la puerta para cuando se dispare encima
-      57.  00:C000                    < radiox				DB		0	;radio x de la puerta para cuando se dispare encima
-      58.  00:C000                    < radioy				DB		0	;radio y de la puerta para cuando se dispare encima
-      59.  00:C000                    < accion				DW		0	;función para acción de cada tipo de puerta
-      60.  00:C000                    < tiles_puerta		DW		0	;puntero al array con los tiles de las puertas para wordaux2
-      61.  00:C000                    < pos_en_tilemap		DW		0	;calcula posición en tilemap para wordaux1
-      62.  00:C000                    < alto				DB		0	;alto en tiles del dibujo de la puerta (filas)
-      63.  00:C000                    < ancho				DB		0	;ancho en tiles del dibujo de la puerta (columnas)
-      64.  00:C000                    < 	ENDSTRUCT;ESTRUCTURA_PUERTA
-      65.  00:C000                      
-      66.  00:C000                      
-      67.  00:C000                      ;Tipo:
-      68.  00:C000                      ;	0  - inactivo
-      69.  00:C000                      ;	1  - muerto (se pone daño 0 y vida: el tiempo para desaparecer)
-      70.  00:C000                      ;	2  - ciempiés
-      71.  00:C000                      ;	3  - serpiente
-      72.  00:C000                      ;	4  - araña
-      73.  00:C000                      ;	5  - murciélago
-      74.  00:C000                      ;	6  - lobo
-      75.  00:C000                      ;	7  - esqueleto
-      76.  00:C000                      ;	8  - zombi
-      77.  00:C000                      ;	9  - fantasma
-      78.  00:C000                      ;	10 - caballero gris
-      79.  00:C000                      ;	11 - caballero negro
-      80.  00:C000                      ;	12 - fuego
-      81.  00:C000                      ;	13 - magia
-      82.  00:C000                      ;	14 - jefe lobo gigante
-      83.  00:C000                      ;	15 - jefe murciélago gigante
-      84.  00:C000                      ;	16 - jefe fantasma gigante
-      85.  00:C000                      ;	17 - jefe zombie gigante
-      86.  00:C000                      ;	18 - jefe caballero
-      87.  00:C000                      ;	19 - jefe beholder
-      88.  00:C000                      ;	20 - mano derecha conde drácula
-      89.  00:C000                      ;	21 - izquierda conde drácula
-      90.  00:C000                      ;	22 - conde drácula
-      91.  00:C000                      ;
-      92.  00:C000                      ;Sprites que usa (16x16):
-      93.  00:C000                      ;	2  - ciempiés: 1
-      94.  00:C000                      ;	3  - serpiente: 1
-      95.  00:C000                      ;	4  - araña: 1
-      96.  00:C000                      ;	5  - murciélago: 1
-      97.  00:C000                      ;	6  - lobo: 2 (horz)
-      98.  00:C000                      ;	7  - esqueleto: 2 (vert)
-      99.  00:C000                      ;	8  - zombi: 2 (vert)
-     100.  00:C000                      ;	9  - fantasma: 2 (horz)
-     101.  00:C000                      ;	10 - caballero gris: 2 (vert)
-     102.  00:C000                      ;	11 - caballero negro: 2 (vert)
-     103.  00:C000                      ;	12 - fuego: 2 (vert)
-     104.  00:C000                      ;	13 - magia: 2 (horz)
-     105.  00:C000                      ;	14 - jefe lobo gigante: 4
-     106.  00:C000                      ;	15 - jefe murciélago gigante: 4
-     107.  00:C000                      ;	16 - jefe fantasma gigante: 4
-     108.  00:C000                      ;	17 - jefe zombie gigante: 4
-     109.  00:C000                      ;	18 - jefe caballero: 4
-     110.  00:C000                      ;	19 - jefe beholder: 4
-     111.  00:C000                      ;	20 - mano derecha conde drácula: 2 (vert)
-     112.  00:C000                      ;	21 - mano izquierda conde drácula: 2 (vert)
-     113.  00:C000                      ;	22 - conde drácula: 2 (vert)
-     114.  00:C000                      ;		
-     115.  00:C000                      ;movimiento:
-     116.  00:C000                      ;	1 - fijo_aleatorio
-     117.  00:C000                      ;		ciempiés
-     118.  00:C000                      ;		beholder
-     119.  00:C000                      ;		posiciones aleatoriaas precalculadas (duran en posición cont_sig_escena)
-     120.  00:C000                      ;	2 - vertical
-     121.  00:C000                      ;		murciélago
-     122.  00:C000                      ;		araña 
-     123.  00:C000                      ;		"precalculadas en horizontal" de 8 posibles (para usar R) desde la parte superior e irán bajando y 
-     124.  00:C000                      ;		subiendo verticalmente y con pos aleatorias horizontales para que no vayan todos al unísono
-     125.  00:C000                      ;		NOTA: para el murciélado me gustaría una onda senoidal a la altura de un tercio 				?? investigar
-     126.  00:C000                      ;	3 - horizontal
-     127.  00:C000                      ;		serpiente
-     128.  00:C000                      ;		lobo
-     129.  00:C000                      ;		zombie
-     130.  00:C000                      ;		cabalero gris y negro
-     131.  00:C000                      ;		"precalculadas en vertical" de 8 posibles (para usar R) desde la parte izquierda a la derecha moviéndose
-     132.  00:C000                      ;		horizontalmente y con pos aleatorias verticales para que no vayan todos al unísono
-     133.  00:C000                      ;	4 - circular
-     134.  00:C000                      ;		fantasma
-     135.  00:C000                      ;		fuego
-     136.  00:C000                      ;		manos del conde drácula
-     137.  00:C000                      ;		describe círculos desde un punto central con radios (pseudoaleatorios) a cada vuelta
-     138.  00:C000                      ;	5 - variable_aleatorio
-     139.  00:C000                      ;		magia
-     140.  00:C000                      ;		conde drácula
-     141.  00:C000                      ;		posiciones "pseudoaleatorias (aleatorias precalculadas)" por pantalla estando un contador en cada posición (duran en posición cont_sig_escena)
-     142.  00:C000                      
-     143.  00:C000                      
-     144.  00:C000                      
-     145.  00:C000                      	STRUCT ESTRUCTURA_ENEMIGO
-     146.  00:C000                    < activo_tipo			DB		0	;si inactivo = 0 si <> 0 es el tipo de enemigo
-     147.  00:C000                    < escena				DB		0	;sprite a mostrar 1/2
-     148.  00:C000                    < cont_sig_escena		DB		0	;retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
-     149.  00:C000                    < energia				DB		0	;energía del enemigo antes de morir
-     150.  00:C000                    < ;como será común la saco de la estructura y el daño está en un array
-     151.  00:C000                    < ;ptr_accion_dano		DW		0	;realiza cambios en caso daño o de muerte (energía = 0)
-     152.  00:C000                    < posx				DB		0	;pos x para mover y punto central del sprite para revisar disparo
-     153.  00:C000                    < posy				DB		0	;pos y para mover y punto central del sprite para revisar disparo
-     154.  00:C000                    < radiox				DB		0	;radio x del enemigo para cuando se dispare encima
-     155.  00:C000                    < radioy				DB		0	;radio y del enemigo para cuando se dispare encima
-     156.  00:C000                    < incx				DB		0	;incremento x para mover
-     157.  00:C000                    < inxy				DB		0	;incremento y para mover
-     158.  00:C000                    < direccionx			DB		0	;0 derecha <> 1 izquierda // 0 abajo <> 1 arriba
-     159.  00:C000                    < direcciony			DB		0	;0 derecha <> 1 izquierda // 0 abajo <> 1 arriba
-     160.  00:C000                    < pasos				DB		0	;pasos para no comprobar los límites de pantalla, sólo si pasos ha llegado a 0
-     161.  00:C000                    < radio				DB		0	;radio para movimientos circulares
-     162.  00:C000                    < ;mezclo el ptr_sig_escena con el mover ya que son obligatorias no erece la pena tener 2
-     163.  00:C000                    < ;ptr_sig_escena		DW		0	;funcion que cambia los sprites de la escena (según el nº de sprites será distinta)
-     164.  00:C000                    < ptr_mover			DW		0	;puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
-     165.  00:C000                    < ;se pondrán 8 sprites: 4 por si hay enemigos de hasta 4 sprites y por 2 por usar 2 escenas... si se usan 3 habría que ampliar
-     166.  00:C000                    < ;(en realidad estos son los nº de patrón 0 - 63)
-     167.  00:C000                    < sprite_a			DB		0	;izq arriba
-     168.  00:C000                    < sprite_b			DB		0	;izq abajo
-     169.  00:C000                    < sprite_c			DB		0	;der_arriba
-     170.  00:C000                    < sprite_d			DB		0	;der_abajo
-     171.  00:C000                    < 	ENDSTRUCT;ESTRUCTURA_ENEMIGO
-     172.  00:C000                      
+       4.  00:C000                      	STRUCT ESTRUCTURA_PUNTOMIRA
+       5.  00:C000                    < posx			DB		POSXPM
+       6.  00:C000                    < posy			DB		POSYPM
+       7.  00:C000                    < escena			DB		0	;valores porsibles 0 (blanco+rojo en punto de mira) y NEG 0 (al revés)
+       8.  00:C000                    < velocidad		DB		0
+       9.  00:C000                    < cadencia		DB		0	;velocidad de disparo si botón pulsado
+      10.  00:C000                    < spritea			DB		0	;valor en pos de memoria del sprite grande del punto de mira
+      11.  00:C000                    < spriteb			DB		0 	;valor en pos de memoria del sprite pequeño del punto de mira
+      12.  00:C000                    < 	ENDSTRUCT;ESTRUCTURA_PUNTOMIRA
+      13.  00:C000                      
+      14.  00:C000                      
+      15.  00:C000                      	STRUCT ESTRUCTURA_ANTORCHA
+      16.  00:C000                    < activo				DB		0	;0 no activa <>0 activo
+      17.  00:C000                    < postilemem_antor1	DW		0	;pos en memoria ver array_antorcha de cómo se mostrará (wordaux2)	1,2
+      18.  00:C000                    < pospantalla_antor1	DB		0	;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	3
+      19.  00:C000                    < pospantalla_antor2	DB		0	;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	4
+      20.  00:C000                    < escena				DB		0	;(va entre 0 y 1 - 0=>llama1 y llama2 o 1=>llama2 y llama1	7 - tiles 196 y 197)	5
+      21.  00:C000                    < cont_sig_escena		DB		10	;	6
+      22.  00:C000                    < 	ENDSTRUCT;ESTRUCTURA_ANTORCHA
+      23.  00:C000                      
+      24.  00:C000                      
+      25.  00:C000                      	STRUCT ESTRUCTURA_ESQUELETO
+      26.  00:C000                    < activo				DB		0	;0 no activa <>0 activo
+      27.  00:C000                    < postilemem_antor1	DW		0	;pos en memoria ver array_antorcha de cómo se mostrará (wordaux2)	1,2
+      28.  00:C000                    < pospantalla_esquel1	DB		0	;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	3
+      29.  00:C000                    < pospantalla_esquel2	DB		0	;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	4
+      30.  00:C000                    < escena				DB		0	;(va entre 0 y 4 - tiles 164, 165, 164, 166)	5
+      31.  00:C000                    < cont_sig_escena		DB		0	;	6
+      32.  00:C000                    < 	ENDSTRUCT;ESTRUCTURA_ESQUELETO
+      33.  00:C000                      	
+      34.  00:C000                      
+      35.  00:C000                      	STRUCT ESTRUCTURA_AYUDA	
+      36.  00:C000                    < activa				DB		0	;0 no activa <>0 activo (y muestra tiles ayudaoff)
+      37.  00:C000                    < posx				DB		0	;punto x de la ayuda para cuando se dispare encima
+      38.  00:C000                    < posy				DB		112	;punto y de la ayuda para cuando se dispare encima
+      39.  00:C000                    < radiox				DB		0	;radio x de la ayuda para cuando se dispare encima
+      40.  00:C000                    < radioy				DB		0	;radio y de la ayuda para cuando se dispare encima
+      41.  00:C000                    < accion				DW		0	;función para acción de cada tipo de ayuda
+      42.  00:C000                    < tiles_ayudaon		DW		0	;puntero al array con los tiles de las ayudas sin usar para wordaux2
+      43.  00:C000                    < tiles_ayudaoff		DW		0	;puntero al array con los tiles de las ayudas sin usar para wordaux2
+      44.  00:C000                    < pos_en_tilemap		DW		0	;calcula posición en tilemap para wordaux1
+      45.  00:C000                    < alto				DB		2	;alto en tiles del dibujo de la puerta (filas)
+      46.  00:C000                    < ancho				DB		2	;ancho en tiles del dibujo de la puerta (columnas)
+      47.  00:C000                    < 	ENDSTRUCT;ESTRUCTURA_PUERTA
+      48.  00:C000                      
+      49.  00:C000                      
+      50.  00:C000                      	STRUCT ESTRUCTURA_PUERTA	;también servirá para la escalera
+      51.  00:C000                    < activa				DB		0	;0 no activa <>0 activo
+      52.  00:C000                    < posx				DB		0	;punto x de la puerta para cuando se dispare encima
+      53.  00:C000                    < posy				DB		0	;punto y de la puerta para cuando se dispare encima
+      54.  00:C000                    < radiox				DB		0	;radio x de la puerta para cuando se dispare encima
+      55.  00:C000                    < radioy				DB		0	;radio y de la puerta para cuando se dispare encima
+      56.  00:C000                    < accion				DW		0	;función para acción de cada tipo de puerta
+      57.  00:C000                    < tiles_puerta		DW		0	;puntero al array con los tiles de las puertas para wordaux2
+      58.  00:C000                    < pos_en_tilemap		DW		0	;calcula posición en tilemap para wordaux1
+      59.  00:C000                    < alto				DB		0	;alto en tiles del dibujo de la puerta (filas)
+      60.  00:C000                    < ancho				DB		0	;ancho en tiles del dibujo de la puerta (columnas)
+      61.  00:C000                    < 	ENDSTRUCT;ESTRUCTURA_PUERTA
+      62.  00:C000                      
+      63.  00:C000                      
+      64.  00:C000                      ;Tipo:
+      65.  00:C000                      ;	0  - inactivo
+      66.  00:C000                      ;	1  - muerto (se pone daño 0 y vida: el tiempo para desaparecer)
+      67.  00:C000                      ;	2  - ciempiés
+      68.  00:C000                      ;	3  - serpiente
+      69.  00:C000                      ;	4  - araña
+      70.  00:C000                      ;	5  - murciélago
+      71.  00:C000                      ;	6  - lobo
+      72.  00:C000                      ;	7  - esqueleto
+      73.  00:C000                      ;	8  - zombi
+      74.  00:C000                      ;	9  - fantasma
+      75.  00:C000                      ;	10 - caballero gris
+      76.  00:C000                      ;	11 - caballero negro
+      77.  00:C000                      ;	12 - fuego
+      78.  00:C000                      ;	13 - magia
+      79.  00:C000                      ;	14 - jefe lobo gigante
+      80.  00:C000                      ;	15 - jefe murciélago gigante
+      81.  00:C000                      ;	16 - jefe fantasma gigante
+      82.  00:C000                      ;	17 - jefe zombie gigante
+      83.  00:C000                      ;	18 - jefe caballero
+      84.  00:C000                      ;	19 - jefe beholder
+      85.  00:C000                      ;	20 - mano derecha conde drácula
+      86.  00:C000                      ;	21 - izquierda conde drácula
+      87.  00:C000                      ;	22 - conde drácula
+      88.  00:C000                      ;
+      89.  00:C000                      ;Sprites que usa (16x16):
+      90.  00:C000                      ;	2  - ciempiés: 1
+      91.  00:C000                      ;	3  - serpiente: 1
+      92.  00:C000                      ;	4  - araña: 1
+      93.  00:C000                      ;	5  - murciélago: 1
+      94.  00:C000                      ;	6  - lobo: 2 (horz)
+      95.  00:C000                      ;	7  - esqueleto: 2 (vert)
+      96.  00:C000                      ;	8  - zombi: 2 (vert)
+      97.  00:C000                      ;	9  - fantasma: 2 (horz)
+      98.  00:C000                      ;	10 - caballero gris: 2 (vert)
+      99.  00:C000                      ;	11 - caballero negro: 2 (vert)
+     100.  00:C000                      ;	12 - fuego: 2 (vert)
+     101.  00:C000                      ;	13 - magia: 2 (horz)
+     102.  00:C000                      ;	14 - jefe lobo gigante: 4
+     103.  00:C000                      ;	15 - jefe murciélago gigante: 4
+     104.  00:C000                      ;	16 - jefe fantasma gigante: 4
+     105.  00:C000                      ;	17 - jefe zombie gigante: 4
+     106.  00:C000                      ;	18 - jefe caballero: 4
+     107.  00:C000                      ;	19 - jefe beholder: 4
+     108.  00:C000                      ;	20 - mano derecha conde drácula: 2 (vert)
+     109.  00:C000                      ;	21 - mano izquierda conde drácula: 2 (vert)
+     110.  00:C000                      ;	22 - conde drácula: 2 (vert)
+     111.  00:C000                      ;		
+     112.  00:C000                      ;movimiento:
+     113.  00:C000                      ;	1 - fijo_aleatorio
+     114.  00:C000                      ;		ciempiés
+     115.  00:C000                      ;		beholder
+     116.  00:C000                      ;		posiciones aleatoriaas precalculadas (duran en posición cont_sig_escena)
+     117.  00:C000                      ;	2 - vertical
+     118.  00:C000                      ;		murciélago
+     119.  00:C000                      ;		araña 
+     120.  00:C000                      ;		"precalculadas en horizontal" de 8 posibles (para usar R) desde la parte superior e irán bajando y 
+     121.  00:C000                      ;		subiendo verticalmente y con pos aleatorias horizontales para que no vayan todos al unísono
+     122.  00:C000                      ;		NOTA: para el murciélado me gustaría una onda senoidal a la altura de un tercio 				?? investigar
+     123.  00:C000                      ;	3 - horizontal
+     124.  00:C000                      ;		serpiente
+     125.  00:C000                      ;		lobo
+     126.  00:C000                      ;		zombie
+     127.  00:C000                      ;		cabalero gris y negro
+     128.  00:C000                      ;		"precalculadas en vertical" de 8 posibles (para usar R) desde la parte izquierda a la derecha moviéndose
+     129.  00:C000                      ;		horizontalmente y con pos aleatorias verticales para que no vayan todos al unísono
+     130.  00:C000                      ;	4 - circular
+     131.  00:C000                      ;		fantasma
+     132.  00:C000                      ;		fuego
+     133.  00:C000                      ;		manos del conde drácula
+     134.  00:C000                      ;		describe círculos desde un punto central con radios (pseudoaleatorios) a cada vuelta
+     135.  00:C000                      ;	5 - variable_aleatorio
+     136.  00:C000                      ;		magia
+     137.  00:C000                      ;		conde drácula
+     138.  00:C000                      ;		posiciones "pseudoaleatorias (aleatorias precalculadas)" por pantalla estando un contador en cada posición (duran en posición cont_sig_escena)
+     139.  00:C000                      
+     140.  00:C000                      
+     141.  00:C000                      
+     142.  00:C000                      	STRUCT ESTRUCTURA_ENEMIGO
+     143.  00:C000                    < activo_tipo			DB		0	;si inactivo = 0 si <> 0 es el tipo de enemigo
+     144.  00:C000                    < escena				DB		0	;sprite a mostrar 1/2
+     145.  00:C000                    < cont_sig_escena		DB		0	;retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
+     146.  00:C000                    < energia				DB		0	;energía del enemigo antes de morir
+     147.  00:C000                    < ;como será común la saco de la estructura y el daño está en un array
+     148.  00:C000                    < ;ptr_accion_dano		DW		0	;realiza cambios en caso daño o de muerte (energía = 0)
+     149.  00:C000                    < posx				DB		0	;pos x para mover y punto central del sprite para revisar disparo
+     150.  00:C000                    < posy				DB		0	;pos y para mover y punto central del sprite para revisar disparo
+     151.  00:C000                    < radiox				DB		0	;radio x del enemigo para cuando se dispare encima
+     152.  00:C000                    < radioy				DB		0	;radio y del enemigo para cuando se dispare encima
+     153.  00:C000                    < incx				DB		0	;incremento x para mover
+     154.  00:C000                    < inxy				DB		0	;incremento y para mover
+     155.  00:C000                    < direccionx			DB		0	;0 derecha <> 1 izquierda // 0 abajo <> 1 arriba
+     156.  00:C000                    < direcciony			DB		0	;0 derecha <> 1 izquierda // 0 abajo <> 1 arriba
+     157.  00:C000                    < pasos				DB		0	;pasos para no comprobar los límites de pantalla, sólo si pasos ha llegado a 0
+     158.  00:C000                    < radio				DB		0	;radio para movimientos circulares
+     159.  00:C000                    < ;mezclo el ptr_sig_escena con el mover ya que son obligatorias no erece la pena tener 2
+     160.  00:C000                    < ;ptr_sig_escena		DW		0	;funcion que cambia los sprites de la escena (según el nº de sprites será distinta)
+     161.  00:C000                    < ptr_mover			DW		0	;puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
+     162.  00:C000                    < ;se pondrán 8 sprites: 4 por si hay enemigos de hasta 4 sprites y por 2 por usar 2 escenas... si se usan 3 habría que ampliar
+     163.  00:C000                    < ;(en realidad estos son los nº de patrón 0 - 63)
+     164.  00:C000                    < sprite_a			DB		0	;izq arriba
+     165.  00:C000                    < sprite_b			DB		0	;izq abajo
+     166.  00:C000                    < sprite_c			DB		0	;der_arriba
+     167.  00:C000                    < sprite_d			DB		0	;der_abajo
+     168.  00:C000                    < 	ENDSTRUCT;ESTRUCTURA_ENEMIGO
+     169.  00:C000                      
       13   00:C000                      
       14   00:C000                      ;variables globales del prota
       15   00:C000  00                  prota_nivel:				DB		0			;nivel del castillo donde está 0-6
@@ -852,7 +864,8 @@ Errors: 0
      116   00:C4DF  00 (20)             enemigo4					DS	ESTRUCTURA_ENEMIGO
      117   00:C4F3  00 (20)             enemigo5					DS	ESTRUCTURA_ENEMIGO
      118   00:C507  00 (20)             enemigo6					DS	ESTRUCTURA_ENEMIGO
-     119   00:C51B                      
+     119   00:C51B  00 (20)             enemigo7					DS	ESTRUCTURA_ENEMIGO
+     120   00:C52F                      
 
     LABELS
 -------------------------------------------------
@@ -1129,6 +1142,19 @@ Errors: 0
 00:0000007C X ESQUELETO_SPRITE4B
 00:00000000 X ESQUELETO_POSX
 00:00000060 X ESQUELETO_POSY
+00:00000008 X TIPOZOMBI
+00:0000000F X ZOMBI_COLOR_A
+00:0000000F X ZOMBI_COLOR_B
+00:00000080 X ZOMBI_SPRITE1A
+00:00000084 X ZOMBI_SPRITE2A
+00:00000088 X ZOMBI_SPRITE3A
+00:0000008C X ZOMBI_SPRITE4A
+00:00000090 X ZOMBI_SPRITE1B
+00:00000094 X ZOMBI_SPRITE2B
+00:00000098 X ZOMBI_SPRITE3B
+00:0000009C X ZOMBI_SPRITE4B
+00:00000000 X ZOMBI_POSX
+00:00000060 X ZOMBI_POSY
 00:00000000 X ESTRUCTURA_PUNTOMIRA.posx
 00:00000001 X ESTRUCTURA_PUNTOMIRA.posy
 00:00000002 X ESTRUCTURA_PUNTOMIRA.escena
@@ -1261,6 +1287,7 @@ Errors: 0
 00:0000C4DF X enemigo4
 00:0000C4F3 X enemigo5
 00:0000C507 X enemigo6
+00:0000C51B X enemigo7
 
 
  Output: variables.dat
@@ -1275,7 +1302,7 @@ Errors: 0
 -------------------------------------------------
 
  Page: 00
-  Org: 0000C000  Size: *  Used: 0000051B
+  Org: 0000C000  Size: *  Used: 0000052F
 
    Address   Length Align   Label
-   0000C000    1307         prota_nivel
+   0000C000    1327         prota_nivel

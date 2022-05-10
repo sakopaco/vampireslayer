@@ -14,6 +14,7 @@ include "subr_enemigo_serpiente.asm"
 include "subr_enemigo_lobo.asm"
 include "subr_enemigo_jefelobo.asm"
 include "subr_enemigo_esqueleto.asm"
+include "subr_enemigo_zombi.asm"
 		
 		
 ;;=====================================================
@@ -483,7 +484,7 @@ inicializa_enemigos_fase0_nivel5:
 		JP			actualiza_valores_lobo	
 fin_inicializa_enemigos_fase0_nivel5:
 
-;; no hay nivel 6 porque el 5 se repite
+inicializa_enemigos_fase0_nivel6:				;; no hay nivel 6 porque el 5 se repite
 
 inicializa_enemigos_fase0_niveljefe:	
 		LD			DE, enemigo6
@@ -601,10 +602,20 @@ inicializa_enemigos_fase1_nivel5:
 		LD			DE, enemigo4
 		CALL		anade_enemigo_lobo
 		LD			IX, enemigo4
-		JP			actualiza_valores_lobo	
+		CALL		actualiza_valores_lobo		
+		
+		LD			DE, enemigo5
+		CALL		anade_enemigo_esqueleto
+		LD			IX, enemigo5
+		CALL		actualiza_valores_esqueleto
+		
+		LD			DE, enemigo6
+		CALL		anade_enemigo_zombi
+		LD			IX, enemigo6
+		JP			actualiza_valores_zombi
 fin_inicializa_enemigos_fase1_nivel5:
 
-;; no hay nivel 6 porque el 5 se repite
+;inicializa_enemigos_fase1_nivel6:				;; no hay nivel 6 porque el 5 se repite
 
 inicializa_enemigos_fase1_niveljefe:	
 		LD			DE, enemigo6
@@ -1389,9 +1400,19 @@ check_enemigos_fase1: ;; aquí se ponen los valores de enemigos (si están activ
 		LD			IX, enemigo6
 		LD			 A, (IX)
 		OR			 A
+		JP			 Z, .check_enemigo7
+		
+		LD			IY, array_sprites_enem + 32
+		CALL		mover_esqueleto
+
+		;acciones enemigos		
+.check_enemigo7:
+		LD			IX, enemigo7
+		LD			 A, (IX)
+		OR			 A
 		JP			 Z, fin_check_enemigos_fase1
 		
-		LD			IY, array_sprites_enem + 24
+		LD			IY, array_sprites_enem + 40
 		CALL		mover_jefelobo
 
 		;acciones enemigos
