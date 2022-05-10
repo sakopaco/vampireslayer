@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.05.04 - 12:42:51]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.05.10 - 19:27:33]
 
 ./variables.asm
 Errors: 0
@@ -396,12 +396,11 @@ Errors: 0
       96.  00:C000  (00:0074)           ESQUELETO_SPRITE2B	equ		116
       97.  00:C000  (00:0078)           ESQUELETO_SPRITE3B	equ		120
       98.  00:C000  (00:007C)           ESQUELETO_SPRITE4B	equ		124
-      99.  00:C000  (00:0008)           ESQUELETO_LIMIZQ	equ		8
-     100.  00:C000  (00:00D8)           ESQUELETO_LIMDER	equ		216
-     101.  00:C000  (00:0050)           ESQUELETO_POSY		equ		80
+      99.  00:C000  (00:0000)           ESQUELETO_POSX		equ		0
+     100.  00:C000  (00:0060)           ESQUELETO_POSY		equ		96
+     101.  00:C000                      
      102.  00:C000                      
      103.  00:C000                      
-     104.  00:C000                      
       12   00:C000                      include "constantesyvariables/estructuras.asm"
        1.  00:C000                      ;;=====================================================
        2.  00:C000                      ;;DEFINICIÓN DE ESTRUCTURAS
@@ -1128,9 +1127,8 @@ Errors: 0
 00:00000074 X ESQUELETO_SPRITE2B
 00:00000078 X ESQUELETO_SPRITE3B
 00:0000007C X ESQUELETO_SPRITE4B
-00:00000008 X ESQUELETO_LIMIZQ
-00:000000D8 X ESQUELETO_LIMDER
-00:00000050 X ESQUELETO_POSY
+00:00000000 X ESQUELETO_POSX
+00:00000060 X ESQUELETO_POSY
 00:00000000 X ESTRUCTURA_PUNTOMIRA.posx
 00:00000001 X ESTRUCTURA_PUNTOMIRA.posy
 00:00000002 X ESTRUCTURA_PUNTOMIRA.escena

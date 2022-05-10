@@ -1,12 +1,12 @@
 ;;=====================================================
-;;CONTANTES ESQUELETO
-;;=====================================================
+;;COSNTANTES ESQUELETO
+;;=====================================================		
 datos_esqueleto:
 			DB		TIPOESQUELETO	;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
 			DB		0		;(escena) sprite a mostrar 1/2
 			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
 			DB		10		;(energia) energía del enemigo antes de morir
-			DB		ESQUELETO_LIMIZQ;(posx) pos x para mover y punto central del sprite para revisar disparo
+			DB		ESQUELETO_POSX	;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		ESQUELETO_POSY	;(posy) pos y para mover y punto central del sprite para revisar disparo
 			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
 			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
@@ -51,19 +51,12 @@ fin_anade_enemigo_esqueleto:
 ; salida: 	posicion_anterior_arana
 ; toca:		-
 actualiza_valores_esqueleto:
-		EXX
 .calcula_posicion:
-.asigna_valores_posicion_x:		
-		;calcula posición inicial sumando a su líete izq un offset
-		LD			 A, R
-		AND			00111111b
-		ADD			LOBO_LIMIZQ
-		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
+.asigna_valores_posicion_x:
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), ESQUELETO_POSX
 		
 .asigna_valores_posicion_y:
 		LD			(IX + ESTRUCTURA_ENEMIGO.posy), ESQUELETO_POSY
-
-		EXX
 fin_actualiza_valores_esqueleto:
 		RET
 		
@@ -76,13 +69,13 @@ fin_actualiza_valores_esqueleto:
 ; salida: 	-
 ; toca:		-
 mover_esqueleto:
-		;no se mueve en el eje y
+		CALL		calcula_esqueleto_incrementoy
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
 		LD			(IY), A
 		ADD			16
 		LD			(IY + 4), A
 		
-		CALL		calcula_lobo_incrementox
+		CALL		calcula_esqueleto_incrementox
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
 		LD			(IY + 1), A
 		LD			(IY + 5), A
@@ -107,80 +100,51 @@ calcula_esqueleto_escena:
 		LD			 A, (heartbeat)
 		OR			00010000b
 		RET			 Z
-			
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
-		OR			 A
-		JP			 Z, .direccion_derecha
-.direccion_izquierda:
-			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
-			XOR			00000001b
-			LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
-			
-			OR			 A
-			JP			 Z, .escena_izquierda2
-.escena_izquierda1:
-				LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), ESQUELETO_SPRITE1B
-				RET
-.escena_izquierda2:
-				LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), ESQUELETO_SPRITE3B
-				RET
-			
+
 .direccion_derecha:
-			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
-			XOR			00000001b
-			LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+		XOR			00000001b
+		LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
 			
-			OR			 A
-			JP			 Z, .escena_derecha2
+		OR			 A
+		JP			 Z, .escena_derecha2
 .escena_derecha1:
-				LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), ESQUELETO_SPRITE1A
-				RET
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), ESQUELETO_SPRITE1A
+			RET
 .escena_derecha2:
-				LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), ESQUELETO_SPRITE3A
-				RET
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), ESQUELETO_SPRITE3A
+			RET
 fin_calcula_esqueleto_escena:
-		RET
+		;RET
 
 
 ;;=====================================================
 ;;CALCULA_ESQUELETO_INCREMENTOY
 ;;=====================================================	
+calcula_esqueleto_incrementoy:
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
+		AND			00111111b ;63
+		CP			00100000b ;32
+		JP			NC, .bajo
+.subo:
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
+			DEC			 A
+			LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
+			RET
+.bajo:
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
+			INC			 A
+			LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
+			RET
+fin_calcula_esqueleto_incrementoy:
 		
 
 ;;=====================================================
 ;;CALCULA_ESQUELETO_INCREMENTOX
-;;=====================================================	
+;;====================================================	
 calcula_esqueleto_incrementox:
-;SI DIRECCION = DERECHA
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
-		OR			 A
-		JP			 Z, .lobo_derecha
-.lobo_izquierda:
-		;DECREMENTA X => LOBO IZQUIERDA
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-		DEC			 A
-		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
-		
-		;SI X = LOBO_LIMIZQ 
-		CP			LOBO_LIMIZQ
-			RET			NZ
-		;DIRECCION = DERECHA
-			LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), DIRDERECHA
-		;FIN SI
-		RET
-;SINO
-.lobo_derecha:
-		;INCREMENTA X => LOBO DERECHA
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
 		INC			 A
-		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
-		
-		;SI Y = SERPIENTE_LIMDER
-		CP			LOBO_LIMDER
-			RET			NZ
-		;DIRECCION = LOBO
-			LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), DIRIZQUIERDA
-	;FIN SI
-;FIN SI
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A	
 fin_calcula_esqueleto_incrementox:
 		RET

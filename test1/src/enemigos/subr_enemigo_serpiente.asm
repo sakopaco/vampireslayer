@@ -104,7 +104,7 @@ fin_mover_serpiente:
 ;;=====================================================	
 calcula_serpiente_escena:
 		LD			 A, (heartbeat)
-		OR			00010000b
+		AND			00001000b
 		RET			 Z
 			
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
