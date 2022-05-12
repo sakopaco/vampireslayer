@@ -1403,7 +1403,7 @@ check_enemigos_fase1: ;; aquí se ponen los valores de enemigos (si están activ
 		JP			 Z, .check_enemigo7
 		
 		LD			IY, array_sprites_enem + 32
-		CALL		mover_esqueleto
+		CALL		mover_zombi
 
 		;acciones enemigos		
 .check_enemigo7:

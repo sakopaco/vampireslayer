@@ -52,8 +52,7 @@ fin_anade_enemigo_zombi:
 actualiza_valores_zombi:
 .calcula_posicion:
 .asigna_valores_posicion_x:
-		LD			 A, R
-		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), ZOMBI_POSX
 		
 .asigna_valores_posicion_y:
 		LD			(IX + ESTRUCTURA_ENEMIGO.posy), ZOMBI_POSY
@@ -98,9 +97,23 @@ fin_mover_zombi:
 ;;CALCULA_ZOMBI_ESCENA
 ;;=====================================================	
 calcula_zombi_escena:
-		LD			 A, (heartbeat)
-		OR			00010000b
-		RET			 Z
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
+		OR			 A
+		JP			 Z, .direccion_derecha
+
+.direccion_izquierda:
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+		XOR			00000001b
+		LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
+			
+		OR			 A
+		JP			 Z, .escena_izquierda2
+.escena_izquierda1:
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), ZOMBI_SPRITE1B
+			RET
+.escena_izquierda2:
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), ZOMBI_SPRITE3B
+			RET
 
 .direccion_derecha:
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
@@ -110,13 +123,12 @@ calcula_zombi_escena:
 		OR			 A
 		JP			 Z, .escena_derecha2
 .escena_derecha1:
-			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), ZOMBI_SPRITE1A
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), ZOMBI_SPRITE1A
 			RET
 .escena_derecha2:
-			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), ZOMBI_SPRITE3A
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), ZOMBI_SPRITE3A
 			RET
 fin_calcula_zombi_escena:
-		;RET
 
 
 ;;=====================================================
@@ -124,18 +136,18 @@ fin_calcula_zombi_escena:
 ;;=====================================================	
 calcula_zombi_incrementoy:
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-		;~ AND			00111111b ;63
-		;~ CP			00100000b ;32
-		;~ JP			NC, .bajo
-;~ .subo:
-			;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
-			;~ DEC			 A
-			;~ LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
-			;~ RET
-;~ .bajo:
-			;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
-			;~ INC			 A
-			;~ LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
+		AND			00000111b ;7
+		CP			00000100b ;4
+		JP			NC, .bajo
+.subo:
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
+			DEC			 A
+			LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
+			RET
+.bajo:
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
+			INC			 A
+			LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
 			RET
 fin_calcula_zombi_incrementoy:
 		
@@ -144,8 +156,29 @@ fin_calcula_zombi_incrementoy:
 ;;CALCULA_ZOMBI_INCREMENTOX
 ;;====================================================	
 calcula_zombi_incrementox:
-		;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-		;~ INC			 A
-		;~ LD			(IX + ESTRUCTURA_ENEMIGO.posx), A	
-fin_calcula_zombi_incrementox:
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
+		OR			 A
+		JP			NZ, .camina_izquierda
+.camina_derecha:
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
+[2]		INC			 A
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A	
+.verifica_limite_derecha:
+		CP			ZOMBI_LIMX_DER
+		RET			NZ
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
+		XOR			00000001b
+		LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), A
 		RET
+.camina_izquierda:
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
+		DEC			 A
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A	
+.verifica_limite_izquierda:
+		CP			ZOMBI_LIMX_IZQ
+		RET			NZ
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
+		XOR			00000001b
+		LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), A
+		RET
+fin_calcula_zombi_incrementox:
