@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.05.12 - 22:20:23]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.05.14 - 13:03:00]
 
 ./vs.asm
 Errors: 0
@@ -9478,576 +9478,576 @@ Errors: 0
      504.  00:9284                      ;; JEFE MURCIËLAGO (4 sprites 2 escenas)
      505.  00:9284                      sprite_jefemurcielago:
      506.  00:9284                      sprite_jefemurcielago_1:
-     507.  00:9284                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     507.  00:9284  FF FF FF FF FF FF FF FF 
-     508.  00:928C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     508.  00:928C  FF FF FF FF FF FF FF FF 
-     509.  00:9294                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     509.  00:9294  FF FF FF FF FF FF FF FF 
-     510.  00:929C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     510.  00:929C  FF FF FF FF FF FF FF FF 
+     507.  00:9284                      	DB  #70,#11,#13,#10,#10,#10,#90,#90
+     507.  00:9284  70 11 13 10 10 10 90 90 
+     508.  00:928C                      	DB  #70,#00,#00,#88,#D8,#A8,#89,#88
+     508.  00:928C  70 00 00 88 D8 A8 89 88 
+     509.  00:9294                      	DB  #00,#8F,#89,#89,#89,#89,#89,#8F
+     509.  00:9294  00 8F 89 89 89 89 89 8F 
+     510.  00:929C                      	DB  #8F,#89,#89,#89,#89,#89,#C9,#00
+     510.  00:929C  8F 89 89 89 89 89 C9 00 
      511.  00:92A4                      	
      512.  00:92A4                      sprite_jefemurcielago_2:
-     513.  00:92A4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     513.  00:92A4  FF FF FF FF FF FF FF FF 
-     514.  00:92AC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     514.  00:92AC  FF FF FF FF FF FF FF FF 
-     515.  00:92B4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     515.  00:92B4  FF FF FF FF FF FF FF FF 
-     516.  00:92BC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     516.  00:92BC  FF FF FF FF FF FF FF FF 
+     513.  00:92A4                      	DB  #70,#11,#13,#10,#10,#10,#90,#90
+     513.  00:92A4  70 11 13 10 10 10 90 90 
+     514.  00:92AC                      	DB  #70,#00,#00,#88,#D8,#A8,#89,#88
+     514.  00:92AC  70 00 00 88 D8 A8 89 88 
+     515.  00:92B4                      	DB  #00,#8E,#8B,#89,#89,#89,#89,#8F
+     515.  00:92B4  00 8E 8B 89 89 89 89 8F 
+     516.  00:92BC                      	DB  #8F,#89,#89,#89,#89,#8B,#CE,#00
+     516.  00:92BC  8F 89 89 89 89 8B CE 00 
      517.  00:92C4                      	
      518.  00:92C4                      sprite_jefemurcielago_3:
-     519.  00:92C4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     519.  00:92C4  FF FF FF FF FF FF FF FF 
-     520.  00:92CC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     520.  00:92CC  FF FF FF FF FF FF FF FF 
-     521.  00:92D4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     521.  00:92D4  FF FF FF FF FF FF FF FF 
-     522.  00:92DC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     522.  00:92DC  FF FF FF FF FF FF FF FF 
+     519.  00:92C4                      	DB  #70,#11,#13,#10,#10,#10,#90,#90
+     519.  00:92C4  70 11 13 10 10 10 90 90 
+     520.  00:92CC                      	DB  #70,#00,#00,#88,#D8,#A8,#89,#88
+     520.  00:92CC  70 00 00 88 D8 A8 89 88 
+     521.  00:92D4                      	DB  #00,#8F,#89,#88,#88,#88,#88,#88
+     521.  00:92D4  00 8F 89 88 88 88 88 88 
+     522.  00:92DC                      	DB  #88,#88,#88,#88,#88,#89,#CF,#00
+     522.  00:92DC  88 88 88 88 88 89 CF 00 
      523.  00:92E4                      	
      524.  00:92E4                      sprite_jefemurcielago_4:
-     525.  00:92E4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     525.  00:92E4  FF FF FF FF FF FF FF FF 
-     526.  00:92EC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     526.  00:92EC  FF FF FF FF FF FF FF FF 
-     527.  00:92F4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     527.  00:92F4  FF FF FF FF FF FF FF FF 
-     528.  00:92FC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     528.  00:92FC  FF FF FF FF FF FF FF FF 
+     525.  00:92E4                      	DB  #70,#11,#13,#10,#10,#10,#90,#90
+     525.  00:92E4  70 11 13 10 10 10 90 90 
+     526.  00:92EC                      	DB  #70,#00,#00,#88,#D8,#A8,#89,#88
+     526.  00:92EC  70 00 00 88 D8 A8 89 88 
+     527.  00:92F4                      	DB  #00,#8E,#8B,#89,#89,#89,#89,#89
+     527.  00:92F4  00 8E 8B 89 89 89 89 89 
+     528.  00:92FC                      	DB  #89,#89,#89,#89,#89,#8B,#CE,#00
+     528.  00:92FC  89 89 89 89 89 8B CE 00 
      529.  00:9304                      	
      530.  00:9304                      sprite_jefemurcielago_5:
-     531.  00:9304                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     531.  00:9304  FF FF FF FF FF FF FF FF 
-     532.  00:930C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     532.  00:930C  FF FF FF FF FF FF FF FF 
-     533.  00:9314                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     533.  00:9314  FF FF FF FF FF FF FF FF 
-     534.  00:931C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     534.  00:931C  FF FF FF FF FF FF FF FF 
+     531.  00:9304                      	DB  #00,#F1,#91,#91,#91,#91,#91,#F1
+     531.  00:9304  00 F1 91 91 91 91 91 F1 
+     532.  00:930C                      	DB  #F1,#91,#91,#91,#91,#91,#93,#00
+     532.  00:930C  F1 91 91 91 91 91 93 00 
+     533.  00:9314                      	DB  #0E,#88,#C8,#08,#08,#08,#09,#09
+     533.  00:9314  0E 88 C8 08 08 08 09 09 
+     534.  00:931C                      	DB  #0E,#00,#00,#11,#1B,#15,#91,#11
+     534.  00:931C  0E 00 00 11 1B 15 91 11 
      535.  00:9324                      	
      536.  00:9324                      sprite_jefemurcielago_6:
-     537.  00:9324                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     537.  00:9324  FF FF FF FF FF FF FF FF 
-     538.  00:932C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     538.  00:932C  FF FF FF FF FF FF FF FF 
-     539.  00:9334                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     539.  00:9334  FF FF FF FF FF FF FF FF 
-     540.  00:933C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     540.  00:933C  FF FF FF FF FF FF FF FF 
+     537.  00:9324                      	DB  #00,#71,#D1,#91,#91,#91,#91,#F1
+     537.  00:9324  00 71 D1 91 91 91 91 F1 
+     538.  00:932C                      	DB  #F1,#91,#91,#91,#91,#D1,#73,#00
+     538.  00:932C  F1 91 91 91 91 D1 73 00 
+     539.  00:9334                      	DB  #0E,#88,#C8,#08,#08,#08,#09,#09
+     539.  00:9334  0E 88 C8 08 08 08 09 09 
+     540.  00:933C                      	DB  #0E,#00,#00,#11,#1B,#15,#91,#11
+     540.  00:933C  0E 00 00 11 1B 15 91 11 
      541.  00:9344                      	
      542.  00:9344                      sprite_jefemurcielago_7:
-     543.  00:9344                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     543.  00:9344  FF FF FF FF FF FF FF FF 
-     544.  00:934C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     544.  00:934C  FF FF FF FF FF FF FF FF 
-     545.  00:9354                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     545.  00:9354  FF FF FF FF FF FF FF FF 
-     546.  00:935C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     546.  00:935C  FF FF FF FF FF FF FF FF 
+     543.  00:9344                      	DB  #00,#F1,#91,#11,#11,#11,#11,#11
+     543.  00:9344  00 F1 91 11 11 11 11 11 
+     544.  00:934C                      	DB  #11,#11,#11,#11,#11,#91,#F3,#00
+     544.  00:934C  11 11 11 11 11 91 F3 00 
+     545.  00:9354                      	DB  #0E,#88,#C8,#08,#08,#08,#09,#09
+     545.  00:9354  0E 88 C8 08 08 08 09 09 
+     546.  00:935C                      	DB  #0E,#00,#00,#11,#1B,#15,#91,#11
+     546.  00:935C  0E 00 00 11 1B 15 91 11 
      547.  00:9364                      	
      548.  00:9364                      sprite_jefemurcielago_8:
-     549.  00:9364                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     549.  00:9364  FF FF FF FF FF FF FF FF 
-     550.  00:936C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     550.  00:936C  FF FF FF FF FF FF FF FF 
-     551.  00:9374                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     551.  00:9374  FF FF FF FF FF FF FF FF 
-     552.  00:937C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     552.  00:937C  FF FF FF FF FF FF FF FF 
+     549.  00:9364                      	DB  #00,#71,#D1,#91,#91,#91,#91,#91
+     549.  00:9364  00 71 D1 91 91 91 91 91 
+     550.  00:936C                      	DB  #91,#91,#91,#91,#91,#D1,#73,#00
+     550.  00:936C  91 91 91 91 91 D1 73 00 
+     551.  00:9374                      	DB  #0E,#88,#C8,#08,#08,#08,#09,#09
+     551.  00:9374  0E 88 C8 08 08 08 09 09 
+     552.  00:937C                      	DB  #0E,#00,#00,#11,#1B,#15,#91,#11
+     552.  00:937C  0E 00 00 11 1B 15 91 11 
      553.  00:9384                      fin_sprite_jefemurcielago:
      554.  00:9384                      	
      555.  00:9384                      ;; JEFE FANTASMA (4 sprites 2 escenas)
      556.  00:9384                      sprite_jefefantasma:
      557.  00:9384                      sprite_jefefantasma_1:
-     558.  00:9384                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     558.  00:9384  FF FF FF FF FF FF FF FF 
-     559.  00:938C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     559.  00:938C  FF FF FF FF FF FF FF FF 
-     560.  00:9394                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     560.  00:9394  FF FF FF FF FF FF FF FF 
-     561.  00:939C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     561.  00:939C  FF FF FF FF FF FF FF FF 
+     558.  00:9384                      	DB  #70,#11,#13,#10,#10,#10,#90,#90
+     558.  00:9384  70 11 13 10 10 10 90 90 
+     559.  00:938C                      	DB  #70,#00,#F0,#80,#E0,#80,#81,#80
+     559.  00:938C  70 00 F0 80 E0 80 81 80 
+     560.  00:9394                      	DB  #00,#8F,#89,#89,#89,#89,#89,#8F
+     560.  00:9394  00 8F 89 89 89 89 89 8F 
+     561.  00:939C                      	DB  #8F,#89,#89,#89,#89,#89,#C9,#00
+     561.  00:939C  8F 89 89 89 89 89 C9 00 
      562.  00:93A4                      	
      563.  00:93A4                      sprite_jefefantasma_2:
-     564.  00:93A4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     564.  00:93A4  FF FF FF FF FF FF FF FF 
-     565.  00:93AC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     565.  00:93AC  FF FF FF FF FF FF FF FF 
-     566.  00:93B4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     566.  00:93B4  FF FF FF FF FF FF FF FF 
-     567.  00:93BC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     567.  00:93BC  FF FF FF FF FF FF FF FF 
+     564.  00:93A4                      	DB  #70,#11,#13,#10,#10,#10,#90,#90
+     564.  00:93A4  70 11 13 10 10 10 90 90 
+     565.  00:93AC                      	DB  #70,#00,#F0,#80,#E0,#80,#81,#80
+     565.  00:93AC  70 00 F0 80 E0 80 81 80 
+     566.  00:93B4                      	DB  #00,#8E,#8B,#89,#89,#89,#89,#8F
+     566.  00:93B4  00 8E 8B 89 89 89 89 8F 
+     567.  00:93BC                      	DB  #8F,#89,#89,#89,#89,#8B,#CE,#00
+     567.  00:93BC  8F 89 89 89 89 8B CE 00 
      568.  00:93C4                      	
      569.  00:93C4                      sprite_jefefantasma_3:
-     570.  00:93C4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     570.  00:93C4  FF FF FF FF FF FF FF FF 
-     571.  00:93CC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     571.  00:93CC  FF FF FF FF FF FF FF FF 
-     572.  00:93D4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     572.  00:93D4  FF FF FF FF FF FF FF FF 
-     573.  00:93DC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     573.  00:93DC  FF FF FF FF FF FF FF FF 
-     574.  00:93E4                      	
+     570.  00:93C4                      	DB  #70,#11,#13,#10,#10,#10,#90,#90
+     570.  00:93C4  70 11 13 10 10 10 90 90 
+     571.  00:93CC                      	DB  #70,#00,#F0,#80,#E0,#80,#81,#80
+     571.  00:93CC  70 00 F0 80 E0 80 81 80 
+     572.  00:93D4                      	DB  #00,#8E,#89,#88,#88,#88,#88,#88
+     572.  00:93D4  00 8E 89 88 88 88 88 88 
+     573.  00:93DC                      	DB  #88,#88,#88,#88,#88,#89,#CE,#00
+     573.  00:93DC  88 88 88 88 88 89 CE 00 
+     574.  00:93E4                      
      575.  00:93E4                      sprite_jefefantasma_4:
-     576.  00:93E4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     576.  00:93E4  FF FF FF FF FF FF FF FF 
-     577.  00:93EC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     577.  00:93EC  FF FF FF FF FF FF FF FF 
-     578.  00:93F4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     578.  00:93F4  FF FF FF FF FF FF FF FF 
-     579.  00:93FC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     579.  00:93FC  FF FF FF FF FF FF FF FF 
+     576.  00:93E4                      	DB  #70,#11,#13,#10,#10,#10,#90,#90
+     576.  00:93E4  70 11 13 10 10 10 90 90 
+     577.  00:93EC                      	DB  #70,#00,#F0,#80,#E0,#80,#81,#80
+     577.  00:93EC  70 00 F0 80 E0 80 81 80 
+     578.  00:93F4                      	DB  #00,#8E,#8B,#89,#89,#89,#89,#89
+     578.  00:93F4  00 8E 8B 89 89 89 89 89 
+     579.  00:93FC                      	DB  #89,#89,#89,#89,#89,#8B,#CE,#00
+     579.  00:93FC  89 89 89 89 89 8B CE 00 
      580.  00:9404                      	
      581.  00:9404                      sprite_jefefantasma_5:
-     582.  00:9404                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     582.  00:9404  FF FF FF FF FF FF FF FF 
-     583.  00:940C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     583.  00:940C  FF FF FF FF FF FF FF FF 
-     584.  00:9414                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     584.  00:9414  FF FF FF FF FF FF FF FF 
-     585.  00:941C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     585.  00:941C  FF FF FF FF FF FF FF FF 
+     582.  00:9404                      	DB  #00,#F1,#91,#91,#91,#91,#91,#F1
+     582.  00:9404  00 F1 91 91 91 91 91 F1 
+     583.  00:940C                      	DB  #F1,#91,#91,#91,#91,#91,#93,#00
+     583.  00:940C  F1 91 91 91 91 91 93 00 
+     584.  00:9414                      	DB  #0E,#88,#C8,#08,#08,#08,#09,#09
+     584.  00:9414  0E 88 C8 08 08 08 09 09 
+     585.  00:941C                      	DB  #0E,#00,#0F,#01,#07,#01,#81,#01
+     585.  00:941C  0E 00 0F 01 07 01 81 01 
      586.  00:9424                      	
      587.  00:9424                      sprite_jefefantasma_6:
-     588.  00:9424                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     588.  00:9424  FF FF FF FF FF FF FF FF 
-     589.  00:942C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     589.  00:942C  FF FF FF FF FF FF FF FF 
-     590.  00:9434                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     590.  00:9434  FF FF FF FF FF FF FF FF 
-     591.  00:943C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     591.  00:943C  FF FF FF FF FF FF FF FF 
+     588.  00:9424                      	DB  #00,#71,#D1,#91,#91,#91,#91,#F1
+     588.  00:9424  00 71 D1 91 91 91 91 F1 
+     589.  00:942C                      	DB  #F1,#91,#91,#91,#91,#D1,#73,#00
+     589.  00:942C  F1 91 91 91 91 D1 73 00 
+     590.  00:9434                      	DB  #0E,#88,#C8,#08,#08,#08,#09,#09
+     590.  00:9434  0E 88 C8 08 08 08 09 09 
+     591.  00:943C                      	DB  #0E,#00,#0F,#01,#07,#01,#81,#01
+     591.  00:943C  0E 00 0F 01 07 01 81 01 
      592.  00:9444                      	
      593.  00:9444                      sprite_jefefantasma_7:
-     594.  00:9444                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     594.  00:9444  FF FF FF FF FF FF FF FF 
-     595.  00:944C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     595.  00:944C  FF FF FF FF FF FF FF FF 
-     596.  00:9454                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     596.  00:9454  FF FF FF FF FF FF FF FF 
-     597.  00:945C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     597.  00:945C  FF FF FF FF FF FF FF FF 
+     594.  00:9444                      	DB  #00,#71,#91,#11,#11,#11,#11,#11
+     594.  00:9444  00 71 91 11 11 11 11 11 
+     595.  00:944C                      	DB  #11,#11,#11,#11,#11,#91,#73,#00
+     595.  00:944C  11 11 11 11 11 91 73 00 
+     596.  00:9454                      	DB  #0E,#88,#C8,#08,#08,#08,#09,#09
+     596.  00:9454  0E 88 C8 08 08 08 09 09 
+     597.  00:945C                      	DB  #0E,#00,#0F,#01,#07,#01,#81,#01
+     597.  00:945C  0E 00 0F 01 07 01 81 01 
      598.  00:9464                      	
      599.  00:9464                      sprite_jefefantasma_8:
-     600.  00:9464                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     600.  00:9464  FF FF FF FF FF FF FF FF 
-     601.  00:946C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     601.  00:946C  FF FF FF FF FF FF FF FF 
-     602.  00:9474                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     602.  00:9474  FF FF FF FF FF FF FF FF 
-     603.  00:947C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     603.  00:947C  FF FF FF FF FF FF FF FF 
+     600.  00:9464                      	DB  #00,#71,#D1,#91,#91,#91,#91,#91
+     600.  00:9464  00 71 D1 91 91 91 91 91 
+     601.  00:946C                      	DB  #91,#91,#91,#91,#91,#D1,#73,#00
+     601.  00:946C  91 91 91 91 91 D1 73 00 
+     602.  00:9474                      	DB  #0E,#88,#C8,#08,#08,#08,#09,#09
+     602.  00:9474  0E 88 C8 08 08 08 09 09 
+     603.  00:947C                      	DB  #0E,#00,#0F,#01,#07,#01,#81,#01
+     603.  00:947C  0E 00 0F 01 07 01 81 01 
      604.  00:9484                      fin_sprite_jefefantasma:
      605.  00:9484                      	
      606.  00:9484                      ;; JEFE ZOMBI (4 sprites 2 escenas 2 direcciones)
      607.  00:9484                      sprite_jefezombi:
      608.  00:9484                      sprite_jefezombi1_1:
-     609.  00:9484                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     609.  00:9484  FF FF FF FF FF FF FF FF 
-     610.  00:948C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     610.  00:948C  FF FF FF FF FF FF FF FF 
-     611.  00:9494                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     611.  00:9494  FF FF FF FF FF FF FF FF 
-     612.  00:949C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     612.  00:949C  FF FF FF FF FF FF FF FF 
-     613.  00:94A4                      	
+     609.  00:9484                      	DB  #70,#11,#13,#10,#10,#10,#90,#60
+     609.  00:9484  70 11 13 10 10 10 90 60 
+     610.  00:948C                      	DB  #00,#FC,#0C,#18,#70,#40,#85,#FC
+     610.  00:948C  00 FC 0C 18 70 40 85 FC 
+     611.  00:9494                      	DB  #00,#8F,#89,#89,#89,#89,#89,#8F
+     611.  00:9494  00 8F 89 89 89 89 89 8F 
+     612.  00:949C                      	DB  #8F,#89,#89,#89,#89,#89,#C9,#00 
+     612.  00:949C  8F 89 89 89 89 89 C9 00 
+     613.  00:94A4                      
      614.  00:94A4                      sprite_jefezombi1_2:
-     615.  00:94A4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     615.  00:94A4  FF FF FF FF FF FF FF FF 
-     616.  00:94AC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     616.  00:94AC  FF FF FF FF FF FF FF FF 
-     617.  00:94B4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     617.  00:94B4  FF FF FF FF FF FF FF FF 
-     618.  00:94BC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     618.  00:94BC  FF FF FF FF FF FF FF FF 
+     615.  00:94A4                      	DB  #70,#11,#13,#10,#10,#10,#90,#60
+     615.  00:94A4  70 11 13 10 10 10 90 60 
+     616.  00:94AC                      	DB  #00,#FC,#0C,#18,#70,#40,#85,#FC
+     616.  00:94AC  00 FC 0C 18 70 40 85 FC 
+     617.  00:94B4                      	DB  #00,#8E,#8B,#89,#89,#89,#89,#8F
+     617.  00:94B4  00 8E 8B 89 89 89 89 8F 
+     618.  00:94BC                      	DB  #8F,#89,#89,#89,#89,#8B,#CE,#00
+     618.  00:94BC  8F 89 89 89 89 8B CE 00 
      619.  00:94C4                      	
      620.  00:94C4                      sprite_jefezombi1_3:
-     621.  00:94C4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     621.  00:94C4  FF FF FF FF FF FF FF FF 
-     622.  00:94CC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     622.  00:94CC  FF FF FF FF FF FF FF FF 
-     623.  00:94D4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     623.  00:94D4  FF FF FF FF FF FF FF FF 
-     624.  00:94DC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     624.  00:94DC  FF FF FF FF FF FF FF FF 
+     621.  00:94C4                      	DB  #70,#11,#13,#10,#10,#10,#90,#60
+     621.  00:94C4  70 11 13 10 10 10 90 60 
+     622.  00:94CC                      	DB  #00,#FC,#0C,#18,#70,#40,#85,#FC
+     622.  00:94CC  00 FC 0C 18 70 40 85 FC 
+     623.  00:94D4                      	DB  #00,#8F,#89,#88,#88,#88,#88,#88
+     623.  00:94D4  00 8F 89 88 88 88 88 88 
+     624.  00:94DC                      	DB  #88,#88,#88,#88,#89,#89,#CF,#00
+     624.  00:94DC  88 88 88 88 89 89 CF 00 
      625.  00:94E4                      	
      626.  00:94E4                      sprite_jefezombi1_4:
-     627.  00:94E4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     627.  00:94E4  FF FF FF FF FF FF FF FF 
-     628.  00:94EC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     628.  00:94EC  FF FF FF FF FF FF FF FF 
-     629.  00:94F4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     629.  00:94F4  FF FF FF FF FF FF FF FF 
-     630.  00:94FC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     630.  00:94FC  FF FF FF FF FF FF FF FF 
+     627.  00:94E4                      	DB  #70,#11,#13,#10,#10,#10,#90,#60
+     627.  00:94E4  70 11 13 10 10 10 90 60 
+     628.  00:94EC                      	DB  #00,#FC,#0C,#18,#70,#40,#85,#FC
+     628.  00:94EC  00 FC 0C 18 70 40 85 FC 
+     629.  00:94F4                      	DB  #00,#8E,#8B,#89,#89,#89,#89,#89
+     629.  00:94F4  00 8E 8B 89 89 89 89 89 
+     630.  00:94FC                      	DB  #89,#89,#89,#89,#89,#8B,#CE,#00
+     630.  00:94FC  89 89 89 89 89 8B CE 00 
      631.  00:9504                      	
      632.  00:9504                      sprite_jefezombi1_5:
-     633.  00:9504                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     633.  00:9504  FF FF FF FF FF FF FF FF 
-     634.  00:950C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     634.  00:950C  FF FF FF FF FF FF FF FF 
-     635.  00:9514                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     635.  00:9514  FF FF FF FF FF FF FF FF 
-     636.  00:951C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     636.  00:951C  FF FF FF FF FF FF FF FF 
+     633.  00:9504                      	DB  #70,#11,#12,#12,#10,#10,#90,#60
+     633.  00:9504  70 11 12 12 10 10 90 60 
+     634.  00:950C                      	DB  #00,#FC,#0D,#19,#71,#41,#85,#FC
+     634.  00:950C  00 FC 0D 19 71 41 85 FC 
+     635.  00:9514                      	DB  #00,#EF,#29,#29,#29,#29,#29,#6F
+     635.  00:9514  00 EF 29 29 29 29 29 6F 
+     636.  00:951C                      	DB  #CF,#89,#89,#09,#09,#09,#E9,#00
+     636.  00:951C  CF 89 89 09 09 09 E9 00 
      637.  00:9524                      	
      638.  00:9524                      sprite_jefezombi1_6:
-     639.  00:9524                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     639.  00:9524  FF FF FF FF FF FF FF FF 
-     640.  00:952C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     640.  00:952C  FF FF FF FF FF FF FF FF 
-     641.  00:9534                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     641.  00:9534  FF FF FF FF FF FF FF FF 
-     642.  00:953C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     642.  00:953C  FF FF FF FF FF FF FF FF 
+     639.  00:9524                      	DB  #70,#11,#12,#12,#10,#10,#90,#60
+     639.  00:9524  70 11 12 12 10 10 90 60 
+     640.  00:952C                      	DB  #00,#FC,#0D,#19,#71,#41,#85,#FC
+     640.  00:952C  00 FC 0D 19 71 41 85 FC 
+     641.  00:9534                      	DB  #00,#EE,#2B,#29,#29,#29,#29,#6F
+     641.  00:9534  00 EE 2B 29 29 29 29 6F 
+     642.  00:953C                      	DB  #CF,#89,#89,#09,#09,#0B,#EE,#00
+     642.  00:953C  CF 89 89 09 09 0B EE 00 
      643.  00:9544                      	
      644.  00:9544                      sprite_jefezombi1_7:
-     645.  00:9544                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     645.  00:9544  FF FF FF FF FF FF FF FF 
-     646.  00:954C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     646.  00:954C  FF FF FF FF FF FF FF FF 
-     647.  00:9554                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     647.  00:9554  FF FF FF FF FF FF FF FF 
-     648.  00:955C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     648.  00:955C  FF FF FF FF FF FF FF FF 
+     645.  00:9544                      	DB  #70,#11,#12,#12,#10,#10,#90,#60
+     645.  00:9544  70 11 12 12 10 10 90 60 
+     646.  00:954C                      	DB  #00,#FC,#0D,#19,#71,#41,#85,#FC
+     646.  00:954C  00 FC 0D 19 71 41 85 FC 
+     647.  00:9554                      	DB  #00,#EF,#29,#29,#28,#28,#28,#68
+     647.  00:9554  00 EF 29 29 28 28 28 68 
+     648.  00:955C                      	DB  #C8,#88,#88,#08,#08,#09,#EF,#00
+     648.  00:955C  C8 88 88 08 08 09 EF 00 
      649.  00:9564                      	
      650.  00:9564                      sprite_jefezombi1_8:
-     651.  00:9564                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     651.  00:9564  FF FF FF FF FF FF FF FF 
-     652.  00:956C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     652.  00:956C  FF FF FF FF FF FF FF FF 
-     653.  00:9574                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     653.  00:9574  FF FF FF FF FF FF FF FF 
-     654.  00:957C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
-     654.  00:957C  FF FF FF FF FF FF FF FF 
+     651.  00:9564                      	DB  #70,#11,#12,#12,#10,#10,#90,#60
+     651.  00:9564  70 11 12 12 10 10 90 60 
+     652.  00:956C                      	DB  #00,#FC,#0D,#19,#71,#41,#85,#FC
+     652.  00:956C  00 FC 0D 19 71 41 85 FC 
+     653.  00:9574                      	DB  #00,#EE,#2B,#29,#29,#29,#29,#69
+     653.  00:9574  00 EE 2B 29 29 29 29 69 
+     654.  00:957C                      	DB  #C9,#89,#89,#09,#09,#0B,#EE,#00
+     654.  00:957C  C9 89 89 09 09 0B EE 00 
      655.  00:9584                      	
      656.  00:9584                      sprite_jefezombi2_1:
-     657.  00:9584                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     657.  00:9584  FF FF FF FF FF FF FF FF 
-     658.  00:958C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     658.  00:958C  FF FF FF FF FF FF FF FF 
-     659.  00:9594                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     659.  00:9594  FF FF FF FF FF FF FF FF 
-     660.  00:959C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     660.  00:959C  FF FF FF FF FF FF FF FF 
+     657.  00:9584                      	DB  #00,#F1,#91,#91,#91,#91,#91,#F1
+     657.  00:9584  00 F1 91 91 91 91 91 F1 
+     658.  00:958C                      	DB  #F1,#91,#91,#91,#91,#91,#93,#00
+     658.  00:958C  F1 91 91 91 91 91 93 00 
+     659.  00:9594                      	DB  #0E,#88,#C8,#08,#08,#08,#09,#06
+     659.  00:9594  0E 88 C8 08 08 08 09 06 
+     660.  00:959C                      	DB  #00,#3F,#30,#18,#0E,#02,#A1,#3F
+     660.  00:959C  00 3F 30 18 0E 02 A1 3F 
      661.  00:95A4                      	
      662.  00:95A4                      sprite_jefezombi2_2:
-     663.  00:95A4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     663.  00:95A4  FF FF FF FF FF FF FF FF 
-     664.  00:95AC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     664.  00:95AC  FF FF FF FF FF FF FF FF 
-     665.  00:95B4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     665.  00:95B4  FF FF FF FF FF FF FF FF 
-     666.  00:95BC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     666.  00:95BC  FF FF FF FF FF FF FF FF 
+     663.  00:95A4                      	DB  #00,#71,#D1,#91,#91,#91,#91,#F1
+     663.  00:95A4  00 71 D1 91 91 91 91 F1 
+     664.  00:95AC                      	DB  #F1,#91,#91,#91,#91,#D1,#73,#00
+     664.  00:95AC  F1 91 91 91 91 D1 73 00 
+     665.  00:95B4                      	DB  #0E,#88,#C8,#08,#08,#08,#09,#06
+     665.  00:95B4  0E 88 C8 08 08 08 09 06 
+     666.  00:95BC                      	DB  #00,#3F,#30,#18,#0E,#02,#A1,#3F
+     666.  00:95BC  00 3F 30 18 0E 02 A1 3F 
      667.  00:95C4                      	
      668.  00:95C4                      sprite_jefezombi2_3:
-     669.  00:95C4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     669.  00:95C4  FF FF FF FF FF FF FF FF 
-     670.  00:95CC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     670.  00:95CC  FF FF FF FF FF FF FF FF 
-     671.  00:95D4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     671.  00:95D4  FF FF FF FF FF FF FF FF 
-     672.  00:95DC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     672.  00:95DC  FF FF FF FF FF FF FF FF 
+     669.  00:95C4                      	DB  #00,#F1,#91,#11,#11,#11,#11,#11
+     669.  00:95C4  00 F1 91 11 11 11 11 11 
+     670.  00:95CC                      	DB  #11,#11,#11,#11,#91,#91,#F3,#00
+     670.  00:95CC  11 11 11 11 91 91 F3 00 
+     671.  00:95D4                      	DB  #0E,#88,#C8,#08,#08,#08,#09,#06
+     671.  00:95D4  0E 88 C8 08 08 08 09 06 
+     672.  00:95DC                      	DB  #00,#3F,#30,#18,#0E,#02,#A1,#3F
+     672.  00:95DC  00 3F 30 18 0E 02 A1 3F 
      673.  00:95E4                      	
      674.  00:95E4                      sprite_jefezombi2_4:
-     675.  00:95E4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     675.  00:95E4  FF FF FF FF FF FF FF FF 
-     676.  00:95EC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     676.  00:95EC  FF FF FF FF FF FF FF FF 
-     677.  00:95F4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     677.  00:95F4  FF FF FF FF FF FF FF FF 
-     678.  00:95FC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     678.  00:95FC  FF FF FF FF FF FF FF FF 
+     675.  00:95E4                      	DB  #00,#71,#D1,#91,#91,#91,#91,#91
+     675.  00:95E4  00 71 D1 91 91 91 91 91 
+     676.  00:95EC                      	DB  #91,#91,#91,#91,#91,#D1,#73,#00
+     676.  00:95EC  91 91 91 91 91 D1 73 00 
+     677.  00:95F4                      	DB  #0E,#88,#C8,#08,#08,#08,#09,#06
+     677.  00:95F4  0E 88 C8 08 08 08 09 06 
+     678.  00:95FC                      	DB  #00,#3F,#30,#18,#0E,#02,#A1,#3F
+     678.  00:95FC  00 3F 30 18 0E 02 A1 3F 
      679.  00:9604                      	
      680.  00:9604                      sprite_jefezombi2_5:
-     681.  00:9604                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     681.  00:9604  FF FF FF FF FF FF FF FF 
-     682.  00:960C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     682.  00:960C  FF FF FF FF FF FF FF FF 
-     683.  00:9614                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     683.  00:9614  FF FF FF FF FF FF FF FF 
-     684.  00:961C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     684.  00:961C  FF FF FF FF FF FF FF FF 
+     681.  00:9604                      	DB  #00,#F7,#94,#94,#94,#94,#94,#F6
+     681.  00:9604  00 F7 94 94 94 94 94 F6 
+     682.  00:960C                      	DB  #F3,#91,#91,#90,#90,#90,#97,#00
+     682.  00:960C  F3 91 91 90 90 90 97 00 
+     683.  00:9614                      	DB  #0E,#88,#48,#48,#08,#08,#09,#06
+     683.  00:9614  0E 88 48 48 08 08 09 06 
+     684.  00:961C                      	DB  #00,#3F,#B0,#98,#8E,#82,#A1,#3F
+     684.  00:961C  00 3F B0 98 8E 82 A1 3F 
      685.  00:9624                      	
      686.  00:9624                      sprite_jefezombi2_6:
-     687.  00:9624                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     687.  00:9624  FF FF FF FF FF FF FF FF 
-     688.  00:962C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     688.  00:962C  FF FF FF FF FF FF FF FF 
-     689.  00:9634                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     689.  00:9634  FF FF FF FF FF FF FF FF 
-     690.  00:963C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     690.  00:963C  FF FF FF FF FF FF FF FF 
+     687.  00:9624                      	DB  #00,#77,#D4,#94,#94,#94,#94,#F6
+     687.  00:9624  00 77 D4 94 94 94 94 F6 
+     688.  00:962C                      	DB  #F3,#91,#91,#90,#90,#D0,#77,#00
+     688.  00:962C  F3 91 91 90 90 D0 77 00 
+     689.  00:9634                      	DB  #0E,#88,#48,#48,#08,#08,#09,#06
+     689.  00:9634  0E 88 48 48 08 08 09 06 
+     690.  00:963C                      	DB  #00,#3F,#B0,#98,#8E,#82,#A1,#3F
+     690.  00:963C  00 3F B0 98 8E 82 A1 3F 
      691.  00:9644                      	
      692.  00:9644                      sprite_jefezombi2_7:
-     693.  00:9644                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     693.  00:9644  FF FF FF FF FF FF FF FF 
-     694.  00:964C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     694.  00:964C  FF FF FF FF FF FF FF FF 
-     695.  00:9654                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     695.  00:9654  FF FF FF FF FF FF FF FF 
-     696.  00:965C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     696.  00:965C  FF FF FF FF FF FF FF FF 
+     693.  00:9644                      	DB  #00,#F7,#94,#94,#14,#14,#14,#16
+     693.  00:9644  00 F7 94 94 14 14 14 16 
+     694.  00:964C                      	DB  #13,#11,#11,#10,#10,#90,#F7,#00
+     694.  00:964C  13 11 11 10 10 90 F7 00 
+     695.  00:9654                      	DB  #0E,#88,#48,#48,#08,#08,#09,#06
+     695.  00:9654  0E 88 48 48 08 08 09 06 
+     696.  00:965C                      	DB  #00,#3F,#B0,#98,#8E,#82,#A1,#3F
+     696.  00:965C  00 3F B0 98 8E 82 A1 3F 
      697.  00:9664                      	
      698.  00:9664                      sprite_jefezombi2_8:
-     699.  00:9664                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     699.  00:9664  FF FF FF FF FF FF FF FF 
-     700.  00:966C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     700.  00:966C  FF FF FF FF FF FF FF FF 
-     701.  00:9674                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     701.  00:9674  FF FF FF FF FF FF FF FF 
-     702.  00:967C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     702.  00:967C  FF FF FF FF FF FF FF FF 
+     699.  00:9664                      	DB  #00,#77,#D4,#94,#94,#94,#94,#96
+     699.  00:9664  00 77 D4 94 94 94 94 96 
+     700.  00:966C                      	DB  #93,#91,#91,#90,#90,#D0,#77,#00
+     700.  00:966C  93 91 91 90 90 D0 77 00 
+     701.  00:9674                      	DB  #0E,#88,#48,#48,#08,#08,#09,#06
+     701.  00:9674  0E 88 48 48 08 08 09 06 
+     702.  00:967C                      	DB  #00,#3F,#B0,#98,#8E,#82,#A1,#3F 	
+     702.  00:967C  00 3F B0 98 8E 82 A1 3F 
      703.  00:9684                      fin_sprite_jefezombi:
      704.  00:9684                      	
      705.  00:9684                      ;; JEFE CABALLERO (4 sprites 2 escenas 2 direcciones)
      706.  00:9684                      sprite_jefecaballero:
      707.  00:9684                      sprite_jefecaballero1_1:
-     708.  00:9684                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     708.  00:9684  FF FF FF FF FF FF FF FF 
-     709.  00:968C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     709.  00:968C  FF FF FF FF FF FF FF FF 
-     710.  00:9694                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     710.  00:9694  FF FF FF FF FF FF FF FF 
-     711.  00:969C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     711.  00:969C  FF FF FF FF FF FF FF FF 
+     708.  00:9684                      	DB  #70,#11,#13,#10,#10,#10,#90,#60
+     708.  00:9684  70 11 13 10 10 10 90 60 
+     709.  00:968C                      	DB  #00,#78,#84,#80,#80,#80,#85,#78
+     709.  00:968C  00 78 84 80 80 80 85 78 
+     710.  00:9694                      	DB  #00,#8F,#89,#89,#89,#89,#89,#8F
+     710.  00:9694  00 8F 89 89 89 89 89 8F 
+     711.  00:969C                      	DB  #8F,#89,#89,#89,#89,#89,#C9,#00
+     711.  00:969C  8F 89 89 89 89 89 C9 00 
      712.  00:96A4                      	
      713.  00:96A4                      sprite_jefecaballero1_2:
-     714.  00:96A4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     714.  00:96A4  FF FF FF FF FF FF FF FF 
-     715.  00:96AC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     715.  00:96AC  FF FF FF FF FF FF FF FF 
-     716.  00:96B4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     716.  00:96B4  FF FF FF FF FF FF FF FF 
-     717.  00:96BC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     717.  00:96BC  FF FF FF FF FF FF FF FF 
+     714.  00:96A4                      	DB  #70,#11,#13,#10,#10,#10,#90,#60
+     714.  00:96A4  70 11 13 10 10 10 90 60 
+     715.  00:96AC                      	DB  #00,#78,#84,#80,#80,#80,#85,#78
+     715.  00:96AC  00 78 84 80 80 80 85 78 
+     716.  00:96B4                      	DB  #00,#8E,#8B,#89,#89,#89,#89,#8F
+     716.  00:96B4  00 8E 8B 89 89 89 89 8F 
+     717.  00:96BC                      	DB  #8F,#89,#89,#89,#89,#8B,#CE,#00
+     717.  00:96BC  8F 89 89 89 89 8B CE 00 
      718.  00:96C4                      	
      719.  00:96C4                      sprite_jefecaballero1_3:
-     720.  00:96C4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     720.  00:96C4  FF FF FF FF FF FF FF FF 
-     721.  00:96CC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     721.  00:96CC  FF FF FF FF FF FF FF FF 
-     722.  00:96D4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     722.  00:96D4  FF FF FF FF FF FF FF FF 
-     723.  00:96DC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     723.  00:96DC  FF FF FF FF FF FF FF FF 
+     720.  00:96C4                      	DB  #70,#11,#13,#10,#10,#10,#90,#60
+     720.  00:96C4  70 11 13 10 10 10 90 60 
+     721.  00:96CC                      	DB  #00,#78,#84,#80,#80,#80,#85,#78
+     721.  00:96CC  00 78 84 80 80 80 85 78 
+     722.  00:96D4                      	DB  #00,#87,#89,#89,#88,#88,#88,#88
+     722.  00:96D4  00 87 89 89 88 88 88 88 
+     723.  00:96DC                      	DB  #88,#88,#88,#88,#88,#89,#C7,#00
+     723.  00:96DC  88 88 88 88 88 89 C7 00 
      724.  00:96E4                      	
      725.  00:96E4                      sprite_jefecaballero1_4:
-     726.  00:96E4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     726.  00:96E4  FF FF FF FF FF FF FF FF 
-     727.  00:96EC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     727.  00:96EC  FF FF FF FF FF FF FF FF 
-     728.  00:96F4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     728.  00:96F4  FF FF FF FF FF FF FF FF 
-     729.  00:96FC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     729.  00:96FC  FF FF FF FF FF FF FF FF 
+     726.  00:96E4                      	DB  #70,#11,#13,#10,#10,#10,#90,#60
+     726.  00:96E4  70 11 13 10 10 10 90 60 
+     727.  00:96EC                      	DB  #00,#78,#84,#80,#80,#80,#85,#78
+     727.  00:96EC  00 78 84 80 80 80 85 78 
+     728.  00:96F4                      	DB  #00,#8E,#8B,#89,#89,#89,#89,#89
+     728.  00:96F4  00 8E 8B 89 89 89 89 89 
+     729.  00:96FC                      	DB  #89,#89,#89,#89,#89,#8B,#CE,#00
+     729.  00:96FC  89 89 89 89 89 8B CE 00 
      730.  00:9704                      	
      731.  00:9704                      sprite_jefecaballero1_5:
-     732.  00:9704                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     732.  00:9704  FF FF FF FF FF FF FF FF 
-     733.  00:970C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     733.  00:970C  FF FF FF FF FF FF FF FF 
-     734.  00:9714                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     734.  00:9714  FF FF FF FF FF FF FF FF 
-     735.  00:971C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     735.  00:971C  FF FF FF FF FF FF FF FF 
+     732.  00:9704                      	DB  #70,#11,#12,#12,#10,#10,#90,#60
+     732.  00:9704  70 11 12 12 10 10 90 60 
+     733.  00:970C                      	DB  #00,#7C,#85,#81,#81,#81,#85,#7C
+     733.  00:970C  00 7C 85 81 81 81 85 7C 
+     734.  00:9714                      	DB  #00,#EF,#29,#29,#29,#29,#29,#6F
+     734.  00:9714  00 EF 29 29 29 29 29 6F 
+     735.  00:971C                      	DB  #CF,#89,#89,#09,#09,#09,#E9,#00
+     735.  00:971C  CF 89 89 09 09 09 E9 00 
      736.  00:9724                      	
      737.  00:9724                      sprite_jefecaballero1_6:
-     738.  00:9724                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     738.  00:9724  FF FF FF FF FF FF FF FF 
-     739.  00:972C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     739.  00:972C  FF FF FF FF FF FF FF FF 
-     740.  00:9734                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     740.  00:9734  FF FF FF FF FF FF FF FF 
-     741.  00:973C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     741.  00:973C  FF FF FF FF FF FF FF FF 
+     738.  00:9724                      	DB  #70,#11,#12,#12,#10,#10,#90,#60
+     738.  00:9724  70 11 12 12 10 10 90 60 
+     739.  00:972C                      	DB  #00,#7C,#85,#81,#81,#81,#85,#7C
+     739.  00:972C  00 7C 85 81 81 81 85 7C 
+     740.  00:9734                      	DB  #00,#EE,#2B,#29,#29,#29,#29,#6F
+     740.  00:9734  00 EE 2B 29 29 29 29 6F 
+     741.  00:973C                      	DB  #CF,#89,#89,#09,#09,#0B,#EE,#00
+     741.  00:973C  CF 89 89 09 09 0B EE 00 
      742.  00:9744                      	
      743.  00:9744                      sprite_jefecaballero1_7:
-     744.  00:9744                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     744.  00:9744  FF FF FF FF FF FF FF FF 
-     745.  00:974C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     745.  00:974C  FF FF FF FF FF FF FF FF 
-     746.  00:9754                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     746.  00:9754  FF FF FF FF FF FF FF FF 
-     747.  00:975C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     747.  00:975C  FF FF FF FF FF FF FF FF 
+     744.  00:9744                      	DB  #70,#11,#12,#12,#10,#10,#90,#60
+     744.  00:9744  70 11 12 12 10 10 90 60 
+     745.  00:974C                      	DB  #00,#7C,#85,#81,#81,#81,#85,#7C
+     745.  00:974C  00 7C 85 81 81 81 85 7C 
+     746.  00:9754                      	DB  #00,#EF,#29,#28,#28,#28,#28,#68
+     746.  00:9754  00 EF 29 28 28 28 28 68 
+     747.  00:975C                      	DB  #C8,#88,#88,#08,#08,#09,#EF,#00
+     747.  00:975C  C8 88 88 08 08 09 EF 00 
      748.  00:9764                      	
      749.  00:9764                      sprite_jefecaballero1_8:
-     750.  00:9764                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     750.  00:9764  FF FF FF FF FF FF FF FF 
-     751.  00:976C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     751.  00:976C  FF FF FF FF FF FF FF FF 
-     752.  00:9774                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     752.  00:9774  FF FF FF FF FF FF FF FF 
-     753.  00:977C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF	
-     753.  00:977C  FF FF FF FF FF FF FF FF 
+     750.  00:9764                      	DB  #70,#11,#12,#12,#10,#10,#90,#60
+     750.  00:9764  70 11 12 12 10 10 90 60 
+     751.  00:976C                      	DB  #00,#7C,#85,#81,#81,#81,#85,#7C
+     751.  00:976C  00 7C 85 81 81 81 85 7C 
+     752.  00:9774                      	DB  #00,#EE,#2B,#29,#29,#29,#29,#69
+     752.  00:9774  00 EE 2B 29 29 29 29 69 
+     753.  00:977C                      	DB  #C9,#89,#89,#09,#09,#0B,#EE,#00
+     753.  00:977C  C9 89 89 09 09 0B EE 00 
      754.  00:9784                      	
      755.  00:9784                      sprite_jefecaballero2_1:
-     756.  00:9784                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     756.  00:9784  FF FF FF FF FF FF FF FF 
-     757.  00:978C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     757.  00:978C  FF FF FF FF FF FF FF FF 
-     758.  00:9794                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     758.  00:9794  FF FF FF FF FF FF FF FF 
-     759.  00:979C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     759.  00:979C  FF FF FF FF FF FF FF FF 
+     756.  00:9784                      	DB  #00,#F1,#91,#91,#91,#91,#91,#F1
+     756.  00:9784  00 F1 91 91 91 91 91 F1 
+     757.  00:978C                      	DB  #F1,#91,#91,#91,#91,#91,#93,#00
+     757.  00:978C  F1 91 91 91 91 91 93 00 
+     758.  00:9794                      	DB  #0E,#88,#C8,#08,#08,#08,#09,#06
+     758.  00:9794  0E 88 C8 08 08 08 09 06 
+     759.  00:979C                      	DB  #00,#1E,#21,#01,#01,#01,#A1,#1E
+     759.  00:979C  00 1E 21 01 01 01 A1 1E 
      760.  00:97A4                      	
      761.  00:97A4                      sprite_jefecaballero2_2:
-     762.  00:97A4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     762.  00:97A4  FF FF FF FF FF FF FF FF 
-     763.  00:97AC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     763.  00:97AC  FF FF FF FF FF FF FF FF 
-     764.  00:97B4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     764.  00:97B4  FF FF FF FF FF FF FF FF 
-     765.  00:97BC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     765.  00:97BC  FF FF FF FF FF FF FF FF 
+     762.  00:97A4                      	DB  #00,#71,#D1,#91,#91,#91,#91,#F1
+     762.  00:97A4  00 71 D1 91 91 91 91 F1 
+     763.  00:97AC                      	DB  #F1,#91,#91,#91,#91,#D1,#73,#00
+     763.  00:97AC  F1 91 91 91 91 D1 73 00 
+     764.  00:97B4                      	DB  #0E,#88,#C8,#08,#08,#08,#09,#06
+     764.  00:97B4  0E 88 C8 08 08 08 09 06 
+     765.  00:97BC                      	DB  #00,#1E,#21,#01,#01,#01,#A1,#1E
+     765.  00:97BC  00 1E 21 01 01 01 A1 1E 
      766.  00:97C4                      	
      767.  00:97C4                      sprite_jefecaballero2_3:
-     768.  00:97C4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     768.  00:97C4  FF FF FF FF FF FF FF FF 
-     769.  00:97CC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     769.  00:97CC  FF FF FF FF FF FF FF FF 
-     770.  00:97D4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     770.  00:97D4  FF FF FF FF FF FF FF FF 
-     771.  00:97DC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     771.  00:97DC  FF FF FF FF FF FF FF FF 
+     768.  00:97C4                      	DB  #00,#E1,#91,#91,#11,#11,#11,#11
+     768.  00:97C4  00 E1 91 91 11 11 11 11 
+     769.  00:97CC                      	DB  #11,#11,#11,#11,#11,#91,#E3,#00
+     769.  00:97CC  11 11 11 11 11 91 E3 00 
+     770.  00:97D4                      	DB  #0E,#88,#C8,#08,#08,#08,#09,#06
+     770.  00:97D4  0E 88 C8 08 08 08 09 06 
+     771.  00:97DC                      	DB  #00,#1E,#21,#01,#01,#01,#A1,#1E
+     771.  00:97DC  00 1E 21 01 01 01 A1 1E 
      772.  00:97E4                      	
      773.  00:97E4                      sprite_jefecaballero2_4:
-     774.  00:97E4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     774.  00:97E4  FF FF FF FF FF FF FF FF 
-     775.  00:97EC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     775.  00:97EC  FF FF FF FF FF FF FF FF 
-     776.  00:97F4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     776.  00:97F4  FF FF FF FF FF FF FF FF 
-     777.  00:97FC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     777.  00:97FC  FF FF FF FF FF FF FF FF 
+     774.  00:97E4                      	DB  #00,#71,#D1,#91,#91,#91,#91,#91
+     774.  00:97E4  00 71 D1 91 91 91 91 91 
+     775.  00:97EC                      	DB  #91,#91,#91,#91,#91,#D1,#73,#00
+     775.  00:97EC  91 91 91 91 91 D1 73 00 
+     776.  00:97F4                      	DB  #0E,#88,#C8,#08,#08,#08,#09,#06
+     776.  00:97F4  0E 88 C8 08 08 08 09 06 
+     777.  00:97FC                      	DB  #00,#1E,#21,#01,#01,#01,#A1,#1E
+     777.  00:97FC  00 1E 21 01 01 01 A1 1E 
      778.  00:9804                      	
      779.  00:9804                      sprite_jefecaballero2_5:
-     780.  00:9804                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     780.  00:9804  FF FF FF FF FF FF FF FF 
-     781.  00:980C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     781.  00:980C  FF FF FF FF FF FF FF FF 
-     782.  00:9814                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     782.  00:9814  FF FF FF FF FF FF FF FF 
-     783.  00:981C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     783.  00:981C  FF FF FF FF FF FF FF FF 
+     780.  00:9804                      	DB  #00,#F7,#94,#94,#94,#94,#94,#F6
+     780.  00:9804  00 F7 94 94 94 94 94 F6 
+     781.  00:980C                      	DB  #F3,#91,#91,#90,#90,#90,#97,#00
+     781.  00:980C  F3 91 91 90 90 90 97 00 
+     782.  00:9814                      	DB  #0E,#88,#48,#48,#08,#08,#09,#06
+     782.  00:9814  0E 88 48 48 08 08 09 06 
+     783.  00:981C                      	DB  #00,#3E,#A1,#81,#81,#81,#A1,#3E
+     783.  00:981C  00 3E A1 81 81 81 A1 3E 
      784.  00:9824                      	
      785.  00:9824                      sprite_jefecaballero2_6:
-     786.  00:9824                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     786.  00:9824  FF FF FF FF FF FF FF FF 
-     787.  00:982C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     787.  00:982C  FF FF FF FF FF FF FF FF 
-     788.  00:9834                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     788.  00:9834  FF FF FF FF FF FF FF FF 
-     789.  00:983C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     789.  00:983C  FF FF FF FF FF FF FF FF 
+     786.  00:9824                      	DB  #00,#77,#D4,#94,#94,#94,#94,#F6
+     786.  00:9824  00 77 D4 94 94 94 94 F6 
+     787.  00:982C                      	DB  #F3,#91,#91,#90,#90,#D0,#77,#00
+     787.  00:982C  F3 91 91 90 90 D0 77 00 
+     788.  00:9834                      	DB  #0E,#88,#48,#48,#08,#08,#09,#06
+     788.  00:9834  0E 88 48 48 08 08 09 06 
+     789.  00:983C                      	DB  #00,#3E,#A1,#81,#81,#81,#A1,#3E
+     789.  00:983C  00 3E A1 81 81 81 A1 3E 
      790.  00:9844                      	
      791.  00:9844                      sprite_jefecaballero2_7:
-     792.  00:9844                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     792.  00:9844  FF FF FF FF FF FF FF FF 
-     793.  00:984C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     793.  00:984C  FF FF FF FF FF FF FF FF 
-     794.  00:9854                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     794.  00:9854  FF FF FF FF FF FF FF FF 
-     795.  00:985C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     795.  00:985C  FF FF FF FF FF FF FF FF 
+     792.  00:9844                      	DB  #00,#F7,#94,#14,#14,#14,#14,#16
+     792.  00:9844  00 F7 94 14 14 14 14 16 
+     793.  00:984C                      	DB  #13,#11,#11,#10,#10,#90,#F7,#00
+     793.  00:984C  13 11 11 10 10 90 F7 00 
+     794.  00:9854                      	DB  #0E,#88,#48,#48,#08,#08,#09,#06
+     794.  00:9854  0E 88 48 48 08 08 09 06 
+     795.  00:985C                      	DB  #00,#3E,#A1,#81,#81,#81,#A1,#3E
+     795.  00:985C  00 3E A1 81 81 81 A1 3E 
      796.  00:9864                      	
      797.  00:9864                      sprite_jefecaballero2_8:
-     798.  00:9864                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     798.  00:9864  FF FF FF FF FF FF FF FF 
-     799.  00:986C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     799.  00:986C  FF FF FF FF FF FF FF FF 
-     800.  00:9874                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     800.  00:9874  FF FF FF FF FF FF FF FF 
-     801.  00:987C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     801.  00:987C  FF FF FF FF FF FF FF FF 
+     798.  00:9864                      	DB  #00,#77,#D4,#94,#94,#94,#94,#96
+     798.  00:9864  00 77 D4 94 94 94 94 96 
+     799.  00:986C                      	DB  #93,#91,#91,#90,#90,#D0,#77,#00
+     799.  00:986C  93 91 91 90 90 D0 77 00 
+     800.  00:9874                      	DB  #0E,#88,#48,#48,#08,#08,#09,#06
+     800.  00:9874  0E 88 48 48 08 08 09 06 
+     801.  00:987C                      	DB  #00,#3E,#A1,#81,#81,#81,#A1,#3E
+     801.  00:987C  00 3E A1 81 81 81 A1 3E 
      802.  00:9884                      fin_sprite_jefecaballero:
      803.  00:9884                      	
      804.  00:9884                      ;; JEFE BEHOLDER (4 sprites 2 escenas)
      805.  00:9884                      sprite_jefebeholder:
      806.  00:9884                      sprite_jefebeholder_1:
-     807.  00:9884                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     807.  00:9884  FF FF FF FF FF FF FF FF 
-     808.  00:988C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     808.  00:988C  FF FF FF FF FF FF FF FF 
-     809.  00:9894                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     809.  00:9894  FF FF FF FF FF FF FF FF 
-     810.  00:989C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     810.  00:989C  FF FF FF FF FF FF FF FF 
+     807.  00:9884                      	DB  #70,#11,#13,#10,#10,#10,#90,#60
+     807.  00:9884  70 11 13 10 10 10 90 60 
+     808.  00:988C                      	DB  #00,#F0,#88,#88,#F8,#88,#89,#F0
+     808.  00:988C  00 F0 88 88 F8 88 89 F0 
+     809.  00:9894                      	DB  #00,#8F,#89,#89,#89,#89,#89,#8F
+     809.  00:9894  00 8F 89 89 89 89 89 8F 
+     810.  00:989C                      	DB  #8F,#89,#89,#89,#89,#89,#C9,#00
+     810.  00:989C  8F 89 89 89 89 89 C9 00 
      811.  00:98A4                      	
      812.  00:98A4                      sprite_jefebeholder_2:
-     813.  00:98A4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     813.  00:98A4  FF FF FF FF FF FF FF FF 
-     814.  00:98AC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     814.  00:98AC  FF FF FF FF FF FF FF FF 
-     815.  00:98B4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     815.  00:98B4  FF FF FF FF FF FF FF FF 
-     816.  00:98BC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     816.  00:98BC  FF FF FF FF FF FF FF FF 
+     813.  00:98A4                      	DB  #70,#11,#13,#10,#10,#10,#90,#60
+     813.  00:98A4  70 11 13 10 10 10 90 60 
+     814.  00:98AC                      	DB  #00,#F0,#88,#88,#F8,#88,#89,#F0
+     814.  00:98AC  00 F0 88 88 F8 88 89 F0 
+     815.  00:98B4                      	DB  #00,#8E,#8B,#89,#89,#89,#89,#8F
+     815.  00:98B4  00 8E 8B 89 89 89 89 8F 
+     816.  00:98BC                      	DB  #8F,#89,#89,#89,#89,#8B,#CE,#00
+     816.  00:98BC  8F 89 89 89 89 8B CE 00 
      817.  00:98C4                      	
      818.  00:98C4                      sprite_jefebeholder_3:
-     819.  00:98C4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     819.  00:98C4  FF FF FF FF FF FF FF FF 
-     820.  00:98CC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     820.  00:98CC  FF FF FF FF FF FF FF FF 
-     821.  00:98D4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     821.  00:98D4  FF FF FF FF FF FF FF FF 
-     822.  00:98DC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     822.  00:98DC  FF FF FF FF FF FF FF FF 
+     819.  00:98C4                      	DB  #70,#11,#13,#10,#10,#10,#90,#60
+     819.  00:98C4  70 11 13 10 10 10 90 60 
+     820.  00:98CC                      	DB  #00,#F0,#88,#88,#F8,#88,#89,#F0
+     820.  00:98CC  00 F0 88 88 F8 88 89 F0 
+     821.  00:98D4                      	DB  #00,#8F,#89,#89,#88,#88,#88,#88
+     821.  00:98D4  00 8F 89 89 88 88 88 88 
+     822.  00:98DC                      	DB  #88,#88,#88,#88,#89,#89,#CF,#00
+     822.  00:98DC  88 88 88 88 89 89 CF 00 
      823.  00:98E4                      	
      824.  00:98E4                      sprite_jefebeholder_4:
-     825.  00:98E4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     825.  00:98E4  FF FF FF FF FF FF FF FF 
-     826.  00:98EC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     826.  00:98EC  FF FF FF FF FF FF FF FF 
-     827.  00:98F4                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     827.  00:98F4  FF FF FF FF FF FF FF FF 
-     828.  00:98FC                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     828.  00:98FC  FF FF FF FF FF FF FF FF 
+     825.  00:98E4                      	DB  #70,#11,#13,#10,#10,#10,#90,#60
+     825.  00:98E4  70 11 13 10 10 10 90 60 
+     826.  00:98EC                      	DB  #00,#F0,#88,#88,#F8,#88,#89,#F0
+     826.  00:98EC  00 F0 88 88 F8 88 89 F0 
+     827.  00:98F4                      	DB  #00,#8E,#8B,#89,#89,#89,#89,#89
+     827.  00:98F4  00 8E 8B 89 89 89 89 89 
+     828.  00:98FC                      	DB  #89,#89,#89,#89,#89,#8B,#CE,#00
+     828.  00:98FC  89 89 89 89 89 8B CE 00 
      829.  00:9904                      	
      830.  00:9904                      sprite_jefebeholder_5:
-     831.  00:9904                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     831.  00:9904  FF FF FF FF FF FF FF FF 
-     832.  00:990C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     832.  00:990C  FF FF FF FF FF FF FF FF 
-     833.  00:9914                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     833.  00:9914  FF FF FF FF FF FF FF FF 
-     834.  00:991C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     834.  00:991C  FF FF FF FF FF FF FF FF 
+     831.  00:9904                      	DB  #00,#F1,#91,#91,#91,#91,#91,#F1
+     831.  00:9904  00 F1 91 91 91 91 91 F1 
+     832.  00:990C                      	DB  #F1,#91,#91,#91,#91,#91,#93,#00
+     832.  00:990C  F1 91 91 91 91 91 93 00 
+     833.  00:9914                      	DB  #0E,#88,#C8,#08,#08,#08,#09,#06
+     833.  00:9914  0E 88 C8 08 08 08 09 06 
+     834.  00:991C                      	DB  #00,#0F,#11,#11,#1F,#11,#91,#0F
+     834.  00:991C  00 0F 11 11 1F 11 91 0F 
      835.  00:9924                      	
      836.  00:9924                      sprite_jefebeholder_6:
-     837.  00:9924                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     837.  00:9924  FF FF FF FF FF FF FF FF 
-     838.  00:992C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     838.  00:992C  FF FF FF FF FF FF FF FF 
-     839.  00:9934                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     839.  00:9934  FF FF FF FF FF FF FF FF 
-     840.  00:993C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     840.  00:993C  FF FF FF FF FF FF FF FF 
+     837.  00:9924                      	DB  #00,#71,#D1,#91,#91,#91,#91,#F1
+     837.  00:9924  00 71 D1 91 91 91 91 F1 
+     838.  00:992C                      	DB  #F1,#91,#91,#91,#91,#D1,#73,#00
+     838.  00:992C  F1 91 91 91 91 D1 73 00 
+     839.  00:9934                      	DB  #0E,#88,#C8,#08,#08,#08,#09,#06
+     839.  00:9934  0E 88 C8 08 08 08 09 06 
+     840.  00:993C                      	DB  #00,#0F,#11,#11,#1F,#11,#91,#0F
+     840.  00:993C  00 0F 11 11 1F 11 91 0F 
      841.  00:9944                      	
      842.  00:9944                      sprite_jefebeholder_7:
-     843.  00:9944                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     843.  00:9944  FF FF FF FF FF FF FF FF 
-     844.  00:994C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     844.  00:994C  FF FF FF FF FF FF FF FF 
-     845.  00:9954                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     845.  00:9954  FF FF FF FF FF FF FF FF 
-     846.  00:995C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     846.  00:995C  FF FF FF FF FF FF FF FF 
+     843.  00:9944                      	DB  #00,#F1,#91,#91,#11,#11,#11,#11
+     843.  00:9944  00 F1 91 91 11 11 11 11 
+     844.  00:994C                      	DB  #11,#11,#11,#11,#91,#91,#F3,#00
+     844.  00:994C  11 11 11 11 91 91 F3 00 
+     845.  00:9954                      	DB  #0E,#88,#C8,#08,#08,#08,#09,#06
+     845.  00:9954  0E 88 C8 08 08 08 09 06 
+     846.  00:995C                      	DB  #00,#0F,#11,#11,#1F,#11,#91,#0F
+     846.  00:995C  00 0F 11 11 1F 11 91 0F 
      847.  00:9964                      	
      848.  00:9964                      sprite_jefebeholder_8:
-     849.  00:9964                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     849.  00:9964  FF FF FF FF FF FF FF FF 
-     850.  00:996C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     850.  00:996C  FF FF FF FF FF FF FF FF 
-     851.  00:9974                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     851.  00:9974  FF FF FF FF FF FF FF FF 
-     852.  00:997C                      	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
-     852.  00:997C  FF FF FF FF FF FF FF FF 
+     849.  00:9964                      	DB  #00,#71,#D1,#91,#91,#91,#91,#91
+     849.  00:9964  00 71 D1 91 91 91 91 91 
+     850.  00:996C                      	DB  #91,#91,#91,#91,#91,#D1,#73,#00
+     850.  00:996C  91 91 91 91 91 D1 73 00 
+     851.  00:9974                      	DB  #0E,#88,#C8,#08,#08,#08,#09,#06
+     851.  00:9974  0E 88 C8 08 08 08 09 06 
+     852.  00:997C                      	DB  #00,#0F,#11,#11,#1F,#11,#91,#0F	
+     852.  00:997C  00 0F 11 11 1F 11 91 0F 
      853.  00:9984                      fin_sprite_jefebeholder:
      854.  00:9984                      
      855.  00:9984                      ;; MANOIZQ 4 (2 escenas 2 sprites vert)
