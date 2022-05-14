@@ -15,6 +15,7 @@ include "subr_enemigo_lobo.asm"
 include "subr_enemigo_jefelobo.asm"
 include "subr_enemigo_esqueleto.asm"
 include "subr_enemigo_zombi.asm"
+include "subr_enemigo_jefemurcielago.asm"
 		
 		
 ;;=====================================================
