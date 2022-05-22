@@ -64,7 +64,7 @@ fin_actualiza_valores_esqueleto:
 ;;=====================================================
 ;;MOVER_ESQUELETO
 ;;=====================================================	
-; función: hace todo lo que haga falta de acciones cada vez que le toca al programa enfocarse en la serpiente: su ataque, su sptrite, etc...
+; función: hace todo lo que haga falta de acciones cada vez que le toca al programa enfocarse en el esqueleto: su ataque, su sptrite, etc...
 ; entrada: IX (enemigo en concreto al que poner los datos, por ejemplo, enemigo1)
 ; salida: 	-
 ; toca:		-

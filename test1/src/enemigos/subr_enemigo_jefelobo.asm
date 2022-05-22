@@ -151,7 +151,7 @@ fin_calcula_jefelobo_escena:
 
 
 ;;=====================================================
-;;CALCULA_SERPIENTE_INCREMENTOY
+;;CALCULA_JEFELOBO_INCREMENTOY
 ;;=====================================================	
 calcula_jefelobo_incrementoy:
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)

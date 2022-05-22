@@ -22,8 +22,8 @@ datos_jefemurcielago:
 			DB		JEFEMURCIELAGO_SPRITE3A	;izq abajo
 			DB		JEFEMURCIELAGO_SPRITE4A	;der_abajo
 			
-;ARRAY POSICIONES Y MURCIELAGO
-;*******************************************************************************************
+posiciones_iniciales_jefemurcielago:
+			DB		0,75,150,224
 
 
 
@@ -55,15 +55,20 @@ fin_anade_enemigo_jefemurcielago:
 ;;=====================================================
 ;;ACTUALIZA_VALORES_JEFEMURCIELAGO
 ;;=====================================================	
-; función: 	inicializa valores aleatorios del zombi
+; función: 	inicializa valores aleatorios del jefemurciélago
 ; entrada:	IX que equivaldrá a qué nº de enemigo estamos inicializando (por ejemplo enemigo1)
 ; toca:		-
 actualiza_valores_jefemurcielago:
-;~ .asigna_valores_posicion_x:
-		;~ LD			(IX + ESTRUCTURA_ENEMIGO.posx), ZOMBI_POSX
+.asigna_valores_posicion_x:
+		LD			 A, R
+		AND			00000011b
+		LD			HL, posiciones_iniciales_jefemurcielago
+		CALL		suma_A_HL
+		LD			 A, (HL)
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
 		
-;~ .asigna_valores_posicion_y:
-		;~ LD			(IX + ESTRUCTURA_ENEMIGO.posy), ZOMBI_POSY
+.asigna_valores_posicion_y:
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), 0
 fin_actualiza_valores_jefemurcielago:
 		RET
 		
@@ -84,7 +89,7 @@ mover_jefemurcielago:
 		LD			(IY + 4), A
 		LD			(IY + 12), A
 		
-		CALL		calcula_jefemurcielago_incrementox		;se reutiliza calcula_lobo_incrementox que valdría como calcula_jefelobo_incrementox
+		CALL		calcula_jefemurcielago_incrementox	
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
 		LD			(IY + 1), A
 		LD			(IY + 5), A
@@ -103,10 +108,10 @@ mover_jefemurcielago:
 		LD			(IY + 14), A
 
 		LD			 A, JEFEMURCIELAGO_COLOR
-		LD			(IY + 3), A
-		LD			(IY + 7), A
-		LD			(IY + 11), A
-		LD			(IY + 15), A
+		LD			(IY + 3),  	A
+		LD			(IY + 7),  	A
+		LD			(IY + 11), 	A
+		LD			(IY + 15), 	A
 fin_mover_jefemurcielaro:
 		RET
 
@@ -116,82 +121,58 @@ fin_mover_jefemurcielaro:
 ;;=====================================================	
 calcula_jefemurcielago_escena:
 		LD			 A, (heartbeat)
-		OR			00010000b
-		RET			 Z
-			
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
-		OR			 A
-		JP			 Z, .direccion_derecha
-.direccion_izquierda:
+		AND			00001000b
+		RET			 Z		; IF TENGO QUE CAMBIAR DE ESCENA THEN
+			; cambio de escena
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
 			XOR			00000001b
 			LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
 			
-			OR			 A
-			JP			 Z, .escena_izquierda2
-.escena_izquierda1:
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE1C
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), JEFELOBO_SPRITE2C
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_c), JEFELOBO_SPRITE3C
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_d), JEFELOBO_SPRITE4C
-				RET
-.escena_izquierda2:
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE1D
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), JEFELOBO_SPRITE2D
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_c), JEFELOBO_SPRITE3D
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_d), JEFELOBO_SPRITE4D
-				RET
-			
-.direccion_derecha:
-			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
-			XOR			00000001b
-			LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
-			
-			OR			 A
-			JP			 Z, .escena_derecha2
-.escena_derecha1:
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE1A
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), JEFELOBO_SPRITE2A
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_c), JEFELOBO_SPRITE3A
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_d), JEFELOBO_SPRITE4A
-				RET
-.escena_derecha2:
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFELOBO_SPRITE1B
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), JEFELOBO_SPRITE2B
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_c), JEFELOBO_SPRITE3B
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_d), JEFELOBO_SPRITE4B
-				RET
+			JP			 Z, .poner_escena2			; IF ESCENA 1 THEN
+				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFEMURCIELAGO_SPRITE1A
+				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), JEFEMURCIELAGO_SPRITE2A
+				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_c), JEFEMURCIELAGO_SPRITE3A
+				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_d), JEFEMURCIELAGO_SPRITE4A
+		
+				JP			fin_calcula_jefemurcielago_escena
+.poner_escena2:									; ELSE
+				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFEMURCIELAGO_SPRITE1B
+				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), JEFEMURCIELAGO_SPRITE2B
+				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_c), JEFEMURCIELAGO_SPRITE3B
+				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_d), JEFEMURCIELAGO_SPRITE4B
+;.fin_enemigo1_poner_escena2:								; END IF
+;.fin_cambia_escena_enemigo1:							; END IF
 fin_calcula_jefemurcielago_escena:
+		RET
 
 
 ;;=====================================================
 ;;CALCULA_JEFEMURCIELAGO_INCREMENTOY
 ;;=====================================================	
 calcula_jefemurcielago_incrementoy:
-			;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
-			;~ OR			 A
-			;~ RET			 Z
-			
-			;~ LD			 B, (IX + ESTRUCTURA_ENEMIGO.posx)
-			
-;~ .examina_mov_izquierda_sube:
-			;~ LD			 A, 168
-			;~ CP			 B
-			;~ JP			NC, .examina_mov_izquierda_baja
-			;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
-			;~ SUB			 1
-			;~ LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
-			;~ RET
-			
-;~ .examina_mov_izquierda_baja:
-			;~ LD			 A, 56
-			;~ CP			 B
-			;~ RET			 C
-
-			;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
-			;~ ADD			 1
-			;~ LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
-			;~ RET
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
+		OR			 A
+		JR			 Z, .baja_jefemurcielago
+		
+.sube_jefemurcielago:
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
+		DEC			 A
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
+		
+		;CP			JEFEMURCIELAGO_LIMIABA no necesario
+		RET			NZ
+		LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), 0
+		RET
+		
+.baja_jefemurcielago:
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
+		ADD			 4
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
+		
+		CP			JEFEMURCIELAGO_LIMIABA
+		RET			NZ
+		LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), 1
+		RET
 fin_calcula_jefemurcielago_incrementoy:
 
 
@@ -199,30 +180,17 @@ fin_calcula_jefemurcielago_incrementoy:
 ;;CALCULA_JEFEMURCIELAGO_INCREMENTOX
 ;;=====================================================	
 calcula_jefemurcielago_incrementox:
-		;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
-		;~ OR			 A
-		;~ JP			NZ, .camina_izquierda
-;~ .camina_derecha:
-		;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-;~ [2]		INC			 A
-		;~ LD			(IX + ESTRUCTURA_ENEMIGO.posx), A	
-;~ .verifica_limite_derecha:
-		;~ CP			ZOMBI_LIMX_DER
-		;~ RET			NZ
-		;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
-		;~ XOR			00000001b
-		;~ LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), A
-		;~ RET
-;~ .camina_izquierda:
-		;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-		;~ DEC			 A
-		;~ LD			(IX + ESTRUCTURA_ENEMIGO.posx), A	
-;~ .verifica_limite_izquierda:
-		;~ CP			ZOMBI_LIMX_IZQ
-		;~ RET			NZ
-		;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
-		;~ XOR			00000001b
-		;~ LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), A
-		;~ RET
+		;si no llega al tope superior no tiene que cambiar el valor X
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
+		OR			 A
+		RET			NZ
+		
+		;calcula nueva columna donde aparecerá el jefemurcielago
+		LD			 A, R
+		AND			00000011b
+		LD			HL, posiciones_iniciales_jefemurcielago
+		CALL		suma_A_HL
+		LD			 A, (HL)
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
 fin_calcula_jefemurcielago_incrementox:
-
+		RET

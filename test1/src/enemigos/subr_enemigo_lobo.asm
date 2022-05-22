@@ -71,7 +71,7 @@ fin_actualiza_valores_lobo:
 ;;=====================================================
 ;;MOVER_LOBO
 ;;=====================================================	
-; función: hace todo lo que haga falta de acciones cada vez que le toca al programa enfocarse en la serpiente: su ataque, su sptrite, etc...
+; función: hace todo lo que haga falta de acciones cada vez que le toca al programa enfocarse en el lobo: su ataque, su sptrite, etc...
 ; entrada: IX (enemigo en concreto al que poner los datos, por ejemplo, enemigo1)
 ; salida: 	-
 ; toca:		-
@@ -143,7 +143,7 @@ fin_calcula_lobo_escena:
 
 
 ;;=====================================================
-;;CALCULA_SERPIENTE_INCREMENTOY
+;;CALCULA_LOBO_INCREMENTOY
 ;;=====================================================	
 		
 
@@ -175,7 +175,7 @@ calcula_lobo_incrementox:
 		INC			 A
 		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
 		
-		;SI Y = SERPIENTE_LIMDER
+		;SI Y = LOBO_LIMDER
 		CP			LOBO_LIMDER
 			RET			NZ
 		;DIRECCION = LOBO

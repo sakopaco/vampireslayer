@@ -1,5 +1,5 @@
 ;;=====================================================
-;;CONTANTES SERPIENTE
+;;CONTANTES CIENPIES
 ;;=====================================================
 ;las posiciones iniciales dependerán de los últimos 3 bits del registro R
 ;nota: se pone un 0 de más para simplificar el bucle de selección

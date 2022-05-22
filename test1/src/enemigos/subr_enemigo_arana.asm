@@ -1,5 +1,5 @@
 ;;=====================================================
-;;CONTANTES SERPIENTE
+;;CONTANTES ARANA
 ;;=====================================================
 posiciones_arana_x: 		;16 posisiones iniciales posibles
 			DB		0,16,32,48,64,80,96,112,128,144,160,176,192,208,224,240
@@ -54,7 +54,6 @@ fin_anade_enemigo_arana:
 ; salida: 	posicion_anterior_arana
 ; toca:		-
 actualiza_valores_arana:
-		EXX
 ;actualiza_valores_aleatorios_arana
 .calcula_posicion:
 		;calcula posición de 0 a 16
@@ -69,8 +68,6 @@ actualiza_valores_arana:
 		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
 .asigna_valores_posicion_y:		
 		LD			(IX + ESTRUCTURA_ENEMIGO.posy), LIMITEPANTALLASUP
-
-		EXX
 fin_actualiza_valores_arana:
 		RET
 		

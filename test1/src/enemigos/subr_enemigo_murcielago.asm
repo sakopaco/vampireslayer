@@ -62,7 +62,7 @@ fin_anade_enemigo_murcielago:
 ; toca:		-
 actualiza_valores_murcielago:
 		EXX
-;actualiza_valores_aleatorios_serpiente
+;actualiza_valores_aleatorios_murcielago
 .calcula_posicion:
 		EXX
 		

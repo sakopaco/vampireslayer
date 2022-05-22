@@ -532,7 +532,7 @@ check_colisiones_objetos:
 		;ENDIF
 .habitacion_sin_ayudas:
 	
-		;recorre enemigos
+		;recorre enemigos ************************
 
 fin_check_colisiones_objetos:	
 		RET
