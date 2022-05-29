@@ -61,11 +61,7 @@ fin_anade_enemigo_murcielago:
 ; salida: 	posicion_anterior_arana
 ; toca:		-
 actualiza_valores_murcielago:
-		EXX
 ;actualiza_valores_aleatorios_murcielago
-.calcula_posicion:
-		EXX
-		
 .asigna_valores_posicion_x:
 		LD			 A, R
 		AND			01111111b
@@ -74,8 +70,6 @@ actualiza_valores_murcielago:
 		
 .asigna_valores_posicion_y:
 		LD			(IX + ESTRUCTURA_ENEMIGO.posy), MURCIELAGO_HORIZON
-		
-		EXX
 fin_actualiza_valores_murcielago:
 		RET
 		

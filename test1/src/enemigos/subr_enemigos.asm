@@ -640,9 +640,9 @@ inicializa_enemigos_fase2_nivel1:
 		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo2
-		CALL		anade_enemigo_arana
+		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo2
-		JP			actualiza_valores_arana
+		JP			actualiza_valores_murcielago
 fin_inicializa_enemigos_fase2_nivel1:
 
 inicializa_enemigos_fase2_nivel2:
@@ -652,9 +652,9 @@ inicializa_enemigos_fase2_nivel2:
 		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo2
-		CALL		anade_enemigo_arana
+		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo2
-		CALL		actualiza_valores_arana
+		CALL		actualiza_valores_murcielago
 		
 		LD			DE, enemigo3
 		CALL		anade_enemigo_murcielago
@@ -669,9 +669,9 @@ inicializa_enemigos_fase2_nivel3:
 		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo2
-		CALL		anade_enemigo_arana
+		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo2
-		CALL		actualiza_valores_arana
+		CALL		actualiza_valores_murcielago
 		
 		LD			DE, enemigo3
 		CALL		anade_enemigo_murcielago
@@ -691,9 +691,9 @@ inicializa_enemigos_fase2_nivel4:
 		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo2
-		CALL		anade_enemigo_arana
+		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo2
-		CALL		actualiza_valores_arana
+		CALL		actualiza_valores_murcielago
 		
 		LD			DE, enemigo3
 		CALL		anade_enemigo_murcielago
@@ -718,9 +718,9 @@ inicializa_enemigos_fase2_nivel5:
 		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo2
-		CALL		anade_enemigo_arana
+		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo2
-		CALL		actualiza_valores_arana
+		CALL		actualiza_valores_murcielago
 		
 		LD			DE, enemigo3
 		CALL		anade_enemigo_murcielago
@@ -763,14 +763,14 @@ fin_inicializa_enemigos_fase3_nivel0:
 
 inicializa_enemigos_fase3_nivel1:
 		LD			DE, enemigo1
-		CALL		anade_enemigo_cienpies
+		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo1
-		CALL		actualiza_valores_cienpies
+		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo2
-		CALL		anade_enemigo_arana
+		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo2
-		JP			actualiza_valores_arana
+		JP			actualiza_valores_serpiente
 fin_inicializa_enemigos_fase3_nivel1:
 
 inicializa_enemigos_fase3_nivel2:
@@ -887,15 +887,15 @@ inicializa_enemigos_fase4_nivel0:
 fin_inicializa_enemigos_fase4_nivel0:
 
 inicializa_enemigos_fase4_nivel1:
-		LD			DE, enemigo1
-		CALL		anade_enemigo_cienpies
+				LD			DE, enemigo1
+		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo1
-		CALL		actualiza_valores_cienpies
+		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo2
-		CALL		anade_enemigo_arana
+		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo2
-		JP			actualiza_valores_arana
+		JP			actualiza_valores_serpiente
 fin_inicializa_enemigos_fase4_nivel1:
 
 inicializa_enemigos_fase4_nivel2:
@@ -1013,14 +1013,14 @@ fin_inicializa_enemigos_fase5_nivel0:
 
 inicializa_enemigos_fase5_nivel1:
 		LD			DE, enemigo1
-		CALL		anade_enemigo_cienpies
+		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo1
-		CALL		actualiza_valores_cienpies
+		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo2
-		CALL		anade_enemigo_arana
+		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo2
-		JP			actualiza_valores_arana
+		JP			actualiza_valores_serpiente
 fin_inicializa_enemigos_fase5_nivel1:
 
 inicializa_enemigos_fase5_nivel2:
@@ -1138,14 +1138,14 @@ fin_inicializa_enemigos_fase6_nivel0:
 
 inicializa_enemigos_fase6_nivel1:
 		LD			DE, enemigo1
-		CALL		anade_enemigo_cienpies
+		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo1
-		CALL		actualiza_valores_cienpies
+		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo2
-		CALL		anade_enemigo_arana
+		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo2
-		JP			actualiza_valores_arana
+		JP			actualiza_valores_serpiente
 fin_inicializa_enemigos_fase6_nivel1:
 
 inicializa_enemigos_fase6_nivel2:
@@ -1445,7 +1445,7 @@ check_enemigos_fase2: ;; aquí se ponen los valores de enemigos (si están activ
 		JP			 Z, .check_enemigo3
 		
 		LD			IY, array_sprites_enem + 4
-		CALL		mover_arana
+		CALL		mover_murcielago
 
 		;acciones enemigos
 .check_enemigo3:

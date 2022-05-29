@@ -93,7 +93,6 @@ fin_carga_patrones_sprites_nivel1:
 	
 carga_patrones_sprites_nivel2:	
 		CALL		carga_patrones_serpiente
-		CALL		carga_patrones_arana
 		CALL		carga_patrones_murcielago
 		CALL		carga_patrones_lobo
 		CALL		carga_patrones_esqueleto

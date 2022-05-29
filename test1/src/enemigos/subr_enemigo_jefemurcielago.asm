@@ -25,13 +25,7 @@ datos_jefemurcielago:
 posiciones_iniciales_jefemurcielago:
 			DB		0,75,150,224
 
-
-
-
-
-
-
-			
+		
 ;;=====================================================
 ;;SUBRUTINAS MANEJO DE JEFEMURCIELAGO
 ;;=====================================================	
