@@ -491,7 +491,6 @@ inicializa_enemigos_fase0_niveljefe:
 		CALL		anade_enemigo_jefelobo
 		LD			IX, enemigo6
 		JP			actualiza_valores_lobo	;se reutiliza la inicialización de valores iniciales de lobo para jefelobo
-		RET
 fin_inicializa_enemigos_fase0_niveljefe:
 	
 
@@ -887,7 +886,7 @@ inicializa_enemigos_fase4_nivel0:
 fin_inicializa_enemigos_fase4_nivel0:
 
 inicializa_enemigos_fase4_nivel1:
-				LD			DE, enemigo1
+		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo1
 		CALL		actualiza_valores_serpiente
@@ -1286,7 +1285,11 @@ check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activ
 		OR			 A
 		JP			 Z, .check_enemigo2
 		
-		LD			IY, array_sprites_enem
+		;mueve enemigo
+		;~ LD			IY, array_sprites_enem
+		;~ LD			 L, (IY + ESTRUCTURA_ENEMIGO.ptr_mover)
+		;~ LD			 H, (IY + ESTRUCTURA_ENEMIGO.ptr_mover + 1)
+		;~ JP		    (HL)
 		CALL		mover_cienpies
 
 		;acciones enemigos

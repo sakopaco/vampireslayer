@@ -51,9 +51,7 @@ fin_anade_enemigo_lobo:
 ; salida: 	posicion_anterior_arana
 ; toca:		-
 actualiza_valores_lobo:
-		EXX
-.calcula_posicion:
-.asigna_valores_posicion_x:		
+.asigna_valores_posicion_x:	
 		;calcula posición inicial sumando a su líete izq un offset
 		LD			 A, R
 		AND			00111111b
@@ -62,8 +60,6 @@ actualiza_valores_lobo:
 		
 .asigna_valores_posicion_y:
 		LD			(IX + ESTRUCTURA_ENEMIGO.posy), LOBO_POSY
-
-		EXX
 fin_actualiza_valores_lobo:
 		RET
 		

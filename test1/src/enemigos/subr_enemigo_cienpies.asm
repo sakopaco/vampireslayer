@@ -59,7 +59,6 @@ fin_anade_enemigo_cienpies:
 ; toca:		-
 actualiza_valores_cienpies:
 ;actualiza_valores_aleatorios_cienpies
-		EXX
 .calcula_posicion:
 		;calcula posición de 0 a 8 porque es el primer cienpies
 		LD			 A, R
@@ -78,8 +77,6 @@ actualiza_valores_cienpies:
 		CALL		suma_A_HL
 		LD			 A, (HL)
 		LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
-
-		EXX
 fin_actualiza_valores_cienpies:
 		RET
 		
@@ -91,14 +88,14 @@ fin_actualiza_valores_cienpies:
 ; salida: 	-
 ; toca:		-
 mover_cienpies:
+		;calcula posición Y
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
 		LD			(IY), A
 		
-.cambiando_posx:		
+		;calcula posición X
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
 		LD			(IY + 1), A
 
-		
 		CALL		calcula_cienpies_escena
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_a)
 		LD			(IY + 2), A		
