@@ -1285,13 +1285,7 @@ check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activ
 		OR			 A
 		JP			 Z, .check_enemigo2
 		
-		;mueve enemigo
-		;~ LD			IY, array_sprites_enem
-		;~ LD			 L, (IY + ESTRUCTURA_ENEMIGO.ptr_mover)
-		;~ LD			 H, (IY + ESTRUCTURA_ENEMIGO.ptr_mover + 1)
-		;~ JP		    (HL)
-		CALL		mover_cienpies
-
+		CALL 		mueve_enemigo
 		;acciones enemigos
 .check_enemigo2:
 		LD			IX, enemigo2
@@ -1300,8 +1294,8 @@ check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activ
 		JP			 Z, .check_enemigo3
 		
 		LD			IY, array_sprites_enem + 4
-		CALL		mover_arana
-
+		
+		CALL 		mueve_enemigo
 		;acciones enemigos
 .check_enemigo3:
 		LD			IX, enemigo3
@@ -1310,10 +1304,9 @@ check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activ
 		JP			 Z, .check_enemigo4
 		
 		LD			IY, array_sprites_enem + 8
-		CALL		mover_serpiente
-
+		
+		CALL 		mueve_enemigo
 		;acciones enemigos
-
 .check_enemigo4:
 		LD			IX, enemigo4
 		LD			 A, (IX)
@@ -1321,8 +1314,8 @@ check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activ
 		JP			 Z, .check_enemigo5
 		
 		LD			IY, array_sprites_enem + 12
-		CALL		mover_murcielago
 
+		CALL 		mueve_enemigo
 		;acciones enemigos
 .check_enemigo5:
 		LD			IX, enemigo5
@@ -1332,8 +1325,7 @@ check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activ
 		
 		LD			IY, array_sprites_enem + 16
 
-		CALL		mover_lobo
-
+		CALL 		mueve_enemigo
 		;acciones enemigos
 .check_enemigo6:
 		LD			IX, enemigo6
@@ -1342,8 +1334,8 @@ check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activ
 		RET			 Z
 		
 		LD			IY, array_sprites_enem + 24
-		CALL		mover_jefelobo
-
+		
+		CALL 		mueve_enemigo
 		;acciones enemigos
 fin_check_enemigos_fase0:
 		RET			
@@ -1360,8 +1352,8 @@ check_enemigos_fase1: ;; aquí se ponen los valores de enemigos (si están activ
 		JP			 Z, .check_enemigo2
 		
 		LD			IY, array_sprites_enem
-		CALL		mover_serpiente
-
+		
+		CALL 		mueve_enemigo
 		;acciones enemigos
 .check_enemigo2:
 		LD			IX, enemigo2
@@ -1370,8 +1362,8 @@ check_enemigos_fase1: ;; aquí se ponen los valores de enemigos (si están activ
 		JP			 Z, .check_enemigo3
 		
 		LD			IY, array_sprites_enem + 4
-		CALL		mover_arana
-
+		
+		CALL 		mueve_enemigo
 		;acciones enemigos
 .check_enemigo3:
 		LD			IX, enemigo3
@@ -1380,8 +1372,8 @@ check_enemigos_fase1: ;; aquí se ponen los valores de enemigos (si están activ
 		JP			 Z, .check_enemigo4
 		
 		LD			IY, array_sprites_enem + 8
-		CALL		mover_murcielago
-
+		
+		CALL 		mueve_enemigo
 		;acciones enemigos
 .check_enemigo4:
 		LD			IX, enemigo4
@@ -1390,8 +1382,8 @@ check_enemigos_fase1: ;; aquí se ponen los valores de enemigos (si están activ
 		JP			 Z, .check_enemigo5
 		
 		LD			IY, array_sprites_enem + 16
-		CALL		mover_lobo
-
+		
+		CALL 		mueve_enemigo
 		;acciones enemigos
 .check_enemigo5:
 		LD			IX, enemigo5
@@ -1400,8 +1392,8 @@ check_enemigos_fase1: ;; aquí se ponen los valores de enemigos (si están activ
 		JP			 Z, .check_enemigo6
 		
 		LD			IY, array_sprites_enem + 24
-		CALL		mover_esqueleto
-
+		
+		CALL 		mueve_enemigo
 		;acciones enemigos
 .check_enemigo6:
 		LD			IX, enemigo6   														
@@ -1410,9 +1402,9 @@ check_enemigos_fase1: ;; aquí se ponen los valores de enemigos (si están activ
 		JP			 Z, .check_enemigo7
 		
 		LD			IY, array_sprites_enem + 32
-		CALL		mover_zombi 														
-
-		;acciones enemigos		
+		
+		CALL 		mueve_enemigo
+		;acciones enemigos
 .check_enemigo7:
 		LD			IX, enemigo7
 		LD			 A, (IX)
@@ -1420,8 +1412,8 @@ check_enemigos_fase1: ;; aquí se ponen los valores de enemigos (si están activ
 		RET			 Z
 		
 		LD			IY, array_sprites_enem + 4
-		CALL		mover_jefemurcielago
-
+		
+		CALL 		mueve_enemigo
 		;acciones enemigos
 fin_check_enemigos_fase1:
 		RET	
@@ -1438,8 +1430,8 @@ check_enemigos_fase2: ;; aquí se ponen los valores de enemigos (si están activ
 		JP			 Z, .check_enemigo2
 		
 		LD			IY, array_sprites_enem
-		CALL		mover_serpiente
-
+		
+		CALL 		mueve_enemigo
 		;acciones enemigos
 .check_enemigo2:
 		LD			IX, enemigo2
@@ -1448,8 +1440,8 @@ check_enemigos_fase2: ;; aquí se ponen los valores de enemigos (si están activ
 		JP			 Z, .check_enemigo3
 		
 		LD			IY, array_sprites_enem + 4
-		CALL		mover_murcielago
-
+		
+		CALL 		mueve_enemigo
 		;acciones enemigos
 .check_enemigo3:
 		LD			IX, enemigo3
@@ -1458,8 +1450,8 @@ check_enemigos_fase2: ;; aquí se ponen los valores de enemigos (si están activ
 		JP			 Z, .check_enemigo4
 		
 		LD			IY, array_sprites_enem + 8
-		CALL		mover_murcielago
-
+		
+		CALL 		mueve_enemigo
 		;acciones enemigos
 .check_enemigo4:
 		LD			IX, enemigo4
@@ -1468,8 +1460,8 @@ check_enemigos_fase2: ;; aquí se ponen los valores de enemigos (si están activ
 		JP			 Z, .check_enemigo5
 		
 		LD			IY, array_sprites_enem + 16
-		CALL		mover_lobo
-
+		
+		CALL 		mueve_enemigo
 		;acciones enemigos
 .check_enemigo5:
 		LD			IX, enemigo5
@@ -1478,8 +1470,8 @@ check_enemigos_fase2: ;; aquí se ponen los valores de enemigos (si están activ
 		JP			 Z, .check_enemigo6
 		
 		LD			IY, array_sprites_enem + 24
-		CALL		mover_esqueleto
-
+		
+		CALL 		mueve_enemigo
 		;acciones enemigos
 .check_enemigo6:
 		LD			IX, enemigo6   														
@@ -1488,9 +1480,9 @@ check_enemigos_fase2: ;; aquí se ponen los valores de enemigos (si están activ
 		JP			 Z, .check_enemigo7
 		
 		LD			IY, array_sprites_enem + 32
-		CALL		mover_zombi 														
-
-		;acciones enemigos		
+		
+		CALL 		mueve_enemigo
+		;acciones enemigos	
 .check_enemigo7:
 		LD			IX, enemigo7
 		LD			 A, (IX)
@@ -1498,8 +1490,8 @@ check_enemigos_fase2: ;; aquí se ponen los valores de enemigos (si están activ
 		RET			 Z
 		
 		LD			IY, array_sprites_enem + 4
-		CALL		mover_jefemurcielago
-
+		
+		CALL 		mueve_enemigo
 		;acciones enemigos
 fin_check_enemigos_fase2:
 		RET	
@@ -1540,3 +1532,14 @@ check_enemigos_fase6: ;; aquí se ponen los valores de enemigos (si están activ
 
 fin_check_enemigos_fase6:
 		RET	
+
+
+;;=====================================================
+;;MUEVE_ENEMIGO
+;;=====================================================	
+mueve_enemigo:
+		LD			 L, (IX + ESTRUCTURA_ENEMIGO.ptr_mover)
+		LD			 H, (IX + ESTRUCTURA_ENEMIGO.ptr_mover + 1)
+		JP		    (HL)
+fin_mueve_enemigo:
+		RET

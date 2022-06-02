@@ -45,7 +45,7 @@ datos_cienpies:
 anade_enemigo_cienpies:
 		LD			HL, datos_cienpies
 		LD			BC, ESTRUCTURA_ENEMIGO
-		LDIR
+;		LDIR
 fin_anade_enemigo_cienpies:
 		RET
 
