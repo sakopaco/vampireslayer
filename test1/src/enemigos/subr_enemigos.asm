@@ -15,6 +15,7 @@ include "subr_enemigo_jefelobo.asm"
 include "subr_enemigo_esqueleto.asm"
 include "subr_enemigo_zombi.asm"
 include "subr_enemigo_jefemurcielago.asm"
+include "subr_enemigo_fantasma.asm"
 		
 		
 ;;=====================================================
@@ -656,9 +657,9 @@ inicializa_enemigos_fase2_nivel2:
 		CALL		actualiza_valores_murcielago
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_murcielago
+		CALL		anade_enemigo_lobo
 		LD			IX, enemigo3
-		JP			actualiza_valores_murcielago
+		JP			actualiza_valores_lobo
 fin_inicializa_enemigos_fase2_nivel2:
 
 inicializa_enemigos_fase2_nivel3:
@@ -673,14 +674,14 @@ inicializa_enemigos_fase2_nivel3:
 		CALL		actualiza_valores_murcielago
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_murcielago
+		CALL		anade_enemigo_lobo
 		LD			IX, enemigo3
-		CALL		actualiza_valores_murcielago
+		CALL		actualiza_valores_lobo
 		
 		LD			DE, enemigo4
-		CALL		anade_enemigo_lobo
+		CALL		anade_enemigo_esqueleto
 		LD			IX, enemigo4
-		JP			actualiza_valores_lobo	
+		JP			actualiza_valores_esqueleto
 fin_inicializa_enemigos_fase2_nivel3:
 
 inicializa_enemigos_fase2_nivel4:
@@ -695,51 +696,46 @@ inicializa_enemigos_fase2_nivel4:
 		CALL		actualiza_valores_murcielago
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_murcielago
+		CALL		anade_enemigo_lobo
 		LD			IX, enemigo3
-		CALL		actualiza_valores_murcielago
+		CALL		actualiza_valores_lobo
 		
 		LD			DE, enemigo4
-		CALL		anade_enemigo_lobo
+		CALL		anade_enemigo_esqueleto
 		LD			IX, enemigo4
-		CALL		actualiza_valores_lobo		
+		CALL		actualiza_valores_esqueleto	
 		
 		LD			DE, enemigo5
-		CALL		anade_enemigo_esqueleto
+		CALL		anade_enemigo_zombi
 		LD			IX, enemigo5
-		JP			actualiza_valores_esqueleto
+		JP			actualiza_valores_zombi
 fin_inicializa_enemigos_fase2_nivel4:
 
-inicializa_enemigos_fase2_nivel5: 						
+inicializa_enemigos_fase2_nivel5: 							
 		LD			DE, enemigo1
-		CALL		anade_enemigo_serpiente
+		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo1
-		CALL		actualiza_valores_serpiente
+		CALL		actualiza_valores_murcielago
 		
 		LD			DE, enemigo2
-		CALL		anade_enemigo_murcielago
+		CALL		anade_enemigo_lobo
 		LD			IX, enemigo2
-		CALL		actualiza_valores_murcielago
+		CALL		actualiza_valores_lobo
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_murcielago
+		CALL		anade_enemigo_esqueleto
 		LD			IX, enemigo3
-		CALL		actualiza_valores_murcielago
+		CALL		actualiza_valores_esqueleto	
 		
 		LD			DE, enemigo4
-		CALL		anade_enemigo_lobo
+		CALL		anade_enemigo_zombi
 		LD			IX, enemigo4
-		CALL		actualiza_valores_lobo		
+		CALL		actualiza_valores_zombi
 		
 		LD			DE, enemigo5
-		CALL		anade_enemigo_esqueleto
+		CALL		anade_enemigo_fantasma
 		LD			IX, enemigo5
-		CALL		actualiza_valores_esqueleto
-		
-		LD			DE, enemigo6
-		CALL		anade_enemigo_zombi
-		LD			IX, enemigo6
-		JP			actualiza_valores_zombi
+		JP			actualiza_valores_fantasma
 fin_inicializa_enemigos_fase2_nivel5:
 
 inicializa_enemigos_fase2_niveljefe:	
@@ -1449,7 +1445,7 @@ check_enemigos_fase2: ;; aquí se ponen los valores de enemigos (si están activ
 		OR			 A
 		JP			 Z, .check_enemigo4
 		
-		LD			IY, array_sprites_enem + 8
+		LD			IY, array_sprites_enem + 12
 		
 		CALL 		mueve_enemigo
 		;acciones enemigos
@@ -1459,7 +1455,7 @@ check_enemigos_fase2: ;; aquí se ponen los valores de enemigos (si están activ
 		OR			 A
 		JP			 Z, .check_enemigo5
 		
-		LD			IY, array_sprites_enem + 16
+		LD			IY, array_sprites_enem + 20
 		
 		CALL 		mueve_enemigo
 		;acciones enemigos
@@ -1469,7 +1465,7 @@ check_enemigos_fase2: ;; aquí se ponen los valores de enemigos (si están activ
 		OR			 A
 		JP			 Z, .check_enemigo6
 		
-		LD			IY, array_sprites_enem + 24
+		LD			IY, array_sprites_enem + 36
 		
 		CALL 		mueve_enemigo
 		;acciones enemigos
@@ -1479,7 +1475,7 @@ check_enemigos_fase2: ;; aquí se ponen los valores de enemigos (si están activ
 		OR			 A
 		JP			 Z, .check_enemigo7
 		
-		LD			IY, array_sprites_enem + 32
+		LD			IY, array_sprites_enem + 52
 		
 		CALL 		mueve_enemigo
 		;acciones enemigos	

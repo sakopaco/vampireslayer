@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.06.02 - 19:40:27]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.06.03 - 20:43:05]
 
 ./variables.asm
 Errors: 0
@@ -432,6 +432,15 @@ Errors: 0
      132.  00:C000  (00:00FC)           JEFEMURCIELAGO_SPRITE4B	equ		252
      133.  00:C000                      
      134.  00:C000                      
+     135.  00:C000                      ;;ETIQUETAS/CONSTANTES ZOMBI
+     136.  00:C000  (00:0009)           TIPOFANTASMA		equ		9
+     137.  00:C000  (00:000F)           FANTASMA_COLOR		equ		15		;15 - BLANCO
+     138.  00:C000  (00:00A0)           FANTASMA_SPRITE1	equ		160
+     139.  00:C000  (00:00A4)           FANTASMA_SPRITE2	equ		164
+     140.  00:C000  (00:00A8)           FANTASMA_SPRITE3	equ		168
+     141.  00:C000  (00:00AC)           FANTASMA_SPRITE4	equ		172
+     142.  00:C000                      
+     143.  00:C000                      
       12   00:C000                      include "constantesyvariables/estructuras.asm"
        1.  00:C000                      ;;=====================================================
        2.  00:C000                      ;;DEFINICIÓN DE ESTRUCTURAS
@@ -1185,6 +1194,12 @@ Errors: 0
 00:000000F4 X JEFEMURCIELAGO_SPRITE2B
 00:000000F8 X JEFEMURCIELAGO_SPRITE3B
 00:000000FC X JEFEMURCIELAGO_SPRITE4B
+00:00000009 X TIPOFANTASMA
+00:0000000F X FANTASMA_COLOR
+00:000000A0 X FANTASMA_SPRITE1
+00:000000A4 X FANTASMA_SPRITE2
+00:000000A8 X FANTASMA_SPRITE3
+00:000000AC X FANTASMA_SPRITE4
 00:00000000 X ESTRUCTURA_PUNTOMIRA.posx
 00:00000001 X ESTRUCTURA_PUNTOMIRA.posy
 00:00000002 X ESTRUCTURA_PUNTOMIRA.escena
