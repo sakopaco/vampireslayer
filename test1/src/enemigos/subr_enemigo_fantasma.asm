@@ -3,7 +3,7 @@
 ;;=====================================================
 datos_fantasma:
 			DB		TIPOFANTASMA	;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
-			DB		0		;00000000b / 00000001b / 00000010b / 00000100b
+			DB		0		
 			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
 			DB		10		;(energia) energía del enemigo antes de morir
 			DB		0		;(posx) pos x para mover y punto central del sprite para revisar disparo
@@ -12,8 +12,8 @@ datos_fantasma:
 			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
 			DB		0		;(incx) incremento x para mover
 			DB		0		;(inxy) incremento y para mover
-			DB		0		;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
-			DB		0		;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		0		;(direccionx) 00000001b / 00000010b / 00000100b / 00001000b (las 4 posiciones posibles)
+			DB		0		;(direcciony) no se usa
 			DB		FANTASMA_LIM_PASOS	;(pasos) TIEMPO QUE ESPERA PARA PASAR DE UNA ESCAA A OTRA
 			DB		0		;(radio) radio para movimientos circulares
 			DW		mover_fantasma	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
@@ -21,12 +21,6 @@ datos_fantasma:
 			DB		FANTASMA_SPRITE2A;der_arriba
 			DB		FANTASMA_SPRITE1B;izq abajo
 			DB		FANTASMA_SPRITE2B;der_abajo
-			
-
-posiciones_fantasmax:
-			DB		80,94,24,200
-posiciones_fantasmay:
-			DB		32,32,64,64
 
 
 ;;=====================================================
@@ -58,10 +52,10 @@ fin_anade_enemigo_fantasma:
 ; toca:		-
 actualiza_valores_fantasma:
 .asigna_valores_posicion_x:	
-		LD			(IX + ESTRUCTURA_ENEMIGO.posx), FANTASMA_INIX
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), FANTASMA_X1
 		
 .asigna_valores_posicion_y:
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), FANTASMA_INIY
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), FANTASMA_Y1
 fin_actualiza_valores_fantasma:
 		RET
 		
@@ -74,16 +68,18 @@ fin_actualiza_valores_fantasma:
 ; salida: 	-
 ; toca:		-
 mover_fantasma:
-		;~ ;CALL		calcula_fantasma_incrementox
+		CALL		calcula_fantasma_posy
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
 		LD			(IY), A
 		LD			(IY + 4), A
 		
-		;~ CALL		calcula_fantasma_incrementox
+		CALL		calcula_fantasma_posx
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
 		LD			(IY + 1), A
 		ADD			16
 		LD			(IY + 5), A
+		
+		CALL		verifica_siguiente_posicion_fantasma
 		
 		CALL		calcula_fantasma_escena		
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_a)
@@ -114,56 +110,92 @@ calcula_fantasma_escena:
 			OR			 A
 			JP			 Z, .escena2
 .escena1:
-				LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), FANTASMA_SPRITE1A
-				;LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_b), FANTASMA_SPRITE2A
+				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), FANTASMA_SPRITE1A
 				RET
 .escena2:
-				LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), FANTASMA_SPRITE1B
-				;LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_b), FANTASMA_SPRITE2B
+				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), FANTASMA_SPRITE1B
 				RET		
 fin_calcula_fantasma_escena:
 
 
 ;;=====================================================
-;;CALCULA_LOBO_INCREMENTOY
+;;CALCULA_FANTASMA_POSY
 ;;=====================================================	
+calcula_fantasma_posy:
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
+
+.mira_posicion0:
+		AND			00000001b
+		JR			 Z, .mira_posicion1
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), FANTASMA_Y1
+		RET
 		
+.mira_posicion1:
+		AND			00000010b
+		JR			 Z, .mira_posicion2
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), FANTASMA_Y2
+		RET
+		
+.mira_posicion2:
+		AND			00000100b
+		JR			 Z, .mira_posicion3
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), FANTASMA_Y3
+		RET
+		
+.mira_posicion3:
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), FANTASMA_Y4
+		RET		
+fin_calcula_fantasma_posy:
+
 
 ;;=====================================================
-;;CALCULA_LOBO_INCREMENTOX
+;;CALCULA_FANTASMA_POSX
 ;;=====================================================	
-calcula_fantasma_incrementox:
-;SI DIRECCION = DERECHA
+calcula_fantasma_posx:
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
-		OR			 A
-		JP			 Z, .lobo_derecha
-.lobo_izquierda:
-		;DECREMENTA X => LOBO IZQUIERDA
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
+
+.mira_posicion0:
+		AND			00000001b
+		JR			 Z, .mira_posicion1
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), FANTASMA_X1
+		RET
+		
+.mira_posicion1:
+		AND			00000010b
+		JR			 Z, .mira_posicion2
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), FANTASMA_X2
+		RET
+		
+.mira_posicion2:
+		AND			00000100b
+		JR			 Z, .mira_posicion3
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), FANTASMA_X3
+		RET
+		
+.mira_posicion3:
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), FANTASMA_X4
+		RET
+fin_calcula_fantasma_posx:
+
+
+;;=====================================================
+;;VERIFICA_SIGUIENTE_POSICION_FANTASMA
+;;=====================================================			
+verifica_siguiente_posicion_fantasma:
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.pasos)
+
+		AND			 A
+		JP			NZ, .decrementa_paso_fantasma
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
+			RLA	
+			AND			00001111b
+			JP			NZ, .no_resetea_direccion
+				LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), 00000001b
+.no_resetea_direccion:
+			LD			(IX + ESTRUCTURA_ENEMIGO.pasos), FANTASMA_LIM_PASOS
+		RET
+.decrementa_paso_fantasma:
 		DEC			 A
-		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
-		
-		;SI X = LOBO_LIMIZQ 
-		CP			LOBO_LIMIZQ
-			RET			NZ
-		;DIRECCION = DERECHA
-			LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), DIRDERECHA
-		;FIN SI
+		LD			(IX + ESTRUCTURA_ENEMIGO.pasos), A
+fin_verifica_siguiente_posicion_fantasma:
 		RET
-;SINO
-.lobo_derecha:
-		;INCREMENTA X => LOBO DERECHA
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-		INC			 A
-		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
-		
-		;SI Y = LOBO_LIMDER
-		CP			LOBO_LIMDER
-			RET			NZ
-		;DIRECCION = LOBO
-			LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), DIRIZQUIERDA
-	;FIN SI
-;FIN SI
-fin_calcula_fantasa_incrementox:
-		RET
-		
