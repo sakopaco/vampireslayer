@@ -97,6 +97,7 @@ carga_patrones_sprites_nivel2:
 		CALL		carga_patrones_lobo
 		CALL		carga_patrones_esqueleto
 		CALL		carga_patrones_zombi
+		CALL		carga_patrones_fantasma
 		JP			carga_patrones_jefemurcielago
 fin_carga_patrones_sprites_nivel2:
 	

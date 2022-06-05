@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.06.03 - 20:43:05]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.06.05 - 14:52:12]
 
 ./variables.asm
 Errors: 0
@@ -435,12 +435,14 @@ Errors: 0
      135.  00:C000                      ;;ETIQUETAS/CONSTANTES ZOMBI
      136.  00:C000  (00:0009)           TIPOFANTASMA		equ		9
      137.  00:C000  (00:000F)           FANTASMA_COLOR		equ		15		;15 - BLANCO
-     138.  00:C000  (00:00A0)           FANTASMA_SPRITE1	equ		160
-     139.  00:C000  (00:00A4)           FANTASMA_SPRITE2	equ		164
-     140.  00:C000  (00:00A8)           FANTASMA_SPRITE3	equ		168
-     141.  00:C000  (00:00AC)           FANTASMA_SPRITE4	equ		172
-     142.  00:C000                      
-     143.  00:C000                      
+     138.  00:C000  (00:00A0)           FANTASMA_SPRITE1A	equ		160
+     139.  00:C000  (00:00A4)           FANTASMA_SPRITE2A	equ		164
+     140.  00:C000  (00:00A8)           FANTASMA_SPRITE1B	equ		168
+     141.  00:C000  (00:00AC)           FANTASMA_SPRITE2B	equ		172
+     142.  00:C000  (00:00C8)           FANTASMA_LIM_PASOS  equ		200
+     143.  00:C000  (00:0050)           FANTASMA_INIX		equ		80
+     144.  00:C000  (00:0020)           FANTASMA_INIY		equ		32
+     145.  00:C000                      
       12   00:C000                      include "constantesyvariables/estructuras.asm"
        1.  00:C000                      ;;=====================================================
        2.  00:C000                      ;;DEFINICIÓN DE ESTRUCTURAS
@@ -1196,10 +1198,13 @@ Errors: 0
 00:000000FC X JEFEMURCIELAGO_SPRITE4B
 00:00000009 X TIPOFANTASMA
 00:0000000F X FANTASMA_COLOR
-00:000000A0 X FANTASMA_SPRITE1
-00:000000A4 X FANTASMA_SPRITE2
-00:000000A8 X FANTASMA_SPRITE3
-00:000000AC X FANTASMA_SPRITE4
+00:000000A0 X FANTASMA_SPRITE1A
+00:000000A4 X FANTASMA_SPRITE2A
+00:000000A8 X FANTASMA_SPRITE1B
+00:000000AC X FANTASMA_SPRITE2B
+00:000000C8 X FANTASMA_LIM_PASOS
+00:00000050 X FANTASMA_INIX
+00:00000020 X FANTASMA_INIY
 00:00000000 X ESTRUCTURA_PUNTOMIRA.posx
 00:00000001 X ESTRUCTURA_PUNTOMIRA.posy
 00:00000002 X ESTRUCTURA_PUNTOMIRA.escena
