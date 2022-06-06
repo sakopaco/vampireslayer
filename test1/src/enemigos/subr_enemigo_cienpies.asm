@@ -45,7 +45,7 @@ datos_cienpies:
 anade_enemigo_cienpies:
 		LD			HL, datos_cienpies
 		LD			BC, ESTRUCTURA_ENEMIGO
-;		LDIR
+		LDIR
 fin_anade_enemigo_cienpies:
 		RET
 
@@ -79,7 +79,8 @@ actualiza_valores_cienpies:
 		LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
 fin_actualiza_valores_cienpies:
 		RET
-		
+
+
 ;;=====================================================
 ;;MOVER_CIENPIES
 ;;=====================================================	
@@ -98,7 +99,8 @@ mover_cienpies:
 
 		CALL		calcula_cienpies_escena
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_a)
-		LD			(IY + 2), A		
+		LD			(IY + 2), A	
+			
 		LD			(IY + 3), CIENPIES_COLOR
 fin_mover_cienpies:
 		RET

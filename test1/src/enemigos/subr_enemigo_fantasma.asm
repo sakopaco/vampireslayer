@@ -3,11 +3,11 @@
 ;;=====================================================
 datos_fantasma:
 			DB		TIPOFANTASMA	;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
-			DB		0		
+			DB		0		;(escena) sprite a mostrar 1/2
 			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
 			DB		10		;(energia) energía del enemigo antes de morir
-			DB		0		;(posx) pos x para mover y punto central del sprite para revisar disparo
-			DB		0		;(posy) pos y para mover y punto central del sprite para revisar disparo
+			DB		FANTASMA_X1		;(posx) pos x para mover y punto central del sprite para revisar disparo
+			DB		FANTASMA_Y1		;(posy) pos y para mover y punto central del sprite para revisar disparo
 			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
 			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
 			DB		0		;(incx) incremento x para mover
@@ -51,11 +51,11 @@ fin_anade_enemigo_fantasma:
 ; salida: 	posicion_anterior_fantasma
 ; toca:		-
 actualiza_valores_fantasma:
-.asigna_valores_posicion_x:	
-		LD			(IX + ESTRUCTURA_ENEMIGO.posx), FANTASMA_X1
+;~ .asigna_valores_posicion_x:	
+		;~ LD			(IX + ESTRUCTURA_ENEMIGO.posx), FANTASMA_X1
 		
-.asigna_valores_posicion_y:
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), FANTASMA_Y1
+;~ .asigna_valores_posicion_y:
+		;~ LD			(IX + ESTRUCTURA_ENEMIGO.posy), FANTASMA_Y1
 fin_actualiza_valores_fantasma:
 		RET
 		
@@ -183,19 +183,36 @@ fin_calcula_fantasma_posx:
 ;;=====================================================			
 verifica_siguiente_posicion_fantasma:
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.pasos)
-
-		AND			 A
-		JP			NZ, .decrementa_paso_fantasma
-			LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
-			RLA	
-			AND			00001111b
-			JP			NZ, .no_resetea_direccion
-				LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), 00000001b
-.no_resetea_direccion:
-			LD			(IX + ESTRUCTURA_ENEMIGO.pasos), FANTASMA_LIM_PASOS
-		RET
-.decrementa_paso_fantasma:
+		
+		OR			 A
+		JP			 Z, .modifica_posicion_fantasma
+.no_modifica_posicion_fantasma:
 		DEC			 A
 		LD			(IX + ESTRUCTURA_ENEMIGO.pasos), A
+		RET
+.modifica_posicion_fantasma:
+		LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), 00001000b
+		LD			(IX + ESTRUCTURA_ENEMIGO.pasos), FANTASMA_LIM_PASOS
+		RET
+
+		;~ ;IF		pasos<> 0 THEN ROTO A LA IZQ LOS BITS
+		;~ AND			 A
+		;~ JP			NZ, .decrementa_paso_fantasma
+			;~ ;SI NO HA PASADO POR LAS 4 POSICIONES
+			;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
+			;~ RLA	
+			;~ AND			00001111b
+			;~ JP			NZ, .no_resetea_direccion
+			;~ ;THEN
+				;~ LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), 00000001b
+			;~ ;ELSE
+;~ .no_resetea_direccion:
+			;~ LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), A
+			;~ LD			(IX + ESTRUCTURA_ENEMIGO.pasos), FANTASMA_LIM_PASOS
+			;~ ;END IF
+;~ .decrementa_paso_fantasma:
+		;~ ;ELSE
+		;~ DEC			 A
+		;~ LD			(IX + ESTRUCTURA_ENEMIGO.pasos), A
 fin_verifica_siguiente_posicion_fantasma:
 		RET
