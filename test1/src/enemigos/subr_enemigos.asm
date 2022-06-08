@@ -1281,6 +1281,8 @@ check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activ
 		OR			 A
 		JP			 Z, .check_enemigo2
 		
+		LD			IY, array_sprites_enem
+		
 		CALL 		mueve_enemigo
 		;acciones enemigos
 .check_enemigo2:

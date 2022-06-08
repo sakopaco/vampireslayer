@@ -127,14 +127,10 @@ calcula_esqueleto_incrementoy:
 		CP			00100000b ;32
 		JP			NC, .bajo
 .subo:
-			LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
-			DEC			 A
-			LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
+			DEC			(IX + ESTRUCTURA_ENEMIGO.posy)
 			RET
 .bajo:
-			LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
-			INC			 A
-			LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
+			INC			(IX + ESTRUCTURA_ENEMIGO.posy)
 			RET
 fin_calcula_esqueleto_incrementoy:
 		

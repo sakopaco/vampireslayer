@@ -149,12 +149,10 @@ calcula_murcielago_incrementox:
 		OR			 A
 		JP			 Z, .mueve_derecha
 .mueve_izquierda:
-			LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-			DEC			 A
+			DEC			(IX + ESTRUCTURA_ENEMIGO.posx)
 			JP			.fin_mueve
 .mueve_derecha:
-			LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-			INC			 A
+			INC			(IX + ESTRUCTURA_ENEMIGO.posx)
 .fin_mueve:		
 		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
 

@@ -482,7 +482,7 @@ accion_cruz:
 	CP		 6
 	JR		NC, .max_reliquias
 .suma_reliquias
-[2]	INC		 A						;suma 2 reliquias
+	ADD		 2						;suma 2 reliquias
 	JP		.fin_suma_reliquias
 .max_reliquias
 	LD		 A, 8					;aplica el máx. de reliquias 8
@@ -517,7 +517,7 @@ accion_aguabendita:
 	CP		 5
 	JR		NC, .max_reliquias
 .suma_reliquias
-[3]	INC		 A						;suma 3 reliquias
+	ADD		 3						;suma 3 reliquias
 	JP		.fin_suma_reliquias
 .max_reliquias
 	LD		 A, 8					;aplica el máx. de reliquias 8

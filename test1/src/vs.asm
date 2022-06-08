@@ -109,9 +109,8 @@ loop_principal:
 		CALL		check_player			;MIRA EL CONTROL Y APLICA LA LOGICA DE MOVIMIENTO DEL PROTAGONISTA
 	
 		;incrementa el hearbeat para el movimiento de los enemigos
-		LD		 	 A, (heartbeat)
-		INC		 	 A
-		LD			(heartbeat), A
+		LD		 	 HL, heartbeat
+		INC		 	 (HL)
 	
 		;poner arriba
 		CALL		render_sprites			;actualiza array de sprites y los pinta en pantalla
@@ -136,7 +135,7 @@ inicializa_variables_pruebas:
 	;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
 	;será igual la posición inicial en todos los niveles
 	
-	LD		 A, 0				;los niveles (matrices) son 7 del 0 al 6
+	LD		 A, 2;0				;los niveles (matrices) son 7 del 0 al 6
 	LD		(prota_nivel), A	;nivel empieza en 0 para usar las posiciones ascii
 
 	LD		 A, 0				;los subniveles (filas) son 7 del 0 al 6
