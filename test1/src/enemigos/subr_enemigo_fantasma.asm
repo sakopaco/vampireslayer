@@ -51,6 +51,7 @@ fin_anade_enemigo_fantasma:
 ; salida: 	posicion_anterior_fantasma
 ; toca:		-
 actualiza_valores_fantasma:
+		LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), 00000001b
 fin_actualiza_valores_fantasma:
 		RET
 		
@@ -118,9 +119,10 @@ fin_calcula_fantasma_escena:
 ;;CALCULA_FANTASMA_POSYX
 ;;=====================================================	
 calcula_fantasma_posyx:
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
+		LD			 B, (IX + ESTRUCTURA_ENEMIGO.direccionx)
 
 .mira_posicion0:
+		LD			 A, B
 		AND			00000001b
 		JR			 Z, .mira_posicion1
 		LD			(IX + ESTRUCTURA_ENEMIGO.posy), FANTASMA_Y1
@@ -128,6 +130,7 @@ calcula_fantasma_posyx:
 		RET
 		
 .mira_posicion1:
+		LD			 A, B
 		AND			00000010b
 		JR			 Z, .mira_posicion2
 		LD			(IX + ESTRUCTURA_ENEMIGO.posy), FANTASMA_Y2
@@ -135,6 +138,7 @@ calcula_fantasma_posyx:
 		RET
 		
 .mira_posicion2:
+		LD			 A, B
 		AND			00000100b
 		JR			 Z, .mira_posicion3
 		LD			(IX + ESTRUCTURA_ENEMIGO.posy), FANTASMA_Y3
@@ -142,10 +146,16 @@ calcula_fantasma_posyx:
 		RET
 		
 .mira_posicion3:
+		LD			 A, B
+		AND			00001000b
+		JR			 Z, .resetea_posicion
 		LD			(IX + ESTRUCTURA_ENEMIGO.posy), FANTASMA_Y4
 		LD			(IX + ESTRUCTURA_ENEMIGO.posx), FANTASMA_X4
-		RET		
+		RET
+.resetea_posicion:
+		LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), 00000001b
 fin_calcula_fantasma_posy:
+		RET
 
 
 ;;=====================================================
@@ -160,16 +170,9 @@ verifica_siguiente_posicion_fantasma:
 			DEC			(IX + ESTRUCTURA_ENEMIGO.pasos)
 			RET
 .modifica_posicion_fantasma:
-			LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
-			RL			 A
-			AND			00001111b
-			JP			 Z, .resetea_direccion
-.no_resetea_direccion:
-				LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), A
-				JP			.fin_mira_direccion
-.resetea_direccion:
-				LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), 00000001b
-.fin_mira_direccion:
-				LD			(IX + ESTRUCTURA_ENEMIGO.pasos), FANTASMA_LIM_PASOS
+			;reseteo pasos
+			LD			(IX + ESTRUCTURA_ENEMIGO.pasos), FANTASMA_LIM_PASOS
+			;paso a la siguiente posición
+			RLC			(IX + ESTRUCTURA_ENEMIGO.direccionx)
 fin_verifica_siguiente_posicion_fantasma:
-		RET
+			RET
