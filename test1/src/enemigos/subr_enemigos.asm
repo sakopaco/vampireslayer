@@ -16,6 +16,7 @@ include "subr_enemigo_esqueleto.asm"
 include "subr_enemigo_zombi.asm"
 include "subr_enemigo_jefemurcielago.asm"
 include "subr_enemigo_fantasma.asm"
+include "subr_enemigo_jefefantasma.asm"
 		
 		
 ;;=====================================================
@@ -740,9 +741,9 @@ fin_inicializa_enemigos_fase2_nivel5:
 
 inicializa_enemigos_fase2_niveljefe:	
 		LD			DE, enemigo7
-		CALL		anade_enemigo_jefemurcielago
+		CALL		anade_enemigo_jefefantasma
 		LD			IX, enemigo7
-		JP			actualiza_valores_jefemurcielago	
+		JP			actualiza_valores_jefefantasma
 fin_inicializa_enemigos_fase2_niveljefe:
 
 
