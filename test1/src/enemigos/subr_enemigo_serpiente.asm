@@ -54,7 +54,6 @@ fin_anade_enemigo_serpiente:
 ; salida: 	posicion_anterior_arana
 ; toca:		-
 actualiza_valores_serpiente:
-		EXX
 .calcula_posicion:
 .asigna_valores_posicion_x:		
 		;calcula posición inicial sumando a su líete izq un offset
@@ -68,8 +67,6 @@ actualiza_valores_serpiente:
 		
 .asigna_valores_posicion_y:
 		LD			(IX + ESTRUCTURA_ENEMIGO.posy), SERPIENTE_POSY
-
-		EXX
 fin_actualiza_valores_serpiente:
 		RET
 		
@@ -94,6 +91,7 @@ mover_serpiente:
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_a)
 		LD			(IY + 2), A		
 		
+		;colorea serpiente
 		LD			(IY + 3), SERPIENTE_COLOR
 fin_mover_serpiente:
 		RET

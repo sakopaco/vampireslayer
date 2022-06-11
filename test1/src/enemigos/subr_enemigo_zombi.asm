@@ -85,10 +85,9 @@ mover_zombi:
 		ADD			 4
 		LD			(IY + 6), A
 		
-		LD			 A, ZOMBI_COLOR_A
-		LD			(IY + 3), A
-		LD			 A, ZOMBI_COLOR_B
-		LD			(IY + 7), A
+		;colorea zombi
+		LD			(IY + 3), ZOMBI_COLOR_A
+		LD			(IY + 7), ZOMBI_COLOR_B
 fin_mover_zombi:
 		RET
 

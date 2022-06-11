@@ -70,7 +70,7 @@ fin_actualiza_valores_jefemurcielago:
 ;;=====================================================
 ;;MOVER_JEFEMURCIELAGO
 ;;=====================================================	
-; función: hace todo lo que haga falta de acciones cada vez que le toca al programa enfocarse en el jefelobo: su ataque, su sptrite, etc...
+; función: hace todo lo que haga falta de acciones cada vez que le toca al programa enfocarse en el jefemurcielago: su ataque, su sptrite, etc...
 ; entrada: IX (enemigo en concreto al que poner los datos, por ejemplo, enemigo1)
 ; salida: 	-
 ; toca:		-
@@ -101,11 +101,11 @@ mover_jefemurcielago:
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_d)
 		LD			(IY + 14), A
 
-		LD			 A, JEFEMURCIELAGO_COLOR
-		LD			(IY + 3),  	A
-		LD			(IY + 7),  	A
-		LD			(IY + 11), 	A
-		LD			(IY + 15), 	A
+		;colorea jefemurcielago
+		LD			(IY + 3),  JEFEMURCIELAGO_COLOR
+		LD			(IY + 7),  JEFEMURCIELAGO_COLOR
+		LD			(IY + 11), JEFEMURCIELAGO_COLOR
+		LD			(IY + 15), JEFEMURCIELAGO_COLOR
 fin_mover_jefemurcielaro:
 		RET
 

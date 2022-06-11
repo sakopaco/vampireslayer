@@ -75,6 +75,7 @@ mover_murcielago:
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_a)
 		LD			(IY + 2), A
 		
+		;colorea murcielago
 		LD			(IY + 3), MURCIELAGO_COLOR
 fin_mover_murcielago:
 		RET

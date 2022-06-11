@@ -82,7 +82,7 @@ mover_fantasma:
 		ADD			 4
 		LD			(IY + 6), A
 		
-		;color fantasma
+		;colorea fantasma
 		LD			(IY + 3), FANTASMA_COLOR
 		LD			(IY + 7), FANTASMA_COLOR
 fin_mover_fantasma:

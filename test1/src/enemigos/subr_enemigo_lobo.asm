@@ -89,9 +89,9 @@ mover_lobo:
 		ADD			 4
 		LD			(IY + 6), A
 		
-		LD			 A, LOBO_COLOR
-		LD			(IY + 3), A
-		LD			(IY + 7), A
+		;colorea lobo
+		LD			(IY + 3), LOBO_COLOR
+		LD			(IY + 7), LOBO_COLOR
 fin_mover_lobo:
 		RET
 

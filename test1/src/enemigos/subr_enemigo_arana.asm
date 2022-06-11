@@ -91,6 +91,7 @@ mover_arana:
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_a)
 		LD			(IY + 2), A		
 		
+		;colorea araña
 		LD			(IY + 3), ARANA_COLOR
 fin_mover_arana:
 		RET

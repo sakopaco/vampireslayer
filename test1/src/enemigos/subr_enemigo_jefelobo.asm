@@ -88,11 +88,11 @@ mover_jefelobo:
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_d)
 		LD			(IY + 14), A
 
-		LD			 A, JEFELOBO_COLOR
-		LD			(IY + 3), A
-		LD			(IY + 7), A
-		LD			(IY + 11), A
-		LD			(IY + 15), A
+		;colorea jefelobo
+		LD			(IY + 3),  JEFELOBO_COLOR
+		LD			(IY + 7),  JEFELOBO_COLOR
+		LD			(IY + 11), JEFELOBO_COLOR
+		LD			(IY + 15), JEFELOBO_COLOR
 fin_mover_jefelobo:
 		RET
 

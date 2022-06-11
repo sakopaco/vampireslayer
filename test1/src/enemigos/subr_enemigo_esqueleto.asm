@@ -86,9 +86,9 @@ mover_esqueleto:
 		ADD			 4
 		LD			(IY + 6), A
 		
-		LD			 A, ESQUELETO_COLOR
-		LD			(IY + 3), A
-		LD			(IY + 7), A
+		;colorea esqueleto
+		LD			(IY + 3), ESQUELETO_COLOR
+		LD			(IY + 7), ESQUELETO_COLOR
 fin_mover_esqueleto:
 		RET
 

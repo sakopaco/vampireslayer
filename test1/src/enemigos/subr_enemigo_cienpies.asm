@@ -100,7 +100,8 @@ mover_cienpies:
 		CALL		calcula_cienpies_escena
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_a)
 		LD			(IY + 2), A	
-			
+		
+		;colorea cienpies
 		LD			(IY + 3), CIENPIES_COLOR
 fin_mover_cienpies:
 		RET

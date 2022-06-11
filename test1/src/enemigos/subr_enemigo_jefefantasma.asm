@@ -116,9 +116,15 @@ calcula_jefefantasma_escena:
 			JP			 Z, .escena2
 .escena1:
 				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFEFANTASMA_SPRITE1A
+				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), JEFEFANTASMA_SPRITE2A
+				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_c), JEFEFANTASMA_SPRITE3A
+				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_d), JEFEFANTASMA_SPRITE4A
 				RET
 .escena2:
 				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFEFANTASMA_SPRITE1B
+				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), JEFEFANTASMA_SPRITE2B
+				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_c), JEFEFANTASMA_SPRITE3B
+				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_d), JEFEFANTASMA_SPRITE4B
 				RET		
 fin_calcula_jefefantasma_escena:
 
@@ -156,14 +162,36 @@ calcula_jefefantasma_posyx:
 .mira_posicion3:
 		LD			 A, B
 		AND			00001000b
-		JR			 Z, .resetea_posicion
+		JR			 Z, .mira_posicion4
 		LD			(IX + ESTRUCTURA_ENEMIGO.posy), JEFEFANTASMA_Y4
 		LD			(IX + ESTRUCTURA_ENEMIGO.posx), JEFEFANTASMA_X4
 		RET
-.resetea_posicion:
-		LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), 00000001b
-fin_calcula_jefefantasma_posyx:
+.mira_posicion4:
+		LD			 A, B
+		AND			00010000b
+		JR			 Z, .mira_posicion5
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), JEFEFANTASMA_Y5
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), JEFEFANTASMA_X5
 		RET
+.mira_posicion5:
+		LD			 A, B
+		AND			00100000b
+		JR			 Z, .mira_posicion6
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), JEFEFANTASMA_Y6
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), JEFEFANTASMA_X6
+		RET
+.mira_posicion6:
+		LD			 A, B
+		AND			01000000b
+		JR			 Z, .mira_posicion7
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), JEFEFANTASMA_Y7
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), JEFEFANTASMA_X7
+		RET
+.mira_posicion7:
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), JEFEFANTASMA_Y8
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), JEFEFANTASMA_X8
+		RET
+fin_calcula_jefefantasma_posyx:
 
 
 ;;=====================================================
