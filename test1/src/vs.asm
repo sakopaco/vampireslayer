@@ -135,10 +135,10 @@ inicializa_variables_pruebas:
 	;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
 	;será igual la posición inicial en todos los niveles
 	
-	LD		 A, 2;0				;los niveles (matrices) son 7 del 0 al 6
+	LD		 A, 3;0				;los niveles (matrices) son 7 del 0 al 6
 	LD		(prota_nivel), A	;nivel empieza en 0 para usar las posiciones ascii
 
-	LD		 A, 2;0				;los subniveles (filas) son 7 del 0 al 6
+	LD		 A, 0				;los subniveles (filas) son 7 del 0 al 6
 	LD		(prota_pos_mapy), A	;pos Y dentro del nivel (se empieza en 0)
 
 	LD		 A, 3				;columnas 7: del 0 al 6
@@ -204,13 +204,12 @@ inicializacion_variables:
 fin_inicializacion_variables:
 
 
+;END: (FIN CÓDIGO)
 
-;~ datos_fantasma:
 ;~ datos_caballerogris:
 ;~ datos_caballeronegro:
 ;~ datos_fuego:
 ;~ datos_magia:	
-;~ datos_jefefatasma:
 ;~ datos_jefezombie:
 ;~ datos_jefecaballero:
 ;~ datos_jefebeholder:
@@ -218,8 +217,6 @@ fin_inicializacion_variables:
 ;~ datos_manoizquierda:
 ;~ datos_conde:
 
-
-
-;END:
+;INICIO ZONA DATOS (BANCO DE MEMORIA 3)
 
 		DS	#C000 - $
