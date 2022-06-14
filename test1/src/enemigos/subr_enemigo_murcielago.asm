@@ -137,6 +137,9 @@ calcula_murcielago_incrementox:
 .fin_mueve:
 
 		;mira si cambia sentido
+		
+		;******************************************************************************************************
+		
 		DEC			(IX + ESTRUCTURA_ENEMIGO.pasos)
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.pasos)
 		OR			 A

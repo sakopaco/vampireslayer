@@ -14,7 +14,7 @@ datos_caballero:
 			DB		0		;(inxy) incremento y para mover
 			DB		DIRIZQUIERDA	;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		0		;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
-			DB		0		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
+			DB		CABALLERO_PASOS		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 			DB		0		;(radio) radio para movimientos circulares
 			DW		mover_caballero	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 			DB		CABALLERO_SPRITE1A	;izq arriba
@@ -90,37 +90,37 @@ fin_mover_caballero:
 ;;CALCULA_CABALLERO_ESCENA
 ;;=====================================================	
 calcula_caballero_escena:
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
-		OR			 A
-		JP			 Z, .direccion_derecha
+		;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
+		;~ OR			 A
+		;~ JP			 Z, .direccion_derecha
 
-.direccion_izquierda:
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
-		XOR			00000001b
-		LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
+;~ .direccion_izquierda:
+		;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+		;~ XOR			00000001b
+		;~ LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
 			
-		OR			 A
-		JP			 Z, .escena_izquierda2
-.escena_izquierda1:
+		;~ OR			 A
+		;~ JP			 Z, .escena_izquierda2
+;~ .escena_izquierda1:
 			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), CABALLERO_SPRITE1B
 			RET
-.escena_izquierda2:
-			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), CABALLERO_SPRITE3B
-			RET
+;~ .escena_izquierda2:
+			;~ LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), CABALLERO_SPRITE3B
+			;~ RET
 
-.direccion_derecha:
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
-		XOR			00000001b
-		LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
+;~ .direccion_derecha:
+		;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+		;~ XOR			00000001b
+		;~ LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
 			
-		OR			 A
-		JP			 Z, .escena_derecha2
-.escena_derecha1:
-			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), CABALLERO_SPRITE1A
-			RET
-.escena_derecha2:
-			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), CABALLERO_SPRITE3A
-			RET
+		;~ OR			 A
+		;~ JP			 Z, .escena_derecha2
+;~ .escena_derecha1:
+			;~ LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), CABALLERO_SPRITE1A
+			;~ RET
+;~ .escena_derecha2:
+			;~ LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), CABALLERO_SPRITE3A
+			;~ RET
 fin_calcula_caballero_escena:
 
 
@@ -149,25 +149,30 @@ fin_calcula_caballero_incrementoy:
 ;;CALCULA_CABALLERO_INCREMENTOX
 ;;====================================================	
 calcula_caballero_incrementox:
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
-		OR			 A
-		JP			 Z, .mueve_derecha
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.pasos)
+		DEC			 A
+		JP			NZ, .siguiente_paso
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
+			XOR			00000001b
+			LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), A
+		
+			;resetea pasos
+			LD			(IX + ESTRUCTURA_ENEMIGO.pasos), CABALLERO_PASOS
+
+			LD			(IX + ESTRUCTURA_ENEMIGO.posy), CABALLERO_HORIZON
+		RET
+.siguiente_paso:		
+			LD			(IX + ESTRUCTURA_ENEMIGO.pasos), A
+
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
+			OR			 A
+			JP			 Z, .mueve_derecha
 .mueve_izquierda:
 			DEC			(IX + ESTRUCTURA_ENEMIGO.posx)
-			JP			.fin_mueve
+			JP			fin_calcula_caballero_incrementox
 .mueve_derecha:
-			INC			(IX + ESTRUCTURA_ENEMIGO.posx)
-.fin_mueve:
-
-		;mira si cambia sentido
-		DEC			(IX + ESTRUCTURA_ENEMIGO.pasos)
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.pasos)
-		OR			 A
-		RET			NZ
-			;cambia sentido
-			LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
-			XOR			 00000001b
-			LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), A
-			LD			(IX + ESTRUCTURA_ENEMIGO.pasos), CABALLERO_PASOS
-			LD			(IX + ESTRUCTURA_ENEMIGO.posy), CABALLERO_HORIZON
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
+			INC			 A
+			LD			 (IX + ESTRUCTURA_ENEMIGO.posx), A
 fin_calcula_caballero_incrementox:
+		RET
