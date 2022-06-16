@@ -7,7 +7,7 @@ datos_caballero:
 			DB		00010000b	;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
 			DB		10		;(energia) energía del enemigo antes de morir
 			DB		CABALLERO_POSXINI	;(posx) pos x para mover y punto central del sprite para revisar disparo
-			DB		CABALLERO_POSYINI	;(posy) pos y para mover y punto central del sprite para revisar disparo
+			DB		CABALLERO_POSY	;(posy) pos y para mover y punto central del sprite para revisar disparo
 			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
 			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
 			DB		0		;(incx) incremento x para mover
@@ -156,32 +156,44 @@ calcula_caballero_incrementox:
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
 			DEC			 A
 			LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
-			
-			LD			 A, (IX + ESTRUCTURA_ENEMIGO.pasos)
-			DEC			 A
-			LD			(IX + ESTRUCTURA_ENEMIGO.pasos), A
-			
-			JP			.fin_mueve_posx
+			JP			fin_calcula_caballero_incrementox
 .mueve_derecha:
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
 			INC			 A
 			LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
 
-			LD			 A, (IX + ESTRUCTURA_ENEMIGO.pasos)
-			DEC			 A
-			LD			(IX + ESTRUCTURA_ENEMIGO.pasos), A
-.fin_mueve_posx:
 
-			LD			 A, (IX + ESTRUCTURA_ENEMIGO.pasos)
-			OR			 A
-			RET			NZ
-			
-			CALL		test_OK
 
-			LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
-			XOR			00000001b
-			LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), A
 
-			LD			(IX + ESTRUCTURA_ENEMIGO.pasos), CABALLERO_PASOS
+
+
+
+
+		
+		;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.pasos)
+		;~ DEC			 A
+		;~ JP			NZ, .siguiente_paso
+			;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
+			;~ XOR			00000001b
+			;~ LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), A
+		
+			;~ ;resetea pasos
+			;~ LD			(IX + ESTRUCTURA_ENEMIGO.pasos), CABALLERO_PASOS
+
+			;~ LD			(IX + ESTRUCTURA_ENEMIGO.posy), CABALLERO_HORIZON
+		;~ RET
+;~ .siguiente_paso:		
+			;~ LD			(IX + ESTRUCTURA_ENEMIGO.pasos), A
+
+			;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
+			;~ OR			 A
+			;~ JP			 Z, .mueve_derecha
+;~ .mueve_izquierda:
+			;~ DEC			(IX + ESTRUCTURA_ENEMIGO.posx)
+			;~ JP			fin_calcula_caballero_incrementox
+;~ .mueve_derecha:
+			;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
+			;~ INC			 A
+			;~ LD			 (IX + ESTRUCTURA_ENEMIGO.posx), A
 fin_calcula_caballero_incrementox:
 		RET
