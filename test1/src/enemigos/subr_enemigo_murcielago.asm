@@ -52,7 +52,6 @@ fin_anade_enemigo_murcielago:
 ; toca:		-
 actualiza_valores_murcielago:
 fin_actualiza_valores_murcielago:
-		RET
 		
 		
 ;;=====================================================

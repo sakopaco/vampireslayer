@@ -90,37 +90,37 @@ fin_mover_caballero:
 ;;CALCULA_CABALLERO_ESCENA
 ;;=====================================================	
 calcula_caballero_escena:
-		;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
-		;~ OR			 A
-		;~ JP			 Z, .direccion_derecha
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
+		OR			 A
+		JP			 Z, .direccion_derecha
 
-;~ .direccion_izquierda:
-		;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
-		;~ XOR			00000001b
-		;~ LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
+.direccion_izquierda:
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+		XOR			00000001b
+		LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
 			
-		;~ OR			 A
-		;~ JP			 Z, .escena_izquierda2
-;~ .escena_izquierda1:
+		OR			 A
+		JP			 Z, .escena_izquierda2
+.escena_izquierda1:
 			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), CABALLERO_SPRITE1B
 			RET
-;~ .escena_izquierda2:
-			;~ LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), CABALLERO_SPRITE3B
-			;~ RET
+.escena_izquierda2:
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), CABALLERO_SPRITE3B
+			RET
 
-;~ .direccion_derecha:
-		;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
-		;~ XOR			00000001b
-		;~ LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
+.direccion_derecha:
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+		XOR			00000001b
+		LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
 			
-		;~ OR			 A
-		;~ JP			 Z, .escena_derecha2
-;~ .escena_derecha1:
-			;~ LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), CABALLERO_SPRITE1A
-			;~ RET
-;~ .escena_derecha2:
-			;~ LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), CABALLERO_SPRITE3A
-			;~ RET
+		OR			 A
+		JP			 Z, .escena_derecha2
+.escena_derecha1:
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), CABALLERO_SPRITE1A
+			RET
+.escena_derecha2:
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), CABALLERO_SPRITE3A
+			RET
 fin_calcula_caballero_escena:
 
 
@@ -128,22 +128,8 @@ fin_calcula_caballero_escena:
 ;;CALCULA_CABALLERO_INCREMENTOY
 ;;=====================================================	
 calcula_caballero_incrementoy:
-		;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-		;~ AND			00000111b ;7
-		;~ CP			00000100b ;4
-		;~ JP			NC, .bajo
-;~ .subo:
-			;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
-			;~ DEC			 A
-			;~ LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
-			;~ RET
-;~ .bajo:
-			;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
-			;~ INC			 A
-			;~ LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
-			;~ RET
 fin_calcula_caballero_incrementoy:
-		RET
+
 
 ;;=====================================================
 ;;CALCULA_CABALLERO_INCREMENTOX
@@ -153,35 +139,19 @@ calcula_caballero_incrementox:
 			OR			 A
 			JP			 Z, .mueve_derecha
 .mueve_izquierda:
-			LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-			DEC			 A
-			LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
-			
-			LD			 A, (IX + ESTRUCTURA_ENEMIGO.pasos)
-			DEC			 A
-			LD			(IX + ESTRUCTURA_ENEMIGO.pasos), A
-			
-			JP			.fin_mueve_posx
+				DEC			(IX + ESTRUCTURA_ENEMIGO.posx)
+				JP			.fin_mueve_posx
 .mueve_derecha:
-			LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-			INC			 A
-			LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
-
-			LD			 A, (IX + ESTRUCTURA_ENEMIGO.pasos)
-			DEC			 A
-			LD			(IX + ESTRUCTURA_ENEMIGO.pasos), A
+				INC			(IX + ESTRUCTURA_ENEMIGO.posx)
 .fin_mueve_posx:
 
-			LD			 A, (IX + ESTRUCTURA_ENEMIGO.pasos)
-			OR			 A
+			DEC			(IX + ESTRUCTURA_ENEMIGO.pasos)
 			RET			NZ
-			
-			CALL		test_OK
-
-			LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
-			XOR			00000001b
-			LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), A
-
-			LD			(IX + ESTRUCTURA_ENEMIGO.pasos), CABALLERO_PASOS
+				;cambio dirección
+				LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
+				XOR			00000001b
+				LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), A
+				;resetea pasos
+				LD			(IX + ESTRUCTURA_ENEMIGO.pasos), CABALLERO_PASOS
 fin_calcula_caballero_incrementox:
 		RET

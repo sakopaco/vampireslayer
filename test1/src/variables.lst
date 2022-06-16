@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.06.16 - 20:31:08]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.06.16 - 20:55:33]
 
 ./variables.asm
 Errors: 0
@@ -494,7 +494,7 @@ Errors: 0
      194.  00:C000  (00:005C)           CABALLERO_SPRITE4B	equ		92
      195.  00:C000  (00:0030)           CABALLERO_POSYINI	equ		48
      196.  00:C000  (00:00C0)           CABALLERO_POSXINI	equ		192
-     197.  00:C000  (00:0014)           CABALLERO_PASOS  	equ		20
+     197.  00:C000  (00:0090)           CABALLERO_PASOS  	equ		144
      198.  00:C000                      
      199.  00:C000                      
       12   00:C000                      include "constantesyvariables/estructuras.asm"
@@ -1305,7 +1305,7 @@ Errors: 0
 00:0000005C X CABALLERO_SPRITE4B
 00:00000030 X CABALLERO_POSYINI
 00:000000C0 X CABALLERO_POSXINI
-00:00000014 X CABALLERO_PASOS
+00:00000090 X CABALLERO_PASOS
 00:00000000 X ESTRUCTURA_PUNTOMIRA.posx
 00:00000001 X ESTRUCTURA_PUNTOMIRA.posy
 00:00000002 X ESTRUCTURA_PUNTOMIRA.escena

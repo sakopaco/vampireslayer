@@ -432,7 +432,7 @@ inicializa_enemigos_fase0_nivel3:
 		LD			DE, enemigo4
 		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo4
-		JP			actualiza_valores_murcielago
+		RET
 fin_inicializa_enemigos_fase0_nivel3:
 
 inicializa_enemigos_fase0_nivel4:
@@ -454,7 +454,6 @@ inicializa_enemigos_fase0_nivel4:
 		LD			DE, enemigo4
 		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo4
-		CALL		actualiza_valores_murcielago
 		
 		LD			DE, enemigo5
 		CALL		anade_enemigo_lobo
@@ -481,7 +480,6 @@ inicializa_enemigos_fase0_nivel5:
 		LD			DE, enemigo4
 		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo4
-		CALL		actualiza_valores_murcielago
 		
 		LD			DE, enemigo5
 		CALL		anade_enemigo_lobo
@@ -533,7 +531,7 @@ inicializa_enemigos_fase1_nivel2:
 		LD			DE, enemigo3
 		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo3
-		JP			actualiza_valores_murcielago
+		RET
 fin_inicializa_enemigos_fase1_nivel2:
 
 inicializa_enemigos_fase1_nivel3:
@@ -550,7 +548,6 @@ inicializa_enemigos_fase1_nivel3:
 		LD			DE, enemigo3
 		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo3
-		CALL		actualiza_valores_murcielago
 		
 		LD			DE, enemigo4
 		CALL		anade_enemigo_lobo
@@ -572,7 +569,6 @@ inicializa_enemigos_fase1_nivel4:
 		LD			DE, enemigo3
 		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo3
-		CALL		actualiza_valores_murcielago
 		
 		LD			DE, enemigo4
 		CALL		anade_enemigo_lobo
@@ -599,7 +595,6 @@ inicializa_enemigos_fase1_nivel5:
 		LD			DE, enemigo3
 		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo3
-		CALL		actualiza_valores_murcielago
 		
 		LD			DE, enemigo4
 		CALL		anade_enemigo_lobo
@@ -644,7 +639,7 @@ inicializa_enemigos_fase2_nivel1:
 		LD			DE, enemigo2
 		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo2
-		JP			actualiza_valores_murcielago
+		RET
 fin_inicializa_enemigos_fase2_nivel1:
 
 inicializa_enemigos_fase2_nivel2:
@@ -656,7 +651,6 @@ inicializa_enemigos_fase2_nivel2:
 		LD			DE, enemigo2
 		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo2
-		CALL		actualiza_valores_murcielago
 		
 		LD			DE, enemigo3
 		CALL		anade_enemigo_lobo
@@ -673,7 +667,6 @@ inicializa_enemigos_fase2_nivel3:
 		LD			DE, enemigo2
 		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo2
-		CALL		actualiza_valores_murcielago
 		
 		LD			DE, enemigo3
 		CALL		anade_enemigo_lobo
@@ -695,7 +688,6 @@ inicializa_enemigos_fase2_nivel4:
 		LD			DE, enemigo2
 		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo2
-		CALL		actualiza_valores_murcielago
 		
 		LD			DE, enemigo3
 		CALL		anade_enemigo_lobo
@@ -717,7 +709,6 @@ inicializa_enemigos_fase2_nivel5:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo1
-		CALL		actualiza_valores_murcielago
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_lobo
@@ -784,7 +775,8 @@ inicializa_enemigos_fase3_nivel2:
 		LD			DE, enemigo3
 		CALL		anade_enemigo_caballero
 		LD			IX, enemigo3
-		JP			actualiza_valores_caballero
+		;JP			actualiza_valores_caballero
+		RET
 fin_inicializa_enemigos_fase3_nivel2:
 
 inicializa_enemigos_fase3_nivel3:
@@ -799,9 +791,8 @@ inicializa_enemigos_fase3_nivel3:
 		CALL		actualiza_valores_arana
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_lobo
+		CALL		anade_enemigo_caballero
 		LD			IX, enemigo3
-		CALL		actualiza_valores_lobo
 		
 		LD			DE, enemigo4
 		CALL		anade_enemigo_esqueleto
@@ -821,9 +812,8 @@ inicializa_enemigos_fase3_nivel4:
 		CALL		actualiza_valores_arana
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_lobo
+		CALL		anade_enemigo_caballero
 		LD			IX, enemigo3
-		CALL		actualiza_valores_lobo
 		
 		LD			DE, enemigo4
 		CALL		anade_enemigo_esqueleto
@@ -848,9 +838,8 @@ inicializa_enemigos_fase3_nivel5:
 		CALL		actualiza_valores_arana
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_esqueleto
+		CALL		anade_enemigo_caballero
 		LD			IX, enemigo3
-		CALL		actualiza_valores_esqueleto	
 		
 		LD			DE, enemigo4
 		CALL		anade_enemigo_zombi
@@ -929,7 +918,7 @@ inicializa_enemigos_fase4_nivel3:
 		LD			DE, enemigo4
 		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo4
-		JP			actualiza_valores_murcielago
+		RET
 fin_inicializa_enemigos_fase4_nivel3:
 
 inicializa_enemigos_fase4_nivel4:
@@ -951,7 +940,6 @@ inicializa_enemigos_fase4_nivel4:
 		LD			DE, enemigo4
 		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo4
-		CALL		actualiza_valores_murcielago
 		
 		LD			DE, enemigo5
 		CALL		anade_enemigo_lobo
@@ -978,7 +966,6 @@ inicializa_enemigos_fase4_nivel5:
 		LD			DE, enemigo4
 		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo4
-		CALL		actualiza_valores_murcielago
 		
 		LD			DE, enemigo5
 		CALL		anade_enemigo_lobo
@@ -1054,7 +1041,7 @@ inicializa_enemigos_fase5_nivel3:
 		LD			DE, enemigo4
 		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo4
-		JP			actualiza_valores_murcielago
+		RET
 fin_inicializa_enemigos_fase5_nivel3:
 
 inicializa_enemigos_fase5_nivel4:
@@ -1076,7 +1063,6 @@ inicializa_enemigos_fase5_nivel4:
 		LD			DE, enemigo4
 		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo4
-		CALL		actualiza_valores_murcielago
 		
 		LD			DE, enemigo5
 		CALL		anade_enemigo_lobo
@@ -1103,7 +1089,6 @@ inicializa_enemigos_fase5_nivel5:
 		LD			DE, enemigo4
 		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo4
-		CALL		actualiza_valores_murcielago
 		
 		LD			DE, enemigo5
 		CALL		anade_enemigo_lobo
@@ -1165,7 +1150,7 @@ inicializa_enemigos_fase6_nivel3:
 		LD			DE, enemigo4
 		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo4
-		JP			actualiza_valores_murcielago
+		RET
 fin_inicializa_enemigos_fase6_nivel3:
 
 inicializa_enemigos_fase6_nivel4:
@@ -1187,7 +1172,6 @@ inicializa_enemigos_fase6_nivel4:
 		LD			DE, enemigo4
 		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo4
-		CALL		actualiza_valores_murcielago
 		
 		LD			DE, enemigo5
 		CALL		anade_enemigo_lobo
@@ -1214,7 +1198,6 @@ inicializa_enemigos_fase6_nivel5:
 		LD			DE, enemigo4
 		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo4
-		CALL		actualiza_valores_murcielago
 		
 		LD			DE, enemigo5
 		CALL		anade_enemigo_lobo
