@@ -51,8 +51,7 @@ fin_anade_enemigo_caballero:
 ; toca:		-
 actualiza_valores_caballero:
 fin_actualiza_valores_caballero:
-		RET
-		
+
 		
 ;;=====================================================
 ;;MOVER_CABALLERO

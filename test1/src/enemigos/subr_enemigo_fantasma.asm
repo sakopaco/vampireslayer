@@ -52,7 +52,6 @@ fin_anade_enemigo_fantasma:
 ; toca:		-
 actualiza_valores_fantasma:
 fin_actualiza_valores_fantasma:
-		RET
 		
 		
 ;;=====================================================

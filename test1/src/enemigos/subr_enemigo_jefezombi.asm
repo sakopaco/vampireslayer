@@ -1,13 +1,13 @@
 ;;=====================================================
-;;COSNTANTES ZOMBI
+;;COSNTANTES JEFEZOMBI
 ;;=====================================================		
-datos_zombi:
-			DB		TIPOZOMBI	;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
+datos_jefezombi:
+			DB		TIPOJEFEZOMBI	;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
 			DB		0		;(escena) sprite a mostrar 1/2
 			DB		00010000b	;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
 			DB		10		;(energia) energía del enemigo antes de morir
-			DB		ZOMBI_POSX	;(posx) pos x para mover y punto central del sprite para revisar disparo
-			DB		ZOMBI_POSY	;(posy) pos y para mover y punto central del sprite para revisar disparo
+			DB		JEFEZOMBI_POSX	;(posx) pos x para mover y punto central del sprite para revisar disparo
+			DB		JEFEZOMBI_POSY	;(posy) pos y para mover y punto central del sprite para revisar disparo
 			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
 			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
 			DB		0		;(incx) incremento x para mover
@@ -16,79 +16,90 @@ datos_zombi:
 			DB		0		;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		0		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 			DB		0		;(radio) radio para movimientos circulares
-			DW		mover_zombi		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
-			DB		ZOMBI_SPRITE1A	;izq arriba
-			DB		ZOMBI_SPRITE2A	;der_arriba
-			DB		ZOMBI_SPRITE3A	;izq abajo
-			DB		ZOMBI_SPRITE4A	;der_abajo
+			DW		mover_jefezombi		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
+			DB		JEFEZOMBI_SPRITE1A	;izq arriba
+			DB		JEFEZOMBI_SPRITE2A	;der_arriba
+			DB		JEFEZOMBI_SPRITE3A	;izq abajo
+			DB		JEFEZOMBI_SPRITE4A	;der_abajo
 
 
 ;;=====================================================
-;;SUBRUTINAS MANEJO DE ZOMBI
+;;SUBRUTINAS MANEJO DE JEFEZOMBI
 ;;=====================================================	
 
 
 ;;=====================================================
-;;ANADE_ENEMIGO_ZOMBI
+;;ANADE_ENEMIGO_JEFEZOMBI
 ;;=====================================================	
-; función: 	mete en memoria la plantilla de datos base del zombi en el enemigo que se le pase por DE
+; función: 	mete en memoria la plantilla de datos base del jefezombi en el enemigo que se le pase por DE
 ; entrada:	DE (enemigo en concreto al que poner los datos, por ejemplo, enemigo1)
 ; salida: 	-
 ; toca:		-
-anade_enemigo_zombi:
-		LD			HL, datos_zombi
+anade_enemigo_jefezombi:
+		LD			HL, datos_jefezombi
 		LD			BC, ESTRUCTURA_ENEMIGO
 		LDIR
-fin_anade_enemigo_zombi:
+fin_anade_enemigo_jefezombi:
 		RET
 
 
 ;;=====================================================
-;;ACTUALIZA_VALORES_ZOMBI 
+;;ACTUALIZA_VALORES_JEFEZOMBI 
 ;;=====================================================	
 ; función: 	inicializa valores aleatorios del zombi
 ; entrada:	IX que equivaldrá a qué nº de enemigo estamos inicializando (por ejemplo enemigo1)
 ; toca:		-
-actualiza_valores_zombi:
-fin_actualiza_valores_zombi:
+actualiza_valores_jefezombi:
+fin_actualiza_valores_jefezombi:
 		
 		
 ;;=====================================================
-;;MOVER_ZOMBI
+;;MOVER_JEFEZOMBI
 ;;=====================================================	
-; función: hace todo lo que haga falta de acciones cada vez que le toca al programa enfocarse en el zombi: su ataque, su sptrite, etc...
+; función: hace todo lo que haga falta de acciones cada vez que le toca al programa enfocarse en el jefezombi: su ataque, su sptrite, etc...
 ; entrada: IX (enemigo en concreto al que poner los datos, por ejemplo, enemigo1)
 ; salida: 	-
 ; toca:		-
-mover_zombi:
-		CALL		calcula_zombi_incrementoy
+mover_jefezombi:
+		CALL		calcula_jefezombi_incrementoy
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
 		LD			(IY), A
+		LD			(IY + 8), A
 		ADD			16
 		LD			(IY + 4), A
+		LD			(IY + 12), A
 		
-		CALL		calcula_zombi_incrementox
+		CALL		calcula_jefezombi_incrementox
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
 		LD			(IY + 1), A
 		LD			(IY + 5), A
+		ADD 		16
+		LD			(IY + 9), A
+		LD			(IY + 13), A
 		
-		CALL		calcula_zombi_escena		
+		CALL		calcula_jefezombi_escena		
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_a)
 		LD			(IY + 2), A
-		ADD			 4
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_b)
 		LD			(IY + 6), A
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_c)
+		LD			(IY + 10), A
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_d)
+		LD			(IY + 14), A
 		
 		;colorea zombi
-		LD			(IY + 3), ZOMBI_COLOR_A
-		LD			(IY + 7), ZOMBI_COLOR_B
-fin_mover_zombi:
+		LD			(IY + 3),  JEFEZOMBI_COLOR_A
+		LD			(IY + 7),  JEFEZOMBI_COLOR_B
+		LD			(IY + 11), JEFEZOMBI_COLOR_C
+		LD			(IY + 15), JEFEZOMBI_COLOR_D
+fin_mover_jefezombi:
 		RET
 
 
 ;;=====================================================
-;;CALCULA_ZOMBI_ESCENA
+;;CALCULA_JEFEZOMBI_ESCENA
 ;;=====================================================	
-calcula_zombi_escena:
+calcula_jefezombi_escena:
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
 		OR			 A
 		JP			 Z, .direccion_derecha
@@ -101,10 +112,16 @@ calcula_zombi_escena:
 		OR			 A
 		JP			 Z, .escena_izquierda2
 .escena_izquierda1:
-			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), ZOMBI_SPRITE1B
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFEZOMBI_SPRITE1C
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), JEFEZOMBI_SPRITE2C
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_c), JEFEZOMBI_SPRITE3C
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_d), JEFEZOMBI_SPRITE4C
 			RET
 .escena_izquierda2:
-			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), ZOMBI_SPRITE3B
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFEZOMBI_SPRITE1D
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), JEFEZOMBI_SPRITE2D
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_c), JEFEZOMBI_SPRITE3D
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_d), JEFEZOMBI_SPRITE4D
 			RET
 
 .direccion_derecha:
@@ -115,18 +132,24 @@ calcula_zombi_escena:
 		OR			 A
 		JP			 Z, .escena_derecha2
 .escena_derecha1:
-			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), ZOMBI_SPRITE1A
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFEZOMBI_SPRITE1A
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), JEFEZOMBI_SPRITE2A
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_c), JEFEZOMBI_SPRITE3A
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_d), JEFEZOMBI_SPRITE4A
 			RET
 .escena_derecha2:
-			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), ZOMBI_SPRITE3A
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFEZOMBI_SPRITE1B
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), JEFEZOMBI_SPRITE2B
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_c), JEFEZOMBI_SPRITE3B
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_d), JEFEZOMBI_SPRITE4B
 			RET
-fin_calcula_zombi_escena:
+fin_calcula_jefezombi_escena:
 
 
 ;;=====================================================
-;;CALCULA_ZOMBI_INCREMENTOY
+;;CALCULA_JEFEZOMBI_INCREMENTOY
 ;;=====================================================	
-calcula_zombi_incrementoy:
+calcula_jefezombi_incrementoy:
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
 		AND			00000111b ;7
 		CP			00000100b ;4
@@ -141,24 +164,18 @@ calcula_zombi_incrementoy:
 			INC			 A
 			LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
 			RET
-fin_calcula_zombi_incrementoy:
+fin_calcula_jefezombi_incrementoy:
 		
 
 ;;=====================================================
-;;CALCULA_ZOMBI_INCREMENTOX
+;;CALCULA_JEFEZOMBI_INCREMENTOX
 ;;====================================================	
-calcula_zombi_incrementox:
+calcula_jefezombi_incrementox:
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
 		OR			 A
 		JP			NZ, .camina_izquierda
 .camina_derecha:
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-[2]		INC			 A
-		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A	
-		;~ INC			(IX + ESTRUCTURA_ENEMIGO.posx)
-		
-		
-		***************************************
+[4]		INC			(IX + ESTRUCTURA_ENEMIGO.posx)
 .verifica_limite_derecha:
 		CP			ZOMBI_LIMX_DER
 		RET			NZ
@@ -167,10 +184,7 @@ calcula_zombi_incrementox:
 		LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), A
 		RET
 .camina_izquierda:
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-		DEC			 A
-		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A	
-		;~ DEC			(IX + ESTRUCTURA_ENEMIGO.posx)
+		DEC			(IX + ESTRUCTURA_ENEMIGO.posx)
 .verifica_limite_izquierda:
 		CP			ZOMBI_LIMX_IZQ
 		RET			NZ
@@ -178,4 +192,4 @@ calcula_zombi_incrementox:
 		XOR			00000001b
 		LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), A
 		RET
-fin_calcula_zombi_incrementox:
+fin_calcula_jefezombi_incrementox:

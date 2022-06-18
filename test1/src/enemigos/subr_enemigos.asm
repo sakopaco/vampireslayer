@@ -18,6 +18,7 @@ include "subr_enemigo_jefemurcielago.asm"
 include "subr_enemigo_fantasma.asm"
 include "subr_enemigo_jefefantasma.asm"
 include "subr_enemigo_caballerogris.asm"
+include "subr_enemigo_jefezombi.asm"
 		
 		
 ;;=====================================================
@@ -609,7 +610,7 @@ inicializa_enemigos_fase1_nivel5:
 		LD			DE, enemigo6
 		CALL		anade_enemigo_zombi
 		LD			IX, enemigo6
-		JP			actualiza_valores_zombi
+		RET
 fin_inicializa_enemigos_fase1_nivel5:
 
 inicializa_enemigos_fase1_niveljefe:	
@@ -702,7 +703,7 @@ inicializa_enemigos_fase2_nivel4:
 		LD			DE, enemigo5
 		CALL		anade_enemigo_zombi
 		LD			IX, enemigo5
-		JP			actualiza_valores_zombi
+		RET
 fin_inicializa_enemigos_fase2_nivel4:
 
 inicializa_enemigos_fase2_nivel5: 							
@@ -723,19 +724,18 @@ inicializa_enemigos_fase2_nivel5:
 		LD			DE, enemigo4
 		CALL		anade_enemigo_zombi
 		LD			IX, enemigo4
-		CALL		actualiza_valores_zombi
 		
 		LD			DE, enemigo5
 		CALL		anade_enemigo_fantasma
 		LD			IX, enemigo5
-		JP			actualiza_valores_fantasma
+		RET
 fin_inicializa_enemigos_fase2_nivel5:
 
 inicializa_enemigos_fase2_niveljefe:	
 		LD			DE, enemigo7
 		CALL		anade_enemigo_jefefantasma
 		LD			IX, enemigo7
-		JP			actualiza_valores_jefefantasma
+		RET
 fin_inicializa_enemigos_fase2_niveljefe:
 
 
@@ -823,7 +823,7 @@ inicializa_enemigos_fase3_nivel4:
 		LD			DE, enemigo5
 		CALL		anade_enemigo_zombi
 		LD			IX, enemigo5
-		JP			actualiza_valores_zombi
+		RET
 fin_inicializa_enemigos_fase3_nivel4:
 
 inicializa_enemigos_fase3_nivel5: 							
@@ -844,19 +844,18 @@ inicializa_enemigos_fase3_nivel5:
 		LD			DE, enemigo4
 		CALL		anade_enemigo_zombi
 		LD			IX, enemigo4
-		CALL		actualiza_valores_zombi
 		
 		LD			DE, enemigo5
 		CALL		anade_enemigo_fantasma
 		LD			IX, enemigo5
-		JP			actualiza_valores_fantasma
+		RET
 fin_inicializa_enemigos_fase3_nivel5:
 
 inicializa_enemigos_fase3_niveljefe:	
 		LD			DE, enemigo7
-		CALL		anade_enemigo_jefefantasma
+		CALL		anade_enemigo_jefezombi
 		LD			IX, enemigo7
-		JP			actualiza_valores_jefefantasma
+		RET
 fin_inicializa_enemigos_fase3_niveljefe:	
 
 

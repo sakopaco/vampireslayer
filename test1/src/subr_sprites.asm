@@ -264,7 +264,7 @@ carga_patrones_sprites_nivel3:
 		CALL		carga_patrones_esqueleto
 		CALL		carga_patrones_zombi
 		CALL		carga_patrones_fantasma
-		JP			carga_patrones_jefemurcielago
+		JP			carga_patrones_jefezombi
 fin_carga_patrones_sprites_nivel3:
 
 carga_patrones_sprites_nivel4:
