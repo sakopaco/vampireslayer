@@ -775,9 +775,8 @@ inicializa_enemigos_fase3_nivel2:
 		LD			DE, enemigo3
 		CALL		anade_enemigo_caballero
 		LD			IX, enemigo3
-		;JP			actualiza_valores_caballero
-		RET
 fin_inicializa_enemigos_fase3_nivel2:
+		RET
 
 inicializa_enemigos_fase3_nivel3:
 		LD			DE, enemigo1
@@ -823,8 +822,8 @@ inicializa_enemigos_fase3_nivel4:
 		LD			DE, enemigo5
 		CALL		anade_enemigo_zombi
 		LD			IX, enemigo5
-		RET
 fin_inicializa_enemigos_fase3_nivel4:
+		RET
 
 inicializa_enemigos_fase3_nivel5: 							
 		LD			DE, enemigo1
@@ -848,15 +847,15 @@ inicializa_enemigos_fase3_nivel5:
 		LD			DE, enemigo5
 		CALL		anade_enemigo_fantasma
 		LD			IX, enemigo5
-		RET
 fin_inicializa_enemigos_fase3_nivel5:
+		RET
 
 inicializa_enemigos_fase3_niveljefe:	
 		LD			DE, enemigo7
 		CALL		anade_enemigo_jefezombi
 		LD			IX, enemigo7
+fin_inicializa_enemigos_fase3_niveljefe:
 		RET
-fin_inicializa_enemigos_fase3_niveljefe:	
 
 
 ;;=====================================================
@@ -864,102 +863,70 @@ fin_inicializa_enemigos_fase3_niveljefe:
 ;;=====================================================	
 inicializa_enemigos_fase4_nivel0:
 		LD			DE, enemigo1
-		CALL		anade_enemigo_serpiente
+		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo1
-		JP			actualiza_valores_serpiente
 fin_inicializa_enemigos_fase4_nivel0:
+		RET
 
 inicializa_enemigos_fase4_nivel1:
 		LD			DE, enemigo1
-		CALL		anade_enemigo_serpiente
+		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo1
-		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo2
-		CALL		anade_enemigo_arana
+		CALL		anade_enemigo_caballero
 		LD			IX, enemigo2
-		JP			actualiza_valores_arana
 fin_inicializa_enemigos_fase4_nivel1:
+		RET
 
 inicializa_enemigos_fase4_nivel2:
 		LD			DE, enemigo1
-		CALL		anade_enemigo_serpiente
+		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo1
-		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo2
-		CALL		anade_enemigo_arana
+		CALL		anade_enemigo_caballero
 		LD			IX, enemigo2
-		CALL		actualiza_valores_arana
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_caballero
+		CALL		anade_enemigo_esqueleto
 		LD			IX, enemigo3
-		;JP			actualiza_valores_caballero
-		RET
+		JP			actualiza_valores_esqueleto	
 fin_inicializa_enemigos_fase4_nivel2:
 
 inicializa_enemigos_fase4_nivel3:
 		LD			DE, enemigo1
-		CALL		anade_enemigo_serpiente
+		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo1
-		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo2
-		CALL		anade_enemigo_arana
+		CALL		anade_enemigo_caballero
 		LD			IX, enemigo2
-		CALL		actualiza_valores_arana
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_caballero
+		CALL		anade_enemigo_esqueleto
 		LD			IX, enemigo3
+		CALL		actualiza_valores_esqueleto	
 		
 		LD			DE, enemigo4
-		CALL		anade_enemigo_esqueleto
+		CALL		anade_enemigo_zombi
 		LD			IX, enemigo4
-		JP			actualiza_valores_esqueleto
 fin_inicializa_enemigos_fase4_nivel3:
+		RET
 
 inicializa_enemigos_fase4_nivel4:
 		LD			DE, enemigo1
-		CALL		anade_enemigo_serpiente
+		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo1
-		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo2
-		CALL		anade_enemigo_arana
+		CALL		anade_enemigo_caballero
 		LD			IX, enemigo2
-		CALL		actualiza_valores_arana
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_caballero
-		LD			IX, enemigo3
-		
-		LD			DE, enemigo4
 		CALL		anade_enemigo_esqueleto
-		LD			IX, enemigo4
-		CALL		actualiza_valores_esqueleto	
-		
-		LD			DE, enemigo5
-		CALL		anade_enemigo_zombi
-		LD			IX, enemigo5
-		RET
-fin_inicializa_enemigos_fase4_nivel4:
-
-inicializa_enemigos_fase4_nivel5: 							
-		LD			DE, enemigo1
-		CALL		anade_enemigo_serpiente
-		LD			IX, enemigo1
-		CALL		actualiza_valores_serpiente
-		
-		LD			DE, enemigo2
-		CALL		anade_enemigo_arana
-		LD			IX, enemigo2
-		CALL		actualiza_valores_arana
-		
-		LD			DE, enemigo3
-		CALL		anade_enemigo_caballero
 		LD			IX, enemigo3
+		CALL		actualiza_valores_esqueleto	
 		
 		LD			DE, enemigo4
 		CALL		anade_enemigo_zombi
@@ -968,8 +935,36 @@ inicializa_enemigos_fase4_nivel5:
 		LD			DE, enemigo5
 		CALL		anade_enemigo_fantasma
 		LD			IX, enemigo5
+fin_inicializa_enemigos_fase4_nivel4:
 		RET
+
+inicializa_enemigos_fase4_nivel5: 							
+		LD			DE, enemigo1
+		CALL		anade_enemigo_murcielago
+		LD			IX, enemigo1
+		
+		LD			DE, enemigo2
+		CALL		anade_enemigo_caballero
+		LD			IX, enemigo2
+		
+		LD			DE, enemigo3
+		CALL		anade_enemigo_esqueleto
+		LD			IX, enemigo3
+		CALL		actualiza_valores_esqueleto
+		
+		LD			DE, enemigo4
+		CALL		anade_enemigo_zombi
+		LD			IX, enemigo4
+		
+		LD			DE, enemigo5
+		CALL		anade_enemigo_fantasma
+		LD			IX, enemigo5
+		
+		;***** fuego
+		;***** fuego
+		
 fin_inicializa_enemigos_fase4_nivel5:
+		RET
 
 inicializa_enemigos_fase4_niveljefe:	
 		LD			DE, enemigo7
