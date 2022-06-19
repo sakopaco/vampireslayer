@@ -206,7 +206,6 @@ fin_inicializacion_variables:
 
 ;END: (FIN CÓDIGO)
 
-;~ datos_caballerogris:
 ;~ datos_caballeronegro:
 ;~ datos_fuego:
 ;~ datos_magia:	

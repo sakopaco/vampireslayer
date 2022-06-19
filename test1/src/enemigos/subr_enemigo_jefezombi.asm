@@ -61,7 +61,7 @@ fin_actualiza_valores_jefezombi:
 ; salida: 	-
 ; toca:		-
 mover_jefezombi:
-		CALL		calcula_zombi_incrementoy;CALL		calcula_jefezombi_incrementoy
+		CALL		calcula_zombi_incrementoy	;se usa el movimiento del zombi normal
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
 		LD			(IY), A
 		LD			(IY + 8), A
@@ -69,7 +69,7 @@ mover_jefezombi:
 		LD			(IY + 4), A
 		LD			(IY + 12), A
 		
-		CALL		calcula_zombi_incrementox;calcula_jefezombi_incrementox
+		CALL		calcula_zombi_incrementox	;se usa el movimiento del zombi normal
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
 		LD			(IY + 1), A
 		LD			(IY + 5), A
@@ -150,20 +150,6 @@ fin_calcula_jefezombi_escena:
 ;;CALCULA_JEFEZOMBI_INCREMENTOY
 ;;=====================================================	
 calcula_jefezombi_incrementoy:
-		;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-		;~ AND			00000111b ;7
-		;~ CP			00000100b ;4
-		;~ JP			NC, .bajo
-;~ .subo:
-			;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
-			;~ DEC			 A
-			;~ LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
-			;~ RET
-;~ .bajo:
-			;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
-			;~ INC			 A
-			;~ LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
-			;~ RET
 fin_calcula_jefezombi_incrementoy:
 		
 
@@ -171,25 +157,4 @@ fin_calcula_jefezombi_incrementoy:
 ;;CALCULA_JEFEZOMBI_INCREMENTOX
 ;;====================================================	
 calcula_jefezombi_incrementox:
-		;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
-		;~ OR			 A
-		;~ JP			NZ, .camina_izquierda
-;~ .camina_derecha:
-;~ [4]		INC			(IX + ESTRUCTURA_ENEMIGO.posx)
-;~ .verifica_limite_derecha:
-		;~ CP			ZOMBI_LIMX_DER
-		;~ RET			NZ
-		;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
-		;~ XOR			00000001b
-		;~ LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), A
-		;~ RET
-;~ .camina_izquierda:
-		;~ DEC			(IX + ESTRUCTURA_ENEMIGO.posx)
-;~ .verifica_limite_izquierda:
-		;~ CP			ZOMBI_LIMX_IZQ
-		;~ RET			NZ
-		;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
-		;~ XOR			00000001b
-		;~ LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), A
-		;~ RET
 fin_calcula_jefezombi_incrementox:

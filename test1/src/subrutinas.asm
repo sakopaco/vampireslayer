@@ -537,4 +537,3 @@ check_colisiones_objetos:
 fin_check_colisiones_objetos:	
 		RET
 
-	
