@@ -14,7 +14,7 @@ datos_zombi:
 			DB		0		;(inxy) incremento y para mover
 			DB		DIRDERECHA		;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		0		;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
-			DB		0		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
+			DB		100		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 			DB		0		;(radio) radio para movimientos circulares
 			DW		mover_zombi		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 			DB		ZOMBI_SPRITE1A	;izq arriba
@@ -128,9 +128,8 @@ fin_calcula_zombi_escena:
 ;;=====================================================	
 calcula_zombi_incrementoy:
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-		AND			00000111b ;7
-		CP			00000100b ;4
-		JP			NC, .bajo
+		AND			00000100b
+		JP			 Z, .bajo
 .subo:
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
 			DEC			 A
@@ -148,34 +147,26 @@ fin_calcula_zombi_incrementoy:
 ;;CALCULA_ZOMBI_INCREMENTOX
 ;;====================================================	
 calcula_zombi_incrementox:
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
-		OR			 A
-		JP			NZ, .camina_izquierda
-.camina_derecha:
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-[2]		INC			 A
-		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A	
-		;~ INC			(IX + ESTRUCTURA_ENEMIGO.posx)
-		
-		
-		***************************************
-.verifica_limite_derecha:
-		CP			ZOMBI_LIMX_DER
-		RET			NZ
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
-		XOR			00000001b
-		LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), A
-		RET
-.camina_izquierda:
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-		DEC			 A
-		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A	
-		;~ DEC			(IX + ESTRUCTURA_ENEMIGO.posx)
-.verifica_limite_izquierda:
-		CP			ZOMBI_LIMX_IZQ
-		RET			NZ
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
-		XOR			00000001b
-		LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), A
-		RET
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
+			OR			 A
+			JP			 Z, .mueve_derecha
+.mueve_izquierda:
+				DEC			(IX + ESTRUCTURA_ENEMIGO.posx)
+				DEC			(IX + ESTRUCTURA_ENEMIGO.pasos)
+				JP			.fin_mueve_posx
+.mueve_derecha:
+[2]				INC			(IX + ESTRUCTURA_ENEMIGO.posx)
+[2]				DEC			(IX + ESTRUCTURA_ENEMIGO.pasos)
+.fin_mueve_posx:
+			
+			RET			NZ
+				;cambio dirección
+				LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
+				XOR			00000001b
+				LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), A
+				;resetea pasos
+				LD			(IX + ESTRUCTURA_ENEMIGO.pasos), ZOMBI_PASOS
+				;resetea pos y
+				LD			(IX + ESTRUCTURA_ENEMIGO.posy),  ZOMBI_POSY
 fin_calcula_zombi_incrementox:
+			RET
