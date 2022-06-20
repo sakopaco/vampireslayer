@@ -2,7 +2,7 @@
 ;;CONTANTES MURCIELAGO
 ;;=====================================================
 datos_murcielago:
-			DB		5		;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
+			DB		TIPOMURCIELAGO		;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
 			DB		0		;(escena) sprite a mostrar 1/2
 			DB		00010000b			;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
 			DB		10		;(energia) energía del enemigo antes de morir

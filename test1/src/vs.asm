@@ -206,10 +206,8 @@ fin_inicializacion_variables:
 
 ;END: (FIN CÓDIGO)
 
-;~ datos_caballeronegro:
 ;~ datos_fuego:
 ;~ datos_magia:	
-;~ datos_jefezombie:
 ;~ datos_jefecaballero:
 ;~ datos_jefebeholder:
 ;~ datos_manoderecha:

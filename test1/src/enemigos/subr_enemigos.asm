@@ -19,6 +19,7 @@ include "subr_enemigo_fantasma.asm"
 include "subr_enemigo_jefefantasma.asm"
 include "subr_enemigo_caballerogris.asm"
 include "subr_enemigo_jefezombi.asm"
+include "subr_enemigo_fuego.asm"
 		
 		
 ;;=====================================================

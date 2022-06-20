@@ -9,7 +9,7 @@ posiciones_cienpies_y:
 			DB		60,72,24,36,108,84,12,96,48
 
 datos_cienpies:	
-			DB		2		;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
+			DB		TIPOCIEMPIES	;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
 			DB		0		;(escena) sprite a mostrar 1/2
 			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
 			DB		10		;(energia) energía del enemigo antes de morir

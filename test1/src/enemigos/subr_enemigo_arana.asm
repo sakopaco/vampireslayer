@@ -5,9 +5,9 @@ posiciones_arana_x: 		;16 posisiones iniciales posibles
 			DB		0,16,32,48,64,80,96,112,128,144,160,176,192,208,224,240
 
 datos_arana:
-			DB		4		;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
+			DB		TIPOARANA	;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
 			DB		0		;(escena) sprite a mostrar 1/2
-			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
+			DB		00010000b	;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
 			DB		10		;(energia) energía del enemigo antes de morir
 			DB		0		;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		0		;(posy) pos y para mover y punto central del sprite para revisar disparo
