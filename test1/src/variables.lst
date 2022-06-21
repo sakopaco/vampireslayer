@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.06.20 - 22:13:30]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.06.21 - 20:18:13]
 
 ./variables.asm
 Errors: 0
@@ -535,13 +535,21 @@ Errors: 0
      235.  00:C000  (00:000C)           TIPOFUEGO			equ		12
      236.  00:C000  (00:0001)           FUEGO_COLOR1		equ		1		;15 - BLANCO
      237.  00:C000  (00:0001)           FUEGO_COLOR2		equ		1		;15 - BLANCO
-     238.  00:C000  (00:0064)           FUEGO_PASOSX		equ		100
-     239.  00:C000  (00:0032)           FUEGO_PASOSY		equ		50
-     240.  00:C000                      
-     241.  00:C000                      
-     242.  00:C000                      
-     243.  00:C000                      
-     244.  00:C000                      
+     238.  00:C000  (00:00D0)           FUEGO_PASOSX		equ		208
+     239.  00:C000  (00:0040)           FUEGO_PASOSY		equ		64
+     240.  00:C000  (00:00B0)           FUEGO_SPRITE1A		equ		176
+     241.  00:C000  (00:00B4)           FUEGO_SPRITE2A		equ		180
+     242.  00:C000  (00:00B8)           FUEGO_SPRITE1B		equ		184
+     243.  00:C000  (00:00BC)           FUEGO_SPRITE2B		equ		188
+     244.  00:C000  (00:000F)           FUEGO_POS1X			equ		15
+     245.  00:C000  (00:000F)           FUEGO_POS1Y			equ		15
+     246.  00:C000  (00:00DF)           FUEGO_POS2X			equ		223
+     247.  00:C000  (00:000F)           FUEGO_POS2Y			equ		15
+     248.  00:C000  (00:00DF)           FUEGO_POS3X			equ		223
+     249.  00:C000  (00:004F)           FUEGO_POS3Y			equ		79
+     250.  00:C000  (00:000F)           FUEGO_POS4X			equ		15
+     251.  00:C000  (00:004F)           FUEGO_POS4Y			equ		79
+     252.  00:C000                      
       12   00:C000                      include "constantesyvariables/estructuras.asm"
        1.  00:C000                      ;;=====================================================
        2.  00:C000                      ;;DEFINICIÓN DE ESTRUCTURAS
@@ -1385,8 +1393,20 @@ Errors: 0
 00:0000000C X TIPOFUEGO
 00:00000001 X FUEGO_COLOR1
 00:00000001 X FUEGO_COLOR2
-00:00000064 X FUEGO_PASOSX
-00:00000032 X FUEGO_PASOSY
+00:000000D0 X FUEGO_PASOSX
+00:00000040 X FUEGO_PASOSY
+00:000000B0 X FUEGO_SPRITE1A
+00:000000B4 X FUEGO_SPRITE2A
+00:000000B8 X FUEGO_SPRITE1B
+00:000000BC X FUEGO_SPRITE2B
+00:0000000F X FUEGO_POS1X
+00:0000000F X FUEGO_POS1Y
+00:000000DF X FUEGO_POS2X
+00:0000000F X FUEGO_POS2Y
+00:000000DF X FUEGO_POS3X
+00:0000004F X FUEGO_POS3Y
+00:0000000F X FUEGO_POS4X
+00:0000004F X FUEGO_POS4Y
 00:00000000 X ESTRUCTURA_PUNTOMIRA.posx
 00:00000001 X ESTRUCTURA_PUNTOMIRA.posy
 00:00000002 X ESTRUCTURA_PUNTOMIRA.escena

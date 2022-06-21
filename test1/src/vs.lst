@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.06.20 - 22:13:30]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.06.21 - 20:18:13]
 
 ./vs.asm
 Errors: 0
@@ -396,141 +396,153 @@ Errors: 0
      388.  00:4000  (00:000C)           TIPOFUEGO: equ 0000000Ch
      389.  00:4000  (00:0001)           FUEGO_COLOR1: equ 00000001h
      390.  00:4000  (00:0001)           FUEGO_COLOR2: equ 00000001h
-     391.  00:4000  (00:0064)           FUEGO_PASOSX: equ 00000064h
-     392.  00:4000  (00:0032)           FUEGO_PASOSY: equ 00000032h
-     393.  00:4000  (00:0000)           ESTRUCTURA_PUNTOMIRA.posx: equ 00000000h
-     394.  00:4000  (00:0001)           ESTRUCTURA_PUNTOMIRA.posy: equ 00000001h
-     395.  00:4000  (00:0002)           ESTRUCTURA_PUNTOMIRA.escena: equ 00000002h
-     396.  00:4000  (00:0003)           ESTRUCTURA_PUNTOMIRA.velocidad: equ 00000003h
-     397.  00:4000  (00:0004)           ESTRUCTURA_PUNTOMIRA.cadencia: equ 00000004h
-     398.  00:4000  (00:0005)           ESTRUCTURA_PUNTOMIRA.spritea: equ 00000005h
-     399.  00:4000  (00:0006)           ESTRUCTURA_PUNTOMIRA.spriteb: equ 00000006h
-     400.  00:4000  (00:0007)           ESTRUCTURA_PUNTOMIRA: equ 00000007h
-     401.  00:4000  (00:0000)           ESTRUCTURA_ANTORCHA.activo: equ 00000000h
-     402.  00:4000  (00:0001)           ESTRUCTURA_ANTORCHA.postilemem_antor1: equ 00000001h
-     403.  00:4000  (00:0003)           ESTRUCTURA_ANTORCHA.pospantalla_antor1: equ 00000003h
-     404.  00:4000  (00:0004)           ESTRUCTURA_ANTORCHA.pospantalla_antor2: equ 00000004h
-     405.  00:4000  (00:0005)           ESTRUCTURA_ANTORCHA.escena: equ 00000005h
-     406.  00:4000  (00:0006)           ESTRUCTURA_ANTORCHA.cont_sig_escena: equ 00000006h
-     407.  00:4000  (00:0007)           ESTRUCTURA_ANTORCHA: equ 00000007h
-     408.  00:4000  (00:0000)           ESTRUCTURA_ESQUELETO.activo: equ 00000000h
-     409.  00:4000  (00:0001)           ESTRUCTURA_ESQUELETO.postilemem_antor1: equ 00000001h
-     410.  00:4000  (00:0003)           ESTRUCTURA_ESQUELETO.pospantalla_esquel1: equ 00000003h
-     411.  00:4000  (00:0004)           ESTRUCTURA_ESQUELETO.pospantalla_esquel2: equ 00000004h
-     412.  00:4000  (00:0005)           ESTRUCTURA_ESQUELETO.escena: equ 00000005h
-     413.  00:4000  (00:0006)           ESTRUCTURA_ESQUELETO.cont_sig_escena: equ 00000006h
-     414.  00:4000  (00:0007)           ESTRUCTURA_ESQUELETO: equ 00000007h
-     415.  00:4000  (00:0000)           ESTRUCTURA_AYUDA.activa: equ 00000000h
-     416.  00:4000  (00:0001)           ESTRUCTURA_AYUDA.posx: equ 00000001h
-     417.  00:4000  (00:0002)           ESTRUCTURA_AYUDA.posy: equ 00000002h
-     418.  00:4000  (00:0003)           ESTRUCTURA_AYUDA.radiox: equ 00000003h
-     419.  00:4000  (00:0004)           ESTRUCTURA_AYUDA.radioy: equ 00000004h
-     420.  00:4000  (00:0005)           ESTRUCTURA_AYUDA.accion: equ 00000005h
-     421.  00:4000  (00:0007)           ESTRUCTURA_AYUDA.tiles_ayudaon: equ 00000007h
-     422.  00:4000  (00:0009)           ESTRUCTURA_AYUDA.tiles_ayudaoff: equ 00000009h
-     423.  00:4000  (00:000B)           ESTRUCTURA_AYUDA.pos_en_tilemap: equ 0000000Bh
-     424.  00:4000  (00:000D)           ESTRUCTURA_AYUDA.alto: equ 0000000Dh
-     425.  00:4000  (00:000E)           ESTRUCTURA_AYUDA.ancho: equ 0000000Eh
-     426.  00:4000  (00:000F)           ESTRUCTURA_AYUDA: equ 0000000Fh
-     427.  00:4000  (00:0000)           ESTRUCTURA_PUERTA.activa: equ 00000000h
-     428.  00:4000  (00:0001)           ESTRUCTURA_PUERTA.posx: equ 00000001h
-     429.  00:4000  (00:0002)           ESTRUCTURA_PUERTA.posy: equ 00000002h
-     430.  00:4000  (00:0003)           ESTRUCTURA_PUERTA.radiox: equ 00000003h
-     431.  00:4000  (00:0004)           ESTRUCTURA_PUERTA.radioy: equ 00000004h
-     432.  00:4000  (00:0005)           ESTRUCTURA_PUERTA.accion: equ 00000005h
-     433.  00:4000  (00:0007)           ESTRUCTURA_PUERTA.tiles_puerta: equ 00000007h
-     434.  00:4000  (00:0009)           ESTRUCTURA_PUERTA.pos_en_tilemap: equ 00000009h
-     435.  00:4000  (00:000B)           ESTRUCTURA_PUERTA.alto: equ 0000000Bh
-     436.  00:4000  (00:000C)           ESTRUCTURA_PUERTA.ancho: equ 0000000Ch
-     437.  00:4000  (00:000D)           ESTRUCTURA_PUERTA: equ 0000000Dh
-     438.  00:4000  (00:0000)           ESTRUCTURA_ENEMIGO.activo_tipo: equ 00000000h
-     439.  00:4000  (00:0001)           ESTRUCTURA_ENEMIGO.escena: equ 00000001h
-     440.  00:4000  (00:0002)           ESTRUCTURA_ENEMIGO.cont_sig_escena: equ 00000002h
-     441.  00:4000  (00:0003)           ESTRUCTURA_ENEMIGO.energia: equ 00000003h
-     442.  00:4000  (00:0004)           ESTRUCTURA_ENEMIGO.posx: equ 00000004h
-     443.  00:4000  (00:0005)           ESTRUCTURA_ENEMIGO.posy: equ 00000005h
-     444.  00:4000  (00:0006)           ESTRUCTURA_ENEMIGO.radiox: equ 00000006h
-     445.  00:4000  (00:0007)           ESTRUCTURA_ENEMIGO.radioy: equ 00000007h
-     446.  00:4000  (00:0008)           ESTRUCTURA_ENEMIGO.incx: equ 00000008h
-     447.  00:4000  (00:0009)           ESTRUCTURA_ENEMIGO.inxy: equ 00000009h
-     448.  00:4000  (00:000A)           ESTRUCTURA_ENEMIGO.direccionx: equ 0000000Ah
-     449.  00:4000  (00:000B)           ESTRUCTURA_ENEMIGO.direcciony: equ 0000000Bh
-     450.  00:4000  (00:000C)           ESTRUCTURA_ENEMIGO.pasos: equ 0000000Ch
-     451.  00:4000  (00:000D)           ESTRUCTURA_ENEMIGO.radio: equ 0000000Dh
-     452.  00:4000  (00:000E)           ESTRUCTURA_ENEMIGO.ptr_mover: equ 0000000Eh
-     453.  00:4000  (00:0010)           ESTRUCTURA_ENEMIGO.sprite_a: equ 00000010h
-     454.  00:4000  (00:0011)           ESTRUCTURA_ENEMIGO.sprite_b: equ 00000011h
-     455.  00:4000  (00:0012)           ESTRUCTURA_ENEMIGO.sprite_c: equ 00000012h
-     456.  00:4000  (00:0013)           ESTRUCTURA_ENEMIGO.sprite_d: equ 00000013h
-     457.  00:4000  (00:0014)           ESTRUCTURA_ENEMIGO: equ 00000014h
-     458.  00:4000  (00:C000)           prota_nivel: equ 0000C000h
-     459.  00:4000  (00:C001)           prota_vidas: equ 0000C001h
-     460.  00:4000  (00:C002)           prota_reliquias: equ 0000C002h
-     461.  00:4000  (00:C003)           prota_pos_mapx: equ 0000C003h
-     462.  00:4000  (00:C004)           prota_pos_mapy: equ 0000C004h
-     463.  00:4000  (00:C005)           prota_energia: equ 0000C005h
-     464.  00:4000  (00:C006)           array_aux_vidas: equ 0000C006h
-     465.  00:4000  (00:C00E)           array_aux_reliquias: equ 0000C00Eh
-     466.  00:4000  (00:C016)           array_aux_energia: equ 0000C016h
-     467.  00:4000  (00:C01D)           ultimo_pos_array_aux_energia: equ 0000C01Dh
-     468.  00:4000  (00:C01E)           array_aux_mapa_limpiar: equ 0000C01Eh
-     469.  00:4000  (00:C025)           elemento_pintar_mapa: equ 0000C025h
-     470.  00:4000  (00:C026)           antorchas: equ 0000C026h
-     471.  00:4000  (00:C02D)           array_antorcha: equ 0000C02Dh
-     472.  00:4000  (00:C030)           esqueletos: equ 0000C030h
-     473.  00:4000  (00:C037)           array_esqueleto: equ 0000C037h
-     474.  00:4000  (00:C043)           lista_escenas_calavera: equ 0000C043h
-     475.  00:4000  (00:C047)           var_aux_calavera: equ 0000C047h
-     476.  00:4000  (00:C048)           heartbeat: equ 0000C048h
-     477.  00:4000  (00:C049)           array_sprites: equ 0000C049h
-     478.  00:4000  (00:C049)           array_sprites_pm: equ 0000C049h
-     479.  00:4000  (00:C051)           array_sprites_enem: equ 0000C051h
-     480.  00:4000  (00:C0C9)           hay_ayudas_en_pantalla: equ 0000C0C9h
-     481.  00:4000  (00:C0CA)           puntero_ayuda_actual: equ 0000C0CAh
-     482.  00:4000  (00:C0CC)           lista_ayudas: equ 0000C0CCh
-     483.  00:4000  (00:C0CC)           ayuda_oracion: equ 0000C0CCh
-     484.  00:4000  (00:C0DB)           ayuda_cruz: equ 0000C0DBh
-     485.  00:4000  (00:C0EA)           ayuda_aguabendita: equ 0000C0EAh
-     486.  00:4000  (00:C0F9)           ayuda_armadura: equ 0000C0F9h
-     487.  00:4000  (00:C108)           ayuda_planta: equ 0000C108h
-     488.  00:4000  (00:C117)           ayuda_vidaextra: equ 0000C117h
-     489.  00:4000  (00:C126)           ayuda_ballesta: equ 0000C126h
-     490.  00:4000  (00:C135)           tiles_patrones: equ 0000C135h
-     491.  00:4000  (00:C137)           tiles_colores: equ 0000C137h
-     492.  00:4000  (00:C139)           tiles_mapa: equ 0000C139h
-     493.  00:4000  (00:C13B)           wordaux1: equ 0000C13Bh
-     494.  00:4000  (00:C13D)           wordaux2: equ 0000C13Dh
-     495.  00:4000  (00:C13F)           byteaux1: equ 0000C13Fh
-     496.  00:4000  (00:C140)           byteaux2: equ 0000C140h
-     497.  00:4000  (00:C141)           lista_puertas: equ 0000C141h
-     498.  00:4000  (00:C141)           puerta_arriba: equ 0000C141h
-     499.  00:4000  (00:C14E)           puerta_derecha: equ 0000C14Eh
-     500.  00:4000  (00:C15B)           puerta_abajo: equ 0000C15Bh
-     501.  00:4000  (00:C168)           puerta_izquierda: equ 0000C168h
-     502.  00:4000  (00:C175)           puerta_escalera: equ 0000C175h
-     503.  00:4000  (00:C182)           dano_actual: equ 0000C182h
-     504.  00:4000  (00:C183)           puntomira: equ 0000C183h
-     505.  00:4000  (00:C18A)           habitacion_actual: equ 0000C18Ah
-     506.  00:4000  (00:C18B)           habitacion_extras: equ 0000C18Bh
-     507.  00:4000  (00:C18C)           habitacion_actual_puntero: equ 0000C18Ch
-     508.  00:4000  (00:C18E)           is_habitacion_terminada: equ 0000C18Eh
-     509.  00:4000  (00:C18F)           puntero_extras_habitacion_actual: equ 0000C18Fh
-     510.  00:4000  (00:C191)           puntero_habitacion_actual: equ 0000C191h
-     511.  00:4000  (00:C193)           habitaciones_juego: equ 0000C193h
-     512.  00:4000  (00:C193)           habitaciones_nivel0: equ 0000C193h
-     513.  00:4000  (00:C203)           habitaciones_nivel1: equ 0000C203h
-     514.  00:4000  (00:C273)           habitaciones_nivel2: equ 0000C273h
-     515.  00:4000  (00:C2E3)           habitaciones_nivel3: equ 0000C2E3h
-     516.  00:4000  (00:C353)           habitaciones_nivel4: equ 0000C353h
-     517.  00:4000  (00:C3C3)           habitaciones_nivel5: equ 0000C3C3h
-     518.  00:4000  (00:C433)           habitaciones_nivel6: equ 0000C433h
-     519.  00:4000  (00:C4A3)           enemigo1: equ 0000C4A3h
-     520.  00:4000  (00:C4B7)           enemigo2: equ 0000C4B7h
-     521.  00:4000  (00:C4CB)           enemigo3: equ 0000C4CBh
-     522.  00:4000  (00:C4DF)           enemigo4: equ 0000C4DFh
-     523.  00:4000  (00:C4F3)           enemigo5: equ 0000C4F3h
-     524.  00:4000  (00:C507)           enemigo6: equ 0000C507h
-     525.  00:4000  (00:C51B)           enemigo7: equ 0000C51Bh
+     391.  00:4000  (00:00D0)           FUEGO_PASOSX: equ 000000D0h
+     392.  00:4000  (00:0040)           FUEGO_PASOSY: equ 00000040h
+     393.  00:4000  (00:00B0)           FUEGO_SPRITE1A: equ 000000B0h
+     394.  00:4000  (00:00B4)           FUEGO_SPRITE2A: equ 000000B4h
+     395.  00:4000  (00:00B8)           FUEGO_SPRITE1B: equ 000000B8h
+     396.  00:4000  (00:00BC)           FUEGO_SPRITE2B: equ 000000BCh
+     397.  00:4000  (00:000F)           FUEGO_POS1X: equ 0000000Fh
+     398.  00:4000  (00:000F)           FUEGO_POS1Y: equ 0000000Fh
+     399.  00:4000  (00:00DF)           FUEGO_POS2X: equ 000000DFh
+     400.  00:4000  (00:000F)           FUEGO_POS2Y: equ 0000000Fh
+     401.  00:4000  (00:00DF)           FUEGO_POS3X: equ 000000DFh
+     402.  00:4000  (00:004F)           FUEGO_POS3Y: equ 0000004Fh
+     403.  00:4000  (00:000F)           FUEGO_POS4X: equ 0000000Fh
+     404.  00:4000  (00:004F)           FUEGO_POS4Y: equ 0000004Fh
+     405.  00:4000  (00:0000)           ESTRUCTURA_PUNTOMIRA.posx: equ 00000000h
+     406.  00:4000  (00:0001)           ESTRUCTURA_PUNTOMIRA.posy: equ 00000001h
+     407.  00:4000  (00:0002)           ESTRUCTURA_PUNTOMIRA.escena: equ 00000002h
+     408.  00:4000  (00:0003)           ESTRUCTURA_PUNTOMIRA.velocidad: equ 00000003h
+     409.  00:4000  (00:0004)           ESTRUCTURA_PUNTOMIRA.cadencia: equ 00000004h
+     410.  00:4000  (00:0005)           ESTRUCTURA_PUNTOMIRA.spritea: equ 00000005h
+     411.  00:4000  (00:0006)           ESTRUCTURA_PUNTOMIRA.spriteb: equ 00000006h
+     412.  00:4000  (00:0007)           ESTRUCTURA_PUNTOMIRA: equ 00000007h
+     413.  00:4000  (00:0000)           ESTRUCTURA_ANTORCHA.activo: equ 00000000h
+     414.  00:4000  (00:0001)           ESTRUCTURA_ANTORCHA.postilemem_antor1: equ 00000001h
+     415.  00:4000  (00:0003)           ESTRUCTURA_ANTORCHA.pospantalla_antor1: equ 00000003h
+     416.  00:4000  (00:0004)           ESTRUCTURA_ANTORCHA.pospantalla_antor2: equ 00000004h
+     417.  00:4000  (00:0005)           ESTRUCTURA_ANTORCHA.escena: equ 00000005h
+     418.  00:4000  (00:0006)           ESTRUCTURA_ANTORCHA.cont_sig_escena: equ 00000006h
+     419.  00:4000  (00:0007)           ESTRUCTURA_ANTORCHA: equ 00000007h
+     420.  00:4000  (00:0000)           ESTRUCTURA_ESQUELETO.activo: equ 00000000h
+     421.  00:4000  (00:0001)           ESTRUCTURA_ESQUELETO.postilemem_antor1: equ 00000001h
+     422.  00:4000  (00:0003)           ESTRUCTURA_ESQUELETO.pospantalla_esquel1: equ 00000003h
+     423.  00:4000  (00:0004)           ESTRUCTURA_ESQUELETO.pospantalla_esquel2: equ 00000004h
+     424.  00:4000  (00:0005)           ESTRUCTURA_ESQUELETO.escena: equ 00000005h
+     425.  00:4000  (00:0006)           ESTRUCTURA_ESQUELETO.cont_sig_escena: equ 00000006h
+     426.  00:4000  (00:0007)           ESTRUCTURA_ESQUELETO: equ 00000007h
+     427.  00:4000  (00:0000)           ESTRUCTURA_AYUDA.activa: equ 00000000h
+     428.  00:4000  (00:0001)           ESTRUCTURA_AYUDA.posx: equ 00000001h
+     429.  00:4000  (00:0002)           ESTRUCTURA_AYUDA.posy: equ 00000002h
+     430.  00:4000  (00:0003)           ESTRUCTURA_AYUDA.radiox: equ 00000003h
+     431.  00:4000  (00:0004)           ESTRUCTURA_AYUDA.radioy: equ 00000004h
+     432.  00:4000  (00:0005)           ESTRUCTURA_AYUDA.accion: equ 00000005h
+     433.  00:4000  (00:0007)           ESTRUCTURA_AYUDA.tiles_ayudaon: equ 00000007h
+     434.  00:4000  (00:0009)           ESTRUCTURA_AYUDA.tiles_ayudaoff: equ 00000009h
+     435.  00:4000  (00:000B)           ESTRUCTURA_AYUDA.pos_en_tilemap: equ 0000000Bh
+     436.  00:4000  (00:000D)           ESTRUCTURA_AYUDA.alto: equ 0000000Dh
+     437.  00:4000  (00:000E)           ESTRUCTURA_AYUDA.ancho: equ 0000000Eh
+     438.  00:4000  (00:000F)           ESTRUCTURA_AYUDA: equ 0000000Fh
+     439.  00:4000  (00:0000)           ESTRUCTURA_PUERTA.activa: equ 00000000h
+     440.  00:4000  (00:0001)           ESTRUCTURA_PUERTA.posx: equ 00000001h
+     441.  00:4000  (00:0002)           ESTRUCTURA_PUERTA.posy: equ 00000002h
+     442.  00:4000  (00:0003)           ESTRUCTURA_PUERTA.radiox: equ 00000003h
+     443.  00:4000  (00:0004)           ESTRUCTURA_PUERTA.radioy: equ 00000004h
+     444.  00:4000  (00:0005)           ESTRUCTURA_PUERTA.accion: equ 00000005h
+     445.  00:4000  (00:0007)           ESTRUCTURA_PUERTA.tiles_puerta: equ 00000007h
+     446.  00:4000  (00:0009)           ESTRUCTURA_PUERTA.pos_en_tilemap: equ 00000009h
+     447.  00:4000  (00:000B)           ESTRUCTURA_PUERTA.alto: equ 0000000Bh
+     448.  00:4000  (00:000C)           ESTRUCTURA_PUERTA.ancho: equ 0000000Ch
+     449.  00:4000  (00:000D)           ESTRUCTURA_PUERTA: equ 0000000Dh
+     450.  00:4000  (00:0000)           ESTRUCTURA_ENEMIGO.activo_tipo: equ 00000000h
+     451.  00:4000  (00:0001)           ESTRUCTURA_ENEMIGO.escena: equ 00000001h
+     452.  00:4000  (00:0002)           ESTRUCTURA_ENEMIGO.cont_sig_escena: equ 00000002h
+     453.  00:4000  (00:0003)           ESTRUCTURA_ENEMIGO.energia: equ 00000003h
+     454.  00:4000  (00:0004)           ESTRUCTURA_ENEMIGO.posx: equ 00000004h
+     455.  00:4000  (00:0005)           ESTRUCTURA_ENEMIGO.posy: equ 00000005h
+     456.  00:4000  (00:0006)           ESTRUCTURA_ENEMIGO.radiox: equ 00000006h
+     457.  00:4000  (00:0007)           ESTRUCTURA_ENEMIGO.radioy: equ 00000007h
+     458.  00:4000  (00:0008)           ESTRUCTURA_ENEMIGO.incx: equ 00000008h
+     459.  00:4000  (00:0009)           ESTRUCTURA_ENEMIGO.inxy: equ 00000009h
+     460.  00:4000  (00:000A)           ESTRUCTURA_ENEMIGO.direccionx: equ 0000000Ah
+     461.  00:4000  (00:000B)           ESTRUCTURA_ENEMIGO.direcciony: equ 0000000Bh
+     462.  00:4000  (00:000C)           ESTRUCTURA_ENEMIGO.pasos: equ 0000000Ch
+     463.  00:4000  (00:000D)           ESTRUCTURA_ENEMIGO.radio: equ 0000000Dh
+     464.  00:4000  (00:000E)           ESTRUCTURA_ENEMIGO.ptr_mover: equ 0000000Eh
+     465.  00:4000  (00:0010)           ESTRUCTURA_ENEMIGO.sprite_a: equ 00000010h
+     466.  00:4000  (00:0011)           ESTRUCTURA_ENEMIGO.sprite_b: equ 00000011h
+     467.  00:4000  (00:0012)           ESTRUCTURA_ENEMIGO.sprite_c: equ 00000012h
+     468.  00:4000  (00:0013)           ESTRUCTURA_ENEMIGO.sprite_d: equ 00000013h
+     469.  00:4000  (00:0014)           ESTRUCTURA_ENEMIGO: equ 00000014h
+     470.  00:4000  (00:C000)           prota_nivel: equ 0000C000h
+     471.  00:4000  (00:C001)           prota_vidas: equ 0000C001h
+     472.  00:4000  (00:C002)           prota_reliquias: equ 0000C002h
+     473.  00:4000  (00:C003)           prota_pos_mapx: equ 0000C003h
+     474.  00:4000  (00:C004)           prota_pos_mapy: equ 0000C004h
+     475.  00:4000  (00:C005)           prota_energia: equ 0000C005h
+     476.  00:4000  (00:C006)           array_aux_vidas: equ 0000C006h
+     477.  00:4000  (00:C00E)           array_aux_reliquias: equ 0000C00Eh
+     478.  00:4000  (00:C016)           array_aux_energia: equ 0000C016h
+     479.  00:4000  (00:C01D)           ultimo_pos_array_aux_energia: equ 0000C01Dh
+     480.  00:4000  (00:C01E)           array_aux_mapa_limpiar: equ 0000C01Eh
+     481.  00:4000  (00:C025)           elemento_pintar_mapa: equ 0000C025h
+     482.  00:4000  (00:C026)           antorchas: equ 0000C026h
+     483.  00:4000  (00:C02D)           array_antorcha: equ 0000C02Dh
+     484.  00:4000  (00:C030)           esqueletos: equ 0000C030h
+     485.  00:4000  (00:C037)           array_esqueleto: equ 0000C037h
+     486.  00:4000  (00:C043)           lista_escenas_calavera: equ 0000C043h
+     487.  00:4000  (00:C047)           var_aux_calavera: equ 0000C047h
+     488.  00:4000  (00:C048)           heartbeat: equ 0000C048h
+     489.  00:4000  (00:C049)           array_sprites: equ 0000C049h
+     490.  00:4000  (00:C049)           array_sprites_pm: equ 0000C049h
+     491.  00:4000  (00:C051)           array_sprites_enem: equ 0000C051h
+     492.  00:4000  (00:C0C9)           hay_ayudas_en_pantalla: equ 0000C0C9h
+     493.  00:4000  (00:C0CA)           puntero_ayuda_actual: equ 0000C0CAh
+     494.  00:4000  (00:C0CC)           lista_ayudas: equ 0000C0CCh
+     495.  00:4000  (00:C0CC)           ayuda_oracion: equ 0000C0CCh
+     496.  00:4000  (00:C0DB)           ayuda_cruz: equ 0000C0DBh
+     497.  00:4000  (00:C0EA)           ayuda_aguabendita: equ 0000C0EAh
+     498.  00:4000  (00:C0F9)           ayuda_armadura: equ 0000C0F9h
+     499.  00:4000  (00:C108)           ayuda_planta: equ 0000C108h
+     500.  00:4000  (00:C117)           ayuda_vidaextra: equ 0000C117h
+     501.  00:4000  (00:C126)           ayuda_ballesta: equ 0000C126h
+     502.  00:4000  (00:C135)           tiles_patrones: equ 0000C135h
+     503.  00:4000  (00:C137)           tiles_colores: equ 0000C137h
+     504.  00:4000  (00:C139)           tiles_mapa: equ 0000C139h
+     505.  00:4000  (00:C13B)           wordaux1: equ 0000C13Bh
+     506.  00:4000  (00:C13D)           wordaux2: equ 0000C13Dh
+     507.  00:4000  (00:C13F)           byteaux1: equ 0000C13Fh
+     508.  00:4000  (00:C140)           byteaux2: equ 0000C140h
+     509.  00:4000  (00:C141)           lista_puertas: equ 0000C141h
+     510.  00:4000  (00:C141)           puerta_arriba: equ 0000C141h
+     511.  00:4000  (00:C14E)           puerta_derecha: equ 0000C14Eh
+     512.  00:4000  (00:C15B)           puerta_abajo: equ 0000C15Bh
+     513.  00:4000  (00:C168)           puerta_izquierda: equ 0000C168h
+     514.  00:4000  (00:C175)           puerta_escalera: equ 0000C175h
+     515.  00:4000  (00:C182)           dano_actual: equ 0000C182h
+     516.  00:4000  (00:C183)           puntomira: equ 0000C183h
+     517.  00:4000  (00:C18A)           habitacion_actual: equ 0000C18Ah
+     518.  00:4000  (00:C18B)           habitacion_extras: equ 0000C18Bh
+     519.  00:4000  (00:C18C)           habitacion_actual_puntero: equ 0000C18Ch
+     520.  00:4000  (00:C18E)           is_habitacion_terminada: equ 0000C18Eh
+     521.  00:4000  (00:C18F)           puntero_extras_habitacion_actual: equ 0000C18Fh
+     522.  00:4000  (00:C191)           puntero_habitacion_actual: equ 0000C191h
+     523.  00:4000  (00:C193)           habitaciones_juego: equ 0000C193h
+     524.  00:4000  (00:C193)           habitaciones_nivel0: equ 0000C193h
+     525.  00:4000  (00:C203)           habitaciones_nivel1: equ 0000C203h
+     526.  00:4000  (00:C273)           habitaciones_nivel2: equ 0000C273h
+     527.  00:4000  (00:C2E3)           habitaciones_nivel3: equ 0000C2E3h
+     528.  00:4000  (00:C353)           habitaciones_nivel4: equ 0000C353h
+     529.  00:4000  (00:C3C3)           habitaciones_nivel5: equ 0000C3C3h
+     530.  00:4000  (00:C433)           habitaciones_nivel6: equ 0000C433h
+     531.  00:4000  (00:C4A3)           enemigo1: equ 0000C4A3h
+     532.  00:4000  (00:C4B7)           enemigo2: equ 0000C4B7h
+     533.  00:4000  (00:C4CB)           enemigo3: equ 0000C4CBh
+     534.  00:4000  (00:C4DF)           enemigo4: equ 0000C4DFh
+     535.  00:4000  (00:C4F3)           enemigo5: equ 0000C4F3h
+     536.  00:4000  (00:C507)           enemigo6: equ 0000C507h
+     537.  00:4000  (00:C51B)           enemigo7: equ 0000C51Bh
        4   00:4000                      	
        5   00:4000                      ;;=====================================================
        6   00:4000                      ;;DEFINICIÓN DE CONSTANTES
@@ -677,10 +689,10 @@ Errors: 0
      135   00:4089                      	;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
      136   00:4089                      	;será igual la posición inicial en todos los niveles
      137   00:4089                      	
-     138   00:4089  3E 03               	LD		 A, 3;0				;los niveles (matrices) son 7 del 0 al 6
+     138   00:4089  3E 04               	LD		 A, 4;0				;los niveles (matrices) son 7 del 0 al 6
      139   00:408B  32 00 C0            	LD		(prota_nivel), A	;nivel empieza en 0 para usar las posiciones ascii
      140   00:408E                      
-     141   00:408E  3E 06               	LD		 A, 6;0				;los subniveles (filas) son 7 del 0 al 6
+     141   00:408E  3E 00               	LD		 A, 0				;los subniveles (filas) son 7 del 0 al 6
      142   00:4090  32 04 C0            	LD		(prota_pos_mapy), A	;pos Y dentro del nivel (se empieza en 0)
      143   00:4093                      
      144   00:4093  3E 03               	LD		 A, 3				;columnas 7: del 0 al 6
@@ -3244,12 +3256,12 @@ Errors: 0
      268.  00:4C57                      fin_carga_patrones_sprites_nivel3:
      269.  00:4C57                      
      270.  00:4C57                      carga_patrones_sprites_nivel4:
-     271.  00:4C57  CD D7 4A            		CALL		carga_patrones_serpiente
-     272.  00:4C5A  CD E4 4A            		CALL		carga_patrones_arana
-     273.  00:4C5D  CD 3F 4B            		CALL		carga_patrones_caballero
-     274.  00:4C60  CD 18 4B            		CALL		carga_patrones_esqueleto
-     275.  00:4C63  CD 25 4B            		CALL		carga_patrones_zombi
-     276.  00:4C66  CD 32 4B            		CALL		carga_patrones_fantasma
+     271.  00:4C57  CD F1 4A            		CALL		carga_patrones_murcielago
+     272.  00:4C5A  CD 3F 4B            		CALL		carga_patrones_caballero
+     273.  00:4C5D  CD 18 4B            		CALL		carga_patrones_esqueleto
+     274.  00:4C60  CD 25 4B            		CALL		carga_patrones_zombi
+     275.  00:4C63  CD 32 4B            		CALL		carga_patrones_fantasma
+     276.  00:4C66  CD 4C 4B            		CALL		carga_patrones_fuego
      277.  00:4C69  C3 8D 4B            		JP			carga_patrones_jefezombi
      278.  00:4C6C                      fin_carga_patrones_sprites_nivel4:
      279.  00:4C6C                      
@@ -6507,15 +6519,15 @@ Errors: 0
        6:  00:5AB4  00                  			DB		0		;(escena) sprite a mostrar 1/2
        7:  00:5AB5  10                  			DB		00010000b	;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
        8:  00:5AB6  0A                  			DB		10		;(energia) energía del enemigo antes de morir
-       9:  00:5AB7  10                  			DB		16		;(posx) pos x para mover y punto central del sprite para revisar disparo
-      10:  00:5AB8  00                  			DB		0		;(posy) pos y para mover y punto central del sprite para revisar disparo
+       9:  00:5AB7  0F                  			DB		FUEGO_POS1X	;(posx) pos x para mover y punto central del sprite para revisar disparo
+      10:  00:5AB8  0F                  			DB		FUEGO_POS1Y	;(posy) pos y para mover y punto central del sprite para revisar disparo
       11:  00:5AB9  08                  			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
       12:  00:5ABA  08                  			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
       13:  00:5ABB  00                  			DB		0		;(incx) incremento x para mover
       14:  00:5ABC  00                  			DB		0		;(inxy) incremento y para mover
-      15:  00:5ABD  00                  			DB		0			;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+      15:  00:5ABD  00                  			DB		0		;
       16:  00:5ABE  00                  			DB		0		;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
-      17:  00:5ABF  64                  			DB		FUEGO_PASOSX;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
+      17:  00:5ABF  D0                  			DB		FUEGO_PASOSX;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
       18:  00:5AC0  00                  			DB		0		;(radio) radio para movimientos circulares
       19:  00:5AC1  D0 5A               			DW		mover_fuego	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
       20:  00:5AC3  00                  			DB		0		;izq arriba
@@ -6591,24 +6603,42 @@ Errors: 0
       90:  00:5B01                      ;;CALCULA_FUEGO_ESCENA
       91:  00:5B01                      ;;=====================================================	
       92:  00:5B01                      calcula_fuego_escena:
-      93:  00:5B01                      fin_calcula_fuego_escena:
-      94:  00:5B01  C9                  		RET
-      95:  00:5B02                      
-      96:  00:5B02                      
-      97:  00:5B02                      ;;=====================================================
-      98:  00:5B02                      ;;CALCULA_FUEGO_INCREMENTOY
-      99:  00:5B02                      ;;=====================================================	
-     100:  00:5B02                      calcula_fuego_incrementoy:
-     101:  00:5B02                      fin_calcula_fuego_incrementoy:
-     102:  00:5B02  C9                  		RET
-     103:  00:5B03                      		
-     104:  00:5B03                      
-     105:  00:5B03                      ;;=====================================================
-     106:  00:5B03                      ;;CALCULA_FUEGO_INCREMENTOx
-     107:  00:5B03                      ;;=====================================================	
-     108:  00:5B03                      calcula_fuego_incrementox:
-     109:  00:5B03                      fin_calcula_fuego_incrementox:
-     110:  00:5B03  C9                  		RET
+      93:  00:5B01                      		;~ LD			 A, (heartbeat)
+      94:  00:5B01                      		;~ OR			00000001b
+      95:  00:5B01                      		;~ JP			 Z, .fin_cambia_escena_enemigo1   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
+      96:  00:5B01                      			;~ ; cambio de escena
+      97:  00:5B01                      			;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+      98:  00:5B01                      			;~ XOR			00000001b
+      99:  00:5B01                      			;~ LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
+     100:  00:5B01                      			
+     101:  00:5B01                      			;~ JP			 Z, .enemigo1_poner_escena2			; IF ESCENA 1 THEN
+     102:  00:5B01                      				;~ LD			 A, MURCIELAGO_SPRITE1A
+     103:  00:5B01                      				;~ JP			.fin_enemigo1_poner_escena2
+     104:  00:5B01                      ;~ .enemigo1_poner_escena2:									; ELSE
+     105:  00:5B01                      				;~ LD			 A, MURCIELAGO_SPRITE2A
+     106:  00:5B01                      ;~ .fin_enemigo1_poner_escena2:								; END IF
+     107:  00:5B01                      ;~ .fin_cambia_escena_enemigo1:							; END IF	
+     108:  00:5B01                      		;~ LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), A
+     109:  00:5B01                      fin_calcula_fuego_escena:
+     110:  00:5B01  C9                  		RET
+     111:  00:5B02                      
+     112:  00:5B02                      
+     113:  00:5B02                      ;~ a: 15,15	b: 223,15
+     114:  00:5B02                      ;~ c: 15,79	d: 223,79
+     115:  00:5B02                      ;;=====================================================
+     116:  00:5B02                      ;;CALCULA_FUEGO_INCREMENTOY
+     117:  00:5B02                      ;;=====================================================	
+     118:  00:5B02                      calcula_fuego_incrementoy:
+     119:  00:5B02                      fin_calcula_fuego_incrementoy:
+     120:  00:5B02  C9                  		RET
+     121:  00:5B03                      		
+     122:  00:5B03                      
+     123:  00:5B03                      ;;=====================================================
+     124:  00:5B03                      ;;CALCULA_FUEGO_INCREMENTOx
+     125:  00:5B03                      ;;=====================================================	
+     126:  00:5B03                      calcula_fuego_incrementox:
+     127:  00:5B03                      fin_calcula_fuego_incrementox:
+     128:  00:5B03  C9                  		RET
       23.  00:5B04                      		
       24.  00:5B04                      		
       25.  00:5B04                      ;;=====================================================
@@ -11296,17 +11326,16 @@ Errors: 0
      206   00:A474                      
      207   00:A474                      ;END: (FIN CÓDIGO)
      208   00:A474                      
-     209   00:A474                      ;~ datos_fuego:
-     210   00:A474                      ;~ datos_magia:	
-     211   00:A474                      ;~ datos_jefecaballero:
-     212   00:A474                      ;~ datos_jefebeholder:
-     213   00:A474                      ;~ datos_manoderecha:
-     214   00:A474                      ;~ datos_manoizquierda:
-     215   00:A474                      ;~ datos_conde:
-     216   00:A474                      
-     217   00:A474                      ;INICIO ZONA DATOS (BANCO DE MEMORIA 3)
-     218   00:A474                      
-     219   00:A474  00 (7052)           		DS	#C000 - $
+     209   00:A474                      ;~ datos_magia:	
+     210   00:A474                      ;~ datos_jefecaballero:
+     211   00:A474                      ;~ datos_jefebeholder:
+     212   00:A474                      ;~ datos_manoderecha:
+     213   00:A474                      ;~ datos_manoizquierda:
+     214   00:A474                      ;~ datos_conde:
+     215   00:A474                      
+     216   00:A474                      ;INICIO ZONA DATOS (BANCO DE MEMORIA 3)
+     217   00:A474                      
+     218   00:A474  00 (7052)           		DS	#C000 - $
 
     LABELS
 -------------------------------------------------
@@ -11700,8 +11729,20 @@ Errors: 0
 00:0000000C   TIPOFUEGO
 00:00000001   FUEGO_COLOR1
 00:00000001   FUEGO_COLOR2
-00:00000064   FUEGO_PASOSX
-00:00000032 X FUEGO_PASOSY
+00:000000D0   FUEGO_PASOSX
+00:00000040 X FUEGO_PASOSY
+00:000000B0 X FUEGO_SPRITE1A
+00:000000B4 X FUEGO_SPRITE2A
+00:000000B8 X FUEGO_SPRITE1B
+00:000000BC X FUEGO_SPRITE2B
+00:0000000F   FUEGO_POS1X
+00:0000000F   FUEGO_POS1Y
+00:000000DF X FUEGO_POS2X
+00:0000000F X FUEGO_POS2Y
+00:000000DF X FUEGO_POS3X
+00:0000004F X FUEGO_POS3Y
+00:0000000F X FUEGO_POS4X
+00:0000004F X FUEGO_POS4Y
 00:00000000   ESTRUCTURA_PUNTOMIRA.posx
 00:00000001   ESTRUCTURA_PUNTOMIRA.posy
 00:00000002   ESTRUCTURA_PUNTOMIRA.escena
@@ -12116,7 +12157,7 @@ Errors: 0
 00:00004B3E X fin_carga_patrones_fantasma
 00:00004B3F   carga_patrones_caballero
 00:00004B4B X fin_carga_patrones_caballero
-00:00004B4C X carga_patrones_fuego
+00:00004B4C   carga_patrones_fuego
 00:00004B58 X fin_carga_patrones_fuego
 00:00004B59 X carga_patrones_magia
 00:00004B65 X fin_carga_patrones_magia

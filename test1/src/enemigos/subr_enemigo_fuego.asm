@@ -6,13 +6,13 @@ datos_fuego:
 			DB		0		;(escena) sprite a mostrar 1/2
 			DB		00010000b	;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
 			DB		10		;(energia) energía del enemigo antes de morir
-			DB		16		;(posx) pos x para mover y punto central del sprite para revisar disparo
-			DB		0		;(posy) pos y para mover y punto central del sprite para revisar disparo
+			DB		FUEGO_POS1X	;(posx) pos x para mover y punto central del sprite para revisar disparo
+			DB		FUEGO_POS1Y	;(posy) pos y para mover y punto central del sprite para revisar disparo
 			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
 			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
 			DB		0		;(incx) incremento x para mover
 			DB		0		;(inxy) incremento y para mover
-			DB		0			;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		0		;
 			DB		0		;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		FUEGO_PASOSX;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 			DB		0		;(radio) radio para movimientos circulares
@@ -90,14 +90,28 @@ fin_mover_fuego:
 ;;CALCULA_FUEGO_ESCENA
 ;;=====================================================	
 calcula_fuego_escena:
+		;~ LD			 A, (heartbeat)
+		;~ OR			00000001b
+		;~ JP			 Z, .fin_cambia_escena_enemigo1   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
+			;~ ; cambio de escena
+			;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+			;~ XOR			00000001b
+			;~ LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
+			
+			;~ JP			 Z, .enemigo1_poner_escena2			; IF ESCENA 1 THEN
+				;~ LD			 A, MURCIELAGO_SPRITE1A
+				;~ JP			.fin_enemigo1_poner_escena2
+;~ .enemigo1_poner_escena2:									; ELSE
+				;~ LD			 A, MURCIELAGO_SPRITE2A
+;~ .fin_enemigo1_poner_escena2:								; END IF
+;~ .fin_cambia_escena_enemigo1:							; END IF	
+		;~ LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), A
 fin_calcula_fuego_escena:
 		RET
 
 
 ;~ a: 15,15	b: 223,15
 ;~ c: 15,79	d: 223,79
-
-
 ;;=====================================================
 ;;CALCULA_FUEGO_INCREMENTOY
 ;;=====================================================	
