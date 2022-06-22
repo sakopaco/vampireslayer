@@ -961,9 +961,9 @@ inicializa_enemigos_fase4_nivel5:
 		CALL		anade_enemigo_fantasma
 		LD			IX, enemigo5
 		
-		;***** fuego
-		;***** fuego
-		
+		LD			DE, enemigo6
+		CALL		anade_enemigo_fuego
+		LD			IX, enemigo6
 fin_inicializa_enemigos_fase4_nivel5:
 		RET
 
@@ -1560,7 +1560,7 @@ fin_check_enemigos_fase3:
 ;;CHECK_ENEMIGOS_FASE4
 ;;=====================================================	
 check_enemigos_fase4: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
-.check_enemigo1:
+.check_enemigo1:	;MURCIELAGO
 		LD			IX, enemigo1
 		LD			 A, (IX)
 		OR			 A
@@ -1570,7 +1570,7 @@ check_enemigos_fase4: ;; aquí se ponen los valores de enemigos (si están activ
 		
 		CALL 		mueve_enemigo
 		;acciones enemigos
-.check_enemigo2:
+.check_enemigo2:	;CABALLERO
 		LD			IX, enemigo2
 		LD			 A, (IX)
 		OR			 A
@@ -1580,7 +1580,7 @@ check_enemigos_fase4: ;; aquí se ponen los valores de enemigos (si están activ
 		
 		CALL 		mueve_enemigo
 		;acciones enemigos
-.check_enemigo3:
+.check_enemigo3:	;ESQUELETO
 		LD			IX, enemigo3
 		LD			 A, (IX)
 		OR			 A
@@ -1590,7 +1590,7 @@ check_enemigos_fase4: ;; aquí se ponen los valores de enemigos (si están activ
 		
 		CALL 		mueve_enemigo
 		;acciones enemigos
-.check_enemigo4:
+.check_enemigo4:	;ZOMBI
 		LD			IX, enemigo4
 		LD			 A, (IX)
 		OR			 A
@@ -1600,23 +1600,23 @@ check_enemigos_fase4: ;; aquí se ponen los valores de enemigos (si están activ
 		
 		CALL 		mueve_enemigo
 		;acciones enemigos
-.check_enemigo5:
+.check_enemigo5:	;FANTASMA
 		LD			IX, enemigo5
 		LD			 A, (IX)
 		OR			 A
 		JP			 Z, .check_enemigo6
 		
-		LD			IY, array_sprites_enem + 36
+		LD			IY, array_sprites_enem + 28
 		
 		CALL 		mueve_enemigo
 		;acciones enemigos
-.check_enemigo6:
+.check_enemigo6:	;FUEGO
 		LD			IX, enemigo6   														
 		LD			 A, (IX)
 		OR			 A
 		JP			 Z, .check_enemigo7
 		
-		LD			IY, array_sprites_enem + 52
+		LD			IY, array_sprites_enem + 36
 		
 		CALL 		mueve_enemigo
 		;acciones enemigos	

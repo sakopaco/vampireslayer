@@ -12,15 +12,15 @@ datos_fuego:
 			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
 			DB		0		;(incx) incremento x para mover
 			DB		0		;(inxy) incremento y para mover
-			DB		0		;
+			DB		0		;00000001 derecha // 00000010 abajo // 00000100 izquierda // 00001000 arriba
 			DB		0		;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		FUEGO_PASOSX;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 			DB		0		;(radio) radio para movimientos circulares
 			DW		mover_fuego	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
-			DB		0		;izq arriba
-			DB		0		;izq abajo
-			DB		0		;der_arriba
-			DB		0		;der_abajo
+			DB		FUEGO_SPRITE1A	;izq arriba
+			DB		FUEGO_SPRITE1A	;izq abajo
+			DB		FUEGO_SPRITE1A	;der_arriba
+			DB		FUEGO_SPRITE1A	;der_abajo
 
 
 ;;=====================================================
@@ -62,7 +62,7 @@ fin_actualiza_valores_fuego:
 ; salida: 	-
 ; toca:		-
 mover_fuego:
-		CALL		calcula_fuego_incrementoy
+		;CALL		calcula_fuego_incrementoy
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
 		LD			(IY), A
 		ADD			16
@@ -124,5 +124,8 @@ fin_calcula_fuego_incrementoy:
 ;;CALCULA_FUEGO_INCREMENTOx
 ;;=====================================================	
 calcula_fuego_incrementox:
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
+		AND			00000001b
+		
 fin_calcula_fuego_incrementox:
 		RET
