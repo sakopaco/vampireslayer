@@ -157,6 +157,8 @@ calcula_lobo_incrementox:
 		DEC			 A
 		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
 		
+		;~ DEC			(IX + ESTRUCTURA_ENEMIGO.posx)
+		
 		;SI X = LOBO_LIMIZQ 
 		CP			LOBO_LIMIZQ
 			RET			NZ
@@ -170,6 +172,11 @@ calcula_lobo_incrementox:
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
 		INC			 A
 		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
+		
+		
+		;****************************************++
+		
+		
 		
 		;SI Y = LOBO_LIMDER
 		CP			LOBO_LIMDER

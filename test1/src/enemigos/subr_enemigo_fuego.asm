@@ -124,8 +124,9 @@ fin_calcula_fuego_incrementoy:
 ;;CALCULA_FUEGO_INCREMENTOx
 ;;=====================================================	
 calcula_fuego_incrementox:
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-		AND			00000001b
-		
+;examino camino a derecha
+		BIT			  0, (IX + ESTRUCTURA_ENEMIGO.posx)
+;examino camino a derecha
+		BIT			  2, (IX + ESTRUCTURA_ENEMIGO.posx)
 fin_calcula_fuego_incrementox:
 		RET
