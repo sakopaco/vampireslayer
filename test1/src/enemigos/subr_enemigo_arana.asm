@@ -10,7 +10,7 @@ datos_arana:
 			DB		00010000b	;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
 			DB		10		;(energia) energía del enemigo antes de morir
 			DB		0		;(posx) pos x para mover y punto central del sprite para revisar disparo
-			DB		0		;(posy) pos y para mover y punto central del sprite para revisar disparo
+			DB		LIMITEPANTALLASUP	;(posy) pos y para mover y punto central del sprite para revisar disparo
 			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
 			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
 			DB		0		;(incx) incremento x para mover
@@ -66,8 +66,6 @@ actualiza_valores_arana:
 		CALL		suma_A_HL
 		LD			 A, (HL)
 		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
-.asigna_valores_posicion_y:		
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), LIMITEPANTALLASUP
 fin_actualiza_valores_arana:
 		RET
 		

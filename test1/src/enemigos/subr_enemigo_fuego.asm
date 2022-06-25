@@ -89,39 +89,23 @@ fin_mover_fuego:
 ;;CALCULA_FUEGO_ESCENA
 ;;=====================================================	
 calcula_fuego_escena:
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
-		OR			 A
-		JP			 Z, .direccion_derecha
-
-.direccion_izquierda:
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
-		XOR			00000001b
-		LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
+		LD			 A, (heartbeat)
+		OR			00000001b
+		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
+			; cambio de escena
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+			XOR			00000001b
+			LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
 			
-		OR			 A
-		JP			 Z, .escena_izquierda2
-.escena_izquierda1:
-			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), FUEGO_SPRITE1B
-			RET
-.escena_izquierda2:
-			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), FUEGO_SPRITE2B
-			RET
-
-.direccion_derecha:
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
-		XOR			00000001b
-		LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
-			
-		OR			 A
-		JP			 Z, .escena_derecha2
-.escena_derecha1:
-			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), FUEGO_SPRITE1A
-			RET
-.escena_derecha2:
-			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), FUEGO_SPRITE2A
-			RET
+			JP			 Z, .enemigo1_poner_escena2			; IF ESCENA 1 THEN
+				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), FUEGO_SPRITE1A
+				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), FUEGO_SPRITE1B
+				RET
+.enemigo1_poner_escena2:									; ELSE
+				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), FUEGO_SPRITE2A
+				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), FUEGO_SPRITE2B
+				RET
 fin_calcula_fuego_escena:
-		RET
 
 
 ;;=====================================================
