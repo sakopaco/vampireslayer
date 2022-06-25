@@ -20,6 +20,7 @@ include "subr_enemigo_jefefantasma.asm"
 include "subr_enemigo_caballerogris.asm"
 include "subr_enemigo_jefezombi.asm"
 include "subr_enemigo_fuego.asm"
+include "subr_enemigo_jefecaballero.asm"
 		
 		
 ;;=====================================================
@@ -969,7 +970,7 @@ fin_inicializa_enemigos_fase4_nivel5:
 
 inicializa_enemigos_fase4_niveljefe:	
 		LD			DE, enemigo7
-		CALL		anade_enemigo_jefezombi
+		CALL		anade_enemigo_jefecaballero
 		LD			IX, enemigo7
 		RET
 fin_inicializa_enemigos_fase4_niveljefe:
@@ -1245,13 +1246,14 @@ check_enemigos:
 		RET	
 .mira_nivel4:
 		DEC			 A
-		JP			NZ, .mira_nivel5
+		;JP			NZ, .mira_nivel5
+		RET			NZ
 		CALL		check_enemigos_fase4
 		RET	
 .mira_nivel5:
 .mira_nivel6:
 fin_check_enemigos:
-		RET
+		;RET
 
 
 ;;=====================================================
@@ -1620,7 +1622,7 @@ check_enemigos_fase4: ;; aquí se ponen los valores de enemigos (si están activ
 		
 		CALL 		mueve_enemigo
 		;acciones enemigos	
-.check_enemigo7:
+.check_enemigo7:	;JEFECABALLERO
 		LD			IX, enemigo7
 		LD			 A, (IX)
 		OR			 A

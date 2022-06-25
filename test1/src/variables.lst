@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.06.25 - 20:42:01]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.06.25 - 21:07:41]
 
 ./variables.asm
 Errors: 0
@@ -550,6 +550,45 @@ Errors: 0
      250.  00:C000  (00:000F)           FUEGO_POS4X			equ		15
      251.  00:C000  (00:004F)           FUEGO_POS4Y			equ		79
      252.  00:C000                      
+     253.  00:C000                      
+     254.  00:C000                      ;;ETIQUETAS/CONSTANTES JEFECABALLERO
+     255.  00:C000  (00:0012)           TIPOJEFECABALLERO	equ		18
+     256.  00:C000  (00:0001)           JCABALLERO_COLOR	equ		1		;15 - BLANCO
+     257.  00:C000  (00:00C0)           JCABALLERO_SPRITE1A	equ		192
+     258.  00:C000  (00:00C4)           JCABALLERO_SPRITE2A	equ		196
+     259.  00:C000  (00:00C8)           JCABALLERO_SPRITE3A	equ		200
+     260.  00:C000  (00:00CC)           JCABALLERO_SPRITE4A	equ		204
+     261.  00:C000  (00:00D0)           JCABALLERO_SPRITE1B	equ		208
+     262.  00:C000  (00:00D4)           JCABALLERO_SPRITE2B	equ		212
+     263.  00:C000  (00:00D8)           JCABALLERO_SPRITE3B	equ		216
+     264.  00:C000  (00:00DC)           JCABALLERO_SPRITE4B	equ		220
+     265.  00:C000  (00:00E0)           JCABALLERO_SPRITE1C	equ		224
+     266.  00:C000  (00:00E4)           JCABALLERO_SPRITE2C	equ		228
+     267.  00:C000  (00:00E8)           JCABALLERO_SPRITE3C	equ		232
+     268.  00:C000  (00:00EC)           JCABALLERO_SPRITE4C	equ		236
+     269.  00:C000  (00:00F0)           JCABALLERO_SPRITE1D	equ		240
+     270.  00:C000  (00:00F4)           JCABALLERO_SPRITE2D	equ		244
+     271.  00:C000  (00:00F8)           JCABALLERO_SPRITE3D	equ		248
+     272.  00:C000  (00:00FC)           JCABALLERO_SPRITE4D	equ		252
+     273.  00:C000  (00:0030)           JCABALLERO_POSYINI	equ		48
+     274.  00:C000  (00:00C0)           JCABALLERO_POSXINI	equ		192
+     275.  00:C000  (00:0090)           JCABALLERO_PASOS  	equ		144
+     276.  00:C000                      
+     277.  00:C000                      
+     278.  00:C000                      
+     279.  00:C000                      
+     280.  00:C000                      
+     281.  00:C000                      
+     282.  00:C000                      
+     283.  00:C000                      
+     284.  00:C000                      
+     285.  00:C000                      
+     286.  00:C000                      
+     287.  00:C000                      
+     288.  00:C000                      
+     289.  00:C000                      
+     290.  00:C000                      
+     291.  00:C000                      
       12   00:C000                      include "constantesyvariables/estructuras.asm"
        1.  00:C000                      ;;=====================================================
        2.  00:C000                      ;;DEFINICIÓN DE ESTRUCTURAS
@@ -1407,6 +1446,27 @@ Errors: 0
 00:0000004F X FUEGO_POS3Y
 00:0000000F X FUEGO_POS4X
 00:0000004F X FUEGO_POS4Y
+00:00000012 X TIPOJEFECABALLERO
+00:00000001 X JCABALLERO_COLOR
+00:000000C0 X JCABALLERO_SPRITE1A
+00:000000C4 X JCABALLERO_SPRITE2A
+00:000000C8 X JCABALLERO_SPRITE3A
+00:000000CC X JCABALLERO_SPRITE4A
+00:000000D0 X JCABALLERO_SPRITE1B
+00:000000D4 X JCABALLERO_SPRITE2B
+00:000000D8 X JCABALLERO_SPRITE3B
+00:000000DC X JCABALLERO_SPRITE4B
+00:000000E0 X JCABALLERO_SPRITE1C
+00:000000E4 X JCABALLERO_SPRITE2C
+00:000000E8 X JCABALLERO_SPRITE3C
+00:000000EC X JCABALLERO_SPRITE4C
+00:000000F0 X JCABALLERO_SPRITE1D
+00:000000F4 X JCABALLERO_SPRITE2D
+00:000000F8 X JCABALLERO_SPRITE3D
+00:000000FC X JCABALLERO_SPRITE4D
+00:00000030 X JCABALLERO_POSYINI
+00:000000C0 X JCABALLERO_POSXINI
+00:00000090 X JCABALLERO_PASOS
 00:00000000 X ESTRUCTURA_PUNTOMIRA.posx
 00:00000001 X ESTRUCTURA_PUNTOMIRA.posy
 00:00000002 X ESTRUCTURA_PUNTOMIRA.escena

@@ -274,7 +274,7 @@ carga_patrones_sprites_nivel4:
 		CALL		carga_patrones_zombi
 		CALL		carga_patrones_fantasma
 		CALL		carga_patrones_fuego
-		JP			carga_patrones_jefezombi
+		JP			carga_patrones_jefecaballero
 fin_carga_patrones_sprites_nivel4:
 
 carga_patrones_sprites_nivel5:
