@@ -6,7 +6,7 @@ datos_lobo:
 			DB		0		;(escena) sprite a mostrar 1/2
 			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
 			DB		10		;(energia) energía del enemigo antes de morir
-			DB		LOBO_LIMIZQ		;(posx) pos x para mover y punto central del sprite para revisar disparo
+			DB		LOBO_POSX		;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		LOBO_POSY		;(posy) pos y para mover y punto central del sprite para revisar disparo
 			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
 			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
@@ -14,7 +14,7 @@ datos_lobo:
 			DB		0		;(inxy) incremento y para mover
 			DB		DIRDERECHA		;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		0		;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
-			DB		0		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
+			DB		LOBO_PASOS		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 			DB		0		;(radio) radio para movimientos circulares
 			DW		mover_lobo		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 			DB		LOBO_SPRITE1A	;izq arriba
@@ -52,14 +52,14 @@ fin_anade_enemigo_lobo:
 ; toca:		-
 actualiza_valores_lobo:
 .asigna_valores_posicion_x:	
-		;calcula posición inicial sumando a su líete izq un offset
-		LD			 A, R
-		AND			00111111b
-		ADD			LOBO_LIMIZQ
-		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
+		;~ ;calcula posición inicial sumando a su líete izq un offset
+		;~ LD			 A, R
+		;~ AND			00111111b
+		;~ ADD			LOBO_LIMIZQ
+		;~ LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
 		
-.asigna_valores_posicion_y:
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), LOBO_POSY
+;~ .asigna_valores_posicion_y:
+		;~ LD			(IX + ESTRUCTURA_ENEMIGO.posy), LOBO_POSY
 fin_actualiza_valores_lobo:
 		RET
 		
@@ -135,7 +135,6 @@ calcula_lobo_escena:
 				LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), LOBO_SPRITE3A
 				RET
 fin_calcula_lobo_escena:
-		RET
 
 
 ;;=====================================================
@@ -147,43 +146,23 @@ fin_calcula_lobo_escena:
 ;;CALCULA_LOBO_INCREMENTOX
 ;;=====================================================	
 calcula_lobo_incrementox:
-;SI DIRECCION = DERECHA
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
-		OR			 A
-		JP			 Z, .lobo_derecha
-.lobo_izquierda:
-		;DECREMENTA X => LOBO IZQUIERDA
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-		DEC			 A
-		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
-		
-		;~ DEC			(IX + ESTRUCTURA_ENEMIGO.posx)
-		
-		;SI X = LOBO_LIMIZQ 
-		CP			LOBO_LIMIZQ
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
+			OR			 A
+			JP			 Z, .mueve_derecha
+.mueve_izquierda:
+				DEC			(IX + ESTRUCTURA_ENEMIGO.posx)
+				JP			.fin_mueve_posx
+.mueve_derecha:
+				INC			(IX + ESTRUCTURA_ENEMIGO.posx)
+.fin_mueve_posx:
+
+			DEC			(IX + ESTRUCTURA_ENEMIGO.pasos)
 			RET			NZ
-		;DIRECCION = DERECHA
-			LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), DIRDERECHA
-		;FIN SI
-		RET
-;SINO
-.lobo_derecha:
-		;INCREMENTA X => LOBO DERECHA
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-		INC			 A
-		LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
-		
-		
-		;****************************************++
-		
-		
-		
-		;SI Y = LOBO_LIMDER
-		CP			LOBO_LIMDER
-			RET			NZ
-		;DIRECCION = LOBO
-			LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), DIRIZQUIERDA
-	;FIN SI
-;FIN SI
+				;cambio dirección
+				LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
+				XOR			00000001b
+				LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), A
+				;resetea pasos
+				LD			(IX + ESTRUCTURA_ENEMIGO.pasos), LOBO_PASOS
 fin_calcula_lobo_incrementox:
 		RET

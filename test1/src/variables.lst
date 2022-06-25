@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.06.23 - 21:18:13]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.06.25 - 12:42:02]
 
 ./variables.asm
 Errors: 0
@@ -360,8 +360,8 @@ Errors: 0
       60.  00:C000  (00:0054)           LOBO_SPRITE2B		equ		84
       61.  00:C000  (00:0058)           LOBO_SPRITE3B		equ		88
       62.  00:C000  (00:005C)           LOBO_SPRITE4B		equ		92
-      63.  00:C000  (00:0008)           LOBO_LIMIZQ			equ		8
-      64.  00:C000  (00:00D8)           LOBO_LIMDER			equ		216
+      63.  00:C000  (00:0008)           LOBO_POSX			equ		8
+      64.  00:C000  (00:00D0)           LOBO_PASOS			equ		208
       65.  00:C000  (00:005F)           LOBO_POSY			equ		95
       66.  00:C000                      
       67.  00:C000                      ;;ETIQUETAS/CONSTANTES JEFELOBO
@@ -1244,8 +1244,8 @@ Errors: 0
 00:00000054 X LOBO_SPRITE2B
 00:00000058 X LOBO_SPRITE3B
 00:0000005C X LOBO_SPRITE4B
-00:00000008 X LOBO_LIMIZQ
-00:000000D8 X LOBO_LIMDER
+00:00000008 X LOBO_POSX
+00:000000D0 X LOBO_PASOS
 00:0000005F X LOBO_POSY
 00:0000000E X TIPOJEFELOBO
 00:00000001 X JEFELOBO_COLOR
