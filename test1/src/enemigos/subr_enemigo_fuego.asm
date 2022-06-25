@@ -12,7 +12,7 @@ datos_fuego:
 			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
 			DB		0		;(incx) incremento x para mover
 			DB		0		;(inxy) incremento y para mover
-			DB		0		;00000001 derecha // 00000010 abajo // 00000100 izquierda // 00001000 arriba
+			DB		00000001	;(direccionx) 00000001 derecha // 00000010 abajo // 00000100 izquierda // 00001000 arriba
 			DB		0		;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		FUEGO_PASOSX;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 			DB		0		;(radio) radio para movimientos circulares
@@ -62,13 +62,12 @@ fin_actualiza_valores_fuego:
 ; salida: 	-
 ; toca:		-
 mover_fuego:
-		;CALL		calcula_fuego_incrementoy
+		CALL		calcula_fuego_incrementoxy
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
 		LD			(IY), A
 		ADD			16
 		LD			(IY + 4), A
 		
-		CALL		calcula_fuego_incrementox
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
 		LD			(IY + 1), A
 		LD			(IY + 5), A
@@ -90,43 +89,83 @@ fin_mover_fuego:
 ;;CALCULA_FUEGO_ESCENA
 ;;=====================================================	
 calcula_fuego_escena:
-		;~ LD			 A, (heartbeat)
-		;~ OR			00000001b
-		;~ JP			 Z, .fin_cambia_escena_enemigo1   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
-			;~ ; cambio de escena
-			;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
-			;~ XOR			00000001b
-			;~ LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
+		OR			 A
+		JP			 Z, .direccion_derecha
+
+.direccion_izquierda:
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+		XOR			00000001b
+		LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
 			
-			;~ JP			 Z, .enemigo1_poner_escena2			; IF ESCENA 1 THEN
-				;~ LD			 A, MURCIELAGO_SPRITE1A
-				;~ JP			.fin_enemigo1_poner_escena2
-;~ .enemigo1_poner_escena2:									; ELSE
-				;~ LD			 A, MURCIELAGO_SPRITE2A
-;~ .fin_enemigo1_poner_escena2:								; END IF
-;~ .fin_cambia_escena_enemigo1:							; END IF	
-		;~ LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), A
+		OR			 A
+		JP			 Z, .escena_izquierda2
+.escena_izquierda1:
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), FUEGO_SPRITE1B
+			RET
+.escena_izquierda2:
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), FUEGO_SPRITE2B
+			RET
+
+.direccion_derecha:
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+		XOR			00000001b
+		LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
+			
+		OR			 A
+		JP			 Z, .escena_derecha2
+.escena_derecha1:
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), FUEGO_SPRITE1A
+			RET
+.escena_derecha2:
+			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), FUEGO_SPRITE2A
+			RET
 fin_calcula_fuego_escena:
 		RET
 
 
-;~ a: 15,15	b: 223,15
-;~ c: 15,79	d: 223,79
 ;;=====================================================
 ;;CALCULA_FUEGO_INCREMENTOY
 ;;=====================================================	
-calcula_fuego_incrementoy:
-fin_calcula_fuego_incrementoy:
+;~ a: 15,15	b: 223,15
+;~ c: 15,79	d: 223,79
+calcula_fuego_incrementoxy:
+.examino_sentido_derecha:
+		BIT			 0, (IX + ESTRUCTURA_ENEMIGO.direccionx)
+		JP			 Z, .examino_sentido_abajo
+		INC			(IX + ESTRUCTURA_ENEMIGO.posx)
+		DEC			(IX + ESTRUCTURA_ENEMIGO.pasos)
+		RET			NZ
+			;implica que se han terminado los pasos y hay que cambiar de sentido
+			RL			(IX + ESTRUCTURA_ENEMIGO.direccionx)
+			LD			(IX + ESTRUCTURA_ENEMIGO.pasos), FUEGO_PASOSY
+		RET		
+.examino_sentido_abajo:
+		BIT			 1, (IX + ESTRUCTURA_ENEMIGO.direccionx)
+		JP			 Z, .examino_sentido_izquierda
+		INC			(IX + ESTRUCTURA_ENEMIGO.posy)
+		DEC			(IX + ESTRUCTURA_ENEMIGO.pasos)
+		RET			NZ
+			;implica que se han terminado los pasos y hay que cambiar de sentido
+			RL			(IX + ESTRUCTURA_ENEMIGO.direccionx)
+			LD			(IX + ESTRUCTURA_ENEMIGO.pasos), FUEGO_PASOSX
 		RET
-		
-
-;;=====================================================
-;;CALCULA_FUEGO_INCREMENTOx
-;;=====================================================	
-calcula_fuego_incrementox:
-;examino camino a derecha
-		BIT			  0, (IX + ESTRUCTURA_ENEMIGO.posx)
-;examino camino a derecha
-		BIT			  2, (IX + ESTRUCTURA_ENEMIGO.posx)
-fin_calcula_fuego_incrementox:
+.examino_sentido_izquierda:
+		BIT			 2, (IX + ESTRUCTURA_ENEMIGO.direccionx)
+		JP			 Z,.examino_sentido_arriba
+		DEC			(IX + ESTRUCTURA_ENEMIGO.posx)
+		DEC			(IX + ESTRUCTURA_ENEMIGO.pasos)
+		RET			NZ
+			;implica que se han terminado los pasos y hay que cambiar de sentido
+			RL			(IX + ESTRUCTURA_ENEMIGO.direccionx)
+			LD			(IX + ESTRUCTURA_ENEMIGO.pasos), FUEGO_PASOSY
 		RET
+.examino_sentido_arriba:
+		DEC			(IX + ESTRUCTURA_ENEMIGO.posy)
+		DEC			(IX + ESTRUCTURA_ENEMIGO.pasos)
+		RET			NZ
+			;implica que se han terminado los pasos y hay que cambiar de sentido
+			LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), 00000001b
+			LD			(IX + ESTRUCTURA_ENEMIGO.pasos), FUEGO_PASOSX
+		RET
+fin_calcula_fuego_incrementoxy:
