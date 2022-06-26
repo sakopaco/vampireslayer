@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.06.25 - 21:07:41]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.06.26 - 12:32:33]
 
 ./variables.asm
 Errors: 0
@@ -572,7 +572,7 @@ Errors: 0
      272.  00:C000  (00:00FC)           JCABALLERO_SPRITE4D	equ		252
      273.  00:C000  (00:0030)           JCABALLERO_POSYINI	equ		48
      274.  00:C000  (00:00C0)           JCABALLERO_POSXINI	equ		192
-     275.  00:C000  (00:0090)           JCABALLERO_PASOS  	equ		144
+     275.  00:C000  (00:00C8)           JCABALLERO_PASOS  	equ		200
      276.  00:C000                      
      277.  00:C000                      
      278.  00:C000                      
@@ -1466,7 +1466,7 @@ Errors: 0
 00:000000FC X JCABALLERO_SPRITE4D
 00:00000030 X JCABALLERO_POSYINI
 00:000000C0 X JCABALLERO_POSXINI
-00:00000090 X JCABALLERO_PASOS
+00:000000C8 X JCABALLERO_PASOS
 00:00000000 X ESTRUCTURA_PUNTOMIRA.posx
 00:00000001 X ESTRUCTURA_PUNTOMIRA.posy
 00:00000002 X ESTRUCTURA_PUNTOMIRA.escena

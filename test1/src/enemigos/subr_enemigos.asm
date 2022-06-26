@@ -972,6 +972,7 @@ inicializa_enemigos_fase4_niveljefe:
 		LD			DE, enemigo7
 		CALL		anade_enemigo_jefecaballero
 		LD			IX, enemigo7
+		CALL		actualiza_valores_jefecaballero
 		RET
 fin_inicializa_enemigos_fase4_niveljefe:
 

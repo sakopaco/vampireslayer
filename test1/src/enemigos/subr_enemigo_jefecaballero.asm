@@ -22,6 +22,8 @@ datos_jefecaballero:
 			DB		JCABALLERO_SPRITE3A	;izq abajo
 			DB		JCABALLERO_SPRITE4A	;der_abajo
 
+array_jefecaballero_posicionesy:
+			DB		0,14,28,42,56,69,82,96
 
 ;;=====================================================
 ;;SUBRUTINAS MANEJO DE JEFECABALLERO
@@ -50,7 +52,24 @@ fin_anade_enemigo_jefecaballero:
 ; entrada:	IX que equivaldrá a qué nº de enemigo estamos inicializando (por ejemplo enemigo1)
 ; toca:		-
 actualiza_valores_jefecaballero:
+		;calcula posición y del array 0 a 7
+		LD			 A, R
+		AND			00000111b
+.asigna_valores_posicion_x:
+		LD			HL, array_jefecaballero_posicionesy
+		CALL		suma_A_HL
+		LD			 A, (HL)
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
+		
+		;calcula dirección 0-derecha / 1-izquierda
+		LD			 A, R
+		AND			00000001b
+		LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), A
+		
+		;resetea pasos del movimiento
+		LD			(IX + ESTRUCTURA_ENEMIGO.pasos), JCABALLERO_PASOS
 fin_actualiza_valores_jefecaballero:
+		RET
 
 		
 ;;=====================================================
@@ -70,6 +89,7 @@ mover_jefecaballero:
 		LD			(IY + 12), A
 		
 		CALL		calcula_jefecaballero_incrementox
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
 		LD			(IY + 1), A
 		LD			(IY + 5), A
 		ADD 		16
@@ -168,11 +188,7 @@ calcula_jefecaballero_incrementox:
 
 			DEC			(IX + ESTRUCTURA_ENEMIGO.pasos)
 			RET			NZ
-				;cambio dirección
-				LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
-				XOR			00000001b
-				LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), A
-				;resetea pasos
-				LD			(IX + ESTRUCTURA_ENEMIGO.pasos), JCABALLERO_PASOS
+			
+			;cambio dirección
+			JP			actualiza_valores_jefecaballero
 fin_calcula_jefecaballero_incrementox:
-		RET
