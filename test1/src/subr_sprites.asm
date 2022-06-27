@@ -278,12 +278,13 @@ carga_patrones_sprites_nivel4:
 fin_carga_patrones_sprites_nivel4:
 
 carga_patrones_sprites_nivel5:
-		CALL		carga_patrones_cienpies
-		CALL		carga_patrones_arana
-		CALL		carga_patrones_serpiente
 		CALL		carga_patrones_murcielago
-		CALL		carga_patrones_lobo
-		JP			carga_patrones_jefelobo
+		CALL		carga_patrones_caballero
+		CALL		carga_patrones_esqueleto
+		CALL		carga_patrones_zombi
+		CALL		carga_patrones_fantasma
+		CALL		carga_patrones_fuego
+		JP			carga_patrones_jefecaballero
 fin_carga_patrones_sprites_nivel5:
 	
 carga_patrones_sprites_nivel6:

@@ -206,8 +206,7 @@ fin_inicializacion_variables:
 
 ;END: (FIN CÓDIGO)
 
-;~ datos_magia:	
-;~ datos_jefecaballero:
+;~ datos_magia:
 ;~ datos_jefebeholder:
 ;~ datos_manoderecha:
 ;~ datos_manoizquierda:

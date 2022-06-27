@@ -982,123 +982,119 @@ fin_inicializa_enemigos_fase4_niveljefe:
 ;;=====================================================	
 inicializa_enemigos_fase5_nivel0:
 		LD			DE, enemigo1
-		CALL		anade_enemigo_cienpies
+		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo1
-		JP			actualiza_valores_cienpies
 fin_inicializa_enemigos_fase5_nivel0:
+		RET
 
 inicializa_enemigos_fase5_nivel1:
 		LD			DE, enemigo1
-		CALL		anade_enemigo_serpiente
+		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo1
-		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo2
-		CALL		anade_enemigo_serpiente
+		CALL		anade_enemigo_caballero
 		LD			IX, enemigo2
-		JP			actualiza_valores_serpiente
 fin_inicializa_enemigos_fase5_nivel1:
+		RET
 
 inicializa_enemigos_fase5_nivel2:
 		LD			DE, enemigo1
-		CALL		anade_enemigo_cienpies
+		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo1
-		CALL		actualiza_valores_cienpies
 		
 		LD			DE, enemigo2
-		CALL		anade_enemigo_arana
+		CALL		anade_enemigo_caballero
 		LD			IX, enemigo2
-		CALL		actualiza_valores_arana
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_serpiente
+		CALL		anade_enemigo_esqueleto
 		LD			IX, enemigo3
-		JP			actualiza_valores_serpiente
+		JP			actualiza_valores_esqueleto	
 fin_inicializa_enemigos_fase5_nivel2:
 
 inicializa_enemigos_fase5_nivel3:
 		LD			DE, enemigo1
-		CALL		anade_enemigo_cienpies
+		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo1
-		CALL		actualiza_valores_cienpies
 		
 		LD			DE, enemigo2
-		CALL		anade_enemigo_arana
+		CALL		anade_enemigo_caballero
 		LD			IX, enemigo2
-		CALL		actualiza_valores_arana
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_serpiente
+		CALL		anade_enemigo_esqueleto
 		LD			IX, enemigo3
-		CALL		actualiza_valores_serpiente
+		CALL		actualiza_valores_esqueleto	
 		
 		LD			DE, enemigo4
-		CALL		anade_enemigo_murcielago
+		CALL		anade_enemigo_zombi
 		LD			IX, enemigo4
-		RET
 fin_inicializa_enemigos_fase5_nivel3:
+		RET
 
 inicializa_enemigos_fase5_nivel4:
 		LD			DE, enemigo1
-		CALL		anade_enemigo_cienpies
+		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo1
-		CALL		actualiza_valores_cienpies
 		
 		LD			DE, enemigo2
-		CALL		anade_enemigo_arana
+		CALL		anade_enemigo_caballero
 		LD			IX, enemigo2
-		CALL		actualiza_valores_arana
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_serpiente
+		CALL		anade_enemigo_esqueleto
 		LD			IX, enemigo3
-		CALL		actualiza_valores_serpiente
+		CALL		actualiza_valores_esqueleto	
 		
 		LD			DE, enemigo4
-		CALL		anade_enemigo_murcielago
+		CALL		anade_enemigo_zombi
 		LD			IX, enemigo4
 		
 		LD			DE, enemigo5
-		CALL		anade_enemigo_lobo
+		CALL		anade_enemigo_fantasma
 		LD			IX, enemigo5
-		JP			actualiza_valores_lobo
 fin_inicializa_enemigos_fase5_nivel4:
+		RET
 
-inicializa_enemigos_fase5_nivel5:
+inicializa_enemigos_fase5_nivel5: 							
 		LD			DE, enemigo1
-		CALL		anade_enemigo_cienpies
+		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo1
-		CALL		actualiza_valores_cienpies
 		
 		LD			DE, enemigo2
-		CALL		anade_enemigo_arana
+		CALL		anade_enemigo_caballero
 		LD			IX, enemigo2
-		CALL		actualiza_valores_arana
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_serpiente
+		CALL		anade_enemigo_esqueleto
 		LD			IX, enemigo3
-		CALL		actualiza_valores_serpiente
+		CALL		actualiza_valores_esqueleto
 		
 		LD			DE, enemigo4
-		CALL		anade_enemigo_murcielago
+		CALL		anade_enemigo_zombi
 		LD			IX, enemigo4
 		
 		LD			DE, enemigo5
-		CALL		anade_enemigo_lobo
+		CALL		anade_enemigo_fantasma
 		LD			IX, enemigo5
-		JP			actualiza_valores_lobo	
-fin_inicializa_enemigos_fase5_nivel5:
-
-;; no hay nivel 6 porque el 5 se repite
-
-inicializa_enemigos_fase5_niveljefe:
+		
 		LD			DE, enemigo6
-		CALL		anade_enemigo_jefelobo
+		CALL		anade_enemigo_fuego
 		LD			IX, enemigo6
-		JP			actualiza_valores_lobo	;se reutiliza la inicialización de valores iniciales de lobo para jefelobo
-fin_inicializa_enemigos_fase5_nivel6:
+fin_inicializa_enemigos_fase5_nivel5:
 		RET
+
+inicializa_enemigos_fase5_niveljefe:	
+		LD			DE, enemigo7
+		CALL		anade_enemigo_jefecaballero
+		LD			IX, enemigo7
+		CALL		actualiza_valores_jefecaballero
+		RET
+fin_inicializa_enemigos_fase5_niveljefe:
+
+
+
 
 ;;=====================================================
 ;;INICIALIZA_ENEMIGOS_FASE6_NIVELX
@@ -1247,11 +1243,15 @@ check_enemigos:
 		RET	
 .mira_nivel4:
 		DEC			 A
-		;JP			NZ, .mira_nivel5
-		RET			NZ
+		JP			NZ, .mira_nivel5
 		CALL		check_enemigos_fase4
 		RET	
 .mira_nivel5:
+		DEC			 A
+		;JP			NZ, .mira_nivel6
+		RET			NZ
+		CALL		check_enemigos_fase5
+		RET	
 .mira_nivel6:
 fin_check_enemigos:
 		;RET
@@ -1641,6 +1641,76 @@ fin_check_enemigos_fase4:
 ;;CHECK_ENEMIGOS_FASE5
 ;;=====================================================	
 check_enemigos_fase5: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
+.check_enemigo1:	;MURCIELAGO
+		LD			IX, enemigo1
+		LD			 A, (IX)
+		OR			 A
+		JP			 Z, .check_enemigo2
+		
+		LD			IY, array_sprites_enem
+		
+		CALL 		mueve_enemigo
+		;acciones enemigos
+.check_enemigo2:	;CABALLERO
+		LD			IX, enemigo2
+		LD			 A, (IX)
+		OR			 A
+		JP			 Z, .check_enemigo3
+		
+		LD			IY, array_sprites_enem + 4
+		
+		CALL 		mueve_enemigo
+		;acciones enemigos
+.check_enemigo3:	;ESQUELETO
+		LD			IX, enemigo3
+		LD			 A, (IX)
+		OR			 A
+		JP			 Z, .check_enemigo4
+		
+		LD			IY, array_sprites_enem + 12
+		
+		CALL 		mueve_enemigo
+		;acciones enemigos
+.check_enemigo4:	;ZOMBI
+		LD			IX, enemigo4
+		LD			 A, (IX)
+		OR			 A
+		JP			 Z, .check_enemigo5
+		
+		LD			IY, array_sprites_enem + 20
+		
+		CALL 		mueve_enemigo
+		;acciones enemigos
+.check_enemigo5:	;FANTASMA
+		LD			IX, enemigo5
+		LD			 A, (IX)
+		OR			 A
+		JP			 Z, .check_enemigo6
+		
+		LD			IY, array_sprites_enem + 28
+		
+		CALL 		mueve_enemigo
+		;acciones enemigos
+.check_enemigo6:	;FUEGO
+		LD			IX, enemigo6   														
+		LD			 A, (IX)
+		OR			 A
+		JP			 Z, .check_enemigo7
+		
+		LD			IY, array_sprites_enem + 36
+		
+		CALL 		mueve_enemigo
+		;acciones enemigos	
+.check_enemigo7:	;JEFECABALLERO
+		LD			IX, enemigo7
+		LD			 A, (IX)
+		OR			 A
+		RET			 Z
+		
+		LD			IY, array_sprites_enem + 4
+		
+		CALL 		mueve_enemigo
+		;acciones enemigos
 fin_check_enemigos_fase5:
 		RET	
 		
