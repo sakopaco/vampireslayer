@@ -55,7 +55,7 @@ actualiza_valores_jefecaballero:
 		;calcula posición y del array 0 a 7
 		LD			 A, R
 		AND			00000111b
-.asigna_valores_posicion_x:
+		;calcula la posición y
 		LD			HL, array_jefecaballero_posicionesy
 		CALL		suma_A_HL
 		LD			 A, (HL)
@@ -63,8 +63,18 @@ actualiza_valores_jefecaballero:
 		
 		;calcula dirección 0-derecha / 1-izquierda
 		LD			 A, R
-		AND			00000001b
+		AND			00000010b
 		LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), A
+		JP			NZ, .direccion_izquierda
+		;empieza en la izquierda
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), 16
+		JP			.fin_direccion
+		;direccion_derecha
+.direccion_izquierda:
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), 220
+.fin_direccion:	
+
+		
 		
 		;resetea pasos del movimiento
 		LD			(IX + ESTRUCTURA_ENEMIGO.pasos), JCABALLERO_PASOS
