@@ -21,6 +21,7 @@ include "subr_enemigo_caballerogris.asm"
 include "subr_enemigo_jefezombi.asm"
 include "subr_enemigo_fuego.asm"
 include "subr_enemigo_jefecaballero.asm"
+include "subr_enemigo_magia.asm"
 		
 		
 ;;=====================================================
@@ -982,14 +983,14 @@ fin_inicializa_enemigos_fase4_niveljefe:
 ;;=====================================================	
 inicializa_enemigos_fase5_nivel0:
 		LD			DE, enemigo1
-		CALL		anade_enemigo_murcielago
+		CALL		anade_enemigo_magia
 		LD			IX, enemigo1
 fin_inicializa_enemigos_fase5_nivel0:
 		RET
 
 inicializa_enemigos_fase5_nivel1:
 		LD			DE, enemigo1
-		CALL		anade_enemigo_murcielago
+		CALL		anade_enemigo_magia
 		LD			IX, enemigo1
 		
 		LD			DE, enemigo2
@@ -1000,7 +1001,7 @@ fin_inicializa_enemigos_fase5_nivel1:
 
 inicializa_enemigos_fase5_nivel2:
 		LD			DE, enemigo1
-		CALL		anade_enemigo_murcielago
+		CALL		anade_enemigo_magia
 		LD			IX, enemigo1
 		
 		LD			DE, enemigo2
@@ -1015,7 +1016,7 @@ fin_inicializa_enemigos_fase5_nivel2:
 
 inicializa_enemigos_fase5_nivel3:
 		LD			DE, enemigo1
-		CALL		anade_enemigo_murcielago
+		CALL		anade_enemigo_magia
 		LD			IX, enemigo1
 		
 		LD			DE, enemigo2
@@ -1035,7 +1036,7 @@ fin_inicializa_enemigos_fase5_nivel3:
 
 inicializa_enemigos_fase5_nivel4:
 		LD			DE, enemigo1
-		CALL		anade_enemigo_murcielago
+		CALL		anade_enemigo_magia
 		LD			IX, enemigo1
 		
 		LD			DE, enemigo2
@@ -1059,7 +1060,7 @@ fin_inicializa_enemigos_fase5_nivel4:
 
 inicializa_enemigos_fase5_nivel5: 							
 		LD			DE, enemigo1
-		CALL		anade_enemigo_murcielago
+		CALL		anade_enemigo_magia
 		LD			IX, enemigo1
 		
 		LD			DE, enemigo2
@@ -1092,8 +1093,6 @@ inicializa_enemigos_fase5_niveljefe:
 		CALL		actualiza_valores_jefecaballero
 		RET
 fin_inicializa_enemigos_fase5_niveljefe:
-
-
 
 
 ;;=====================================================
@@ -1641,7 +1640,7 @@ fin_check_enemigos_fase4:
 ;;CHECK_ENEMIGOS_FASE5
 ;;=====================================================	
 check_enemigos_fase5: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
-.check_enemigo1:	;MURCIELAGO
+.check_enemigo1:	;MAGIA
 		LD			IX, enemigo1
 		LD			 A, (IX)
 		OR			 A
@@ -1657,7 +1656,7 @@ check_enemigos_fase5: ;; aquí se ponen los valores de enemigos (si están activ
 		OR			 A
 		JP			 Z, .check_enemigo3
 		
-		LD			IY, array_sprites_enem + 4
+		LD			IY, array_sprites_enem + 8
 		
 		CALL 		mueve_enemigo
 		;acciones enemigos

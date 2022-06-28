@@ -278,7 +278,7 @@ carga_patrones_sprites_nivel4:
 fin_carga_patrones_sprites_nivel4:
 
 carga_patrones_sprites_nivel5:
-		CALL		carga_patrones_murcielago
+		CALL		carga_patrones_magia
 		CALL		carga_patrones_caballero
 		CALL		carga_patrones_esqueleto
 		CALL		carga_patrones_zombi
