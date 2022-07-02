@@ -16,7 +16,7 @@ datos_magia:
 			DB		0		;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		MAGIA_PASOS		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 			DB		0		;(radio) radio para movimientos circulares
-			DW		mover_lobo		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
+			DW		mover_magia		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 			DB		MAGIA_SPRITE1A	;izq arriba
 			DB		MAGIA_SPRITE2A	;der_arriba
 			DB		MAGIA_SPRITE1B	;izq abajo
@@ -59,7 +59,7 @@ fin_anade_enemigo_magia:
 ;;=====================================================
 ;;ACTUALIZA_VALORES_MAGIA
 ;;=====================================================	
-; función: 	inicializa valores aleatorios del lobo
+; función: 	inicializa valores aleatorios de la magia
 ; entrada:	IX que equivaldrá a qué nº de enemigo estamos inicializando (por ejemplo enemigo1)
 ; salida: 	posicion_anterior_arana
 ; toca:		-
@@ -71,12 +71,12 @@ fin_actualiza_valores_magia:
 ;;=====================================================
 ;;MOVER_MAGIA
 ;;=====================================================	
-; función: hace todo lo que haga falta de acciones cada vez que le toca al programa enfocarse en el lobo: su ataque, su sptrite, etc...
+; función: hace todo lo que haga falta de acciones cada vez que le toca al programa enfocarse en la magia: su ataque, su sptrite, etc...
 ; entrada: IX (enemigo en concreto al que poner los datos, por ejemplo, enemigo1)
 ; salida: 	-
 ; toca:		-
 mover_magia:
-		;CALL		calcula_magia_incrementoxy
+		CALL		calcula_magia_incrementoxy
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
 		LD			(IY), A
 		LD			(IY + 4), A
@@ -103,13 +103,39 @@ fin_mover_magia:
 ;;CALCULA_MAGIA_ESCENA
 ;;=====================================================	
 calcula_magia_escena:
+		LD			 A, (heartbeat)
+		OR			00010000b
+		RET			 Z
+			;THEN cambia escena
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+			XOR			00000001b
+			LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
+			
+			OR			 A
+			JP			 Z, .escena2
+.escena1:
+				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), MAGIA_SPRITE1A
+				RET
+.escena2:
+				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), MAGIA_SPRITE1B
+				RET	
 fin_calcula_magia_escena:
 		RET
 		
 
 ;;=====================================================
-;;CALCULA_LOBO_INCREMENTOXY
+;;CALCULA_MAGIA_INCREMENTOXY
 ;;=====================================================	
 calcula_magia_incrementoxy:
+.examino_sentido_derecha:
+		BIT			 0, (IX + ESTRUCTURA_ENEMIGO.direccionx)
+		;JP			 Z, .examino_sentido_abajo
+		INC			(IX + ESTRUCTURA_ENEMIGO.posx)
+		DEC			(IX + ESTRUCTURA_ENEMIGO.pasos)
+		RET			NZ
+			;implica que se han terminado los pasos y hay que cambiar de sentido
+			RL			(IX + ESTRUCTURA_ENEMIGO.direccionx)
+			LD			(IX + ESTRUCTURA_ENEMIGO.pasos), MAGIA_PASOS
+		RET		
 fin_calcula_magia_incrementoxy:
 		RET

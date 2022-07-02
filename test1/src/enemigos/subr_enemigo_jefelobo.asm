@@ -62,6 +62,11 @@ fin_anade_enemigo_jefelobo:
 ; salida: 	-
 ; toca:		-
 mover_jefelobo:	
+
+
+;;;; copiar movimiento tipo fantasma para jefe lobo
+
+
 		CALL		calcula_jefelobo_incrementoy
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
 		LD			(IY), A

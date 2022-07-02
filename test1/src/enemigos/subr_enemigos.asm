@@ -414,8 +414,8 @@ inicializa_enemigos_fase0_nivel2:
 		LD			DE, enemigo3
 		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo3
-		JP			actualiza_valores_serpiente
 fin_inicializa_enemigos_fase0_nivel2:
+		RET
 
 inicializa_enemigos_fase0_nivel3:
 		LD			DE, enemigo1
@@ -431,13 +431,12 @@ inicializa_enemigos_fase0_nivel3:
 		LD			DE, enemigo3
 		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo3
-		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo4
 		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo4
-		RET
 fin_inicializa_enemigos_fase0_nivel3:
+		RET
 
 inicializa_enemigos_fase0_nivel4:
 		LD			DE, enemigo1
@@ -453,7 +452,6 @@ inicializa_enemigos_fase0_nivel4:
 		LD			DE, enemigo3
 		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo3
-		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo4
 		CALL		anade_enemigo_murcielago
@@ -479,7 +477,6 @@ inicializa_enemigos_fase0_nivel5:
 		LD			DE, enemigo3
 		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo3
-		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo4
 		CALL		anade_enemigo_murcielago
@@ -506,14 +503,13 @@ inicializa_enemigos_fase1_nivel0:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo1
-		JP			actualiza_valores_serpiente
 fin_inicializa_enemigos_fase1_nivel0:
+		RET
 
 inicializa_enemigos_fase1_nivel1:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo1
-		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_arana
@@ -525,7 +521,6 @@ inicializa_enemigos_fase1_nivel2:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo1
-		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_arana
@@ -535,14 +530,13 @@ inicializa_enemigos_fase1_nivel2:
 		LD			DE, enemigo3
 		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo3
-		RET
 fin_inicializa_enemigos_fase1_nivel2:
+		RET
 
 inicializa_enemigos_fase1_nivel3:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo1
-		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_arana
@@ -563,7 +557,6 @@ inicializa_enemigos_fase1_nivel4:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo1
-		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_arana
@@ -589,7 +582,6 @@ inicializa_enemigos_fase1_nivel5:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo1
-		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_arana
@@ -631,26 +623,24 @@ inicializa_enemigos_fase2_nivel0:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo1
-		JP			actualiza_valores_serpiente
 fin_inicializa_enemigos_fase2_nivel0:
+		RET
 
 inicializa_enemigos_fase2_nivel1:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo1
-		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo2
-		RET
 fin_inicializa_enemigos_fase2_nivel1:
+		RET
 
 inicializa_enemigos_fase2_nivel2:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo1
-		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_murcielago
@@ -666,7 +656,6 @@ inicializa_enemigos_fase2_nivel3:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo1
-		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_murcielago
@@ -687,7 +676,6 @@ inicializa_enemigos_fase2_nivel4:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo1
-		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_murcielago
@@ -749,14 +737,13 @@ inicializa_enemigos_fase3_nivel0:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo1
-		JP			actualiza_valores_serpiente
 fin_inicializa_enemigos_fase3_nivel0:
+		RET
 
 inicializa_enemigos_fase3_nivel1:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo1
-		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_arana
@@ -768,7 +755,6 @@ inicializa_enemigos_fase3_nivel2:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo1
-		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_arana
@@ -785,7 +771,6 @@ inicializa_enemigos_fase3_nivel3:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo1
-		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_arana
@@ -806,7 +791,6 @@ inicializa_enemigos_fase3_nivel4:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo1
-		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_arana
@@ -832,7 +816,6 @@ inicializa_enemigos_fase3_nivel5:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo1
-		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_arana
@@ -1109,13 +1092,12 @@ inicializa_enemigos_fase6_nivel1:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo1
-		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo2
-		JP			actualiza_valores_serpiente
 fin_inicializa_enemigos_fase6_nivel1:
+		RET
 
 inicializa_enemigos_fase6_nivel2:
 fin_inicializa_enemigos_fase6_nivel2:
@@ -1134,13 +1116,12 @@ inicializa_enemigos_fase6_nivel3:
 		LD			DE, enemigo3
 		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo3
-		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo4
 		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo4
-		RET
 fin_inicializa_enemigos_fase6_nivel3:
+		RET
 
 inicializa_enemigos_fase6_nivel4:
 		LD			DE, enemigo1
@@ -1156,7 +1137,6 @@ inicializa_enemigos_fase6_nivel4:
 		LD			DE, enemigo3
 		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo3
-		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo4
 		CALL		anade_enemigo_murcielago
@@ -1182,7 +1162,6 @@ inicializa_enemigos_fase6_nivel5:
 		LD			DE, enemigo3
 		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo3
-		CALL		actualiza_valores_serpiente
 		
 		LD			DE, enemigo4
 		CALL		anade_enemigo_murcielago
@@ -1198,21 +1177,8 @@ fin_inicializa_enemigos_fase6_nivel5:
 
 inicializa_enemigos_fase6_niveljefe:
 ;las manos y el dracula son enemigos distintos (3) y hasta que no ueran las anos no muere drácula
-		LD			DE, enemigo1
-		CALL		anade_enemigo_cienpies
-		LD			IX, enemigo1
-		CALL		actualiza_valores_cienpies
-		
-		LD			DE, enemigo2
-		CALL		anade_enemigo_arana
-		LD			IX, enemigo2
-		CALL		actualiza_valores_arana
-		
-		LD			DE, enemigo3
-		CALL		anade_enemigo_serpiente
-		LD			IX, enemigo3
-		JP			actualiza_valores_serpiente
 fin_inicializa_enemigos_fase6_nivel6:
+		RET
 
 
 ;;=====================================================
@@ -1247,13 +1213,12 @@ check_enemigos:
 		RET	
 .mira_nivel5:
 		DEC			 A
-		;JP			NZ, .mira_nivel6
-		RET			NZ
+		JP			NZ, .mira_nivel6
 		CALL		check_enemigos_fase5
 		RET	
 .mira_nivel6:
 fin_check_enemigos:
-		;RET
+		RET
 
 
 ;;=====================================================

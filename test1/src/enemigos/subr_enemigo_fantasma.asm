@@ -107,7 +107,7 @@ calcula_fantasma_escena:
 				RET
 .escena2:
 				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), FANTASMA_SPRITE1B
-				RET		
+				RET	
 fin_calcula_fantasma_escena:
 
 
