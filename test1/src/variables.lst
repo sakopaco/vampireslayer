@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.07.02 - 10:11:01]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.07.03 - 22:41:10]
 
 ./variables.asm
 Errors: 0
@@ -586,7 +586,7 @@ Errors: 0
      286.  00:C000  (00:0024)           MAGIA_SPRITE1B		equ		36
      287.  00:C000  (00:0028)           MAGIA_SPRITE2A		equ		40
      288.  00:C000  (00:002C)           MAGIA_SPRITE2B		equ		44
-     289.  00:C000  (00:0040)           MAGIA_PASOS			equ		64
+     289.  00:C000  (00:0023)           MAGIA_PASOS			equ		35
      290.  00:C000  (00:0040)           MAGIA_POSX			equ		64
      291.  00:C000  (00:0037)           MAGIA_POSY			equ		55
      292.  00:C000                      
@@ -1488,7 +1488,7 @@ Errors: 0
 00:00000024 X MAGIA_SPRITE1B
 00:00000028 X MAGIA_SPRITE2A
 00:0000002C X MAGIA_SPRITE2B
-00:00000040 X MAGIA_PASOS
+00:00000023 X MAGIA_PASOS
 00:00000040 X MAGIA_POSX
 00:00000037 X MAGIA_POSY
 00:00000000 X ESTRUCTURA_PUNTOMIRA.posx

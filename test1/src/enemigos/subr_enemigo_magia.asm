@@ -12,7 +12,7 @@ datos_magia:
 			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
 			DB		0		;(incx) incremento x para mover
 			DB		0		;(inxy) incremento y para mover
-			DB		DIRDERECHA		;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		1;DIRDERECHA		;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		0		;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		MAGIA_PASOS		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 			DB		0		;(radio) radio para movimientos circulares
@@ -65,7 +65,6 @@ fin_anade_enemigo_magia:
 ; toca:		-
 actualiza_valores_magia:
 fin_actualiza_valores_magia:
-		RET
 		
 		
 ;;=====================================================
@@ -127,15 +126,43 @@ fin_calcula_magia_escena:
 ;;CALCULA_MAGIA_INCREMENTOXY
 ;;=====================================================	
 calcula_magia_incrementoxy:
-.examino_sentido_derecha:
 		BIT			 0, (IX + ESTRUCTURA_ENEMIGO.direccionx)
-		;JP			 Z, .examino_sentido_abajo
-		INC			(IX + ESTRUCTURA_ENEMIGO.posx)
+		JP			NZ, .direccion_izquierda
+		
+.direccion_derecha:		
+			LD			HL, array_magia_derecha_posx
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.pasos)
+			CALL		suma_A_HL
+			LD			 A, (HL)
+			LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
+
+			LD			HL, array_magia_derecha_posy
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.pasos)
+			CALL		suma_A_HL
+			LD			 A, (HL)
+			LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
+
+			JP			.fin_direccion
+.direccion_izquierda:
+			LD			HL, array_magia_izquierda_posx
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.pasos)
+			CALL		suma_A_HL
+			LD			 A, (HL)
+			LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
+
+			LD			HL, array_magia_izquierda_posy
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.pasos)
+			CALL		suma_A_HL
+			LD			 A, (HL)
+			LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
+
+.fin_direccion:
 		DEC			(IX + ESTRUCTURA_ENEMIGO.pasos)
 		RET			NZ
 			;implica que se han terminado los pasos y hay que cambiar de sentido
-			RL			(IX + ESTRUCTURA_ENEMIGO.direccionx)
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
+			XOR			00000001b
+			LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), A
 			LD			(IX + ESTRUCTURA_ENEMIGO.pasos), MAGIA_PASOS
-		RET		
 fin_calcula_magia_incrementoxy:
 		RET

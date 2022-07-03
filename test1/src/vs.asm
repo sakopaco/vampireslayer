@@ -135,7 +135,7 @@ inicializa_variables_pruebas:
 	;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
 	;será igual la posición inicial en todos los niveles
 	
-	LD		 A, 0;5;0				;los niveles (matrices) son 7 del 0 al 6
+	LD		 A, 5;0				;los niveles (matrices) son 7 del 0 al 6
 	LD		(prota_nivel), A	;nivel empieza en 0 para usar las posiciones ascii
 
 	LD		 A, 0				;los subniveles (filas) son 7 del 0 al 6
@@ -202,6 +202,13 @@ depack_VRAM:
 inicializacion_variables:
 	incbin	"variables.dat"
 fin_inicializacion_variables:
+
+
+
+
+;nota: el powerup de arma dura n habitaciones
+
+
 
 
 ;END: (FIN CÓDIGO)
