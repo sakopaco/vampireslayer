@@ -10,9 +10,9 @@ datos_magia:
 			DB		MAGIA_POSY		;(posy) pos y para mover y punto central del sprite para revisar disparo
 			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
 			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
-			DB		0		;(incx) incremento x para mover
+			DB		MAGIA_INCREMENTO;(incx) incremento x para mover
 			DB		0		;(inxy) incremento y para mover
-			DB		1;DIRDERECHA		;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		DIRDERECHA		;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		0		;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		MAGIA_PASOS		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 			DB		0		;(radio) radio para movimientos circulares
@@ -75,6 +75,11 @@ fin_actualiza_valores_magia:
 ; salida: 	-
 ; toca:		-
 mover_magia:
+		DEC			(IX + ESTRUCTURA_ENEMIGO.incx)
+		RET			NZ
+		
+		LD			(IX + ESTRUCTURA_ENEMIGO.incx), MAGIA_INCREMENTO
+		
 		CALL		calcula_magia_incrementoxy
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
 		LD			(IY), A
