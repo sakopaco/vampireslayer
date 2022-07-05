@@ -6,15 +6,15 @@ datos_jefelobo:
 			DB		0		;(escena) sprite a mostrar 1/2
 			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
 			DB		10		;(energia) energía del enemigo antes de morir
-			DB		JEFELOBO_LIMIZQ1;(posx) pos x para mover y punto central del sprite para revisar disparo
-			DB		JEFELOBO_POSY	;(posy) pos y para mover y punto central del sprite para revisar disparo
+			DB		JEFELOBO_X1		;(posx) pos x para mover y punto central del sprite para revisar disparo
+			DB		JEFELOBO_Y1		;(posy) pos y para mover y punto central del sprite para revisar disparo
 			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
 			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
 			DB		0		;(incx) incremento x para mover
 			DB		0		;(inxy) incremento y para mover
-			DB		DIRDERECHA		;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
-			DB		0		;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
-			DB		0		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
+			DB		0		;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		00000001b		;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		JEFELOBO_LIM_PASOS1	;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 			DB		0		;(radio) radio para movimientos circulares
 			DW		mover_jefelobo		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 			DB		JEFELOBO_SPRITE1A	;izq arriba
@@ -50,8 +50,6 @@ fin_anade_enemigo_jefelobo:
 ; entrada:	IX que equivaldrá a qué nº de enemigo estamos inicializando (por ejemplo enemigo1)
 ; salida: 	posicion_anterior_arana
 ; toca:		-
-
-; se utilizar la misma subrutina que la del lobo: actualiza_valores_lobo
 		
 		
 ;;=====================================================
@@ -63,11 +61,7 @@ fin_anade_enemigo_jefelobo:
 ; toca:		-
 mover_jefelobo:	
 		CALL		calcula_jefelobo_posyx
-
-;;;; copiar movimiento tipo fantasma para jefe lobo
-
-
-		CALL		calcula_jefelobo_incrementoy
+		
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
 		LD			(IY), A
 		LD			(IY + 8), A
@@ -75,13 +69,14 @@ mover_jefelobo:
 		LD			(IY + 4), A
 		LD			(IY + 12), A
 		
-		CALL		calcula_lobo_incrementox		;se reutiliza calcula_lobo_incrementox que valdría como calcula_jefelobo_incrementox
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
 		LD			(IY + 1), A
 		LD			(IY + 5), A
 		ADD 		16
 		LD			(IY + 9), A
 		LD			(IY + 13), A
+		
+		CALL		verifica_siguiente_posicion_jefelobo
 		
 		CALL		calcula_jefelobo_escena		
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_a)
@@ -154,40 +149,67 @@ calcula_jefelobo_escena:
 				RET
 fin_calcula_jefelobo_escena:
 
+;;=====================================================
+;;CALCULA_JEFELOBO_POSYX
+;;=====================================================	
+calcula_jefelobo_posyx:
+		LD			 B, (IX + ESTRUCTURA_ENEMIGO.direcciony)
+
+.mira_posicion0:
+		LD			 A, B
+		AND			00000001b
+		JR			 Z, .mira_posicion1
+		;~ LD			(IX + ESTRUCTURA_ENEMIGO.posy), JEFELOBO_Y1
+		;~ LD			(IX + ESTRUCTURA_ENEMIGO.posx), JEFELOBO_X1
+		INC			(IX + ESTRUCTURA_ENEMIGO.posx)
+		RET
+		
+.mira_posicion1:
+		LD			 A, B
+		AND			00000010b
+		JR			 Z, .mira_posicion2
+		;~ LD			(IX + ESTRUCTURA_ENEMIGO.posy), JEFELOBO_Y2
+		;~ LD			(IX + ESTRUCTURA_ENEMIGO.posx), JEFELOBO_X2
+		RET
+		
+.mira_posicion2:
+		LD			 A, B
+		AND			00000100b
+		JR			 Z, .mira_posicion3
+		;~ LD			(IX + ESTRUCTURA_ENEMIGO.posy), JEFELOBO_Y3
+		;~ LD			(IX + ESTRUCTURA_ENEMIGO.posx), FANTASMA_X3
+		RET
+		
+.mira_posicion3:
+		LD			 A, B
+		AND			00001000b
+		JR			 Z, .resetea_posicion
+		;~ LD			(IX + ESTRUCTURA_ENEMIGO.posy), JEFELOBO_Y4
+		;~ LD			(IX + ESTRUCTURA_ENEMIGO.posx), JEFELOBO_X4
+		RET
+.resetea_posicion:
+		LD			(IX + ESTRUCTURA_ENEMIGO.direcciony), 00000001b
+fin_calcula_jefelobo_posyx:
+		RET
+
 
 ;;=====================================================
-;;CALCULA_JEFELOBO_INCREMENTOY
-;;=====================================================	
-calcula_jefelobo_incrementoy:
-			LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
-			OR			 A
-			RET			 Z
-			
-			LD			 B, (IX + ESTRUCTURA_ENEMIGO.posx)
-			
-.examina_mov_izquierda_sube:
-			LD			 A, 168
-			CP			 B
-			JP			NC, .examina_mov_izquierda_baja
-			LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
-			SUB			 1
-			LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
+;;VERIFICA_SIGUIENTE_POSICION_JEFELOBO
+;;=====================================================			
+verifica_siguiente_posicion_jefelobo:
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.pasos)
+		
+		OR			 A
+		JP			 Z, .modifica_posicion_jefelobo
+.no_modifica_posicion_fantasma:
+			DEC			(IX + ESTRUCTURA_ENEMIGO.pasos)
 			RET
-			
-.examina_mov_izquierda_baja:
-			LD			 A, 56
-			CP			 B
-			RET			 C
-
-			LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
-			ADD			 1
-			LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
+.modifica_posicion_jefelobo:
+			;reseteo pasos
+			;~ LD			(IX + ESTRUCTURA_ENEMIGO.pasos), JEFELOBO_LIM_PASOS1
+			;paso a la siguiente posición
+			RLC			(IX + ESTRUCTURA_ENEMIGO.direcciony)
+fin_verifica_siguiente_posicion_jefelobo:
 			RET
-fin_calcula_jefelobo_incrementoy:
 
-
-;;=====================================================
-;;CALCULA_LOBO_INCREMENTOX
-;;=====================================================	
-;se utiliza la misma subrutina de incremento de x que la del lobo normal: calcula_lobo_incrementox
 
