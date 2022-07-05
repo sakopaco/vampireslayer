@@ -62,7 +62,7 @@ fin_anade_enemigo_jefelobo:
 ; salida: 	-
 ; toca:		-
 mover_jefelobo:	
-		CALL		calcula_jefelobo_posyx
+
 
 ;;;; copiar movimiento tipo fantasma para jefe lobo
 

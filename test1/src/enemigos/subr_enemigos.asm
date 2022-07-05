@@ -460,8 +460,8 @@ inicializa_enemigos_fase0_nivel4:
 		LD			DE, enemigo5
 		CALL		anade_enemigo_lobo
 		LD			IX, enemigo5
-		JP			actualiza_valores_lobo		
 fin_inicializa_enemigos_fase0_nivel4:
+		RET
 
 inicializa_enemigos_fase0_nivel5:
 		LD			DE, enemigo1
@@ -485,15 +485,15 @@ inicializa_enemigos_fase0_nivel5:
 		LD			DE, enemigo5
 		CALL		anade_enemigo_lobo
 		LD			IX, enemigo5
-		JP			actualiza_valores_lobo	
 fin_inicializa_enemigos_fase0_nivel5:
+		RET
 
 inicializa_enemigos_fase0_niveljefe:	
 		LD			DE, enemigo6
 		CALL		anade_enemigo_jefelobo
 		LD			IX, enemigo6
-		JP			actualiza_valores_lobo	;se reutiliza la inicialización de valores iniciales de lobo para jefelobo
 fin_inicializa_enemigos_fase0_niveljefe:
+		RET
 	
 
 ;;=====================================================
@@ -550,8 +550,8 @@ inicializa_enemigos_fase1_nivel3:
 		LD			DE, enemigo4
 		CALL		anade_enemigo_lobo
 		LD			IX, enemigo4
-		JP			actualiza_valores_lobo	
 fin_inicializa_enemigos_fase1_nivel3:
+		RET
 
 inicializa_enemigos_fase1_nivel4:
 		LD			DE, enemigo1
@@ -570,7 +570,6 @@ inicializa_enemigos_fase1_nivel4:
 		LD			DE, enemigo4
 		CALL		anade_enemigo_lobo
 		LD			IX, enemigo4
-		CALL		actualiza_valores_lobo		
 		
 		LD			DE, enemigo5
 		CALL		anade_enemigo_esqueleto
@@ -595,7 +594,6 @@ inicializa_enemigos_fase1_nivel5:
 		LD			DE, enemigo4
 		CALL		anade_enemigo_lobo
 		LD			IX, enemigo4
-		CALL		actualiza_valores_lobo		
 		
 		LD			DE, enemigo5
 		CALL		anade_enemigo_esqueleto
@@ -649,8 +647,8 @@ inicializa_enemigos_fase2_nivel2:
 		LD			DE, enemigo3
 		CALL		anade_enemigo_lobo
 		LD			IX, enemigo3
-		JP			actualiza_valores_lobo
 fin_inicializa_enemigos_fase2_nivel2:
+		RET
 
 inicializa_enemigos_fase2_nivel3:
 		LD			DE, enemigo1
@@ -664,7 +662,6 @@ inicializa_enemigos_fase2_nivel3:
 		LD			DE, enemigo3
 		CALL		anade_enemigo_lobo
 		LD			IX, enemigo3
-		CALL		actualiza_valores_lobo
 		
 		LD			DE, enemigo4
 		CALL		anade_enemigo_esqueleto
@@ -684,7 +681,6 @@ inicializa_enemigos_fase2_nivel4:
 		LD			DE, enemigo3
 		CALL		anade_enemigo_lobo
 		LD			IX, enemigo3
-		CALL		actualiza_valores_lobo
 		
 		LD			DE, enemigo4
 		CALL		anade_enemigo_esqueleto
@@ -694,8 +690,8 @@ inicializa_enemigos_fase2_nivel4:
 		LD			DE, enemigo5
 		CALL		anade_enemigo_zombi
 		LD			IX, enemigo5
-		RET
 fin_inicializa_enemigos_fase2_nivel4:
+		RET
 
 inicializa_enemigos_fase2_nivel5: 							
 		LD			DE, enemigo1
@@ -705,7 +701,6 @@ inicializa_enemigos_fase2_nivel5:
 		LD			DE, enemigo2
 		CALL		anade_enemigo_lobo
 		LD			IX, enemigo2
-		CALL		actualiza_valores_lobo
 		
 		LD			DE, enemigo3
 		CALL		anade_enemigo_esqueleto
@@ -719,15 +714,15 @@ inicializa_enemigos_fase2_nivel5:
 		LD			DE, enemigo5
 		CALL		anade_enemigo_fantasma
 		LD			IX, enemigo5
-		RET
 fin_inicializa_enemigos_fase2_nivel5:
+		RET
 
 inicializa_enemigos_fase2_niveljefe:	
 		LD			DE, enemigo7
 		CALL		anade_enemigo_jefefantasma
 		LD			IX, enemigo7
-		RET
 fin_inicializa_enemigos_fase2_niveljefe:
+		RET
 
 
 ;;=====================================================
@@ -992,10 +987,10 @@ inicializa_enemigos_fase5_nivel2:
 		LD			IX, enemigo2
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_esqueleto
+		CALL		anade_enemigo_lobo
 		LD			IX, enemigo3
-		JP			actualiza_valores_esqueleto	
 fin_inicializa_enemigos_fase5_nivel2:
+		RET
 
 inicializa_enemigos_fase5_nivel3:
 		LD			DE, enemigo1
@@ -1007,9 +1002,8 @@ inicializa_enemigos_fase5_nivel3:
 		LD			IX, enemigo2
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_esqueleto
+		CALL		anade_enemigo_lobo
 		LD			IX, enemigo3
-		CALL		actualiza_valores_esqueleto	
 		
 		LD			DE, enemigo4
 		CALL		anade_enemigo_zombi
@@ -1027,9 +1021,8 @@ inicializa_enemigos_fase5_nivel4:
 		LD			IX, enemigo2
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_esqueleto
+		CALL		anade_enemigo_lobo
 		LD			IX, enemigo3
-		CALL		actualiza_valores_esqueleto	
 		
 		LD			DE, enemigo4
 		CALL		anade_enemigo_zombi
@@ -1051,9 +1044,8 @@ inicializa_enemigos_fase5_nivel5:
 		LD			IX, enemigo2
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_esqueleto
+		CALL		anade_enemigo_lobo
 		LD			IX, enemigo3
-		CALL		actualiza_valores_esqueleto
 		
 		LD			DE, enemigo4
 		CALL		anade_enemigo_zombi
@@ -1074,8 +1066,8 @@ inicializa_enemigos_fase5_niveljefe:
 		CALL		anade_enemigo_jefecaballero
 		LD			IX, enemigo7
 		CALL		actualiza_valores_jefecaballero
-		RET
 fin_inicializa_enemigos_fase5_niveljefe:
+		RET
 
 
 ;;=====================================================
@@ -1145,8 +1137,8 @@ inicializa_enemigos_fase6_nivel4:
 		LD			DE, enemigo5
 		CALL		anade_enemigo_lobo
 		LD			IX, enemigo5
-		JP			actualiza_valores_lobo
 fin_inicializa_enemigos_fase6_nivel4:
+		RET
 
 inicializa_enemigos_fase6_nivel5:
 		LD			DE, enemigo1
@@ -1170,8 +1162,8 @@ inicializa_enemigos_fase6_nivel5:
 		LD			DE, enemigo5
 		CALL		anade_enemigo_lobo
 		LD			IX, enemigo5
-		JP			actualiza_valores_lobo	
 fin_inicializa_enemigos_fase6_nivel5:
+		RET
 
 ;; no hay nivel 6 porque el 5 se repite
 
