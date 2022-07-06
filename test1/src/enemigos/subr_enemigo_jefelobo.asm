@@ -159,8 +159,6 @@ calcula_jefelobo_posyx:
 		LD			 A, B
 		AND			00000001b
 		JR			 Z, .mira_posicion1
-		;~ LD			(IX + ESTRUCTURA_ENEMIGO.posy), JEFELOBO_Y1
-		;~ LD			(IX + ESTRUCTURA_ENEMIGO.posx), JEFELOBO_X1
 		INC			(IX + ESTRUCTURA_ENEMIGO.posx)
 		RET
 		
@@ -168,27 +166,28 @@ calcula_jefelobo_posyx:
 		LD			 A, B
 		AND			00000010b
 		JR			 Z, .mira_posicion2
-		;~ LD			(IX + ESTRUCTURA_ENEMIGO.posy), JEFELOBO_Y2
-		;~ LD			(IX + ESTRUCTURA_ENEMIGO.posx), JEFELOBO_X2
+		DEC			(IX + ESTRUCTURA_ENEMIGO.posx)
+		DEC			(IX + ESTRUCTURA_ENEMIGO.posy)
 		RET
 		
 .mira_posicion2:
 		LD			 A, B
 		AND			00000100b
 		JR			 Z, .mira_posicion3
-		;~ LD			(IX + ESTRUCTURA_ENEMIGO.posy), JEFELOBO_Y3
-		;~ LD			(IX + ESTRUCTURA_ENEMIGO.posx), FANTASMA_X3
+		DEC			(IX + ESTRUCTURA_ENEMIGO.posx)
 		RET
 		
 .mira_posicion3:
 		LD			 A, B
 		AND			00001000b
 		JR			 Z, .resetea_posicion
-		;~ LD			(IX + ESTRUCTURA_ENEMIGO.posy), JEFELOBO_Y4
-		;~ LD			(IX + ESTRUCTURA_ENEMIGO.posx), JEFELOBO_X4
+		DEC			(IX + ESTRUCTURA_ENEMIGO.posx)
+		DEC			(IX + ESTRUCTURA_ENEMIGO.posy)
 		RET
 .resetea_posicion:
 		LD			(IX + ESTRUCTURA_ENEMIGO.direcciony), 00000001b
+		LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), 0
+		LD			(IX + ESTRUCTURA_ENEMIGO.pasos), JEFELOBO_LIM_PASOS1
 fin_calcula_jefelobo_posyx:
 		RET
 
@@ -198,17 +197,32 @@ fin_calcula_jefelobo_posyx:
 ;;=====================================================			
 verifica_siguiente_posicion_jefelobo:
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.pasos)
-		
 		OR			 A
 		JP			 Z, .modifica_posicion_jefelobo
 .no_modifica_posicion_fantasma:
 			DEC			(IX + ESTRUCTURA_ENEMIGO.pasos)
 			RET
-.modifica_posicion_jefelobo:
-			;reseteo pasos
-			;~ LD			(IX + ESTRUCTURA_ENEMIGO.pasos), JEFELOBO_LIM_PASOS1
+.modifica_posicion_jefelobo:		
 			;paso a la siguiente posición
 			RLC			(IX + ESTRUCTURA_ENEMIGO.direcciony)
+						
+.mira_posicion1:
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.direcciony)
+			AND			00000010b
+			JR			 Z, .mira_posicion2
+			LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), 1
+			LD			(IX + ESTRUCTURA_ENEMIGO.pasos), JEFELOBO_LIM_PASOS2
+			
+			RET
+.mira_posicion2:
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.direcciony)
+			AND			00000100b
+			JR			 Z, .mira_posicion3
+			LD			(IX + ESTRUCTURA_ENEMIGO.pasos), JEFELOBO_LIM_PASOS3
+			
+			RET
+.mira_posicion3:
+			LD			(IX + ESTRUCTURA_ENEMIGO.pasos), JEFELOBO_LIM_PASOS4
 fin_verifica_siguiente_posicion_jefelobo:
 			RET
 
