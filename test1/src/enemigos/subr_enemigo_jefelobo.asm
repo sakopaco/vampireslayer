@@ -182,8 +182,9 @@ calcula_jefelobo_posyx:
 		AND			00001000b
 		JR			 Z, .resetea_posicion
 		DEC			(IX + ESTRUCTURA_ENEMIGO.posx)
-		DEC			(IX + ESTRUCTURA_ENEMIGO.posy)
+		INC			(IX + ESTRUCTURA_ENEMIGO.posy)
 		RET
+		
 .resetea_posicion:
 		LD			(IX + ESTRUCTURA_ENEMIGO.direcciony), 00000001b
 		LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), 0

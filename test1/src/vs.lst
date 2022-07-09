@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.07.06 - 21:18:37]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.07.09 - 16:48:24]
 
 ./vs.asm
 Errors: 0
@@ -5285,51 +5285,52 @@ Errors: 0
      182:  00:54EF  E6 08               		AND			00001000b
      183:  00:54F1  28 07               		JR			 Z, .resetea_posicion
      184:  00:54F3  DD 35 04            		DEC			(IX + ESTRUCTURA_ENEMIGO.posx)
-     185:  00:54F6  DD 35 05            		DEC			(IX + ESTRUCTURA_ENEMIGO.posy)
+     185:  00:54F6  DD 34 05            		INC			(IX + ESTRUCTURA_ENEMIGO.posy)
      186:  00:54F9  C9                  		RET
-     187:  00:54FA                      .resetea_posicion:
-     188:  00:54FA  DD 36 0B 01         		LD			(IX + ESTRUCTURA_ENEMIGO.direcciony), 00000001b
-     189:  00:54FE  DD 36 0A 00         		LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), 0
-     190:  00:5502  DD 36 0C CF         		LD			(IX + ESTRUCTURA_ENEMIGO.pasos), JEFELOBO_LIM_PASOS1
-     191:  00:5506                      fin_calcula_jefelobo_posyx:
-     192:  00:5506  C9                  		RET
-     193:  00:5507                      
+     187:  00:54FA                      		
+     188:  00:54FA                      .resetea_posicion:
+     189:  00:54FA  DD 36 0B 01         		LD			(IX + ESTRUCTURA_ENEMIGO.direcciony), 00000001b
+     190:  00:54FE  DD 36 0A 00         		LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), 0
+     191:  00:5502  DD 36 0C CF         		LD			(IX + ESTRUCTURA_ENEMIGO.pasos), JEFELOBO_LIM_PASOS1
+     192:  00:5506                      fin_calcula_jefelobo_posyx:
+     193:  00:5506  C9                  		RET
      194:  00:5507                      
-     195:  00:5507                      ;;=====================================================
-     196:  00:5507                      ;;VERIFICA_SIGUIENTE_POSICION_JEFELOBO
-     197:  00:5507                      ;;=====================================================			
-     198:  00:5507                      verifica_siguiente_posicion_jefelobo:
-     199:  00:5507  DD 7E 0C            		LD			 A, (IX + ESTRUCTURA_ENEMIGO.pasos)
-     200:  00:550A  B7                  		OR			 A
-     201:  00:550B  CA 12 55            		JP			 Z, .modifica_posicion_jefelobo
-     202:  00:550E                      .no_modifica_posicion_fantasma:
-     203:  00:550E  DD 35 0C            			DEC			(IX + ESTRUCTURA_ENEMIGO.pasos)
-     204:  00:5511  C9                  			RET
-     205:  00:5512                      .modifica_posicion_jefelobo:		
-     206:  00:5512                      			;paso a la siguiente posición
-     207:  00:5512  DD CB 0B 06         			RLC			(IX + ESTRUCTURA_ENEMIGO.direcciony)
-     208:  00:5516                      						
-     209:  00:5516                      .mira_posicion1:
-     210:  00:5516  DD 7E 0B            			LD			 A, (IX + ESTRUCTURA_ENEMIGO.direcciony)
-     211:  00:5519  E6 02               			AND			00000010b
-     212:  00:551B  28 09               			JR			 Z, .mira_posicion2
-     213:  00:551D  DD 36 0A 01         			LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), 1
-     214:  00:5521  DD 36 0C 28         			LD			(IX + ESTRUCTURA_ENEMIGO.pasos), JEFELOBO_LIM_PASOS2
-     215:  00:5525                      			
-     216:  00:5525  C9                  			RET
-     217:  00:5526                      .mira_posicion2:
-     218:  00:5526  DD 7E 0B            			LD			 A, (IX + ESTRUCTURA_ENEMIGO.direcciony)
-     219:  00:5529  E6 04               			AND			00000100b
-     220:  00:552B  28 05               			JR			 Z, .mira_posicion3
-     221:  00:552D  DD 36 0C 7F         			LD			(IX + ESTRUCTURA_ENEMIGO.pasos), JEFELOBO_LIM_PASOS3
-     222:  00:5531                      			
-     223:  00:5531  C9                  			RET
-     224:  00:5532                      .mira_posicion3:
-     225:  00:5532  DD 36 0C 28         			LD			(IX + ESTRUCTURA_ENEMIGO.pasos), JEFELOBO_LIM_PASOS4
-     226:  00:5536                      fin_verifica_siguiente_posicion_jefelobo:
-     227:  00:5536  C9                  			RET
-     228:  00:5537                      
+     195:  00:5507                      
+     196:  00:5507                      ;;=====================================================
+     197:  00:5507                      ;;VERIFICA_SIGUIENTE_POSICION_JEFELOBO
+     198:  00:5507                      ;;=====================================================			
+     199:  00:5507                      verifica_siguiente_posicion_jefelobo:
+     200:  00:5507  DD 7E 0C            		LD			 A, (IX + ESTRUCTURA_ENEMIGO.pasos)
+     201:  00:550A  B7                  		OR			 A
+     202:  00:550B  CA 12 55            		JP			 Z, .modifica_posicion_jefelobo
+     203:  00:550E                      .no_modifica_posicion_fantasma:
+     204:  00:550E  DD 35 0C            			DEC			(IX + ESTRUCTURA_ENEMIGO.pasos)
+     205:  00:5511  C9                  			RET
+     206:  00:5512                      .modifica_posicion_jefelobo:		
+     207:  00:5512                      			;paso a la siguiente posición
+     208:  00:5512  DD CB 0B 06         			RLC			(IX + ESTRUCTURA_ENEMIGO.direcciony)
+     209:  00:5516                      						
+     210:  00:5516                      .mira_posicion1:
+     211:  00:5516  DD 7E 0B            			LD			 A, (IX + ESTRUCTURA_ENEMIGO.direcciony)
+     212:  00:5519  E6 02               			AND			00000010b
+     213:  00:551B  28 09               			JR			 Z, .mira_posicion2
+     214:  00:551D  DD 36 0A 01         			LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), 1
+     215:  00:5521  DD 36 0C 28         			LD			(IX + ESTRUCTURA_ENEMIGO.pasos), JEFELOBO_LIM_PASOS2
+     216:  00:5525                      			
+     217:  00:5525  C9                  			RET
+     218:  00:5526                      .mira_posicion2:
+     219:  00:5526  DD 7E 0B            			LD			 A, (IX + ESTRUCTURA_ENEMIGO.direcciony)
+     220:  00:5529  E6 04               			AND			00000100b
+     221:  00:552B  28 05               			JR			 Z, .mira_posicion3
+     222:  00:552D  DD 36 0C 7F         			LD			(IX + ESTRUCTURA_ENEMIGO.pasos), JEFELOBO_LIM_PASOS3
+     223:  00:5531                      			
+     224:  00:5531  C9                  			RET
+     225:  00:5532                      .mira_posicion3:
+     226:  00:5532  DD 36 0C 28         			LD			(IX + ESTRUCTURA_ENEMIGO.pasos), JEFELOBO_LIM_PASOS4
+     227:  00:5536                      fin_verifica_siguiente_posicion_jefelobo:
+     228:  00:5536  C9                  			RET
      229:  00:5537                      
+     230:  00:5537                      
       15.  00:5537                      include "subr_enemigo_esqueleto.asm"
        1:  00:5537                      ;;=====================================================
        2:  00:5537                      ;;COSNTANTES ESQUELETO
