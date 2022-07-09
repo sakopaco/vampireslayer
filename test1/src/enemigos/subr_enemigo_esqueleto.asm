@@ -51,14 +51,7 @@ fin_anade_enemigo_esqueleto:
 ; salida: 	posicion_anterior_arana
 ; toca:		-
 actualiza_valores_esqueleto:
-.calcula_posicion:
-.asigna_valores_posicion_x:
-		LD			(IX + ESTRUCTURA_ENEMIGO.posx), ESQUELETO_POSX
-		
-.asigna_valores_posicion_y:
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), ESQUELETO_POSY
 fin_actualiza_valores_esqueleto:
-		RET
 		
 		
 ;;=====================================================

@@ -22,6 +22,7 @@ include "subr_enemigo_jefezombi.asm"
 include "subr_enemigo_fuego.asm"
 include "subr_enemigo_jefecaballero.asm"
 include "subr_enemigo_magia.asm"
+include "subr_enemigo_beholder.asm"
 		
 		
 ;;=====================================================
@@ -574,8 +575,8 @@ inicializa_enemigos_fase1_nivel4:
 		LD			DE, enemigo5
 		CALL		anade_enemigo_esqueleto
 		LD			IX, enemigo5
-		JP			actualiza_valores_esqueleto
 fin_inicializa_enemigos_fase1_nivel4:
+		RET
 
 inicializa_enemigos_fase1_nivel5: 						
 		LD			DE, enemigo1
@@ -598,7 +599,6 @@ inicializa_enemigos_fase1_nivel5:
 		LD			DE, enemigo5
 		CALL		anade_enemigo_esqueleto
 		LD			IX, enemigo5
-		CALL		actualiza_valores_esqueleto
 		
 		LD			DE, enemigo6
 		CALL		anade_enemigo_zombi
@@ -666,8 +666,8 @@ inicializa_enemigos_fase2_nivel3:
 		LD			DE, enemigo4
 		CALL		anade_enemigo_esqueleto
 		LD			IX, enemigo4
-		JP			actualiza_valores_esqueleto
 fin_inicializa_enemigos_fase2_nivel3:
+		RET
 
 inicializa_enemigos_fase2_nivel4:
 		LD			DE, enemigo1
@@ -685,7 +685,6 @@ inicializa_enemigos_fase2_nivel4:
 		LD			DE, enemigo4
 		CALL		anade_enemigo_esqueleto
 		LD			IX, enemigo4
-		CALL		actualiza_valores_esqueleto	
 		
 		LD			DE, enemigo5
 		CALL		anade_enemigo_zombi
@@ -705,7 +704,6 @@ inicializa_enemigos_fase2_nivel5:
 		LD			DE, enemigo3
 		CALL		anade_enemigo_esqueleto
 		LD			IX, enemigo3
-		CALL		actualiza_valores_esqueleto	
 		
 		LD			DE, enemigo4
 		CALL		anade_enemigo_zombi
@@ -779,8 +777,8 @@ inicializa_enemigos_fase3_nivel3:
 		LD			DE, enemigo4
 		CALL		anade_enemigo_esqueleto
 		LD			IX, enemigo4
-		JP			actualiza_valores_esqueleto
 fin_inicializa_enemigos_fase3_nivel3:
+		RET
 
 inicializa_enemigos_fase3_nivel4:
 		LD			DE, enemigo1
@@ -799,7 +797,6 @@ inicializa_enemigos_fase3_nivel4:
 		LD			DE, enemigo4
 		CALL		anade_enemigo_esqueleto
 		LD			IX, enemigo4
-		CALL		actualiza_valores_esqueleto	
 		
 		LD			DE, enemigo5
 		CALL		anade_enemigo_zombi
@@ -872,8 +869,8 @@ inicializa_enemigos_fase4_nivel2:
 		LD			DE, enemigo3
 		CALL		anade_enemigo_esqueleto
 		LD			IX, enemigo3
-		JP			actualiza_valores_esqueleto	
 fin_inicializa_enemigos_fase4_nivel2:
+		RET
 
 inicializa_enemigos_fase4_nivel3:
 		LD			DE, enemigo1
@@ -887,7 +884,6 @@ inicializa_enemigos_fase4_nivel3:
 		LD			DE, enemigo3
 		CALL		anade_enemigo_esqueleto
 		LD			IX, enemigo3
-		CALL		actualiza_valores_esqueleto	
 		
 		LD			DE, enemigo4
 		CALL		anade_enemigo_zombi
@@ -907,7 +903,6 @@ inicializa_enemigos_fase4_nivel4:
 		LD			DE, enemigo3
 		CALL		anade_enemigo_esqueleto
 		LD			IX, enemigo3
-		CALL		actualiza_valores_esqueleto	
 		
 		LD			DE, enemigo4
 		CALL		anade_enemigo_zombi
@@ -931,7 +926,6 @@ inicializa_enemigos_fase4_nivel5:
 		LD			DE, enemigo3
 		CALL		anade_enemigo_esqueleto
 		LD			IX, enemigo3
-		CALL		actualiza_valores_esqueleto
 		
 		LD			DE, enemigo4
 		CALL		anade_enemigo_zombi
@@ -987,7 +981,7 @@ inicializa_enemigos_fase5_nivel2:
 		LD			IX, enemigo2
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_lobo
+		CALL		anade_enemigo_esqueleto
 		LD			IX, enemigo3
 fin_inicializa_enemigos_fase5_nivel2:
 		RET
@@ -1002,7 +996,7 @@ inicializa_enemigos_fase5_nivel3:
 		LD			IX, enemigo2
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_lobo
+		CALL		anade_enemigo_esqueleto
 		LD			IX, enemigo3
 		
 		LD			DE, enemigo4
@@ -1021,7 +1015,7 @@ inicializa_enemigos_fase5_nivel4:
 		LD			IX, enemigo2
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_lobo
+		CALL		anade_enemigo_esqueleto
 		LD			IX, enemigo3
 		
 		LD			DE, enemigo4
@@ -1044,7 +1038,7 @@ inicializa_enemigos_fase5_nivel5:
 		LD			IX, enemigo2
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_lobo
+		CALL		anade_enemigo_esqueleto
 		LD			IX, enemigo3
 		
 		LD			DE, enemigo4
@@ -1063,9 +1057,8 @@ fin_inicializa_enemigos_fase5_nivel5:
 
 inicializa_enemigos_fase5_niveljefe:	
 		LD			DE, enemigo7
-		CALL		anade_enemigo_jefecaballero
+		CALL		anade_enemigo_jefebeholder
 		LD			IX, enemigo7
-		CALL		actualiza_valores_jefecaballero
 fin_inicializa_enemigos_fase5_niveljefe:
 		RET
 
@@ -1623,7 +1616,7 @@ check_enemigos_fase5: ;; aquí se ponen los valores de enemigos (si están activ
 		OR			 A
 		JP			 Z, .check_enemigo4
 		
-		LD			IY, array_sprites_enem + 12
+		LD			IY, array_sprites_enem + 16
 		
 		CALL 		mueve_enemigo
 		;acciones enemigos
@@ -1633,7 +1626,7 @@ check_enemigos_fase5: ;; aquí se ponen los valores de enemigos (si están activ
 		OR			 A
 		JP			 Z, .check_enemigo5
 		
-		LD			IY, array_sprites_enem + 20
+		LD			IY, array_sprites_enem + 24
 		
 		CALL 		mueve_enemigo
 		;acciones enemigos
@@ -1643,9 +1636,10 @@ check_enemigos_fase5: ;; aquí se ponen los valores de enemigos (si están activ
 		OR			 A
 		JP			 Z, .check_enemigo6
 		
-		LD			IY, array_sprites_enem + 28
+		LD			IY, array_sprites_enem + 32
 		
 		CALL 		mueve_enemigo
+		
 		;acciones enemigos
 .check_enemigo6:	;FUEGO
 		LD			IX, enemigo6   														
@@ -1653,11 +1647,11 @@ check_enemigos_fase5: ;; aquí se ponen los valores de enemigos (si están activ
 		OR			 A
 		JP			 Z, .check_enemigo7
 		
-		LD			IY, array_sprites_enem + 36
+		LD			IY, array_sprites_enem + 40
 		
-		CALL 		mueve_enemigo
+		CALL 		mueve_enemigo		
 		;acciones enemigos	
-.check_enemigo7:	;JEFECABALLERO
+.check_enemigo7:	;JEFEBEHOLDER
 		LD			IX, enemigo7
 		LD			 A, (IX)
 		OR			 A

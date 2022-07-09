@@ -47,14 +47,6 @@ carga_patrones_lobo:
 fin_carga_patrones_lobo:
 		RET
 
-carga_patrones_lobo_fase5:
-		LD			HL, sprite_lobo
-		LD			DE, #3B00
-		LD			BC, fin_sprite_lobo - sprite_lobo
-		CALL		LDIRVM
-fin_carga_patrones_lobo_fase5:
-		RET
-
 carga_patrones_esqueleto:
 		LD			HL, sprite_esqueleto
 		LD			DE, #3B00
@@ -284,7 +276,7 @@ carga_patrones_sprites_nivel5:
 		CALL		carga_patrones_zombi
 		CALL		carga_patrones_fantasma
 		CALL		carga_patrones_fuego
-		JP			carga_patrones_jefecaballero
+		JP			carga_patrones_jefebeholder
 fin_carga_patrones_sprites_nivel5:
 	
 carga_patrones_sprites_nivel6:
