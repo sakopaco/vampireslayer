@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.07.10 - 12:45:39]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.07.10 - 13:00:22]
 
 ./variables.asm
 Errors: 0
@@ -608,7 +608,7 @@ Errors: 0
      308.  00:C000  (00:0037)           JEFEBEHOLDER_PASOS		equ		55 ; PROBAR CON 56
      309.  00:C000  (00:0040)           JEFEBEHOLDER_POSX		equ		64
      310.  00:C000  (00:0037)           JEFEBEHOLDER_POSY		equ		55
-     311.  00:C000  (00:0001)           JEFEBEHOLDER_INCREMENTO	equ		1
+     311.  00:C000  (00:0003)           JEFEBEHOLDER_INCREMENTO	equ		3
      312.  00:C000                      
      313.  00:C000                      
      314.  00:C000                      
@@ -1524,7 +1524,7 @@ Errors: 0
 00:00000037 X JEFEBEHOLDER_PASOS
 00:00000040 X JEFEBEHOLDER_POSX
 00:00000037 X JEFEBEHOLDER_POSY
-00:00000001 X JEFEBEHOLDER_INCREMENTO
+00:00000003 X JEFEBEHOLDER_INCREMENTO
 00:00000000 X ESTRUCTURA_PUNTOMIRA.posx
 00:00000001 X ESTRUCTURA_PUNTOMIRA.posy
 00:00000002 X ESTRUCTURA_PUNTOMIRA.escena

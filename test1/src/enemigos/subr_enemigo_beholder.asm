@@ -180,11 +180,19 @@ calcula_jefebeholder_incrementoxy:
 
 .fin_direccion:
 		DEC			(IX + ESTRUCTURA_ENEMIGO.pasos)
+		
 		RET			NZ
+		
+			LD			(IX + ESTRUCTURA_ENEMIGO.pasos), JEFEBEHOLDER_PASOS
+			
+			;para darle un poco de aleatoriedad al movimiento puede que continue la elipse o la reinicie
+			LD			 A, R
+			BIT			 0, A
+			RET			NZ
+			
 			;implica que se han terminado los pasos y hay que cambiar de sentido
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
 			XOR			00000001b
 			LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), A
-			LD			(IX + ESTRUCTURA_ENEMIGO.pasos), JEFEBEHOLDER_PASOS
 fin_calcula_jefebeholder_incrementoxy:
 		RET
