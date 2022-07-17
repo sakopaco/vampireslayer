@@ -6,7 +6,7 @@
 ;;=====================================================
 ;;INICIALIZA_NIVELES
 ;;=====================================================	
-; función: 	pone el bit 4 de todas las habitaciones (byte habitacion_actual 0,2,4....) a 0
+; función: 	pone el bit 4 de todas las habitaciones (byte habitacion_actual 0,2,4....) a 0 porque hay enemigos
 ;			pone el bit 6 a 1 si hay ayudas y 0 si no hay ayudas
 ; entrada: 	habitaciones_plantilla
 ; salida: 	habitaciones_plantilla con los el bit 4 de los bites bytes impares a 0
@@ -384,14 +384,14 @@ fin_localiza_info_habitacion:
 ;;TERMINADA_HABIACION_RECORRIDA
 ;;=====================================================	
 ; función: 	usando la variable prota_pos_mapx pone un 1 a donde apunta habitacion_recorrida (el array... byte 14 de 
-;			habitaciones recorridas en esa fila) para ver si uestra enemigos o no y permita pasar por puertas
+;			habitaciones recorridas en esa fila) para ver si muestra enemigos o no y permita pasar por puertas
 ; entrada: 	prota_pos_mapx, habitacion_recorrida
 ; salida: 	habitacion_recorrida (byte 14 de la fila de habitaciones) actualizada con OR A (en A la habitacion)
 ; toca:		IX, HL, AF
 terminada_habitacion_recorrida:
 		LD			HL, puntero_habitacion_actual
 		LD			 A, (HL)
-		SET			 4, A
+		SET			 4, A					;¿?¿??¿?¿?¿?¿?¿?¿?¿¿?¿?
 		LD			(HL), A
 		
 		LD			 A, HABTERMIN	;da igual qué bit mientras sea distinto de 0 pero se pone 1
@@ -516,10 +516,11 @@ check_colisiones_objetos:
 		;pantalla limpia?
 		LD			 A, (is_habitacion_terminada)
 		OR			 0
-		JP			 Z, .habitacion_no_terminada
+		JP			NZ, .habitacion_no_terminada
 		;SI 
 			;recorre puertas y sale
 			CALL		check_colisiones_puertas
+			RET
 		;NO 
 .habitacion_no_terminada:
 		;recorre ayudas

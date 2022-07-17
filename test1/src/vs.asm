@@ -94,7 +94,7 @@ START:
 		CALL		entra_habitacion 		;CALL resetea enemigos + CALL inicializa_enemigos_fase + CALL	pinta_puertas + CALL pinta_ayudas_habitacion + CALL	pinta_extra_fondo 
 	
 		;esta función no va aquí sino en check colisiones pero se pone aquí para realizar pruebas
-		CALL		terminada_habitacion_recorrida ;para cuando se maten todos los enemigos de la habitación
+;		CALL		terminada_habitacion_recorrida ;para cuando se maten todos los enemigos de la habitación
 
 		;incializacion de replayer con interrupciones
 ;		CALL		inicializa_replayer_efectos_interrupciones
@@ -135,16 +135,14 @@ inicializa_variables_pruebas:
 	;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
 	;será igual la posición inicial en todos los niveles
 	
-	LD		 A, 5;0				;los niveles (matrices) son 7 del 0 al 6
+	LD		 A, 6;0				;los niveles (matrices) son 7 del 0 al 6
 	LD		(prota_nivel), A	;nivel empieza en 0 para usar las posiciones ascii
 
-	LD		 A, 6				;los subniveles (filas) son 7 del 0 al 6
+	LD		 A, 0				;los subniveles (filas) son 7 del 0 al 6
 	LD		(prota_pos_mapy), A	;pos Y dentro del nivel (se empieza en 0)
 
 	LD		 A, 3				;columnas 7: del 0 al 6
 	LD		(prota_pos_mapx), A	;pos X dentro del nivel (se empieza en 0)
-	
-	LD		(is_habitacion_terminada), A
 fin_inicializa_variables_pruebas:
 	RET
 ;;************************************************************************
@@ -206,14 +204,12 @@ fin_inicializacion_variables:
 
 
 
-;nota: el powerup de arma dura n habitaciones
-
-
+;nota: el powerup de armadura dura n habitaciones
+;nota: el powerup de disparo dura n habitaciones
 
 
 ;END: (FIN CÓDIGO)
 
-;~ datos_jefebeholder:
 ;~ datos_manoderecha:
 ;~ datos_manoizquierda:
 ;~ datos_conde:

@@ -1068,101 +1068,111 @@ fin_inicializa_enemigos_fase5_niveljefe:
 ;;=====================================================	
 inicializa_enemigos_fase6_nivel0:
 		LD			DE, enemigo1
-		CALL		anade_enemigo_cienpies
+		CALL		anade_enemigo_magia
 		LD			IX, enemigo1
-		JP			actualiza_valores_cienpies
 fin_inicializa_enemigos_fase6_nivel0:
+		RET
 
 inicializa_enemigos_fase6_nivel1:
 		LD			DE, enemigo1
-		CALL		anade_enemigo_serpiente
+		CALL		anade_enemigo_magia
 		LD			IX, enemigo1
 		
 		LD			DE, enemigo2
-		CALL		anade_enemigo_serpiente
+		CALL		anade_enemigo_caballero
 		LD			IX, enemigo2
 fin_inicializa_enemigos_fase6_nivel1:
 		RET
 
 inicializa_enemigos_fase6_nivel2:
+		LD			DE, enemigo1
+		CALL		anade_enemigo_magia
+		LD			IX, enemigo1
+		
+		LD			DE, enemigo2
+		CALL		anade_enemigo_caballero
+		LD			IX, enemigo2
+		
+		LD			DE, enemigo3
+		CALL		anade_enemigo_esqueleto
+		LD			IX, enemigo3
 fin_inicializa_enemigos_fase6_nivel2:
+		RET
 
 inicializa_enemigos_fase6_nivel3:
 		LD			DE, enemigo1
-		CALL		anade_enemigo_cienpies
+		CALL		anade_enemigo_magia
 		LD			IX, enemigo1
-		CALL		actualiza_valores_cienpies
 		
 		LD			DE, enemigo2
-		CALL		anade_enemigo_arana
+		CALL		anade_enemigo_caballero
 		LD			IX, enemigo2
-		CALL		actualiza_valores_arana
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_serpiente
+		CALL		anade_enemigo_esqueleto
 		LD			IX, enemigo3
 		
 		LD			DE, enemigo4
-		CALL		anade_enemigo_murcielago
+		CALL		anade_enemigo_zombi
 		LD			IX, enemigo4
 fin_inicializa_enemigos_fase6_nivel3:
 		RET
 
 inicializa_enemigos_fase6_nivel4:
 		LD			DE, enemigo1
-		CALL		anade_enemigo_cienpies
+		CALL		anade_enemigo_magia
 		LD			IX, enemigo1
-		CALL		actualiza_valores_cienpies
 		
 		LD			DE, enemigo2
-		CALL		anade_enemigo_arana
+		CALL		anade_enemigo_caballero
 		LD			IX, enemigo2
-		CALL		actualiza_valores_arana
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_serpiente
+		CALL		anade_enemigo_esqueleto
 		LD			IX, enemigo3
 		
 		LD			DE, enemigo4
-		CALL		anade_enemigo_murcielago
+		CALL		anade_enemigo_zombi
 		LD			IX, enemigo4
 		
 		LD			DE, enemigo5
-		CALL		anade_enemigo_lobo
+		CALL		anade_enemigo_fantasma
 		LD			IX, enemigo5
 fin_inicializa_enemigos_fase6_nivel4:
 		RET
 
-inicializa_enemigos_fase6_nivel5:
+inicializa_enemigos_fase6_nivel5: 							
 		LD			DE, enemigo1
-		CALL		anade_enemigo_cienpies
+		CALL		anade_enemigo_magia
 		LD			IX, enemigo1
-		CALL		actualiza_valores_cienpies
 		
 		LD			DE, enemigo2
-		CALL		anade_enemigo_arana
+		CALL		anade_enemigo_caballero
 		LD			IX, enemigo2
-		CALL		actualiza_valores_arana
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_serpiente
+		CALL		anade_enemigo_esqueleto
 		LD			IX, enemigo3
 		
 		LD			DE, enemigo4
-		CALL		anade_enemigo_murcielago
+		CALL		anade_enemigo_zombi
 		LD			IX, enemigo4
 		
 		LD			DE, enemigo5
-		CALL		anade_enemigo_lobo
+		CALL		anade_enemigo_fantasma
 		LD			IX, enemigo5
+		
+		LD			DE, enemigo6
+		CALL		anade_enemigo_fuego
+		LD			IX, enemigo6
 fin_inicializa_enemigos_fase6_nivel5:
 		RET
 
-;; no hay nivel 6 porque el 5 se repite
-
-inicializa_enemigos_fase6_niveljefe:
-;las manos y el dracula son enemigos distintos (3) y hasta que no ueran las anos no muere drácula
-fin_inicializa_enemigos_fase6_nivel6:
+inicializa_enemigos_fase6_niveljefe:	
+		LD			DE, enemigo7
+		CALL		anade_enemigo_jefebeholder
+		LD			IX, enemigo7
+fin_inicializa_enemigos_fase6_niveljefe:
 		RET
 
 
@@ -1202,8 +1212,9 @@ check_enemigos:
 		CALL		check_enemigos_fase5
 		RET	
 .mira_nivel6:
+		JP		check_enemigos_fase6
 fin_check_enemigos:
-		RET
+
 
 
 ;;=====================================================
@@ -1669,6 +1680,77 @@ fin_check_enemigos_fase5:
 ;;CHECK_ENEMIGOS_FASE6
 ;;=====================================================	
 check_enemigos_fase6: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
+.check_enemigo1:	;MAGIA
+		LD			IX, enemigo1
+		LD			 A, (IX)
+		OR			 A
+		JP			 Z, .check_enemigo2
+		
+		LD			IY, array_sprites_enem
+		
+		CALL 		mueve_enemigo
+		;acciones enemigos
+.check_enemigo2:	;CABALLERO
+		LD			IX, enemigo2
+		LD			 A, (IX)
+		OR			 A
+		JP			 Z, .check_enemigo3
+		
+		LD			IY, array_sprites_enem + 8
+		
+		CALL 		mueve_enemigo
+		;acciones enemigos
+.check_enemigo3:	;ESQUELETO
+		LD			IX, enemigo3
+		LD			 A, (IX)
+		OR			 A
+		JP			 Z, .check_enemigo4
+		
+		LD			IY, array_sprites_enem + 16
+		
+		CALL 		mueve_enemigo
+		;acciones enemigos
+.check_enemigo4:	;ZOMBI
+		LD			IX, enemigo4
+		LD			 A, (IX)
+		OR			 A
+		JP			 Z, .check_enemigo5
+		
+		LD			IY, array_sprites_enem + 24
+		
+		CALL 		mueve_enemigo
+		;acciones enemigos
+.check_enemigo5:	;FANTASMA
+		LD			IX, enemigo5
+		LD			 A, (IX)
+		OR			 A
+		JP			 Z, .check_enemigo6
+		
+		LD			IY, array_sprites_enem + 32
+		
+		CALL 		mueve_enemigo
+		
+		;acciones enemigos
+.check_enemigo6:	;FUEGO
+		LD			IX, enemigo6   														
+		LD			 A, (IX)
+		OR			 A
+		JP			 Z, .check_enemigo7
+		
+		LD			IY, array_sprites_enem + 40
+		
+		CALL 		mueve_enemigo		
+		;acciones enemigos	
+.check_enemigo7:	;JEFEBEHOLDER
+		LD			IX, enemigo7
+		LD			 A, (IX)
+		OR			 A
+		RET			 Z
+		
+		LD			IY, array_sprites_enem + 4
+		
+		CALL 		mueve_enemigo
+		;acciones enemigos
 fin_check_enemigos_fase6:
 		RET	
 
