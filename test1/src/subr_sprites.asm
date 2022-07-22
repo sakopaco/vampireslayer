@@ -194,7 +194,39 @@ carga_patrones_sprites_nivel:
 		CALL		carga_patrones_sprites_nivel5
 		RET
 .carga_nivel6:
-		JP			carga_patrones_sprites_nivel6
+.subnivel0:
+		LD			 A, (prota_pos_mapy)
+		OR			 A
+		JP			NZ, .subnivel1
+		CALL		carga_patrones_sprites_nivel6_nivel0
+		RET
+.subnivel1:
+		DEC			 A
+		JP			NZ, .subnivel2
+		CALL		carga_patrones_sprites_nivel6_nivel1
+		RET
+.subnivel2:
+		DEC			 A
+		JP			NZ, .subnivel3
+		CALL		carga_patrones_sprites_nivel6_nivel2
+		RET		
+.subnivel3:
+		DEC			 A
+		JP			NZ, .subnivel4
+		CALL		carga_patrones_sprites_nivel6_nivel3
+		RET
+.subnivel4:
+		DEC			 A
+		JP			NZ, .subnivel5
+		CALL		carga_patrones_sprites_nivel6_nivel4
+		RET		
+.subnivel5:
+		DEC			 A
+		JP			NZ, .subnivel6
+		CALL		carga_patrones_sprites_nivel6_nivel5
+		RET	
+.subnivel6:
+		JP			carga_patrones_sprites_nivel6_nivel6
 fin_carga_patrones_sprites_nivel:
 
 
@@ -246,7 +278,7 @@ carga_patrones_sprites_nivel2:
 		CALL		carga_patrones_esqueleto
 		CALL		carga_patrones_zombi
 		CALL		carga_patrones_fantasma
-		JP			carga_patrones_jefemurcielago
+		JP			carga_patrones_jefefantasma
 fin_carga_patrones_sprites_nivel2:
 	
 carga_patrones_sprites_nivel3:
@@ -279,15 +311,27 @@ carga_patrones_sprites_nivel5:
 		JP			carga_patrones_jefebeholder
 fin_carga_patrones_sprites_nivel5:
 	
-carga_patrones_sprites_nivel6:
-		CALL		carga_patrones_magia
-		CALL		carga_patrones_caballero
-		CALL		carga_patrones_esqueleto
-		CALL		carga_patrones_zombi
-		CALL		carga_patrones_fantasma
-		CALL		carga_patrones_fuego
+carga_patrones_sprites_nivel6_nivel0:
+		JP			carga_patrones_jefelobo
+fin_carga_patrones_sprites_nivel6_nivel0:
+carga_patrones_sprites_nivel6_nivel1:
+		JP			carga_patrones_jefemurcielago
+fin_carga_patrones_sprites_nivel6_nivel1:
+carga_patrones_sprites_nivel6_nivel2:
+		JP			carga_patrones_jefefantasma
+fin_carga_patrones_sprites_nivel6_nivel2:
+carga_patrones_sprites_nivel6_nivel3:
+		JP			carga_patrones_jefezombi
+fin_carga_patrones_sprites_nivel6_nivel3:
+carga_patrones_sprites_nivel6_nivel4:
+		JP			carga_patrones_jefecaballero
+fin_carga_patrones_sprites_nivel6_nivel4:
+carga_patrones_sprites_nivel6_nivel5:
 		JP			carga_patrones_jefebeholder
-fin_carga_patrones_sprites_nivel6:
+fin_carga_patrones_sprites_nivel6_nivel5:
+carga_patrones_sprites_nivel6_nivel6:
+		JP			carga_patrones_jefebeholder
+fin_carga_patrones_sprites_nivel6_nivel6:
 
 
 ;;=====================================================
