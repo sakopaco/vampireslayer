@@ -143,6 +143,9 @@ inicializa_variables_pruebas:
 
 	LD		 A, 3				;columnas 7: del 0 al 6
 	LD		(prota_pos_mapx), A	;pos X dentro del nivel (se empieza en 0)
+	
+	LD		 A, 1
+	LD		(is_habitacion_terminada), A
 fin_inicializa_variables_pruebas:
 	RET
 ;;************************************************************************
