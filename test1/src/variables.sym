@@ -98,7 +98,7 @@ RADIOAYUDAX: equ 00000008h
 RADIOAYUDAY: equ 00000008h
 POSXPM: equ 00000078h
 POSYPM: equ 0000006Ch
-HABTERMIN: equ 00000001h
+ISHABTERMIN: equ 00000001h
 LIMCADENCIA: equ 00000004h
 DANO1: equ 00000002h
 DANO2: equ 00000005h
@@ -566,7 +566,7 @@ puntomira: equ 0000C183h
 habitacion_actual: equ 0000C18Ah
 habitacion_extras: equ 0000C18Bh
 habitacion_actual_puntero: equ 0000C18Ch
-is_habitacion_terminada: equ 0000C18Eh
+habitacion_terminada: equ 0000C18Eh
 puntero_extras_habitacion_actual: equ 0000C18Fh
 puntero_habitacion_actual: equ 0000C191h
 habitaciones_juego: equ 0000C193h

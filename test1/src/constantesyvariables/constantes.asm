@@ -136,7 +136,7 @@ POSXPM		equ		120
 POSYPM		equ		108
 
 ;;ESTADO HABITACION
-HABTERMIN	equ		1
+ISHABTERMIN	equ		1 	;0 sería no terminada
 
 ;;ETIQUETAS PARA PUNTO DE MIRA
 LIMCADENCIA equ		4	;nº de veces que se ejecutará el disparo antes de ejecutar un disparo real (porque cuando se pulsa la tecl dispara 3 ó 4 veces de rápido que va)

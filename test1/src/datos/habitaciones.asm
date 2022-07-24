@@ -15,7 +15,8 @@
 ;~ 7 - sin asignar
 ;~ 6 - si 1 => hay ayudas 0 => no hay ayudas (se inicializan al empezar la partida)
 ;~ 5 - esqueletos
-;~ 4 - SI enemigos => 0 y NO enemigos 1 => toca la variable "is_habitacion_terminada" (se inicializan al empezar la partida)
+;~ 4 - SI enemigos => 0 y NO enemigos 1 => toca la variable "habitacion_terminada" (se inicializan al empezar la partida)
+;(relacionado con la variable -- habitacion_terminada)
 ;~ 0,1,2,3 - nº puertas 1 arriba 1 derecha 1 abajo 1 izquierda
 ;2º byte
 ;~ 7 - oracion
@@ -37,8 +38,8 @@ habitacion_extras:
 	db	0		;donde van las ayudas de una habitación
 habitacion_actual_puntero;
 	dw	0		;puntero para actualizar la habitación cuando se maten todos los enemigos
-is_habitacion_terminada:
-	db	0		;variable para consultar más rápido si se ha pasado (<>0 si se ha pasado y 0 no se ha pasado)
+habitacion_terminada:
+	db	0		;variable para consultar más rápido si se ha pasado (<>0 si se ha pasado y 0 no se ha pasado o no terminada)
 
 puntero_extras_habitacion_actual:	DW	0		;puntero a los extras de la habitación actual para poder modificarlo (para que no salgan extras)
 puntero_habitacion_actual:			DW	0		;puntero a la habitación actual para poder modificarlo 

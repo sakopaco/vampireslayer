@@ -33,7 +33,7 @@ inicializa_niveles:
 		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
 .inicia_nivel_0:
 		LD		 	 C, (HL)
-		;pongo habitación no terminada bit 4 habitación a 0
+		;pongo habitación no terminada bit 4 habitación a 1
 		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
 
 		;examino si hay ayudas en siguiente byte
@@ -59,7 +59,7 @@ inicializa_niveles:
 		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
 .inicia_nivel_1:
 		LD		 	 C, (HL)
-		;pongo habitación no terminada bit 4 habitación a 0
+		;pongo habitación no terminada bit 4 habitación a 1
 		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
 		
 		;examino si hay ayudas en siguiente byte
@@ -85,7 +85,7 @@ inicializa_niveles:
 		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
 .inicia_nivel_2:
 		LD		 	 C, (HL)
-		;pongo habitación no terminada bit 4 habitación a 0
+		;pongo habitación no terminada bit 4 habitación a 1
 		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
 		
 		;examino si hay ayudas en siguiente byte
@@ -111,7 +111,7 @@ inicializa_niveles:
 		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
 .inicia_nivel_3:
 		LD		 	 C, (HL)
-		;pongo habitación no terminada bit 4 habitación a 0
+		;pongo habitación no terminada bit 4 habitación a 1
 		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
 		
 		;examino si hay ayudas en siguiente byte
@@ -137,7 +137,7 @@ inicializa_niveles:
 		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
 .inicia_nivel_4:
 		LD		 	 C, (HL)
-		;pongo habitación no terminada bit 4 habitación a 0
+		;pongo habitación no terminada bit 4 habitación a 1
 		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
 		
 		;examino si hay ayudas en siguiente byte
@@ -163,7 +163,7 @@ inicializa_niveles:
 		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
 .inicia_nivel_5:
 		LD		 	 C, (HL)
-		;pongo habitación no terminada bit 4 habitación a 0
+		;pongo habitación no terminada bit 4 habitación a 1
 		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
 		
 		;examino si hay ayudas en siguiente byte
@@ -184,18 +184,18 @@ inicializa_niveles:
 		
 ;nivel 6 -----------------------------------------------------------------------
 		LD			 B, 56	;la mitad de bytes del array de un nivel
-		LD 			HL, habitaciones_nivel1	;puntero al byte de la habitación
-		LD			IX, habitaciones_nivel1
+		LD 			HL, habitaciones_nivel6	;puntero al byte de la habitación
+		LD			IX, habitaciones_nivel6
 		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
 .inicia_nivel_6:
 		LD		 	 C, (HL)
-		;pongo habitación no terminada bit 4 habitación a 0
+		;pongo habitación no terminada bit 4 habitación a 1
 		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
-		
+
 		;examino si hay ayudas en siguiente byte
 		LD			 A, (IX)
-		AND			1111110b
-		JP			 Z, .no_tiene_ayuda_nivel6
+		AND			11111110b
+		JR			 Z, .no_tiene_ayuda_nivel6
 .si_tiene_ayuda_nivel6:
 		SET			 6, C
 		JP			.fin_tiene_ayuda_nivel6
@@ -343,17 +343,17 @@ localiza_info_habitacion:
 	LD		(IX), H
 	LD		(IX + 1), L
 	
-	;actualizo la variable is_habitacion_terminada
-	LD		 A, (habitacion_actual)
-	BIT		 4, A					;está terminada la habitación
-	JP		 NZ, .si_terminada
-.no_terminada:						;pongo un 0 en is_habitacion_terminada
-	XOR		 A
-	LD		(is_habitacion_terminada), A
-	JP		.fin_esta_terminada
-.si_terminada:						;pongo un 1 en is_habitacion_terminada
-	LD		 A, 1		
-	LD		(is_habitacion_terminada), A
+	;actualizo la variable habitacion_terminada
+	LD		  	 A, (habitacion_actual)
+	BIT		  	 4, A					;está terminada la habitación
+	JP			NZ, .si_terminada
+.no_terminada:						;pongo un 0 en habitacion_terminada
+	XOR		 	 A
+	LD			(habitacion_terminada), A
+	JP			.fin_esta_terminada
+.si_terminada:						;pongo un 1 en habitacion_terminada
+	LD		 	 A, 1		
+	LD			(habitacion_terminada), A
 .fin_esta_terminada:
 	
 	;actualizo la variable hay_ayudas
@@ -389,19 +389,19 @@ fin_localiza_info_habitacion:
 ; salida: 	habitacion_recorrida (byte 14 de la fila de habitaciones) actualizada con OR A (en A la habitacion)
 ; toca:		IX, HL, AF
 terminada_habitacion_recorrida:
-		LD			HL, puntero_habitacion_actual
-		LD			 A, (HL)
-		SET			 4, A					;¿?¿??¿?¿?¿?¿?¿?¿?¿¿?¿?
-		LD			(HL), A
+		;~ LD			HL, puntero_habitacion_actual
+		;~ LD			 A, (HL)
+		;~ SET			 4, A					;¿?¿??¿?¿?¿?¿?¿?¿?¿¿?¿?
+		;~ LD			(HL), A
 		
-		LD			 A, HABTERMIN	;da igual qué bit mientras sea distinto de 0 pero se pone 1
-		LD			(is_habitacion_terminada), A
+		LD			 A, ISHABTERMIN	;da igual qué bit mientras sea distinto de 0 pero se pone 1
+		LD			(habitacion_terminada), A
 		
-		;este trozo no sirve de nada pero ya me quedo más tranquilo si lo pongo, por ser exacto y completo
-		;no sirve porque se cambiará de habitación y se perderá/actualizará el dato
-		LD			 A, (habitacion_actual)
-		SET			 4, A
-		LD			(habitacion_actual), A
+		;~ ;este trozo no sirve de nada pero ya me quedo más tranquilo si lo pongo, por ser exacto y completo
+		;~ ;no sirve porque se cambiará de habitación y se perderá/actualizará el dato
+		;~ LD			 A, (habitacion_actual)
+		;~ SET			 4, A
+		;~ LD			(habitacion_actual), A
 fin_terminada_habitacion_recorrida:
 		RET
 
@@ -509,14 +509,14 @@ fin_cambio_nivel:
 ;;CHECK_COLISIONES_OBJETOS
 ;;=====================================================	
 ; función: 	revisa (con enemigos+ayudas o puertas según si la habitación ha sido recorrida o no) las variables para ver si se disparó sobre ellas
-; entrada: 	is_habitacion_terminada
+; entrada: 	habitacion_terminada
 ; salida: 	-
 ; toca:		HL,BC, DE
 check_colisiones_objetos:
 		;pantalla limpia?
-		LD			 A, (is_habitacion_terminada)
+		LD			 A, (habitacion_terminada)
 		OR			 0
-		JP			NZ, .habitacion_no_terminada
+		JP			 Z, .habitacion_no_terminada
 		;SI 
 			;recorre puertas y sale
 			CALL		check_colisiones_puertas
