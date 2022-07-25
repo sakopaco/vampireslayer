@@ -351,26 +351,31 @@ inicializa_enemigos_fase6:	;; para no poner más complejo se hace uno por fase q
 		RET
 .nivel1:
 		DEC			 A
+		OR			 A
 		JP			NZ, .nivel2
 		CALL		inicializa_enemigos_fase6_nivel1
 		RET
 .nivel2:
 		DEC			 A
+		OR			 A
 		JP			NZ, .nivel3
 		CALL		inicializa_enemigos_fase6_nivel2
 		RET
 .nivel3:
 		DEC			 A
+		OR			 A
 		JP			NZ, .nivel4
 		CALL		inicializa_enemigos_fase6_nivel3
 		RET
 .nivel4:
 		DEC			 A
+		OR			 A
 		JP			NZ, .nivel5
 		CALL		inicializa_enemigos_fase6_nivel4
 		RET
 .nivel5:
 		DEC			 A
+		OR			 A
 		JP			NZ, .nivel6
 		CALL		inicializa_enemigos_fase6_nivel5
 		RET
@@ -1066,13 +1071,19 @@ fin_inicializa_enemigos_fase5_niveljefe:
 ;;INICIALIZA_ENEMIGOS_FASE6_NIVELX
 ;;=====================================================	
 inicializa_enemigos_fase6_nivel0:
+		CALL		carga_patrones_sprites_nivel6_nivel0
 		LD			DE, enemigo1
 		CALL		anade_enemigo_jefelobo
 		LD			IX, enemigo1
+		
+		
+		; en los bossrush se utilizará la función actualiza_valores_jefemurcielago y dejará la vida de estos enemigos a la mitad de lo que sería un jefe normal
+		
 fin_inicializa_enemigos_fase6_nivel0:
 		RET
 
 inicializa_enemigos_fase6_nivel1:
+		CALL		carga_patrones_sprites_nivel6_nivel1
 		LD			DE, enemigo1
 		CALL		anade_enemigo_jefemurcielago
 		LD			IX, enemigo1
@@ -1080,6 +1091,7 @@ inicializa_enemigos_fase6_nivel1:
 fin_inicializa_enemigos_fase6_nivel1:
 
 inicializa_enemigos_fase6_nivel2:
+		CALL		carga_patrones_sprites_nivel6_nivel2
 		LD			DE, enemigo1
 		CALL		anade_enemigo_jefefantasma
 		LD			IX, enemigo1
@@ -1087,6 +1099,7 @@ fin_inicializa_enemigos_fase6_nivel2:
 		RET
 
 inicializa_enemigos_fase6_nivel3:
+		CALL		carga_patrones_sprites_nivel6_nivel3
 		LD			DE, enemigo1
 		CALL		anade_enemigo_jefezombi
 		LD			IX, enemigo1
@@ -1094,13 +1107,15 @@ fin_inicializa_enemigos_fase6_nivel3:
 		RET
 
 inicializa_enemigos_fase6_nivel4:
+		CALL		carga_patrones_sprites_nivel6_nivel4
 		LD			DE, enemigo1
 		CALL		anade_enemigo_jefecaballero
 		LD			IX, enemigo1
 		JP		actualiza_valores_jefecaballero
 fin_inicializa_enemigos_fase6_nivel4:
 
-inicializa_enemigos_fase6_nivel5: 							
+inicializa_enemigos_fase6_nivel5: 						
+		CALL		carga_patrones_sprites_nivel6_nivel5
 		LD			DE, enemigo1
 		CALL		anade_enemigo_jefebeholder
 		LD			IX, enemigo1
@@ -1108,6 +1123,7 @@ fin_inicializa_enemigos_fase6_nivel5:
 		RET
 
 inicializa_enemigos_fase6_nivel6:
+		CALL		carga_patrones_sprites_nivel6_nivel6
 		LD			DE, enemigo1
 		CALL		anade_enemigo_jefebeholder
 		LD			IX, enemigo1

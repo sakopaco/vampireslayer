@@ -194,6 +194,8 @@ carga_patrones_sprites_nivel:
 		CALL		carga_patrones_sprites_nivel5
 		RET
 .carga_nivel6:
+		;nota: el resto de esta función en teoría no sirve para nada y se cargan los sprites al entrar en cada habitación
+		;en las funciones inicializa_enemigos_fase6_nivelX
 .subnivel0:
 		LD			 A, (prota_pos_mapy)
 		OR			 A
