@@ -865,18 +865,6 @@ sprite_manoizquierda_2:
 	DB  #88,#88,#A8,#A8,#A8,#A8,#AD,#00
 	DB  #00,#8E,#8B,#89,#89,#89,#89,#8F
 	DB  #8F,#89,#89,#89,#89,#8B,#CE,#00
-	
-sprite_manoizquierda_3:
-	DB  #00,#DB,#FA,#AA,#88,#88,#88,#88
-	DB  #88,#89,#A9,#A9,#A9,#A9,#AD,#00
-	DB  #00,#CF,#29,#29,#29,#29,#29,#6F
-	DB  #CF,#89,#09,#09,#09,#09,#E9,#00
-	
-sprite_manoizquierda_4:
-	DB  #00,#DB,#FA,#AA,#88,#88,#88,#88
-	DB  #88,#89,#A9,#A9,#A9,#A9,#AD,#00
-	DB  #00,#CE,#2B,#29,#29,#29,#29,#6F
-	DB  #CF,#89,#09,#09,#09,#0B,#EE,#00
 fin_sprite_manoizquierda:
 	
 ;; MANODER 4 (2 escenas 2 sprites vert)
@@ -892,18 +880,6 @@ sprite_manoderecha_2:
 	DB  #F1,#91,#91,#91,#91,#D1,#73,#00
 	DB  #00,#9B,#DF,#15,#11,#11,#11,#11
 	DB  #11,#11,#15,#15,#15,#15,#B5,#00
-	
-sprite_manoderecha_3:
-	DB  #00,#F3,#94,#94,#94,#94,#94,#F6
-	DB  #F3,#91,#90,#90,#90,#90,#97,#00
-	DB  #00,#DB,#5F,#55,#11,#11,#11,#11
-	DB  #11,#91,#95,#95,#95,#95,#B5,#00
-	
-sprite_manoderecha_4:
-	DB  #00,#73,#D4,#94,#94,#94,#94,#F6
-	DB  #F3,#91,#90,#90,#90,#D0,#77,#00
-	DB  #00,#DB,#5F,#55,#11,#11,#11,#11
-	DB  #11,#91,#95,#95,#95,#95,#B5,#00
 fin_sprite_manoderecha:
 	
 ;; CONDE 4 (2 escenas 2 sprites vert)

@@ -23,6 +23,7 @@ include "subr_enemigo_fuego.asm"
 include "subr_enemigo_jefecaballero.asm"
 include "subr_enemigo_magia.asm"
 include "subr_enemigo_beholder.asm"
+include "subr_enemigo_dracula.asm"
 		
 		
 ;;=====================================================
