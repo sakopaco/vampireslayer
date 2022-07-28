@@ -332,7 +332,7 @@ carga_patrones_sprites_nivel6_nivel5:
 		JP			carga_patrones_jefebeholder
 fin_carga_patrones_sprites_nivel6_nivel5:
 carga_patrones_sprites_nivel6_nivel6:
-		JP			carga_patrones_jefebeholder
+		JP			carga_patrones_condecompleto
 fin_carga_patrones_sprites_nivel6_nivel6:
 
 

@@ -139,5 +139,4 @@ calcula_dracula_incrementoxy:
 		LD			(IX + ESTRUCTURA_ENEMIGO.posx), DRACULA_X4
 		RET
 fin_calcula_dracula_incrementoxy:
-		RET
 

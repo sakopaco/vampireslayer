@@ -852,7 +852,7 @@ sprite_jefebeholder_8:
 	DB  #00,#0F,#11,#11,#1F,#11,#91,#0F	
 fin_sprite_jefebeholder:
 
-;; MANOIZQ 4 (2 escenas 2 sprites vert)
+;; MANOIZQ 2 (2 escenas 1 sprite)
 sprite_manoizquierda:
 sprite_manoizquierda_1:
 	DB  #00,#D9,#FB,#A8,#88,#88,#88,#88
@@ -867,7 +867,7 @@ sprite_manoizquierda_2:
 	DB  #8F,#89,#89,#89,#89,#8B,#CE,#00
 fin_sprite_manoizquierda:
 	
-;; MANODER 4 (2 escenas 2 sprites vert)
+;; MANODER 2 (2 escenas 1 sprite)
 sprite_manoderecha:
 sprite_manoderecha_1:
 	DB  #00,#F1,#91,#91,#91,#91,#91,#F1
