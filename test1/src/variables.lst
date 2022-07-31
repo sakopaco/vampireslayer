@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.07.28 - 19:55:26]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.07.31 - 19:30:11]
 
 ./variables.asm
 Errors: 0
@@ -614,26 +614,23 @@ Errors: 0
      314.  00:C000                      ;;ETIQUETAS/CONSTANTES DRACULA
      315.  00:C000  (00:0016)           TIPODRACULA			equ		22
      316.  00:C000  (00:0001)           DRACULA_COLOR   	equ		1		; negro
-     317.  00:C000  (00:0032)           DRACULA_PASOS		equ		50
-     318.  00:C000  (00:0032)           DRACULA_X1			equ		50
-     319.  00:C000  (00:0032)           DRACULA_Y1			equ		50
-     320.  00:C000  (00:0032)           DRACULA_X2			equ		50
-     321.  00:C000  (00:0032)           DRACULA_Y2			equ		50
-     322.  00:C000  (00:0032)           DRACULA_X3			equ		50
-     323.  00:C000  (00:0032)           DRACULA_Y3			equ		50
-     324.  00:C000  (00:0032)           DRACULA_X4			equ		50
-     325.  00:C000  (00:0032)           DRACULA_Y4			equ		50
-     326.  00:C000  (00:00F0)           DRACULA_SPRITE1A	equ		240
-     327.  00:C000  (00:00F4)           DRACULA_SPRITE1B	equ		244
-     328.  00:C000  (00:00F8)           DRACULA_SPRITE2A	equ		248
-     329.  00:C000  (00:00FC)           DRACULA_SPRITE2B	equ		252
+     317.  00:C000  (00:0064)           DRACULA_PASOS		equ		100
+     318.  00:C000  (00:0040)           DRACULA_Y			equ		64
+     319.  00:C000  (00:002F)           DRACULA_X1			equ		47
+     320.  00:C000  (00:005F)           DRACULA_X2			equ		95
+     321.  00:C000  (00:008F)           DRACULA_X3			equ		143
+     322.  00:C000  (00:00BF)           DRACULA_X4			equ		191
+     323.  00:C000  (00:00F0)           DRACULA_SPRITE1A	equ		240
+     324.  00:C000  (00:00F4)           DRACULA_SPRITE1B	equ		244
+     325.  00:C000  (00:00F8)           DRACULA_SPRITE2A	equ		248
+     326.  00:C000  (00:00FC)           DRACULA_SPRITE2B	equ		252
+     327.  00:C000                      
+     328.  00:C000                      
+     329.  00:C000                      
      330.  00:C000                      
      331.  00:C000                      
      332.  00:C000                      
      333.  00:C000                      
-     334.  00:C000                      
-     335.  00:C000                      
-     336.  00:C000                      
       12   00:C000                      include "constantesyvariables/estructuras.asm"
        1.  00:C000                      ;;=====================================================
        2.  00:C000                      ;;DEFINICIÓN DE ESTRUCTURAS
@@ -1542,15 +1539,12 @@ Errors: 0
 00:00000003 X JEFEBEHOLDER_INCREMENTO
 00:00000016 X TIPODRACULA
 00:00000001 X DRACULA_COLOR
-00:00000032 X DRACULA_PASOS
-00:00000032 X DRACULA_X1
-00:00000032 X DRACULA_Y1
-00:00000032 X DRACULA_X2
-00:00000032 X DRACULA_Y2
-00:00000032 X DRACULA_X3
-00:00000032 X DRACULA_Y3
-00:00000032 X DRACULA_X4
-00:00000032 X DRACULA_Y4
+00:00000064 X DRACULA_PASOS
+00:00000040 X DRACULA_Y
+00:0000002F X DRACULA_X1
+00:0000005F X DRACULA_X2
+00:0000008F X DRACULA_X3
+00:000000BF X DRACULA_X4
 00:000000F0 X DRACULA_SPRITE1A
 00:000000F4 X DRACULA_SPRITE1B
 00:000000F8 X DRACULA_SPRITE2A

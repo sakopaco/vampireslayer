@@ -4,17 +4,17 @@
 datos_dracula:
 			DB		TIPODRACULA	;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
 			DB		0		;(escena) sprite a mostrar 1/2
-			DB		00010000b	;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
+			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
 			DB		10		;(energia) energía del enemigo antes de morir
-			DB		0		;(posx) pos x para mover y punto central del sprite para revisar disparo
-			DB		0		;(posy) pos y para mover y punto central del sprite para revisar disparo
+			DB		DRACULA_X2		;(posx) pos x para mover y punto central del sprite para revisar disparo
+			DB		DRACULA_Y		;(posy) pos y para mover y punto central del sprite para revisar disparo
 			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
 			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
 			DB		0		;(incx) incremento x para mover
 			DB		0		;(inxy) incremento y para mover
 			DB		DIRIZQUIERDA	;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		0		;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
-			DB		DRACULA_PASOS		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
+			DB		DRACULA_PASOS	;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 			DB		0		;(radio) radio para movimientos circulares
 			DW		mover_dracula	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 			DB		DRACULA_SPRITE1A	;izq arriba
@@ -112,30 +112,34 @@ fin_calcula_dracula_escena:
 ;;CALCULA_DRACULA_INCREMENTOXY
 ;;=====================================================	
 calcula_dracula_incrementoxy:
+		DEC			(IX + ESTRUCTURA_ENEMIGO.pasos)
+		RET			NZ
+		
+		LD			(IX + ESTRUCTURA_ENEMIGO.pasos), DRACULA_PASOS
 		LD			 A, R
 .mira_posicion0:
 		BIT			 0, A
 		JR			 Z, .mira_posicion1
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), DRACULA_Y1
-		LD			(IX + ESTRUCTURA_ENEMIGO.posx), DRACULA_X1
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), DRACULA_Y
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), DRACULA_X2
 		RET
 		
 .mira_posicion1:
 		BIT			 1, A
 		JR			 Z, .mira_posicion2
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), DRACULA_Y2
-		LD			(IX + ESTRUCTURA_ENEMIGO.posx), DRACULA_X2
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), DRACULA_Y
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), DRACULA_X3
 		RET
 		
 .mira_posicion2:
 		BIT			 2, A
 		JR			 Z, .mira_posicion3
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), DRACULA_Y3
-		LD			(IX + ESTRUCTURA_ENEMIGO.posx), DRACULA_X3
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), DRACULA_Y
+		LD			(IX + ESTRUCTURA_ENEMIGO.posx), DRACULA_X1
 		RET
 		
 .mira_posicion3:
-		LD			(IX + ESTRUCTURA_ENEMIGO.posy), DRACULA_Y4
+		LD			(IX + ESTRUCTURA_ENEMIGO.posy), DRACULA_Y
 		LD			(IX + ESTRUCTURA_ENEMIGO.posx), DRACULA_X4
 		RET
 fin_calcula_dracula_incrementoxy:

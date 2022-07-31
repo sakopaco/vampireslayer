@@ -1126,7 +1126,7 @@ fin_inicializa_enemigos_fase6_nivel5:
 inicializa_enemigos_fase6_nivel6:
 		CALL		carga_patrones_sprites_nivel6_nivel6
 		LD			DE, enemigo1
-		CALL		anade_enemigo_jefebeholder
+		CALL		anade_enemigo_dracula
 		LD			IX, enemigo1
 fin_inicializa_enemigos_fase6_nivel6:
 		RET
@@ -1636,7 +1636,7 @@ fin_check_enemigos_fase5:
 ;;CHECK_ENEMIGOS_FASE6
 ;;=====================================================	
 check_enemigos_fase6: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
-.check_enemigo1:	
+.check_enemigo1:	;DRACULA
 		LD			IX, enemigo1
 		LD			 A, (IX)
 		OR			 A
