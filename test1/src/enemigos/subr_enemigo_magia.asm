@@ -124,7 +124,6 @@ calcula_magia_escena:
 				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), MAGIA_SPRITE1B
 				RET	
 fin_calcula_magia_escena:
-		RET
 		
 
 ;;=====================================================

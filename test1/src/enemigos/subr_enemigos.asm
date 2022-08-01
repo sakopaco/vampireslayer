@@ -24,6 +24,8 @@ include "subr_enemigo_jefecaballero.asm"
 include "subr_enemigo_magia.asm"
 include "subr_enemigo_beholder.asm"
 include "subr_enemigo_dracula.asm"
+include "subr_enemigo_manod.asm"
+include "subr_enemigo_manoi.asm"
 		
 		
 ;;=====================================================
@@ -1128,6 +1130,16 @@ inicializa_enemigos_fase6_nivel6:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_dracula
 		LD			IX, enemigo1
+		
+		CALL		carga_patrones_sprites_nivel6_nivel6
+		LD			DE, enemigo2
+		CALL		anade_enemigo_manod
+		LD			IX, enemigo2
+		
+		;~ CALL		carga_patrones_sprites_nivel6_nivel6
+		;~ LD			DE, enemigo3
+		;~ CALL		anade_enemigo_manoi
+		;~ LD			IX, enemigo3
 fin_inicializa_enemigos_fase6_nivel6:
 		RET
 

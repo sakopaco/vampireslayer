@@ -51,7 +51,6 @@ fin_anade_enemigo_dracula:
 ; toca:		-
 actualiza_valores_dracula:
 fin_actualiza_valores_dracula:
-		RET
 
 		
 ;;=====================================================
