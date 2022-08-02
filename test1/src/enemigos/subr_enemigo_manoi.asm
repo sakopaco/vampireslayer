@@ -69,10 +69,10 @@ fin_actualiza_valores_manoi:
 ; salida: 	-
 ; toca:		-
 mover_manoi:
-		DEC			(IX + ESTRUCTURA_ENEMIGO.incx)
-		RET			NZ
+		;~ DEC			(IX + ESTRUCTURA_ENEMIGO.incx)
+		;~ RET			NZ
 		
-		LD			(IX + ESTRUCTURA_ENEMIGO.incx), MANOI_INCREMENTO
+		;~ LD			(IX + ESTRUCTURA_ENEMIGO.incx), MANOI_INCREMENTO
 		
 		CALL		calcula_manoi_incrementoxy
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
