@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.08.02 - 20:40:46]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.08.05 - 19:31:47]
 
 ./variables.asm
 Errors: 0
@@ -626,28 +626,30 @@ Errors: 0
      326.  00:C000  (00:00FC)           DRACULA_SPRITE2B	equ		252
      327.  00:C000                      
      328.  00:C000                      
-     329.  00:C000                      ;;ETIQUETAS/CONSTANTES MANODERECHA
-     330.  00:C000  (00:0014)           TIPOMANODERECHA		equ		20
-     331.  00:C000  (00:0001)           MANOD_COLOR   		equ		1		; negro
-     332.  00:C000  (00:0023)           MANOD_PASOS			equ		35
-     333.  00:C000  (00:0040)           MANOD_POSY			equ		64
-     334.  00:C000  (00:002F)           MANOD_POSX			equ		47
-     335.  00:C000  (00:005F)           MANOD_INCREMENTO	equ		95
-     336.  00:C000  (00:00E8)           MANOD_SPRITE1A		equ		232
-     337.  00:C000  (00:00EC)           MANOD_SPRITE1B		equ		236
+     329.  00:C000                      ;;ETIQUETAS/CONSTANTES MANOIZQIERDA
+     330.  00:C000  (00:0015)           TIPOMANOIZQUIERDA	equ		21
+     331.  00:C000  (00:0001)           MANOI_COLOR   		equ		1		; negro
+     332.  00:C000  (00:00E0)           MANOI_SPRITE1A		equ		224
+     333.  00:C000  (00:00E4)           MANOI_SPRITE1B		equ		228
+     334.  00:C000  (00:0023)           MANOI_PASOS			equ		35
+     335.  00:C000  (00:0040)           MANOI_POSY			equ		64
+     336.  00:C000  (00:002F)           MANOI_POSX			equ		47
+     337.  00:C000  (00:0005)           MANOI_INCREMENTO	equ		5
      338.  00:C000                      
      339.  00:C000                      
-     340.  00:C000                      ;;ETIQUETAS/CONSTANTES MANOIZQIERDA
-     341.  00:C000  (00:0015)           TIPOMANOIZQUIERDA	equ		21
-     342.  00:C000  (00:0001)           MANOI_COLOR   		equ		1		; negro
-     343.  00:C000  (00:0023)           MANOI_PASOS			equ		35
-     344.  00:C000  (00:0040)           MANOI_POSY			equ		64
-     345.  00:C000  (00:002F)           MANOI_POSX			equ		47
-     346.  00:C000  (00:005F)           MANOI_INCREMENTO	equ		95
-     347.  00:C000  (00:00E0)           MANOI_SPRITE1A		equ		224
-     348.  00:C000  (00:00E4)           MANOI_SPRITE1B		equ		228
+     340.  00:C000                      ;;ETIQUETAS/CONSTANTES MANODERECHA
+     341.  00:C000  (00:0014)           TIPOMANODERECHA		equ		20
+     342.  00:C000  (00:0001)           MANOD_COLOR   		equ		1		; negro
+     343.  00:C000  (00:00E8)           MANOD_SPRITE1A		equ		232
+     344.  00:C000  (00:00EC)           MANOD_SPRITE1B		equ		236
+     345.  00:C000  (00:0023)           MANOD_PASOS			equ		35
+     346.  00:C000  (00:0040)           MANOD_POSY			equ		64
+     347.  00:C000  (00:002F)           MANOD_POSX			equ		47
+     348.  00:C000  (00:0005)           MANOD_INCREMENTO	equ		5
      349.  00:C000                      
      350.  00:C000                      
+     351.  00:C000                      
+     352.  00:C000                      
       12   00:C000                      include "constantesyvariables/estructuras.asm"
        1.  00:C000                      ;;=====================================================
        2.  00:C000                      ;;DEFINICIÓN DE ESTRUCTURAS
@@ -1566,22 +1568,22 @@ Errors: 0
 00:000000F4 X DRACULA_SPRITE1B
 00:000000F8 X DRACULA_SPRITE2A
 00:000000FC X DRACULA_SPRITE2B
-00:00000014 X TIPOMANODERECHA
-00:00000001 X MANOD_COLOR
-00:00000023 X MANOD_PASOS
-00:00000040 X MANOD_POSY
-00:0000002F X MANOD_POSX
-00:0000005F X MANOD_INCREMENTO
-00:000000E8 X MANOD_SPRITE1A
-00:000000EC X MANOD_SPRITE1B
 00:00000015 X TIPOMANOIZQUIERDA
 00:00000001 X MANOI_COLOR
+00:000000E0 X MANOI_SPRITE1A
+00:000000E4 X MANOI_SPRITE1B
 00:00000023 X MANOI_PASOS
 00:00000040 X MANOI_POSY
 00:0000002F X MANOI_POSX
-00:0000005F X MANOI_INCREMENTO
-00:000000E0 X MANOI_SPRITE1A
-00:000000E4 X MANOI_SPRITE1B
+00:00000005 X MANOI_INCREMENTO
+00:00000014 X TIPOMANODERECHA
+00:00000001 X MANOD_COLOR
+00:000000E8 X MANOD_SPRITE1A
+00:000000EC X MANOD_SPRITE1B
+00:00000023 X MANOD_PASOS
+00:00000040 X MANOD_POSY
+00:0000002F X MANOD_POSX
+00:00000005 X MANOD_INCREMENTO
 00:00000000 X ESTRUCTURA_PUNTOMIRA.posx
 00:00000001 X ESTRUCTURA_PUNTOMIRA.posy
 00:00000002 X ESTRUCTURA_PUNTOMIRA.escena

@@ -1,4 +1,3 @@
-
 ;;=====================================================
 ;;SUBRUTINAS ENCARGADAS DE MANEJAR LOS SPRITES
 ;;=====================================================	
@@ -331,7 +330,11 @@ fin_carga_patrones_sprites_nivel6_nivel4:
 carga_patrones_sprites_nivel6_nivel5:
 		JP			carga_patrones_jefebeholder
 fin_carga_patrones_sprites_nivel6_nivel5:
-carga_patrones_sprites_nivel6_nivel6:
+carga_patrones_sprites_nivel6_nivel6: ;*********************************************************
+
+		CALL		carga_patrones_magia ;***************************+
+
+
 		JP			carga_patrones_condecompleto
 fin_carga_patrones_sprites_nivel6_nivel6:
 

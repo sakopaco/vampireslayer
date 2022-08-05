@@ -1127,16 +1127,14 @@ fin_inicializa_enemigos_fase6_nivel5:
 
 inicializa_enemigos_fase6_nivel6:
 		CALL		carga_patrones_sprites_nivel6_nivel6
+		
 		LD			DE, enemigo1
 		CALL		anade_enemigo_dracula
 		LD			IX, enemigo1
-		
-		CALL		carga_patrones_sprites_nivel6_nivel6
 		LD			DE, enemigo2
-		CALL		anade_enemigo_manod
+		CALL		anade_enemigo_manoi
 		LD			IX, enemigo2
 		
-		;~ CALL		carga_patrones_sprites_nivel6_nivel6
 		;~ LD			DE, enemigo3
 		;~ CALL		anade_enemigo_manoi
 		;~ LD			IX, enemigo3
