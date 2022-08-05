@@ -1,5 +1,5 @@
 ;;=====================================================
-;;CONTANTES MAGIA
+;;CONTANTES MANO IZQUIERDA
 ;;=====================================================
 datos_manoi:
 			DB		TIPOMANOIZQUIERDA	;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
@@ -24,27 +24,27 @@ datos_manoi:
 
 
 array_manoi_derecha_posx:
-			DB		64,67,70,72,75,78,80,83,85,88,91,94,96,99,102,104,107,110,112,115,118,120,123,126,128,131,134,136,139,142,144,147,150,152,155,158,160
+			DB		0,3,6,8,11,14,16,19,21,24,27,30,32,35,38,40,43,46,48,51,54,56,59,62,64,67,70,72,75,78,80,83,86,88,91,94,96
 
 array_manoi_derecha_posy:
 			DB		55,40,32,24,18,14,12,10,8,6,4,3,3,2,2,1,0,0,0,0,0,1,2,2,3,3,4,6,8,10,12,14,18,24,32,40,55
 
 array_manoi_izquierda_posx:
-			DB		160,158,155,152,150,147,144,142,139,136,134,131,128,126,123,120,118,115,112,110,107,104,102,99,96,94,91,88,85,83,80,78,75,72,70,67,64
+			DB		96,94,91,88,86,83,80,78,75,72,70,67,64,62,59,56,54,51,48,46,43,40,38,35,32,30,27,24,21,19,16,14,11,8,6,3,0
 			
 array_manoi_izquierda_posy:
 			DB		55,71,79,87,90,96,98,100,102,104,106,107,108,109,109,110,110,111,111,111,110,110,109,109,108,107,106,104,102,100,98,96,90,87,79,71,55
 
 
 ;;=====================================================
-;;SUBRUTINAS MANEJO DE MAGIA
+;;SUBRUTINAS MANEJO DE MANO IZQUIERDA
 ;;=====================================================	
 
 
 ;;=====================================================
-;;ANADE_ENEMIGO_MAGIA
+;;ANADE_ENEMIGO_MANO IZQUIERDA
 ;;=====================================================	
-; función: 	mete en memoria la plantilla de datos base de la magia en el enemigo que se le pase por DE
+; función: 	mete en memoria la plantilla de datos base de la mano izquierda en el enemigo que se le pase por DE
 ; entrada:	DE (enemigo en concreto al que poner los datos, por ejemplo, enemigo1)
 ; salida: 	-
 ; toca:		-
@@ -57,9 +57,9 @@ fin_anade_enemigo_manoi:
 
 
 ;;=====================================================
-;;ACTUALIZA_VALORES_MAGIA
+;;ACTUALIZA_VALORES_MANO IZQUIERDA
 ;;=====================================================	
-; función: 	inicializa valores aleatorios de la magia
+; función: 	inicializa valores aleatorios de la mano izquierda
 ; entrada:	IX que equivaldrá a qué nº de enemigo estamos inicializando (por ejemplo enemigo1)
 ; salida: 	posicion_anterior_arana
 ; toca:		-
@@ -68,9 +68,9 @@ fin_actualiza_valores_manoi:
 		
 		
 ;;=====================================================
-;;MOVER_MAGIA
+;;MOVER_MANO IZQUIERDA
 ;;=====================================================	
-; función: hace todo lo que haga falta de acciones cada vez que le toca al programa enfocarse en la magia: su ataque, su sptrite, etc...
+; función: hace todo lo que haga falta de acciones cada vez que le toca al programa enfocarse en la mano izquierda: su ataque, su sptrite, etc...
 ; entrada: IX (enemigo en concreto al que poner los datos, por ejemplo, enemigo1)
 ; salida: 	-
 ; toca:		-
@@ -87,18 +87,18 @@ mover_manoi:
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
 		LD			(IY + 1), A
 		
-		CALL		calcula_magia_escena
+		CALL		calcula_manoi_escena
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_a)
 		LD			(IY + 2), A
 		
-		;colorea magia
+		;colorea mano izquierda
 		LD			(IY + 3), MANOI_COLOR
 fin_mover_manoi:
 		RET
 
 
 ;;=====================================================
-;;CALCULA_MAGIA_ESCENA
+;;CALCULA_MANO IZQUIERDA_ESCENA
 ;;=====================================================	
 calcula_manoi_escena:
 		LD			 A, (heartbeat)
@@ -121,7 +121,7 @@ fin_calcula_manoi_escena:
 		
 
 ;;=====================================================
-;;CALCULA_MAGIA_INCREMENTOXY
+;;CALCULA_MANO IZQUIERDA_INCREMENTOXY
 ;;=====================================================	
 calcula_manoi_incrementoxy:
 		BIT			 0, (IX + ESTRUCTURA_ENEMIGO.direccionx)
