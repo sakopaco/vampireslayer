@@ -315,26 +315,28 @@ fin_carga_patrones_sprites_nivel5:
 carga_patrones_sprites_nivel6_nivel0:
 		JP			carga_patrones_jefelobo
 fin_carga_patrones_sprites_nivel6_nivel0:
+
 carga_patrones_sprites_nivel6_nivel1:
 		JP			carga_patrones_jefemurcielago
 fin_carga_patrones_sprites_nivel6_nivel1:
+
 carga_patrones_sprites_nivel6_nivel2:
 		JP			carga_patrones_jefefantasma
 fin_carga_patrones_sprites_nivel6_nivel2:
+
 carga_patrones_sprites_nivel6_nivel3:
 		JP			carga_patrones_jefezombi
 fin_carga_patrones_sprites_nivel6_nivel3:
+
 carga_patrones_sprites_nivel6_nivel4:
 		JP			carga_patrones_jefecaballero
 fin_carga_patrones_sprites_nivel6_nivel4:
+
 carga_patrones_sprites_nivel6_nivel5:
 		JP			carga_patrones_jefebeholder
 fin_carga_patrones_sprites_nivel6_nivel5:
-carga_patrones_sprites_nivel6_nivel6: ;*********************************************************
 
-		CALL		carga_patrones_magia ;***************************+
-
-
+carga_patrones_sprites_nivel6_nivel6:
 		JP			carga_patrones_condecompleto
 fin_carga_patrones_sprites_nivel6_nivel6:
 

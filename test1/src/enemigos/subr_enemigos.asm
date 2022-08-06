@@ -1131,13 +1131,14 @@ inicializa_enemigos_fase6_nivel6:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_dracula
 		LD			IX, enemigo1
+		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_manoi
 		LD			IX, enemigo2
 		
-		;~ LD			DE, enemigo3
-		;~ CALL		anade_enemigo_manoi
-		;~ LD			IX, enemigo3
+		LD			DE, enemigo3
+		CALL		anade_enemigo_manod
+		LD			IX, enemigo3
 fin_inicializa_enemigos_fase6_nivel6:
 		RET
 

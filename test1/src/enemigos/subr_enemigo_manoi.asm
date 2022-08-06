@@ -22,20 +22,19 @@ datos_manoi:
 			DB		MANOI_SPRITE1A	;izq abajo
 			DB		MANOI_SPRITE1B	;der_abajo
 
-
 array_manoi_derecha_posx:
 			DB		0,3,6,8,11,14,16,19,21,24,27,30,32,35,38,40,43,46,48,51,54,56,59,62,64,67,70,72,75,78,80,83,86,88,91,94,96
 
-array_manoi_derecha_posy:
+array_mano_derecha_posy:
 			DB		55,40,32,24,18,14,12,10,8,6,4,3,3,2,2,1,0,0,0,0,0,1,2,2,3,3,4,6,8,10,12,14,18,24,32,40,55
 
 array_manoi_izquierda_posx:
 			DB		96,94,91,88,86,83,80,78,75,72,70,67,64,62,59,56,54,51,48,46,43,40,38,35,32,30,27,24,21,19,16,14,11,8,6,3,0
 			
-array_manoi_izquierda_posy:
+array_mano_izquierda_posy:
 			DB		55,71,79,87,90,96,98,100,102,104,106,107,108,109,109,110,110,111,111,111,110,110,109,109,108,107,106,104,102,100,98,96,90,87,79,71,55
-
-
+			
+			
 ;;=====================================================
 ;;SUBRUTINAS MANEJO DE MANO IZQUIERDA
 ;;=====================================================	
@@ -134,7 +133,7 @@ calcula_manoi_incrementoxy:
 			LD			 A, (HL)
 			LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
 
-			LD			HL, array_manoi_derecha_posy
+			LD			HL, array_mano_derecha_posy
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.pasos)
 			CALL		suma_A_HL
 			LD			 A, (HL)
@@ -148,7 +147,7 @@ calcula_manoi_incrementoxy:
 			LD			 A, (HL)
 			LD			(IX + ESTRUCTURA_ENEMIGO.posx), A
 
-			LD			HL, array_manoi_izquierda_posy
+			LD			HL, array_mano_izquierda_posy
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.pasos)
 			CALL		suma_A_HL
 			LD			 A, (HL)
