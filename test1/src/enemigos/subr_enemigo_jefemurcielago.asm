@@ -5,7 +5,7 @@ datos_jefemurcielago:
 			DB		TIPOJEFEMURCIELAGO	;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
 			DB		0		;(escena) sprite a mostrar 1/2
 			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
-			DB		10		;(energia) energía del enemigo antes de morir
+			DB		128		;(energia) energía del enemigo antes de morir
 			DB		0		;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		0		;(posy) pos y para mover y punto central del sprite para revisar disparo
 			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
@@ -15,7 +15,7 @@ datos_jefemurcielago:
 			DB		DIRABAJO;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		0		;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		0		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
-			DB		0		;(radio) radio para movimientos circulares
+			DB		0		;pocavida 0 y 1 para indicar cuando le queda poca vida al enemigo
 			DW		mover_jefemurcielago	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 			DB		JEFEMURCIELAGO_SPRITE1A	;izq arriba
 			DB		JEFEMURCIELAGO_SPRITE2A	;der_arriba
@@ -63,6 +63,16 @@ actualiza_valores_jefemurcielago:
 		
 .asigna_valores_posicion_y:
 		LD			(IX + ESTRUCTURA_ENEMIGO.posy), 0
+		
+		;miro si el nivel es 6
+		LD			 A, (prota_nivel)
+		BIT			 0, A
+		RET			NZ
+		LD			(IX + ESTRUCTURA_ENEMIGO.energia), 64
+		
+		
+		;quitar cuando proceda
+		LD			(IX + ESTRUCTURA_ENEMIGO.pocavida), 1
 fin_actualiza_valores_jefemurcielago:
 		RET
 		
@@ -102,6 +112,18 @@ mover_jefemurcielago:
 		LD			(IY + 14), A
 
 		;colorea jefemurcielago
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.pocavida)
+		OR			 A
+		JP			 Z, .nointercambiacolor
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+			OR			 A
+			JP			 Z, .nointercambiacolor	
+				LD			(IY + 3),  COLROJO
+				LD			(IY + 7),  COLROJO
+				LD			(IY + 11), COLROJO
+				LD			(IY + 15), COLROJO
+				RET
+.nointercambiacolor:		
 		LD			(IY + 3),  JEFEMURCIELAGO_COLOR
 		LD			(IY + 7),  JEFEMURCIELAGO_COLOR
 		LD			(IY + 11), JEFEMURCIELAGO_COLOR

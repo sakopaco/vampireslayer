@@ -1095,8 +1095,8 @@ inicializa_enemigos_fase6_nivel2:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_jefefantasma
 		LD			IX, enemigo1
+		JP			actualiza_valores_jefefantasma_BR
 fin_inicializa_enemigos_fase6_nivel2:
-		RET
 
 inicializa_enemigos_fase6_nivel3:
 		CALL		carga_patrones_sprites_nivel6_nivel3
