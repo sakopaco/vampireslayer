@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.08.07 - 19:00:33]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.08.08 - 19:48:44]
 
 ./variables.asm
 Errors: 0
@@ -808,7 +808,7 @@ Errors: 0
      155.  00:C000                    < direccionx			DB		0	;0 derecha <> 1 izquierda // 0 abajo <> 1 arriba
      156.  00:C000                    < direcciony			DB		0	;0 derecha <> 1 izquierda // 0 abajo <> 1 arriba
      157.  00:C000                    < pasos				DB		0	;pasos para no comprobar los límites de pantalla, sólo si pasos ha llegado a 0
-     158.  00:C000                    < radio				DB		0	;radio para movimientos circulares
+     158.  00:C000                    < pocavida			DB		0	;pocavida 0 y 1 para indicar cuando le queda poca vida al enemigo
      159.  00:C000                    < ;mezclo el ptr_sig_escena con el mover ya que son obligatorias no erece la pena tener 2
      160.  00:C000                    < ;ptr_sig_escena		DW		0	;funcion que cambia los sprites de la escena (según el nº de sprites será distinta)
      161.  00:C000                    < ptr_mover			DW		0	;puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
@@ -1642,7 +1642,7 @@ Errors: 0
 00:0000000A X ESTRUCTURA_ENEMIGO.direccionx
 00:0000000B X ESTRUCTURA_ENEMIGO.direcciony
 00:0000000C X ESTRUCTURA_ENEMIGO.pasos
-00:0000000D X ESTRUCTURA_ENEMIGO.radio
+00:0000000D X ESTRUCTURA_ENEMIGO.pocavida
 00:0000000E X ESTRUCTURA_ENEMIGO.ptr_mover
 00:00000010 X ESTRUCTURA_ENEMIGO.sprite_a
 00:00000011 X ESTRUCTURA_ENEMIGO.sprite_b

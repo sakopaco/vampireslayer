@@ -1078,12 +1078,9 @@ inicializa_enemigos_fase6_nivel0:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_jefelobo
 		LD			IX, enemigo1
-		
-		
-		; en los bossrush se utilizará la función actualiza_valores_jefemurcielago y dejará la vida de estos enemigos a la mitad de lo que sería un jefe normal
-		
+		JP			actualiza_valores_jefelobo_BR
 fin_inicializa_enemigos_fase6_nivel0:
-		RET
+
 
 inicializa_enemigos_fase6_nivel1:
 		CALL		carga_patrones_sprites_nivel6_nivel1
@@ -1114,7 +1111,7 @@ inicializa_enemigos_fase6_nivel4:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_jefecaballero
 		LD			IX, enemigo1
-		JP		actualiza_valores_jefecaballero
+		JP			actualiza_valores_jefecaballero
 fin_inicializa_enemigos_fase6_nivel4:
 
 inicializa_enemigos_fase6_nivel5: 						

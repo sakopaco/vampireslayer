@@ -5,7 +5,7 @@ datos_jefelobo:
 			DB		TIPOJEFELOBO;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
 			DB		0		;(escena) sprite a mostrar 1/2
 			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
-			DB		10		;(energia) energía del enemigo antes de morir
+			DB		128		;(energia) energía del enemigo antes de morir
 			DB		JEFELOBO_X	;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		JEFELOBO_Y	;(posy) pos y para mover y punto central del sprite para revisar disparo
 			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
@@ -15,7 +15,7 @@ datos_jefelobo:
 			DB		0		;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		00000001b	;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		JEFELOBO_LIM_PASOS1	;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
-			DB		0		;(radio) radio para movimientos circulares
+			DB		0		;pocavida 0 y 1 para indicar cuando le queda poca vida al enemigo
 			DW		mover_jefelobo		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 			DB		JEFELOBO_SPRITE1A	;izq arriba
 			DB		JEFELOBO_SPRITE2A	;der_arriba
@@ -50,7 +50,14 @@ fin_anade_enemigo_jefelobo:
 ; entrada:	IX que equivaldrá a qué nº de enemigo estamos inicializando (por ejemplo enemigo1)
 ; salida: 	posicion_anterior_arana
 ; toca:		-
+actualiza_valores_jefelobo_BR:
+		LD			(IX + ESTRUCTURA_ENEMIGO.energia), 64
 		
+		;quitar cuando se cree el daño a los jefes
+		LD			 (IX + ESTRUCTURA_ENEMIGO.pocavida), 1
+fin_actualiza_valores_jefelobo_BR:
+		RET
+
 		
 ;;=====================================================
 ;;MOVER_JEFELOBO
@@ -89,6 +96,18 @@ mover_jefelobo:
 		LD			(IY + 14), A
 
 		;colorea jefelobo
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.pocavida)
+		OR			 A
+		JP			 Z, .nointercambiacolor
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+			OR			 A
+			JP			 Z, .nointercambiacolor	
+				LD			(IY + 3),  COLROJO
+				LD			(IY + 7),  COLROJO
+				LD			(IY + 11), COLROJO
+				LD			(IY + 15), COLROJO
+				RET
+.nointercambiacolor:		
 		LD			(IY + 3),  JEFELOBO_COLOR
 		LD			(IY + 7),  JEFELOBO_COLOR
 		LD			(IY + 11), JEFELOBO_COLOR

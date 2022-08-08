@@ -155,7 +155,7 @@ inxy				DB		0	;incremento y para mover
 direccionx			DB		0	;0 derecha <> 1 izquierda // 0 abajo <> 1 arriba
 direcciony			DB		0	;0 derecha <> 1 izquierda // 0 abajo <> 1 arriba
 pasos				DB		0	;pasos para no comprobar los límites de pantalla, sólo si pasos ha llegado a 0
-radio				DB		0	;radio para movimientos circulares
+pocavida			DB		0	;pocavida 0 y 1 para indicar cuando le queda poca vida al enemigo
 ;mezclo el ptr_sig_escena con el mover ya que son obligatorias no erece la pena tener 2
 ;ptr_sig_escena		DW		0	;funcion que cambia los sprites de la escena (según el nº de sprites será distinta)
 ptr_mover			DW		0	;puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
