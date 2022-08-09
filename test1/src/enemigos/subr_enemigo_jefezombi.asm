@@ -5,7 +5,7 @@ datos_jefezombi:
 			DB		TIPOJEFEZOMBI	;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
 			DB		0		;(escena) sprite a mostrar 1/2
 			DB		00010000b	;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
-			DB		10		;(energia) energía del enemigo antes de morir
+			DB		128		;(energia) energía del enemigo antes de morir
 			DB		JEFEZOMBI_POSX	;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		JEFEZOMBI_POSY	;(posy) pos y para mover y punto central del sprite para revisar disparo
 			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
@@ -15,7 +15,7 @@ datos_jefezombi:
 			DB		DIRDERECHA		;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		0		;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		JEFEZOMBI_PASOS		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
-			DB		0		;(radio) radio para movimientos circulares
+			DB		0		;pocavida 0 y 1 para indicar cuando le queda poca vida al enemigo
 			DW		mover_jefezombi		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 			DB		JEFEZOMBI_SPRITE1A	;izq arriba
 			DB		JEFEZOMBI_SPRITE2A	;der_arriba
@@ -49,8 +49,13 @@ fin_anade_enemigo_jefezombi:
 ; función: 	inicializa valores aleatorios del zombi
 ; entrada:	IX que equivaldrá a qué nº de enemigo estamos inicializando (por ejemplo enemigo1)
 ; toca:		-
-actualiza_valores_jefezombi:
-fin_actualiza_valores_jefezombi:
+actualiza_valores_jefezombi_BR:
+		LD			(IX + ESTRUCTURA_ENEMIGO.energia), 64
+		
+		;quitar cuando se cree el daño a los jefes
+		LD			 (IX + ESTRUCTURA_ENEMIGO.pocavida), 1
+fin_actualiza_valores_jefezombi_BR:
+		RET
 		
 		
 ;;=====================================================
@@ -87,7 +92,19 @@ mover_jefezombi:
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_d)
 		LD			(IY + 14), A
 		
-		;colorea zombi
+		;colorea jefe zombi
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.pocavida)
+		OR			 A
+		JP			 Z, .nointercambiacolor
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+			OR			 A
+			JP			 Z, .nointercambiacolor	
+				LD			(IY + 3),  COLROJO
+				LD			(IY + 7),  COLROJO
+				LD			(IY + 11), COLROJO
+				LD			(IY + 15), COLROJO
+				RET
+.nointercambiacolor:		
 		LD			(IY + 3),  JEFEZOMBI_COLOR_A
 		LD			(IY + 7),  JEFEZOMBI_COLOR_B
 		LD			(IY + 11), JEFEZOMBI_COLOR_C

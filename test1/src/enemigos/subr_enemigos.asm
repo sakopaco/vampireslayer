@@ -1103,8 +1103,8 @@ inicializa_enemigos_fase6_nivel3:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_jefezombi
 		LD			IX, enemigo1
+		JP			actualiza_valores_jefezombi_BR
 fin_inicializa_enemigos_fase6_nivel3:
-		RET
 
 inicializa_enemigos_fase6_nivel4:
 		CALL		carga_patrones_sprites_nivel6_nivel4
@@ -1119,8 +1119,8 @@ inicializa_enemigos_fase6_nivel5:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_jefebeholder
 		LD			IX, enemigo1
+		JP			actualiza_valores_jefebeholder_BR
 fin_inicializa_enemigos_fase6_nivel5:
-		RET
 
 inicializa_enemigos_fase6_nivel6:
 		CALL		carga_patrones_sprites_nivel6_nivel6

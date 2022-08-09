@@ -5,7 +5,7 @@ datos_manod:
 			DB		TIPOMANODERECHA	;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
 			DB		0		;(escena) sprite a mostrar 1/2
 			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
-			DB		10		;(energia) energía del enemigo antes de morir
+			DB		128		;(energia) energía del enemigo antes de morir
 			DB		MANOD_POSX		;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		MANOD_POSY		;(posy) pos y para mover y punto central del sprite para revisar disparo
 			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
@@ -15,7 +15,7 @@ datos_manod:
 			DB		DIRIZQUIERDA	;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		0		;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		MANOD_PASOS		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
-			DB		0		;(radio) radio para movimientos circulares
+			DB		1		;pocavida 0 y 1 para indicar cuando le queda poca vida al enemigo
 			DW		mover_manod		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 			DB		MANOD_SPRITE1A	;izq arriba
 			DB		MANOD_SPRITE1B	;der_arriba
@@ -31,7 +31,6 @@ array_manod_izquierda_posx:
 ;Esta variable es igual en ambas manos, no merece la pena repetirla. Está de forma real en mano izquierda
 ;~ array_mano_derecha_posy:
 			;~ DB		55,40,32,24,18,14,12,10,8,6,4,3,3,2,2,1,0,0,0,0,0,1,2,2,3,3,4,6,8,10,12,14,18,24,32,40,55
-
 ;~ array_mano_izquierda_posy:
 			;~ DB		55,71,79,87,90,96,98,100,102,104,106,107,108,109,109,110,110,111,111,111,110,110,109,109,108,107,106,104,102,100,98,96,90,87,79,71,55
 			
@@ -92,6 +91,15 @@ mover_manod:
 		LD			(IY + 2), A
 		
 		;colorea mano DERECHA
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.pocavida)
+		OR			 A
+		JP			 Z, .nointercambiacolor
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+			OR			 A
+			JP			 Z, .nointercambiacolor	
+				LD			(IY + 3),  COLROJO
+				RET
+.nointercambiacolor:
 		LD			(IY + 3), MANOD_COLOR
 fin_mover_manod:
 		RET

@@ -5,7 +5,7 @@ datos_jefebeholder:
 			DB		TIPOJEFEBEHOLDER	;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
 			DB		0		;(escena) sprite a mostrar 1/2
 			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
-			DB		10		;(energia) energía del enemigo antes de morir
+			DB		128		;(energia) energía del enemigo antes de morir
 			DB		JEFEBEHOLDER_POSX	;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		JEFEBEHOLDER_POSY	;(posy) pos y para mover y punto central del sprite para revisar disparo
 			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
@@ -15,7 +15,7 @@ datos_jefebeholder:
 			DB		DIRDERECHA		;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		0		;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		JEFEBEHOLDER_PASOS	;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
-			DB		0		;(radio) radio para movimientos circulares
+			DB		0		;pocavida 0 y 1 para indicar cuando le queda poca vida al enemigo
 			DW		mover_jefebeholder		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 			DB		JEFEBEHOLDER_SPRITE1A	;izq arriba
 			DB		JEFEBEHOLDER_SPRITE2A	;der_arriba
@@ -63,8 +63,13 @@ fin_anade_enemigo_jefebeholder:
 ; entrada:	IX que equivaldrá a qué nº de enemigo estamos inicializando (por ejemplo enemigo1)
 ; salida: 	posicion_anterior_arana
 ; toca:		-
-actualiza_valores_jefebeholder:
-fin_actualiza_valores_jefebeholder:
+actualiza_valores_jefebeholder_BR:
+		LD			(IX + ESTRUCTURA_ENEMIGO.energia), 64
+		
+		;quitar cuando se cree el daño a los jefes
+		LD			 (IX + ESTRUCTURA_ENEMIGO.pocavida), 1
+fin_actualiza_valores_jefebeholder_BR:
+		RET
 		
 		
 ;;=====================================================
@@ -106,6 +111,18 @@ mover_jefebeholder:
 		LD			(IY + 14), A
 		
 		;colorea jefebeholder
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.pocavida)
+		OR			 A
+		JP			 Z, .nointercambiacolor
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+			OR			 A
+			JP			 Z, .nointercambiacolor	
+				LD			(IY + 3),  COLROJO
+				LD			(IY + 7),  COLROJO
+				LD			(IY + 11), COLROJO
+				LD			(IY + 15), COLROJO
+				RET
+.nointercambiacolor:	
 		LD			(IY + 3), JEFEBEHOLDER_COLOR
 		LD			(IY + 7), JEFEBEHOLDER_COLOR
 		LD			(IY + 11),JEFEBEHOLDER_COLOR
