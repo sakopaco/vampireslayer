@@ -11,7 +11,7 @@ posiciones_cienpies_y:
 datos_cienpies:	
 			DB		TIPOCIEMPIES	;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
 			DB		0		;(escena) sprite a mostrar 1/2
-			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
+			DB		0		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
 			DB		10		;(energia) energía del enemigo antes de morir
 			DB		0		;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		0		;(posy) pos y para mover y punto central del sprite para revisar disparo
@@ -24,10 +24,10 @@ datos_cienpies:
 			DB		0		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 			DB		0		;(radio) radio para movimientos circulares
 			DW		mover_cienpies	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
-			DB		0		;izq arriba
-			DB		0		;izq abajo
-			DB		0		;der_arriba
-			DB		0		;der_abajo
+			DB		0	;izq arriba
+			DB		0	;izq abajo
+			DB		0	;der_arriba
+			DB		0	;der_abajo
 
 
 ;;=====================================================
@@ -115,19 +115,24 @@ fin_mover_cienpies:
 ; toca:		-
 calcula_cienpies_escena:
 		LD			 A, (heartbeat_cienpies)
-		AND			00010000b
+		AND			CIENIES_VELESCENA
 		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
-			;reseteo el cambio de escena del cienpies
+			;reseteo el cambio de escena de la araña
 			XOR			 A
 			LD			(heartbeat_cienpies), A
+		
+			; cambio de escena
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+			XOR			00000001b
+			LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
 			
 			JP			 Z, .enemigo1_poner_escena2			; IF ESCENA 1 THEN
 				LD			 A, CIENPIES_SPRITE1A			
 				JP			.fin_enemigo1_poner_escena2
 .enemigo1_poner_escena2:									; ELSE
-				LD			 A, CIENPIES_SPRITE2A
+				LD			 A, CIENPIES_SPRITE1B
 .fin_enemigo1_poner_escena2:								; END IF
-.fin_cambia_escena_enemigo1:							; END IF	
+;.fin_cambia_escena_enemigo1:							; END IF			
 		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), A
 fin_calcula_cienpies_escena:
 		RET

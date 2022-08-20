@@ -17,10 +17,10 @@ datos_murcielago:
 			DB		MURCIELAGO_PASOS	;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 			DB		0		;(radio) radio para movimientos circulares
 			DW		mover_murcielago	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
-			DB		0		;izq arriba
-			DB		0		;izq abajo
-			DB		0		;der_arriba
-			DB		0		;der_abajo
+			DB		MURCIELAGO_SPRITE1A	;izq arriba
+			DB		MURCIELAGO_SPRITE1B	;izq abajo
+			DB		MURCIELAGO_SPRITE1A	;der_arriba
+			DB		MURCIELAGO_SPRITE1B	;der_abajo
 
 
 ;;=====================================================
@@ -85,8 +85,12 @@ fin_mover_murcielago:
 ;;=====================================================	
 calcula_murcielago_escena:
 		LD			 A, (heartbeat_murcielago)
-		OR			00000001b
-		JP			 Z, .fin_cambia_escena_enemigo1   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
+		AND			MURCIELAGO_VELESCENA
+		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
+			;reseteo el cambio de escena de la araña
+			XOR			 A
+			LD			(heartbeat_murcielago), A
+		
 			; cambio de escena
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
 			XOR			00000001b
@@ -96,7 +100,7 @@ calcula_murcielago_escena:
 				LD			 A, MURCIELAGO_SPRITE1A
 				JP			.fin_enemigo1_poner_escena2
 .enemigo1_poner_escena2:									; ELSE
-				LD			 A, MURCIELAGO_SPRITE2A
+				LD			 A, MURCIELAGO_SPRITE1B
 .fin_enemigo1_poner_escena2:								; END IF
 .fin_cambia_escena_enemigo1:							; END IF	
 		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), A

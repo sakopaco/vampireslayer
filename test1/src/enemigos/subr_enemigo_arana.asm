@@ -100,7 +100,7 @@ fin_mover_arana:
 ;;=====================================================	
 calcula_arana_escena:
 		LD			 A, (heartbeat_arana)
-		AND			00010000b
+		AND			ARANA_VELESCENA
 		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
 			;reseteo el cambio de escena de la araña
 			XOR			 A
