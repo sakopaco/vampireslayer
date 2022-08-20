@@ -107,7 +107,7 @@ fin_mover_magia:
 ;;CALCULA_MAGIA_ESCENA
 ;;=====================================================	
 calcula_magia_escena:
-		LD			 A, (heartbeat)
+		LD			 A, (heartbeat_magia)
 		OR			00010000b
 		RET			 Z
 			;THEN cambia escena

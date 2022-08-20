@@ -135,7 +135,7 @@ fin_mover_jefebeholder:
 ;;CALCULA_JEFEBEHOLDER_ESCENA
 ;;=====================================================	
 calcula_jefebeholder_escena:
-		LD			 A, (heartbeat)
+		LD			 A, (heartbeat_jefebeholder)
 		OR			00010000b
 		RET			 Z
 			;THEN cambia escena

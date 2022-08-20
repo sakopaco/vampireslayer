@@ -89,7 +89,7 @@ fin_mover_fuego:
 ;;CALCULA_FUEGO_ESCENA
 ;;=====================================================	
 calcula_fuego_escena:
-		LD			 A, (heartbeat)
+		LD			 A, (heartbeat_fuego)
 		OR			00000001b
 		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
 			; cambio de escena

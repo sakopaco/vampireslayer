@@ -44,7 +44,27 @@ var_aux_calavera			DB		0			;flip_calavera_esqueletos
 
 ;; parte de los enemigos
 ; para movmiento
-heartbeat					DB		0;			;reloj central que moverá los enemigos
+heartbeat_cienpies			DB		0;			;reloj central que moverá los enemigos (cienpies)
+heartbeat_serpiente			DB		0;			;reloj central que moverá los enemigos (serpiente)
+heartbeat_arana				DB		0;			;reloj central que moverá los enemigos (arana)
+heartbeat_murcielago		DB		0;			;reloj central que moverá los enemigos (murcielago)
+heartbeat_lobo				DB		0;			;reloj central que moverá los enemigos (lobo)
+heartbeat_jefelobo			DB		0;			;reloj central que moverá los enemigos (jefelobo)
+heartbeat_esqueleto			DB		0;			;reloj central que moverá los enemigos (esqueleto)
+heartbeat_zombi				DB		0;			;reloj central que moverá los enemigos (zombi)
+heartbeat_jefemurcielago	DB		0;			;reloj central que moverá los enemigos (jefemurcielago)
+heartbeat_fantasma			DB		0;			;reloj central que moverá los enemigos (fantasma)
+heartbeat_jefefantasma		DB		0;			;reloj central que moverá los enemigos (jefefantasma)
+heartbeat_caballero			DB		0;			;reloj central que moverá los enemigos (caballero)
+heartbeat_jefezombi			DB		0;			;reloj central que moverá los enemigos (jefezombi)
+heartbeat_fuego				DB		0;			;reloj central que moverá los enemigos (fuego)
+heartbeat_jefecaballero		DB		0;			;reloj central que moverá los enemigos (jefecaballero)
+heartbeat_magia				DB		0;			;reloj central que moverá los enemigos (magia)
+heartbeat_jefebeholder		DB		0;			;reloj central que moverá los enemigos (jefebeholder)
+heartbeat_dracula			DB		0;			;reloj central que moverá los enemigos (dracula)
+heartbeat_manod				DB		0;			;reloj central que moverá los enemigos (manoderecha)
+heartbeat_manoi				DB		0;			;reloj central que moverá los enemigos (manoizquierda)
+
 
 ;;SPRITES GENERAL (PROTA +  ENEMIGOS)
 ;array de 4 bytes x 32 sprites posibles en pantalla que sobreescribirá la tabla de sprites actualizando VRAM
@@ -117,4 +137,5 @@ enemigo4					DS	ESTRUCTURA_ENEMIGO
 enemigo5					DS	ESTRUCTURA_ENEMIGO
 enemigo6					DS	ESTRUCTURA_ENEMIGO
 enemigo7					DS	ESTRUCTURA_ENEMIGO
+
 

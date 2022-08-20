@@ -90,7 +90,7 @@ fin_mover_lobo:
 ;;CALCULA_LOBO_ESCENA
 ;;=====================================================	
 calcula_lobo_escena:
-		LD			 A, (heartbeat)
+		LD			 A, (heartbeat_lobo)
 		OR			00010000b
 		RET			 Z
 			

@@ -87,7 +87,7 @@ fin_mover_serpiente:
 ;;CALCULA_SERPIENTE_ESCENA
 ;;=====================================================	
 calcula_serpiente_escena:
-		LD			 A, (heartbeat)
+		LD			 A, (heartbeat_serpiente)
 		AND			00001000b
 		RET			 Z
 			

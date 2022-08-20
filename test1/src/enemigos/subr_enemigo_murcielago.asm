@@ -84,7 +84,7 @@ fin_mover_murcielago:
 ;;CALCULA_MURCIÉLAGO_ESCENA
 ;;=====================================================	
 calcula_murcielago_escena:
-		LD			 A, (heartbeat)
+		LD			 A, (heartbeat_murcielago)
 		OR			00000001b
 		JP			 Z, .fin_cambia_escena_enemigo1   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
 			; cambio de escena
@@ -135,10 +135,6 @@ calcula_murcielago_incrementox:
 			INC			(IX + ESTRUCTURA_ENEMIGO.posx)
 .fin_mueve:
 
-		;mira si cambia sentido
-		
-		;******************************************************************************************************
-		
 		DEC			(IX + ESTRUCTURA_ENEMIGO.pasos)
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.pasos)
 		OR			 A

@@ -114,13 +114,12 @@ fin_mover_cienpies:
 ; salida: 	-
 ; toca:		-
 calcula_cienpies_escena:
-		LD			 A, (heartbeat)
-		OR			00000001b
-		RET			 Z	   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
-			; cambio de escena
-			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
-			XOR			00000001b
-			LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
+		LD			 A, (heartbeat_cienpies)
+		AND			00010000b
+		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
+			;reseteo el cambio de escena del cienpies
+			XOR			 A
+			LD			(heartbeat_cienpies), A
 			
 			JP			 Z, .enemigo1_poner_escena2			; IF ESCENA 1 THEN
 				LD			 A, CIENPIES_SPRITE1A			

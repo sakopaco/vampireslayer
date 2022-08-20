@@ -99,9 +99,13 @@ fin_mover_arana:
 ;;CALCULA_ARANA_ESCENA
 ;;=====================================================	
 calcula_arana_escena:
-		LD			 A, (heartbeat)
-		OR			00000001b
+		LD			 A, (heartbeat_arana)
+		AND			00010000b
 		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
+			;reseteo el cambio de escena de la araña
+			XOR			 A
+			LD			(heartbeat_arana), A
+		
 			; cambio de escena
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
 			XOR			00000001b
@@ -113,7 +117,7 @@ calcula_arana_escena:
 .enemigo1_poner_escena2:									; ELSE
 				LD			 A, ARANA_SPRITE2A
 .fin_enemigo1_poner_escena2:								; END IF
-.fin_cambia_escena_enemigo1:							; END IF			
+;.fin_cambia_escena_enemigo1:							; END IF			
 		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), A
 fin_calcula_arana_escena:
 		RET

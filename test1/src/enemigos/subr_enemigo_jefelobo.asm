@@ -120,8 +120,8 @@ fin_mover_jefelobo:
 ;;CALCULA_JEFELOBO_ESCENA
 ;;=====================================================	
 calcula_jefelobo_escena:
-		LD			 A, (heartbeat)
-		OR			00010000b
+		LD			 A, (heartbeat_jefelobo)
+		OR			00000100b
 		RET			 Z
 			
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)

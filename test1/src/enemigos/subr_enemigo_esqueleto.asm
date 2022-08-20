@@ -90,7 +90,7 @@ fin_mover_esqueleto:
 ;;CALCULA_ESQUELETO_ESCENA
 ;;=====================================================	
 calcula_esqueleto_escena:
-		LD			 A, (heartbeat)
+		LD			 A, (heartbeat_esqueleto)
 		OR			00010000b
 		RET			 Z
 

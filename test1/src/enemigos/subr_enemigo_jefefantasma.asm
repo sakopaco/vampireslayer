@@ -120,7 +120,7 @@ fin_mover_jefefantasma:
 ;;CALCULA_JEFEFANTASMA_ESCENA
 ;;=====================================================	
 calcula_jefefantasma_escena:
-		LD			 A, (heartbeat)
+		LD			 A, (heartbeat_jefefantasma)
 		OR			00010000b
 		RET			 Z
 			;THEN cambia escena

@@ -92,7 +92,7 @@ fin_mover_fantasma:
 ;;CALCULA_FANTASMA_ESCENA
 ;;=====================================================	
 calcula_fantasma_escena:
-		LD			 A, (heartbeat)
+		LD			 A, (heartbeat_fantasma)
 		OR			00010000b
 		RET			 Z
 			;THEN cambia escena

@@ -109,7 +109,7 @@ fin_mover_manoi:
 ;;CALCULA_MANO IZQUIERDA_ESCENA
 ;;=====================================================	
 calcula_manoi_escena:
-		LD			 A, (heartbeat)
+		LD			 A, (heartbeat_manoi)
 		OR			00010000b
 		RET			 Z
 			;THEN cambia escena

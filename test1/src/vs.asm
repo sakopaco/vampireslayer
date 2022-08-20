@@ -109,8 +109,68 @@ loop_principal:
 		CALL		check_player			;MIRA EL CONTROL Y APLICA LA LOGICA DE MOVIMIENTO DEL PROTAGONISTA
 	
 		;incrementa el hearbeat para el movimiento de los enemigos
-		LD		 	 HL, heartbeat
-		INC		 	 (HL)
+		
+;esto se sustituirá por un bucle 	
+	
+		LD			HL, heartbeat_cienpies
+		INC		 	(HL)
+		;LD			HL, heartbeat_sepiente
+		INC			HL
+		INC		 	(HL)	
+		;LD			HL, heartbeat_arana
+		INC			HL
+		INC		 	(HL)
+		;LD			HL, heartbeat_murcielago
+		INC			HL
+		INC		 	(HL)
+		;LD			HL, heartbeat_lobo
+		INC			HL
+		INC		 	(HL)
+		;LD			HL, heartbeat_jefelobo
+		INC			HL
+		INC		 	(HL)
+		;LD			HL, heartbeat_esqueleto
+		INC			HL
+		INC		 	(HL)
+		;LD			HL, heartbeat_zombi
+		INC			HL
+		INC		 	(HL)
+		;LD			HL, heartbeat_jefemurcielago
+		INC			HL
+		INC		 	(HL)
+		;LD			HL, heartbeat_fantasma
+		INC			HL
+		INC		 	(HL)
+		;LD			HL, heartbeat_jefefantasma
+		INC			HL
+		INC		 	(HL)
+		;LD			HL, heartbeat_caballero
+		INC			HL
+		INC		 	(HL)		
+		;LD			HL, heartbeat_jefezombi
+		INC			HL
+		INC		 	(HL)
+		;LD			HL, heartbeat_fuego
+		INC			HL
+		INC		 	(HL)		
+		;LD			HL, heartbeat_jefecaballero
+		INC			HL
+		INC		 	(HL)
+		;LD			HL, heartbeat_magia
+		INC			HL
+		INC		 	(HL)		
+		;LD			HL, heartbeat_jefebeholder
+		INC			HL
+		INC		 	(HL)
+		;LD			HL, heartbeat_dracula
+		INC			HL
+		INC		 	(HL)		
+		;LD			HL, heartbeat_manod
+		INC			HL
+		INC		 	(HL)
+		;LD			HL, heartbeat_manoi
+		INC			HL
+		INC		 	(HL)		
 	
 		;poner arriba
 		CALL		render_sprites			;actualiza array de sprites y los pinta en pantalla
@@ -135,10 +195,10 @@ inicializa_variables_pruebas:
 	;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
 	;será igual la posición inicial en todos los niveles
 	
-	LD		 A, 6				;los niveles (matrices) son 7 del 0 al 6
+	LD		 A, 0;6				;los niveles (matrices) son 7 del 0 al 6
 	LD		(prota_nivel), A	;nivel empieza en 0 para usar las posiciones ascii
 
-	LD		 A, 0				;los subniveles (filas) son 7 del 0 al 6
+	LD		 A, 1;0				;los subniveles (filas) son 7 del 0 al 6
 	LD		(prota_pos_mapy), A	;pos Y dentro del nivel (se empieza en 0)
 
 	LD		 A, 3				;columnas 7: del 0 al 6

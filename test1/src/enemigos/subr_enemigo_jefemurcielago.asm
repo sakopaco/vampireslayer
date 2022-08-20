@@ -136,7 +136,7 @@ fin_mover_jefemurcielaro:
 ;;CALCULA_JEFEMURCIELAGO_ESCENA
 ;;=====================================================	
 calcula_jefemurcielago_escena:
-		LD			 A, (heartbeat)
+		LD			 A, (heartbeat_murcielago)
 		AND			00001000b
 		RET			 Z		; IF TENGO QUE CAMBIAR DE ESCENA THEN
 			; cambio de escena
