@@ -134,12 +134,12 @@ fin_mover_jefebeholder:
 ;;CALCULA_JEFEBEHOLDER_ESCENA
 ;;=====================================================	
 calcula_jefebeholder_escena:
-		LD			 A, (heartbeat_jefebeholder)
+		LD			 A, (heartbeat_general)
 		AND			JEFEBEHOLDER_VELESCENA
 		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
 			;reseteo el cambio de escena del jefebeholder
 			XOR			 A
-			LD			(heartbeat_jefebeholder), A
+			LD			(heartbeat_general), A
 			
 			;THEN cambia escena
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)

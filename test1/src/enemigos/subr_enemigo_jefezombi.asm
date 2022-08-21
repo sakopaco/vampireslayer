@@ -117,12 +117,12 @@ fin_mover_jefezombi:
 ;;CALCULA_JEFEZOMBI_ESCENA
 ;;=====================================================	
 calcula_jefezombi_escena:
-		LD			 A, (heartbeat_jefezombi)
+		LD			 A, (heartbeat_general)
 		AND			JEFEZOMBI_VELESCENA
 		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
 			;reseteo el cambio de escena del jefezobi
 			XOR			 A
-			LD			(heartbeat_jefezombi), A
+			LD			(heartbeat_general), A
 
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
 		OR			 A

@@ -109,12 +109,12 @@ fin_mover_manoi:
 ;;CALCULA_MANO IZQUIERDA_ESCENA
 ;;=====================================================	
 calcula_manoi_escena:
-		LD			 A, (heartbeat_manoi)
+		LD			 A, (heartbeat_general)
 		AND			MANOI_VELESCENA
 		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
 			;reseteo el cambio de escena de la mano izquierda
 			XOR			 A
-			LD			(heartbeat_manoi), A
+			LD			(heartbeat_general), A
 			
 			;THEN cambia escena
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)

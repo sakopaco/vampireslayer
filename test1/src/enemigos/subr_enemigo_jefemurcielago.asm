@@ -136,12 +136,12 @@ fin_mover_jefemurcielaro:
 ;;CALCULA_JEFEMURCIELAGO_ESCENA
 ;;=====================================================	
 calcula_jefemurcielago_escena:
-		LD			 A, (heartbeat_jefemurcielago)
+		LD			 A, (heartbeat_general)
 		AND			JEFEMURCIELAGO_VELESCENA
 		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
 			;reseteo el cambio de escena del jefemurcielago
 			XOR			 A
-			LD			(heartbeat_jefemurcielago), A
+			LD			(heartbeat_general), A
 		
 			; cambio de escena
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)

@@ -17,10 +17,10 @@ datos_manod:
 			DB		MANOD_PASOS		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 			DB		1		;pocavida 0 y 1 para indicar cuando le queda poca vida al enemigo
 			DW		mover_manod		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
-			DB		MANOD_SPRITE1A	;izq arriba
-			DB		MANOD_SPRITE1B	;der_arriba
-			DB		MANOD_SPRITE1A	;izq abajo
-			DB		MANOD_SPRITE1B	;der_abajo
+			DB		0	;izq arriba
+			DB		0	;der_arriba
+			DB		0	;izq abajo
+			DB		0	;der_abajo
 
 array_manod_derecha_posx:
 			DB		143,145,148,151,153,156,159,161,164,167,169,172,175,177,180,183,185,188,191,193,196,199,201,204,207,209,212,215,218,220,223,225,228,231,233,236,239
@@ -109,12 +109,12 @@ fin_mover_manod:
 ;;CALCULA_MANO DERECHA_ESCENA
 ;;=====================================================	
 calcula_manod_escena:
-		LD			 A, (heartbeat_manod)
+		LD			 A, (heartbeat_general)
 		AND			MANOD_VELESCENA
 		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
 			;reseteo el cambio de escena de la mano derecha
 			XOR			 A
-			LD			(heartbeat_manod), A
+			LD			(heartbeat_general), A
 			
 			;THEN cambia escena
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)

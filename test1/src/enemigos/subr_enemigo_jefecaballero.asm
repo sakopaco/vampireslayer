@@ -151,12 +151,12 @@ fin_mover_jefecaballero:
 ;;CALCULA_JEFECABALLERO_ESCENA
 ;;=====================================================	
 calcula_jefecaballero_escena:
-		LD			 A, (heartbeat_jefecaballero)
+		LD			 A, (heartbeat_general)
 		AND			JCABALLERO_VELESCENA
 		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
 			;reseteo el cambio de escena del jefecaballero
 			XOR			 A
-			LD			(heartbeat_jefecaballero), A
+			LD			(heartbeat_general), A
 
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
 		OR			 A
