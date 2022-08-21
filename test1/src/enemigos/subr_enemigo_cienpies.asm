@@ -115,9 +115,9 @@ fin_mover_cienpies:
 ; toca:		-
 calcula_cienpies_escena:
 		LD			 A, (heartbeat_cienpies)
-		AND			CIENIES_VELESCENA
+		AND			CIENPIES_VELESCENA
 		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
-			;reseteo el cambio de escena de la araña
+			;reseteo el cambio de escena del cienpies
 			XOR			 A
 			LD			(heartbeat_cienpies), A
 		

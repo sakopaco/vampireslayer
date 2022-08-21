@@ -90,7 +90,7 @@ calcula_serpiente_escena:
 		LD			 A, (heartbeat_serpiente)
 		AND			SERPIENTE_VELESCENA
 		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
-			;reseteo el cambio de escena de la araña
+			;reseteo el cambio de escena de la serpiente
 			XOR			 A
 			LD			(heartbeat_serpiente), A
 			

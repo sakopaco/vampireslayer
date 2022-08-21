@@ -22,7 +22,6 @@ datos_jefebeholder:
 			DB		JEFEBEHOLDER_SPRITE1B	;izq abajo
 			DB		JEFEBEHOLDER_SPRITE2B	;der_abajo
 
-
 array_jefebeholder_derecha_posx:
 			DB		0,4,8,12,16,20,24,28,32,36,40,44,48,52,56,60,64,68,72,76,80,84,88,92,96,100,104,108,112,116,120,124,128,132,136,140,144,148,152,156,160,164,168,172,176,180,184,188,192,196,200,204,208,212,216,220
 			
@@ -136,8 +135,12 @@ fin_mover_jefebeholder:
 ;;=====================================================	
 calcula_jefebeholder_escena:
 		LD			 A, (heartbeat_jefebeholder)
-		OR			00010000b
-		RET			 Z
+		AND			JEFEBEHOLDER_VELESCENA
+		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
+			;reseteo el cambio de escena del jefebeholder
+			XOR			 A
+			LD			(heartbeat_jefebeholder), A
+			
 			;THEN cambia escena
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
 			XOR			00000001b

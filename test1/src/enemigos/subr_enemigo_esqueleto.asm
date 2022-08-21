@@ -91,8 +91,11 @@ fin_mover_esqueleto:
 ;;=====================================================	
 calcula_esqueleto_escena:
 		LD			 A, (heartbeat_esqueleto)
-		OR			00010000b
-		RET			 Z
+		AND			ESQUELETO_VELESCENA
+		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
+			;reseteo el cambio de escena del esqueleto
+			XOR			 A
+			LD			(heartbeat_esqueleto), A
 
 .direccion_derecha:
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)

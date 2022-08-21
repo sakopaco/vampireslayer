@@ -110,8 +110,12 @@ fin_mover_manoi:
 ;;=====================================================	
 calcula_manoi_escena:
 		LD			 A, (heartbeat_manoi)
-		OR			00010000b
-		RET			 Z
+		AND			MANOI_VELESCENA
+		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
+			;reseteo el cambio de escena de la mano izquierda
+			XOR			 A
+			LD			(heartbeat_manoi), A
+			
 			;THEN cambia escena
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
 			XOR			00000001b

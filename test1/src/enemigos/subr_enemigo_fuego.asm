@@ -90,8 +90,12 @@ fin_mover_fuego:
 ;;=====================================================	
 calcula_fuego_escena:
 		LD			 A, (heartbeat_fuego)
-		OR			00000001b
+		AND			FUEGO_VELESCENA
 		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
+			;reseteo el cambio de escena del fuego
+			XOR			 A
+			LD			(heartbeat_fuego), A
+			
 			; cambio de escena
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
 			XOR			00000001b

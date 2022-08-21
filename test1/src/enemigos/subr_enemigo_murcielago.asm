@@ -87,7 +87,7 @@ calcula_murcielago_escena:
 		LD			 A, (heartbeat_murcielago)
 		AND			MURCIELAGO_VELESCENA
 		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
-			;reseteo el cambio de escena de la araña
+			;reseteo el cambio de escena del murcielago
 			XOR			 A
 			LD			(heartbeat_murcielago), A
 		
@@ -102,7 +102,7 @@ calcula_murcielago_escena:
 .enemigo1_poner_escena2:									; ELSE
 				LD			 A, MURCIELAGO_SPRITE1B
 .fin_enemigo1_poner_escena2:								; END IF
-.fin_cambia_escena_enemigo1:							; END IF	
+;.fin_cambia_escena_enemigo1:							; END IF	
 		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), A
 fin_calcula_murcielago_escena:
 		RET

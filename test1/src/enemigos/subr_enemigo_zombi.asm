@@ -89,9 +89,12 @@ fin_mover_zombi:
 ;;CALCULA_ZOMBI_ESCENA
 ;;=====================================================	
 calcula_zombi_escena:
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
-		OR			 A
-		JP			 Z, .direccion_derecha
+		LD			 A, (heartbeat_zombi)
+		AND			ZOMBI_VELESCENA
+		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
+			;reseteo el cambio de escena del zombi
+			XOR			 A
+			LD			(heartbeat_zombi), A
 
 .direccion_izquierda:
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)

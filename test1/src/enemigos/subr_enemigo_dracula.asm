@@ -99,8 +99,12 @@ fin_mover_dracula:
 ;;=====================================================	
 calcula_dracula_escena:
 		LD			 A, (heartbeat_dracula)
-		OR			00000001b
+		AND			DRACULA_VELESCENA
 		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
+			;reseteo el cambio de escena de dracula
+			XOR			 A
+			LD			(heartbeat_dracula), A
+			
 			; cambio de escena
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
 			XOR			00000001b

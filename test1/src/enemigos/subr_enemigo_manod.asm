@@ -110,8 +110,12 @@ fin_mover_manod:
 ;;=====================================================	
 calcula_manod_escena:
 		LD			 A, (heartbeat_manod)
-		OR			00010000b
-		RET			 Z
+		AND			MANOD_VELESCENA
+		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
+			;reseteo el cambio de escena de la mano derecha
+			XOR			 A
+			LD			(heartbeat_manod), A
+			
 			;THEN cambia escena
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
 			XOR			00000001b

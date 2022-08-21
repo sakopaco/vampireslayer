@@ -121,8 +121,11 @@ fin_mover_jefelobo:
 ;;=====================================================	
 calcula_jefelobo_escena:
 		LD			 A, (heartbeat_jefelobo)
-		OR			00000100b
-		RET			 Z
+		AND			JEFELOBO_VELESCENA
+		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
+			;reseteo el cambio de escena del jefelobo
+			XOR			 A
+			LD			(heartbeat_jefelobo), A
 			
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
 		OR			 A

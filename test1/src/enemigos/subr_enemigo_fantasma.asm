@@ -93,8 +93,12 @@ fin_mover_fantasma:
 ;;=====================================================	
 calcula_fantasma_escena:
 		LD			 A, (heartbeat_fantasma)
-		OR			00010000b
-		RET			 Z
+		AND			FANTASMA_VELESCENA
+		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
+			;reseteo el cambio de escena del fantasma
+			XOR			 A
+			LD			(heartbeat_fantasma), A
+			
 			;THEN cambia escena
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
 			XOR			00000001b

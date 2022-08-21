@@ -89,6 +89,13 @@ fin_mover_caballero:
 ;;CALCULA_CABALLERO_ESCENA
 ;;=====================================================	
 calcula_caballero_escena:
+		LD			 A, (heartbeat_caballero)
+		AND			CABALLERO_VELESCENA
+		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
+			;reseteo el cambio de escena del caballero
+			XOR			 A
+			LD			(heartbeat_caballero), A
+
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
 		OR			 A
 		JP			 Z, .direccion_derecha

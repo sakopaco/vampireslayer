@@ -121,8 +121,12 @@ fin_mover_jefefantasma:
 ;;=====================================================	
 calcula_jefefantasma_escena:
 		LD			 A, (heartbeat_jefefantasma)
-		OR			00010000b
-		RET			 Z
+		AND			JEFEFANTASMA_VELESCENA
+		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
+			;reseteo el cambio de escena del jefefantasma
+			XOR			 A
+			LD			(heartbeat_jefefantasma), A
+			
 			;THEN cambia escena
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
 			XOR			00000001b

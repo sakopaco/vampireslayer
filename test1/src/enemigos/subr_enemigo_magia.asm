@@ -22,7 +22,6 @@ datos_magia:
 			DB		MAGIA_SPRITE1B	;izq abajo
 			DB		MAGIA_SPRITE2B	;der_abajo
 
-
 array_magia_derecha_posx:
 			DB		64,67,70,72,75,78,80,83,85,88,91,94,96,99,102,104,107,110,112,115,118,120,123,126,128,131,134,136,139,142,144,147,150,152,155,158,160
 
@@ -108,8 +107,12 @@ fin_mover_magia:
 ;;=====================================================	
 calcula_magia_escena:
 		LD			 A, (heartbeat_magia)
-		OR			00010000b
-		RET			 Z
+		AND			MAGIA_VELESCENA
+		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
+			;reseteo el cambio de escena de la magia
+			XOR			 A
+			LD			(heartbeat_magia), A
+			
 			;THEN cambia escena
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
 			XOR			00000001b

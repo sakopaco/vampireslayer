@@ -91,8 +91,11 @@ fin_mover_lobo:
 ;;=====================================================	
 calcula_lobo_escena:
 		LD			 A, (heartbeat_lobo)
-		OR			00010000b
-		RET			 Z
+		AND			LOBO_VELESCENA
+		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
+			;reseteo el cambio de escena del lobo
+			XOR			 A
+			LD			(heartbeat_lobo), A
 			
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
 		OR			 A
