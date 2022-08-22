@@ -97,7 +97,7 @@ START:
 ;		CALL		terminada_habitacion_recorrida ;para cuando se maten todos los enemigos de la habitación
 
 		;incializacion de replayer con interrupciones
-		CALL		inicializa_replayer_efectos_interrupciones
+		;CALL		inicializa_replayer_efectos_interrupciones
 
 loop_principal:
 		HALT								;espera VBLANK y sincroniza
@@ -195,6 +195,12 @@ depack_VRAM:
 ;;CONTANTES DATOS SPRITES
 ;;=====================================================
 	include "datos/sprites.asm"
+
+
+;;=====================================================
+;;CONTANTES DATOS TEXTOS
+;;=====================================================
+	include "datos/textos.asm"
 	
 	
 ;;=====================================================
@@ -206,17 +212,12 @@ fin_inicializacion_variables:
 
 
 
-
 ;nota: el powerup de armadura dura n habitaciones
 ;nota: el powerup de disparo dura n habitaciones
 
 
 ;END: (FIN CÓDIGO)
 
-;~ datos_manoderecha:
-;~ datos_manoizquierda:
-;~ datos_conde:
 
 ;INICIO ZONA DATOS (BANCO DE MEMORIA 3)
-
 		DS	#C000 - $

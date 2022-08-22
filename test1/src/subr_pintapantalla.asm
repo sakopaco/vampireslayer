@@ -237,20 +237,34 @@ fin_pinta_parte_superior_pantalla:
 ; salida: -
 ; toca: si no son todos los regristros, casi todos
 pinta_parte_inferior_pantalla:
-	;cangando banco 3
-	;cargamos los patrones
-	LD		HL,tiles_patrones_marcador
-	LD		DE,CHRTBL + #1000
-	CALL	depack_VRAM	
-	;cargamos mapa de pantalla
-	LD		HL,tiles_mapa_marcador
-	LD		DE,TILMAP + #0200
-	CALL	depack_VRAM
-	;cargamos los colores de los patrones
-	LD		HL,tiles_color_marcador
-	LD		DE,CLRTBL + #1000
-	JP		depack_VRAM
+		;cangando banco 3
+		;cargamos los patrones
+		LD			HL,tiles_patrones_marcador
+		LD			DE,CHRTBL + #1000
+		CALL		depack_VRAM	
+		;cargamos mapa de pantalla
+		LD			HL,tiles_mapa_marcador
+		LD			DE,TILMAP + #0200
+		CALL		depack_VRAM
+		;cargamos los colores de los patrones
+		LD			HL,tiles_color_marcador
+		LD			DE,CLRTBL + #1000
+		CALL		depack_VRAM
+		;cargamos los textos de la parte inferior en el icioma que correspondan
+		LD			HL,texto_vidas					;guardo puntero al array a pintar (como psar por referencia)
+		LD			(wordaux2),HL					;en la variable wordaux2
+		LD			HL,TILMAP + 256 + 256 + 66			;calcula posición en tilemap
+		LD			(wordaux1),HL					;guarda valor pos tilemap en wordaux1
+		LD			B,H								;coloca posición tilemap BC
+		LD			C,L
+		LD			D,1								;nº de filas ahora byteaux1
+		LD			E,5								;nº de columnas ahora byteaux2
+		;~ CALL		pinta_array
+	
+	;***********************************************************
+	
 fin_pinta_parte_inferior_pantalla:
+		RET
 
 
 ;;=====================================================

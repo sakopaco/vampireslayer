@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.08.21 - 13:29:22]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.08.22 - 21:01:03]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -352,7 +352,7 @@ Errors: 0
       52.  00:C000  (00:00DE)           MURCIELAGO_LIMDER		equ		#00DE	;232
       53.  00:C000  (00:0018)           MURCIELAGO_HORIZON		equ		#0018	;24
       54.  00:C000  (00:00C0)           MURCIELAGO_PASOS  		equ		192
-      55.  00:C000  (00:0010)           MURCIELAGO_VELESCENA 	equ	00010000b
+      55.  00:C000  (00:0010)           MURCIELAGO_VELESCENA 	equ		00010000b
       56.  00:C000                      
       57.  00:C000                      ;;ETIQUETAS/CONSTANTES LOBO
       58.  00:C000  (00:0006)           TIPOLOBO				equ		6
