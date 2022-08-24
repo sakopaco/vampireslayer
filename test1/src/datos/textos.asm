@@ -1,6 +1,6 @@
 ;;textos que aparecen en pantalla
 
-IF	1=1
+IF	1=0
 ;textos en español
 texto_vidas:
 				DB	'V','I','D','A','S'
@@ -15,7 +15,7 @@ ELSE
 texto_vidas:
 				DB	'L','I','V','E','S'
 texto_energia:
-				DB	'E','N','E','R','G','Y'		
+				DB	'E','N','E','R','G','Y'
 texto_religuias:
 				DB	'R','E','L','I','C','S'
 texto_nivel:

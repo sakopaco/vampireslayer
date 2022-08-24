@@ -251,17 +251,13 @@ pinta_parte_inferior_pantalla:
 		LD			DE,CLRTBL + #1000
 		CALL		depack_VRAM
 		;cargamos los textos de la parte inferior en el icioma que correspondan
-		LD			HL,texto_vidas					;guardo puntero al array a pintar (como psar por referencia)
-		LD			(wordaux2),HL					;en la variable wordaux2
-		LD			HL,TILMAP + 256 + 256 + 66			;calcula posición en tilemap
-		LD			(wordaux1),HL					;guarda valor pos tilemap en wordaux1
-		LD			B,H								;coloca posición tilemap BC
-		LD			C,L
-		LD			D,1								;nº de filas ahora byteaux1
-		LD			E,5								;nº de columnas ahora byteaux2
-		;~ CALL		pinta_array
-	
-	;***********************************************************
+		LD			HL,texto_vidas		;guardo puntero al array a pintar (como psar por referencia)
+		LD			BC, 5				;nº posiciones a pintar
+		LD			DE, TILMAP + 577	;destino en vram
+		CALL		pintatextos
+		
+		
+	;************************************************************************************************************
 	
 fin_pinta_parte_inferior_pantalla:
 		RET
@@ -619,7 +615,7 @@ efecto_imagen_tira_reliquia:
 fin_efecto_imagen_tira_reliquia:
 
 
-;=====================================================
+;;=====================================================
 ;;PINTA_ARRAY
 ;;=====================================================	
 ;;funcion:  (pinta el mismo tile) se le pasa un array con posiciones de tiles y coordenadas x e y y los pinta en screen 2
@@ -661,7 +657,6 @@ pinta_array:
 	OR		1000000b		;+64
 	OUT		(REGEST),A
 
-	
 	LD		HL,(wordaux2)	;HL es lo que se pintará y le he pasado el puntero del array tilemap a pintar
 .pa_pinta_fila:
 	LD		 B,E
@@ -712,17 +707,36 @@ fin_pinta_array:
 ; salida: 	
 ; toca:		HL, IX
 inicializa_antorchas:
-	LD		IX, antorchas
-	LD		(IX), INACTIVA
-	LD		HL, array_antorcha
-	LD		(IX + 1), H
-	LD		(IX + 2), L
-	LD		(IX + 3), POSANTOR1
-	LD		(IX + 4), POSANTOR2
-	LD		(IX + 5), 0
-	LD		(IX + 6), RESETLLAMA
+		LD			IX, antorchas
+		LD			(IX), INACTIVA
+		LD			HL, array_antorcha
+		LD			(IX + 1), H
+		LD			(IX + 2), L
+		LD			(IX + 3), POSANTOR1
+		LD			(IX + 4), POSANTOR2
+		LD			(IX + 5), 0
+		LD			(IX + 6), RESETLLAMA
 fin_inicializa_antorchas:
-	RET
+		RET
+
+
+;;=====================================================
+;;PINTATEXTOS
+;;=====================================================	
+; función: 	pinta el texto pasado por un array siempre que los tiles están en cada caracter ascii
+;			otra condición es que los tiles del texto estén en el banco donde se vayan a dibujar
+; entrada: 	A, posición donde pintar, HL, puntero al array a pintar
+			;~ BC - Block length
+			;~ DE - Start address of VRAM
+			;~ HL - Start address of memory
+			;~ LD			HL,texto_vidas		;guardo puntero al array a pintar (como psar por referencia)
+			;~ LD			BC, 5				;nº posiciones a pintar
+			;~ LD			DE, TILMAP + 577	;destino en vram
+; salida: 	
+; toca:		
+pintatextos:
+		JP			LDIRVM
+fin_pintatextos:
 
 
 ;;=====================================================

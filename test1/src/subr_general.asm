@@ -17,6 +17,23 @@ suma_A_BC:
 		LD		 	 B, A
 fin_suma_A_BC:
 		RET
+		
+		
+;;=====================================================
+;;SUMA_A_DE
+;;=====================================================	
+; función: 	suma A a DE por si da más de 255
+; entrada: 	A, DE
+; salida: 	A + DE
+; toca:		A, DE
+suma_A_DE:
+		ADD		 	 E
+		LD			 E, A
+		ADC			 D
+		SUB			 E
+		LD		 	 D, A
+fin_suma_A_DE:
+		RET
 	
 	
 ;;=====================================================
