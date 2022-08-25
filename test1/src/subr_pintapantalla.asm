@@ -251,16 +251,11 @@ pinta_parte_inferior_pantalla:
 		LD			DE,CLRTBL + #1000
 		CALL		depack_VRAM
 		;cargamos los textos de la parte inferior en el icioma que correspondan
-		LD			HL,texto_vidas		;guardo puntero al array a pintar (como psar por referencia)
-		LD			BC, 5				;nº posiciones a pintar
-		LD			DE, TILMAP + 577	;destino en vram
-		CALL		pintatextos
-		
-		
-	;************************************************************************************************************
-	
+		JP pinta_texto_vida
+		JP pinta_texto_energia
+		JP pinta_texto_reliquias
+		JP pinta_texto_nivel
 fin_pinta_parte_inferior_pantalla:
-		RET
 
 
 ;;=====================================================
@@ -718,26 +713,7 @@ inicializa_antorchas:
 		LD			(IX + 6), RESETLLAMA
 fin_inicializa_antorchas:
 		RET
-
-
-;;=====================================================
-;;PINTATEXTOS
-;;=====================================================	
-; función: 	pinta el texto pasado por un array siempre que los tiles están en cada caracter ascii
-;			otra condición es que los tiles del texto estén en el banco donde se vayan a dibujar
-; entrada: 	A, posición donde pintar, HL, puntero al array a pintar
-			;~ BC - Block length
-			;~ DE - Start address of VRAM
-			;~ HL - Start address of memory
-			;~ LD			HL,texto_vidas		;guardo puntero al array a pintar (como psar por referencia)
-			;~ LD			BC, 5				;nº posiciones a pintar
-			;~ LD			DE, TILMAP + 577	;destino en vram
-; salida: 	
-; toca:		
-pintatextos:
-		JP			LDIRVM
-fin_pintatextos:
-
+		
 
 ;;=====================================================
 ;;INICIALIZA_esqueletos
