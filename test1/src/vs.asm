@@ -168,6 +168,8 @@ fin_inicializa_variables_pruebas:
 	
 	include "subr_ayudas.asm"
 	
+	include "subr_tiempo.asm"
+	
 	include "subr_teclado_joy.asm"
 	
 	include "enemigos/subr_enemigos.asm"

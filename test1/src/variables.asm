@@ -32,7 +32,10 @@ ultimo_pos_array_aux_energia:
 array_aux_mapa_limpiar:		DB		0,0,0,0,0,0,0	;es por facilitar el reseteo del mapa (pinto 7 lineas en negro con bios) la otra opción es más larga en código y complicada aunque más rápida
 elemento_pintar_mapa:		DB		0			;TILEPROTAM = 19, ;TILEGRISM = 9
 			
+
+;;=====================================================
 ;;DECORACION PAREDES
+;;=====================================================
 antorchas:					DS		ESTRUCTURA_ANTORCHA
 array_antorcha:				DB		197,198,199	;fuego + madera1 + madera2
 
@@ -42,7 +45,9 @@ lista_escenas_calavera:		DB		164, 165, 164, 166
 var_aux_calavera			DB		0			;flip_calavera_esqueletos
 
 
-;; parte de los enemigos
+;;=====================================================
+;;VARIABLES ENEMIGOS
+;;=====================================================
 ; para movmiento
 heartbeat_cienpies			DB		0;			;reloj central que moverá los enemigos (cienpies)
 heartbeat_serpiente			DB		0;			;reloj central que moverá los enemigos (serpiente)
@@ -57,6 +62,13 @@ heartbeat_fuego				DB		0;			;reloj central que moverá los enemigos (fuego)
 heartbeat_magia				DB		0;			;reloj central que moverá los enemigos (magia)
 heartbeat_general			DB		0;			;reloj central que moverá los enemigos (dracula, mano derecha, mano izquierda y jefes)
 
+enemigo1					DS	ESTRUCTURA_ENEMIGO
+enemigo2					DS	ESTRUCTURA_ENEMIGO
+enemigo3					DS	ESTRUCTURA_ENEMIGO
+enemigo4					DS	ESTRUCTURA_ENEMIGO
+enemigo5					DS	ESTRUCTURA_ENEMIGO
+enemigo6					DS	ESTRUCTURA_ENEMIGO
+enemigo7					DS	ESTRUCTURA_ENEMIGO
 
 ;;SPRITES GENERAL (PROTA +  ENEMIGOS)
 ;array de 4 bytes x 32 sprites posibles en pantalla que sobreescribirá la tabla de sprites actualizando VRAM
@@ -120,14 +132,11 @@ puntomira:					DS		ESTRUCTURA_PUNTOMIRA
 
 
 ;;=====================================================
-;;VARIABLES ENEMIGOS
+;;VARIABLES TIEMPO
 ;;=====================================================
-enemigo1					DS	ESTRUCTURA_ENEMIGO
-enemigo2					DS	ESTRUCTURA_ENEMIGO
-enemigo3					DS	ESTRUCTURA_ENEMIGO
-enemigo4					DS	ESTRUCTURA_ENEMIGO
-enemigo5					DS	ESTRUCTURA_ENEMIGO
-enemigo6					DS	ESTRUCTURA_ENEMIGO
-enemigo7					DS	ESTRUCTURA_ENEMIGO
+tiempo:
+minutos:					DB	0
+segundos:					DB	0
+contador:					DB	0
 
 
