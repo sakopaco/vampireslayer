@@ -2,7 +2,7 @@
 ;;CONTANTES TEXTOS
 ;;=====================================================
 
-IF	1=1	; 1=1 versión en español y 1=0 verión en inglés
+IF	1=0	; 1=1 versión en español y 1=0 verión en inglés
 ;textos en español
 texto_vidas:
 				DB	'V','I','D','A','S'
@@ -63,7 +63,7 @@ fin_pinta_texto_reliquias:
 pinta_texto_nivel:
 		LD			HL,texto_nivel		;guardo puntero al array a pintar (como psar por referencia)
 		LD			BC, 5				;nº posiciones a pintar
-		LD			DE, TILMAP + 577;627	;destino en vram
+		LD			DE, TILMAP + 626	;destino en vram
 		JP			LDIRVM
 fin_pinta_texto_nivel:
 

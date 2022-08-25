@@ -251,10 +251,10 @@ pinta_parte_inferior_pantalla:
 		LD			DE,CLRTBL + #1000
 		CALL		depack_VRAM
 		;cargamos los textos de la parte inferior en el icioma que correspondan
-		JP pinta_texto_vida
-		JP pinta_texto_energia
-		JP pinta_texto_reliquias
-		JP pinta_texto_nivel
+		CALL 		pinta_texto_vida
+		CALL 		pinta_texto_energia
+		CALL		pinta_texto_reliquias
+		JP 			pinta_texto_nivel
 fin_pinta_parte_inferior_pantalla:
 
 

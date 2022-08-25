@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.08.25 - 14:03:25]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.08.25 - 14:09:20]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/vs.asm
 Errors: 0
@@ -1708,10 +1708,10 @@ Errors: 0
      251.  00:447F  11 00 30            		LD			DE,CLRTBL + #1000
      252.  00:4482  CD 44 80            		CALL		depack_VRAM
      253.  00:4485                      		;cargamos los textos de la parte inferior en el icioma que correspondan
-     254.  00:4485  C3 26 A8            		JP pinta_texto_vida
-     255.  00:4488  C3 32 A8            		JP pinta_texto_energia
-     256.  00:448B  C3 3E A8            		JP pinta_texto_reliquias
-     257.  00:448E  C3 4A A8            		JP pinta_texto_nivel
+     254.  00:4485  CD 26 A8            		CALL 		pinta_texto_vida
+     255.  00:4488  CD 32 A8            		CALL 		pinta_texto_energia
+     256.  00:448B  CD 3E A8            		CALL		pinta_texto_reliquias
+     257.  00:448E  C3 4A A8            		JP 			pinta_texto_nivel
      258.  00:4491                      fin_pinta_parte_inferior_pantalla:
      259.  00:4491                      
      260.  00:4491                      
@@ -12815,27 +12815,27 @@ Errors: 0
        2.  00:A810                      ;;CONTANTES TEXTOS
        3.  00:A810                      ;;=====================================================
        4.  00:A810                      
-       5.  00:A810                      IF	1=1	; 1=1 versión en español y 1=0 verión en inglés
-       6.  00:A810                      ;textos en español
-       7.  00:A810                      texto_vidas:
-       8.  00:A810  56 49 44 41 53      				DB	'V','I','D','A','S'
-       9.  00:A815                      texto_energia:
-      10.  00:A815  45 4E 45 52 47 2E   				DB	'E','N','E','R','G','.'
-      11.  00:A81B                      texto_religuias:
-      12.  00:A81B  52 45 4C 49 51 2E   				DB	'R','E','L','I','Q','.'
-      13.  00:A821                      texto_nivel:
-      14.  00:A821  4E 49 56 45 4C      				DB	'N','I','V','E','L'
-      15.  00:A826                      ELSE		
-      16.  00:A826                    ~ ;textos en inglés
-      17.  00:A826                    ~ texto_vidas:
-      18.  00:A826                    ~ 				DB	'L','I','V','E','S'
-      19.  00:A826                    ~ texto_energia:
-      20.  00:A826                    ~ 				DB	'E','N','E','R','G','Y'
-      21.  00:A826                    ~ texto_religuias:
-      22.  00:A826                    ~ 				DB	'R','E','L','I','C','S'
-      23.  00:A826                    ~ texto_nivel:
-      24.  00:A826                    ~ 				DB	'L','E','V','E','L'
-      25.  00:A826                    ~ ENDIF
+       5.  00:A810                      IF	1=0	; 1=1 versión en español y 1=0 verión en inglés
+       6.  00:A810                    ~ ;textos en español
+       7.  00:A810                    ~ texto_vidas:
+       8.  00:A810                    ~ 				DB	'V','I','D','A','S'
+       9.  00:A810                    ~ texto_energia:
+      10.  00:A810                    ~ 				DB	'E','N','E','R','G','.'
+      11.  00:A810                    ~ texto_religuias:
+      12.  00:A810                    ~ 				DB	'R','E','L','I','Q','.'
+      13.  00:A810                    ~ texto_nivel:
+      14.  00:A810                    ~ 				DB	'N','I','V','E','L'
+      15.  00:A810                    ~ ELSE		
+      16.  00:A810                      ;textos en inglés
+      17.  00:A810                      texto_vidas:
+      18.  00:A810  4C 49 56 45 53      				DB	'L','I','V','E','S'
+      19.  00:A815                      texto_energia:
+      20.  00:A815  45 4E 45 52 47 59   				DB	'E','N','E','R','G','Y'
+      21.  00:A81B                      texto_religuias:
+      22.  00:A81B  52 45 4C 49 43 53   				DB	'R','E','L','I','C','S'
+      23.  00:A821                      texto_nivel:
+      24.  00:A821  4C 45 56 45 4C      				DB	'L','E','V','E','L'
+      25.  00:A826                      ENDIF
       26.  00:A826                      
       27.  00:A826                      
       28.  00:A826                      ;;=====================================================
@@ -12876,7 +12876,7 @@ Errors: 0
       63.  00:A84A                      pinta_texto_nivel:
       64.  00:A84A  21 21 A8            		LD			HL,texto_nivel		;guardo puntero al array a pintar (como psar por referencia)
       65.  00:A84D  01 05 00            		LD			BC, 5				;nº posiciones a pintar
-      66.  00:A850  11 41 1A            		LD			DE, TILMAP + 577;627	;destino en vram
+      66.  00:A850  11 72 1A            		LD			DE, TILMAP + 626	;destino en vram
       67.  00:A853  C3 5C 00            		JP			LDIRVM
       68.  00:A856                      fin_pinta_texto_nivel:
       69.  00:A856                      
