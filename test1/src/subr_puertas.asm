@@ -124,11 +124,7 @@ array_escalera:
 ; entrada: 	*********************datos_delasdistintasayudas, variable estructura_ayuda_ayudaquesea
 ; salida: 	lista_ayudas
 ; toca:		-
-inicializa_puertas:
-	PUSH	HL
-	PUSH	BC
-	PUSH	DE
-	
+inicializa_puertas:	
 	;inicializa puerta escalera
 	LD		HL, datos_puerta_escalera	;origen
 	LD		DE, puerta_escalera			;destino
@@ -152,13 +148,8 @@ inicializa_puertas:
 	;inicializa puerta izquierda
 	LD		HL, datos_puerta_izquierda	;origen
 	LD		DE, puerta_izquierda		;destino
-	CALL	carga_datos_puerta
-	
-	POP		DE
-	POP		BC
-	POP		HL
+	JP		carga_datos_puerta
 fin_inicializa_puertas:
-	RET
 
 
 ;;=====================================================
@@ -191,8 +182,12 @@ accion_puerta_arriba:
 		CP		 	 	 7
 		JP				NZ, .no_cambia_nivel
 .si_cambia_nivel:	
-	
-	;aquí hay que poner texto de cambio de nivel  ;***************************************************************
+
+
+		CALL			cambio_nivel_entrefases ;***********************************************
+
+		
+
 
 		;reseteo fila
 		XOR		 		 A
