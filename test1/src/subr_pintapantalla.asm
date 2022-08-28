@@ -978,18 +978,26 @@ fin_actualiza_escena_calavera:
 ;;=====================================================	
 ; función: 	pone un texto cada vex que se sube o baja de nivel en el castillo
 cambio_nivel_entrefases:
+
+			;Ocultamos todos los sprites *********************************************************
+
 			;cargamos mapa de pantalla banco 1 y 2
 			LD				HL, tiles_mapa_entrefases
 			LD				DE, TILMAP
 			CALL			depack_VRAM
 			
+			CALL			pinta_texto_entrefases
+			
+			
+			
 			XOR				 A
 			LD				(segundos), A
 			LD				(contador), A
 loop_cambionivel:
+			HALT
 			CALL			actualiza_contadores_tiempo
 			LD				 A, (segundos)
-			CP				8  ;*********************** poner como constante
+			CP				20
 			JP				NZ, loop_cambionivel			
 fin_cabio_nivel_entrefases:
 			RET

@@ -182,12 +182,8 @@ accion_puerta_arriba:
 		CP		 	 	 7
 		JP				NZ, .no_cambia_nivel
 .si_cambia_nivel:	
-
-
-		CALL			cambio_nivel_entrefases ;***********************************************
-
-		
-
+		;se da un descanso entre niveles
+		CALL			cambio_nivel_entrefases 
 
 		;reseteo fila
 		XOR		 		 A
@@ -242,7 +238,8 @@ accion_puerta_abajo:
 		CP				-1
 		JR				NZ, .no_cambia_nivel
 .si_cambia_nivel:	
-		;aquí hay que poner texto de cambio de nivel  ;***************************************************************
+		;se da un descanso entre niveles
+		CALL			cambio_nivel_entrefases 
 
 		;reseteo fila
 		LD			 	 A, 6

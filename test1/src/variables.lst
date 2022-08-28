@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.08.28 - 10:03:07]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.08.28 - 19:33:59]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -18,285 +18,288 @@ Errors: 0
        3.  00:C000                      ;;=====================================================
        4.  00:C000                      
        5.  00:C000                      ;;ETIQUETAS/CONSTANTES BIOS TECLADO
-       6.  00:C000  (00:00D8)           GTTRIG		equ		#00D8	;Returns current trigger status
-       7.  00:C000  (00:00D5)           GTSTCK		equ		#00D5	;Returns the joystick/cursors status
-       8.  00:C000  (00:F3DB)           CLIKSW		equ		#F3DB	;deshabilita el sonido de clic cuando se pulsa una tecla
+       6.  00:C000  (00:00D8)           GTTRIG				equ		#00D8	;Returns current trigger status
+       7.  00:C000  (00:00D5)           GTSTCK				equ		#00D5	;Returns the joystick/cursors status
+       8.  00:C000  (00:F3DB)           CLIKSW				equ		#F3DB	;deshabilita el sonido de clic cuando se pulsa una tecla
        9.  00:C000                      
       10.  00:C000                      ;;ETIQUETAS/CONSTANTES BIOS VDP
-      11.  00:C000  (00:013E)           RDVDP		equ		#013E	;lee registro status VDP
-      12.  00:C000  (00:0047)           WRTVDP		equ		#0047	;escribe registros del VDP
-      13.  00:C000  (00:005C)           LDIRVM		equ		#005C	;RAM/ROM -> VRAM
-      14.  00:C000  (00:0059)           LDIRMV		equ		#0059	;VRAM -> RAM
-      15.  00:C000  (00:005F)           CHGMOD		equ		#005F	;cambia modo pantalla (screen mode)
-      16.  00:C000  (00:0041)           DISSCR  	equ		#0041	;desactiva pantanlla
-      17.  00:C000  (00:0044)           ENASCR  	equ		#0044	;activa pantalla
-      18.  00:C000  (00:0062)           CHGCLR  	equ		#0062	;cambia color de pantalla (toca A y direcciones)
-      19.  00:C000  (00:F3E9)           FORCLR		equ		#F3E9	;zona memoria color foreground
-      20.  00:C000  (00:F3EA)           BAKCLR  	equ		#F3EA	;zona memoria color background
-      21.  00:C000  (00:F3EB)           BDRCLR 		equ		#F3EB	;zona memoria bordercolor
-      22.  00:C000  (00:00C3)           CLS			equ		#00C3	;limpia pantalla (necesita A=0)
+      11.  00:C000  (00:013E)           RDVDP				equ		#013E	;lee registro status VDP
+      12.  00:C000  (00:0047)           WRTVDP				equ		#0047	;escribe registros del VDP
+      13.  00:C000  (00:005C)           LDIRVM				equ		#005C	;RAM/ROM -> VRAM
+      14.  00:C000  (00:0059)           LDIRMV				equ		#0059	;VRAM -> RAM
+      15.  00:C000  (00:005F)           CHGMOD				equ		#005F	;cambia modo pantalla (screen mode)
+      16.  00:C000  (00:0041)           DISSCR  			equ		#0041	;desactiva pantanlla
+      17.  00:C000  (00:0044)           ENASCR  			equ		#0044	;activa pantalla
+      18.  00:C000  (00:0062)           CHGCLR  			equ		#0062	;cambia color de pantalla (toca A y direcciones)
+      19.  00:C000  (00:F3E9)           FORCLR				equ		#F3E9	;zona memoria color foreground
+      20.  00:C000  (00:F3EA)           BAKCLR  			equ		#F3EA	;zona memoria color background
+      21.  00:C000  (00:F3EB)           BDRCLR 				equ		#F3EB	;zona memoria bordercolor
+      22.  00:C000  (00:00C3)           CLS					equ		#00C3	;limpia pantalla (necesita A=0)
       23.  00:C000                      
-      24.  00:C000  (00:00D1)           BORRASPRITE    equ	#00D1	;si se pone en la Y de un sprite hace que desaparezca de pantalla
-      25.  00:C000  (00:00D0)           BORRASPRITESIG equ	#00D0	;si se pone en la Y de un sprite hace que desaparezca de pantalla y los de los planos siguientes
+      24.  00:C000  (00:00D1)           BORRASPRITE    		equ		#00D1	;si se pone en la Y de un sprite hace que desaparezca de pantalla
+      25.  00:C000  (00:00D0)           BORRASPRITESIG 		equ		#00D0	;si se pone en la Y de un sprite hace que desaparezca de pantalla y los de los planos siguientes
       26.  00:C000                      
       27.  00:C000                      ;;ETIQUETAS/CONSTANTES REGISTROS VDP
-      28.  00:C000  (00:F3DF)           RG0SAV		equ		#F3DF	;Mirror of VDP register 0 (Basic: VDP(0))
-      29.  00:C000  (00:F3E0)           RG1SAV		equ		#F3E0	;Mirror of VDP register 1 (Basic: VDP(1))
-      30.  00:C000  (00:F3E1)           RG2SAV		equ		#F3E1	;Mirror of VDP register 2 (Basic: VDP(2))
-      31.  00:C000  (00:F3E2)           RG3SAV		equ		#F3E2	;Mirror of VDP register 3 (Basic: VDP(3))
-      32.  00:C000  (00:F3E3)           RG4SAV		equ		#F3E3	;Mirror of VDP register 4 (Basic: VDP(4))
-      33.  00:C000  (00:F3E4)           RG5SAV		equ		#F3E4	;Mirror of VDP register 5 (Basic: VDP(5))
-      34.  00:C000  (00:F3E5)           RG6SAV		equ		#F3E5	;Mirror of VDP register 6 (Basic: VDP(6))
-      35.  00:C000  (00:F3E6)           RG7SAV		equ		#F3E6	;Mirror of VDP register 7 (Basic: VDP(7))
-      36.  00:C000  (00:F3E7)           STATFL		equ		#F3E7	;Mirror of VDP(8) status register (S#0)
+      28.  00:C000  (00:F3DF)           RG0SAV				equ		#F3DF	;Mirror of VDP register 0 (Basic: VDP(0))
+      29.  00:C000  (00:F3E0)           RG1SAV				equ		#F3E0	;Mirror of VDP register 1 (Basic: VDP(1))
+      30.  00:C000  (00:F3E1)           RG2SAV				equ		#F3E1	;Mirror of VDP register 2 (Basic: VDP(2))
+      31.  00:C000  (00:F3E2)           RG3SAV				equ		#F3E2	;Mirror of VDP register 3 (Basic: VDP(3))
+      32.  00:C000  (00:F3E3)           RG4SAV				equ		#F3E3	;Mirror of VDP register 4 (Basic: VDP(4))
+      33.  00:C000  (00:F3E4)           RG5SAV				equ		#F3E4	;Mirror of VDP register 5 (Basic: VDP(5))
+      34.  00:C000  (00:F3E5)           RG6SAV				equ		#F3E5	;Mirror of VDP register 6 (Basic: VDP(6))
+      35.  00:C000  (00:F3E6)           RG7SAV				equ		#F3E6	;Mirror of VDP register 7 (Basic: VDP(7))
+      36.  00:C000  (00:F3E7)           STATFL				equ		#F3E7	;Mirror of VDP(8) status register (S#0)
       37.  00:C000                      
-      38.  00:C000  (00:0099)           REGEST		equ		#0099	;registro de estado para escribir directamente en VRAM
-      39.  00:C000  (00:0098)           REGESCVDP	equ		#0098	;registro donde escribir valor para VRAM
+      38.  00:C000  (00:0099)           REGEST				equ		#0099	;registro de estado para escribir directamente en VRAM
+      39.  00:C000  (00:0098)           REGESCVDP			equ		#0098	;registro donde escribir valor para VRAM
       40.  00:C000                      
       41.  00:C000                      ;;ETIQUETAS/CONSTANTES REGISTROS PSG (PARA JOYSTICK)
-      42.  00:C000  (00:00A0)           PSG_A  equ  0a0h  ;reg address
-      43.  00:C000  (00:00A1)           PSG_W  equ  0a1h  ;reg data WR
-      44.  00:C000  (00:00A2)           PSG_R  equ  0a2h  ;reg data
+      42.  00:C000  (00:00A0)           PSG_A  				equ  	0a0h  ;reg address
+      43.  00:C000  (00:00A1)           PSG_W  				equ  	0a1h  ;reg data WR
+      44.  00:C000  (00:00A2)           PSG_R  				equ  	0a2h  ;reg data
       45.  00:C000                      
       46.  00:C000                      
       47.  00:C000                      ;;ETIQUETAS DE ZONAS DE MEMORIA DE LA VPD (MSX1)
-      48.  00:C000  (00:0000)           CHRTBL		equ		#0000
-      49.  00:C000  (00:1800)           TILMAP		equ		#1800
-      50.  00:C000  (00:1B00)           SPRART		equ		#1B00
-      51.  00:C000  (00:2000)           CLRTBL		equ		#2000
-      52.  00:C000  (00:3800)           SPRTBL		equ		#3800
+      48.  00:C000  (00:0000)           CHRTBL				equ		#0000
+      49.  00:C000  (00:1800)           TILMAP				equ		#1800
+      50.  00:C000  (00:1B00)           SPRART				equ		#1B00
+      51.  00:C000  (00:2000)           CLRTBL				equ		#2000
+      52.  00:C000  (00:3800)           SPRTBL				equ		#3800
       53.  00:C000                      
       54.  00:C000                      
       55.  00:C000                      ;;ETIQUETAS ESTANDAR PARA DAR MÁS CLARIDAD AL CODIGO
-      56.  00:C000  (00:0001)           SI			equ		1
-      57.  00:C000  (00:0000)           NO			equ		0
+      56.  00:C000  (00:0001)           SI					equ		1
+      57.  00:C000  (00:0000)           NO					equ		0
       58.  00:C000                      
       59.  00:C000                      ;;PALETA DE COLORES DEL MSX
-      60.  00:C000  (00:0000)           COLTRASP	equ		0
-      61.  00:C000  (00:0001)           COLNEGRO	equ		1
-      62.  00:C000  (00:0002)           COLVERDE	equ		2
-      63.  00:C000  (00:0003)           COLVERCLA	equ		3
-      64.  00:C000  (00:0004)           COLAZULOSC	equ		4
-      65.  00:C000  (00:0005)           COLAZULLA	equ		5
-      66.  00:C000  (00:0006)           COLROJOOSC	equ		6
-      67.  00:C000  (00:0007)           COLCYAN		equ		7
-      68.  00:C000  (00:0008)           COLROJO		equ		8
-      69.  00:C000  (00:0009)           COLROJOCLA	equ		9
-      70.  00:C000  (00:000A)           COLAMAROSC	equ		10
-      71.  00:C000  (00:000B)           COLAMARCLA	equ		11
-      72.  00:C000  (00:000C)           COLVERDOSC	equ		12
-      73.  00:C000  (00:000D)           COLMAGENTA	equ		13
-      74.  00:C000  (00:000E)           COLGRIS		equ		14
-      75.  00:C000  (00:000F)           COLBLANCO	equ		15
+      60.  00:C000  (00:0000)           COLTRASP			equ		0
+      61.  00:C000  (00:0001)           COLNEGRO			equ		1
+      62.  00:C000  (00:0002)           COLVERDE			equ		2
+      63.  00:C000  (00:0003)           COLVERCLA			equ		3
+      64.  00:C000  (00:0004)           COLAZULOSC			equ		4
+      65.  00:C000  (00:0005)           COLAZULLA			equ		5
+      66.  00:C000  (00:0006)           COLROJOOSC			equ		6
+      67.  00:C000  (00:0007)           COLCYAN				equ		7
+      68.  00:C000  (00:0008)           COLROJO				equ		8
+      69.  00:C000  (00:0009)           COLROJOCLA			equ		9
+      70.  00:C000  (00:000A)           COLAMAROSC			equ		10
+      71.  00:C000  (00:000B)           COLAMARCLA			equ		11
+      72.  00:C000  (00:000C)           COLVERDOSC			equ		12
+      73.  00:C000  (00:000D)           COLMAGENTA			equ		13
+      74.  00:C000  (00:000E)           COLGRIS				equ		14
+      75.  00:C000  (00:000F)           COLBLANCO			equ		15
       76.  00:C000                      
       77.  00:C000                      
       78.  00:C000                      ;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (relacionadas con posiciones en mapa vdp)
-      79.  00:C000  (00:02F8)           POSMAPLIN1  equ		#02F8
-      80.  00:C000  (00:02D8)           POSMAPLIN2  equ		#02D8
-      81.  00:C000  (00:02B8)           POSMAPLIN3  equ		#02B8
-      82.  00:C000  (00:0298)           POSMAPLIN4  equ		#0298
-      83.  00:C000  (00:0278)           POSMAPLIN5  equ		#0278
-      84.  00:C000  (00:0258)           POSMAPLIN6  equ		#0258
-      85.  00:C000  (00:0238)           POSMAPLIN7  equ		#0238
+      79.  00:C000  (00:02F8)           POSMAPLIN1  		equ		#02F8
+      80.  00:C000  (00:02D8)           POSMAPLIN2  		equ		#02D8
+      81.  00:C000  (00:02B8)           POSMAPLIN3  		equ		#02B8
+      82.  00:C000  (00:0298)           POSMAPLIN4  		equ		#0298
+      83.  00:C000  (00:0278)           POSMAPLIN5  		equ		#0278
+      84.  00:C000  (00:0258)           POSMAPLIN6  		equ		#0258
+      85.  00:C000  (00:0238)           POSMAPLIN7  		equ		#0238
       86.  00:C000                      
-      87.  00:C000  (00:000D)           POSCARAMAP	equ		#000D
-      88.  00:C000  (00:0248)           POSVIDAS	equ		#0248
-      89.  00:C000  (00:0011)           POSRELIMAP	equ		#0011
-      90.  00:C000  (00:02C8)           POSRELIQ	equ		#02C8
-      91.  00:C000  (00:0288)           POSENERG	equ		#0288
-      92.  00:C000  (00:02B4)           POSNIVEL	equ		#02B4
-      93.  00:C000  (00:0238)           POSMAPA		equ 	#0238
+      87.  00:C000  (00:000D)           POSCARAMAP			equ		#000D
+      88.  00:C000  (00:0248)           POSVIDAS			equ		#0248
+      89.  00:C000  (00:0011)           POSRELIMAP			equ		#0011
+      90.  00:C000  (00:02C8)           POSRELIQ			equ		#02C8
+      91.  00:C000  (00:0288)           POSENERG			equ		#0288
+      92.  00:C000  (00:02B4)           POSNIVEL			equ		#02B4
+      93.  00:C000  (00:0238)           POSMAPA				equ 	#0238
       94.  00:C000                      
-      95.  00:C000  (00:01EE)           POSPUERABAJ equ		#01EE
-      96.  00:C000  (00:008E)           POSPUERARRI equ		#008E
-      97.  00:C000  (00:00FC)           POSPUERDERE equ		#00FC
-      98.  00:C000  (00:00E1)           POSPUERIZQU equ		#00E1
-      99.  00:C000  (00:006C)           POSESCALERA equ		#006C	;32 x 3 + columna
+      95.  00:C000  (00:01EE)           POSPUERABAJ 		equ		#01EE
+      96.  00:C000  (00:008E)           POSPUERARRI 		equ		#008E
+      97.  00:C000  (00:00FC)           POSPUERDERE 		equ		#00FC
+      98.  00:C000  (00:00E1)           POSPUERIZQU 		equ		#00E1
+      99.  00:C000  (00:006C)           POSESCALERA 		equ		#006C	;32 x 3 + columna
      100.  00:C000                      
      101.  00:C000                      ;;POSICIONES DE LAS AYUDAS EN PANTALLA BANCO 1
-     102.  00:C000  (00:0146)           POSORACION	 equ	#0146;326	;256 + 70
-     103.  00:C000  (00:01A3)           POSCRUZ		 equ	#01A3;419	;256 + 93
-     104.  00:C000  (00:016A)           POSAGUA		 equ	#016A;362
-     105.  00:C000  (00:01AB)           POSARMADURA	 equ	#01AB;427
-     106.  00:C000  (00:0172)           POSPLANTA	 equ	#0172;370
-     107.  00:C000  (00:01B6)           POSVIDAEXT	 equ	#01B6;438 
-     108.  00:C000  (00:0158)           POSBALLESTA	 equ	#0158;344
+     102.  00:C000  (00:0146)           POSORACION	 		equ		#0146;326	;256 + 70
+     103.  00:C000  (00:01A3)           POSCRUZ		 		equ		#01A3;419	;256 + 93
+     104.  00:C000  (00:016A)           POSAGUA		 		equ		#016A;362
+     105.  00:C000  (00:01AB)           POSARMADURA	 		equ		#01AB;427
+     106.  00:C000  (00:0172)           POSPLANTA	 		equ		#0172;370
+     107.  00:C000  (00:01B6)           POSVIDAEXT	 		equ		#01B6;438 
+     108.  00:C000  (00:0158)           POSBALLESTA	 		equ		#0158;344
      109.  00:C000                      
      110.  00:C000                      ;;POSICIONES X E Y PARA DETERMINAR IMPACTOS
-     111.  00:C000  (00:0038)           POSORACIONX	 equ	#38;56
-     112.  00:C000  (00:0058)           POSORACIONY	 equ	#58;88
-     113.  00:C000  (00:0020)           POSCRUZX	 equ	#20;32
-     114.  00:C000  (00:0070)           POSCRUZY	 equ	#70;112
-     115.  00:C000  (00:0058)           POSAGUAX	 equ	#58;88
-     116.  00:C000  (00:0060)           POSAGUAY	 equ	#60;96
-     117.  00:C000  (00:0060)           POSARMADURAX equ	#60;96
-     118.  00:C000  (00:0070)           POSARMADURAY equ	#70;112
-     119.  00:C000  (00:0090)           POSPLANTAX	 equ	#90;144
-     120.  00:C000  (00:0060)           POSPLANTAY	 equ	#60;96
-     121.  00:C000  (00:00B8)           POSVIDAEXTX	 equ	#B8;184
-     122.  00:C000  (00:0070)           POSVIDAEXTY	 equ	#70;112
-     123.  00:C000  (00:00C8)           POSBALLESTAX equ	#C8;200
-     124.  00:C000  (00:0058)           POSBALLESTAY equ	#58;88
+     111.  00:C000  (00:0038)           POSORACIONX	 		equ		#38;56
+     112.  00:C000  (00:0058)           POSORACIONY	 		equ		#58;88
+     113.  00:C000  (00:0020)           POSCRUZX	 		equ		#20;32
+     114.  00:C000  (00:0070)           POSCRUZY	 		equ		#70;112
+     115.  00:C000  (00:0058)           POSAGUAX	 		equ		#58;88
+     116.  00:C000  (00:0060)           POSAGUAY	 		equ		#60;96
+     117.  00:C000  (00:0060)           POSARMADURAX 		equ		#60;96
+     118.  00:C000  (00:0070)           POSARMADURAY 		equ		#70;112
+     119.  00:C000  (00:0090)           POSPLANTAX	 		equ		#90;144
+     120.  00:C000  (00:0060)           POSPLANTAY	 		equ		#60;96
+     121.  00:C000  (00:00B8)           POSVIDAEXTX	 		equ		#B8;184
+     122.  00:C000  (00:0070)           POSVIDAEXTY	 		equ		#70;112
+     123.  00:C000  (00:00C8)           POSBALLESTAX 		equ		#C8;200
+     124.  00:C000  (00:0058)           POSBALLESTAY 		equ		#58;88
      125.  00:C000                      
      126.  00:C000                      ;; TAMAÑO AYUDAS
-     127.  00:C000  (00:0002)           ALTOAYUDA	equ		#02
-     128.  00:C000  (00:0002)           ANCHOAYUDA	equ		#02
+     127.  00:C000  (00:0002)           ALTOAYUDA			equ		#02
+     128.  00:C000  (00:0002)           ANCHOAYUDA			equ		#02
      129.  00:C000                      
      130.  00:C000                      ;; RADIOS DE DISPARO
-     131.  00:C000  (00:0008)           RADIOAYUDAX equ		#08
-     132.  00:C000  (00:0008)           RADIOAYUDAY equ		#08
+     131.  00:C000  (00:0008)           RADIOAYUDAX 		equ		#08
+     132.  00:C000  (00:0008)           RADIOAYUDAY 		equ		#08
      133.  00:C000                      
      134.  00:C000                      ;;POSICIÓN INICIAL DEL SPRITE DEL PUNTO DE MIRA
-     135.  00:C000  (00:0078)           POSXPM		equ		120
-     136.  00:C000  (00:006C)           POSYPM		equ		108
+     135.  00:C000  (00:0078)           POSXPM				equ		120
+     136.  00:C000  (00:006C)           POSYPM				equ		108
      137.  00:C000                      
      138.  00:C000                      ;;ESTADO HABITACION
-     139.  00:C000  (00:0001)           ISHABTERMIN	equ		1 	;0 sería no terminada
+     139.  00:C000  (00:0001)           ISHABTERMIN			equ		1 	;0 sería no terminada
      140.  00:C000                      
      141.  00:C000                      ;;ETIQUETAS PARA PUNTO DE MIRA
-     142.  00:C000  (00:0004)           LIMCADENCIA equ		4	;nº de veces que se ejecutará el disparo antes de ejecutar un disparo real (porque cuando se pulsa la tecl dispara 3 ó 4 veces de rápido que va)
-     143.  00:C000  (00:0002)           DANO1		equ		2	;daño por defecto del punto de mira
-     144.  00:C000  (00:0005)           DANO2		equ		5	;daño mejorado del punto de mira
-     145.  00:C000  (00:0000)           SPRI_DANO1A equ		0	;posiciones de los sprites en memoria (va de 4 en 4 al tratarse de sprites de 16 x 16)
-     146.  00:C000  (00:0004)           SPRI_DANO1B equ		4
-     147.  00:C000  (00:0008)           SPRI_DANO2A equ		8
-     148.  00:C000  (00:000C)           SPRI_DANO2B equ		12
+     142.  00:C000  (00:0004)           LIMCADENCIA 		equ		4	;nº de veces que se ejecutará el disparo antes de ejecutar un disparo real (porque cuando se pulsa la tecl dispara 3 ó 4 veces de rápido que va)
+     143.  00:C000  (00:0002)           DANO1				equ		2	;daño por defecto del punto de mira
+     144.  00:C000  (00:0005)           DANO2				equ		5	;daño mejorado del punto de mira
+     145.  00:C000  (00:0000)           SPRI_DANO1A 		equ		0	;posiciones de los sprites en memoria (va de 4 en 4 al tratarse de sprites de 16 x 16)
+     146.  00:C000  (00:0004)           SPRI_DANO1B 		equ		4
+     147.  00:C000  (00:0008)           SPRI_DANO2A 		equ		8
+     148.  00:C000  (00:000C)           SPRI_DANO2B 		equ		12
      149.  00:C000                      
      150.  00:C000                      ;;POSICIONES DE LAS ANTORCHAS
-     151.  00:C000  (00:0088)           POSANTOR1	equ		136
-     152.  00:C000  (00:0097)           POSANTOR2	equ		151
-     153.  00:C000  (00:00C4)           MAPLLAMA1	equ		196
-     154.  00:C000  (00:00C5)           MAPLLAMA2	equ		197
-     155.  00:C000  (00:00FF)           RESETLLAMA	equ		255
+     151.  00:C000  (00:0088)           POSANTOR1			equ		136
+     152.  00:C000  (00:0097)           POSANTOR2			equ		151
+     153.  00:C000  (00:00C4)           MAPLLAMA1			equ		196
+     154.  00:C000  (00:00C5)           MAPLLAMA2			equ		197
+     155.  00:C000  (00:00FF)           RESETLLAMA			equ		255
      156.  00:C000                      
      157.  00:C000                      ;;POSICIONES DE LOS ESQUELETOS
-     158.  00:C000  (00:0088)           POSESQUEL1	equ		136
-     159.  00:C000  (00:0095)           POSESQUEL2	equ		149
-     160.  00:C000  (00:00A9)           POSCALAVE1	equ		169
-     161.  00:C000  (00:00B6)           POSCALAVE2	equ		182
-     162.  00:C000  (00:0019)           RESETESQUEL	equ		25
-     163.  00:C000  (00:0004)           RESETESCENAESQUEL 	equ	4	;hay 4 caras con las que el esqueleto cambia (se ha metido el 0 para facilitar código)
+     158.  00:C000  (00:0088)           POSESQUEL1			equ		136
+     159.  00:C000  (00:0095)           POSESQUEL2			equ		149
+     160.  00:C000  (00:00A9)           POSCALAVE1			equ		169
+     161.  00:C000  (00:00B6)           POSCALAVE2			equ		182
+     162.  00:C000  (00:0019)           RESETESQUEL			equ		25
+     163.  00:C000  (00:0004)           RESETESCENAESQUEL 	equ		4	;hay 4 caras con las que el esqueleto cambia (se ha metido el 0 para facilitar código)
      164.  00:C000                      
      165.  00:C000                      ;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (relacionadas con posiciones en en el banco de memoria)
-     166.  00:C000  (00:0013)           TILEPROTAM  equ		19		;tile del prota para pintar en mapa
-     167.  00:C000  (00:0009)           TILEGRISM	equ		9		;tile gris que representa vacio (por donde el prota va pasando)
-     168.  00:C000  (00:0010)           TILEMAPROJO equ		16
-     169.  00:C000  (00:000F)           TILEMAPAMAR equ		15
-     170.  00:C000  (00:000E)           TILEMAPVERD equ		14
+     166.  00:C000  (00:0013)           TILEPROTAM  		equ		19		;tile del prota para pintar en mapa
+     167.  00:C000  (00:0009)           TILEGRISM			equ		9		;tile gris que representa vacio (por donde el prota va pasando)
+     168.  00:C000  (00:0010)           TILEMAPROJO 		equ		16
+     169.  00:C000  (00:000F)           TILEMAPAMAR 		equ		15
+     170.  00:C000  (00:000E)           TILEMAPVERD 		equ		14
      171.  00:C000                      
      172.  00:C000                      
      173.  00:C000                      ;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (generales)
-     174.  00:C000  (00:0008)           NMAXVIDREL	equ		8		;el número máximo de vidas y de reliquias es de 8
-     175.  00:C000  (00:0007)           NHABNIVEL	equ		7
-     176.  00:C000  (00:00F8)           MAXENERGIA  equ		248
-     177.  00:C000  (00:00D9)           TILEENERG8  equ		217
-     178.  00:C000  (00:00BA)           TILEENERG7  equ		186
-     179.  00:C000  (00:009B)           TILEENERG6  equ		155
-     180.  00:C000  (00:007C)           TILEENERG5  equ		124
-     181.  00:C000  (00:005D)           TILEENERG4  equ		93
-     182.  00:C000  (00:003E)           TILEENERG3  equ		62
-     183.  00:C000  (00:001F)           TILEENERG2  equ		31
-     184.  00:C000  (00:0000)           TILENEGRO	equ		0
+     174.  00:C000  (00:0008)           NMAXVIDREL			equ		8		;el número máximo de vidas y de reliquias es de 8
+     175.  00:C000  (00:0007)           NHABNIVEL			equ		7
+     176.  00:C000  (00:00F8)           MAXENERGIA  		equ		248
+     177.  00:C000  (00:00D9)           TILEENERG8  		equ		217
+     178.  00:C000  (00:00BA)           TILEENERG7  		equ		186
+     179.  00:C000  (00:009B)           TILEENERG6  		equ		155
+     180.  00:C000  (00:007C)           TILEENERG5  		equ		124
+     181.  00:C000  (00:005D)           TILEENERG4  		equ		93
+     182.  00:C000  (00:003E)           TILEENERG3  		equ		62
+     183.  00:C000  (00:001F)           TILEENERG2  		equ		31
+     184.  00:C000  (00:0000)           TILENEGRO			equ		0
      185.  00:C000                      
      186.  00:C000                      ;limites
-     187.  00:C000  (00:0000)           LIMPANTIZQ  equ		0
-     188.  00:C000  (00:00FF)           LIMPANTDER  equ		255
-     189.  00:C000  (00:0000)           LIMPANTARR  equ		0
-     190.  00:C000  (00:0080)           LIMPANTABA  equ		128
+     187.  00:C000  (00:0000)           LIMPANTIZQ  		equ		0
+     188.  00:C000  (00:00FF)           LIMPANTDER 			equ		255
+     189.  00:C000  (00:0000)           LIMPANTARR 			equ		0
+     190.  00:C000  (00:0080)           LIMPANTABA  		equ		128
      191.  00:C000                      
      192.  00:C000                      
      193.  00:C000                      ;matriz de 7x7 empieza en 0, y fila y x col, cuento desde esquina sup izq
-     194.  00:C000  (00:0006)           BASEMAPY	equ		6
-     195.  00:C000  (00:0003)           BASEMAPX	equ		3
+     194.  00:C000  (00:0006)           BASEMAPY			equ		6
+     195.  00:C000  (00:0003)           BASEMAPX			equ		3
      196.  00:C000                      
      197.  00:C000                      
-     198.  00:C000                      
-     199.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-     200.  00:C000                      ;; CONSTANTES PARA INTERRUPCIONES
-     201.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-     202.  00:C000  (00:FD9A)           H.KEYI		equ     	#FD9A
-     203.  00:C000  (00:FD9F)           H.TIMI	 	equ     	#FD9F
-     204.  00:C000                      
-     205.  00:C000                      
-     206.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-     207.  00:C000                      ;; CONSTANTES PARA SONIDO 
-     208.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-     209.  00:C000                      
-     210.  00:C000  (F000)              	map		#f000
-     211.  00:C000                      
-     212.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PT3 REPLAYER
-     213.  00:C000  (00:F000)           PT3_SETUP:		#1	;set bit0 to 1, if you want to play without looping
-     214.  00:C000                      					;bit7 is set each time, when loop point is passed
-     215.  00:C000  (00:F001)           PT3_MODADDR:	#2
-     216.  00:C000  (00:F003)           PT3_CrPsPtr:	#2
-     217.  00:C000  (00:F005)           PT3_SAMPTRS:	#2
-     218.  00:C000  (00:F007)           PT3_OrnPtrs:	#2
-     219.  00:C000  (00:F009)           PT3_PDSP:		#2
-     220.  00:C000  (00:F00B)           PT3_CSP:		#2
-     221.  00:C000  (00:F00D)           PT3_PSP:		#2
-     222.  00:C000  (00:F00F)           PT3_PrNote:		#1
-     223.  00:C000  (00:F010)           PT3_PrSlide:	#2
-     224.  00:C000  (00:F012)           PT3_AdInPtA:	#2
-     225.  00:C000  (00:F014)           PT3_AdInPtB:	#2
-     226.  00:C000  (00:F016)           PT3_AdInPtC:	#2
-     227.  00:C000  (00:F018)           PT3_LPosPtr:	#2
-     228.  00:C000  (00:F01A)           PT3_PatsPtr:	#2
-     229.  00:C000  (00:F01C)           PT3_Delay:		#1
-     230.  00:C000  (00:F01D)           PT3_AddToEn:	#1
-     231.  00:C000  (00:F01E)           PT3_Env_Del:	#1
-     232.  00:C000  (00:F01F)           PT3_ESldAdd:	#2
-     233.  00:C000  (00:F021)           PT3_NTL3:		#2	; AND A / NOP (note table creator)
-     234.  00:C000                      
-     235.  00:C000  (00:F023)           VARS:			#0
-     236.  00:C000                      
-     237.  00:C000  (00:F023)           ChanA:			#29			;CHNPRM_Size
-     238.  00:C000  (00:F040)           ChanB:			#29			;CHNPRM_Size
-     239.  00:C000  (00:F05D)           ChanC:			#29			;CHNPRM_Size
-     240.  00:C000                      
-     241.  00:C000                      ;GlobalVars
-     242.  00:C000  (00:F07A)           DelyCnt:		#1
-     243.  00:C000  (00:F07B)           CurESld:		#2
-     244.  00:C000  (00:F07D)           CurEDel:		#1
-     245.  00:C000  (00:F07E)           Ns_Base_AddToNs:	#0
-     246.  00:C000  (00:F07E)           Ns_Base:		#1
-     247.  00:C000  (00:F07F)           AddToNs:		#1
-     248.  00:C000                      
-     249.  00:C000  (00:F080)           NT_:			#192	; Puntero a/tabla de frecuencias
-     250.  00:C000                      
-     251.  00:C000  (00:F140)           AYREGS:			#0
-     252.  00:C000  (00:F140)           VT_:			#14
-     253.  00:C000  (00:F14E)           EnvBase:		#2
-     254.  00:C000  (00:F150)           VAR0END:		#0
-     255.  00:C000                      
-     256.  00:C000  (00:F150)           T1_:			#0		
-     257.  00:C000  (00:F150)           T_NEW_1:		#0
-     258.  00:C000  (00:F150)           T_OLD_1:		#24
-     259.  00:C000  (00:F168)           T_OLD_2:		#24
-     260.  00:C000  (00:F180)           T_NEW_3:		#0
-     261.  00:C000  (00:F180)           T_OLD_3:		#2
-     262.  00:C000  (00:F182)           T_OLD_0:		#0
-     263.  00:C000  (00:F182)           T_NEW_0:		#24
-     264.  00:C000  (00:F19A)           T_NEW_2:		#166
-     265.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PT3 REPLAYER END
-     266.  00:C000                      
-     267.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ayFX REPLAYER 
-     268.  00:C000  (00:F240)           ayFX_MODE:		#1			; ayFX mode
-     269.  00:C000  (00:F241)           ayFX_BANK:		#2			; Current ayFX Bank
-     270.  00:C000  (00:F243)           ayFX_PRIORITY:	#1			; Current ayFX stream priotity
-     271.  00:C000  (00:F244)           ayFX_POINTER:	#2			; Pointer to the current ayFX stream
-     272.  00:C000  (00:F246)           ayFX_TONE:		#2			; Current tone of the ayFX stream
-     273.  00:C000  (00:F248)           ayFX_NOISE:		#1			; Current noise of the ayFX stream
-     274.  00:C000  (00:F249)           ayFX_VOLUME:	#1			; Current volume of the ayFX stream
-     275.  00:C000  (00:F24A)           ayFX_CHANNEL:	#1			; PSG channel to play the ayFX stream
-     276.  00:C000                      
-     277.  00:C000                      	;IF (AYFXRELATIVE == 1 ) 
-     278.  00:C000                      ;ayFX_VT:	ds	2			; ayFX relative volume table pointer
-     279.  00:C000                      	;ENDIF
-     280.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ayFX REPLAYER END
-     281.  00:C000                      
-     282.  00:C000                      
-     283.  00:C000                      
+     198.  00:C000                      ;tiempo para transcurrir entre nivel y nivel
+     199.  00:C000  (00:0008)           TIEMPOENTRENIVELES	equ		8
+     200.  00:C000                      
+     201.  00:C000                      
+     202.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     203.  00:C000                      ;; CONSTANTES PARA INTERRUPCIONES
+     204.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     205.  00:C000  (00:FD9A)           H.KEYI		equ     	#FD9A
+     206.  00:C000  (00:FD9F)           H.TIMI	 	equ     	#FD9F
+     207.  00:C000                      
+     208.  00:C000                      
+     209.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     210.  00:C000                      ;; CONSTANTES PARA SONIDO 
+     211.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     212.  00:C000                      
+     213.  00:C000  (F000)              	map		#f000
+     214.  00:C000                      
+     215.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PT3 REPLAYER
+     216.  00:C000  (00:F000)           PT3_SETUP:		#1	;set bit0 to 1, if you want to play without looping
+     217.  00:C000                      					;bit7 is set each time, when loop point is passed
+     218.  00:C000  (00:F001)           PT3_MODADDR:	#2
+     219.  00:C000  (00:F003)           PT3_CrPsPtr:	#2
+     220.  00:C000  (00:F005)           PT3_SAMPTRS:	#2
+     221.  00:C000  (00:F007)           PT3_OrnPtrs:	#2
+     222.  00:C000  (00:F009)           PT3_PDSP:		#2
+     223.  00:C000  (00:F00B)           PT3_CSP:		#2
+     224.  00:C000  (00:F00D)           PT3_PSP:		#2
+     225.  00:C000  (00:F00F)           PT3_PrNote:		#1
+     226.  00:C000  (00:F010)           PT3_PrSlide:	#2
+     227.  00:C000  (00:F012)           PT3_AdInPtA:	#2
+     228.  00:C000  (00:F014)           PT3_AdInPtB:	#2
+     229.  00:C000  (00:F016)           PT3_AdInPtC:	#2
+     230.  00:C000  (00:F018)           PT3_LPosPtr:	#2
+     231.  00:C000  (00:F01A)           PT3_PatsPtr:	#2
+     232.  00:C000  (00:F01C)           PT3_Delay:		#1
+     233.  00:C000  (00:F01D)           PT3_AddToEn:	#1
+     234.  00:C000  (00:F01E)           PT3_Env_Del:	#1
+     235.  00:C000  (00:F01F)           PT3_ESldAdd:	#2
+     236.  00:C000  (00:F021)           PT3_NTL3:		#2	; AND A / NOP (note table creator)
+     237.  00:C000                      
+     238.  00:C000  (00:F023)           VARS:			#0
+     239.  00:C000                      
+     240.  00:C000  (00:F023)           ChanA:			#29			;CHNPRM_Size
+     241.  00:C000  (00:F040)           ChanB:			#29			;CHNPRM_Size
+     242.  00:C000  (00:F05D)           ChanC:			#29			;CHNPRM_Size
+     243.  00:C000                      
+     244.  00:C000                      ;GlobalVars
+     245.  00:C000  (00:F07A)           DelyCnt:		#1
+     246.  00:C000  (00:F07B)           CurESld:		#2
+     247.  00:C000  (00:F07D)           CurEDel:		#1
+     248.  00:C000  (00:F07E)           Ns_Base_AddToNs:	#0
+     249.  00:C000  (00:F07E)           Ns_Base:		#1
+     250.  00:C000  (00:F07F)           AddToNs:		#1
+     251.  00:C000                      
+     252.  00:C000  (00:F080)           NT_:			#192	; Puntero a/tabla de frecuencias
+     253.  00:C000                      
+     254.  00:C000  (00:F140)           AYREGS:			#0
+     255.  00:C000  (00:F140)           VT_:			#14
+     256.  00:C000  (00:F14E)           EnvBase:		#2
+     257.  00:C000  (00:F150)           VAR0END:		#0
+     258.  00:C000                      
+     259.  00:C000  (00:F150)           T1_:			#0		
+     260.  00:C000  (00:F150)           T_NEW_1:		#0
+     261.  00:C000  (00:F150)           T_OLD_1:		#24
+     262.  00:C000  (00:F168)           T_OLD_2:		#24
+     263.  00:C000  (00:F180)           T_NEW_3:		#0
+     264.  00:C000  (00:F180)           T_OLD_3:		#2
+     265.  00:C000  (00:F182)           T_OLD_0:		#0
+     266.  00:C000  (00:F182)           T_NEW_0:		#24
+     267.  00:C000  (00:F19A)           T_NEW_2:		#166
+     268.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PT3 REPLAYER END
+     269.  00:C000                      
+     270.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ayFX REPLAYER 
+     271.  00:C000  (00:F240)           ayFX_MODE:		#1			; ayFX mode
+     272.  00:C000  (00:F241)           ayFX_BANK:		#2			; Current ayFX Bank
+     273.  00:C000  (00:F243)           ayFX_PRIORITY:	#1			; Current ayFX stream priotity
+     274.  00:C000  (00:F244)           ayFX_POINTER:	#2			; Pointer to the current ayFX stream
+     275.  00:C000  (00:F246)           ayFX_TONE:		#2			; Current tone of the ayFX stream
+     276.  00:C000  (00:F248)           ayFX_NOISE:		#1			; Current noise of the ayFX stream
+     277.  00:C000  (00:F249)           ayFX_VOLUME:	#1			; Current volume of the ayFX stream
+     278.  00:C000  (00:F24A)           ayFX_CHANNEL:	#1			; PSG channel to play the ayFX stream
+     279.  00:C000                      
+     280.  00:C000                      	;IF (AYFXRELATIVE == 1 ) 
+     281.  00:C000                      ;ayFX_VT:	ds	2			; ayFX relative volume table pointer
+     282.  00:C000                      	;ENDIF
+     283.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ayFX REPLAYER END
      284.  00:C000                      
+     285.  00:C000                      
+     286.  00:C000                      
+     287.  00:C000                      
       11   00:C000                      include "constantesyvariables/constantesenemigos.asm"
        1.  00:C000                      ;;=====================================================
        2.  00:C000                      ;; FICHERO constantesenemigos.asm
@@ -1265,6 +1268,7 @@ Errors: 0
 00:00000080 X LIMPANTABA
 00:00000006 X BASEMAPY
 00:00000003 X BASEMAPX
+00:00000008 X TIEMPOENTRENIVELES
 00:0000FD9A X H.KEYI
 00:0000FD9F X H.TIMI
 00:0000F000 X PT3_SETUP
