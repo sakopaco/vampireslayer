@@ -136,6 +136,7 @@ puntomira:					DS		ESTRUCTURA_PUNTOMIRA
 ;;=====================================================
 tiempo:
 segundos:					DB	0
+minutos:					DB	0
 contador:					DB	0
 
 

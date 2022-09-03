@@ -979,7 +979,8 @@ fin_actualiza_escena_calavera:
 ; función: 	pone un texto cada vex que se sube o baja de nivel en el castillo
 cambio_nivel_entrefases:
 
-			;Ocultamos todos los sprites *********************************************************
+			;Ocultamos todos los sprites
+			CALL			oculta_todos_sprites
 
 			;cargamos mapa de pantalla banco 1 y 2
 			LD				HL, tiles_mapa_entrefases
@@ -988,17 +989,68 @@ cambio_nivel_entrefases:
 			
 			CALL			pinta_texto_entrefases
 			
+			;~ XOR				 A
+			;~ LD				(minutos),  A
+			;~ LD				(segundos), A
+			;~ LD				(contador), A
+;~ loop_cambionivel:
+			;~ CALL			actualiza_contadores_tiempo
+			;~ LD				 A, (segundos)
+			;~ CP				 5
+			;~ JP				NZ, loop_cambionivel
 			
+;~ .loop_examina_disparo:
+			;~ XOR				 A		;pregunto por teclado
+			;~ CALL			GTTRIG
+			;~ OR				 A
+			;~ JP				 Z, .loop_examina_disparo
+
+			;esto se mueve si se mueven los cursores... hasta hablar con fernando se 
+.loop_repite:
+			CALL		update_controllers_status
+			RR		 A
+			RET		 C
+			JP		.loop_repite
 			
-			XOR				 A
-			LD				(segundos), A
-			LD				(contador), A
-loop_cambionivel:
-			HALT
-			CALL			actualiza_contadores_tiempo
-			LD				 A, (segundos)
-			CP				20
-			JP				NZ, loop_cambionivel			
 fin_cabio_nivel_entrefases:
 			RET
+
+
+examina_disparo:
+examina_espacio_teclado:
+
+			;~ AND				11111111b
+			;~ JP				NZ, examina_boton_joystick
+			;~ RET
+;~ examina_boton_joystick:
+			;~ LD				 A, 1 	;pregunto por joystick 1
+			;~ CALL			GTTRIG
+			;~ ;AND				11111111b
+			;~ ;RET				NZ		;como se examina fuera da igual quñe tenga. se pasa y ya está
+;~ fin_examina_disparo:
+			;~ RET
+
+
+
+;;=====================================================
+;;OCULTA_TODOS_SPRITES
+;;=====================================================	
+; función: 	oculta el sprite 0 con y=208 para que oculte el resto de sprites
+; entrada: 	
+; salida: 	-
+; toca:		A
+oculta_todos_sprites:	
+;~ 1B00		Sprite attributes
+
+	IN		 A,(REGEST)		;leer registro de estado (recomendado)
+	LD		 A,#00			;primero byte bajo	
+	OUT		(REGEST),A
+	LD		 A,#1B			;después byte alto  ********************** preguntar a Fernando cómo que byte bajo es B
+	OR		1000000b		;+64
+	OUT		(REGEST),A
+	
+	LD		A, BORRASPRITESIG
+	OUT		(REGESCVDP),A	;escribe A en VRAM en la posición indicada por los dos OUT anteriores
+fin_oculta_todos_sprites:
+	RET
 

@@ -646,4 +646,5 @@ habitaciones_nivel5: equ 0000C45Ah
 habitaciones_nivel6: equ 0000C4CAh
 tiempo: equ 0000C53Ah
 segundos: equ 0000C53Ah
-contador: equ 0000C53Bh
+minutos: equ 0000C53Bh
+contador: equ 0000C53Ch

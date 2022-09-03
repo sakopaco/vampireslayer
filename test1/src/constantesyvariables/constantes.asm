@@ -43,14 +43,12 @@ PSG_A  				equ  	0a0h  ;reg address
 PSG_W  				equ  	0a1h  ;reg data WR
 PSG_R  				equ  	0a2h  ;reg data
 
-
 ;;ETIQUETAS DE ZONAS DE MEMORIA DE LA VPD (MSX1)
 CHRTBL				equ		#0000
 TILMAP				equ		#1800
 SPRART				equ		#1B00
 CLRTBL				equ		#2000
 SPRTBL				equ		#3800
-
 
 ;;ETIQUETAS ESTANDAR PARA DAR MÁS CLARIDAD AL CODIGO
 SI					equ		1
@@ -73,7 +71,6 @@ COLVERDOSC			equ		12
 COLMAGENTA			equ		13
 COLGRIS				equ		14
 COLBLANCO			equ		15
-
 
 ;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (relacionadas con posiciones en mapa vdp)
 POSMAPLIN1  		equ		#02F8
@@ -169,7 +166,6 @@ TILEMAPROJO 		equ		16
 TILEMAPAMAR 		equ		15
 TILEMAPVERD 		equ		14
 
-
 ;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (generales)
 NMAXVIDREL			equ		8		;el número máximo de vidas y de reliquias es de 8
 NHABNIVEL			equ		7
@@ -189,11 +185,9 @@ LIMPANTDER 			equ		255
 LIMPANTARR 			equ		0
 LIMPANTABA  		equ		128
 
-
 ;matriz de 7x7 empieza en 0, y fila y x col, cuento desde esquina sup izq
 BASEMAPY			equ		6
 BASEMAPX			equ		3
-
 
 ;tiempo para transcurrir entre nivel y nivel
 TIEMPOENTRENIVELES	equ		8
