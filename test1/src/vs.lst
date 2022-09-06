@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.09.03 - 21:56:18]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.09.06 - 20:41:02]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/vs.asm
 Errors: 0
@@ -2467,54 +2467,56 @@ Errors: 0
     1005.  00:47DB                      			;~ OR				 A
     1006.  00:47DB                      			;~ JP				 Z, .loop_examina_disparo
     1007.  00:47DB                      
-    1008.  00:47DB                      .loop_repite:
-    1009.  00:47DB  CD 0C 51            			CALL		update_controllers_status
-    1010.  00:47DE  CB 1F               			RR		 A
-    1011.  00:47E0  D8                  			RET		 C
-    1012.  00:47E1  C3 DB 47            			JP		.loop_repite
-    1013.  00:47E4                      			
-    1014.  00:47E4                      fin_cabio_nivel_entrefases:
-    1015.  00:47E4  C9                  			RET
-    1016.  00:47E5                      
-    1017.  00:47E5                      
-    1018.  00:47E5                      examina_disparo:
-    1019.  00:47E5                      examina_espacio_teclado:
-    1020.  00:47E5                      
-    1021.  00:47E5                      			;~ AND				11111111b
-    1022.  00:47E5                      			;~ JP				NZ, examina_boton_joystick
-    1023.  00:47E5                      			;~ RET
-    1024.  00:47E5                      ;~ examina_boton_joystick:
-    1025.  00:47E5                      			;~ LD				 A, 1 	;pregunto por joystick 1
-    1026.  00:47E5                      			;~ CALL			GTTRIG
-    1027.  00:47E5                      			;~ ;AND				11111111b
-    1028.  00:47E5                      			;~ ;RET				NZ		;como se examina fuera da igual quñe tenga. se pasa y ya está
-    1029.  00:47E5                      ;~ fin_examina_disparo:
-    1030.  00:47E5                      			;~ RET
-    1031.  00:47E5                      
-    1032.  00:47E5                      
+    1008.  00:47DB                      			;esto se mueve si se mueven los cursores... hasta hablar con fernando se 
+    1009.  00:47DB                      .loop_repite:
+    1010.  00:47DB  CD 0C 51            			CALL		update_controllers_status
+    1011.  00:47DE  CB 1F               			RR		 A
+    1012.  00:47E0  D8                  			RET		 C
+    1013.  00:47E1  C3 DB 47            			JP		.loop_repite
+    1014.  00:47E4                      			
+    1015.  00:47E4                      			
+    1016.  00:47E4                      fin_cabio_nivel_entrefases:
+    1017.  00:47E4  C9                  			RET
+    1018.  00:47E5                      
+    1019.  00:47E5                      
+    1020.  00:47E5                      examina_disparo:
+    1021.  00:47E5                      examina_espacio_teclado:
+    1022.  00:47E5                      
+    1023.  00:47E5                      			;~ AND				11111111b
+    1024.  00:47E5                      			;~ JP				NZ, examina_boton_joystick
+    1025.  00:47E5                      			;~ RET
+    1026.  00:47E5                      ;~ examina_boton_joystick:
+    1027.  00:47E5                      			;~ LD				 A, 1 	;pregunto por joystick 1
+    1028.  00:47E5                      			;~ CALL			GTTRIG
+    1029.  00:47E5                      			;~ ;AND				11111111b
+    1030.  00:47E5                      			;~ ;RET				NZ		;como se examina fuera da igual quñe tenga. se pasa y ya está
+    1031.  00:47E5                      ;~ fin_examina_disparo:
+    1032.  00:47E5                      			;~ RET
     1033.  00:47E5                      
-    1034.  00:47E5                      ;;=====================================================
-    1035.  00:47E5                      ;;OCULTA_TODOS_SPRITES
-    1036.  00:47E5                      ;;=====================================================	
-    1037.  00:47E5                      ; función: 	oculta el sprite 0 con y=208 para que oculte el resto de sprites
-    1038.  00:47E5                      ; entrada: 	
-    1039.  00:47E5                      ; salida: 	-
-    1040.  00:47E5                      ; toca:		A
-    1041.  00:47E5                      oculta_todos_sprites:	
-    1042.  00:47E5                      ;~ 1B00		Sprite attributes
-    1043.  00:47E5                      
-    1044.  00:47E5  DB 99               	IN		 A,(REGEST)		;leer registro de estado (recomendado)
-    1045.  00:47E7  3E 00               	LD		 A,#00			;primero byte bajo	
-    1046.  00:47E9  D3 99               	OUT		(REGEST),A
-    1047.  00:47EB  3E 1B               	LD		 A,#1B			;después byte alto  ********************** preguntar a Fernando cómo que byte bajo es B
-    1048.  00:47ED  F6 40               	OR		1000000b		;+64
-    1049.  00:47EF  D3 99               	OUT		(REGEST),A
-    1050.  00:47F1                      	
-    1051.  00:47F1  3E D0               	LD		A, BORRASPRITESIG
-    1052.  00:47F3  D3 98               	OUT		(REGESCVDP),A	;escribe A en VRAM en la posición indicada por los dos OUT anteriores
-    1053.  00:47F5                      fin_oculta_todos_sprites:
-    1054.  00:47F5  C9                  	RET
-    1055.  00:47F6                      
+    1034.  00:47E5                      
+    1035.  00:47E5                      
+    1036.  00:47E5                      ;;=====================================================
+    1037.  00:47E5                      ;;OCULTA_TODOS_SPRITES
+    1038.  00:47E5                      ;;=====================================================	
+    1039.  00:47E5                      ; función: 	oculta el sprite 0 con y=208 para que oculte el resto de sprites
+    1040.  00:47E5                      ; entrada: 	
+    1041.  00:47E5                      ; salida: 	-
+    1042.  00:47E5                      ; toca:		A
+    1043.  00:47E5                      oculta_todos_sprites:	
+    1044.  00:47E5                      ;~ 1B00		Sprite attributes
+    1045.  00:47E5                      
+    1046.  00:47E5  DB 99               	IN		 A,(REGEST)		;leer registro de estado (recomendado)
+    1047.  00:47E7  3E 00               	LD		 A,#00			;primero byte bajo	
+    1048.  00:47E9  D3 99               	OUT		(REGEST),A
+    1049.  00:47EB  3E 1B               	LD		 A,#1B			;después byte alto  ********************** preguntar a Fernando cómo que byte bajo es B
+    1050.  00:47ED  F6 40               	OR		1000000b		;+64
+    1051.  00:47EF  D3 99               	OUT		(REGEST),A
+    1052.  00:47F1                      	
+    1053.  00:47F1  3E D0               	LD		A, BORRASPRITESIG
+    1054.  00:47F3  D3 98               	OUT		(REGESCVDP),A	;escribe A en VRAM en la posición indicada por los dos OUT anteriores
+    1055.  00:47F5                      fin_oculta_todos_sprites:
+    1056.  00:47F5  C9                  	RET
+    1057.  00:47F6                      
      162   00:47F6                      	
      163   00:47F6                      	include "subr_puntomira.asm"
        1.  00:47F6                      ;;=====================================================
