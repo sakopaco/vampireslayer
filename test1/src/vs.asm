@@ -53,13 +53,19 @@ START:
 ;;
 ;;FIN INTRODUCCIÓN DE CÓDIGO PARA PODER USAR 32K
 ;;
-
+		
+		;incializacion de replayer con interrupciones
+		;CALL		inicializa_replayer_efectos_interrupciones
+		
 		;inicializa variables
 		CALL		carga_valores_iniciales_variables
 
 		;inicializa pantalla y entonrno
 		CALL		sub_preparapantalla			;screen 2,2 sin click al pulsar tecla y color 16,1,1
 		
+pantalla_inicial:
+		CALL		muestra_pantalla_inicial
+
 		;inicializa variables para parametrizar funciones y que lo que se muestre sea variable (nº vidas, mapa, puertas, pantalla, etc...)
 		CALL		inicializa_variables_pruebas
 	
@@ -95,9 +101,6 @@ START:
 	
 		;esta función no va aquí sino en check colisiones pero se pone aquí para realizar pruebas
 ;		CALL		terminada_habitacion_recorrida ;para cuando se maten todos los enemigos de la habitación
-
-		;incializacion de replayer con interrupciones
-		;CALL		inicializa_replayer_efectos_interrupciones
 
 loop_principal:
 		HALT								;espera VBLANK y sincroniza
@@ -147,8 +150,68 @@ inicializa_variables_pruebas:
 	LD		 A, 3				;columnas 7: del 0 al 6
 	LD		(prota_pos_mapx), A	;pos X dentro del nivel (se empieza en 0)
 fin_inicializa_variables_pruebas:
-	RET
+		RET
 ;;************************************************************************
+
+
+muestra_pantalla_inicial:
+
+
+;~ tiles_patrones_inicio:	incbin "pantallas/inicio.bank01.tiles.chr.bin.plet5"
+;~ tiles_color_inicio:		incbin "pantallas/inicio.bank01.tiles.clr.bin.plet5"
+;~ tiles_mapa_inicio:		incbin "pantallas/inicio.bank01.map.bin.plet5"
+
+		;~ LD		HL, tiles_patrones_nivel0
+		;~ LD		(tiles_patrones), HL
+		;~ LD		HL, tiles_color_nivel0
+		;~ LD		(tiles_colores), HL
+		;~ LD		HL, tiles_patrones_nivel0
+		;~ LD		(tiles_patrones), HL
+		;~ LD		HL, tiles_mapa_nivel0
+		;~ LD		(tiles_mapa), HL
+	
+		;~ ;cargando banco 1
+		;~ ;cargamos los patrones
+		;~ LD		HL, (tiles_patrones)
+		;~ LD		DE, CHRTBL
+		;~ CALL	depack_VRAM
+		;~ ;cargamos los colores de los patrones
+		;~ LD		HL, (tiles_colores)
+		;~ LD		DE, CLRTBL
+		;~ CALL	depack_VRAM
+	
+		;~ ;cargando banco 2
+		;~ ;cargamos los patrones
+		;~ LD		HL, (tiles_patrones)
+		;~ LD		DE, CHRTBL + #0800
+		;~ CALL	depack_VRAM	
+		;~ ;cargamos los colores de los patrones
+		;~ LD		HL, (tiles_colores)
+		;~ LD		DE, CLRTBL + #0800
+		;~ CALL	depack_VRAM
+	
+		;~ ;cargamos mapa de pantalla banco 1 y 2
+		;~ LD		HL, (tiles_mapa)
+		;~ LD		DE, TILMAP
+		;~ CALL		depack_VRAM
+
+
+		;~ ;cangando banco 3
+		;~ ;cargamos los patrones
+		;~ LD			HL,tiles_patrones_marcador
+		;~ LD			DE,CHRTBL + #1000
+		;~ CALL		depack_VRAM	
+		;~ ;cargamos mapa de pantalla
+		;~ LD			HL,tiles_mapa_marcador
+		;~ LD			DE,TILMAP + #0200
+		;~ CALL		depack_VRAM
+		;~ ;cargamos los colores de los patrones
+		;~ LD			HL,tiles_color_marcador
+		;~ LD			DE,CLRTBL + #1000
+		;~ CALL		depack_VRAM
+		
+fin_muestra_pantalla_inicial:
+		RET
 
 
 ;;=====================================================

@@ -5,6 +5,11 @@
 ; bancos 1 y 2 y de pantalla 1 
 ; se usa un banco común (en este caso el banco 1)
 ; el mapa afecta al banco 1 y 2
+
+tiles_patrones_inicio:	incbin "pantallas/inicio.bank01.tiles.chr.bin.plet5"
+tiles_color_inicio:		incbin "pantallas/inicio.bank01.tiles.clr.bin.plet5"
+tiles_mapa_inicio:		incbin "pantallas/inicio.bank01.map.bin.plet5"
+
 tiles_mapa_entrefases:	incbin "pantallas/fondoentrefases.map.bin.plet5"
 
 tiles_patrones_nivel0:	incbin "pantallas/nivel0.bank1.til.bin.chr.plet5"
@@ -41,7 +46,6 @@ tiles_color_marcador:		incbin "pantallas/marcador.til.bin.clr.plet5"
 tiles_mapa_marcador:		incbin "pantallas/marcador.map.bin.plet5"
 
 ;NOTA: FALTARÍAN PANTALLAS ESPECIALES (POR DEFINIR)
-; INICIO
 ; GAME OVER
 ; HUIDA
 ; 2 FINAL BUENO

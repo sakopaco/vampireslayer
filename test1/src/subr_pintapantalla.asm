@@ -126,8 +126,6 @@ pinta_parte_superior_pantalla:
 	LD		(tiles_patrones), HL
 	LD		HL, tiles_color_nivel0
 	LD		(tiles_colores), HL
-	LD		HL, tiles_patrones_nivel0
-	LD		(tiles_patrones), HL
 	LD		HL, tiles_mapa_nivel0
 	LD		(tiles_mapa), HL
 	JP		.fin_carga_niveles
@@ -137,8 +135,6 @@ pinta_parte_superior_pantalla:
 	LD		(tiles_patrones), HL
 	LD		HL, tiles_color_nivel1
 	LD		(tiles_colores), HL
-	LD		HL, tiles_patrones_nivel1
-	LD		(tiles_patrones), HL
 	LD		HL, tiles_mapa_nivel1
 	LD		(tiles_mapa), HL
 	JP		.fin_carga_niveles
@@ -148,8 +144,6 @@ pinta_parte_superior_pantalla:
 	LD		(tiles_patrones), HL
 	LD		HL, tiles_color_nivel2
 	LD		(tiles_colores), HL
-	LD		HL, tiles_patrones_nivel2
-	LD		(tiles_patrones), HL
 	LD		HL, tiles_mapa_nivel2
 	LD		(tiles_mapa), HL
 	JP		.fin_carga_niveles
@@ -159,8 +153,6 @@ pinta_parte_superior_pantalla:
 	LD		(tiles_patrones), HL
 	LD		HL, tiles_color_nivel3
 	LD		(tiles_colores), HL
-	LD		HL, tiles_patrones_nivel3
-	LD		(tiles_patrones), HL
 	LD		HL, tiles_mapa_nivel3
 	LD		(tiles_mapa), HL
 	JP		.fin_carga_niveles
@@ -170,8 +162,6 @@ pinta_parte_superior_pantalla:
 	LD		(tiles_patrones), HL
 	LD		HL, tiles_color_nivel4
 	LD		(tiles_colores), HL
-	LD		HL, tiles_patrones_nivel4
-	LD		(tiles_patrones), HL
 	LD		HL, tiles_mapa_nivel4
 	LD		(tiles_mapa), HL
 	JP		.fin_carga_niveles
@@ -181,8 +171,6 @@ pinta_parte_superior_pantalla:
 	LD		(tiles_patrones), HL
 	LD		HL, tiles_color_nivel5
 	LD		(tiles_colores), HL
-	LD		HL, tiles_patrones_nivel5
-	LD		(tiles_patrones), HL
 	LD		HL, tiles_mapa_nivel5
 	LD		(tiles_mapa), HL
 	JP		.fin_carga_niveles
@@ -192,8 +180,6 @@ pinta_parte_superior_pantalla:
 	LD		(tiles_patrones), HL
 	LD		HL, tiles_color_nivel6
 	LD		(tiles_colores), HL
-	LD		HL, tiles_patrones_nivel6
-	LD		(tiles_patrones), HL
 	LD		HL, tiles_mapa_nivel6
 	LD		(tiles_mapa), HL
 ;	JP		.fin_carga niveles			;no necesario
@@ -224,6 +210,7 @@ pinta_parte_superior_pantalla:
 	LD		DE, TILMAP
 	JP		depack_VRAM
 fin_pinta_parte_superior_pantalla:
+;variables que usa
 ;tiles_patrones:		DW	0
 ;tiles_colores:			DW	0
 ;tiles_mapa:			DW	0
@@ -313,7 +300,8 @@ fin_pinta_nivel:
 ;;=====================================================
 ;;PINTA_TILE_SUELTO
 ;;=====================================================	
-; función: 	pinta al tile que digamos en D, en la posición BC
+; función: 	escribe un valor en VRAM y también se usa
+;			pinta al tile que digamos en D, en la posición BC
 ; entrada: 	BC (posición a pintar en el mapa),D (qué se va a pintar el esa posición)
 ; salida: 	-
 ; toca:		A
@@ -896,12 +884,11 @@ flip_llamas_antorchas:
 		LD		 D, MAPLLAMA1
 		CALL	pinta_tile_suelto
 
-fin_flip_llamas_antorchas:
 		;restauro los balores de los registros tocados antes
 		POP		DE
 		POP		BC
 		POP		AF
-
+fin_flip_llamas_antorchas:
 		RET
 
 
@@ -979,15 +966,30 @@ fin_actualiza_escena_calavera:
 ; función: 	pone un texto cada vex que se sube o baja de nivel en el castillo
 cambio_nivel_entrefases:
 
-			;Ocultamos todos los sprites
-			CALL			oculta_todos_sprites
-
-			;cargamos mapa de pantalla banco 1 y 2
-			LD				HL, tiles_mapa_entrefases
-			LD				DE, TILMAP
-			CALL			depack_VRAM
+		;Ocultamos todos los sprites
+		CALL			oculta_todos_sprites
 			
-			CALL			pinta_texto_entrefases
+		;ocultamos posición superior en mapa
+		LD			BC, TILMAP + (17 * 32) + 27
+		LD		 	D, 0
+		CALL		pinta_tile_suelto	
+				
+		;ocultamos posición inferior en mapa
+		LD			BC, TILMAP + (23 * 32) + 27
+		LD		 	D, 0
+		CALL		pinta_tile_suelto	
+
+		;ocultamos numero de nivel
+		LD			BC, TILMAP + (21 * 32) + 20
+		LD		 	D, 0
+		CALL		pinta_tile_suelto	
+
+		;cargamos mapa de pantalla banco 1 y 2
+		LD			HL, tiles_mapa_entrefases
+		LD			DE, TILMAP
+		CALL		depack_VRAM
+			
+		CALL		pinta_texto_entrefases
 			
 			;~ XOR				 A
 			;~ LD				(minutos),  A
@@ -1007,29 +1009,16 @@ cambio_nivel_entrefases:
 
 			;esto se mueve si se mueven los cursores... hasta hablar con fernando se 
 .loop_repite:
-			CALL		update_controllers_status
-			RR		 A
-			RET		 C
-			JP		.loop_repite
+		CALL		update_controllers_status
+		RR			 A
+		RET			 C
+		JP			.loop_repite
 			
 			
 fin_cabio_nivel_entrefases:
-			RET
+		RET
 
 
-examina_disparo:
-examina_espacio_teclado:
-
-			;~ AND				11111111b
-			;~ JP				NZ, examina_boton_joystick
-			;~ RET
-;~ examina_boton_joystick:
-			;~ LD				 A, 1 	;pregunto por joystick 1
-			;~ CALL			GTTRIG
-			;~ ;AND				11111111b
-			;~ ;RET				NZ		;como se examina fuera da igual quñe tenga. se pasa y ya está
-;~ fin_examina_disparo:
-			;~ RET
 
 
 
@@ -1042,16 +1031,9 @@ examina_espacio_teclado:
 ; toca:		A
 oculta_todos_sprites:	
 ;~ 1B00		Sprite attributes
-
-	IN		 A,(REGEST)		;leer registro de estado (recomendado)
-	LD		 A,#00			;primero byte bajo	
-	OUT		(REGEST),A
-	LD		 A,#1B			;después byte alto  ********************** preguntar a Fernando cómo que byte bajo es B
-	OR		1000000b		;+64
-	OUT		(REGEST),A
-	
-	LD		A, BORRASPRITESIG
-	OUT		(REGESCVDP),A	;escribe A en VRAM en la posición indicada por los dos OUT anteriores
+;~ BORRASPRITESIG valor 208 que coulta todos los sprites de un plano haci a los superiores
+	LD		BC, #1B00
+	LD		 D, BORRASPRITESIG
+	JP		pinta_tile_suelto
 fin_oculta_todos_sprites:
-	RET
 
