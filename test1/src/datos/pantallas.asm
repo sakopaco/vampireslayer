@@ -8,7 +8,7 @@
 
 tiles_patrones_inicio:	incbin "pantallas/inicio.bank01.tiles.chr.bin.plet5"
 tiles_color_inicio:		incbin "pantallas/inicio.bank01.tiles.clr.bin.plet5"
-tiles_mapa_inicio:		incbin "pantallas/inicio.bank01.map.bin.plet5"
+tiles_mapa_inicio:		incbin "pantallas/inicio.map.completo.plet5"
 
 tiles_mapa_entrefases:	incbin "pantallas/fondoentrefases.map.bin.plet5"
 

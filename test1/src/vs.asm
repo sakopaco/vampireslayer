@@ -157,10 +157,6 @@ fin_inicializa_variables_pruebas:
 muestra_pantalla_inicial:
 
 
-;~ tiles_patrones_inicio:	incbin "pantallas/inicio.bank01.tiles.chr.bin.plet5"
-;~ tiles_color_inicio:		incbin "pantallas/inicio.bank01.tiles.clr.bin.plet5"
-;~ tiles_mapa_inicio:		incbin "pantallas/inicio.bank01.map.bin.plet5"
-
 		;~ LD		HL, tiles_patrones_nivel0
 		;~ LD		(tiles_patrones), HL
 		;~ LD		HL, tiles_color_nivel0
@@ -170,46 +166,35 @@ muestra_pantalla_inicial:
 		;~ LD		HL, tiles_mapa_nivel0
 		;~ LD		(tiles_mapa), HL
 	
-		;~ ;cargando banco 1
-		;~ ;cargamos los patrones
-		;~ LD		HL, (tiles_patrones)
-		;~ LD		DE, CHRTBL
-		;~ CALL	depack_VRAM
-		;~ ;cargamos los colores de los patrones
-		;~ LD		HL, (tiles_colores)
-		;~ LD		DE, CLRTBL
-		;~ CALL	depack_VRAM
 	
-		;~ ;cargando banco 2
-		;~ ;cargamos los patrones
-		;~ LD		HL, (tiles_patrones)
-		;~ LD		DE, CHRTBL + #0800
-		;~ CALL	depack_VRAM	
-		;~ ;cargamos los colores de los patrones
-		;~ LD		HL, (tiles_colores)
-		;~ LD		DE, CLRTBL + #0800
-		;~ CALL	depack_VRAM
 	
-		;~ ;cargamos mapa de pantalla banco 1 y 2
-		;~ LD		HL, (tiles_mapa)
-		;~ LD		DE, TILMAP
-		;~ CALL		depack_VRAM
-
-
-		;~ ;cangando banco 3
-		;~ ;cargamos los patrones
-		;~ LD			HL,tiles_patrones_marcador
-		;~ LD			DE,CHRTBL + #1000
-		;~ CALL		depack_VRAM	
-		;~ ;cargamos mapa de pantalla
-		;~ LD			HL,tiles_mapa_marcador
-		;~ LD			DE,TILMAP + #0200
-		;~ CALL		depack_VRAM
-		;~ ;cargamos los colores de los patrones
-		;~ LD			HL,tiles_color_marcador
-		;~ LD			DE,CLRTBL + #1000
-		;~ CALL		depack_VRAM
+		;cargamos mapa de pantalla completa
+		LD			HL, tiles_mapa_inicio
+		LD			DE, TILMAP
+		CALL		depack_VRAM
 		
+		;cargamos tiles y colores de bancos 0 y 1
+		;cargamos los patrones
+		LD			HL, tiles_patrones_inicio
+		LD			DE, CHRTBL
+		CALL		depack_VRAM
+		;cargamos los colores
+		LD			HL, tiles_color_inicio
+		LD			DE, CLRTBL
+		CALL		depack_VRAM
+		
+		;cargamos tiles y colores del banco 2
+		;cargamos los patrones
+		LD			HL,tiles_patrones_marcador
+		LD			DE,CHRTBL + #1000
+		CALL		depack_VRAM	
+		;cargamos mapa de pantalla
+		LD			HL,tiles_mapa_marcador
+		LD			DE,TILMAP + #0200
+		CALL		depack_VRAM
+	
+	
+	CALL		#009F
 fin_muestra_pantalla_inicial:
 		RET
 

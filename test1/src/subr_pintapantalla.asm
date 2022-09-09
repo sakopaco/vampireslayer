@@ -967,7 +967,7 @@ fin_actualiza_escena_calavera:
 cambio_nivel_entrefases:
 
 		;Ocultamos todos los sprites
-		CALL			oculta_todos_sprites
+		CALL		oculta_todos_sprites
 			
 		;ocultamos posición superior en mapa
 		LD			BC, TILMAP + (17 * 32) + 27
