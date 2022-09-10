@@ -6,9 +6,13 @@
 ; se usa un banco común (en este caso el banco 1)
 ; el mapa afecta al banco 1 y 2
 
-tiles_patrones_inicio:	incbin "pantallas/inicio.bank01.tiles.chr.bin.plet5"
-tiles_color_inicio:		incbin "pantallas/inicio.bank01.tiles.clr.bin.plet5"
-tiles_mapa_inicio:		incbin "pantallas/inicio.map.completo.plet5"
+;~ tiles_patrones_inicio:	incbin "pantallas/inicio.bank01.tiles.chr.bin.plet5"
+;~ tiles_color_inicio:		incbin "pantallas/inicio.bank01.tiles.clr.bin.plet5"
+;~ tiles_mapa_inicio:		incbin "pantallas/inicio.map.completo.plet5"
+
+tiles_patrones_inicio:	incbin "pantallas/inicio.tiles.banco1.chr.plet5"
+tiles_color_inicio:		incbin "pantallas/inicio.tiles.banco1.clr.plet5"
+tiles_mapa_inicio:		incbin "pantallas/inicio.map.bin.plet5"
 
 tiles_mapa_entrefases:	incbin "pantallas/fondoentrefases.map.bin.plet5"
 

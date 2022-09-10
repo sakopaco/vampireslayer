@@ -155,25 +155,12 @@ fin_inicializa_variables_pruebas:
 
 
 muestra_pantalla_inicial:
-
-
-		;~ LD		HL, tiles_patrones_nivel0
-		;~ LD		(tiles_patrones), HL
-		;~ LD		HL, tiles_color_nivel0
-		;~ LD		(tiles_colores), HL
-		;~ LD		HL, tiles_patrones_nivel0
-		;~ LD		(tiles_patrones), HL
-		;~ LD		HL, tiles_mapa_nivel0
-		;~ LD		(tiles_mapa), HL
-	
-	
-	
 		;cargamos mapa de pantalla completa
 		LD			HL, tiles_mapa_inicio
 		LD			DE, TILMAP
 		CALL		depack_VRAM
 		
-		;cargamos tiles y colores de bancos 0 y 1
+		;cargamos tiles y colores del banco 0
 		;cargamos los patrones
 		LD			HL, tiles_patrones_inicio
 		LD			DE, CHRTBL
@@ -183,18 +170,34 @@ muestra_pantalla_inicial:
 		LD			DE, CLRTBL
 		CALL		depack_VRAM
 		
-		;cargamos tiles y colores del banco 2
+				
+		;cargamos tiles y colores del banco 1
+		;cargamos los patrones
+		LD			HL, tiles_patrones_inicio
+		LD			DE, CHRTBL + #0800
+		CALL		depack_VRAM
+		;cargamos los colores
+		LD			HL, tiles_color_inicio
+		LD			DE, CLRTBL + #0800
+		CALL		depack_VRAM
+		
+		;cangando banco 3
 		;cargamos los patrones
 		LD			HL,tiles_patrones_marcador
 		LD			DE,CHRTBL + #1000
 		CALL		depack_VRAM	
-		;cargamos mapa de pantalla
-		LD			HL,tiles_mapa_marcador
-		LD			DE,TILMAP + #0200
+		;~ ;cargamos mapa de pantalla
+		;~ LD			HL,tiles_mapa_marcador
+		;~ LD			DE,TILMAP + #0200
+		;~ CALL		depack_VRAM
+		;cargamos los colores de los patrones
+		LD			HL,tiles_color_marcador
+		LD			DE,CLRTBL + #1000
 		CALL		depack_VRAM
 	
 	
-	CALL		#009F
+	
+		CALL		#009F ;llamada a bios para pulsar una tecla mientras
 fin_muestra_pantalla_inicial:
 		RET
 
