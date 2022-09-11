@@ -197,7 +197,26 @@ muestra_pantalla_inicial:
 	
 	
 	
+	
+		CALL		pinta_textos_inicio_disparo
+		CALL		pinta_textos_inicio_autoria
+	
+	
 		CALL		#009F ;llamada a bios para pulsar una tecla mientras
+		
+		
+		LD			 B, 10
+loop_texto_inicio1:
+			CALL		pinta_textos_inicio_disparo_blanco
+			PUSH		BC
+			LD			 B, 255
+loop_texto_inicio2:				
+				NOP
+			DJNZ		loop_texto_inicio2
+			POP			BC
+			CALL		pinta_textos_inicio_disparo
+		DJNZ		loop_texto_inicio1
+		
 fin_muestra_pantalla_inicial:
 		RET
 

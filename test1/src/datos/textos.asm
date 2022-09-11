@@ -2,7 +2,7 @@
 ;;CONTANTES TEXTOS
 ;;=====================================================
 
-IF	1=0	; 1=1 versión en español y 1=0 verión en inglés
+IF	1=1	; 1=1 versión en español y 1=0 verión en inglés
 ;textos en español
 texto_vidas:		DB	'V','I','D','A','S'
 
@@ -18,7 +18,7 @@ texto_entrefases2:	DB  'E','S','C','A','L','E','R','A','S',' ','M','I','E','N','
 texto_entrefases3:	DB  'S','E',' ','A','C','O','S','T','U','M','B','R','A','N','V',' ','A',' ','L','A',' ','O','S','C','U','R','I','D','A','D'	; 30 caracteres
 texto_entrefases4:	DB  'Y',' ','E','L',' ','H','O','R','R','O','V','R',' ','Q','U','E',' ','T','E',' ','E','S','P','E','R','A','.',' ',' ',' '	; 30 caracteres
 
-texto_iniciar:		DB	' ',' ','P','U','L','S','A',' ','F','U','E','G','O',' ','P','A','R','A',' ','C','O','M','E','N','Z','A','R',' ',' ',' '	;30 caracteres
+texto_iniciar:		DB	' ',' ',' ','P','U','L','S','A',' ','F','U','E','G','O',' ','P','A','R','A',' ','C','O','M','E','N','Z','A','R',' ',' '	;30 caracteres
 
 ELSE		
 ;textos en inglés
@@ -37,8 +37,10 @@ texto_entrefases3:	DB  'T','O',' ','T','H','E',' ','D','A','R','K','N','E','S','
 texto_entrefases4:	DB  'T','H','A','T',' ','A','W','A','I','T','S',' ','Y','O','U','.',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '	; 30 caracteres
 
 texto_iniciar:		DB	'P','U','S','H',' ','T','R','I','G','G','E','R',' ','T','O',' ','S','T','A','R','T',' ','T','H','E',' ','G','A','M','E'
-
 ENDIF
+
+texto_autoria:		DB	'S','A','K','O','P','A','C','O',' ',' ','2','0','2','2' ; 14 caracteres
+texto_iniciar_blanco:	DB	' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '
 
 
 ;;=====================================================
@@ -106,12 +108,29 @@ pinta_texto_entrefases:
 fin_pinta_texto_entrefases:
 
 
-pinta_textos_inicio:
+pinta_textos_inicio_disparo:
 		;pinta texto pulsa disparo
 		LD			HL, texto_iniciar	;guardo puntero al array a pintar (como psar por referencia)
 		LD			BC, 30				;nº posiciones a pintar
 		LD			DE, TILMAP + 32 * 16;destino en vram
-		CALL		LDIRVM
+		JP			LDIRVM
+fin_pinta_textos_inicio_disparo:
+
+pinta_textos_inicio_disparo_blanco:
+		;pinta texto blanco
+		LD			HL, texto_iniciar_blanco	;guardo puntero al array a pintar (como psar por referencia)
+		LD			BC, 30				;nº posiciones a pintar
+		LD			DE, TILMAP + 32 * 16;destino en vram
+		JP			LDIRVM
+fin_pinta_textos_inicio_disparo_blanco:
+
 		
-fin_pinta_textos_inicio:
-		RET
+pinta_textos_inicio_autoria:	
+		;pinta autoría
+		LD			HL, texto_autoria	;guardo puntero al array a pintar (como psar por referencia)
+		LD			BC, 14				;nº posiciones a pintar
+		LD			DE, TILMAP + 32 * 23 + 8;destino en vram
+		JP			LDIRVM
+fin_pinta_textos_inicio_autoria:
+
+
