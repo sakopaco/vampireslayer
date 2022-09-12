@@ -170,7 +170,6 @@ muestra_pantalla_inicial:
 		LD			DE, CLRTBL
 		CALL		depack_VRAM
 		
-				
 		;cargamos tiles y colores del banco 1
 		;cargamos los patrones
 		LD			HL, tiles_patrones_inicio
@@ -186,37 +185,46 @@ muestra_pantalla_inicial:
 		LD			HL,tiles_patrones_marcador
 		LD			DE,CHRTBL + #1000
 		CALL		depack_VRAM	
-		;~ ;cargamos mapa de pantalla
-		;~ LD			HL,tiles_mapa_marcador
-		;~ LD			DE,TILMAP + #0200
-		;~ CALL		depack_VRAM
-		;cargamos los colores de los patrones
+		;cargamos los colores
 		LD			HL,tiles_color_marcador
 		LD			DE,CLRTBL + #1000
 		CALL		depack_VRAM
-	
-	
-	
 	
 		CALL		pinta_textos_inicio_disparo
 		CALL		pinta_textos_inicio_autoria
 	
 	
-		CALL		#009F ;llamada a bios para pulsar una tecla mientras
+		CALL		#009F ;llamada a bios para pulsar una tecla mientras *************************
 		
 		
-		LD			 B, 10
-loop_texto_inicio1:
-			CALL		pinta_textos_inicio_disparo_blanco
-			PUSH		BC
-			LD			 B, 255
-loop_texto_inicio2:				
-				NOP
-			DJNZ		loop_texto_inicio2
-			POP			BC
-			CALL		pinta_textos_inicio_disparo
-		DJNZ		loop_texto_inicio1
+		LD			 B,10
+.parpadeo:		
+		PUSH		BC
+
+		CALL		pinta_textos_inicio_disparo_blanco
+		LD 			BC, 9000
+.loop1:
+		DEC			BC
+		LD			 A, B
+		OR			 C
+		JP			NZ, .loop1
 		
+		CALL		pinta_textos_inicio_disparo
+		LD 			BC, 9000
+.loop2:
+		DEC			BC
+		LD		 	 A, B
+		OR		 	 C
+		JP			NZ, .loop2
+
+		POP			BC
+		DJNZ 		.parpadeo
+		
+		;borra pantalla bonito
+		XOR		 	 A
+		LD			HL, TILMAP
+		LD			BC, 768
+		CALL		FILVRM
 fin_muestra_pantalla_inicial:
 		RET
 

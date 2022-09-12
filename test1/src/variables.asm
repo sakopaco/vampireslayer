@@ -135,8 +135,8 @@ puntomira:					DS		ESTRUCTURA_PUNTOMIRA
 ;;VARIABLES TIEMPO
 ;;=====================================================
 tiempo:
+contador:					DB	0
 segundos:					DB	0
 minutos:					DB	0
-contador:					DB	0
 
 

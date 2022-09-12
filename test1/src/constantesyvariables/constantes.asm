@@ -12,6 +12,7 @@ RDVDP				equ		#013E	;lee registro status VDP
 WRTVDP				equ		#0047	;escribe registros del VDP
 LDIRVM				equ		#005C	;RAM/ROM -> VRAM
 LDIRMV				equ		#0059	;VRAM -> RAM
+FILVRM				equ		#0056	;Rellena la VRAM con un valor
 CHGMOD				equ		#005F	;cambia modo pantalla (screen mode)
 DISSCR  			equ		#0041	;desactiva pantanlla
 ENASCR  			equ		#0044	;activa pantalla

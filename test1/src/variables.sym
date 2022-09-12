@@ -5,6 +5,7 @@ RDVDP: equ 0000013Eh
 WRTVDP: equ 00000047h
 LDIRVM: equ 0000005Ch
 LDIRMV: equ 00000059h
+FILVRM: equ 00000056h
 CHGMOD: equ 0000005Fh
 DISSCR: equ 00000041h
 ENASCR: equ 00000044h
@@ -645,6 +646,6 @@ habitaciones_nivel4: equ 0000C3EAh
 habitaciones_nivel5: equ 0000C45Ah
 habitaciones_nivel6: equ 0000C4CAh
 tiempo: equ 0000C53Ah
-segundos: equ 0000C53Ah
-minutos: equ 0000C53Bh
-contador: equ 0000C53Ch
+contador: equ 0000C53Ah
+segundos: equ 0000C53Bh
+minutos: equ 0000C53Ch
