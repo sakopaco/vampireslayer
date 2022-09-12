@@ -194,37 +194,58 @@ muestra_pantalla_inicial:
 		CALL		pinta_textos_inicio_autoria
 	
 	
-		CALL		#009F ;llamada a bios para pulsar una tecla mientras *************************
+		;CALL		#009F ;llamada a bios para pulsar una tecla mientras *************************
 		
 		
+;~ GTTRIG
+
+;~ Address  : #00D8
+;~ Function : Returns current trigger status
+;~ Input    : A  - Trigger button to test
+           ;~ 0 = space bar
+           ;~ 1 = port 1, button A
+           ;~ 2 = port 2, button A
+           ;~ 3 = port 1, button B
+           ;~ 4 = port 2, button B
+;~ Output   : A  - #00 trigger button not pressed
+                ;~ #FF trigger button pressed		
+		
+.mientras_nopulsado:
+		;compruebo espacio
+		XOR			 A
+		CALL		#00D8
+		LD			 B, A
+		
+		PUSH		BC
+		;compruebo botón 1 joystick
+		LD			 A, 1
+		CALL		#00D8
+		POP 		BC
+		
+		OR			 B		;uno el resultado del espacio + el resultado del botón de disparo
+		
+		JP			 Z, .mientras_nopulsado	;si A=0 no se pulsó ni disparo ni botón
+		
+		;parpadeo del texto
 		LD			 B,10
 .parpadeo:		
 		PUSH		BC
 
-		CALL		pinta_textos_inicio_disparo_blanco
 		LD 			BC, 9000
-.loop1:
-		DEC			BC
-		LD			 A, B
-		OR			 C
-		JP			NZ, .loop1
+		CALL		retardo16bits
+		
+		CALL		pinta_textos_inicio_disparo_blanco
+		
+		LD 			BC, 9000
+		CALL		retardo16bits
 		
 		CALL		pinta_textos_inicio_disparo
-		LD 			BC, 9000
-.loop2:
-		DEC			BC
-		LD		 	 A, B
-		OR		 	 C
-		JP			NZ, .loop2
-
+		
 		POP			BC
 		DJNZ 		.parpadeo
 		
-		;borra pantalla bonito
-		XOR		 	 A
-		LD			HL, TILMAP
-		LD			BC, 768
-		CALL		FILVRM
+		;borra pantalla bonito *rehacer
+		CALL		borra_pantalla_inicio
 fin_muestra_pantalla_inicial:
 		RET
 

@@ -92,3 +92,20 @@ carga_valores_iniciales_variables:
 		LDIR
 fin_carga_valores_iniciales_variables:
 		RET
+
+
+;;=====================================================
+;;RETARDO16BITS
+;;=====================================================	
+; función: 	crea un retardo según lo que se le pase en BC
+; entrada: 	BC
+; salida: 	
+; toca:		BC
+retardo16bits:		
+.loop:
+		DEC			BC
+		LD			 A, B
+		OR			 C
+		JP			NZ, .loop
+fin_retardo16bits:
+		RET

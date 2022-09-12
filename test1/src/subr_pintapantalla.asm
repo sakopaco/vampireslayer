@@ -1019,9 +1019,6 @@ fin_cabio_nivel_entrefases:
 		RET
 
 
-
-
-
 ;;=====================================================
 ;;OCULTA_TODOS_SPRITES
 ;;=====================================================	
@@ -1032,8 +1029,24 @@ fin_cabio_nivel_entrefases:
 oculta_todos_sprites:	
 ;~ 1B00		Sprite attributes
 ;~ BORRASPRITESIG valor 208 que coulta todos los sprites de un plano haci a los superiores
-	LD		BC, #1B00
-	LD		 D, BORRASPRITESIG
-	JP		pinta_tile_suelto
+		LD			BC, #1B00
+		LD			 D, BORRASPRITESIG
+		JP			pinta_tile_suelto
 fin_oculta_todos_sprites:
 
+
+;;=====================================================
+;;BORRA_PANTALLA_INICIO
+;;=====================================================	
+; función: 	borra la pantalla de inicio de una forma chula caracter a caracter
+
+; ahora va muy rápido.... modificar para poner retardo cara caracter
+; entrada: 	-
+; salida: 	-
+; toca:		AF, BC
+borra_pantalla_inicio:
+		XOR		 	 A
+		LD			HL, TILMAP
+		LD			BC, 768
+		JP			FILVRM
+fin_borra_pantalla_inicio:
