@@ -12,12 +12,15 @@ include "constantesyvariables/constantesenemigos.asm"
 include "constantesyvariables/estructuras.asm"
 
 ;variables globales del prota
+prota:
 prota_nivel:				DB		0			;nivel del castillo donde está 0-6
-prota_vidas:				DB		0
+prota_vidas:				DB		3
 prota_reliquias:			DB		3
 prota_pos_mapx:				DB		0			;pos columna
-prota_pos_mapy:				DB		0			;pos fila
-prota_energia:				DB		250
+prota_pos_mapy:				DB		3			;pos fila
+prota_energia:				DB		0			;valor real de la energía
+prota_energia_bytebajo		DB		0			;cuando se llene este es cuando se pierde prota_energía
+
 ;array para pintar de golpe el marcador de vidas
 array_aux_vidas: 			DB		0,0,0,0,0,0,0,0
 ;;RELIQUIAS

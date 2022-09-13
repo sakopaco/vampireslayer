@@ -190,8 +190,16 @@ LIMPANTABA  		equ		128
 BASEMAPY			equ		6
 BASEMAPX			equ		3
 
-;tiempo para transcurrir entre nivel y nivel
-TIEMPOENTRENIVELES	equ		8
+;constantes de inicio para el prota
+PROTANIVEL			equ		0			;nivel del castillo donde está 0-6
+PROTAVIDAS			equ		3
+PROTARELIQUIAS		equ		3
+PROTAPOSMAPX		equ		0			;pos columna
+PROTAPOSMAPY		equ		3			;pos fila
+PROTAENERGIA		equ		200			;valor real de la energía
+PROTAENERGIABYTEBAJO	equ		0		;cuando se llene este es cuando se pierde prota_energí
+
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

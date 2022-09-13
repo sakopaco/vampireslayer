@@ -129,6 +129,7 @@ fin_programa_principal:
 ;;*******************************************************************
 ; sólo para hacer pruebas y pintar la parte de las vidas y demás
 inicializa_variables_pruebas:
+	
 	LD		 A, 3
 	LD		(prota_vidas),A
 
@@ -144,7 +145,7 @@ inicializa_variables_pruebas:
 	LD		 A, 0;6				;los niveles (matrices) son 7 del 0 al 6
 	LD		(prota_nivel), A	;nivel empieza en 0 para usar las posiciones ascii
 
-	LD		 A, 6;0				;los subniveles (filas) son 7 del 0 al 6
+	LD		 A, 0				;los subniveles (filas) son 7 del 0 al 6
 	LD		(prota_pos_mapy), A	;pos Y dentro del nivel (se empieza en 0)
 
 	LD		 A, 3				;columnas 7: del 0 al 6
@@ -152,90 +153,6 @@ inicializa_variables_pruebas:
 fin_inicializa_variables_pruebas:
 		RET
 ;;************************************************************************
-
-
-muestra_pantalla_inicial:
-		;cargamos mapa de pantalla completa
-		LD			HL, tiles_mapa_inicio
-		LD			DE, TILMAP
-		CALL		depack_VRAM
-		
-		;cargamos tiles y colores del banco 0
-		;cargamos los patrones
-		LD			HL, tiles_patrones_inicio
-		LD			DE, CHRTBL
-		CALL		depack_VRAM
-		;cargamos los colores
-		LD			HL, tiles_color_inicio
-		LD			DE, CLRTBL
-		CALL		depack_VRAM
-		
-		;cargamos tiles y colores del banco 1
-		;cargamos los patrones
-		LD			HL, tiles_patrones_inicio
-		LD			DE, CHRTBL + #0800
-		CALL		depack_VRAM
-		;cargamos los colores
-		LD			HL, tiles_color_inicio
-		LD			DE, CLRTBL + #0800
-		CALL		depack_VRAM
-		
-		;cangando banco 3
-		;cargamos los patrones
-		LD			HL,tiles_patrones_marcador
-		LD			DE,CHRTBL + #1000
-		CALL		depack_VRAM	
-		;cargamos los colores
-		LD			HL,tiles_color_marcador
-		LD			DE,CLRTBL + #1000
-		CALL		depack_VRAM
-	
-		CALL		pinta_textos_inicio_disparo
-		CALL		pinta_textos_inicio_autoria
-
-.mientras_nopulsado:
-		;compruebo espacio
-		XOR			 A
-		CALL		#00D8
-		LD			 B, A
-		
-		PUSH		BC
-		;compruebo botón 1 joystick
-		LD			 A, 1
-		CALL		#00D8
-		POP 		BC
-		
-		OR			 B		;uno el resultado del espacio + el resultado del botón de disparo
-		
-		JP			 Z, .mientras_nopulsado	;si A=0 no se pulsó ni disparo ni botón
-		
-		;ejecuto sonido
-		XOR			 A
-		LD			 C, 1
-		CALL		ayFX_INIT
-		
-		;parpadeo del texto
-		LD			 B,10
-.parpadeo:		
-		PUSH		BC
-
-		LD 			BC, 9000
-		CALL		retardo16bits
-		
-		CALL		pinta_textos_inicio_disparo_blanco
-		
-		LD 			BC, 9000
-		CALL		retardo16bits
-		
-		CALL		pinta_textos_inicio_disparo
-		
-		POP			BC
-		DJNZ 		.parpadeo
-		
-		;borra pantalla bonito
-		CALL		borra_pantalla_inicio
-fin_muestra_pantalla_inicial:
-		RET
 
 
 ;;=====================================================
