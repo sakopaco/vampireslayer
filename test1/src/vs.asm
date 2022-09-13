@@ -209,6 +209,11 @@ muestra_pantalla_inicial:
 		
 		JP			 Z, .mientras_nopulsado	;si A=0 no se pulsó ni disparo ni botón
 		
+		;ejecuto sonido
+		XOR			 A
+		LD			 C, 1
+		CALL		ayFX_INIT
+		
 		;parpadeo del texto
 		LD			 B,10
 .parpadeo:		
