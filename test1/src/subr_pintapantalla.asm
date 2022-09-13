@@ -1036,17 +1036,7 @@ fin_oculta_todos_sprites:
 ; salida: 	-
 ; toca:		AF, BC
 borra_pantalla_inicio:
-		;~ XOR		 	 A
-		;~ LD			HL, TILMAP
-		;~ LD			BC, 768
-		;~ JP			FILVRM
-		
-		
-		; entrada: 	BC (posición a pintar en el mapa),D (qué se va a pintar el esa posición)
-; salida: 	-
-; toca:		A
-		
-			LD			 BC, 767	;tiles por pantalla en screen2 - 1 (768 total)
+			LD			 BC, 256	;tiles por pantalla en screen2 - 1 (768 total)
 			LD			 DE, 0		;posición tile "vacio"
 .loop:
 			PUSH		BC
@@ -1057,7 +1047,7 @@ borra_pantalla_inicio:
 				CALL		pinta_tile_suelto
 				INC			 E
 		
-				LD			 BC, 1000
+				LD			 BC, 850
 				CALL		retardo16bits
 			POP			BC
 			DEC			BC
@@ -1065,5 +1055,10 @@ borra_pantalla_inicio:
 			OR			 C
 			JP			NZ, .loop
 			
+			;limpia todo y evita que se vea cuando se cargan los nuevos tiles por pantalla
+			XOR		 	 A
+			LD			HL, TILMAP
+			LD			BC, 768
+			JP			FILVRM
 fin_borra_pantalla_inicio:
-			RET
+

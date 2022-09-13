@@ -232,7 +232,7 @@ muestra_pantalla_inicial:
 		POP			BC
 		DJNZ 		.parpadeo
 		
-		;borra pantalla bonito *rehacer
+		;borra pantalla bonito
 		CALL		borra_pantalla_inicio
 fin_muestra_pantalla_inicial:
 		RET
