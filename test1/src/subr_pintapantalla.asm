@@ -991,30 +991,21 @@ cambio_nivel_entrefases:
 			
 		CALL		pinta_texto_entrefases
 			
-			;~ XOR				 A
-			;~ LD				(minutos),  A
-			;~ LD				(segundos), A
-			;~ LD				(contador), A
-;~ loop_cambionivel:
-			;~ CALL			actualiza_contadores_tiempo
-			;~ LD				 A, (segundos)
-			;~ CP				 5
-			;~ JP				NZ, loop_cambionivel
-			
-;~ .loop_examina_disparo:
-			;~ XOR				 A		;pregunto por teclado
-			;~ CALL			GTTRIG
-			;~ OR				 A
-			;~ JP				 Z, .loop_examina_disparo
-
-			;esto se mueve si se mueven los cursores... hasta hablar con fernando se 
-.loop_repite:
-		CALL		update_controllers_status
-		RR			 A
-		RET			 C
-		JP			.loop_repite
-			
-			
+.mientras_nopulsado:
+		;compruebo espacio
+		XOR			 A
+		CALL		#00D8
+		LD			 B, A
+		
+		PUSH		BC
+		;compruebo botón 1 joystick
+		LD			 A, 1
+		CALL		#00D8
+		POP 		BC
+		
+		OR			 B		;uno el resultado del espacio + el resultado del botón de disparo
+		
+		JP			 Z, .mientras_nopulsado	;si A=0 no se pulsó ni disparo ni botón
 fin_cabio_nivel_entrefases:
 		RET
 

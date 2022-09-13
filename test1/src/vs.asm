@@ -192,24 +192,7 @@ muestra_pantalla_inicial:
 	
 		CALL		pinta_textos_inicio_disparo
 		CALL		pinta_textos_inicio_autoria
-	
-	
-		;CALL		#009F ;llamada a bios para pulsar una tecla mientras *************************
-		
-		
-;~ GTTRIG
 
-;~ Address  : #00D8
-;~ Function : Returns current trigger status
-;~ Input    : A  - Trigger button to test
-           ;~ 0 = space bar
-           ;~ 1 = port 1, button A
-           ;~ 2 = port 2, button A
-           ;~ 3 = port 1, button B
-           ;~ 4 = port 2, button B
-;~ Output   : A  - #00 trigger button not pressed
-                ;~ #FF trigger button pressed		
-		
 .mientras_nopulsado:
 		;compruebo espacio
 		XOR			 A
