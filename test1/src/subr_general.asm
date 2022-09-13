@@ -109,3 +109,18 @@ retardo16bits:
 		JP			NZ, .loop
 fin_retardo16bits:
 		RET
+
+
+;;=====================================================
+;;RETARDO8BITS
+;;=====================================================	
+; función: 	crea un retardo según lo que se le pase en B
+; entrada: 	B
+; salida: 	
+; toca:		B
+retardo8bits:		
+.loop:
+		NOP
+		DJNZ		.loop
+fin_retardo8bits:
+		RET

@@ -305,16 +305,16 @@ fin_pinta_nivel:
 ; entrada: 	BC (posición a pintar en el mapa),D (qué se va a pintar el esa posición)
 ; salida: 	-
 ; toca:		A
-pinta_tile_suelto:	
-	IN		 A,(REGEST)		;leer registro de estado (recomendado)
-	LD		 A,C			;primero byte bajo	
-	OUT		(REGEST),A
-	LD		 A,B			;después byte alto  ********************** preguntar a Fernando cómo que byte bajo es B
-	OR		1000000b		;+64
-	OUT		(REGEST),A
+pinta_tile_suelto:
+	IN		 	 A, (REGEST)	;leer registro de estado (recomendado)
+	LD		 	 A, C			;primero byte bajo	
+	OUT			(REGEST),A
+	LD		 	 A, B			;después byte alto  ********************** preguntar a Fernando cómo que byte bajo es B
+	OR			1000000b		;+64
+	OUT			(REGEST),A
 	
-	LD		A,D
-	OUT		(REGESCVDP),A	;escribe A en VRAM en la posición indicada por los dos OUT anteriores
+	LD			 A, D			;nº de patrón de tile a pintar
+	OUT			(REGESCVDP),A	;escribe A en VRAM en la posición indicada por los dos OUT anteriores
 fin_pinta_tile_suelto:
 	RET
 
@@ -1016,13 +1016,13 @@ fin_cabio_nivel_entrefases:
 ; función: 	oculta el sprite 0 con y=208 para que oculte el resto de sprites
 ; entrada: 	
 ; salida: 	-
-; toca:		A
+; toca:		TODOS
 oculta_todos_sprites:	
 ;~ 1B00		Sprite attributes
 ;~ BORRASPRITESIG valor 208 que coulta todos los sprites de un plano haci a los superiores
-		LD			BC, #1B00
-		LD			 D, BORRASPRITESIG
-		JP			pinta_tile_suelto
+			LD			BC, #1B00
+			LD			 D, BORRASPRITESIG
+			JP			pinta_tile_suelto
 fin_oculta_todos_sprites:
 
 
@@ -1036,8 +1036,34 @@ fin_oculta_todos_sprites:
 ; salida: 	-
 ; toca:		AF, BC
 borra_pantalla_inicio:
-		XOR		 	 A
-		LD			HL, TILMAP
-		LD			BC, 768
-		JP			FILVRM
+		;~ XOR		 	 A
+		;~ LD			HL, TILMAP
+		;~ LD			BC, 768
+		;~ JP			FILVRM
+		
+		
+		; entrada: 	BC (posición a pintar en el mapa),D (qué se va a pintar el esa posición)
+; salida: 	-
+; toca:		A
+		
+			LD			 BC, 767	;tiles por pantalla en screen2 - 1 (768 total)
+			LD			 DE, 0		;posición tile "vacio"
+.loop:
+			PUSH		BC
+				LD			BC, TILMAP + 256
+				LD			 A, E
+				CALL	suma_A_BC
+			
+				CALL		pinta_tile_suelto
+				INC			 E
+		
+				LD			 BC, 1000
+				CALL		retardo16bits
+			POP			BC
+			DEC			BC
+			LD			 A, B
+			OR			 C
+			JP			NZ, .loop
+			
 fin_borra_pantalla_inicio:
+			RET
