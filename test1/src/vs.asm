@@ -67,7 +67,7 @@ pantalla_inicial:
 		CALL		muestra_pantalla_inicial
 
 		;inicializa variables para parametrizar funciones y que lo que se muestre sea variable (nº vidas, mapa, puertas, pantalla, etc...)
-		CALL		inicializa_variables_pruebas
+		CALL		inicializa_variables_prota
 	
 		;inicializa el punto de mira
 		CALL		inicializa_punto_mira
@@ -126,30 +126,34 @@ fin_programa_principal:
 	;no necesita RET
 
 
-;;*******************************************************************
-; sólo para hacer pruebas y pintar la parte de las vidas y demás
-inicializa_variables_pruebas:
-	
-	LD		 A, 3
+;;=====================================================
+;;INICIALIZA_VARIABLES_PROTA
+;;=====================================================
+; funcion: inicializa las variables que afectan al prota y dónde empieza la partida
+inicializa_variables_prota:
+	LD		 A, PROTAVIDAS
 	LD		(prota_vidas),A
 
-	LD		 A, 3
+	LD		 A, PROTARELIQUIAS
 	LD		(prota_reliquias), A
 
-	LD		 A, 25							
+	LD		 A, PROTAENERGIA			
 	LD		(prota_energia), A
+	
+	LD		 A, PROTAENERGIABYTEBAJO			
+	LD		(prota_energia_bytebajo), A
 
 	;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
 	;será igual la posición inicial en todos los niveles
 	
-	LD		 A, 0;6				;los niveles (matrices) son 7 del 0 al 6
-	LD		(prota_nivel), A	;nivel empieza en 0 para usar las posiciones ascii
+	LD		 A, PROTANIVEL		
+	LD		(prota_nivel), A
 
-	LD		 A, 0				;los subniveles (filas) son 7 del 0 al 6
-	LD		(prota_pos_mapy), A	;pos Y dentro del nivel (se empieza en 0)
+	LD		 A, PROTAPOSMAPY	
+	LD		(prota_pos_mapy), A	
 
-	LD		 A, 3				;columnas 7: del 0 al 6
-	LD		(prota_pos_mapx), A	;pos X dentro del nivel (se empieza en 0)
+	LD		 A, PROTAPOSMAPX	
+	LD		(prota_pos_mapx), A	
 fin_inicializa_variables_pruebas:
 		RET
 ;;************************************************************************

@@ -1030,8 +1030,6 @@ fin_oculta_todos_sprites:
 ;;BORRA_PANTALLA_INICIO
 ;;=====================================================	
 ; función: 	borra la pantalla de inicio de una forma chula caracter a caracter
-
-; ahora va muy rápido.... modificar para poner retardo cara caracter
 ; entrada: 	-
 ; salida: 	-
 ; toca:		AF, BC
