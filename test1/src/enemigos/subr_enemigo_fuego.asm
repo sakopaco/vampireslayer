@@ -2,25 +2,26 @@
 ;;CONTANTES FUEGO
 ;;=====================================================
 datos_fuego:
-			DB		TIPOFUEGO	;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
-			DB		0		;(escena) sprite a mostrar 1/2
-			DB		00010000b	;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
-			DB		10		;(energia) energía del enemigo antes de morir
-			DB		FUEGO_POS1X	;(posx) pos x para mover y punto central del sprite para revisar disparo
-			DB		FUEGO_POS1Y	;(posy) pos y para mover y punto central del sprite para revisar disparo
-			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
-			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
-			DB		0		;(incx) incremento x para mover
-			DB		0		;(inxy) incremento y para mover
-			DB		00000001	;(direccionx) 00000001 derecha // 00000010 abajo // 00000100 izquierda // 00001000 arriba
-			DB		0		;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
-			DB		FUEGO_PASOSX;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
-			DB		0		;(radio) radio para movimientos circulares
-			DW		mover_fuego	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
+			DB		TIPOFUEGO		;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
+			DB		0				;(escena) sprite a mostrar 1/2
+			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
+			DB		FUEGO_ENERGIA	;(energia) energía del enemigo antes de morir
+			DB		FUEGO_POS1X		;(posx) pos x para mover y punto central del sprite para revisar disparo
+			DB		FUEGO_POS1Y		;(posy) pos y para mover y punto central del sprite para revisar disparo
+			DB		8				;(radiox) radio x del enemigo para cuando se dispare encima
+			DB		8				;(radioy) radio y del enemigo para cuando se dispare encima
+			DB		0				;(incx) incremento x para mover
+			DB		0				;(inxy) incremento y para mover
+			DB		00000001		;(direccionx) 00000001 derecha // 00000010 abajo // 00000100 izquierda // 00001000 arriba
+			DB		0				;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		FUEGO_PASOSX	;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
+			DB		0				;(radio) radio para movimientos circulares
+			DW		mover_fuego		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 			DB		FUEGO_SPRITE1A	;izq arriba
 			DB		FUEGO_SPRITE1A	;izq abajo
 			DB		FUEGO_SPRITE1A	;der_arriba
 			DB		FUEGO_SPRITE1A	;der_abajo
+			DB		FUEGO_DANO 		;dano
 
 
 ;;=====================================================

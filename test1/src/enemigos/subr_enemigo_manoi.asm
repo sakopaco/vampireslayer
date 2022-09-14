@@ -3,24 +3,25 @@
 ;;=====================================================
 datos_manoi:
 			DB		TIPOMANOIZQUIERDA	;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
-			DB		0		;(escena) sprite a mostrar 1/2
-			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
-			DB		128		;(energia) energía del enemigo antes de morir
-			DB		MANOI_POSX		;(posx) pos x para mover y punto central del sprite para revisar disparo
-			DB		MANOI_POSY		;(posy) pos y para mover y punto central del sprite para revisar disparo
-			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
-			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
-			DB		MANOI_INCREMENTO;(incx) incremento x para mover
-			DB		0		;(inxy) incremento y para mover
-			DB		DIRDERECHA		;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
-			DB		0		;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
-			DB		MANOI_PASOS		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
-			DB		1		;pocavida 0 y 1 para indicar cuando le queda poca vida al enemigo
-			DW		mover_manoi		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
-			DB		MANOI_SPRITE1A	;izq arriba
-			DB		MANOI_SPRITE1B	;der_arriba
-			DB		MANOI_SPRITE1A	;izq abajo
-			DB		MANOI_SPRITE1B	;der_abajo
+			DB		0					;(escena) sprite a mostrar 1/2
+			DB		00010000b			;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
+			DB		MANOI_ENERGIA		;(energia) energía del enemigo antes de morir
+			DB		MANOI_POSX			;(posx) pos x para mover y punto central del sprite para revisar disparo
+			DB		MANOI_POSY			;(posy) pos y para mover y punto central del sprite para revisar disparo
+			DB		8					;(radiox) radio x del enemigo para cuando se dispare encima
+			DB		8					;(radioy) radio y del enemigo para cuando se dispare encima
+			DB		MANOI_INCREMENTO	;(incx) incremento x para mover
+			DB		0					;(inxy) incremento y para mover
+			DB		DIRDERECHA			;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		0					;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		MANOI_PASOS			;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
+			DB		1					;pocavida 0 y 1 para indicar cuando le queda poca vida al enemigo
+			DW		mover_manoi			;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
+			DB		MANOI_SPRITE1A		;izq arriba
+			DB		MANOI_SPRITE1B		;der_arriba
+			DB		MANOI_SPRITE1A		;izq abajo
+			DB		MANOI_SPRITE1B		;der_abajo
+			DB		MANOI_DANO 			;dano
 
 array_manoi_derecha_posx:
 			DB		0,3,6,8,11,14,16,19,21,24,27,30,32,35,38,40,43,46,48,51,54,56,59,62,64,67,70,72,75,78,80,83,86,88,91,94,96

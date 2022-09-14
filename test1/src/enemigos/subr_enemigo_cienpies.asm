@@ -9,26 +9,26 @@ posiciones_cienpies_y:
 			DB		60,72,24,36,108,84,12,96,48
 
 datos_cienpies:	
-			DB		TIPOCIEMPIES	;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
-			DB		0				;(escena) sprite a mostrar 1/2
-			DB		0				;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
-			DB		CIENPIES_ENERGIA;(energia) energía del enemigo antes de morir
-			DB		0				;(posx) pos x para mover y punto central del sprite para revisar disparo
-			DB		0				;(posy) pos y para mover y punto central del sprite para revisar disparo
-			DB		8				;(radiox) radio x del enemigo para cuando se dispare encima
-			DB		8				;(radioy) radio y del enemigo para cuando se dispare encima
-			DB		0				;(incx) incremento x para mover
-			DB		0				;(inxy) incremento y para mover
-			DB		0				;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
-			DB		0				;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
-			DB		0				;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
-			DB		0				;(radio) radio para movimientos circulares
-			DW		mover_cienpies	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
-			DB		0				;izq arriba
-			DB		0				;izq abajo
-			DB		0				;der_arriba
-			DB		0				;der_abajo
-			DB		CIENPIES_DANO 	;dano
+			DB		TIPOCIEMPIES		;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
+			DB		0					;(escena) sprite a mostrar 1/2
+			DB		0					;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
+			DB		CIENPIES_ENERGIA	;(energia) energía del enemigo antes de morir
+			DB		0					;(posx) pos x para mover y punto central del sprite para revisar disparo
+			DB		0					;(posy) pos y para mover y punto central del sprite para revisar disparo
+			DB		8					;(radiox) radio x del enemigo para cuando se dispare encima
+			DB		8					;(radioy) radio y del enemigo para cuando se dispare encima
+			DB		0					;(incx) incremento x para mover
+			DB		0					;(inxy) incremento y para mover
+			DB		0					;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		0					;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		0					;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
+			DB		0					;(radio) radio para movimientos circulares
+			DW		mover_cienpies		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
+			DB		CIENPIES_SPRITE1A	;izq arriba
+			DB		CIENPIES_SPRITE1B	;izq abajo
+			DB		CIENPIES_SPRITE1A	;der_arriba
+			DB		CIENPIES_SPRITE1B	;der_abajo
+			DB		CIENPIES_DANO 		;dano
 
 
 ;;=====================================================
