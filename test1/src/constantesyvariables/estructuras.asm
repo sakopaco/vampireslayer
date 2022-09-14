@@ -165,5 +165,6 @@ sprite_a			DB		0	;izq arriba
 sprite_b			DB		0	;izq abajo
 sprite_c			DB		0	;der_arriba
 sprite_d			DB		0	;der_abajo
+dano				DB		0	;daño que hace el enemigo
 	ENDSTRUCT;ESTRUCTURA_ENEMIGO
 
