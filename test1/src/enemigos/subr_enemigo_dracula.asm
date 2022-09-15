@@ -5,7 +5,7 @@ datos_dracula:
 			DB		TIPODRACULA	;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
 			DB		0		;(escena) sprite a mostrar 1/2
 			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
-			DB		128		;(energia) energía del enemigo antes de morir
+			DB		DRACULA_ENERGIA		;(energia) energía del enemigo antes de morir
 			DB		DRACULA_X2		;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		DRACULA_Y		;(posy) pos y para mover y punto central del sprite para revisar disparo
 			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
@@ -21,6 +21,7 @@ datos_dracula:
 			DB		DRACULA_SPRITE1B	;der_arriba
 			DB		DRACULA_SPRITE2A	;izq abajo
 			DB		DRACULA_SPRITE2B	;der_abajo
+			DB		DRACULA_DANO 	;dano
 
 
 ;;=====================================================

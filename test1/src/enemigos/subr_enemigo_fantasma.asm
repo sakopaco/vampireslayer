@@ -5,7 +5,7 @@ datos_fantasma:
 			DB		TIPOFANTASMA	;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
 			DB		0		;(escena) sprite a mostrar 1/2
 			DB		00000001b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
-			DB		10		;(energia) energía del enemigo antes de morir
+			DB		FANTASMA_ENERGIA		;(energia) energía del enemigo antes de morir
 			DB		FANTASMA_X1		;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		FANTASMA_Y1		;(posy) pos y para mover y punto central del sprite para revisar disparo
 			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
@@ -21,6 +21,7 @@ datos_fantasma:
 			DB		FANTASMA_SPRITE2A;der_arriba
 			DB		FANTASMA_SPRITE1B;izq abajo
 			DB		FANTASMA_SPRITE2B;der_abajo
+			DB		FANTASMA_DANO 	;dano
 
 
 ;;=====================================================

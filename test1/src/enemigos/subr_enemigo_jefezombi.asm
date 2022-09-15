@@ -5,7 +5,7 @@ datos_jefezombi:
 			DB		TIPOJEFEZOMBI	;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
 			DB		0		;(escena) sprite a mostrar 1/2
 			DB		00010000b	;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
-			DB		128		;(energia) energía del enemigo antes de morir
+			DB		JEFEZOMBI_ENERGIA		;(energia) energía del enemigo antes de morir
 			DB		JEFEZOMBI_POSX	;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		JEFEZOMBI_POSY	;(posy) pos y para mover y punto central del sprite para revisar disparo
 			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
@@ -21,6 +21,7 @@ datos_jefezombi:
 			DB		JEFEZOMBI_SPRITE2A	;der_arriba
 			DB		JEFEZOMBI_SPRITE3A	;izq abajo
 			DB		JEFEZOMBI_SPRITE4A	;der_abajo
+			DB		JEFEZOMBI_DANO 	;dano
 
 
 ;;=====================================================

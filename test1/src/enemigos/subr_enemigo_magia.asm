@@ -5,7 +5,7 @@ datos_magia:
 			DB		TIPOMAGIA		;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
 			DB		0		;(escena) sprite a mostrar 1/2
 			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
-			DB		10		;(energia) energía del enemigo antes de morir
+			DB		MAGIA_ENERGIA		;(energia) energía del enemigo antes de morir
 			DB		MAGIA_POSX		;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		MAGIA_POSY		;(posy) pos y para mover y punto central del sprite para revisar disparo
 			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
@@ -21,6 +21,7 @@ datos_magia:
 			DB		MAGIA_SPRITE2A	;der_arriba
 			DB		MAGIA_SPRITE1B	;izq abajo
 			DB		MAGIA_SPRITE2B	;der_abajo
+			DB		MAGIA_DANO 	;dano
 
 array_magia_derecha_posx:
 			DB		64,67,70,72,75,78,80,83,85,88,91,94,96,99,102,104,107,110,112,115,118,120,123,126,128,131,134,136,139,142,144,147,150,152,155,158,160

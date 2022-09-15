@@ -5,7 +5,7 @@ datos_jefebeholder:
 			DB		TIPOJEFEBEHOLDER	;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
 			DB		0		;(escena) sprite a mostrar 1/2
 			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
-			DB		128		;(energia) energía del enemigo antes de morir
+			DB		JEFEBEHOLDER_ENERGIA		;(energia) energía del enemigo antes de morir
 			DB		JEFEBEHOLDER_POSX	;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		JEFEBEHOLDER_POSY	;(posy) pos y para mover y punto central del sprite para revisar disparo
 			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
@@ -21,6 +21,7 @@ datos_jefebeholder:
 			DB		JEFEBEHOLDER_SPRITE2A	;der_arriba
 			DB		JEFEBEHOLDER_SPRITE1B	;izq abajo
 			DB		JEFEBEHOLDER_SPRITE2B	;der_abajo
+			DB		JEFEBEHOLDER_DANO 	;dano
 
 array_jefebeholder_derecha_posx:
 			DB		0,4,8,12,16,20,24,28,32,36,40,44,48,52,56,60,64,68,72,76,80,84,88,92,96,100,104,108,112,116,120,124,128,132,136,140,144,148,152,156,160,164,168,172,176,180,184,188,192,196,200,204,208,212,216,220

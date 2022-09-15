@@ -5,7 +5,7 @@ datos_jefefantasma:
 			DB		TIPOJEFEFANTASMA	;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
 			DB		0		;(escena) sprite a mostrar 1/2
 			DB		00000001b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
-			DB		128		;(energia) energía del enemigo antes de morir
+			DB		JEFEFANTASMA_ENERGIA		;(energia) energía del enemigo antes de morir
 			DB		JEFEFANTASMA_X1	;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		JEFEFANTASMA_Y1	;(posy) pos y para mover y punto central del sprite para revisar disparo
 			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
@@ -21,6 +21,7 @@ datos_jefefantasma:
 			DB		JEFEFANTASMA_SPRITE2A;der_arriba
 			DB		JEFEFANTASMA_SPRITE3A;izq abajo
 			DB		JEFEFANTASMA_SPRITE4A;der_abajo
+			DB		JEFEFANTASMA_DANO 	;dano
 
 
 ;;=====================================================

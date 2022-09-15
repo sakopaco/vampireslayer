@@ -5,7 +5,7 @@ datos_jefecaballero:
 			DB		TIPOJEFECABALLERO	;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
 			DB		0		;(escena) sprite a mostrar 1/2
 			DB		00010000b	;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
-			DB		128		;(energia) energía del enemigo antes de morir
+			DB		JCABALLERO_ENERGIA		;(energia) energía del enemigo antes de morir
 			DB		JCABALLERO_POSXINI	;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		JCABALLERO_POSYINI	;(posy) pos y para mover y punto central del sprite para revisar disparo
 			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
@@ -21,6 +21,7 @@ datos_jefecaballero:
 			DB		JCABALLERO_SPRITE2A	;der_arriba
 			DB		JCABALLERO_SPRITE3A	;izq abajo
 			DB		JCABALLERO_SPRITE4A	;der_abajo
+			DB		JCABALLERO_DANO 	;dano
 
 array_jefecaballero_posicionesy:
 			DB		0,14,28,42,56,69,82,96

@@ -5,7 +5,7 @@ datos_fuego:
 			DB		TIPOFUEGO	;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
 			DB		0		;(escena) sprite a mostrar 1/2
 			DB		00010000b	;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
-			DB		10		;(energia) energía del enemigo antes de morir
+			DB		FUEGO_ENERGIA		;(energia) energía del enemigo antes de morir
 			DB		FUEGO_POS1X	;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		FUEGO_POS1Y	;(posy) pos y para mover y punto central del sprite para revisar disparo
 			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
@@ -21,6 +21,7 @@ datos_fuego:
 			DB		FUEGO_SPRITE1A	;izq abajo
 			DB		FUEGO_SPRITE1A	;der_arriba
 			DB		FUEGO_SPRITE1A	;der_abajo
+			DB		FUEGO_DANO 	;dano
 
 
 ;;=====================================================
