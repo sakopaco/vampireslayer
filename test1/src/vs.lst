@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.09.15 - 18:43:37]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.09.15 - 18:48:28]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/vs.asm
 Errors: 0
@@ -4790,26 +4790,26 @@ Errors: 0
        9:  00:5219  3C 48 18 24 6C 54 0C 60 30 
       10:  00:5222                      
       11:  00:5222                      datos_cienpies:	
-      12:  00:5222  02                  			DB		TIPOCIEMPIES	;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
-      13:  00:5223  00                  			DB		0				;(escena) sprite a mostrar 1/2
-      14:  00:5224  00                  			DB		0				;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
-      15:  00:5225  0A                  			DB		CIENPIES_ENERGIA;(energia) energía del enemigo antes de morir
-      16:  00:5226  00                  			DB		0				;(posx) pos x para mover y punto central del sprite para revisar disparo
-      17:  00:5227  00                  			DB		0				;(posy) pos y para mover y punto central del sprite para revisar disparo
-      18:  00:5228  08                  			DB		8				;(radiox) radio x del enemigo para cuando se dispare encima
-      19:  00:5229  08                  			DB		8				;(radioy) radio y del enemigo para cuando se dispare encima
-      20:  00:522A  00                  			DB		0				;(incx) incremento x para mover
-      21:  00:522B  00                  			DB		0				;(inxy) incremento y para mover
-      22:  00:522C  00                  			DB		0				;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
-      23:  00:522D  00                  			DB		0				;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
-      24:  00:522E  00                  			DB		0				;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
-      25:  00:522F  00                  			DB		0				;(radio) radio para movimientos circulares
-      26:  00:5230  5B 52               			DW		mover_cienpies	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
-      27:  00:5232  00                  			DB		0				;izq arriba
-      28:  00:5233  00                  			DB		0				;izq abajo
-      29:  00:5234  00                  			DB		0				;der_arriba
-      30:  00:5235  00                  			DB		0				;der_abajo
-      31:  00:5236  32                  			DB		CIENPIES_DANO 	;dano
+      12:  00:5222  02                  			DB		TIPOCIEMPIES		;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
+      13:  00:5223  00                  			DB		0					;(escena) sprite a mostrar 1/2
+      14:  00:5224  00                  			DB		0					;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
+      15:  00:5225  0A                  			DB		CIENPIES_ENERGIA	;(energia) energía del enemigo antes de morir
+      16:  00:5226  00                  			DB		0					;(posx) pos x para mover y punto central del sprite para revisar disparo
+      17:  00:5227  00                  			DB		0					;(posy) pos y para mover y punto central del sprite para revisar disparo
+      18:  00:5228  08                  			DB		8					;(radiox) radio x del enemigo para cuando se dispare encima
+      19:  00:5229  08                  			DB		8					;(radioy) radio y del enemigo para cuando se dispare encima
+      20:  00:522A  00                  			DB		0					;(incx) incremento x para mover
+      21:  00:522B  00                  			DB		0					;(inxy) incremento y para mover
+      22:  00:522C  00                  			DB		0					;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+      23:  00:522D  00                  			DB		0					;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+      24:  00:522E  00                  			DB		0					;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
+      25:  00:522F  00                  			DB		0					;(radio) radio para movimientos circulares
+      26:  00:5230  5B 52               			DW		mover_cienpies		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
+      27:  00:5232  18                  			DB		CIENPIES_SPRITE1A	;izq arriba
+      28:  00:5233  1C                  			DB		CIENPIES_SPRITE1B	;izq abajo
+      29:  00:5234  18                  			DB		CIENPIES_SPRITE1A	;der_arriba
+      30:  00:5235  1C                  			DB		CIENPIES_SPRITE1B	;der_abajo
+      31:  00:5236  32                  			DB		CIENPIES_DANO 		;dano
       32:  00:5237                      
       33:  00:5237                      
       34:  00:5237                      ;;=====================================================
@@ -4928,26 +4928,26 @@ Errors: 0
        5:  00:5295  00 10 20 30 40 50 60 70 80 90 A0 B0 C0 D0 E0 F0 
        6:  00:52A5                      
        7:  00:52A5                      datos_arana:
-       8:  00:52A5  04                  			DB		TIPOARANA	;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
-       9:  00:52A6  00                  			DB		0		;(escena) sprite a mostrar 1/2
-      10:  00:52A7  10                  			DB		00010000b	;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
+       8:  00:52A5  04                  			DB		TIPOARANA			;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
+       9:  00:52A6  00                  			DB		0					;(escena) sprite a mostrar 1/2
+      10:  00:52A7  10                  			DB		00010000b			;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
       11:  00:52A8  0A                  			DB		ARANA_ENERGIA		;(energia) energía del enemigo antes de morir
-      12:  00:52A9  00                  			DB		0		;(posx) pos x para mover y punto central del sprite para revisar disparo
+      12:  00:52A9  00                  			DB		0					;(posx) pos x para mover y punto central del sprite para revisar disparo
       13:  00:52AA  00                  			DB		LIMITEPANTALLASUP	;(posy) pos y para mover y punto central del sprite para revisar disparo
-      14:  00:52AB  08                  			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
-      15:  00:52AC  08                  			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
-      16:  00:52AD  00                  			DB		0		;(incx) incremento x para mover
-      17:  00:52AE  00                  			DB		DIRABAJO	;(inxy) incremento y para mover
-      18:  00:52AF  00                  			DB		0		;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
-      19:  00:52B0  00                  			DB		0		;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
-      20:  00:52B1  00                  			DB		0		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
-      21:  00:52B2  00                  			DB		0		;(radio) radio para movimientos circulares
-      22:  00:52B3  D3 52               			DW		mover_arana	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
-      23:  00:52B5  00                  			DB		0		;izq arriba
-      24:  00:52B6  00                  			DB		0		;izq abajo
-      25:  00:52B7  00                  			DB		0		;der_arriba
-      26:  00:52B8  00                  			DB		0		;der_abajo
-      27:  00:52B9  32                  			DB		ARANA_DANO 	;dano
+      14:  00:52AB  08                  			DB		8					;(radiox) radio x del enemigo para cuando se dispare encima
+      15:  00:52AC  08                  			DB		8					;(radioy) radio y del enemigo para cuando se dispare encima
+      16:  00:52AD  00                  			DB		0					;(incx) incremento x para mover
+      17:  00:52AE  00                  			DB		DIRABAJO			;(inxy) incremento y para mover
+      18:  00:52AF  00                  			DB		0					;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+      19:  00:52B0  00                  			DB		0					;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+      20:  00:52B1  00                  			DB		0					;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
+      21:  00:52B2  00                  			DB		0					;(radio) radio para movimientos circulares
+      22:  00:52B3  D3 52               			DW		mover_arana			;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
+      23:  00:52B5  30                  			DB		ARANA_SPRITE1A		;izq arriba
+      24:  00:52B6  34                  			DB		ARANA_SPRITE2A		;izq abajo
+      25:  00:52B7  30                  			DB		ARANA_SPRITE1A		;der_arriba
+      26:  00:52B8  34                  			DB		ARANA_SPRITE2A		;der_abajo
+      27:  00:52B9  32                  			DB		ARANA_DANO 			;dano
       28:  00:52BA                      
       29:  00:52BA                      
       30:  00:52BA                      ;;=====================================================
@@ -5250,26 +5250,26 @@ Errors: 0
        5:  00:53CC  50 53 56 59 5C 5F 62 65 68 6B 6E 71 74 77 7A 7D 
        6:  00:53DC                      			
        7:  00:53DC                      datos_serpiente:
-       8:  00:53DC  03                  			DB		TIPOSERPIENTE	;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
-       9:  00:53DD  00                  			DB		0		;(escena) sprite a mostrar 1/2
-      10:  00:53DE  10                  			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
-      11:  00:53DF  0A                  			DB		SERPIENTE_ENERGIA		;(energia) energía del enemigo antes de morir
-      12:  00:53E0  28                  			DB		SERPIENTE_POSX	;(posx) pos x para mover y punto central del sprite para revisar disparo
-      13:  00:53E1  48                  			DB		SERPIENTE_POSY	;(posy) pos y para mover y punto central del sprite para revisar disparo
-      14:  00:53E2  08                  			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
-      15:  00:53E3  08                  			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
-      16:  00:53E4  00                  			DB		0		;(incx) incremento x para mover
-      17:  00:53E5  00                  			DB		0		;(inxy) incremento y para mover
-      18:  00:53E6  00                  			DB		DIRDERECHA		;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
-      19:  00:53E7  00                  			DB		0		;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
-      20:  00:53E8  A0                  			DB		SERPIENTE_PASOS	;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
-      21:  00:53E9  00                  			DB		0		;(radio) radio para movimientos circulares
-      22:  00:53EA  FA 53               			DW		mover_serpiente	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
-      23:  00:53EC  00                  			DB		0		;izq arriba
-      24:  00:53ED  00                  			DB		0		;izq abajo
-      25:  00:53EE  00                  			DB		0		;der_arriba
-      26:  00:53EF  00                  			DB		0		;der_abajo
-      27:  00:53F0  32                  			DB		SERPIENTE_DANO 	;dano
+       8:  00:53DC  03                  			DB		TIPOSERPIENTE		;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
+       9:  00:53DD  00                  			DB		0					;(escena) sprite a mostrar 1/2
+      10:  00:53DE  10                  			DB		00010000b			;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
+      11:  00:53DF  0A                  			DB		SERPIENTE_ENERGIA	;(energia) energía del enemigo antes de morir
+      12:  00:53E0  28                  			DB		SERPIENTE_POSX		;(posx) pos x para mover y punto central del sprite para revisar disparo
+      13:  00:53E1  48                  			DB		SERPIENTE_POSY		;(posy) pos y para mover y punto central del sprite para revisar disparo
+      14:  00:53E2  08                  			DB		8					;(radiox) radio x del enemigo para cuando se dispare encima
+      15:  00:53E3  08                  			DB		8					;(radioy) radio y del enemigo para cuando se dispare encima
+      16:  00:53E4  00                  			DB		0					;(incx) incremento x para mover
+      17:  00:53E5  00                  			DB		0					;(inxy) incremento y para mover
+      18:  00:53E6  00                  			DB		DIRDERECHA			;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+      19:  00:53E7  00                  			DB		0					;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+      20:  00:53E8  A0                  			DB		SERPIENTE_PASOS		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
+      21:  00:53E9  00                  			DB		0					;(radio) radio para movimientos circulares
+      22:  00:53EA  FA 53               			DW		mover_serpiente		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
+      23:  00:53EC  20                  			DB		SERPIENTE_SPRITE1A	;izq arriba
+      24:  00:53ED  24                  			DB		SERPIENTE_SPRITE2A	;izq abajo
+      25:  00:53EE  28                  			DB		SERPIENTE_SPRITE1B	;der_arriba
+      26:  00:53EF  2C                  			DB		SERPIENTE_SPRITE2B	;der_abajo
+      27:  00:53F0  32                  			DB		SERPIENTE_DANO 		;dano
       28:  00:53F1                      			
       29:  00:53F1                      						
       30:  00:53F1                      ;;=====================================================

@@ -5,26 +5,26 @@ posiciones_arana_x: 		;16 posisiones iniciales posibles
 			DB		0,16,32,48,64,80,96,112,128,144,160,176,192,208,224,240
 
 datos_arana:
-			DB		TIPOARANA	;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
-			DB		0		;(escena) sprite a mostrar 1/2
-			DB		00010000b	;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
+			DB		TIPOARANA			;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
+			DB		0					;(escena) sprite a mostrar 1/2
+			DB		00010000b			;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
 			DB		ARANA_ENERGIA		;(energia) energía del enemigo antes de morir
-			DB		0		;(posx) pos x para mover y punto central del sprite para revisar disparo
+			DB		0					;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		LIMITEPANTALLASUP	;(posy) pos y para mover y punto central del sprite para revisar disparo
-			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
-			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
-			DB		0		;(incx) incremento x para mover
-			DB		DIRABAJO	;(inxy) incremento y para mover
-			DB		0		;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
-			DB		0		;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
-			DB		0		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
-			DB		0		;(radio) radio para movimientos circulares
-			DW		mover_arana	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
-			DB		0		;izq arriba
-			DB		0		;izq abajo
-			DB		0		;der_arriba
-			DB		0		;der_abajo
-			DB		ARANA_DANO 	;dano
+			DB		8					;(radiox) radio x del enemigo para cuando se dispare encima
+			DB		8					;(radioy) radio y del enemigo para cuando se dispare encima
+			DB		0					;(incx) incremento x para mover
+			DB		DIRABAJO			;(inxy) incremento y para mover
+			DB		0					;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		0					;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		0					;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
+			DB		0					;(radio) radio para movimientos circulares
+			DW		mover_arana			;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
+			DB		ARANA_SPRITE1A		;izq arriba
+			DB		ARANA_SPRITE2A		;izq abajo
+			DB		ARANA_SPRITE1A		;der_arriba
+			DB		ARANA_SPRITE2A		;der_abajo
+			DB		ARANA_DANO 			;dano
 
 
 ;;=====================================================

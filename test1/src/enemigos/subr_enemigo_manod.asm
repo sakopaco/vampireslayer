@@ -3,25 +3,25 @@
 ;;=====================================================
 datos_manod:
 			DB		TIPOMANODERECHA	;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
-			DB		0		;(escena) sprite a mostrar 1/2
+			DB		0				;(escena) sprite a mostrar 1/2
 			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
-			DB		MANOD_ENERGIA		;(energia) energía del enemigo antes de morir
+			DB		MANOD_ENERGIA	;(energia) energía del enemigo antes de morir
 			DB		MANOD_POSX		;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		MANOD_POSY		;(posy) pos y para mover y punto central del sprite para revisar disparo
-			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
-			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
+			DB		8				;(radiox) radio x del enemigo para cuando se dispare encima
+			DB		8				;(radioy) radio y del enemigo para cuando se dispare encima
 			DB		MANOD_INCREMENTO;(incx) incremento x para mover
-			DB		0		;(inxy) incremento y para mover
+			DB		0				;(inxy) incremento y para mover
 			DB		DIRIZQUIERDA	;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
-			DB		0		;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		0				;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		MANOD_PASOS		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
-			DB		1		;pocavida 0 y 1 para indicar cuando le queda poca vida al enemigo
+			DB		1				;pocavida 0 y 1 para indicar cuando le queda poca vida al enemigo
 			DW		mover_manod		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
-			DB		0	;izq arriba
-			DB		0	;der_arriba
-			DB		0	;izq abajo
-			DB		0	;der_abajo
-			DB		MANOD_DANO 	;dano
+			DB		MANOD_SPRITE1A	;izq arriba
+			DB		MANOD_SPRITE1B	;der_arriba
+			DB		MANOD_SPRITE1A	;izq abajo
+			DB		MANOD_SPRITE1B	;der_abajo
+			DB		MANOD_DANO 		;dano
 
 array_manod_derecha_posx:
 			DB		143,145,148,151,153,156,159,161,164,167,169,172,175,177,180,183,185,188,191,193,196,199,201,204,207,209,212,215,218,220,223,225,228,231,233,236,239

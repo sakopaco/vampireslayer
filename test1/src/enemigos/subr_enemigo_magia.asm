@@ -3,25 +3,25 @@
 ;;=====================================================
 datos_magia:
 			DB		TIPOMAGIA		;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
-			DB		0		;(escena) sprite a mostrar 1/2
+			DB		0				;(escena) sprite a mostrar 1/2
 			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
-			DB		MAGIA_ENERGIA		;(energia) energía del enemigo antes de morir
+			DB		MAGIA_ENERGIA	;(energia) energía del enemigo antes de morir
 			DB		MAGIA_POSX		;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		MAGIA_POSY		;(posy) pos y para mover y punto central del sprite para revisar disparo
-			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
-			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
+			DB		8				;(radiox) radio x del enemigo para cuando se dispare encima
+			DB		8				;(radioy) radio y del enemigo para cuando se dispare encima
 			DB		MAGIA_INCREMENTO;(incx) incremento x para mover
-			DB		0		;(inxy) incremento y para mover
+			DB		0				;(inxy) incremento y para mover
 			DB		DIRDERECHA		;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
-			DB		0		;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		0				;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		MAGIA_PASOS		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
-			DB		0		;(radio) radio para movimientos circulares
+			DB		0				;(radio) radio para movimientos circulares
 			DW		mover_magia		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 			DB		MAGIA_SPRITE1A	;izq arriba
 			DB		MAGIA_SPRITE2A	;der_arriba
 			DB		MAGIA_SPRITE1B	;izq abajo
 			DB		MAGIA_SPRITE2B	;der_abajo
-			DB		MAGIA_DANO 	;dano
+			DB		MAGIA_DANO 		;dano
 
 array_magia_derecha_posx:
 			DB		64,67,70,72,75,78,80,83,85,88,91,94,96,99,102,104,107,110,112,115,118,120,123,126,128,131,134,136,139,142,144,147,150,152,155,158,160

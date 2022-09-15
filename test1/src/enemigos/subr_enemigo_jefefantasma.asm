@@ -2,26 +2,26 @@
 ;;CONTANTES JEFEFANTASMA
 ;;=====================================================
 datos_jefefantasma:
-			DB		TIPOJEFEFANTASMA	;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
-			DB		0		;(escena) sprite a mostrar 1/2
-			DB		00000001b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
-			DB		JEFEFANTASMA_ENERGIA		;(energia) energía del enemigo antes de morir
-			DB		JEFEFANTASMA_X1	;(posx) pos x para mover y punto central del sprite para revisar disparo
-			DB		JEFEFANTASMA_Y1	;(posy) pos y para mover y punto central del sprite para revisar disparo
-			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
-			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
-			DB		0		;(incx) incremento x para mover
-			DB		0		;(inxy) incremento y para mover
-			DB		1		;(direccionx) 00000001b / 00000010b / 00000100b / 00001000b (las 4 posiciones posibles)
-			DB		0		;(direcciony) no se usa
+			DB		TIPOJEFEFANTASMA		;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
+			DB		0						;(escena) sprite a mostrar 1/2
+			DB		00000001b				;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
+			DB		JEFEFANTASMA_ENERGIA	;(energia) energía del enemigo antes de morir
+			DB		JEFEFANTASMA_X1			;(posx) pos x para mover y punto central del sprite para revisar disparo
+			DB		JEFEFANTASMA_Y1			;(posy) pos y para mover y punto central del sprite para revisar disparo
+			DB		8						;(radiox) radio x del enemigo para cuando se dispare encima
+			DB		8						;(radioy) radio y del enemigo para cuando se dispare encima
+			DB		0						;(incx) incremento x para mover
+			DB		0						;(inxy) incremento y para mover
+			DB		1						;(direccionx) 00000001b / 00000010b / 00000100b / 00001000b (las 4 posiciones posibles)
+			DB		0						;(direcciony) no se usa
 			DB		JEFEFANTASMA_LIM_PASOS	;(pasos) TIEMPO QUE ESPERA PARA PASAR DE UNA ESCAA A OTRA
-			DB		0		;pocavida 0 y 1 para indicar cuando le queda poca vida al enemigo
-			DW		mover_jefefantasma	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
-			DB		JEFEFANTASMA_SPRITE1A;izq arriba
-			DB		JEFEFANTASMA_SPRITE2A;der_arriba
-			DB		JEFEFANTASMA_SPRITE3A;izq abajo
-			DB		JEFEFANTASMA_SPRITE4A;der_abajo
-			DB		JEFEFANTASMA_DANO 	;dano
+			DB		0						;pocavida 0 y 1 para indicar cuando le queda poca vida al enemigo
+			DW		mover_jefefantasma		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
+			DB		JEFEFANTASMA_SPRITE1A	;izq arriba
+			DB		JEFEFANTASMA_SPRITE2A	;der_arriba
+			DB		JEFEFANTASMA_SPRITE3A	;izq abajo
+			DB		JEFEFANTASMA_SPRITE4A	;der_abajo
+			DB		JEFEFANTASMA_DANO 		;dano
 
 
 ;;=====================================================
