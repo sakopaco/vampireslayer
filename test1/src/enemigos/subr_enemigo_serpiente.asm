@@ -8,7 +8,7 @@ datos_serpiente:
 			DB		TIPOSERPIENTE	;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
 			DB		0		;(escena) sprite a mostrar 1/2
 			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
-			DB		10		;(energia) energía del enemigo antes de morir
+			DB		SERPIENTE_ENERGIA		;(energia) energía del enemigo antes de morir
 			DB		SERPIENTE_POSX	;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		SERPIENTE_POSY	;(posy) pos y para mover y punto central del sprite para revisar disparo
 			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
@@ -24,6 +24,7 @@ datos_serpiente:
 			DB		0		;izq abajo
 			DB		0		;der_arriba
 			DB		0		;der_abajo
+			DB		SERPIENTE_DANO 	;dano
 			
 						
 ;;=====================================================
