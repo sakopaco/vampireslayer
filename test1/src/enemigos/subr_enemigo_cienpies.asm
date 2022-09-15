@@ -122,7 +122,10 @@ calcula_cienpies_escena:
 			XOR			 A
 			LD			(heartbeat_cienpies), A
 		
-			; cambio de escena
+			;hace daño
+			CALL		enemigo_hace_dano
+			
+			;cambio de escena
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
 			XOR			00000001b
 			LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
