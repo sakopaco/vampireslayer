@@ -24,11 +24,7 @@ datos_serpiente:
 			DB		SERPIENTE_SPRITE2A	;izq abajo
 			DB		SERPIENTE_SPRITE1B	;der_arriba
 			DB		SERPIENTE_SPRITE2B	;der_abajo
-<<<<<<< HEAD
-			DB		SERPIENTE_DANO 		;dano			
-=======
 			DB		SERPIENTE_DANO 		;dano
->>>>>>> main
 			
 						
 ;;=====================================================
