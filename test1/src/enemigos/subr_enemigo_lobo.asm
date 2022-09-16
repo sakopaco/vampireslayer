@@ -5,7 +5,11 @@ datos_lobo:
 			DB		TIPOLOBO		;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
 			DB		0				;(escena) sprite a mostrar 1/2
 			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
+<<<<<<< HEAD
 			DB		LOBO_ENERGIA	;(energia) energía del enemigo antes de morir
+=======
+			DB		LOBO_ENERGIA		;(energia) energía del enemigo antes de morir
+>>>>>>> main
 			DB		LOBO_POSX		;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		LOBO_POSY		;(posy) pos y para mover y punto central del sprite para revisar disparo
 			DB		8				;(radiox) radio x del enemigo para cuando se dispare encima
@@ -21,7 +25,11 @@ datos_lobo:
 			DB		LOBO_SPRITE2A	;der_arriba
 			DB		LOBO_SPRITE3A	;izq abajo
 			DB		LOBO_SPRITE4A	;der_abajo
+<<<<<<< HEAD
 			DB		LOBO_DANO 		;dano
+=======
+			DB		LOBO_DANO 	;dano
+>>>>>>> main
 
 
 ;;=====================================================

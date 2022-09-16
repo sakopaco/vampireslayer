@@ -21,7 +21,11 @@ datos_jefezombi:
 			DB		JEFEZOMBI_SPRITE2A	;der_arriba
 			DB		JEFEZOMBI_SPRITE3A	;izq abajo
 			DB		JEFEZOMBI_SPRITE4A	;der_abajo
+<<<<<<< HEAD
 			DB		JEFEZOMBI_DANO	 	;dano
+=======
+			DB		JEFEZOMBI_DANO 		;dano
+>>>>>>> main
 
 
 ;;=====================================================

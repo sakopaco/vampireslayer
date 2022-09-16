@@ -1687,3 +1687,24 @@ mueve_enemigo:
 		JP		    (HL)
 fin_mueve_enemigo:
 		RET
+
+
+
+
+;;=====================================================
+;;ENEMIGO_HACE_DANO
+;;=====================================================	
+; función: resta al prota el daño que tega configurado que haga el enemigo
+enemigo_hace_dano:
+		LD			 B, (IX + ESTRUCTURA_ENEMIGO.dano)
+		LD			 A, (prota_energia_bytebajo)
+		SUB			 B
+		LD			(prota_energia_bytebajo), A
+		RET			NC
+		XOR			 A
+		LD			(prota_energia_bytebajo), A
+		LD			 A, (prota_energia)
+		SUB			DANOESTANDARENEMIGOS
+		LD			(prota_energia), A
+fin_enemigo_hace_dano:
+		RET

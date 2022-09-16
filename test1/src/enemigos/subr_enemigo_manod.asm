@@ -21,7 +21,11 @@ datos_manod:
 			DB		MANOD_SPRITE1B	;der_arriba
 			DB		MANOD_SPRITE1A	;izq abajo
 			DB		MANOD_SPRITE1B	;der_abajo
+<<<<<<< HEAD
 			DB		MANOD_DANO	 	;dano
+=======
+			DB		MANOD_DANO 		;dano
+>>>>>>> main
 
 array_manod_derecha_posx:
 			DB		143,145,148,151,153,156,159,161,164,167,169,172,175,177,180,183,185,188,191,193,196,199,201,204,207,209,212,215,218,220,223,225,228,231,233,236,239

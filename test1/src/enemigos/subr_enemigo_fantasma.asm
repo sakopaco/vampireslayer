@@ -22,7 +22,10 @@ datos_fantasma:
 			DB		FANTASMA_SPRITE1B	;izq abajo
 			DB		FANTASMA_SPRITE2B	;der_abajo
 			DB		FANTASMA_DANO 		;dano
+<<<<<<< HEAD
 			DB		FANTASMA_DANO	 	;dano
+=======
+>>>>>>> main
 
 
 ;;=====================================================
