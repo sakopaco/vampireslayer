@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.09.16 - 18:16:53]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.09.16 - 21:12:45]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -207,11 +207,11 @@ Errors: 0
      192.  00:C000                      
      193.  00:C000                      ;constantes de inicio para el prota
      194.  00:C000  (00:0000)           PROTANIVEL			equ		0			;nivel del castillo donde está 0-6 - los niveles (matrices) son 7 del 0 al 6
-     195.  00:C000  (00:0003)           PROTAVIDAS			equ		3
+     195.  00:C000  (00:0004)           PROTAVIDAS			equ		4
      196.  00:C000  (00:0003)           PROTARELIQUIAS		equ		3
      197.  00:C000  (00:0003)           PROTAPOSMAPX		equ		3			;pos columna 7 columnas 7: del 0 al 6 ;pos X dentro del nivel (se empieza en 0)
      198.  00:C000  (00:0000)           PROTAPOSMAPY		equ		0			;pos fila los subniveles (filas) son 7 del 0 al 6 ;pos Y dentro del nivel (se empieza en 0)
-     199.  00:C000  (00:00C8)           PROTAENERGIA		equ		200			;valor real de la energía
+     199.  00:C000  (00:00F8)           PROTAENERGIA		equ		248			;MAXENERGIA;valor real de la energía
      200.  00:C000  (00:0000)           PROTAENERGIABYTEBAJO	equ		0		;cuando se llene este es cuando se pierde prota_energí
      201.  00:C000                      
      202.  00:C000                      
@@ -1315,11 +1315,11 @@ Errors: 0
 00:00000006 X BASEMAPY
 00:00000003 X BASEMAPX
 00:00000000 X PROTANIVEL
-00:00000003 X PROTAVIDAS
+00:00000004 X PROTAVIDAS
 00:00000003 X PROTARELIQUIAS
 00:00000003 X PROTAPOSMAPX
 00:00000000 X PROTAPOSMAPY
-00:000000C8 X PROTAENERGIA
+00:000000F8 X PROTAENERGIA
 00:00000000 X PROTAENERGIABYTEBAJO
 00:0000FD9A X H.KEYI
 00:0000FD9F X H.TIMI

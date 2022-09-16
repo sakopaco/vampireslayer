@@ -1695,16 +1695,47 @@ fin_mueve_enemigo:
 ;;ENEMIGO_HACE_DANO
 ;;=====================================================	
 ; función: resta al prota el daño que tega configurado que haga el enemigo
+; recibe: B - daño de un enemigo a restar a la energía del prota
 enemigo_hace_dano:
-		LD			 B, (IX + ESTRUCTURA_ENEMIGO.dano)
 		LD			 A, (prota_energia_bytebajo)
-		SUB			 B
+		ADD			 B
 		LD			(prota_energia_bytebajo), A
 		RET			NC
 		XOR			 A
 		LD			(prota_energia_bytebajo), A
 		LD			 A, (prota_energia)
-		SUB			DANOESTANDARENEMIGOS
+		SUB			21;DANOESTANDARENEMIGOS
 		LD			(prota_energia), A
+		
+		;vida menos?
+		;	NO
+		;		SALIR
+				RET			NC			;IF VIDA MUERTA
+		;	SI
+		;		quedan vidas?
+					LD			 A, (prota_vidas)
+					DEC			 A
+					JP			NC, no_quedan_vidas
+					;SI
+						;restovidas
+						LD			(prota_vidas), A
+						;pinto_vidas_actuales
+						CALL		pinta_vidas
+						;pinto mensaje de una vida menos
+		;				CALL		un_vida_menos ;usar función de ocultar sprites
+						;pongo energía al máximo
+						LD			 A, MAXENERGIA
+						LD			(prota_energia), A
+						;SALIR
+						RET
+					;NO
+no_quedan_vidas:
+						;gameover			****************************************
+						;SALIR
+						JP			pantalla_inicial	;***************+ PREGUNTAR FERNANDO SI HABRÍA QUE REINICIAR LA PILA DE ALGUNA FORMA
+					;FINSI
+		;	FINSI
 fin_enemigo_hace_dano:
-		RET
+
+
+

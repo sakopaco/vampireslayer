@@ -123,6 +123,7 @@ calcula_cienpies_escena:
 			LD			(heartbeat_cienpies), A
 		
 			;hace daño
+			LD			 B, (IX + ESTRUCTURA_ENEMIGO.dano)
 			CALL		enemigo_hace_dano
 			
 			;cambio de escena

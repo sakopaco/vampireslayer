@@ -408,6 +408,8 @@ fin_vuelca_resultado_puntomira_array:
 ; salida: 	-
 ; toca: 	A
 check_player:
+		CALL		pinta_energia		;actualiza el daño que se realiza el enemigo
+
 		CALL		update_controllers_status
 		OR			 A
 		RET			 Z					;si no se ha pulsado nada no se necesita mirar nada
