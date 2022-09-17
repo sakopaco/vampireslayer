@@ -13,6 +13,7 @@ WRTVDP				equ		#0047	;escribe registros del VDP
 LDIRVM				equ		#005C	;RAM/ROM -> VRAM
 LDIRMV				equ		#0059	;VRAM -> RAM
 FILVRM				equ		#0056	;Rellena la VRAM con un valor
+WRTVRM				equ		#004D	;escribe un balor en una dirección de la VRAM
 CHGMOD				equ		#005F	;cambia modo pantalla (screen mode)
 DISSCR  			equ		#0041	;desactiva pantanlla
 ENASCR  			equ		#0044	;activa pantalla
@@ -178,6 +179,7 @@ TILEENERG5  		equ		124
 TILEENERG4  		equ		93
 TILEENERG3  		equ		62
 TILEENERG2  		equ		31
+TILEENERG1			equ 	0
 TILENEGRO			equ		0
 
 ;limites
@@ -192,7 +194,7 @@ BASEMAPX			equ		3
 
 ;constantes de inicio para el prota
 PROTANIVEL			equ		0			;nivel del castillo donde está 0-6 - los niveles (matrices) son 7 del 0 al 6
-PROTAVIDAS			equ		4
+PROTAVIDAS			equ		2
 PROTARELIQUIAS		equ		3
 PROTAPOSMAPX		equ		3			;pos columna 7 columnas 7: del 0 al 6 ;pos X dentro del nivel (se empieza en 0)
 PROTAPOSMAPY		equ		0			;pos fila los subniveles (filas) son 7 del 0 al 6 ;pos Y dentro del nivel (se empieza en 0)

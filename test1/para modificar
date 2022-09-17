@@ -6,3 +6,10 @@ Function : Writes data in VRAM
 Input    : HL - Address write
            A  - Value write
 Registers: AF
+
+
+dudas:
+
+pila cuando se reinicia un juego
+bug de puertas
+sonido

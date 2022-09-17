@@ -64,7 +64,7 @@ START:
 		CALL		sub_preparapantalla			;screen 2,2 sin click al pulsar tecla y color 16,1,1
 		
 pantalla_inicial:
-		CALL		muestra_pantalla_inicial
+;		CALL		muestra_pantalla_inicial
 
 		;inicializa variables para parametrizar funciones y que lo que se muestre sea variable (nº vidas, mapa, puertas, pantalla, etc...)
 		CALL		inicializa_variables_prota
@@ -159,6 +159,50 @@ fin_inicializa_variables_pruebas:
 		RET
 ;;************************************************************************
 
+
+
+
+una_vida_menos;
+		;vacia vida (el nivel mínimo lo pone en negro)
+		;~ TILEENERG1			equ 	0
+		;~ TILENEGRO			equ		0
+		;~ WRTVRM
+
+;~ Address  : #004D
+;~ Function : Writes data in VRAM
+;~ Input    : HL - Address write
+           ;~ A  - Value write
+;~ Registers: AF
+
+		LD			 A, TILENEGRO
+		LD			HL, TILMAP + 21 + 8
+		CALL		WRTVRM
+		
+		;oculta los sprites que haya en pantalla
+		CALL		oculta_todos_sprites
+
+		;limpia pantalla
+		XOR			 A
+		LD			BC, 512
+		LD			HL, TILMAP
+		CALL		FILVRM
+
+		;espera para poder leer el texto
+		LD			 B, 20
+.loop_espera:
+		PUSH		BC
+		LD			BC, 60000
+		CALL		retardo16bits
+		POP			BC
+		DJNZ		.loop_espera
+
+
+		
+		;repinto la pantalla y las puertas que correspondan
+		CALL		pinta_parte_superior_pantalla
+		CALL		pinta_puertas
+fin_una_vida_menos:
+		RET
 
 ;;=====================================================
 ;;DEFINICIÓN DE SUBRUTINAS

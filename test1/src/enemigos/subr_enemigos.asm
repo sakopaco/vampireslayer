@@ -1722,7 +1722,14 @@ enemigo_hace_dano:
 						;pinto_vidas_actuales
 						CALL		pinta_vidas
 						;pinto mensaje de una vida menos
-		;				CALL		un_vida_menos ;usar función de ocultar sprites
+						
+						
+						
+						;***************************************
+						CALL		una_vida_menos ;usar función de ocultar sprites
+						
+						
+						
 						;pongo energía al máximo
 						LD			 A, MAXENERGIA
 						LD			(prota_energia), A

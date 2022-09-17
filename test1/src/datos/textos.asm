@@ -36,7 +36,7 @@ texto_entrefases2:	DB  'S','T','A','I','R','S',' ','W','H','I','L','E',' ','Y','
 texto_entrefases3:	DB  'T','O',' ','T','H','E',' ','D','A','R','K','N','E','S','S',' ','A','N','D',' ','T','H','E',' ','H','O','R','R','O','R'	; 30 caracteres
 texto_entrefases4:	DB  'T','H','A','T',' ','A','W','A','I','T','S',' ','Y','O','U','.',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '	; 30 caracteres
 
-texto_iniciar:		DB	'P','U','S','H',' ','T','R','I','G','G','E','R',' ','T','O',' ','S','T','A','R','T',' ','T','H','E',' ','G','A','M','E'
+texto_iniciar:		DB	' ','P','U','S','H',' ','T','R','I','G','E','R',' ','T','O',' ','S','T','A','R','T',' ','T','H','E',' ','G','A','M','E'
 ENDIF
 
 texto_autoria:		DB	'S','A','K','O','P','A','C','O',' ',' ','2','0','2','2' ; 14 caracteres
