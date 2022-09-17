@@ -91,6 +91,7 @@ pantalla_inicial:
 		;funciones que modificarian el marcador si se produce un evento cuando toque y cuando se pinta la pantalla ya se mira
 		;una variable para ver si el array hay que actualizarlo en pantalla o no
 		CALL		pinta_vidas
+		
 		CALL 		pinta_reliquias
 		
 		CALL		cambio_nivel

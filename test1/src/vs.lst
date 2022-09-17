@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.09.16 - 21:12:45]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.09.17 - 13:04:07]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/vs.asm
 Errors: 0
@@ -809,78 +809,79 @@ Errors: 0
       91   00:4057                      		;funciones que modificarian el marcador si se produce un evento cuando toque y cuando se pinta la pantalla ya se mira
       92   00:4057                      		;una variable para ver si el array hay que actualizarlo en pantalla o no
       93   00:4057  CD 79 44            		CALL		pinta_vidas
-      94   00:405A  CD 88 44            		CALL 		pinta_reliquias
-      95   00:405D                      		
-      96   00:405D  CD C5 42            		CALL		cambio_nivel
-      97   00:4060                      	
-      98   00:4060  CD 06 45            		CALL		pinta_energia
-      99   00:4063                      	
-     100   00:4063  CD 5C 42            		CALL		entra_habitacion 		;CALL resetea enemigos + CALL inicializa_enemigos_fase + CALL	pinta_puertas + CALL pinta_ayudas_habitacion + CALL	pinta_extra_fondo 
-     101   00:4066                      	
-     102   00:4066                      		;esta función no va aquí sino en check colisiones pero se pone aquí para realizar pruebas
-     103   00:4066                      ;		CALL		terminada_habitacion_recorrida ;para cuando se maten todos los enemigos de la habitación
-     104   00:4066                      
-     105   00:4066                      loop_principal:
-     106   00:4066  76                  		HALT								;espera VBLANK y sincroniza
-     107   00:4067                      
-     108   00:4067  CD F2 46            		CALL		actualiza_elementos_fondo;como antorchas o esqueletos
-     109   00:406A                      		
-     110   00:406A  CD 41 6D            		CALL		check_enemigos			;examina los enemigos por pantalla y los pone en su sitio  **************************** MODIFICAR PARA VARIAS FASES
-     111   00:406D                      
-     112   00:406D  CD D9 4D            		CALL		check_player			;MIRA EL CONTROL Y APLICA LA LOGICA DE MOVIMIENTO DEL PROTAGONISTA
-     113   00:4070                      	
-     114   00:4070                      		;incrementa el hearbeat para el movimiento de los enemigos		
-     115   00:4070  06 0C               					LD			 B, 12
-     116   00:4072  21 49 C0            					LD			HL, heartbeat_cienpies
-     117   00:4075  34                  .loop_heartbeat:	INC			(HL)
-     118   00:4076  23                  					INC			HL
-     119   00:4077  10 FC               .fin_loop_hearbeat:	DJNZ		.loop_heartbeat
-     120   00:4079                      
-     121   00:4079                      		;poner arriba
-     122   00:4079  CD 82 4D            		CALL		render_sprites			;actualiza array de sprites y los pinta en pantalla
-     123   00:407C                      	
-     124   00:407C  C3 66 40            		JP			loop_principal
-     125   00:407F                      fin_programa_principal:
-     126   00:407F                      	;no necesita RET
-     127   00:407F                      
+      94   00:405A                      		
+      95   00:405A  CD 88 44            		CALL 		pinta_reliquias
+      96   00:405D                      		
+      97   00:405D  CD C5 42            		CALL		cambio_nivel
+      98   00:4060                      	
+      99   00:4060  CD 06 45            		CALL		pinta_energia
+     100   00:4063                      	
+     101   00:4063  CD 5C 42            		CALL		entra_habitacion 		;CALL resetea enemigos + CALL inicializa_enemigos_fase + CALL	pinta_puertas + CALL pinta_ayudas_habitacion + CALL	pinta_extra_fondo 
+     102   00:4066                      	
+     103   00:4066                      		;esta función no va aquí sino en check colisiones pero se pone aquí para realizar pruebas
+     104   00:4066                      ;		CALL		terminada_habitacion_recorrida ;para cuando se maten todos los enemigos de la habitación
+     105   00:4066                      
+     106   00:4066                      loop_principal:
+     107   00:4066  76                  		HALT								;espera VBLANK y sincroniza
+     108   00:4067                      
+     109   00:4067  CD F2 46            		CALL		actualiza_elementos_fondo;como antorchas o esqueletos
+     110   00:406A                      		
+     111   00:406A  CD 41 6D            		CALL		check_enemigos			;examina los enemigos por pantalla y los pone en su sitio  **************************** MODIFICAR PARA VARIAS FASES
+     112   00:406D                      
+     113   00:406D  CD D9 4D            		CALL		check_player			;MIRA EL CONTROL Y APLICA LA LOGICA DE MOVIMIENTO DEL PROTAGONISTA
+     114   00:4070                      	
+     115   00:4070                      		;incrementa el hearbeat para el movimiento de los enemigos		
+     116   00:4070  06 0C               					LD			 B, 12
+     117   00:4072  21 49 C0            					LD			HL, heartbeat_cienpies
+     118   00:4075  34                  .loop_heartbeat:	INC			(HL)
+     119   00:4076  23                  					INC			HL
+     120   00:4077  10 FC               .fin_loop_hearbeat:	DJNZ		.loop_heartbeat
+     121   00:4079                      
+     122   00:4079                      		;poner arriba
+     123   00:4079  CD 82 4D            		CALL		render_sprites			;actualiza array de sprites y los pinta en pantalla
+     124   00:407C                      	
+     125   00:407C  C3 66 40            		JP			loop_principal
+     126   00:407F                      fin_programa_principal:
+     127   00:407F                      	;no necesita RET
      128   00:407F                      
-     129   00:407F                      ;;=====================================================
-     130   00:407F                      ;;INICIALIZA_VARIABLES_PROTA
-     131   00:407F                      ;;=====================================================
-     132   00:407F                      ; funcion: inicializa las variables que afectan al prota y dónde empieza la partida
-     133   00:407F                      inicializa_variables_prota:
-     134   00:407F  3E 04               	LD		 A, PROTAVIDAS
-     135   00:4081  32 01 C0            	LD		(prota_vidas),A
-     136   00:4084                      
-     137   00:4084  3E 03               	LD		 A, PROTARELIQUIAS
-     138   00:4086  32 02 C0            	LD		(prota_reliquias), A
-     139   00:4089                      
-     140   00:4089  3E F8               	LD		 A, PROTAENERGIA			
-     141   00:408B  32 05 C0            	LD		(prota_energia), A
-     142   00:408E                      	
-     143   00:408E  3E 00               	LD		 A, PROTAENERGIABYTEBAJO			
-     144   00:4090  32 06 C0            	LD		(prota_energia_bytebajo), A
-     145   00:4093                      
-     146   00:4093                      	;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
-     147   00:4093                      	;será igual la posición inicial en todos los niveles
-     148   00:4093                      	
-     149   00:4093  3E 00               	LD		 A, PROTANIVEL		
-     150   00:4095  32 00 C0            	LD		(prota_nivel), A
-     151   00:4098                      
-     152   00:4098  3E 00               	LD		 A, PROTAPOSMAPY	
-     153   00:409A  32 04 C0            	LD		(prota_pos_mapy), A	
-     154   00:409D                      
-     155   00:409D  3E 03               	LD		 A, PROTAPOSMAPX	
-     156   00:409F  32 03 C0            	LD		(prota_pos_mapx), A	
-     157   00:40A2                      fin_inicializa_variables_pruebas:
-     158   00:40A2  C9                  		RET
-     159   00:40A3                      ;;************************************************************************
-     160   00:40A3                      
+     129   00:407F                      
+     130   00:407F                      ;;=====================================================
+     131   00:407F                      ;;INICIALIZA_VARIABLES_PROTA
+     132   00:407F                      ;;=====================================================
+     133   00:407F                      ; funcion: inicializa las variables que afectan al prota y dónde empieza la partida
+     134   00:407F                      inicializa_variables_prota:
+     135   00:407F  3E 04               	LD		 A, PROTAVIDAS
+     136   00:4081  32 01 C0            	LD		(prota_vidas),A
+     137   00:4084                      
+     138   00:4084  3E 03               	LD		 A, PROTARELIQUIAS
+     139   00:4086  32 02 C0            	LD		(prota_reliquias), A
+     140   00:4089                      
+     141   00:4089  3E F8               	LD		 A, PROTAENERGIA			
+     142   00:408B  32 05 C0            	LD		(prota_energia), A
+     143   00:408E                      	
+     144   00:408E  3E 00               	LD		 A, PROTAENERGIABYTEBAJO			
+     145   00:4090  32 06 C0            	LD		(prota_energia_bytebajo), A
+     146   00:4093                      
+     147   00:4093                      	;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
+     148   00:4093                      	;será igual la posición inicial en todos los niveles
+     149   00:4093                      	
+     150   00:4093  3E 00               	LD		 A, PROTANIVEL		
+     151   00:4095  32 00 C0            	LD		(prota_nivel), A
+     152   00:4098                      
+     153   00:4098  3E 00               	LD		 A, PROTAPOSMAPY	
+     154   00:409A  32 04 C0            	LD		(prota_pos_mapy), A	
+     155   00:409D                      
+     156   00:409D  3E 03               	LD		 A, PROTAPOSMAPX	
+     157   00:409F  32 03 C0            	LD		(prota_pos_mapx), A	
+     158   00:40A2                      fin_inicializa_variables_pruebas:
+     159   00:40A2  C9                  		RET
+     160   00:40A3                      ;;************************************************************************
      161   00:40A3                      
-     162   00:40A3                      ;;=====================================================
-     163   00:40A3                      ;;DEFINICIÓN DE SUBRUTINAS
-     164   00:40A3                      ;;=====================================================
-     165   00:40A3                      	include "subrutinas.asm"
+     162   00:40A3                      
+     163   00:40A3                      ;;=====================================================
+     164   00:40A3                      ;;DEFINICIÓN DE SUBRUTINAS
+     165   00:40A3                      ;;=====================================================
+     166   00:40A3                      	include "subrutinas.asm"
        1.  00:40A3                      ;;=====================================================
        2.  00:40A3                      ;;DEFINICIÓN DE SUBRUTINAS
        3.  00:40A3                      ;;=====================================================	
@@ -1421,8 +1422,8 @@ Errors: 0
      538.  00:42E5                      fin_check_colisiones_objetos:	
      539.  00:42E5  C9                  		RET
      540.  00:42E6                      
-     166   00:42E6                      	
-     167   00:42E6                      	include "subr_general.asm"
+     167   00:42E6                      	
+     168   00:42E6                      	include "subr_general.asm"
        1.  00:42E6                      ;;=====================================================
        2.  00:42E6                      ;;DEFINICIÓN DE SUBRUTINAS GENERALES USABLES PARA CUALQUIER PROYECTO
        3.  00:42E6                      ;;=====================================================	
@@ -1549,8 +1550,8 @@ Errors: 0
      124.  00:4320  10 FD               		DJNZ		.loop
      125.  00:4322                      fin_retardo8bits:
      126.  00:4322  C9                  		RET
-     168   00:4323                      	
-     169   00:4323                      	include "subr_pintapantalla.asm"
+     169   00:4323                      	
+     170   00:4323                      	include "subr_pintapantalla.asm"
        1.  00:4323                      ;;=====================================================
        2.  00:4323                      ;;CONTANTES PANTALLAS
        3.  00:4323                      ;;=====================================================
@@ -2699,8 +2700,8 @@ Errors: 0
     1146.  00:488E  C3 F2 47            		JP			borra_pantalla_inicio
     1147.  00:4891                      fin_muestra_pantalla_inicial:
     1148.  00:4891                      
-     170   00:4891                      	
-     171   00:4891                      	include "subr_puntomira.asm"
+     171   00:4891                      	
+     172   00:4891                      	include "subr_puntomira.asm"
        1.  00:4891                      ;;=====================================================
        2.  00:4891                      ;;CONTANTES PUNTOMIRA
        3.  00:4891                      ;;=====================================================
@@ -2804,8 +2805,8 @@ Errors: 0
      101.  00:48D8                      fin_accion_boton2:
      102.  00:48D8                      
      103.  00:48D8                      
-     172   00:48D8                      	
-     173   00:48D8                      	include "subr_puertas.asm"
+     173   00:48D8                      	
+     174   00:48D8                      	include "subr_puertas.asm"
        1.  00:48D8                      ;;=====================================================
        2.  00:48D8                      ;;CONTANTES PUERTAS
        3.  00:48D8                      ;;=====================================================
@@ -3377,8 +3378,8 @@ Errors: 0
      562.  00:4B8F                      fin_desactiva_todas_puertas:
      563.  00:4B8F  C9                  		RET
      564.  00:4B90                      
-     174   00:4B90                      	
-     175   00:4B90                      	include "subr_sprites.asm"
+     175   00:4B90                      	
+     176   00:4B90                      	include "subr_sprites.asm"
        1.  00:4B90                      ;;=====================================================
        2.  00:4B90                      ;;SUBRUTINAS ENCARGADAS DE MANEJAR LOS SPRITES
        3.  00:4B90                      ;;=====================================================	
@@ -3812,8 +3813,8 @@ Errors: 0
      431.  00:4DFF                      fin_check_player:
      432.  00:4DFF                      
      433.  00:4DFF                      
-     176   00:4DFF                      	
-     177   00:4DFF                      	include "subr_ayudas.asm"
+     177   00:4DFF                      	
+     178   00:4DFF                      	include "subr_ayudas.asm"
        1.  00:4DFF                      ;;=====================================================
        2.  00:4DFF                      ;;SUBRUTINAS MANEJO DE OBJETOS AYUDA
        3.  00:4DFF                      ;;=====================================================	
@@ -4464,8 +4465,8 @@ Errors: 0
      648.  00:5120  DD 77 00            		LD		(IX), A
      649.  00:5123  C3 E5 4E            		JP		pinta_obj_ayuda			;se le pasa A = 0 para que pinte desactivado
      650.  00:5126                      fin_accion_ballesta:
-     178   00:5126                      	
-     179   00:5126                      	include "subr_tiempo.asm"
+     179   00:5126                      	
+     180   00:5126                      	include "subr_tiempo.asm"
        1.  00:5126                      ;;=====================================================
        2.  00:5126                      ;;VARIABLES TIEMPO
        3.  00:5126                      ;;=====================================================
@@ -4519,8 +4520,8 @@ Errors: 0
       51.  00:514C  DD 34 00            			INC				(IX)	; incremento minutos
       52.  00:514F  C9                  			RET
       53.  00:5150                      fin_actualiza_contadores_tiempo:
-     180   00:5150                      	
-     181   00:5150                      	include "subr_teclado_joy.asm"
+     181   00:5150                      	
+     182   00:5150                      	include "subr_teclado_joy.asm"
        1.  00:5150                      ;;=====================================================
        2.  00:5150                      ;;SUBRUTINAS QUE CAPTURAN EL JOYSTICK Y TECLADO Y MUEVEN PUNTO DE MIRA
        3.  00:5150                      ;;=====================================================
@@ -4765,8 +4766,8 @@ Errors: 0
      241.  00:5211                      
      242.  00:5211                      ;--------------------------------------------
      243.  00:5211                      
-     182   00:5211                      	
-     183   00:5211                      	include "enemigos/subr_enemigos.asm"
+     183   00:5211                      	
+     184   00:5211                      	include "enemigos/subr_enemigos.asm"
        1.  00:5211                      ;;=====================================================
        2.  00:5211                      ;;SUBRUTINAS MANEJO DE ENEMIGOS
        3.  00:5211                      ;;=====================================================	
@@ -10204,8 +10205,8 @@ Errors: 0
     1739.  00:70BB                      
     1740.  00:70BB                      
     1741.  00:70BB                      
-     184   00:70BB                      	
-     185   00:70BB                      	include "sonido/subr_sonido.asm"
+     185   00:70BB                      	
+     186   00:70BB                      	include "sonido/subr_sonido.asm"
        1.  00:70BB                      
        2.  00:70BB                      ;;=====================================================
        3.  00:70BB                      ;;SUBRUTINAS PARA SONIDOS
@@ -11482,16 +11483,16 @@ Errors: 0
       71.  00:812F                      sfx_bank:
       72.  00:812F  (004B)              	incbin "demo.afb"
       73.  00:817A                      
-     186   00:817A                      	
-     187   00:817A                      
-     188   00:817A                      ;;=====================================================
-     189   00:817A                      ;;DEFINICIÓN DE SUBRUTINAS DE FERNANDO PARA COMPRESIÓN Y SONIDO
-     190   00:817A                      ;;=====================================================
-     191   00:817A                      ;Este include lleva la rutina de descompresión de ROM/RAM a VRAM de pletter
-     192   00:817A                      ;Está adaptada de la original a sjasm
-     193   00:817A                      ;	HL = RAM/ROM source	; DE = VRAM destination
-     194   00:817A                      depack_VRAM:
-     195   00:817A                      	include "pletter/PL_VRAM_Depack_SJASM.asm"
+     187   00:817A                      	
+     188   00:817A                      
+     189   00:817A                      ;;=====================================================
+     190   00:817A                      ;;DEFINICIÓN DE SUBRUTINAS DE FERNANDO PARA COMPRESIÓN Y SONIDO
+     191   00:817A                      ;;=====================================================
+     192   00:817A                      ;Este include lleva la rutina de descompresión de ROM/RAM a VRAM de pletter
+     193   00:817A                      ;Está adaptada de la original a sjasm
+     194   00:817A                      ;	HL = RAM/ROM source	; DE = VRAM destination
+     195   00:817A                      depack_VRAM:
+     196   00:817A                      	include "pletter/PL_VRAM_Depack_SJASM.asm"
        1.  00:817A                      ;-----------------------------------------------------------
        2.  00:817A                      ; Pletter v0.5b VRAM Depacker v1.1 - 16Kb version
        3.  00:817A                      ; HL = RAM/ROM source ; DE = VRAM destination
@@ -11675,12 +11676,12 @@ Errors: 0
      181.  00:8264  F7 81               	dw	mode5
      182.  00:8266  F1 81               	dw	mode6
      183.  00:8268  EB 81               	dw	mode7
-     196   00:826A                      
      197   00:826A                      
-     198   00:826A                      ;;=====================================================
-     199   00:826A                      ;;DEFINICIÓN DE PANTALLAS / CONTANTES DATOS PANTALLAS
-     200   00:826A                      ;;=====================================================		
-     201   00:826A                      	include "datos/pantallas.asm"
+     198   00:826A                      
+     199   00:826A                      ;;=====================================================
+     200   00:826A                      ;;DEFINICIÓN DE PANTALLAS / CONTANTES DATOS PANTALLAS
+     201   00:826A                      ;;=====================================================		
+     202   00:826A                      	include "datos/pantallas.asm"
        1.  00:826A                      ;;=====================================================
        2.  00:826A                      ;;DEFINICIÓN DE PANTALLAS
        3.  00:826A                      ;;=====================================================		
@@ -11737,12 +11738,12 @@ Errors: 0
       54.  00:A2E4                      ; HUIDA
       55.  00:A2E4                      ; 2 FINAL BUENO
       56.  00:A2E4                      ; 1 FINAL MALO
-     202   00:A2E4                      
      203   00:A2E4                      
-     204   00:A2E4                      ;;=====================================================
-     205   00:A2E4                      ;;CONTANTES DATOS SPRITES
-     206   00:A2E4                      ;;=====================================================
-     207   00:A2E4                      	include "datos/sprites.asm"
+     204   00:A2E4                      
+     205   00:A2E4                      ;;=====================================================
+     206   00:A2E4                      ;;CONTANTES DATOS SPRITES
+     207   00:A2E4                      ;;=====================================================
+     208   00:A2E4                      	include "datos/sprites.asm"
        1.  00:A2E4                      ;;=====================================================
        2.  00:A2E4                      ;;DEFINICIÓN DE SPRITES
        3.  00:A2E4                      ;;=====================================================	
@@ -13210,12 +13211,12 @@ Errors: 0
      909.  00:B43C  4F C9 89 09 09 0B CE 00 
      910.  00:B444                      fin_sprite_conde:
      911.  00:B444                      
-     208   00:B444                      
      209   00:B444                      
-     210   00:B444                      ;;=====================================================
-     211   00:B444                      ;;CONTANTES DATOS TEXTOS
-     212   00:B444                      ;;=====================================================
-     213   00:B444                      	include "datos/textos.asm"
+     210   00:B444                      
+     211   00:B444                      ;;=====================================================
+     212   00:B444                      ;;CONTANTES DATOS TEXTOS
+     213   00:B444                      ;;=====================================================
+     214   00:B444                      	include "datos/textos.asm"
        1.  00:B444                      ;;=====================================================
        2.  00:B444                      ;;CONTANTES TEXTOS
        3.  00:B444                      ;;=====================================================
@@ -13382,26 +13383,26 @@ Errors: 0
      151.  00:B5A0                      
      152.  00:B5A0                      
      153.  00:B5A0                      
-     214   00:B5A0                      	
      215   00:B5A0                      	
-     216   00:B5A0                      ;;=====================================================
-     217   00:B5A0                      ;;DEFINICIÓN DE VARIABLES
-     218   00:B5A0                      ;;=====================================================		
-     219   00:B5A0                      inicializacion_variables:
-     220   00:B5A0  (0545)              	incbin	"variables.dat"
-     221   00:BAE5                      fin_inicializacion_variables:
-     222   00:BAE5                      
+     216   00:B5A0                      	
+     217   00:B5A0                      ;;=====================================================
+     218   00:B5A0                      ;;DEFINICIÓN DE VARIABLES
+     219   00:B5A0                      ;;=====================================================		
+     220   00:B5A0                      inicializacion_variables:
+     221   00:B5A0  (0545)              	incbin	"variables.dat"
+     222   00:BAE5                      fin_inicializacion_variables:
      223   00:BAE5                      
      224   00:BAE5                      
-     225   00:BAE5                      ;nota: el powerup de armadura dura n habitaciones
-     226   00:BAE5                      ;nota: el powerup de disparo dura n habitaciones
-     227   00:BAE5                      
+     225   00:BAE5                      
+     226   00:BAE5                      ;nota: el powerup de armadura dura n habitaciones
+     227   00:BAE5                      ;nota: el powerup de disparo dura n habitaciones
      228   00:BAE5                      
-     229   00:BAE5                      ;END: (FIN CÓDIGO)
-     230   00:BAE5                      
+     229   00:BAE5                      
+     230   00:BAE5                      ;END: (FIN CÓDIGO)
      231   00:BAE5                      
-     232   00:BAE5                      ;INICIO ZONA DATOS (BANCO DE MEMORIA 3)
-     233   00:BAE5  00 (1307)           		DS	#C000 - $
+     232   00:BAE5                      
+     233   00:BAE5                      ;INICIO ZONA DATOS (BANCO DE MEMORIA 3)
+     234   00:BAE5  00 (1307)           		DS	#C000 - $
 
     LABELS
 -------------------------------------------------
