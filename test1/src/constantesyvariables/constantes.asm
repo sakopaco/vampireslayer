@@ -179,7 +179,7 @@ TILEENERG5  		equ		124
 TILEENERG4  		equ		93
 TILEENERG3  		equ		62
 TILEENERG2  		equ		31
-TILEENERG1			equ 	0
+TILEENERG1			equ 	648
 TILENEGRO			equ		0
 
 ;limites
@@ -198,7 +198,7 @@ PROTAVIDAS			equ		2
 PROTARELIQUIAS		equ		3
 PROTAPOSMAPX		equ		3			;pos columna 7 columnas 7: del 0 al 6 ;pos X dentro del nivel (se empieza en 0)
 PROTAPOSMAPY		equ		0			;pos fila los subniveles (filas) son 7 del 0 al 6 ;pos Y dentro del nivel (se empieza en 0)
-PROTAENERGIA		equ		248			;MAXENERGIA;valor real de la energía
+PROTAENERGIA		equ		60;248			;MAXENERGIA;valor real de la energía
 PROTAENERGIABYTEBAJO	equ		0		;cuando se llene este es cuando se pierde prota_energí
 
 

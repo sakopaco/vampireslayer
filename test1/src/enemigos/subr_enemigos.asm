@@ -1722,14 +1722,7 @@ enemigo_hace_dano:
 						;pinto_vidas_actuales
 						CALL		pinta_vidas
 						;pinto mensaje de una vida menos
-						
-						
-						
-						;***************************************
 						CALL		una_vida_menos ;usar función de ocultar sprites
-						
-						
-						
 						;pongo energía al máximo
 						LD			 A, MAXENERGIA
 						LD			(prota_energia), A
@@ -1738,6 +1731,7 @@ enemigo_hace_dano:
 					;NO
 no_quedan_vidas:
 						;gameover			****************************************
+						CALL		game_over
 						;SALIR
 						JP			pantalla_inicial	;***************+ PREGUNTAR FERNANDO SI HABRÍA QUE REINICIAR LA PILA DE ALGUNA FORMA
 					;FINSI

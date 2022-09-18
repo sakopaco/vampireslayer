@@ -20,6 +20,9 @@ texto_entrefases4:	DB  'Y',' ','E','L',' ','H','O','R','R','O','V','R',' ','Q','
 
 texto_iniciar:		DB	' ',' ',' ','P','U','L','S','A',' ','F','U','E','G','O',' ','P','A','R','A',' ','C','O','M','E','N','Z','A','R',' ',' '	;30 caracteres
 
+texto_vidamenos:	DB 	'V','I','G','I','L','A',' ','T','U','S',' ','V','I','D','A','S'	;16 caracteres
+
+texto_gameover:		DB	'H','A','S',' ','M','U','E','R','T','O'	;10 caracteres
 ELSE		
 ;textos en inglés
 texto_vidas:		DB	'L','I','V','E','S'
@@ -37,6 +40,10 @@ texto_entrefases3:	DB  'T','O',' ','T','H','E',' ','D','A','R','K','N','E','S','
 texto_entrefases4:	DB  'T','H','A','T',' ','A','W','A','I','T','S',' ','Y','O','U','.',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '	; 30 caracteres
 
 texto_iniciar:		DB	' ','P','U','S','H',' ','T','R','I','G','E','R',' ','T','O',' ','S','T','A','R','T',' ','T','H','E',' ','G','A','M','E'
+
+texto_vidamenos:	DB 	'W','A','T','C','H',' ','Y','O','U','R',' ','L','I','V','E','S'	;16 caracteres
+
+texto_gameover:		DB	'G','A','M','E',' ','O','V','E','R',' '	;10 caracteres
 ENDIF
 
 texto_autoria:		DB	'S','A','K','O','P','A','C','O',' ',' ','2','0','2','2' ; 14 caracteres

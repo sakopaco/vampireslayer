@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.09.17 - 20:50:46]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.09.18 - 11:10:17]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -194,7 +194,7 @@ Errors: 0
      179.  00:C000  (00:005D)           TILEENERG4  		equ		93
      180.  00:C000  (00:003E)           TILEENERG3  		equ		62
      181.  00:C000  (00:001F)           TILEENERG2  		equ		31
-     182.  00:C000  (00:0000)           TILEENERG1			equ 	0
+     182.  00:C000  (00:0288)           TILEENERG1			equ 	648
      183.  00:C000  (00:0000)           TILENEGRO			equ		0
      184.  00:C000                      
      185.  00:C000                      ;limites
@@ -213,7 +213,7 @@ Errors: 0
      198.  00:C000  (00:0003)           PROTARELIQUIAS		equ		3
      199.  00:C000  (00:0003)           PROTAPOSMAPX		equ		3			;pos columna 7 columnas 7: del 0 al 6 ;pos X dentro del nivel (se empieza en 0)
      200.  00:C000  (00:0000)           PROTAPOSMAPY		equ		0			;pos fila los subniveles (filas) son 7 del 0 al 6 ;pos Y dentro del nivel (se empieza en 0)
-     201.  00:C000  (00:00F8)           PROTAENERGIA		equ		248			;MAXENERGIA;valor real de la energía
+     201.  00:C000  (00:003C)           PROTAENERGIA		equ		60;248			;MAXENERGIA;valor real de la energía
      202.  00:C000  (00:0000)           PROTAENERGIABYTEBAJO	equ		0		;cuando se llene este es cuando se pierde prota_energí
      203.  00:C000                      
      204.  00:C000                      
@@ -1310,7 +1310,7 @@ Errors: 0
 00:0000005D X TILEENERG4
 00:0000003E X TILEENERG3
 00:0000001F X TILEENERG2
-00:00000000 X TILEENERG1
+00:00000288 X TILEENERG1
 00:00000000 X TILENEGRO
 00:00000000 X LIMPANTIZQ
 00:000000FF X LIMPANTDER
@@ -1323,7 +1323,7 @@ Errors: 0
 00:00000003 X PROTARELIQUIAS
 00:00000003 X PROTAPOSMAPX
 00:00000000 X PROTAPOSMAPY
-00:000000F8 X PROTAENERGIA
+00:0000003C X PROTAENERGIA
 00:00000000 X PROTAENERGIABYTEBAJO
 00:0000FD9A X H.KEYI
 00:0000FD9F X H.TIMI

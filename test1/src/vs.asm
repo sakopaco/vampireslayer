@@ -164,18 +164,8 @@ fin_inicializa_variables_pruebas:
 
 una_vida_menos;
 		;vacia vida (el nivel mínimo lo pone en negro)
-		;~ TILEENERG1			equ 	0
-		;~ TILENEGRO			equ		0
-		;~ WRTVRM
-
-;~ Address  : #004D
-;~ Function : Writes data in VRAM
-;~ Input    : HL - Address write
-           ;~ A  - Value write
-;~ Registers: AF
-
 		LD			 A, TILENEGRO
-		LD			HL, TILMAP + 21 + 8
+		LD			HL, TILMAP + TILEENERG1
 		CALL		WRTVRM
 		
 		;oculta los sprites que haya en pantalla
@@ -186,6 +176,11 @@ una_vida_menos;
 		LD			BC, 512
 		LD			HL, TILMAP
 		CALL		FILVRM
+		
+		LD			HL, texto_vidamenos;guardo puntero al array a pintar (como psar por referencia)
+		LD			BC, 16				;nº posiciones a pintar
+		LD			DE, TILMAP + 200	;destino en vram
+		CALL		LDIRVM
 
 		;espera para poder leer el texto
 		LD			 B, 20
@@ -195,14 +190,18 @@ una_vida_menos;
 		CALL		retardo16bits
 		POP			BC
 		DJNZ		.loop_espera
-
-
 		
 		;repinto la pantalla y las puertas que correspondan
 		CALL		pinta_parte_superior_pantalla
-		CALL		pinta_puertas
+		JP			pinta_puertas
 fin_una_vida_menos:
+
+;nota: 
+game_over:
+fin_game_over:
 		RET
+
+
 
 ;;=====================================================
 ;;DEFINICIÓN DE SUBRUTINAS
