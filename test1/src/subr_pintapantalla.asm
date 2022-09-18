@@ -1049,11 +1049,7 @@ borra_pantalla_inicio:
 			OR			 C
 			JP			NZ, .loop
 			
-			;limpia todo y evita que se vea cuando se cargan los nuevos tiles por pantalla
-			XOR		 	 A
-			LD			HL, TILMAP
-			LD			BC, 768
-			JP			FILVRM
+			JP			limpia_pantalla_completa
 fin_borra_pantalla_inicio:
 
 
@@ -1146,3 +1142,54 @@ muestra_pantalla_inicial:
 		JP			borra_pantalla_inicio
 fin_muestra_pantalla_inicial:
 
+
+;;=====================================================
+;;LIMPIA_PANTALLA_COMPLETA
+;;=====================================================	
+; función: limpia toda la pantlla poniendo el tile vacio en todas las posiciones (el tile vacio está definido en los 3 bancos)
+limpia_pantalla_completa:
+		;limpia todo y evita que se vea cuando se cargan los nuevos tiles por pantalla
+		XOR		 	 A
+		LD			HL, TILMAP
+		LD			BC, 768
+		JP			FILVRM
+fin_limpia_pantalla_completa
+
+
+;;=====================================================
+;;UNA_VIDA_MENOS
+;;=====================================================
+; funcion: muestra mensaje cuando te matan una vida
+una_vida_menos;
+		;vacia vida (el nivel mínimo lo pone en negro)
+		LD			 A, TILENEGRO
+		LD			HL, TILMAP + TILEENERG1
+		CALL		WRTVRM
+		
+		;oculta los sprites que haya en pantalla
+		CALL		oculta_todos_sprites
+
+		;limpia superior pantalla
+		XOR			 A
+		LD			BC, 512
+		LD			HL, TILMAP
+		CALL		FILVRM
+		
+		LD			HL, texto_vidamenos;guardo puntero al array a pintar (como psar por referencia)
+		LD			BC, 16				;nº posiciones a pintar
+		LD			DE, TILMAP + 200	;destino en vram
+		CALL		LDIRVM
+
+		;espera para poder leer el texto
+		LD			 B, 20
+.loop_espera:
+		PUSH		BC
+		LD			BC, 60000
+		CALL		retardo16bits
+		POP			BC
+		DJNZ		.loop_espera
+		
+		;repinto la pantalla y las puertas que correspondan
+		CALL		pinta_parte_superior_pantalla
+		JP			pinta_puertas
+fin_una_vida_menos:

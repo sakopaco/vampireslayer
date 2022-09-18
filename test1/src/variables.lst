@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.09.18 - 11:10:17]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.09.18 - 21:22:55]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -319,7 +319,7 @@ Errors: 0
       14.  00:C000  (00:0070)           LIMITEPANTALLAINF		equ		112
       15.  00:C000  (00:0000)           LIMITEPANTALLAIZQ		equ		0
       16.  00:C000  (00:00F0)           LIMITEPANTALLADER		equ		240
-      17.  00:C000  (00:0014)           DANOESTANDARENEMIGOS    equ		20
+      17.  00:C000  (00:0015)           DANOESTANDARENEMIGOS    equ		21
       18.  00:C000                      
       19.  00:C000                      ;;ETIQUETAS/CONSTANTES CIENPIES
       20.  00:C000  (00:0002)           TIPOCIEMPIES			equ		2
@@ -1390,7 +1390,7 @@ Errors: 0
 00:00000070 X LIMITEPANTALLAINF
 00:00000000 X LIMITEPANTALLAIZQ
 00:000000F0 X LIMITEPANTALLADER
-00:00000014 X DANOESTANDARENEMIGOS
+00:00000015 X DANOESTANDARENEMIGOS
 00:00000002 X TIPOCIEMPIES
 00:0000000C X CIENPIES_COLOR
 00:00000018 X CIENPIES_SPRITE1A

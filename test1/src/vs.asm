@@ -64,7 +64,7 @@ START:
 		CALL		sub_preparapantalla			;screen 2,2 sin click al pulsar tecla y color 16,1,1
 		
 pantalla_inicial:
-;		CALL		muestra_pantalla_inicial
+		CALL		muestra_pantalla_inicial
 
 		;inicializa variables para parametrizar funciones y que lo que se muestre sea variable (nº vidas, mapa, puertas, pantalla, etc...)
 		CALL		inicializa_variables_prota
@@ -162,26 +162,20 @@ fin_inicializa_variables_pruebas:
 
 
 
-una_vida_menos;
-		;vacia vida (el nivel mínimo lo pone en negro)
-		LD			 A, TILENEGRO
-		LD			HL, TILMAP + TILEENERG1
-		CALL		WRTVRM
+;nota: 
+game_over1:
+		;limpiar pantalla
+		CALL		limpia_pantalla_completa
 		
 		;oculta los sprites que haya en pantalla
 		CALL		oculta_todos_sprites
-
-		;limpia pantalla
-		XOR			 A
-		LD			BC, 512
-		LD			HL, TILMAP
-		CALL		FILVRM
 		
-		LD			HL, texto_vidamenos;guardo puntero al array a pintar (como psar por referencia)
-		LD			BC, 16				;nº posiciones a pintar
-		LD			DE, TILMAP + 200	;destino en vram
+		;poner texto game over
+		LD			HL, texto_gameover	;guardo puntero al array a pintar (como pasar por referencia)
+		LD			BC, 10				;nº posiciones a pintar
+		LD			DE, TILMAP + 332	;destino en vram
 		CALL		LDIRVM
-
+		
 		;espera para poder leer el texto
 		LD			 B, 20
 .loop_espera:
@@ -191,15 +185,14 @@ una_vida_menos;
 		POP			BC
 		DJNZ		.loop_espera
 		
-		;repinto la pantalla y las puertas que correspondan
-		CALL		pinta_parte_superior_pantalla
-		JP			pinta_puertas
-fin_una_vida_menos:
+		
+		;falta escena fin con texto **********************************************************
+		
+		
+		;ESTO LO TIENE QUE VER FERNANDO PORQUE NO CREO QUE ESTÉ BIEN ... LA PILA TENDRÁ MUCHA BASURA
+		JP			pantalla_inicial		;*******************************************************************		
+fin_game_over1:
 
-;nota: 
-game_over:
-fin_game_over:
-		RET
 
 
 

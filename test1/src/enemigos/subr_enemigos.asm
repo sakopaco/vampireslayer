@@ -1689,8 +1689,6 @@ fin_mueve_enemigo:
 		RET
 
 
-
-
 ;;=====================================================
 ;;ENEMIGO_HACE_DANO
 ;;=====================================================	
@@ -1704,7 +1702,7 @@ enemigo_hace_dano:
 		XOR			 A
 		LD			(prota_energia_bytebajo), A
 		LD			 A, (prota_energia)
-		SUB			21;DANOESTANDARENEMIGOS
+		SUB			DANOESTANDARENEMIGOS
 		LD			(prota_energia), A
 		
 		;vida menos?
@@ -1715,7 +1713,7 @@ enemigo_hace_dano:
 		;		quedan vidas?
 					LD			 A, (prota_vidas)
 					DEC			 A
-					JP			NC, no_quedan_vidas
+					JP			 Z, no_quedan_vidas
 					;SI
 						;restovidas
 						LD			(prota_vidas), A
@@ -1730,8 +1728,8 @@ enemigo_hace_dano:
 						RET
 					;NO
 no_quedan_vidas:
-						;gameover			****************************************
-						CALL		game_over
+						;gameover normal (tipo 1)
+						CALL		game_over1
 						;SALIR
 						JP			pantalla_inicial	;***************+ PREGUNTAR FERNANDO SI HABRÍA QUE REINICIAR LA PILA DE ALGUNA FORMA
 					;FINSI
