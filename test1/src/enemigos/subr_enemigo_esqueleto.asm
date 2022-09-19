@@ -97,6 +97,10 @@ calcula_esqueleto_escena:
 			;reseteo el cambio de escena del esqueleto
 			XOR			 A
 			LD			(heartbeat_esqueleto), A
+			
+			;hace daño
+			LD			 B, (IX + ESTRUCTURA_ENEMIGO.dano)
+			CALL		enemigo_hace_dano
 
 .direccion_derecha:
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)

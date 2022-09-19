@@ -142,6 +142,10 @@ calcula_jefebeholder_escena:
 			XOR			 A
 			LD			(heartbeat_general), A
 			
+			;hace daño
+			LD			 B, (IX + ESTRUCTURA_ENEMIGO.dano)
+			CALL		enemigo_hace_dano
+			
 			;THEN cambia escena
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
 			XOR			00000001b

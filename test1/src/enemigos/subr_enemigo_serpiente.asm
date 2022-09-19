@@ -91,13 +91,18 @@ calcula_serpiente_escena:
 		LD			 A, (heartbeat_serpiente)
 		AND			SERPIENTE_VELESCENA
 		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
+			
 			;reseteo el cambio de escena de la serpiente
 			XOR			 A
 			LD			(heartbeat_serpiente), A
 			
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
-		OR			 A
-		JP			 Z, .direccion_derecha
+			;hace daño
+			LD			 B, (IX + ESTRUCTURA_ENEMIGO.dano)
+			CALL		enemigo_hace_dano
+			
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
+			OR			 A
+			JP			 Z, .direccion_derecha
 .direccion_izquierda:
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
 			XOR			00000001b

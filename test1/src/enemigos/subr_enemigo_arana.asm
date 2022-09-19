@@ -106,6 +106,10 @@ calcula_arana_escena:
 			;reseteo el cambio de escena de la araña
 			XOR			 A
 			LD			(heartbeat_arana), A
+			
+			;hace daño
+			LD			 B, (IX + ESTRUCTURA_ENEMIGO.dano)
+			CALL		enemigo_hace_dano
 		
 			; cambio de escena
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)

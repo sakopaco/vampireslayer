@@ -96,6 +96,10 @@ calcula_zombi_escena:
 			;reseteo el cambio de escena del zombi
 			XOR			 A
 			LD			(heartbeat_zombi), A
+			
+			;hace daño
+			LD			 B, (IX + ESTRUCTURA_ENEMIGO.dano)
+			CALL		enemigo_hace_dano
 
 .direccion_izquierda:
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)

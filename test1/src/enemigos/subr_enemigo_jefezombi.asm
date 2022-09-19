@@ -124,6 +124,10 @@ calcula_jefezombi_escena:
 			;reseteo el cambio de escena del jefezobi
 			XOR			 A
 			LD			(heartbeat_general), A
+			
+			;hace daño
+			LD			 B, (IX + ESTRUCTURA_ENEMIGO.dano)
+			CALL		enemigo_hace_dano
 
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
 		OR			 A

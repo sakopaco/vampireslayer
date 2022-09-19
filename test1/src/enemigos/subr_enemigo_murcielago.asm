@@ -91,6 +91,10 @@ calcula_murcielago_escena:
 			;reseteo el cambio de escena del murcielago
 			XOR			 A
 			LD			(heartbeat_murcielago), A
+			
+			;hace daño
+			LD			 B, (IX + ESTRUCTURA_ENEMIGO.dano)
+			CALL		enemigo_hace_dano
 		
 			; cambio de escena
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)

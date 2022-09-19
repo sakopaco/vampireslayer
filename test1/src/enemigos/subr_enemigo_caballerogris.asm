@@ -96,6 +96,10 @@ calcula_caballero_escena:
 			;reseteo el cambio de escena del caballero
 			XOR			 A
 			LD			(heartbeat_caballero), A
+			
+			;hace daño
+			LD			 B, (IX + ESTRUCTURA_ENEMIGO.dano)
+			CALL		enemigo_hace_dano
 
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
 		OR			 A
