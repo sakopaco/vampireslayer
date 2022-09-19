@@ -1144,6 +1144,19 @@ fin_muestra_pantalla_inicial:
 
 
 ;;=====================================================
+;;LIMPIA_PANTALLA_SUPERIOR
+;;=====================================================	
+; función: limpia toda la pantlla poniendo el tile vacio en todas las posiciones (el tile vacio está definido en los 3 bancos)
+limpia_pantalla_superior:
+		;limpia todo y evita que se vea cuando se cargan los nuevos tiles por pantalla
+		XOR		 	 A
+		LD			HL, TILMAP
+		LD			BC, 512
+		JP			FILVRM
+fin_limpia_pantalla_superior:
+
+
+;;=====================================================
 ;;LIMPIA_PANTALLA_COMPLETA
 ;;=====================================================	
 ; función: limpia toda la pantlla poniendo el tile vacio en todas las posiciones (el tile vacio está definido en los 3 bancos)
@@ -1153,7 +1166,29 @@ limpia_pantalla_completa:
 		LD			HL, TILMAP
 		LD			BC, 768
 		JP			FILVRM
-fin_limpia_pantalla_completa
+fin_limpia_pantalla_completa:
+
+
+;;=====================================================
+;;OCULTA_TILE_ENERGIA_MINIMA
+;;=====================================================	
+; función: limpia tile de energía mínima
+oculta_tile_energia_minima:
+		LD			 A, TILENEGRO
+		LD			HL, TILMAP + TILEENERG1
+		JP			WRTVRM
+fin_oculta_tile_energia_minima:
+		
+
+;;=====================================================
+;;OCULTA_TILE_VIDA0
+;;=====================================================	
+; función: limpia tile de de vida 0
+oculta_tile_vida0:
+		LD			 A, TILENEGRO
+		LD			HL, TILMAP + TILEVIDA1
+		JP			WRTVRM
+fin_oculta_tile_vida0:
 
 
 ;;=====================================================
@@ -1162,18 +1197,13 @@ fin_limpia_pantalla_completa
 ; funcion: muestra mensaje cuando te matan una vida
 una_vida_menos;
 		;vacia vida (el nivel mínimo lo pone en negro)
-		LD			 A, TILENEGRO
-		LD			HL, TILMAP + TILEENERG1
-		CALL		WRTVRM
+		CALL		oculta_tile_energia_minima
 		
 		;oculta los sprites que haya en pantalla
 		CALL		oculta_todos_sprites
 
 		;limpia superior pantalla
-		XOR			 A
-		LD			BC, 512
-		LD			HL, TILMAP
-		CALL		FILVRM
+		CALL		limpia_pantalla_superior
 		
 		LD			HL, texto_vidamenos;guardo puntero al array a pintar (como psar por referencia)
 		LD			BC, 16				;nº posiciones a pintar

@@ -181,6 +181,7 @@ TILEENERG3  		equ		62
 TILEENERG2  		equ		31
 TILEENERG1			equ 	648
 TILENEGRO			equ		0
+TILEVIDA1			equ 	584
 
 ;limites
 LIMPANTIZQ  		equ		0

@@ -161,11 +161,17 @@ fin_inicializa_variables_pruebas:
 
 
 
+		
+
 
 ;nota: 
 game_over1:
 		;limpiar pantalla
-		CALL		limpia_pantalla_completa
+		CALL		limpia_pantalla_superior
+		
+		;limpia caracteres de energia (para poner a 0 y vidas para poner a 0)
+		CALL		oculta_tile_energia_minima
+		CALL		oculta_tile_vida0
 		
 		;oculta los sprites que haya en pantalla
 		CALL		oculta_todos_sprites
@@ -173,7 +179,7 @@ game_over1:
 		;poner texto game over
 		LD			HL, texto_gameover	;guardo puntero al array a pintar (como pasar por referencia)
 		LD			BC, 10				;nº posiciones a pintar
-		LD			DE, TILMAP + 332	;destino en vram
+		LD			DE, TILMAP + 300	;destino en vram
 		CALL		LDIRVM
 		
 		;espera para poder leer el texto

@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.09.18 - 21:22:55]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.09.19 - 21:29:16]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -196,112 +196,113 @@ Errors: 0
      181.  00:C000  (00:001F)           TILEENERG2  		equ		31
      182.  00:C000  (00:0288)           TILEENERG1			equ 	648
      183.  00:C000  (00:0000)           TILENEGRO			equ		0
-     184.  00:C000                      
-     185.  00:C000                      ;limites
-     186.  00:C000  (00:0000)           LIMPANTIZQ  		equ		0
-     187.  00:C000  (00:00FF)           LIMPANTDER 			equ		255
-     188.  00:C000  (00:0000)           LIMPANTARR 			equ		0
-     189.  00:C000  (00:0080)           LIMPANTABA  		equ		128
-     190.  00:C000                      
-     191.  00:C000                      ;matriz de 7x7 empieza en 0, y fila y x col, cuento desde esquina sup izq
-     192.  00:C000  (00:0006)           BASEMAPY			equ		6
-     193.  00:C000  (00:0003)           BASEMAPX			equ		3
-     194.  00:C000                      
-     195.  00:C000                      ;constantes de inicio para el prota
-     196.  00:C000  (00:0000)           PROTANIVEL			equ		0			;nivel del castillo donde está 0-6 - los niveles (matrices) son 7 del 0 al 6
-     197.  00:C000  (00:0002)           PROTAVIDAS			equ		2
-     198.  00:C000  (00:0003)           PROTARELIQUIAS		equ		3
-     199.  00:C000  (00:0003)           PROTAPOSMAPX		equ		3			;pos columna 7 columnas 7: del 0 al 6 ;pos X dentro del nivel (se empieza en 0)
-     200.  00:C000  (00:0000)           PROTAPOSMAPY		equ		0			;pos fila los subniveles (filas) son 7 del 0 al 6 ;pos Y dentro del nivel (se empieza en 0)
-     201.  00:C000  (00:003C)           PROTAENERGIA		equ		60;248			;MAXENERGIA;valor real de la energía
-     202.  00:C000  (00:0000)           PROTAENERGIABYTEBAJO	equ		0		;cuando se llene este es cuando se pierde prota_energí
-     203.  00:C000                      
+     184.  00:C000  (00:0248)           TILEVIDA1			equ 	584
+     185.  00:C000                      
+     186.  00:C000                      ;limites
+     187.  00:C000  (00:0000)           LIMPANTIZQ  		equ		0
+     188.  00:C000  (00:00FF)           LIMPANTDER 			equ		255
+     189.  00:C000  (00:0000)           LIMPANTARR 			equ		0
+     190.  00:C000  (00:0080)           LIMPANTABA  		equ		128
+     191.  00:C000                      
+     192.  00:C000                      ;matriz de 7x7 empieza en 0, y fila y x col, cuento desde esquina sup izq
+     193.  00:C000  (00:0006)           BASEMAPY			equ		6
+     194.  00:C000  (00:0003)           BASEMAPX			equ		3
+     195.  00:C000                      
+     196.  00:C000                      ;constantes de inicio para el prota
+     197.  00:C000  (00:0000)           PROTANIVEL			equ		0			;nivel del castillo donde está 0-6 - los niveles (matrices) son 7 del 0 al 6
+     198.  00:C000  (00:0002)           PROTAVIDAS			equ		2
+     199.  00:C000  (00:0003)           PROTARELIQUIAS		equ		3
+     200.  00:C000  (00:0003)           PROTAPOSMAPX		equ		3			;pos columna 7 columnas 7: del 0 al 6 ;pos X dentro del nivel (se empieza en 0)
+     201.  00:C000  (00:0000)           PROTAPOSMAPY		equ		0			;pos fila los subniveles (filas) son 7 del 0 al 6 ;pos Y dentro del nivel (se empieza en 0)
+     202.  00:C000  (00:003C)           PROTAENERGIA		equ		60;248			;MAXENERGIA;valor real de la energía
+     203.  00:C000  (00:0000)           PROTAENERGIABYTEBAJO	equ		0		;cuando se llene este es cuando se pierde prota_energí
      204.  00:C000                      
-     205.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-     206.  00:C000                      ;; CONSTANTES PARA INTERRUPCIONES
-     207.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-     208.  00:C000  (00:FD9A)           H.KEYI		equ     	#FD9A
-     209.  00:C000  (00:FD9F)           H.TIMI	 	equ     	#FD9F
-     210.  00:C000                      
-     211.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-     212.  00:C000                      ;; CONSTANTES PARA SONIDO 
-     213.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-     214.  00:C000                      
-     215.  00:C000  (F000)              	map		#f000
-     216.  00:C000                      
-     217.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PT3 REPLAYER
-     218.  00:C000  (00:F000)           PT3_SETUP:		#1	;set bit0 to 1, if you want to play without looping
-     219.  00:C000                      					;bit7 is set each time, when loop point is passed
-     220.  00:C000  (00:F001)           PT3_MODADDR:	#2
-     221.  00:C000  (00:F003)           PT3_CrPsPtr:	#2
-     222.  00:C000  (00:F005)           PT3_SAMPTRS:	#2
-     223.  00:C000  (00:F007)           PT3_OrnPtrs:	#2
-     224.  00:C000  (00:F009)           PT3_PDSP:		#2
-     225.  00:C000  (00:F00B)           PT3_CSP:		#2
-     226.  00:C000  (00:F00D)           PT3_PSP:		#2
-     227.  00:C000  (00:F00F)           PT3_PrNote:		#1
-     228.  00:C000  (00:F010)           PT3_PrSlide:	#2
-     229.  00:C000  (00:F012)           PT3_AdInPtA:	#2
-     230.  00:C000  (00:F014)           PT3_AdInPtB:	#2
-     231.  00:C000  (00:F016)           PT3_AdInPtC:	#2
-     232.  00:C000  (00:F018)           PT3_LPosPtr:	#2
-     233.  00:C000  (00:F01A)           PT3_PatsPtr:	#2
-     234.  00:C000  (00:F01C)           PT3_Delay:		#1
-     235.  00:C000  (00:F01D)           PT3_AddToEn:	#1
-     236.  00:C000  (00:F01E)           PT3_Env_Del:	#1
-     237.  00:C000  (00:F01F)           PT3_ESldAdd:	#2
-     238.  00:C000  (00:F021)           PT3_NTL3:		#2	; AND A / NOP (note table creator)
-     239.  00:C000                      
-     240.  00:C000  (00:F023)           VARS:			#0
-     241.  00:C000                      
-     242.  00:C000  (00:F023)           ChanA:			#29			;CHNPRM_Size
-     243.  00:C000  (00:F040)           ChanB:			#29			;CHNPRM_Size
-     244.  00:C000  (00:F05D)           ChanC:			#29			;CHNPRM_Size
-     245.  00:C000                      
-     246.  00:C000                      ;GlobalVars
-     247.  00:C000  (00:F07A)           DelyCnt:		#1
-     248.  00:C000  (00:F07B)           CurESld:		#2
-     249.  00:C000  (00:F07D)           CurEDel:		#1
-     250.  00:C000  (00:F07E)           Ns_Base_AddToNs:	#0
-     251.  00:C000  (00:F07E)           Ns_Base:		#1
-     252.  00:C000  (00:F07F)           AddToNs:		#1
-     253.  00:C000                      
-     254.  00:C000  (00:F080)           NT_:			#192	; Puntero a/tabla de frecuencias
-     255.  00:C000                      
-     256.  00:C000  (00:F140)           AYREGS:			#0
-     257.  00:C000  (00:F140)           VT_:			#14
-     258.  00:C000  (00:F14E)           EnvBase:		#2
-     259.  00:C000  (00:F150)           VAR0END:		#0
-     260.  00:C000                      
-     261.  00:C000  (00:F150)           T1_:			#0		
-     262.  00:C000  (00:F150)           T_NEW_1:		#0
-     263.  00:C000  (00:F150)           T_OLD_1:		#24
-     264.  00:C000  (00:F168)           T_OLD_2:		#24
-     265.  00:C000  (00:F180)           T_NEW_3:		#0
-     266.  00:C000  (00:F180)           T_OLD_3:		#2
-     267.  00:C000  (00:F182)           T_OLD_0:		#0
-     268.  00:C000  (00:F182)           T_NEW_0:		#24
-     269.  00:C000  (00:F19A)           T_NEW_2:		#166
-     270.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PT3 REPLAYER END
-     271.  00:C000                      
-     272.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ayFX REPLAYER 
-     273.  00:C000  (00:F240)           ayFX_MODE:		#1			; ayFX mode
-     274.  00:C000  (00:F241)           ayFX_BANK:		#2			; Current ayFX Bank
-     275.  00:C000  (00:F243)           ayFX_PRIORITY:	#1			; Current ayFX stream priotity
-     276.  00:C000  (00:F244)           ayFX_POINTER:	#2			; Pointer to the current ayFX stream
-     277.  00:C000  (00:F246)           ayFX_TONE:		#2			; Current tone of the ayFX stream
-     278.  00:C000  (00:F248)           ayFX_NOISE:		#1			; Current noise of the ayFX stream
-     279.  00:C000  (00:F249)           ayFX_VOLUME:	#1			; Current volume of the ayFX stream
-     280.  00:C000  (00:F24A)           ayFX_CHANNEL:	#1			; PSG channel to play the ayFX stream
-     281.  00:C000                      
-     282.  00:C000                      	;IF (AYFXRELATIVE == 1 ) 
-     283.  00:C000                      ;ayFX_VT:	ds	2			; ayFX relative volume table pointer
-     284.  00:C000                      	;ENDIF
-     285.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ayFX REPLAYER END
-     286.  00:C000                      
+     205.  00:C000                      
+     206.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     207.  00:C000                      ;; CONSTANTES PARA INTERRUPCIONES
+     208.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     209.  00:C000  (00:FD9A)           H.KEYI		equ     	#FD9A
+     210.  00:C000  (00:FD9F)           H.TIMI	 	equ     	#FD9F
+     211.  00:C000                      
+     212.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     213.  00:C000                      ;; CONSTANTES PARA SONIDO 
+     214.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     215.  00:C000                      
+     216.  00:C000  (F000)              	map		#f000
+     217.  00:C000                      
+     218.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PT3 REPLAYER
+     219.  00:C000  (00:F000)           PT3_SETUP:		#1	;set bit0 to 1, if you want to play without looping
+     220.  00:C000                      					;bit7 is set each time, when loop point is passed
+     221.  00:C000  (00:F001)           PT3_MODADDR:	#2
+     222.  00:C000  (00:F003)           PT3_CrPsPtr:	#2
+     223.  00:C000  (00:F005)           PT3_SAMPTRS:	#2
+     224.  00:C000  (00:F007)           PT3_OrnPtrs:	#2
+     225.  00:C000  (00:F009)           PT3_PDSP:		#2
+     226.  00:C000  (00:F00B)           PT3_CSP:		#2
+     227.  00:C000  (00:F00D)           PT3_PSP:		#2
+     228.  00:C000  (00:F00F)           PT3_PrNote:		#1
+     229.  00:C000  (00:F010)           PT3_PrSlide:	#2
+     230.  00:C000  (00:F012)           PT3_AdInPtA:	#2
+     231.  00:C000  (00:F014)           PT3_AdInPtB:	#2
+     232.  00:C000  (00:F016)           PT3_AdInPtC:	#2
+     233.  00:C000  (00:F018)           PT3_LPosPtr:	#2
+     234.  00:C000  (00:F01A)           PT3_PatsPtr:	#2
+     235.  00:C000  (00:F01C)           PT3_Delay:		#1
+     236.  00:C000  (00:F01D)           PT3_AddToEn:	#1
+     237.  00:C000  (00:F01E)           PT3_Env_Del:	#1
+     238.  00:C000  (00:F01F)           PT3_ESldAdd:	#2
+     239.  00:C000  (00:F021)           PT3_NTL3:		#2	; AND A / NOP (note table creator)
+     240.  00:C000                      
+     241.  00:C000  (00:F023)           VARS:			#0
+     242.  00:C000                      
+     243.  00:C000  (00:F023)           ChanA:			#29			;CHNPRM_Size
+     244.  00:C000  (00:F040)           ChanB:			#29			;CHNPRM_Size
+     245.  00:C000  (00:F05D)           ChanC:			#29			;CHNPRM_Size
+     246.  00:C000                      
+     247.  00:C000                      ;GlobalVars
+     248.  00:C000  (00:F07A)           DelyCnt:		#1
+     249.  00:C000  (00:F07B)           CurESld:		#2
+     250.  00:C000  (00:F07D)           CurEDel:		#1
+     251.  00:C000  (00:F07E)           Ns_Base_AddToNs:	#0
+     252.  00:C000  (00:F07E)           Ns_Base:		#1
+     253.  00:C000  (00:F07F)           AddToNs:		#1
+     254.  00:C000                      
+     255.  00:C000  (00:F080)           NT_:			#192	; Puntero a/tabla de frecuencias
+     256.  00:C000                      
+     257.  00:C000  (00:F140)           AYREGS:			#0
+     258.  00:C000  (00:F140)           VT_:			#14
+     259.  00:C000  (00:F14E)           EnvBase:		#2
+     260.  00:C000  (00:F150)           VAR0END:		#0
+     261.  00:C000                      
+     262.  00:C000  (00:F150)           T1_:			#0		
+     263.  00:C000  (00:F150)           T_NEW_1:		#0
+     264.  00:C000  (00:F150)           T_OLD_1:		#24
+     265.  00:C000  (00:F168)           T_OLD_2:		#24
+     266.  00:C000  (00:F180)           T_NEW_3:		#0
+     267.  00:C000  (00:F180)           T_OLD_3:		#2
+     268.  00:C000  (00:F182)           T_OLD_0:		#0
+     269.  00:C000  (00:F182)           T_NEW_0:		#24
+     270.  00:C000  (00:F19A)           T_NEW_2:		#166
+     271.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PT3 REPLAYER END
+     272.  00:C000                      
+     273.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ayFX REPLAYER 
+     274.  00:C000  (00:F240)           ayFX_MODE:		#1			; ayFX mode
+     275.  00:C000  (00:F241)           ayFX_BANK:		#2			; Current ayFX Bank
+     276.  00:C000  (00:F243)           ayFX_PRIORITY:	#1			; Current ayFX stream priotity
+     277.  00:C000  (00:F244)           ayFX_POINTER:	#2			; Pointer to the current ayFX stream
+     278.  00:C000  (00:F246)           ayFX_TONE:		#2			; Current tone of the ayFX stream
+     279.  00:C000  (00:F248)           ayFX_NOISE:		#1			; Current noise of the ayFX stream
+     280.  00:C000  (00:F249)           ayFX_VOLUME:	#1			; Current volume of the ayFX stream
+     281.  00:C000  (00:F24A)           ayFX_CHANNEL:	#1			; PSG channel to play the ayFX stream
+     282.  00:C000                      
+     283.  00:C000                      	;IF (AYFXRELATIVE == 1 ) 
+     284.  00:C000                      ;ayFX_VT:	ds	2			; ayFX relative volume table pointer
+     285.  00:C000                      	;ENDIF
+     286.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ayFX REPLAYER END
      287.  00:C000                      
      288.  00:C000                      
      289.  00:C000                      
+     290.  00:C000                      
       11   00:C000                      include "constantesyvariables/constantesenemigos.asm"
        1.  00:C000                      ;;=====================================================
        2.  00:C000                      ;; FICHERO constantesenemigos.asm
@@ -1312,6 +1313,7 @@ Errors: 0
 00:0000001F X TILEENERG2
 00:00000288 X TILEENERG1
 00:00000000 X TILENEGRO
+00:00000248 X TILEVIDA1
 00:00000000 X LIMPANTIZQ
 00:000000FF X LIMPANTDER
 00:00000000 X LIMPANTARR
