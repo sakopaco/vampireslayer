@@ -179,11 +179,11 @@ game_over1:
 		;poner texto game over
 		LD			HL, texto_gameover	;guardo puntero al array a pintar (como pasar por referencia)
 		LD			BC, 10				;nº posiciones a pintar
-		LD			DE, TILMAP + 300	;destino en vram
+		LD			DE, TILMAP + 236	;destino en vram
 		CALL		LDIRVM
 		
 		;espera para poder leer el texto
-		LD			 B, 20
+		LD			 B, 15
 .loop_espera:
 		PUSH		BC
 		LD			BC, 60000
@@ -191,9 +191,42 @@ game_over1:
 		POP			BC
 		DJNZ		.loop_espera
 		
+		CALL		limpia_pantalla_completa
 		
-		;falta escena fin con texto **********************************************************
-		
+		;cargando banco 1
+		;cargamos los patrones
+		LD			HL, (tiles_patrones_gameover1_bank0)
+		LD			DE, CHRTBL
+		CALL		depack_VRAM
+		;cargamos los colores de los patrones
+		LD			HL, (tiles_color_gameover1_bank0)
+		LD			DE, CLRTBL
+		CALL		depack_VRAM
+	
+		;cargando banco 2
+		;cargamos los patrones
+		LD			HL, (tiles_patrones_gameover1_bank1)
+		LD			DE, CHRTBL + #0800
+		CALL		depack_VRAM	
+		;cargamos los colores de los patrones
+		LD			HL, (tiles_color_gameover1_bank1)
+		LD			DE, CLRTBL + #0800
+		CALL		depack_VRAM
+	
+		;cargamos mapa de pantalla banco 1 y 2
+		LD			HL, (tiles_mapa_gameover1_bank01)
+		LD			DE, TILMAP
+		CALL		depack_VRAM
+
+
+		;espera para poder leer el texto
+		LD			 B, 20
+.loop_espera2:
+		PUSH		BC
+		LD			BC, 60000
+		CALL		retardo16bits
+		POP			BC
+		DJNZ		.loop_espera2
 		
 		;ESTO LO TIENE QUE VER FERNANDO PORQUE NO CREO QUE ESTÉ BIEN ... LA PILA TENDRÁ MUCHA BASURA
 		JP			pantalla_inicial		;*******************************************************************		

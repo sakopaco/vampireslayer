@@ -131,56 +131,56 @@ pinta_parte_superior_pantalla:
 	JP		.fin_carga_niveles
 
 .carga_nivel_1:
-	LD		HL, tiles_patrones_nivel1
+	LD		HL, tiles_patrones_nivel0
 	LD		(tiles_patrones), HL
-	LD		HL, tiles_color_nivel1
+	LD		HL, tiles_color_nivel0
 	LD		(tiles_colores), HL
-	LD		HL, tiles_mapa_nivel1
+	LD		HL, tiles_mapa_nivel0
 	LD		(tiles_mapa), HL
 	JP		.fin_carga_niveles
 	
 .carga_nivel_2:
-	LD		HL, tiles_patrones_nivel2
+	LD		HL, tiles_patrones_nivel0
 	LD		(tiles_patrones), HL
-	LD		HL, tiles_color_nivel2
+	LD		HL, tiles_color_nivel0
 	LD		(tiles_colores), HL
-	LD		HL, tiles_mapa_nivel2
+	LD		HL, tiles_mapa_nivel0
 	LD		(tiles_mapa), HL
 	JP		.fin_carga_niveles
 	
 .carga_nivel_3:
-	LD		HL, tiles_patrones_nivel3
+	LD		HL, tiles_patrones_nivel0
 	LD		(tiles_patrones), HL
-	LD		HL, tiles_color_nivel3
+	LD		HL, tiles_color_nivel0
 	LD		(tiles_colores), HL
-	LD		HL, tiles_mapa_nivel3
+	LD		HL, tiles_mapa_nivel0
 	LD		(tiles_mapa), HL
 	JP		.fin_carga_niveles
 	
 .carga_nivel_4:
-	LD		HL, tiles_patrones_nivel4
+	LD		HL, tiles_patrones_nivel0
 	LD		(tiles_patrones), HL
-	LD		HL, tiles_color_nivel4
+	LD		HL, tiles_color_nivel0
 	LD		(tiles_colores), HL
-	LD		HL, tiles_mapa_nivel4
+	LD		HL, tiles_mapa_nivel0
 	LD		(tiles_mapa), HL
 	JP		.fin_carga_niveles
 	
 .carga_nivel_5:
-	LD		HL, tiles_patrones_nivel5
+	LD		HL, tiles_patrones_nivel0
 	LD		(tiles_patrones), HL
-	LD		HL, tiles_color_nivel5
+	LD		HL, tiles_color_nivel0
 	LD		(tiles_colores), HL
-	LD		HL, tiles_mapa_nivel5
+	LD		HL, tiles_mapa_nivel0
 	LD		(tiles_mapa), HL
 	JP		.fin_carga_niveles
 	
 .carga_nivel_6:
-	LD		HL, tiles_patrones_nivel6
+	LD		HL, tiles_patrones_nivel0
 	LD		(tiles_patrones), HL
-	LD		HL, tiles_color_nivel6
+	LD		HL, tiles_color_nivel0
 	LD		(tiles_colores), HL
-	LD		HL, tiles_mapa_nivel6
+	LD		HL, tiles_mapa_nivel0
 	LD		(tiles_mapa), HL
 ;	JP		.fin_carga niveles			;no necesario
 .fin_carga_niveles:
@@ -1211,7 +1211,7 @@ una_vida_menos;
 		CALL		LDIRVM
 
 		;espera para poder leer el texto
-		LD			 B, 20
+		LD			 B, 15
 .loop_espera:
 		PUSH		BC
 		LD			BC, 60000
