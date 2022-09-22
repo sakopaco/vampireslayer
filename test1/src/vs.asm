@@ -195,32 +195,57 @@ game_over1:
 		
 		;cargando banco 1
 		;cargamos los patrones
-		LD			HL, (tiles_patrones_gameover1_bank0)
+		LD			HL, tiles_patrones_gameover1_bank0
 		LD			DE, CHRTBL
 		CALL		depack_VRAM
 		;cargamos los colores de los patrones
-		LD			HL, (tiles_color_gameover1_bank0)
+		LD			HL, tiles_color_gameover1_bank0
 		LD			DE, CLRTBL
 		CALL		depack_VRAM
 	
 		;cargando banco 2
 		;cargamos los patrones
-		LD			HL, (tiles_patrones_gameover1_bank1)
+		LD			HL, tiles_patrones_gameover1_bank1
 		LD			DE, CHRTBL + #0800
 		CALL		depack_VRAM	
 		;cargamos los colores de los patrones
-		LD			HL, (tiles_color_gameover1_bank1)
+		LD			HL, tiles_color_gameover1_bank1
 		LD			DE, CLRTBL + #0800
 		CALL		depack_VRAM
 	
 		;cargamos mapa de pantalla banco 1 y 2
-		LD			HL, (tiles_mapa_gameover1_bank01)
+		LD			HL, tiles_mapa_gameover1_bank01
 		LD			DE, TILMAP
 		CALL		depack_VRAM
 
+		;cangando banco 3
+		;cargamos los patrones
+		LD			HL,tiles_patrones_marcador
+		LD			DE,CHRTBL + #1000
+		CALL		depack_VRAM	
+		;cargamos los colores
+		LD			HL,tiles_color_marcador
+		LD			DE,CLRTBL + #1000
+		CALL		depack_VRAM
+
+		LD			HL, texto_gameover1A;guardo puntero al array a pintar (como psar por referencia)
+		LD			BC, 29				;nº posiciones a pintar
+		LD			DE, TILMAP + 577	;destino en vram
+		CALL		LDIRVM
+		
+		LD			HL, texto_gameover1B;guardo puntero al array a pintar (como psar por referencia)
+		LD			BC, 29				;nº posiciones a pintar
+		LD			DE, TILMAP + 609	;destino en vram
+		CALL		LDIRVM
+		
+		LD			HL, texto_gameover1C;guardo puntero al array a pintar (como psar por referencia)
+		LD			BC, 29				;nº posiciones a pintar
+		LD			DE, TILMAP + 641	;destino en vram
+		CALL		LDIRVM
+
 
 		;espera para poder leer el texto
-		LD			 B, 20
+		LD			 B, 35
 .loop_espera2:
 		PUSH		BC
 		LD			BC, 60000
@@ -228,9 +253,12 @@ game_over1:
 		POP			BC
 		DJNZ		.loop_espera2
 		
+		CALL		limpia_pantalla_completa
+		
 		;ESTO LO TIENE QUE VER FERNANDO PORQUE NO CREO QUE ESTÉ BIEN ... LA PILA TENDRÁ MUCHA BASURA
 		JP			pantalla_inicial		;*******************************************************************		
 fin_game_over1:
+;		RET									;*******************************************************************
 
 
 

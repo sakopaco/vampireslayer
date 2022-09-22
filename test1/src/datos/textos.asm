@@ -23,6 +23,11 @@ texto_iniciar:		DB	' ',' ',' ','P','U','L','S','A',' ','F','U','E','G','O',' ','
 texto_vidamenos:	DB 	'V','I','G','I','L','A',' ','T','U','S',' ','V','I','D','A','S'	;16 caracteres
 
 texto_gameover:		DB	'H','A','S',' ','M','U','E','R','T','O'	;10 caracteres
+
+texto_gameover1A:	DB	' VIVIRAS PARA SIEMPRE COMO UN'	;29 caracteres
+texto_gameover1B:	DB	'ZOMBI. SER ESCLAVO DE DRACULA'	;29 caracteres
+texto_gameover1C:	DB	'        SERA TU FIN.         ' ;29 caracteres
+
 ELSE		
 ;textos en inglés
 texto_vidas:		DB	'L','I','V','E','S'
@@ -44,6 +49,10 @@ texto_iniciar:		DB	' ','P','U','S','H',' ','T','R','I','G','E','R',' ','T','O','
 texto_vidamenos:	DB 	'W','A','T','C','H',' ','Y','O','U','R',' ','L','I','V','E','S'	;16 caracteres
 
 texto_gameover:		DB	'G','A','M','E',' ','O','V','E','R',' '	;10 caracteres
+
+texto_gameover1A:	DB	' YOU WILL LIVE FOREVER LIKE  '	;29 caracteres
+texto_gameover1B:	DB	'A ZOMBI. BEING DRACULAS SLAVE'	;29 caracteres
+texto_gameover1C:	DB	'        WILL BE YOUR END     ' ;29 caracteres
 ENDIF
 
 texto_autoria:		DB	'S','A','K','O','P','A','C','O',' ',' ','2','0','2','2' ; 14 caracteres

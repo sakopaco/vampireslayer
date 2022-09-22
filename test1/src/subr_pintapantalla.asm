@@ -986,22 +986,30 @@ cambio_nivel_entrefases:
 		CALL		depack_VRAM
 			
 		CALL		pinta_texto_entrefases
-			
-.mientras_nopulsado:
-		;compruebo espacio
-		XOR			 A
-		CALL		#00D8
-		LD			 B, A
-		
+
+		;espera para poder leer el texto
+		LD			 B, 15
+.loop_espera:
 		PUSH		BC
-		;compruebo botón 1 joystick
-		LD			 A, 1
-		CALL		#00D8
-		POP 		BC
+		LD			BC, 60000
+		CALL		retardo16bits
+		POP			BC
+		DJNZ		.loop_espera
+;~ .mientras_nopulsado:
+		;~ ;compruebo espacio
+		;~ XOR			 A
+		;~ CALL		#00D8
+		;~ LD			 B, A
 		
-		OR			 B		;uno el resultado del espacio + el resultado del botón de disparo
+		;~ PUSH		BC
+		;~ ;compruebo botón 1 joystick
+		;~ LD			 A, 1
+		;~ CALL		#00D8
+		;~ POP 		BC
 		
-		JP			 Z, .mientras_nopulsado	;si A=0 no se pulsó ni disparo ni botón
+		;~ OR			 B		;uno el resultado del espacio + el resultado del botón de disparo
+		
+		;~ JP			 Z, .mientras_nopulsado	;si A=0 no se pulsó ni disparo ni botón
 fin_cabio_nivel_entrefases:
 		RET
 
@@ -1211,7 +1219,7 @@ una_vida_menos;
 		CALL		LDIRVM
 
 		;espera para poder leer el texto
-		LD			 B, 15
+		LD			 B, 10
 .loop_espera:
 		PUSH		BC
 		LD			BC, 60000
