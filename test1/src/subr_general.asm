@@ -124,3 +124,21 @@ retardo8bits:
 		DJNZ		.loop
 fin_retardo8bits:
 		RET
+
+
+;;=====================================================
+;;ESPERA_ESTANDAR
+;;=====================================================	
+; función: espera un tiempo aceptable para leer un texto
+espera_estandar:
+		LD			 B, 15
+.loop_espera:
+		PUSH		BC
+		LD			BC, 60000
+		CALL		retardo16bits
+		POP			BC
+		DJNZ		.loop_espera
+fin_espera_estandar:
+		RET
+
+

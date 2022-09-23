@@ -987,14 +987,9 @@ cambio_nivel_entrefases:
 			
 		CALL		pinta_texto_entrefases
 
-		;espera para poder leer el texto
-		LD			 B, 15
-.loop_espera:
-		PUSH		BC
-		LD			BC, 60000
-		CALL		retardo16bits
-		POP			BC
-		DJNZ		.loop_espera
+		CALL		espera_estandar
+		
+		;este texto es por si quito la espera estandar por pulsar fuego
 ;~ .mientras_nopulsado:
 		;~ ;compruebo espacio
 		;~ XOR			 A
@@ -1218,16 +1213,94 @@ una_vida_menos;
 		LD			DE, TILMAP + 200	;destino en vram
 		CALL		LDIRVM
 
-		;espera para poder leer el texto
-		LD			 B, 10
-.loop_espera:
-		PUSH		BC
-		LD			BC, 60000
-		CALL		retardo16bits
-		POP			BC
-		DJNZ		.loop_espera
+		CALL		espera_estandar
 		
 		;repinto la pantalla y las puertas que correspondan
 		CALL		pinta_parte_superior_pantalla
 		JP			pinta_puertas
 fin_una_vida_menos:
+
+
+;;=====================================================
+;;GAME_OVER1
+;;=====================================================	
+; función: muestra la página de fin de juego en caso de que nos maten por daño
+game_over1:
+		;limpiar pantalla
+		CALL		limpia_pantalla_superior
+		
+		;limpia caracteres de energia (para poner a 0 y vidas para poner a 0)
+		CALL		oculta_tile_energia_minima
+		CALL		oculta_tile_vida0
+		
+		;oculta los sprites que haya en pantalla
+		CALL		oculta_todos_sprites
+		
+		;poner texto game over
+		LD			HL, texto_gameover	;guardo puntero al array a pintar (como pasar por referencia)
+		LD			BC, 10				;nº posiciones a pintar
+		LD			DE, TILMAP + 236	;destino en vram
+		CALL		LDIRVM
+		
+		CALL		espera_estandar
+
+		CALL		limpia_pantalla_completa
+		
+		;cargando banco 1
+		;cargamos los patrones
+		LD			HL, tiles_patrones_gameover1_bank0
+		LD			DE, CHRTBL
+		CALL		depack_VRAM
+		;cargamos los colores de los patrones
+		LD			HL, tiles_color_gameover1_bank0
+		LD			DE, CLRTBL
+		CALL		depack_VRAM
+	
+		;cargando banco 2
+		;cargamos los patrones
+		LD			HL, tiles_patrones_gameover1_bank1
+		LD			DE, CHRTBL + #0800
+		CALL		depack_VRAM	
+		;cargamos los colores de los patrones
+		LD			HL, tiles_color_gameover1_bank1
+		LD			DE, CLRTBL + #0800
+		CALL		depack_VRAM
+	
+		;cargamos mapa de pantalla banco 1 y 2
+		LD			HL, tiles_mapa_gameover1_bank01
+		LD			DE, TILMAP
+		CALL		depack_VRAM
+
+		;cangando banco 3
+		;cargamos los patrones
+		LD			HL,tiles_patrones_marcador
+		LD			DE,CHRTBL + #1000
+		CALL		depack_VRAM	
+		;cargamos los colores
+		LD			HL,tiles_color_marcador
+		LD			DE,CLRTBL + #1000
+		CALL		depack_VRAM
+
+		LD			HL, texto_gameover1A;guardo puntero al array a pintar (como psar por referencia)
+		LD			BC, 29				;nº posiciones a pintar
+		LD			DE, TILMAP + 577	;destino en vram
+		CALL		LDIRVM
+		
+		LD			HL, texto_gameover1B;guardo puntero al array a pintar (como psar por referencia)
+		LD			BC, 29				;nº posiciones a pintar
+		LD			DE, TILMAP + 609	;destino en vram
+		CALL		LDIRVM
+		
+		LD			HL, texto_gameover1C;guardo puntero al array a pintar (como psar por referencia)
+		LD			BC, 29				;nº posiciones a pintar
+		LD			DE, TILMAP + 641	;destino en vram
+		CALL		LDIRVM
+
+		CALL		espera_estandar
+		
+		CALL		limpia_pantalla_completa
+		
+		;ESTO LO TIENE QUE VER FERNANDO PORQUE NO CREO QUE ESTÉ BIEN ... LA PILA TENDRÁ MUCHA BASURA
+		JP			pantalla_inicial		;*******************************************************************		
+fin_game_over1:
+;		RET									;*******************************************************************
