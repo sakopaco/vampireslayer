@@ -111,7 +111,6 @@ wordaux2:					DW		0		;almacena puntero a array de tiles (posiciones en realidad)
 byteaux1:					DB		0		;nº filas Registro D
 byteaux2:					DB		0		;nº columnas Registro E
 
-
 lista_puertas:
 puerta_arriba:				DS		ESTRUCTURA_PUERTA
 puerta_derecha:				DS		ESTRUCTURA_PUERTA
@@ -123,9 +122,14 @@ puerta_escalera:			DS		ESTRUCTURA_PUERTA
 ;;=====================================================
 ;;VARIABLES PUNTO MIRA
 ;;=====================================================
-dano_actual:				DB		2		;daño actual cuando el prota dispara
-
+dano_actual:				DB		PROTADANOBASICO		;daño actual cuando el prota dispara
 puntomira:					DS		ESTRUCTURA_PUNTOMIRA
+
+
+;;=====================================================
+;;VARIABLES GLOBALES
+;;=====================================================
+dracula_muerto:				DB		NO					;equ 0
 
 
 ;;=====================================================

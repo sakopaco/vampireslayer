@@ -226,11 +226,6 @@ fin_accion_puerta_derecha:
 ; entrada: 	
 ; salida: 	
 accion_puerta_abajo:
-
-
-;AQUÍ HAY QUE TENER EN CUENTA LO DE SALIR SIN TERMINAR EL JUEGO
-
-
 		CALL			pinta_blanco_mapa
 	
 		LD		 		 A, (prota_pos_mapy)
@@ -307,6 +302,12 @@ pinta_puertas:
 .fin_puerta_derecha:
 
 	;examina puerta abajo
+		;si se trata de la primera puerta del nivel no pinto la puerta de abajo a menos que haya matado a drácula
+		LD			 A, (dracula_muerto)
+		LD			 B, A
+		LD			 A, (prota_pos_mapy)
+		OR			 B
+		JP			 Z, .fin_puerta_abajo
 	LD		 A, (habitacion_actual)
 	BIT		 1, A
 	JP		 Z, .fin_puerta_abajo		;tiene puerta derecha?
@@ -334,10 +335,11 @@ fin_pinta_puertas:
 ; salida: 	-
 ; toca:		A, HL,BC, DE
 pinta_puerta_aba:
-	LD			IX, puerta_abajo
-	CALL		actualiza_variables_pinta_array
+		;si no se ha matado a drácula no podrá descender entre niveles
+		LD			IX, puerta_abajo
+		CALL		actualiza_variables_pinta_array
 		
-	JP			pinta_array
+		JP			pinta_array
 fin_pinta_puerta_aba:
 
 
