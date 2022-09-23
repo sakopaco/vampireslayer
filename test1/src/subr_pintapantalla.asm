@@ -961,6 +961,7 @@ fin_actualiza_escena_calavera:
 ;;=====================================================	
 ; función: 	pone un texto cada vex que se sube o baja de nivel en el castillo
 cambio_nivel_entrefases:
+		CALL		borra_mapa
 
 		;Ocultamos todos los sprites
 		CALL		oculta_todos_sprites
