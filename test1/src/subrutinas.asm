@@ -389,19 +389,19 @@ fin_localiza_info_habitacion:
 ; salida: 	habitacion_recorrida (byte 14 de la fila de habitaciones) actualizada con OR A (en A la habitacion)
 ; toca:		IX, HL, AF
 terminada_habitacion_recorrida:
-		;~ LD			HL, puntero_habitacion_actual
-		;~ LD			 A, (HL)
-		;~ SET			 4, A					;¿?¿??¿?¿?¿?¿?¿?¿?¿¿?¿?
-		;~ LD			(HL), A
+		LD			HL, puntero_habitacion_actual
+		LD			 A, (HL)
+		SET			 4, A					;¿?¿??¿?¿?¿?¿?¿?¿?¿¿?¿?
+		LD			(HL), A
 		
 		LD			 A, ISHABTERMIN	;da igual qué bit mientras sea distinto de 0 pero se pone 1
 		LD			(habitacion_terminada), A
 		
-		;~ ;este trozo no sirve de nada pero ya me quedo más tranquilo si lo pongo, por ser exacto y completo
-		;~ ;no sirve porque se cambiará de habitación y se perderá/actualizará el dato
-		;~ LD			 A, (habitacion_actual)
-		;~ SET			 4, A
-		;~ LD			(habitacion_actual), A
+		;este trozo no sirve de nada pero ya me quedo más tranquilo si lo pongo, por ser exacto y completo
+		;no sirve porque se cambiará de habitación y se perderá/actualizará el dato
+		LD			 A, (habitacion_actual)
+		SET			 4, A
+		LD			(habitacion_actual), A
 fin_terminada_habitacion_recorrida:
 		RET
 
@@ -515,7 +515,7 @@ fin_cambio_nivel:
 check_colisiones_objetos:
 		;pantalla limpia?
 		LD			 A, (habitacion_terminada)
-		OR			 0
+		OR			 A
 		JP			 Z, .habitacion_no_terminada
 		;SI 
 			;recorre puertas y sale
@@ -523,19 +523,16 @@ check_colisiones_objetos:
 			RET
 		;NO 
 .habitacion_no_terminada:
+		;recorre enemigos
+		CALL		check_colisiones_enemigos
+		
 		;recorre ayudas
 		;SI ;mira si hay colisiones con la ayuda que haya puntero_ayuda_actual
 		LD			 A, (hay_ayudas_en_pantalla)
-		OR			 0
-		JP			 Z, .habitacion_sin_ayudas
+		OR			 A
+		RET			 Z	; no hay ayudas que examinar
 		;THEN
-			CALL		check_colision_ayudas
+			JP		check_colision_ayudas	; si hay ayudas que examinar
 		;ENDIF
-.habitacion_sin_ayudas:
-	
-		;recorre enemigos ************************
-			CALL		check_colisiones_enemigos
-
 fin_check_colisiones_objetos:	
-		RET
 

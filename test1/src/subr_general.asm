@@ -58,7 +58,7 @@ fin_suma_A_HL:
 ;;=====================================================	
 ; función: para pruebas.. cambia el color de fondo cuando se le llama
 test_OK:
-	PUSH	AF
+	EXX
 	
 	LD		 A, 15
 	
@@ -73,7 +73,7 @@ test_OK:
 	
 	CALL	CHGCLR 
 	
-	POP		AF
+	EXX
 fin_test_OK:
 	RET
 

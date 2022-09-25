@@ -1752,14 +1752,14 @@ check_colision_enemigo:
 	ADD		 8			;8-es fijo, offset del punto de mira ya que se mueve según la esquina superior izquierda y el centro del punto de mira está en el centro del sprite
 	
 	;ya tengo en A la coordenada X del centro del punto de mira					
-	SUB		(IX + ESTRUCTURA_AYUDA.posx)	;le resto el punto x en la puerta
+	SUB		(IX + ESTRUCTURA_ENEMIGO.posx)	;le resto el punto x en la puerta
 	
 	JP		NC, .deteccioncolision_paso2	;si no es negativo comparo con el radio
 
 	NEG										;si es negativo lo niego (valor absoluto)
 	
 .deteccioncolision_paso2:
-	CP		(IX + ESTRUCTURA_AYUDA.radiox)	;comparo con el radio X de la puerta
+	CP		(IX + ESTRUCTURA_ENEMIGO.radiox)	;comparo con el radio X de la puerta
 	
 	JP		 C, .deteccioncolision_paso3	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
 	
@@ -1771,14 +1771,14 @@ check_colision_enemigo:
 	ADD		 8								;le sumo el offset del punto de mira (8 es fijo)
 
 	;ya tengo en A la coordenada Y del centro del punto de mira					
-	SUB		(IX + ESTRUCTURA_AYUDA.posy)	;le resto el punto y en la puerta
+	SUB		(IX + ESTRUCTURA_ENEMIGO.posy)	;le resto el punto y en la puerta
 	
 	JP		NC, .deteccioncolision_paso4	;si no es negativo comparo con el radio
 
 	NEG										;si es negativo lo niego (valor absoluto)
 
 .deteccioncolision_paso4:
-	CP		(IX + ESTRUCTURA_AYUDA.radioy)	;comparo con el radio Y de la puerta
+	CP		(IX + ESTRUCTURA_ENEMIGO.radioy)	;comparo con el radio Y de la puerta
 
 	JP		 C, .deteccioncolision_paso5	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
 	

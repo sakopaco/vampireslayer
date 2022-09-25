@@ -55,7 +55,7 @@ START:
 ;;
 		
 		;incializacion de replayer con interrupciones
-		;CALL		inicializa_replayer_efectos_interrupciones
+;		CALL		inicializa_replayer_efectos_interrupciones
 		
 		;inicializa variables
 		CALL		carga_valores_iniciales_variables
@@ -64,7 +64,7 @@ START:
 		CALL		sub_preparapantalla			;screen 2,2 sin click al pulsar tecla y color 16,1,1
 		
 pantalla_inicial:
-		CALL		muestra_pantalla_inicial
+;		CALL		muestra_pantalla_inicial
 
 		;inicializa variables para parametrizar funciones y que lo que se muestre sea variable (nº vidas, mapa, puertas, pantalla, etc...)
 		CALL		inicializa_variables_prota
@@ -100,9 +100,6 @@ pantalla_inicial:
 		CALL		pinta_energia
 	
 		CALL		entra_habitacion 		;CALL resetea enemigos + CALL inicializa_enemigos_fase + CALL	pinta_puertas + CALL pinta_ayudas_habitacion + CALL	pinta_extra_fondo 
-	
-		;esta función no va aquí sino en check colisiones pero se pone aquí para realizar pruebas
-;		CALL		terminada_habitacion_recorrida ;para cuando se maten todos los enemigos de la habitación
 
 loop_principal:
 		HALT								;espera VBLANK y sincroniza
@@ -176,6 +173,37 @@ fin_inicializa_variables_juego:
 
 
 check_colisiones_enemigos:
+
+	CALL		test_OK
+
+examina_enemigo1:
+		LD			IX, enemigo1
+		LD			 A, (IX)
+		OR			 A
+		JP			 Z, fin_check_colisiones_enemigos
+		
+		
+		CALL		test_OK
+		
+		CALL		check_colision_enemigo
+		OR			 A
+		JP			 Z, fin_check_colisiones_enemigos
+			LD			 A, (dano_actual)
+			LD			 B, B
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+			SUB			 B
+			JP			NC, restavida_enemigo1
+			LD			(IX + ESTRUCTURA_ENEMIGO.energia), 200
+			
+			JP			fin_check_colisiones_enemigos
+restavida_enemigo1:
+			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A
+			
+			
+		;esto 	
+		;esta función no va aquí sino en check colisiones pero se pone aquí para realizar pruebas
+		;CALL		terminada_habitacion_recorrida ;para cuando se maten todos los enemigos de la habitación
+		
 fin_check_colisiones_enemigos:
 		RET
 
