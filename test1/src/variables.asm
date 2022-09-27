@@ -119,6 +119,12 @@ puerta_abajo:				DS		ESTRUCTURA_PUERTA
 puerta_izquierda:			DS		ESTRUCTURA_PUERTA
 puerta_escalera:			DS		ESTRUCTURA_PUERTA
 
+habitacion_actual:			DB		0		;habitación donde se encuentre el prota. Se mete en una varible par traer todos los datos de golpe y no buscarlos varias veces
+habitacion_extras:			DB		0		;donde van las ayudas de una habitación
+habitacion_terminada:		DB		0		;variable para consultar más rápido si se ha pasado (<>0 si se ha pasado y 0 no se ha pasado o no terminada)
+
+puntero_extras_habitacion_actual:	DW	0		;puntero a los extras de la habitación actual para poder modificarlo (para que no salgan extras)
+puntero_habitacion_actual:			DW	0		;puntero a la habitación actual para poder modificarlo 
 
 ;;=====================================================
 ;;VARIABLES PUNTO MIRA

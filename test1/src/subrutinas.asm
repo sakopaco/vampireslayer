@@ -32,9 +32,18 @@ inicializa_niveles:
 		LD			IX, habitaciones_nivel0
 		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
 .inicia_nivel_0:
+
+
+
 		LD		 	 C, (HL)
 		;pongo habitación no terminada bit 4 habitación a 1
-		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
+		RES			 4, C		;0 es que hay enemigos (HABITACIÓN NO TERMINADA) y 1 es que no los hay
+		
+
+
+
+
+
 
 		;examino si hay ayudas en siguiente byte
 		LD			 A, (IX)

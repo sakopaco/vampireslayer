@@ -32,18 +32,6 @@
 ;cuando se inicie la partida todos se pondrán a 0
 ;por ejemplo 01000000b se ha pasado por la hab. 2 de esa fila en el nivel que sea
 
-habitacion_actual:
-	db  0		;habitación donde se encuentre el prota. Se mete en una varible par traer todos los datos de golpe y no buscarlos varias veces
-habitacion_extras:
-	db	0		;donde van las ayudas de una habitación
-habitacion_actual_puntero;
-	dw	0		;puntero para actualizar la habitación cuando se maten todos los enemigos
-habitacion_terminada:
-	db	0		;variable para consultar más rápido si se ha pasado (<>0 si se ha pasado y 0 no se ha pasado o no terminada)
-
-puntero_extras_habitacion_actual:	DW	0		;puntero a los extras de la habitación actual para poder modificarlo (para que no salgan extras)
-puntero_habitacion_actual:			DW	0		;puntero a la habitación actual para poder modificarlo 
-
 
 habitaciones_juego:
 habitaciones_nivel0:
@@ -54,7 +42,7 @@ habitaciones_nivel0:
 	db 00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,00000010b,00000000b,00000000b,00000000b,00001010b,00000100b,00000000b,00000000b,#00,#00 
 	db 00000000b,00000000b,00001110b,10000000b,00000001b,00000000b,00000000b,00000000b,00000100b,00000000b,00001011b,00000100b,00000000b,00000000b,#00,#00 
 	db 00000000b,00000000b,00000110b,00000000b,00000101b,00000000b,00001101b,00000000b,00000101b,00000000b,00000011b,00000000b,00000000b,00000000b,#00,#00 
-	db 00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,#00,#00 ;nivel 0 fila 7
+	db 00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00011010b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,#00,#00 ;nivel 0 fila 7
 	
 habitaciones_nivel1:
 			;0		0'		   1        1'         2         2'         3        3'        4         4'       5         5'        6         6'
