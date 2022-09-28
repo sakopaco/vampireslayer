@@ -173,40 +173,55 @@ fin_inicializa_variables_juego:
 
 
 check_colisiones_enemigos:
-
-	CALL		test_OK
-
 examina_enemigo1:
 		LD			IX, enemigo1
 		LD			 A, (IX)
 		OR			 A
-		JP			 Z, fin_check_colisiones_enemigos
-		
-		
-		CALL		test_OK
+		JP			 Z, examina_enemigo2
 		
 		CALL		check_colision_enemigo
 		OR			 A
-		JP			 Z, fin_check_colisiones_enemigos
+		JP			 Z, examina_enemigo2
+		
+		;CALL		test_OK
+		
 			LD			 A, (dano_actual)
 			LD			 B, B
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
 			SUB			 B
 			JP			NC, restavida_enemigo1
-			LD			(IX + ESTRUCTURA_ENEMIGO.energia), 200
+			
+			CALL		test_OK
+						
+			CALL		mata_enemigo
 			
 			JP			fin_check_colisiones_enemigos
 restavida_enemigo1:
 			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A
 			
 			
+			
+			
 		;esto 	
 		;esta función no va aquí sino en check colisiones pero se pone aquí para realizar pruebas
 		;CALL		terminada_habitacion_recorrida ;para cuando se maten todos los enemigos de la habitación
 		
+		
+examina_enemigo2:		
+		
+		
 fin_check_colisiones_enemigos:
 		RET
 
+
+
+mata_enemigo:
+		LD			(IX), 0
+		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), A
+		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), A
+		
+fin_mata_enemigo:
+		RET
 
 
 
