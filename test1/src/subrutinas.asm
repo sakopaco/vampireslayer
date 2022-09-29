@@ -42,9 +42,6 @@ inicializa_niveles:
 
 
 
-
-
-
 		;examino si hay ayudas en siguiente byte
 		LD			 A, (IX)
 		AND			11111110b
@@ -399,18 +396,15 @@ fin_localiza_info_habitacion:
 ; toca:		IX, HL, AF
 terminada_habitacion_recorrida:
 		LD			HL, puntero_habitacion_actual
-		LD			 A, (HL)
-		SET			 4, A					;¿?¿??¿?¿?¿?¿?¿?¿?¿¿?¿?
-		LD			(HL), A
+		SET			 4, (HL)	
 		
 		LD			 A, ISHABTERMIN	;da igual qué bit mientras sea distinto de 0 pero se pone 1
 		LD			(habitacion_terminada), A
 		
 		;este trozo no sirve de nada pero ya me quedo más tranquilo si lo pongo, por ser exacto y completo
 		;no sirve porque se cambiará de habitación y se perderá/actualizará el dato
-		LD			 A, (habitacion_actual)
-		SET			 4, A
-		LD			(habitacion_actual), A
+		LD			HL, habitacion_actual
+		SET			 4, (HL)
 fin_terminada_habitacion_recorrida:
 		RET
 

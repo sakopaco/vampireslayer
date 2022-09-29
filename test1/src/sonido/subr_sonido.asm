@@ -36,7 +36,6 @@ fin_inicializa_replayer_efectos_interrupciones:
 	RET
 
 
-
 ;;=====================================================
 ;;NUESTRA_ISR
 ;;=====================================================	
@@ -52,7 +51,6 @@ fin_subrutina_isr:
 	;RET
 
 
-
 ;;=====================================================
 ;;DEFINICIÓN DE SUBRUTINAS DE FERNANDO PARA COMPRESIÓN Y SONIDO
 ;;=====================================================
@@ -60,14 +58,15 @@ subrutinas_sonido:
 	include	"PT3-ROM_sjasm.asm"
 	include "ayFX-ROM_sjasm.asm"
 	
-	
 
 ;;=====================================================
-;;DEFINICIÓN DE CANTIONES Y EFECTOS DE SONIDO
+;;DEFINICIÓN DE CANCIONES Y EFECTOS DE SONIDO
 ;;=====================================================		
 song:
 	incbin "bloodytears_castlevania.99"
+	;incbin "ingame.pt3"
 	
 sfx_bank:
 	incbin "demo.afb"
+	;incbin "ingame.pt3"
 

@@ -191,7 +191,10 @@ examina_enemigo1:
 			SUB			 B
 			JP			NC, restavida_enemigo1
 			
-			CALL		test_OK
+			;CALL		test_OK
+			
+			;esta función no va aquí sino en check colisiones pero se pone aquí para realizar pruebas
+			CALL		terminada_habitacion_recorrida ;para cuando se maten todos los enemigos de la habitación
 						
 			CALL		mata_enemigo
 			
@@ -202,9 +205,8 @@ restavida_enemigo1:
 			
 			
 			
-		;esto 	
-		;esta función no va aquí sino en check colisiones pero se pone aquí para realizar pruebas
-		;CALL		terminada_habitacion_recorrida ;para cuando se maten todos los enemigos de la habitación
+	
+		
 		
 		
 examina_enemigo2:		
