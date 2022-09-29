@@ -55,7 +55,7 @@ START:
 ;;
 		
 		;incializacion de replayer con interrupciones
-;		CALL		inicializa_replayer_efectos_interrupciones
+		CALL		inicializa_replayer_efectos_interrupciones
 		
 		;inicializa variables
 		CALL		carga_valores_iniciales_variables
@@ -64,7 +64,7 @@ START:
 		CALL		sub_preparapantalla			;screen 2,2 sin click al pulsar tecla y color 16,1,1
 		
 pantalla_inicial:
-;		CALL		muestra_pantalla_inicial
+		CALL		muestra_pantalla_inicial
 
 		;inicializa variables para parametrizar funciones y que lo que se muestre sea variable (nº vidas, mapa, puertas, pantalla, etc...)
 		CALL		inicializa_variables_prota
