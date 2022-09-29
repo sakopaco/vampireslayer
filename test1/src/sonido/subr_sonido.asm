@@ -63,10 +63,9 @@ subrutinas_sonido:
 ;;DEFINICIÓN DE CANCIONES Y EFECTOS DE SONIDO
 ;;=====================================================		
 song:
-	incbin "bloodytears_castlevania.99"
-	;incbin "ingame.pt3"
+	;incbin "bloodytears_castlevania.99"
+	incbin "ingame.99"
 	
 sfx_bank:
 	incbin "demo.afb"
-	;incbin "ingame.pt3"
 
