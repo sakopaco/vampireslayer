@@ -30,11 +30,17 @@ sprite_punto_mira_2_mejorado:	;color 15
 	DB #00,#82,#00,#00,#C0,#20,#10,#92
 	DB #92,#10,#20,#C0,#00,#00,#82,#00 
 	
-sprite_explosion:				;color 8
+sprite_explosion1:				;color 8
 	DB  #00,#00,#00,#00,#00,#00,#00,#00
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 	DB  #00,#00,#00,#00,#00,#00,#00,#00	
+	
+sprite_explosion2:				;color 8
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+	DB  #00,#00,#00,#00,#00,#00,#00,#00
+	DB  #00,#00,#00,#00,#00,#00,#00,#00
+	DB  #FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
 fin_sprites_comunes:
 
 ;; PARTE 2: SPRITES NO COMUNES
