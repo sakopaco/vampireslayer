@@ -205,6 +205,8 @@ fin_check_colisiones_enemigos:
 		RET
 
 
+;IMPORTANTE... BUG EN HABITACIÓN FINALIZADA... SIGUEN SALIENDO ENEMIGOS
+
 
 mata_enemigo:
 		LD			(IX), 1													;se pone tipo a enemigo muerto

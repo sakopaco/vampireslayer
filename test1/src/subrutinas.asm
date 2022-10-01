@@ -398,7 +398,7 @@ terminada_habitacion_recorrida:
 		LD			HL, puntero_habitacion_actual
 		SET			 4, (HL)	
 		
-		LD			 A, ISHABTERMIN	;da igual qué bit mientras sea distinto de 0 pero se pone 1
+		LD			 A, ISHABTERMIN			;1 => cierto habitación terminada
 		LD			(habitacion_terminada), A
 		
 		;este trozo no sirve de nada pero ya me quedo más tranquilo si lo pongo, por ser exacto y completo
@@ -422,6 +422,10 @@ fin_terminada_habitacion_recorrida:
 ; entrada: 	prota_pos_mapy, prota_pos_mapy, prota_nivel
 ; salida: 	
 entra_habitacion:
+		LD			HL, puntero_habitacion_actual
+		BIT			 4, (HL)
+		JP			NZ, pinta_habitacion_comun
+		
 		CALL		resetea_enemigos
 
 .mira_nivel0:
@@ -458,11 +462,14 @@ entra_habitacion:
 .mira_nivel6:
 		CALL		inicializa_enemigos_fase6
 .fin_mira_nivel:
+		CALL		pinta_ayudas_habitacion
+
+pinta_habitacion_comun:	;(haya o no enemigos)
 
 		CALL		pinta_parte_superior_pantalla
 		CALL		pinta_puertas
 		CALL		pinta_extra_fondo
-		CALL		pinta_ayudas_habitacion
+		
 		JP			pinta_heroe_mapa
 fin_entra_habitacion:
 

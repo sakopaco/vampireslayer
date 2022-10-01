@@ -553,6 +553,11 @@ fin_check_colision_puerta:
 ; salida: 	las estructuras de la puertas (entrada) con el valor activo a 0 (PUERTAINACT)
 ; toca:		IX
 desactiva_todas_puertas:
+		;si la habitación ya está completado no inactivo las puertas
+		LD			HL, puntero_habitacion_actual
+		BIT			 4, (HL)
+		RET			NZ
+		
 		LD			IX, puerta_arriba		;desactivo_puerta arriba
 		LD			(IX), INACTIVA
 		LD			IX, puerta_derecha		;desactivo_puerta derecha
