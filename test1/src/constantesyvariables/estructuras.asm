@@ -141,7 +141,7 @@ ancho				DB		0	;ancho en tiles del dibujo de la puerta (columnas)
 
 	STRUCT ESTRUCTURA_ENEMIGO
 activo_tipo			DB		0	;si inactivo = 0 si <> 0 es el tipo de enemigo
-escena				DB		0	;sprite a mostrar 1/2
+escena				DB		0	;sprite a mostrar 1/2 
 cont_sig_escena		DB		0	;retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
 energia				DB		0	;energía del enemigo antes de morir
 ;como será común la saco de la estructura y el daño está en un array
@@ -165,6 +165,6 @@ sprite_a			DB		0	;izq arriba
 sprite_b			DB		0	;izq abajo
 sprite_c			DB		0	;der_arriba
 sprite_d			DB		0	;der_abajo
-dano				DB		0	;daño que hace el enemigo
+dano				DB		0	;daño que hace el enemigo  si el daño es == 0 el enemigo está muerto
 	ENDSTRUCT;ESTRUCTURA_ENEMIGO
 

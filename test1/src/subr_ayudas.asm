@@ -639,8 +639,12 @@ accion_ballesta:
 		LD		(IX + ESTRUCTURA_PUNTOMIRA.spriteb), SPRI_DANO2B
 		
 		;cambio daño a daño mejorado
-		LD		 A, DANO2
-		LD		(dano_actual), A
+		LD		 A, PROTADANO2
+		LD		(prota_dano_actual), A
+		
+		
+		;***************************** cuando se cambia de nivel se vuelve al punto de mira y daño iniciales
+		
 		
 		;desactiva ayuda
 		LD		IX, (puntero_ayuda_actual)

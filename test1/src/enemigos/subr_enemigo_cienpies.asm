@@ -4,7 +4,7 @@
 ;las posiciones iniciales dependerán de los últimos 3 bits del registro R
 ;nota: se pone un 0 de más para simplificar el bucle de selección
 posiciones_cienpies_x:
-			DB		240,100,175,150,200,75,0,125,25
+			DB		240,100,175,150,200,75,16,125,25
 posiciones_cienpies_y:
 			DB		60,72,24,36,108,84,12,96,48
 
@@ -22,7 +22,7 @@ datos_cienpies:
 			DB		0					;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		0					;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		0					;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
-			DB		0					;(radio) radio para movimientos circulares
+			DB		0					;(pocavida) si el enemigo está muerto
 			DW		mover_cienpies		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 			DB		CIENPIES_SPRITE1A	;izq arriba
 			DB		CIENPIES_SPRITE1B	;izq abajo
@@ -90,22 +90,32 @@ fin_actualiza_valores_cienpies:
 ; salida: 	-
 ; toca:		-
 mover_cienpies:
-		;calcula posición Y
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
-		LD			(IY), A
+		LD			A, (IX + ESTRUCTURA_ENEMIGO.dano)	;IF DAÑO = 0
+		OR 			A
+		JP			 Z, cienpies_muerto
+			;calcula posición Y
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
+			LD			(IY), A
 		
-		;calcula posición X
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-		LD			(IY + 1), A
+			;calcula posición X
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
+			LD			(IY + 1), A
 
-		CALL		calcula_cienpies_escena
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_a)
-		LD			(IY + 2), A	
+			CALL		calcula_cienpies_escena
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_a)
+			LD			(IY + 2), A	
 		
-		;colorea cienpies
-		LD			(IY + 3), CIENPIES_COLOR
+			;colorea cienpies
+			LD			(IY + 3), CIENPIES_COLOR
+		
+			RET
+cienpies_muerto:									;ELSE
+			LD			(IY + 3), 15
+			
+			CALL		test_OK
+			RET
 fin_mover_cienpies:
-		RET
+
 
 ;;=====================================================
 ;;CALCULA_CIENPIES_ESCENA

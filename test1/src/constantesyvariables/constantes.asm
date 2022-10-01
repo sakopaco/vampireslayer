@@ -139,8 +139,6 @@ ISHABTERMIN			equ		1 	;0 sería no terminada
 
 ;;ETIQUETAS PARA PUNTO DE MIRA
 LIMCADENCIA 		equ		4	;nº de veces que se ejecutará el disparo antes de ejecutar un disparo real (porque cuando se pulsa la tecl dispara 3 ó 4 veces de rápido que va)
-DANO1				equ		2	;daño por defecto del punto de mira
-DANO2				equ		5	;daño mejorado del punto de mira
 SPRI_DANO1A 		equ		0	;posiciones de los sprites en memoria (va de 4 en 4 al tratarse de sprites de 16 x 16)
 SPRI_DANO1B 		equ		4
 SPRI_DANO2A 		equ		8
@@ -201,8 +199,8 @@ PROTAPOSMAPX		equ		3			;pos columna 7 columnas 7: del 0 al 6 ;pos X dentro del n
 PROTAPOSMAPY		equ		0			;pos fila los subniveles (filas) son 7 del 0 al 6 ;pos Y dentro del nivel (se empieza en 0)
 PROTAENERGIA		equ		60;248			;MAXENERGIA;valor real de la energía
 PROTAENERGIABYTEBAJO	equ		0		;cuando se llene este es cuando se pierde prota_energí
-PROTADANOBASICO		equ		2			;daño del punto de mira
-PROTADANOAVANZADO	equ		6			;daño del punto de mira cuando se tiene la ayuda
+PROTADANO1			equ		2			;daño del punto de mira
+PROTADANO2			equ		6			;daño del punto de mira cuando se tiene la ayuda
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

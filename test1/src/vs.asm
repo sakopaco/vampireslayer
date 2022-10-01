@@ -55,7 +55,7 @@ START:
 ;;
 		
 		;incializacion de replayer con interrupciones
-		CALL		inicializa_replayer_efectos_interrupciones
+;		CALL		inicializa_replayer_efectos_interrupciones
 		
 		;inicializa variables
 		CALL		carga_valores_iniciales_variables
@@ -64,7 +64,7 @@ START:
 		CALL		sub_preparapantalla			;screen 2,2 sin click al pulsar tecla y color 16,1,1
 		
 pantalla_inicial:
-		CALL		muestra_pantalla_inicial
+;		CALL		muestra_pantalla_inicial
 
 		;inicializa variables para parametrizar funciones y que lo que se muestre sea variable (nº vidas, mapa, puertas, pantalla, etc...)
 		CALL		inicializa_variables_prota
@@ -141,6 +141,9 @@ inicializa_variables_prota:
 	
 		LD		 A, PROTAENERGIABYTEBAJO			
 		LD		(prota_energia_bytebajo), A
+		
+		LD		 A, PROTADANO1
+		LD		(prota_dano_actual), A	;daño actual cuando el prota dispara
 
 		;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
 		;será igual la posición inicial en todos los niveles
@@ -183,31 +186,17 @@ examina_enemigo1:
 		OR			 A
 		JP			 Z, examina_enemigo2
 		
-		;CALL		test_OK
-		
-			LD			 A, (dano_actual)
-			LD			 B, B
-			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+			LD			 A, (prota_dano_actual)
+			LD			 B, (IX + ESTRUCTURA_ENEMIGO.energia)
 			SUB			 B
-			JP			NC, restavida_enemigo1
+			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A
+			JP			NC, examina_enemigo2
 			
-			;CALL		test_OK
+				CALL		mata_enemigo
 			
 			;esta función no va aquí sino en check colisiones pero se pone aquí para realizar pruebas
 			CALL		terminada_habitacion_recorrida ;para cuando se maten todos los enemigos de la habitación
 						
-			CALL		mata_enemigo
-			
-			JP			fin_check_colisiones_enemigos
-restavida_enemigo1:
-			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A
-			
-			
-			
-			
-	
-		
-		
 		
 examina_enemigo2:		
 		
@@ -218,14 +207,42 @@ fin_check_colisiones_enemigos:
 
 
 mata_enemigo:
-		LD			(IX), 0
-		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), A
-		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), A
+		LD			(IX), 1													;se pone tipo a enemigo muerto
+		LD			(IX + ESTRUCTURA_ENEMIGO.escena), TIEMPO_ESPERA_VISCERA	;contador para que desaparezcan las vísceras del enemigo
+		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), SPRI_ENEM_MUERTE1A	;se setean los sprites de las visceras
 		
+		;esto es necesario para enemigos de más de un sprite
+		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), SPRI_BLANCO	;se setean los sprites de las visceras
+		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_c), SPRI_BLANCO	;se setean los sprites de las visceras
+		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_d), SPRI_BLANCO	;se setean los sprites de las visceras
+		
+
+		;sustituyo la función de mover enemigo
+		LD			HL, accion_enemigo_muerto
+		LD			(IX + ESTRUCTURA_ENEMIGO.ptr_mover), L
+		LD			(IX + ESTRUCTURA_ENEMIGO.ptr_mover + 1), H
 fin_mata_enemigo:
 		RET
 
 
+accion_enemigo_muerto:
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+		OR			 A
+		JP			 Z, desaparece_enemigo
+			;pone sprite de viscera para mostrar
+			LD			(IY + 2), SPRI_ENEM_MUERTE1A
+			;colorea viscera
+			LD			(IY + 3), COLROJO
+			;decreento contador para que desaparezca con el tiempo las visceras
+			DEC			(IX + ESTRUCTURA_ENEMIGO.escena)
+		RET
+		
+desaparece_enemigo:
+			;situo las visceras fuera de pantalla
+			LD			(IY), 	 BORRASPRITE
+		RET
+fin_accion_enemigo_muerto:
+		
 
 
 ;;=====================================================

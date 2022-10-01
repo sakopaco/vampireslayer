@@ -20,6 +20,7 @@ prota_pos_mapx:				DB		0			;pos columna
 prota_pos_mapy:				DB		3			;pos fila
 prota_energia:				DB		0			;valor real de la energía
 prota_energia_bytebajo:		DB		0			;cuando se llene este es cuando se pierde prota_energía
+prota_dano_actual:			DB		PROTADANO1	;daño actual cuando el prota dispara
 
 ;array para pintar de golpe el marcador de vidas
 array_aux_vidas: 			DB		0,0,0,0,0,0,0,0
@@ -126,10 +127,10 @@ habitacion_terminada:		DB		0		;variable para consultar más rápido si se ha pas
 puntero_extras_habitacion_actual:	DW	0		;puntero a los extras de la habitación actual para poder modificarlo (para que no salgan extras)
 puntero_habitacion_actual:			DW	0		;puntero a la habitación actual para poder modificarlo 
 
+
 ;;=====================================================
 ;;VARIABLES PUNTO MIRA
 ;;=====================================================
-dano_actual:				DB		PROTADANOBASICO		;daño actual cuando el prota dispara
 puntomira:					DS		ESTRUCTURA_PUNTOMIRA
 
 
