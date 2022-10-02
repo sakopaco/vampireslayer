@@ -224,7 +224,7 @@ CIENPIES_SPRITE1A: equ 00000018h
 CIENPIES_SPRITE1B: equ 0000001Ch
 CIENPIES_VELESCENA: equ 00000010h
 CIENPIES_DANO: equ 00000005h
-CIENPIES_ENERGIA: equ 0000000Ah
+CIENPIES_ENERGIA: equ 00000014h
 CIENPIES_RADIOX: equ 00000008h
 CIENPIES_RADIOY: equ 00000008h
 TIPOARANA: equ 00000004h
@@ -703,7 +703,3 @@ habitaciones_nivel3: equ 0000C381h
 habitaciones_nivel4: equ 0000C3F1h
 habitaciones_nivel5: equ 0000C461h
 habitaciones_nivel6: equ 0000C4D1h
-tiempo: equ 0000C541h
-contador: equ 0000C541h
-segundos: equ 0000C542h
-minutos: equ 0000C543h

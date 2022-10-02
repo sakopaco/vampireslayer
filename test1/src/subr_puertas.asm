@@ -176,6 +176,8 @@ fin_carga_datos_puerta:
 ; salida: 	
 accion_puerta_arriba:
 		CALL			pinta_blanco_mapa
+		
+		CALL			actualiza_habitacion_terminada
 	
 		LD		 	 	 A, (prota_pos_mapy)
 		INC		 	 	 A
@@ -210,6 +212,8 @@ fin_accion_puerta_arriba:
 ; salida: 	
 accion_puerta_derecha:
 		CALL			pinta_blanco_mapa
+		
+		CALL			actualiza_habitacion_terminada
 	
 		LD		 	 	 A, (prota_pos_mapx)
 		INC		 	 	 A
@@ -227,6 +231,8 @@ fin_accion_puerta_derecha:
 ; salida: 	
 accion_puerta_abajo:
 		CALL			pinta_blanco_mapa
+		
+		CALL			actualiza_habitacion_terminada
 	
 		LD		 		 A, (prota_pos_mapy)
 		DEC			 	 A
@@ -261,6 +267,8 @@ fin_accion_puerta_abajo:
 ; salida: 	
 accion_puerta_izquierda:
 		CALL			pinta_blanco_mapa
+		
+		CALL			actualiza_habitacion_terminada
 
 		LD				 A, (prota_pos_mapx)
 		DEC				 A
@@ -268,7 +276,7 @@ accion_puerta_izquierda:
 
 		JP				entra_habitacion
 fin_accion_puerta_izquierda:
-	
+
 
 ;;=====================================================
 ;;PINTA_PUERTAS
@@ -278,18 +286,16 @@ fin_accion_puerta_izquierda:
 ; salida: 	-
 ; toca:		todo
 pinta_puertas:
-	CALL	localiza_info_habitacion	;busca qué puertas debe pintar y lo mete en habitación_actual
+			CALL	localiza_info_habitacion	;busca qué puertas debe pintar y lo mete en habitación_actual
 
-	;*********************************************************************+ SÓLO SI HABITACIÓN NO COPLETADA
-	CALL	desactiva_todas_puertas
-
+	; nota: todas las puertas aparecen inactivas en su creación
 	;examina puerta arrba
 	LD		 A, (habitacion_actual)
 	BIT		 3, A					
 	JP		 Z, .fin_puerta_arriba		;tiene puerta arriba?
 		CALL	pinta_puerta_arr		;pinto puerta ;si es de la fila 7 los datos de la pueta de arriba serán los de una escalera
 		LD		IX, puerta_arriba		
-		LD		(IX), 1					;activo puerta
+		LD		(IX), 0					;activo puerta
 .fin_puerta_arriba:
 
 	;examina puerta derecha
@@ -298,7 +304,7 @@ pinta_puertas:
 	JP		 Z, .fin_puerta_derecha		;tiene puerta derecha?
 		CALL	pinta_puerta_der		;pinto puerta
 		LD		IX, puerta_derecha
-		LD		(IX), 1					;activo puerta
+		LD		(IX), 0					;activo puerta
 .fin_puerta_derecha:
 
 	;examina puerta abajo
@@ -313,7 +319,7 @@ pinta_puertas:
 	JP		 Z, .fin_puerta_abajo		;tiene puerta derecha?
 		CALL	pinta_puerta_aba		;pinto puerta
 		LD		IX, puerta_abajo	
-		LD		(IX), 1					;activo puerta
+		LD		(IX), 0					;activo puerta
 .fin_puerta_abajo:
 
 	;examina puerta izquierda
@@ -322,7 +328,7 @@ pinta_puertas:
 	JP		 Z, fin_pinta_puertas		;tiene puerta derecha?
 		CALL	pinta_puerta_izq		;pinto puerta
 		LD		IX, puerta_izquierda	
-		LD		(IX), 1					;activo puerta
+		LD		(IX), 0					;activo puerta
 fin_pinta_puertas:
 	RET
 
@@ -546,26 +552,33 @@ fin_check_colision_puerta:
 
 	
 ;;=====================================================
-;;DESACTIVA_TODAS_PUERTAS
+;;ACTIVAR_TODAS_PUERTAS
 ;;=====================================================	
-; función: 	desactiva todas las puertas (es más rápido todas que mirar cuál estaba activa en la habitación aanterior) y ya se activarán las que se muestren
+; función: 	desactiva todas las puertas (es más rápido todas que mirar cuál estaba activa en la habitación anterior) y ya se activarán las que se muestren
 ; entrada: 	puerta_arriba, puerta_derecha, puerta_abajo, puerta_izquierda
 ; salida: 	las estructuras de la puertas (entrada) con el valor activo a 0 (PUERTAINACT)
-; toca:		IX
-desactiva_todas_puertas:
-		;si la habitación ya está completado no inactivo las puertas
+; toca:		IX		
+activa_todas_puertas:
 		LD			HL, puntero_habitacion_actual
-		BIT			 4, (HL)
-		RET			NZ
-		
-		LD			IX, puerta_arriba		;desactivo_puerta arriba
-		LD			(IX), INACTIVA
-		LD			IX, puerta_derecha		;desactivo_puerta derecha
-		LD			(IX), INACTIVA
-		LD			IX, puerta_abajo		;desactivo_puerta abajo
-		LD			(IX), INACTIVA
-		LD			IX, puerta_izquierda	;desactivo_puerta izquierda
-		LD			(IX), INACTIVA
-fin_desactiva_todas_puertas:
+.examina_puerta_derecha:
+		BIT			 3, (HL)
+		JP			 Z, .examina_puerta_abajo
+		LD			IX, puerta_izquierda
+		LD			(IX), ACTIVA
+.examina_puerta_abajo:		
+		BIT			 2, (HL)
+		JP			 Z, .examina_puerta_izquierda
+		LD			IX, puerta_abajo
+		LD			(IX), ACTIVA
+.examina_puerta_izquierda:
+		BIT			 1, (HL)
+		JP			 Z, .examina_puerta_arriba
+		LD			IX, puerta_derecha
+		LD			(IX), ACTIVA
+.examina_puerta_arriba:
+		BIT			 0, (HL)
+		RET			 Z
+		LD			IX, puerta_arriba
+		LD			(IX), ACTIVA
+fin_activa_todas_puertas:
 		RET
-

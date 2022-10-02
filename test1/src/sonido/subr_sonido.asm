@@ -64,7 +64,7 @@ subrutinas_sonido:
 ;;=====================================================		
 song:
 	;incbin "bloodytears_castlevania.99"
-	incbin "ingame5.99"
+	incbin "ingame6.99"
 	
 sfx_bank:
 	incbin "demo.afb"

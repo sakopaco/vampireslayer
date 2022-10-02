@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.10.02 - 09:46:11]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.10.02 - 21:03:25]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -331,7 +331,7 @@ Errors: 0
       25.  00:C000  (00:001C)           CIENPIES_SPRITE1B		equ		#001C	;28
       26.  00:C000  (00:0010)           CIENPIES_VELESCENA		equ		00010000b
       27.  00:C000  (00:0005)           CIENPIES_DANO			equ		5
-      28.  00:C000  (00:000A)           CIENPIES_ENERGIA		equ		10
+      28.  00:C000  (00:0014)           CIENPIES_ENERGIA		equ		20
       29.  00:C000  (00:0008)           CIENPIES_RADIOX			equ		8
       30.  00:C000  (00:0008)           CIENPIES_RADIOY			equ		8
       31.  00:C000                      
@@ -1168,15 +1168,15 @@ Errors: 0
      106.  00:C541                      
      147   00:C541                      
      148   00:C541                      
-     149   00:C541                      ;;=====================================================
-     150   00:C541                      ;;VARIABLES TIEMPO
-     151   00:C541                      ;;=====================================================
-     152   00:C541                      tiempo:
-     153   00:C541  00                  contador:					DB	0
-     154   00:C542  00                  segundos:					DB	0
-     155   00:C543  00                  minutos:					DB	0
-     156   00:C544                      
-     157   00:C544                      
+     149   00:C541                      ;~ ;;=====================================================
+     150   00:C541                      ;~ ;;VARIABLES TIEMPO
+     151   00:C541                      ;~ ;;=====================================================
+     152   00:C541                      ;~ tiempo:
+     153   00:C541                      ;~ contador:					DB	0
+     154   00:C541                      ;~ segundos:					DB	0
+     155   00:C541                      ;~ minutos:					DB	0
+     156   00:C541                      
+     157   00:C541                      
 
     LABELS
 -------------------------------------------------
@@ -1406,7 +1406,7 @@ Errors: 0
 00:0000001C X CIENPIES_SPRITE1B
 00:00000010 X CIENPIES_VELESCENA
 00:00000005 X CIENPIES_DANO
-00:0000000A X CIENPIES_ENERGIA
+00:00000014 X CIENPIES_ENERGIA
 00:00000008 X CIENPIES_RADIOX
 00:00000008 X CIENPIES_RADIOY
 00:00000004 X TIPOARANA
@@ -1885,10 +1885,6 @@ Errors: 0
 00:0000C3F1 X habitaciones_nivel4
 00:0000C461 X habitaciones_nivel5
 00:0000C4D1 X habitaciones_nivel6
-00:0000C541 X tiempo
-00:0000C541 X contador
-00:0000C542 X segundos
-00:0000C543 X minutos
 
 
  Output: /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.dat
@@ -1903,7 +1899,7 @@ Errors: 0
 -------------------------------------------------
 
  Page: 00
-  Org: 0000C000  Size: *  Used: 00000544
+  Org: 0000C000  Size: *  Used: 00000541
 
    Address   Length Align   Label
-   0000C000    1348         prota
+   0000C000    1345         prota

@@ -146,12 +146,12 @@ dracula_muerto:				DB		NO					;equ 0
 	include "datos/habitaciones.asm"
 
 
-;;=====================================================
-;;VARIABLES TIEMPO
-;;=====================================================
-tiempo:
-contador:					DB	0
-segundos:					DB	0
-minutos:					DB	0
+;~ ;;=====================================================
+;~ ;;VARIABLES TIEMPO
+;~ ;;=====================================================
+;~ tiempo:
+;~ contador:					DB	0
+;~ segundos:					DB	0
+;~ minutos:					DB	0
 
 

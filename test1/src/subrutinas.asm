@@ -295,8 +295,6 @@ fin_actualiza_buffer_reliquias:
 ;ejemplo: nivel 4, posy 5 y posx 3
 ;3 + 5 x 8 + 4 x 49
 localiza_info_habitacion:
-	PUSH	HL
-
 ;primera posición: me coloco en la columna correcta
 	LD		HL, habitaciones_juego
 .situo_columna:	
@@ -349,6 +347,11 @@ localiza_info_habitacion:
 	LD		(IX), H
 	LD		(IX + 1), L
 	
+	
+	
+	;******************************************************
+	
+	
 	;actualizo la variable habitacion_terminada
 	LD		  	 A, (habitacion_actual)
 	BIT		  	 4, A					;está terminada la habitación
@@ -361,6 +364,10 @@ localiza_info_habitacion:
 	LD		 	 A, 1		
 	LD			(habitacion_terminada), A
 .fin_esta_terminada:
+	
+	
+	
+	
 	
 	;actualizo la variable hay_ayudas
 	LD		 A, (habitacion_actual)
@@ -380,8 +387,6 @@ localiza_info_habitacion:
 	LD		(puntero_extras_habitacion_actual), HL
 	LD		 A, (HL)
 	LD		(habitacion_extras), A
-
-	POP		HL	
 fin_localiza_info_habitacion:
 	RET
 	
@@ -405,8 +410,9 @@ terminada_habitacion_recorrida:
 		;no sirve porque se cambiará de habitación y se perderá/actualizará el dato
 		LD			HL, habitacion_actual
 		SET			 4, (HL)
+		
+		JP			activa_todas_puertas
 fin_terminada_habitacion_recorrida:
-		RET
 
 
 ;;=====================================================
@@ -546,3 +552,19 @@ check_colisiones_objetos:
 		;ENDIF
 fin_check_colisiones_objetos:	
 
+
+;;=====================================================
+;;ACTUALIZA_HABITACION_TERMINADA
+;;=====================================================	
+; función: 	actualiza la variable habitacion_terminada
+actualiza_habitacion_terminada:
+		XOR			 A
+		LD			(habitacion_terminada), A
+		LD			HL, puntero_habitacion_actual
+		BIT			 4, (HL)
+		RET			NZ
+		
+		LD			 A, ISHABTERMIN			;1 => cierto habitación terminada
+		LD			(habitacion_terminada), A
+fin_actualiza_habitacion_terminada
+		RET

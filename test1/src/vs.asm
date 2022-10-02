@@ -55,7 +55,7 @@ START:
 ;;
 		
 		;incializacion de replayer con interrupciones
-		CALL		inicializa_replayer_efectos_interrupciones
+;		CALL		inicializa_replayer_efectos_interrupciones
 		
 		;inicializa variables
 		CALL		carga_valores_iniciales_variables
@@ -64,7 +64,7 @@ START:
 		CALL		sub_preparapantalla			;screen 2,2 sin click al pulsar tecla y color 16,1,1
 		
 pantalla_inicial:
-		CALL		muestra_pantalla_inicial
+;		CALL		muestra_pantalla_inicial
 
 		;inicializa variables para parametrizar funciones y que lo que se muestre sea variable (nº vidas, mapa, puertas, pantalla, etc...)
 		CALL		inicializa_variables_prota
@@ -102,7 +102,7 @@ pantalla_inicial:
 		CALL		entra_habitacion 		;CALL resetea enemigos + CALL inicializa_enemigos_fase + CALL	pinta_puertas + CALL pinta_ayudas_habitacion + CALL	pinta_extra_fondo 
 
 loop_principal:
-		HALT								;espera VBLANK y sincroniza
+		HALT								;espera VBLANK y sincroniza	
 
 		CALL		actualiza_elementos_fondo;como antorchas o esqueletos
 		
@@ -155,7 +155,7 @@ inicializa_variables_prota:
 		LD		(prota_pos_mapy), A	
 
 		LD		 A, PROTAPOSMAPX	
-		LD		(prota_pos_mapx), A	
+		LD		(prota_pos_mapx), A
 fin_inicializa_variables_prota:
 		RET
 		
@@ -165,7 +165,7 @@ fin_inicializa_variables_prota:
 ;;=====================================================
 ; funcion: inicializa las variables que afectan al juego en general
 inicializa_variables_juego:
-		LD			 A, NO	; 0
+		XOR			 A
 		LD			(dracula_muerto), A
 fin_inicializa_variables_juego:
 		RET
@@ -179,7 +179,7 @@ check_colisiones_enemigos:
 examina_enemigo1:
 		LD			IX, enemigo1
 		LD			 A, (IX)
-		OR			 A
+		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
 		JP			 Z, examina_enemigo2
 		
 		CALL		check_colision_enemigo
@@ -187,18 +187,22 @@ examina_enemigo1:
 		JP			 Z, examina_enemigo2
 		
 			LD			 A, (prota_dano_actual)
-			LD			 B, (IX + ESTRUCTURA_ENEMIGO.energia)
+			LD			 B, A
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
 			SUB			 B
-			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A
 			JP			NC, examina_enemigo2
 			
 				CALL		mata_enemigo
+				
+				call		test_OK
+				
 			
 			;esta función no va aquí sino en check colisiones pero se pone aquí para realizar pruebas
 			CALL		terminada_habitacion_recorrida ;para cuando se maten todos los enemigos de la habitación
 						
 		
-examina_enemigo2:		
+examina_enemigo2:	
+		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	
 		
 		
 fin_check_colisiones_enemigos:
