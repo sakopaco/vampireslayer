@@ -559,26 +559,29 @@ fin_check_colision_puerta:
 ; salida: 	las estructuras de la puertas (entrada) con el valor activo a 0 (PUERTAINACT)
 ; toca:		IX		
 activa_todas_puertas:
+
+		CALL		pinta_puertas
+
 		LD			HL, puntero_habitacion_actual
-.examina_puerta_derecha:
-		BIT			 3, (HL)
-		JP			 Z, .examina_puerta_abajo
-		LD			IX, puerta_izquierda
-		LD			(IX), ACTIVA
-.examina_puerta_abajo:		
+;~ .examina_puerta_arriba:
+		;~ BIT			 3, (HL)
+		;~ JP			 Z, .examina_puerta_derecha
+		;~ LD			IX, puerta_arriba
+		;~ LD			(IX), ACTIVA
+.examina_puerta_arriba:		
 		BIT			 2, (HL)
-		JP			 Z, .examina_puerta_izquierda
-		LD			IX, puerta_abajo
+		JP			 Z, .examina_puerta_abajo
+		LD			IX, puerta_arriba
 		LD			(IX), ACTIVA
-.examina_puerta_izquierda:
-		BIT			 1, (HL)
-		JP			 Z, .examina_puerta_arriba
-		LD			IX, puerta_derecha
-		LD			(IX), ACTIVA
-.examina_puerta_arriba:
+;~ .examina_puerta_abajo:
+		;~ BIT			 1, (HL)
+		;~ JP			 Z, .examina_puerta_izquierda
+		;~ LD			IX, puerta_abajo
+		;~ LD			(IX), ACTIVA
+.examina_puerta_abajo:
 		BIT			 0, (HL)
 		RET			 Z
-		LD			IX, puerta_arriba
+		LD			IX, puerta_abajo
 		LD			(IX), ACTIVA
 fin_activa_todas_puertas:
 		RET

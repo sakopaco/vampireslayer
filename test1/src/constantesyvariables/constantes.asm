@@ -198,8 +198,8 @@ PROTARELIQUIAS		equ		3
 PROTAPOSMAPX		equ		3			;pos columna 7 columnas 7: del 0 al 6 ;pos X dentro del nivel (se empieza en 0)
 PROTAPOSMAPY		equ		0			;pos fila los subniveles (filas) son 7 del 0 al 6 ;pos Y dentro del nivel (se empieza en 0)
 PROTAENERGIA		equ		60;248			;MAXENERGIA;valor real de la energía
-PROTAENERGIABYTEBAJO	equ		0		;cuando se llene este es cuando se pierde prota_energí
-PROTADANO1			equ		2			;daño del punto de mira
+PROTAENERGIABYTEBAJO equ	0		;cuando se llene este es cuando se pierde prota_energí
+PROTADANO1			equ		3			;daño del punto de mira
 PROTADANO2			equ		6			;daño del punto de mira cuando se tiene la ayuda
 
 

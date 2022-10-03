@@ -182,9 +182,10 @@ examina_enemigo1:
 		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
 		JP			 Z, examina_enemigo2
 		
-		CALL		check_colision_enemigo
-		OR			 A
-		JP			 Z, examina_enemigo2
+		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z
+		;AND			00000001b
+		;OR			 A
+		JP			 Z, examina_enemigo2	; IF hubo colisión
 		
 			LD			 A, (prota_dano_actual)
 			LD			 B, A

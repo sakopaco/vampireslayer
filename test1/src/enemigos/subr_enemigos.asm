@@ -1743,7 +1743,7 @@ fin_enemigo_hace_dano:
 ;;=====================================================	
 ; función: 	revisa la distancia con enemigo activo para ver si se disparó y se le dió
 ; entrada: 	IX con el puntero al enemigo que se examina
-; salida: 	A (0 no hay colisión con puerta / 1 sí la hay)
+; salida: 	A (0 no hay colisión con enemigo / 1 sí la hay)
 ; toca:		HL,BC, DE
 check_colision_enemigo:
 .deteccioncolision_paso1:

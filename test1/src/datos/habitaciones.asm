@@ -17,7 +17,7 @@
 ;~ 5 - esqueletos
 ;~ 4 - SI enemigos => 0 y NO enemigos 1 => toca la variable "habitacion_terminada" (se inicializan al empezar la partida)
 ;(relacionado con la variable -- habitacion_terminada)
-;~ 0,1,2,3 - nº puertas 1 arriba 1 derecha 1 abajo 1 izquierda
+;~ 3,2,1,0 - nº puertas 1 arriba 1 derecha 1 abajo 1 izquierda
 ;2º byte
 ;~ 7 - oracion
 ;~ 6 - cruz

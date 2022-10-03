@@ -90,9 +90,6 @@ fin_actualiza_valores_cienpies:
 ; salida: 	-
 ; toca:		-
 mover_cienpies:
-		LD			A, (IX + ESTRUCTURA_ENEMIGO.dano)	;IF DAÑO = 0
-		OR 			A
-		JP			 Z, cienpies_muerto
 			;calcula posición Y
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
 			LD			(IY), A
@@ -108,11 +105,6 @@ mover_cienpies:
 			;colorea cienpies
 			LD			(IY + 3), CIENPIES_COLOR
 		
-			RET
-cienpies_muerto:									;ELSE
-			LD			(IY + 3), 15
-			
-			CALL		test_OK
 			RET
 fin_mover_cienpies:
 
