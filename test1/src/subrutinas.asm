@@ -352,18 +352,18 @@ localiza_info_habitacion:
 	;******************************************************
 	
 	
-	;actualizo la variable habitacion_terminada
-	LD		  	 A, (habitacion_actual)
-	BIT		  	 4, A					;está terminada la habitación
-	JP			NZ, .si_terminada
-.no_terminada:						;pongo un 0 en habitacion_terminada
-	XOR		 	 A
-	LD			(habitacion_terminada), A
-	JP			.fin_esta_terminada
-.si_terminada:						;pongo un 1 en habitacion_terminada
-	LD		 	 A, 1		
-	LD			(habitacion_terminada), A
-.fin_esta_terminada:
+	;~ ;actualizo la variable habitacion_terminada
+	;~ LD		  	 A, (habitacion_actual)
+	;~ BIT		  	 4, A					;está terminada la habitación
+	;~ JP			NZ, .si_terminada
+;~ .no_terminada:						;pongo un 0 en habitacion_terminada
+	;~ XOR		 	 A
+	;~ LD			(habitacion_terminada), A
+	;~ JP			.fin_esta_terminada
+;~ .si_terminada:						;pongo un 1 en habitacion_terminada
+	;~ LD		 	 A, 1		
+	;~ LD			(habitacion_terminada), A
+;~ .fin_esta_terminada:
 	
 	
 	
@@ -410,9 +410,8 @@ terminada_habitacion_recorrida:
 		;no sirve porque se cambiará de habitación y se perderá/actualizará el dato
 		LD			HL, habitacion_actual
 		SET			 4, (HL)
-		
-		JP			activa_todas_puertas
 fin_terminada_habitacion_recorrida:
+		RET
 
 
 ;;=====================================================
@@ -428,9 +427,9 @@ fin_terminada_habitacion_recorrida:
 ; entrada: 	prota_pos_mapy, prota_pos_mapy, prota_nivel
 ; salida: 	
 entra_habitacion:
-		LD			HL, puntero_habitacion_actual
-		BIT			 4, (HL)
-		JP			NZ, pinta_habitacion_comun
+		;~ LD			HL, puntero_habitacion_actual
+		;~ BIT			 4, (HL)
+		;~ JP			NZ, pinta_habitacion_comun
 		
 		CALL		resetea_enemigos
 
@@ -470,7 +469,7 @@ entra_habitacion:
 .fin_mira_nivel:
 		CALL		pinta_ayudas_habitacion
 
-pinta_habitacion_comun:	;(haya o no enemigos)
+;~ pinta_habitacion_comun:	;(haya o no enemigos)
 
 		CALL		pinta_parte_superior_pantalla
 		CALL		pinta_puertas
@@ -530,9 +529,9 @@ fin_cambio_nivel:
 ; toca:		HL,BC, DE
 check_colisiones_objetos:
 		;pantalla limpia?
-		LD			 A, (habitacion_terminada)
-		OR			 A
-		JP			 Z, .habitacion_no_terminada
+		;~ LD			 A, (habitacion_terminada)
+		;~ OR			 A
+		;~ JP			 Z, .habitacion_no_terminada
 		;SI 
 			;recorre puertas y sale
 			CALL		check_colisiones_puertas
@@ -558,13 +557,13 @@ fin_check_colisiones_objetos:
 ;;=====================================================	
 ; función: 	actualiza la variable habitacion_terminada
 actualiza_habitacion_terminada:
-		XOR			 A
-		LD			(habitacion_terminada), A
-		LD			HL, puntero_habitacion_actual
-		BIT			 4, (HL)
-		RET			NZ
+		;~ XOR			 A
+		;~ LD			(habitacion_terminada), A
+		;~ LD			HL, puntero_habitacion_actual
+		;~ BIT			 4, (HL)
+		;~ RET			NZ
 		
-		LD			 A, ISHABTERMIN			;1 => cierto habitación terminada
-		LD			(habitacion_terminada), A
+		;~ LD			 A, ISHABTERMIN			;1 => cierto habitación terminada
+		;~ LD			(habitacion_terminada), A
 fin_actualiza_habitacion_terminada
 		RET

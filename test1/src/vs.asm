@@ -176,34 +176,34 @@ fin_inicializa_variables_juego:
 
 
 check_colisiones_enemigos:
-examina_enemigo1:
-		LD			IX, enemigo1
-		LD			 A, (IX)
-		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
-		JP			 Z, examina_enemigo2
+;~ examina_enemigo1:
+		;~ LD			IX, enemigo1
+		;~ LD			 A, (IX)
+		;~ AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
+		;~ JP			 Z, examina_enemigo2
 		
-		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z
-		;AND			00000001b
-		;OR			 A
-		JP			 Z, examina_enemigo2	; IF hubo colisión
+		;~ CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z
+		;~ ;AND			00000001b
+		;~ ;OR			 A
+		;~ JP			 Z, examina_enemigo2	; IF hubo colisión
 		
-			LD			 A, (prota_dano_actual)
-			LD			 B, A
-			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
-			SUB			 B
-			JP			NC, examina_enemigo2
+			;~ LD			 A, (prota_dano_actual)
+			;~ LD			 B, A
+			;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+			;~ SUB			 B
+			;~ JP			NC, examina_enemigo2
 			
-				CALL		mata_enemigo
+				;~ CALL		mata_enemigo
 				
-				call		test_OK
+				;~ ;call		test_OK
 				
 			
-			;esta función no va aquí sino en check colisiones pero se pone aquí para realizar pruebas
-			CALL		terminada_habitacion_recorrida ;para cuando se maten todos los enemigos de la habitación
+			;~ ;esta función no va aquí sino en check colisiones pero se pone aquí para realizar pruebas
+			;~ ;CALL		terminada_habitacion_recorrida ;para cuando se maten todos los enemigos de la habitación
 						
 		
-examina_enemigo2:	
-		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	
+;~ examina_enemigo2:	
+		;~ LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	
 		
 		
 fin_check_colisiones_enemigos:
