@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.10.04 - 15:57:52]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.10.05 - 18:56:55]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -331,7 +331,7 @@ Errors: 0
       25.  00:C000  (00:001C)           CIENPIES_SPRITE1B		equ		#001C	;28
       26.  00:C000  (00:0010)           CIENPIES_VELESCENA		equ		00010000b
       27.  00:C000  (00:0005)           CIENPIES_DANO			equ		5
-      28.  00:C000  (00:0050)           CIENPIES_ENERGIA		equ		80
+      28.  00:C000  (00:000A)           CIENPIES_ENERGIA		equ		10
       29.  00:C000  (00:0008)           CIENPIES_RADIOX			equ		8
       30.  00:C000  (00:0008)           CIENPIES_RADIOY			equ		8
       31.  00:C000                      
@@ -1406,7 +1406,7 @@ Errors: 0
 00:0000001C X CIENPIES_SPRITE1B
 00:00000010 X CIENPIES_VELESCENA
 00:00000005 X CIENPIES_DANO
-00:00000050 X CIENPIES_ENERGIA
+00:0000000A X CIENPIES_ENERGIA
 00:00000008 X CIENPIES_RADIOX
 00:00000008 X CIENPIES_RADIOY
 00:00000004 X TIPOARANA

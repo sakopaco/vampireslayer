@@ -176,36 +176,112 @@ fin_inicializa_variables_juego:
 
 
 check_colisiones_enemigos:
-;~ examina_enemigo1:
-		;~ LD			IX, enemigo1
-		;~ LD			 A, (IX)
-		;~ AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
-		;~ JP			 Z, examina_enemigo2
+examina_enemigo1:
+		LD			IX, enemigo1
+		LD			 A, (IX)
+		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
+		JP			 Z, examina_enemigo2
 		
-		;~ CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z
-		;~ ;AND			00000001b
-		;~ ;OR			 A
-		;~ JP			 Z, examina_enemigo2	; IF hubo colisión
+		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z
+		JP			 Z, examina_enemigo2	; IF hubo colisión
+			LD			 A, (prota_dano_actual)
+			LD			 B, A
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+			SUB			 B
+			JP			NC, examina_enemigo2			
+				CALL		mata_enemigo
+examina_enemigo2:	
+		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
 		
-			;~ LD			 A, (prota_dano_actual)
-			;~ LD			 B, A
-			;~ LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
-			;~ SUB			 B
-			;~ JP			NC, examina_enemigo2
+		LD			IX, enemigo2
+		LD			 A, (IX)
+		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
+		JP			 Z, examina_enemigo3
+		
+		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z
+		JP			 Z, examina_enemigo3	; IF hubo colisión
+			LD			 A, (prota_dano_actual)
+			LD			 B, A
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+			SUB			 B
+			JP			NC, examina_enemigo3			
+				CALL		mata_enemigo
+
+examina_enemigo3:	
+		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
+		
+		LD			IX, enemigo3
+		LD			 A, (IX)
+		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
+		JP			 Z, examina_enemigo4
+		
+		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z
+		JP			 Z, examina_enemigo4	; IF hubo colisión
+			LD			 A, (prota_dano_actual)
+			LD			 B, A
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+			SUB			 B
+			JP			NC, examina_enemigo4			
+				CALL		mata_enemigo
+		
+examina_enemigo4:	
+		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
+		
+		LD			IX, enemigo4
+		LD			 A, (IX)
+		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
+		JP			 Z, examina_enemigo5
+		
+		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z
+		JP			 Z, examina_enemigo5	; IF hubo colisión
+			LD			 A, (prota_dano_actual)
+			LD			 B, A
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+			SUB			 B
+			JP			NC, examina_enemigo5			
+				CALL		mata_enemigo	
+		
+examina_enemigo5:	
+		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
+		
+		LD			IX, enemigo5
+		LD			 A, (IX)
+		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
+		JP			 Z, examina_enemigo6
+		
+		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z
+		JP			 Z, examina_enemigo6	; IF hubo colisión
+			LD			 A, (prota_dano_actual)
+			LD			 B, A
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+			SUB			 B
+			JP			NC, examina_enemigo6		
+				CALL		mata_enemigo		
 			
-				;~ CALL		mata_enemigo
-				
-				;~ ;call		test_OK
-				
-			
-			;~ ;esta función no va aquí sino en check colisiones pero se pone aquí para realizar pruebas
-			;~ ;CALL		terminada_habitacion_recorrida ;para cuando se maten todos los enemigos de la habitación
-						
+examina_enemigo6:
+		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
 		
-;~ examina_enemigo2:	
-		;~ LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	
+		LD			IX, enemigo6
+		LD			 A, (IX)
+		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
+		JP			 Z, fin_check_colisiones_enemigos
+		
+		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z
+		JP			 Z, fin_check_colisiones_enemigos	; IF hubo colisión
+			LD			 A, (prota_dano_actual)
+			LD			 B, A
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+			SUB			 B
+			JP			NC, .fin_examina_enemigos		
+				CALL		mata_enemigo
+
+.fin_examina_enemigos:
+		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
 		
 		
+			;miro si por el nº de enemigos (necesitaré una variable) está terminada la habitación
+			;esta función no va aquí sino en check colisiones pero se pone aquí para realizar pruebas
+			;CALL		terminada_habitacion_recorrida ;para cuando se maten todos los enemigos de la habitación
 fin_check_colisiones_enemigos:
 		RET
 

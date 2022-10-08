@@ -175,11 +175,6 @@ fin_carga_datos_puerta:
 ; entrada: 	
 ; salida: 	
 accion_puerta_arriba:
-
-
-		CALL			test_OK
-
-
 		CALL			pinta_blanco_mapa
 	
 		LD		 	 	 A, (prota_pos_mapy)

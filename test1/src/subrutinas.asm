@@ -535,7 +535,7 @@ check_colisiones_objetos:
 		;SI 
 			;recorre puertas y sale
 			CALL		check_colisiones_puertas
-			RET
+			;RET
 		;NO 
 .habitacion_no_terminada:
 		;recorre enemigos
