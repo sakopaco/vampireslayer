@@ -52,17 +52,17 @@ START:
 		EI
 ;;
 ;;FIN INTRODUCCIÓN DE CÓDIGO PARA PODER USAR 32K
-;;
-		
-		;incializacion de replayer con interrupciones
-		CALL		inicializa_replayer_efectos_interrupciones
-		
+;;		
 		;inicializa variables
 		CALL		carga_valores_iniciales_variables
 
 		;inicializa pantalla y entonrno
 		CALL		sub_preparapantalla			;screen 2,2 sin click al pulsar tecla y color 16,1,1
-		
+
+inicio_juego:
+		;incializacion de replayer con interrupciones
+		CALL		inicializa_replayer_efectos_interrupciones
+	
 pantalla_inicial:
 		CALL		muestra_pantalla_inicial
 

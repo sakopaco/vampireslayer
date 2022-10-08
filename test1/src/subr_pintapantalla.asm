@@ -1297,11 +1297,18 @@ game_over1:
 		LD			DE, TILMAP + 641	;destino en vram
 		CALL		LDIRVM
 
+		;múscia de GAME OVER
+		LD			HL, PT3_SETUP
+		SET			 0, (HL)
+		LD			HL, musica_gameover-99	; hl <- initial address of module - 99
+		CALL		PT3_INIT			; Inits PT3 player
+
+		CALL		espera_estandar
 		CALL		espera_estandar
 		
 		CALL		limpia_pantalla_completa
 		
 		;ESTO LO TIENE QUE VER FERNANDO PORQUE NO CREO QUE ESTÉ BIEN ... LA PILA TENDRÁ MUCHA BASURA
-		JP			pantalla_inicial		;*******************************************************************		
+		JP			inicio_juego		;##*******************************************************************		
 fin_game_over1:
-;		RET									;*******************************************************************
+;		RET									;##*******************************************************************
