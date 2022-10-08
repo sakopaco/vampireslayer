@@ -1800,3 +1800,242 @@ check_colision_enemigo:
 fin_check_colision_enemigo:
 	RET
 
+
+;;=====================================================
+;;CHECK_COLISIONES_ENEMIGOS
+;;=====================================================	
+; función: 	revisa enemigo por enemigo y si existe y no está muriendo mira si se le ha dado
+check_colisiones_enemigos:
+examina_enemigo1:
+		LD			IX, enemigo1
+		LD			 A, (IX)
+		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
+		JP			 Z, examina_enemigo2
+		
+		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z
+		JP			 Z, examina_enemigo2	; IF hubo colisión
+			LD			 A, (prota_dano_actual)
+			LD			 B, A
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+			SUB			 B
+			JP			NC, examina_enemigo2			
+				CALL		mata_enemigo
+examina_enemigo2:	
+		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
+		
+		LD			IX, enemigo2
+		LD			 A, (IX)
+		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
+		JP			 Z, examina_enemigo3
+		
+		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z
+		JP			 Z, examina_enemigo3	; IF hubo colisión
+			LD			 A, (prota_dano_actual)
+			LD			 B, A
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+			SUB			 B
+			JP			NC, examina_enemigo3			
+				CALL		mata_enemigo
+
+examina_enemigo3:	
+		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
+		
+		LD			IX, enemigo3
+		LD			 A, (IX)
+		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
+		JP			 Z, examina_enemigo4
+		
+		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z
+		JP			 Z, examina_enemigo4	; IF hubo colisión
+			LD			 A, (prota_dano_actual)
+			LD			 B, A
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+			SUB			 B
+			JP			NC, examina_enemigo4			
+				CALL		mata_enemigo
+		
+examina_enemigo4:	
+		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
+		
+		LD			IX, enemigo4
+		LD			 A, (IX)
+		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
+		JP			 Z, examina_enemigo5
+		
+		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z
+		JP			 Z, examina_enemigo5	; IF hubo colisión
+			LD			 A, (prota_dano_actual)
+			LD			 B, A
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+			SUB			 B
+			JP			NC, examina_enemigo5			
+				CALL		mata_enemigo	
+		
+examina_enemigo5:	
+		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
+		
+		LD			IX, enemigo5
+		LD			 A, (IX)
+		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
+		JP			 Z, examina_enemigo6
+		
+		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z
+		JP			 Z, examina_enemigo6	; IF hubo colisión
+			LD			 A, (prota_dano_actual)
+			LD			 B, A
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+			SUB			 B
+			JP			NC, examina_enemigo6		
+				CALL		mata_enemigo		
+			
+examina_enemigo6:	
+		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
+		
+		LD			IX, enemigo6
+		LD			 A, (IX)
+		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
+		JP			 Z, examina_enemigo7
+		
+		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z
+		JP			 Z, examina_enemigo7	; IF hubo colisión
+			LD			 A, (prota_dano_actual)
+			LD			 B, A
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+			SUB			 B
+			JP			NC, examina_enemigo7	
+				CALL		mata_enemigo
+
+examina_enemigo7:	
+		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
+		
+		LD			IX, enemigo7
+		LD			 A, (IX)
+		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
+		RET			 Z
+		
+		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z
+		JP			 Z, examina_enemigo7	; IF hubo colisión
+			LD			 A, (prota_dano_actual)
+			LD			 B, A
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+			SUB			 B
+			JP			NC, .fin_examina_enemigos	
+				CALL		mata_enemigo
+				
+.fin_examina_enemigos:
+		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
+		
+		
+			;miro si por el nº de enemigos (necesitaré una variable) está terminada la habitación
+			;esta función no va aquí sino en check colisiones pero se pone aquí para realizar pruebas
+			;CALL		terminada_habitacion_recorrida ;para cuando se maten todos los enemigos de la habitación
+fin_check_colisiones_enemigos:
+		RET
+
+
+;;=====================================================
+;;MATA_ENEMIGO
+;;=====================================================	
+; función:  modifica la variable para que el tipo y los sprites sean de enemigo muerto
+;			también sustituye la subrutina de acción por la de muerte
+;			usa TIEMPO_ESPERA_VISCERA/escena como contador hacia atrás para que desaparezcan las visceras del enemigo
+mata_enemigo:
+		LD			 A, (IX);guardo el tipo que me hará falta más tarde
+		LD			(IX), 1													;se pone tipo a enemigo muerto
+		LD			(IX + ESTRUCTURA_ENEMIGO.escena), TIEMPO_ESPERA_VISCERA	;contador para que desaparezcan las vísceras del enemigo
+		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), SPRI_ENEM_MUERTE1A	;se setean los sprites de las visceras
+		
+		;esto es necesario para enemigos de más de un sprite
+		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), SPRI_BLANCO	;se setean los sprites de las visceras
+		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_c), SPRI_BLANCO	;se setean los sprites de las visceras
+		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_d), SPRI_BLANCO	;se setean los sprites de las visceras
+		
+
+		;sustituyo la función de mover enemigo
+		LD			HL, spritesxenemigo
+		CALL		suma_A_HL			;aquí es donde hace falta el tipo que se le suma al puntero hl para obtener del array el nº de sprites => función a asignar
+		;comienzo con los if
+		LD			 A, (HL)
+		OR			 A
+		JP			 Z, .enemigomuerto2
+		AND			00000001b
+		JP			NZ, .enemigomuerto1
+.enemigomuerto4: ;(a=2)
+		LD			HL, accion_enemigo_muerto4
+		JP			.fin_if_accion_enemigo_muerto
+.enemigomuerto2:		
+		LD			HL, accion_enemigo_muerto2
+		JP			.fin_if_accion_enemigo_muerto
+.enemigomuerto1:
+		LD			HL, accion_enemigo_muerto1
+.fin_if_accion_enemigo_muerto:
+		LD			(IX + ESTRUCTURA_ENEMIGO.ptr_mover), L
+		LD			(IX + ESTRUCTURA_ENEMIGO.ptr_mover + 1), H
+fin_mata_enemigo:
+		RET
+
+accion_enemigo_muerto1:
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+		OR			 A
+		JP			 Z, .desaparece_enemigo
+			;pone sprite de viscera para mostrar
+			LD			(IY + 2), 	SPRI_ENEM_MUERTE1A
+			;colorea viscera
+			LD			(IY + 3), 	COLROJO
+			;decreento contador para que desaparezca con el tiempo las visceras
+			DEC			(IX + ESTRUCTURA_ENEMIGO.escena)
+		RET
+		
+.desaparece_enemigo:
+			;situo las visceras fuera de pantalla
+			LD			(IY), 	 	BORRASPRITE
+		RET
+fin_accion_enemigo_muerto1:
+
+accion_enemigo_muerto2:
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+		OR			 A
+		JP			 Z, .desaparece_enemigo
+			;pone sprite de viscera para mostrar
+			LD			(IY + 2), 	SPRI_ENEM_MUERTE1A
+			LD			(IY + 6), 	SPRI_ENEM_MUERTE1A
+			;colorea viscera
+			LD			(IY + 3), 	COLROJO
+			LD			(IY + 7), 	COLROJO
+			;decreento contador para que desaparezca con el tiempo las visceras
+			DEC			(IX + ESTRUCTURA_ENEMIGO.escena)
+		RET
+		
+.desaparece_enemigo:
+			;situo las visceras fuera de pantalla
+			LD			(IY), 	 	BORRASPRITE
+			LD			(IY + 4),  	BORRASPRITE
+		RET
+fin_accion_enemigo_muerto2:
+
+accion_enemigo_muerto4:
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+		OR			 A
+		JP			 Z, .desaparece_enemigo
+			;pone sprite de viscera para mostrar
+			LD			(IY + 2), 	SPRI_ENEM_MUERTE1A
+			LD			(IY + 6), 	SPRI_ENEM_MUERTE1A
+			LD			(IY + 10), 	SPRI_ENEM_MUERTE1A
+			LD			(IY + 14), 	SPRI_ENEM_MUERTE1A
+			;colorea viscera
+			LD			(IY + 3), 	COLROJO
+			LD			(IY + 7), 	COLROJO
+			LD			(IY + 11), 	COLROJO
+			LD			(IY + 15), 	COLROJO
+			;decreento contador para que desaparezca con el tiempo las visceras
+			DEC			(IX + ESTRUCTURA_ENEMIGO.escena)
+		RET
+		
+.desaparece_enemigo:
+			;situo las visceras fuera de pantalla
+			LD			(IY), 	 	BORRASPRITE
+			LD			(IY + 4),  	BORRASPRITE
+			LD			(IY + 8),  	BORRASPRITE
+			LD			(IY + 12), 	BORRASPRITE
+		RET
+fin_accion_enemigo_muerto4:
