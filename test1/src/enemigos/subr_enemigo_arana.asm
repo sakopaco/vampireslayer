@@ -2,7 +2,7 @@
 ;;CONTANTES ARANA
 ;;=====================================================
 posiciones_arana_x: 		;16 posisiones iniciales posibles
-			DB		0,16,32,48,64,80,96,112,128,144,160,176,192,208,224,240
+			DB		8,16,32,48,64,80,96,112,128,144,160,176,192,208,224,240
 
 datos_arana:
 			DB		TIPOARANA			;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo

@@ -258,23 +258,40 @@ examina_enemigo5:
 			JP			NC, examina_enemigo6		
 				CALL		mata_enemigo		
 			
-examina_enemigo6:
+examina_enemigo6:	
 		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
 		
 		LD			IX, enemigo6
 		LD			 A, (IX)
 		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
-		JP			 Z, fin_check_colisiones_enemigos
+		JP			 Z, examina_enemigo7
 		
 		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z
-		JP			 Z, fin_check_colisiones_enemigos	; IF hubo colisión
+		JP			 Z, examina_enemigo7	; IF hubo colisión
 			LD			 A, (prota_dano_actual)
 			LD			 B, A
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
 			SUB			 B
-			JP			NC, .fin_examina_enemigos		
+			JP			NC, examina_enemigo7	
 				CALL		mata_enemigo
 
+examina_enemigo7:	
+		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
+		
+		LD			IX, enemigo7
+		LD			 A, (IX)
+		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
+		RET			 Z
+		
+		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z
+		JP			 Z, examina_enemigo7	; IF hubo colisión
+			LD			 A, (prota_dano_actual)
+			LD			 B, A
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+			SUB			 B
+			JP			NC, .fin_examina_enemigos	
+				CALL		mata_enemigo
+				
 .fin_examina_enemigos:
 		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
 		
@@ -301,30 +318,93 @@ mata_enemigo:
 		
 
 		;sustituyo la función de mover enemigo
-		LD			HL, accion_enemigo_muerto
+		LD			 A, (IX)
+		LD			HL, spritesxenemigo
+		CALL		suma_A_HL
+		;comienzo con los if
+		JP			 Z, .enemigomuerto2
+		AND			00000001b
+		JP			NZ, .enemigomuerto1
+.enemigomuerto4:				
+		LD			HL, accion_enemigo_muerto4
+		JP			.fin_if_accion_enemigo_muerto
+.enemigomuerto2:		
+		LD			HL, accion_enemigo_muerto2
+		JP			.fin_if_accion_enemigo_muerto
+.enemigomuerto1:
+		LD			HL, accion_enemigo_muerto1
+.fin_if_accion_enemigo_muerto:
 		LD			(IX + ESTRUCTURA_ENEMIGO.ptr_mover), L
 		LD			(IX + ESTRUCTURA_ENEMIGO.ptr_mover + 1), H
 fin_mata_enemigo:
 		RET
 
 
-accion_enemigo_muerto:
+accion_enemigo_muerto1:
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
 		OR			 A
-		JP			 Z, desaparece_enemigo
+		JP			 Z, .desaparece_enemigo
 			;pone sprite de viscera para mostrar
-			LD			(IY + 2), SPRI_ENEM_MUERTE1A
+			LD			(IY + 2), 	SPRI_ENEM_MUERTE1A
 			;colorea viscera
-			LD			(IY + 3), COLROJO
+			LD			(IY + 3), 	COLROJO
 			;decreento contador para que desaparezca con el tiempo las visceras
 			DEC			(IX + ESTRUCTURA_ENEMIGO.escena)
 		RET
 		
-desaparece_enemigo:
+.desaparece_enemigo:
 			;situo las visceras fuera de pantalla
-			LD			(IY), 	 BORRASPRITE
+			LD			(IY), 	 	BORRASPRITE
 		RET
-fin_accion_enemigo_muerto:
+fin_accion_enemigo_muerto1:
+
+accion_enemigo_muerto2:
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+		OR			 A
+		JP			 Z, .desaparece_enemigo
+			;pone sprite de viscera para mostrar
+			LD			(IY + 2), 	SPRI_ENEM_MUERTE1A
+			LD			(IY + 6), 	SPRI_ENEM_MUERTE1A
+			;colorea viscera
+			LD			(IY + 3), 	COLROJO
+			LD			(IY + 7), 	COLROJO
+			;decreento contador para que desaparezca con el tiempo las visceras
+			DEC			(IX + ESTRUCTURA_ENEMIGO.escena)
+		RET
+		
+.desaparece_enemigo:
+			;situo las visceras fuera de pantalla
+			LD			(IY), 	 	BORRASPRITE
+			LD			(IY + 4),  	BORRASPRITE
+		RET
+fin_accion_enemigo_muerto2:
+
+accion_enemigo_muerto4:
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+		OR			 A
+		JP			 Z, .desaparece_enemigo
+			;pone sprite de viscera para mostrar
+			LD			(IY + 2), 	SPRI_ENEM_MUERTE1A
+			LD			(IY + 6), 	SPRI_ENEM_MUERTE1A
+			LD			(IY + 10), 	SPRI_ENEM_MUERTE1A
+			LD			(IY + 14), 	SPRI_ENEM_MUERTE1A
+			;colorea viscera
+			LD			(IY + 3), 	COLROJO
+			LD			(IY + 7), 	COLROJO
+			LD			(IY + 11), 	COLROJO
+			LD			(IY + 15), 	COLROJO
+			;decreento contador para que desaparezca con el tiempo las visceras
+			DEC			(IX + ESTRUCTURA_ENEMIGO.escena)
+		RET
+		
+.desaparece_enemigo:
+			;situo las visceras fuera de pantalla
+			LD			(IY), 	 	BORRASPRITE
+			LD			(IY + 4),  	BORRASPRITE
+			LD			(IY + 8),  	BORRASPRITE
+			LD			(IY + 12), 	BORRASPRITE
+		RET
+fin_accion_enemigo_muerto4:
 		
 
 
