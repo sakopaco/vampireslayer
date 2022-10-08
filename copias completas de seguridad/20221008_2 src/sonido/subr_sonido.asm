@@ -63,12 +63,13 @@ subrutinas_sonido:
 ;;DEFINICIÓN DE CANCIONES Y EFECTOS DE SONIDO
 ;;=====================================================		
 song:
-	incbin "empty.99"
+	incbin "ingame7.99"
+	;incbin "empty.99"
 	
 sfx_bank:
 	incbin "sfx.afb"
 	
 ;otras melodías
-musica_ingame:
-	incbin "ingame7.99"
+;~ musica_ingame:
+	;~ incbin "ingame7.99"
 
