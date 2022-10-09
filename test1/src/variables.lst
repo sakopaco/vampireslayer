@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.10.08 - 20:54:59]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.10.09 - 15:01:12]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -242,7 +242,7 @@ Errors: 0
       13.  00:C000  (00:0070)           LIMITEPANTALLAINF		equ		112
       14.  00:C000  (00:0000)           LIMITEPANTALLAIZQ		equ		0
       15.  00:C000  (00:00F0)           LIMITEPANTALLADER		equ		240
-      16.  00:C000  (00:0096)           DANOESTANDARENEMIGOS    equ		150; 40 ; 1
+      16.  00:C000  (00:0014)           DANOESTANDARENEMIGOS    equ		20; 40 ; 1
       17.  00:C000  (00:0010)           SPRI_ENEM_MUERTE1A 		equ		16
       18.  00:C000  (00:0014)           SPRI_BLANCO		 		equ		20
       19.  00:C000  (00:0064)           TIEMPO_ESPERA_VISCERA   equ		100
@@ -857,83 +857,84 @@ Errors: 0
       67   00:C054  00                  heartbeat_magia:			DB		0;			;reloj central que moverá los enemigos (magia)
       68   00:C055  00                  heartbeat_general:			DB		0;			;reloj central que moverá los enemigos (dracula, mano derecha, mano izquierda y jefes)
       69   00:C056                      
-      70   00:C056  00 (21)             enemigo1:					DS		ESTRUCTURA_ENEMIGO
-      71   00:C06B  00 (21)             enemigo2:					DS		ESTRUCTURA_ENEMIGO
-      72   00:C080  00 (21)             enemigo3:					DS		ESTRUCTURA_ENEMIGO
-      73   00:C095  00 (21)             enemigo4:					DS		ESTRUCTURA_ENEMIGO
-      74   00:C0AA  00 (21)             enemigo5:					DS		ESTRUCTURA_ENEMIGO
-      75   00:C0BF  00 (21)             enemigo6:					DS		ESTRUCTURA_ENEMIGO
-      76   00:C0D4  00 (21)             enemigo7:					DS		ESTRUCTURA_ENEMIGO
-      77   00:C0E9                      
-      78   00:C0E9                      ;;SPRITES GENERAL (PROTA +  ENEMIGOS)
-      79   00:C0E9                      ;array de 4 bytes x 32 sprites posibles en pantalla que sobreescribirá la tabla de sprites actualizando VRAM
-      80   00:C0E9                      array_sprites:
-      81   00:C0E9  00 (8)              array_sprites_pm:			DS		 2 * 4		;el punto de mira siempre tiene 2 sprites
-      82   00:C0F1  00 (120)            array_sprites_enem:			DS		30 * 4		;resto de sprites
-      83   00:C169                      
+      70   00:C056                      enemigos:
+      71   00:C056  00 (21)             enemigo1:					DS		ESTRUCTURA_ENEMIGO
+      72   00:C06B  00 (21)             enemigo2:					DS		ESTRUCTURA_ENEMIGO
+      73   00:C080  00 (21)             enemigo3:					DS		ESTRUCTURA_ENEMIGO
+      74   00:C095  00 (21)             enemigo4:					DS		ESTRUCTURA_ENEMIGO
+      75   00:C0AA  00 (21)             enemigo5:					DS		ESTRUCTURA_ENEMIGO
+      76   00:C0BF  00 (21)             enemigo6:					DS		ESTRUCTURA_ENEMIGO
+      77   00:C0D4  00 (21)             enemigo7:					DS		ESTRUCTURA_ENEMIGO
+      78   00:C0E9                      
+      79   00:C0E9                      ;;SPRITES GENERAL (PROTA +  ENEMIGOS)
+      80   00:C0E9                      ;array de 4 bytes x 32 sprites posibles en pantalla que sobreescribirá la tabla de sprites actualizando VRAM
+      81   00:C0E9                      array_sprites:
+      82   00:C0E9  00 (8)              array_sprites_pm:			DS		 2 * 4		;el punto de mira siempre tiene 2 sprites
+      83   00:C0F1  00 (120)            array_sprites_enem:			DS		30 * 4		;resto de sprites
       84   00:C169                      
-      85   00:C169                      ;;=====================================================
-      86   00:C169                      ;;VARIABLES AYUDAS
-      87   00:C169                      ;;=====================================================
-      88   00:C169  00                  hay_ayudas_en_pantalla:		DB	0		;1 => hay / 0 => no hay; variable que se actualiza cuando cambiemos de habitación para no mirar el bit de habitación cada vez
-      89   00:C16A                      
-      90   00:C16A  00 00               puntero_ayuda_actual:		DW	0		;puntero a ayuda que se muestra en pantalla (sólo se muestra una a la vez)
-      91   00:C16C                      
-      92   00:C16C                      lista_ayudas:
-      93   00:C16C  00 (15)             ayuda_oracion:				DS		ESTRUCTURA_AYUDA		
-      94   00:C17B  00 (15)             ayuda_cruz:					DS		ESTRUCTURA_AYUDA
-      95   00:C18A  00 (15)             ayuda_aguabendita:			DS		ESTRUCTURA_AYUDA
-      96   00:C199  00 (15)             ayuda_armadura:				DS		ESTRUCTURA_AYUDA
-      97   00:C1A8  00 (15)             ayuda_planta:				DS		ESTRUCTURA_AYUDA
-      98   00:C1B7  00 (15)             ayuda_vidaextra				DS		ESTRUCTURA_AYUDA
-      99   00:C1C6  00 (15)             ayuda_ballesta:				DS		ESTRUCTURA_AYUDA
-     100   00:C1D5                      
+      85   00:C169                      
+      86   00:C169                      ;;=====================================================
+      87   00:C169                      ;;VARIABLES AYUDAS
+      88   00:C169                      ;;=====================================================
+      89   00:C169  00                  hay_ayudas_en_pantalla:		DB	0		;1 => hay / 0 => no hay; variable que se actualiza cuando cambiemos de habitación para no mirar el bit de habitación cada vez
+      90   00:C16A                      
+      91   00:C16A  00 00               puntero_ayuda_actual:		DW	0		;puntero a ayuda que se muestra en pantalla (sólo se muestra una a la vez)
+      92   00:C16C                      
+      93   00:C16C                      lista_ayudas:
+      94   00:C16C  00 (15)             ayuda_oracion:				DS		ESTRUCTURA_AYUDA		
+      95   00:C17B  00 (15)             ayuda_cruz:					DS		ESTRUCTURA_AYUDA
+      96   00:C18A  00 (15)             ayuda_aguabendita:			DS		ESTRUCTURA_AYUDA
+      97   00:C199  00 (15)             ayuda_armadura:				DS		ESTRUCTURA_AYUDA
+      98   00:C1A8  00 (15)             ayuda_planta:				DS		ESTRUCTURA_AYUDA
+      99   00:C1B7  00 (15)             ayuda_vidaextra				DS		ESTRUCTURA_AYUDA
+     100   00:C1C6  00 (15)             ayuda_ballesta:				DS		ESTRUCTURA_AYUDA
      101   00:C1D5                      
-     102   00:C1D5                      ;;=====================================================
-     103   00:C1D5                      ;;VARIABLES PINTA PANTALLAS + PUERTAS
-     104   00:C1D5                      ;;=====================================================
-     105   00:C1D5                      ;pinta_parte_superior_pantalla
-     106   00:C1D5  00 00               tiles_patrones:				DW		0
-     107   00:C1D7  00 00               tiles_colores:				DW		0
-     108   00:C1D9  00 00               tiles_mapa:					DW		0
-     109   00:C1DB                      
-     110   00:C1DB                      ;pinta_array
-     111   00:C1DB  00 00               wordaux1:					DW		0		;almacena la posición en el tilemap 0 al 675
-     112   00:C1DD  00 00               wordaux2:					DW		0		;almacena puntero a array de tiles (posiciones en realidad) a pintar (posiciones repetidas en los 2 primeros bancos)
-     113   00:C1DF  00                  byteaux1:					DB		0		;nº filas Registro D
-     114   00:C1E0  00                  byteaux2:					DB		0		;nº columnas Registro E
-     115   00:C1E1                      
-     116   00:C1E1                      lista_puertas:
-     117   00:C1E1  00 (13)             puerta_arriba:				DS		ESTRUCTURA_PUERTA
-     118   00:C1EE  00 (13)             puerta_derecha:				DS		ESTRUCTURA_PUERTA
-     119   00:C1FB  00 (13)             puerta_abajo:				DS		ESTRUCTURA_PUERTA
-     120   00:C208  00 (13)             puerta_izquierda:			DS		ESTRUCTURA_PUERTA
-     121   00:C215  00 (13)             puerta_escalera:			DS		ESTRUCTURA_PUERTA
-     122   00:C222                      
-     123   00:C222  00                  habitacion_actual:			DB		0		;habitación donde se encuentre el prota. Se mete en una varible par traer todos los datos de golpe y no buscarlos varias veces
-     124   00:C223  00                  habitacion_extras:			DB		0		;donde van las ayudas de una habitación
-     125   00:C224  00                  habitacion_terminada:		DB		0		;variable para consultar más rápido si se ha pasado (<>0 si se ha pasado y 0 no se ha pasado o no terminada)
-     126   00:C225                      
-     127   00:C225  00 00               puntero_extras_habitacion_actual:	DW	0		;puntero a los extras de la habitación actual para poder modificarlo (para que no salgan extras)
-     128   00:C227  00 00               puntero_habitacion_actual:			DW	0		;puntero a la habitación actual para poder modificarlo 
-     129   00:C229                      
+     102   00:C1D5                      
+     103   00:C1D5                      ;;=====================================================
+     104   00:C1D5                      ;;VARIABLES PINTA PANTALLAS + PUERTAS
+     105   00:C1D5                      ;;=====================================================
+     106   00:C1D5                      ;pinta_parte_superior_pantalla
+     107   00:C1D5  00 00               tiles_patrones:				DW		0
+     108   00:C1D7  00 00               tiles_colores:				DW		0
+     109   00:C1D9  00 00               tiles_mapa:					DW		0
+     110   00:C1DB                      
+     111   00:C1DB                      ;pinta_array
+     112   00:C1DB  00 00               wordaux1:					DW		0		;almacena la posición en el tilemap 0 al 675
+     113   00:C1DD  00 00               wordaux2:					DW		0		;almacena puntero a array de tiles (posiciones en realidad) a pintar (posiciones repetidas en los 2 primeros bancos)
+     114   00:C1DF  00                  byteaux1:					DB		0		;nº filas Registro D
+     115   00:C1E0  00                  byteaux2:					DB		0		;nº columnas Registro E
+     116   00:C1E1                      
+     117   00:C1E1                      lista_puertas:
+     118   00:C1E1  00 (13)             puerta_arriba:				DS		ESTRUCTURA_PUERTA
+     119   00:C1EE  00 (13)             puerta_derecha:				DS		ESTRUCTURA_PUERTA
+     120   00:C1FB  00 (13)             puerta_abajo:				DS		ESTRUCTURA_PUERTA
+     121   00:C208  00 (13)             puerta_izquierda:			DS		ESTRUCTURA_PUERTA
+     122   00:C215  00 (13)             puerta_escalera:			DS		ESTRUCTURA_PUERTA
+     123   00:C222                      
+     124   00:C222  00                  habitacion_actual:			DB		0		;habitación donde se encuentre el prota. Se mete en una varible par traer todos los datos de golpe y no buscarlos varias veces
+     125   00:C223  00                  habitacion_extras:			DB		0		;donde van las ayudas de una habitación
+     126   00:C224  00                  habitacion_terminada:		DB		0		;variable para consultar más rápido si se ha pasado (<>0 si se ha pasado y 0 no se ha pasado o no terminada)
+     127   00:C225                      
+     128   00:C225  00 00               puntero_extras_habitacion_actual:	DW	0		;puntero a los extras de la habitación actual para poder modificarlo (para que no salgan extras)
+     129   00:C227  00 00               puntero_habitacion_actual:			DW	0		;puntero a la habitación actual para poder modificarlo 
      130   00:C229                      
-     131   00:C229                      ;;=====================================================
-     132   00:C229                      ;;VARIABLES PUNTO MIRA
-     133   00:C229                      ;;=====================================================
-     134   00:C229  00 (7)              puntomira:					DS		ESTRUCTURA_PUNTOMIRA
-     135   00:C230                      
+     131   00:C229                      
+     132   00:C229                      ;;=====================================================
+     133   00:C229                      ;;VARIABLES PUNTO MIRA
+     134   00:C229                      ;;=====================================================
+     135   00:C229  00 (7)              puntomira:					DS		ESTRUCTURA_PUNTOMIRA
      136   00:C230                      
-     137   00:C230                      ;;=====================================================
-     138   00:C230                      ;;VARIABLES GLOBALES
-     139   00:C230                      ;;=====================================================
-     140   00:C230  00                  dracula_muerto:				DB		NO					;equ 0
-     141   00:C231                      
+     137   00:C230                      
+     138   00:C230                      ;;=====================================================
+     139   00:C230                      ;;VARIABLES GLOBALES
+     140   00:C230                      ;;=====================================================
+     141   00:C230  00                  dracula_muerto:				DB		NO					;equ 0
      142   00:C231                      
-     143   00:C231                      ;;=====================================================
-     144   00:C231                      ;;VARIABLES HABITACIONES
-     145   00:C231                      ;;=====================================================
-     146   00:C231                      	include "datos/habitaciones.asm"
+     143   00:C231                      
+     144   00:C231                      ;;=====================================================
+     145   00:C231                      ;;VARIABLES HABITACIONES
+     146   00:C231                      ;;=====================================================
+     147   00:C231                      	include "datos/habitaciones.asm"
        1.  00:C231                      ;;=====================================================
        2.  00:C231                      ;;DEFINICIÓN DE HABITACIONES x NIVEL
        3.  00:C231                      ;;=====================================================	
@@ -1089,92 +1090,92 @@ Errors: 0
      105.  00:C531                      	db 00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00000010b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,#00,#00 ;nivel 0 fila 7
      105.  00:C531  00 00 00 00 00 00 02 00 00 00 00 00 00 00 00 00 
      106.  00:C541                      
-     147   00:C541                      
      148   00:C541                      
-     149   00:C541                      ;~ ;;=====================================================
-     150   00:C541                      ;~ ;;VARIABLES TIEMPO
-     151   00:C541                      ;~ ;;=====================================================
-     152   00:C541                      ;~ tiempo:
-     153   00:C541                      ;~ contador:				DB	0
-     154   00:C541                      ;~ segundos:				DB	0
-     155   00:C541                      ;~ minutos:					DB	0
-     156   00:C541                      
+     149   00:C541                      
+     150   00:C541                      ;~ ;;=====================================================
+     151   00:C541                      ;~ ;;VARIABLES TIEMPO
+     152   00:C541                      ;~ ;;=====================================================
+     153   00:C541                      ;~ tiempo:
+     154   00:C541                      ;~ contador:				DB	0
+     155   00:C541                      ;~ segundos:				DB	0
+     156   00:C541                      ;~ minutos:					DB	0
      157   00:C541                      
-     158   00:C541                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-     159   00:C541                      ;; VARIABLES PARA SONIDO 
-     160   00:C541                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-     161   00:C541                      
-     162   00:C541  (F000)              	map		#f000	;IMPRESCINDIBLE PARA MÚSICA Y SONIDO !!!
-     163   00:C541                      
-     164   00:C541                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PT3 REPLAYER
-     165   00:C541  (00:F000)           PT3_SETUP:		#1	;set bit0 to 1, if you want to play without looping
-     166   00:C541                      					;bit7 is set each time, when loop point is passed
-     167   00:C541  (00:F001)           PT3_MODADDR:	#2
-     168   00:C541  (00:F003)           PT3_CrPsPtr:	#2
-     169   00:C541  (00:F005)           PT3_SAMPTRS:	#2
-     170   00:C541  (00:F007)           PT3_OrnPtrs:	#2
-     171   00:C541  (00:F009)           PT3_PDSP:		#2
-     172   00:C541  (00:F00B)           PT3_CSP:		#2
-     173   00:C541  (00:F00D)           PT3_PSP:		#2
-     174   00:C541  (00:F00F)           PT3_PrNote:		#1
-     175   00:C541  (00:F010)           PT3_PrSlide:	#2
-     176   00:C541  (00:F012)           PT3_AdInPtA:	#2
-     177   00:C541  (00:F014)           PT3_AdInPtB:	#2
-     178   00:C541  (00:F016)           PT3_AdInPtC:	#2
-     179   00:C541  (00:F018)           PT3_LPosPtr:	#2
-     180   00:C541  (00:F01A)           PT3_PatsPtr:	#2
-     181   00:C541  (00:F01C)           PT3_Delay:		#1
-     182   00:C541  (00:F01D)           PT3_AddToEn:	#1
-     183   00:C541  (00:F01E)           PT3_Env_Del:	#1
-     184   00:C541  (00:F01F)           PT3_ESldAdd:	#2
-     185   00:C541  (00:F021)           PT3_NTL3:		#2	; AND A / NOP (note table creator)
-     186   00:C541                      
-     187   00:C541  (00:F023)           VARS:			#0
-     188   00:C541                      
-     189   00:C541  (00:F023)           ChanA:			#29			;CHNPRM_Size
-     190   00:C541  (00:F040)           ChanB:			#29			;CHNPRM_Size
-     191   00:C541  (00:F05D)           ChanC:			#29			;CHNPRM_Size
-     192   00:C541                      
-     193   00:C541                      ;GlobalVars
-     194   00:C541  (00:F07A)           DelyCnt:		#1
-     195   00:C541  (00:F07B)           CurESld:		#2
-     196   00:C541  (00:F07D)           CurEDel:		#1
-     197   00:C541  (00:F07E)           Ns_Base_AddToNs:	#0
-     198   00:C541  (00:F07E)           Ns_Base:		#1
-     199   00:C541  (00:F07F)           AddToNs:		#1
-     200   00:C541                      
-     201   00:C541  (00:F080)           NT_:			#192	; Puntero a/tabla de frecuencias
-     202   00:C541                      
-     203   00:C541  (00:F140)           AYREGS:			#0
-     204   00:C541  (00:F140)           VT_:			#14
-     205   00:C541  (00:F14E)           EnvBase:		#2
-     206   00:C541  (00:F150)           VAR0END:		#0
-     207   00:C541                      
-     208   00:C541  (00:F150)           T1_:			#0		
-     209   00:C541  (00:F150)           T_NEW_1:		#0
-     210   00:C541  (00:F150)           T_OLD_1:		#24
-     211   00:C541  (00:F168)           T_OLD_2:		#24
-     212   00:C541  (00:F180)           T_NEW_3:		#0
-     213   00:C541  (00:F180)           T_OLD_3:		#2
-     214   00:C541  (00:F182)           T_OLD_0:		#0
-     215   00:C541  (00:F182)           T_NEW_0:		#24
-     216   00:C541  (00:F19A)           T_NEW_2:		#166
-     217   00:C541                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PT3 REPLAYER END
-     218   00:C541                      
-     219   00:C541                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ayFX REPLAYER 
-     220   00:C541  (00:F240)           ayFX_MODE:		#1			; ayFX mode
-     221   00:C541  (00:F241)           ayFX_BANK:		#2			; Current ayFX Bank
-     222   00:C541  (00:F243)           ayFX_PRIORITY:	#1			; Current ayFX stream priotity
-     223   00:C541  (00:F244)           ayFX_POINTER:	#2			; Pointer to the current ayFX stream
-     224   00:C541  (00:F246)           ayFX_TONE:		#2			; Current tone of the ayFX stream
-     225   00:C541  (00:F248)           ayFX_NOISE:		#1			; Current noise of the ayFX stream
-     226   00:C541  (00:F249)           ayFX_VOLUME:	#1			; Current volume of the ayFX stream
-     227   00:C541  (00:F24A)           ayFX_CHANNEL:	#1			; PSG channel to play the ayFX stream
-     228   00:C541                      
-     229   00:C541                      	;IF (AYFXRELATIVE == 1 ) 
-     230   00:C541                      ;ayFX_VT:	ds	2			; ayFX relative volume table pointer
-     231   00:C541                      	;ENDIF
-     232   00:C541                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ayFX REPLAYER END
+     158   00:C541                      
+     159   00:C541                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     160   00:C541                      ;; VARIABLES PARA SONIDO 
+     161   00:C541                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     162   00:C541                      
+     163   00:C541  (F000)              	map		#f000	;IMPRESCINDIBLE PARA MÚSICA Y SONIDO !!!
+     164   00:C541                      
+     165   00:C541                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PT3 REPLAYER
+     166   00:C541  (00:F000)           PT3_SETUP:		#1	;set bit0 to 1, if you want to play without looping
+     167   00:C541                      					;bit7 is set each time, when loop point is passed
+     168   00:C541  (00:F001)           PT3_MODADDR:	#2
+     169   00:C541  (00:F003)           PT3_CrPsPtr:	#2
+     170   00:C541  (00:F005)           PT3_SAMPTRS:	#2
+     171   00:C541  (00:F007)           PT3_OrnPtrs:	#2
+     172   00:C541  (00:F009)           PT3_PDSP:		#2
+     173   00:C541  (00:F00B)           PT3_CSP:		#2
+     174   00:C541  (00:F00D)           PT3_PSP:		#2
+     175   00:C541  (00:F00F)           PT3_PrNote:		#1
+     176   00:C541  (00:F010)           PT3_PrSlide:	#2
+     177   00:C541  (00:F012)           PT3_AdInPtA:	#2
+     178   00:C541  (00:F014)           PT3_AdInPtB:	#2
+     179   00:C541  (00:F016)           PT3_AdInPtC:	#2
+     180   00:C541  (00:F018)           PT3_LPosPtr:	#2
+     181   00:C541  (00:F01A)           PT3_PatsPtr:	#2
+     182   00:C541  (00:F01C)           PT3_Delay:		#1
+     183   00:C541  (00:F01D)           PT3_AddToEn:	#1
+     184   00:C541  (00:F01E)           PT3_Env_Del:	#1
+     185   00:C541  (00:F01F)           PT3_ESldAdd:	#2
+     186   00:C541  (00:F021)           PT3_NTL3:		#2	; AND A / NOP (note table creator)
+     187   00:C541                      
+     188   00:C541  (00:F023)           VARS:			#0
+     189   00:C541                      
+     190   00:C541  (00:F023)           ChanA:			#29			;CHNPRM_Size
+     191   00:C541  (00:F040)           ChanB:			#29			;CHNPRM_Size
+     192   00:C541  (00:F05D)           ChanC:			#29			;CHNPRM_Size
+     193   00:C541                      
+     194   00:C541                      ;GlobalVars
+     195   00:C541  (00:F07A)           DelyCnt:		#1
+     196   00:C541  (00:F07B)           CurESld:		#2
+     197   00:C541  (00:F07D)           CurEDel:		#1
+     198   00:C541  (00:F07E)           Ns_Base_AddToNs:	#0
+     199   00:C541  (00:F07E)           Ns_Base:		#1
+     200   00:C541  (00:F07F)           AddToNs:		#1
+     201   00:C541                      
+     202   00:C541  (00:F080)           NT_:			#192	; Puntero a/tabla de frecuencias
+     203   00:C541                      
+     204   00:C541  (00:F140)           AYREGS:			#0
+     205   00:C541  (00:F140)           VT_:			#14
+     206   00:C541  (00:F14E)           EnvBase:		#2
+     207   00:C541  (00:F150)           VAR0END:		#0
+     208   00:C541                      
+     209   00:C541  (00:F150)           T1_:			#0		
+     210   00:C541  (00:F150)           T_NEW_1:		#0
+     211   00:C541  (00:F150)           T_OLD_1:		#24
+     212   00:C541  (00:F168)           T_OLD_2:		#24
+     213   00:C541  (00:F180)           T_NEW_3:		#0
+     214   00:C541  (00:F180)           T_OLD_3:		#2
+     215   00:C541  (00:F182)           T_OLD_0:		#0
+     216   00:C541  (00:F182)           T_NEW_0:		#24
+     217   00:C541  (00:F19A)           T_NEW_2:		#166
+     218   00:C541                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PT3 REPLAYER END
+     219   00:C541                      
+     220   00:C541                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ayFX REPLAYER 
+     221   00:C541  (00:F240)           ayFX_MODE:		#1			; ayFX mode
+     222   00:C541  (00:F241)           ayFX_BANK:		#2			; Current ayFX Bank
+     223   00:C541  (00:F243)           ayFX_PRIORITY:	#1			; Current ayFX stream priotity
+     224   00:C541  (00:F244)           ayFX_POINTER:	#2			; Pointer to the current ayFX stream
+     225   00:C541  (00:F246)           ayFX_TONE:		#2			; Current tone of the ayFX stream
+     226   00:C541  (00:F248)           ayFX_NOISE:		#1			; Current noise of the ayFX stream
+     227   00:C541  (00:F249)           ayFX_VOLUME:	#1			; Current volume of the ayFX stream
+     228   00:C541  (00:F24A)           ayFX_CHANNEL:	#1			; PSG channel to play the ayFX stream
+     229   00:C541                      
+     230   00:C541                      	;IF (AYFXRELATIVE == 1 ) 
+     231   00:C541                      ;ayFX_VT:	ds	2			; ayFX relative volume table pointer
+     232   00:C541                      	;ENDIF
+     233   00:C541                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ayFX REPLAYER END
 
     LABELS
 -------------------------------------------------
@@ -1342,7 +1343,7 @@ Errors: 0
 00:00000070 X LIMITEPANTALLAINF
 00:00000000 X LIMITEPANTALLAIZQ
 00:000000F0 X LIMITEPANTALLADER
-00:00000096 X DANOESTANDARENEMIGOS
+00:00000014 X DANOESTANDARENEMIGOS
 00:00000010 X SPRI_ENEM_MUERTE1A
 00:00000014 X SPRI_BLANCO
 00:00000064 X TIEMPO_ESPERA_VISCERA
@@ -1783,6 +1784,7 @@ Errors: 0
 00:0000C053 X heartbeat_fuego
 00:0000C054 X heartbeat_magia
 00:0000C055 X heartbeat_general
+00:0000C056 X enemigos
 00:0000C056 X enemigo1
 00:0000C06B X enemigo2
 00:0000C080 X enemigo3

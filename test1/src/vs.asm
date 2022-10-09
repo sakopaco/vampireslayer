@@ -61,7 +61,7 @@ START:
 
 inicio_juego:
 		;incializacion de replayer con interrupciones
-		CALL		inicializa_replayer_efectos_interrupciones
+;		CALL		inicializa_replayer_efectos_interrupciones
 	
 pantalla_inicial:
 		CALL		muestra_pantalla_inicial
@@ -117,12 +117,10 @@ loop_principal:
 					INC			HL
 .fin_loop_hearbeat:	DJNZ		.loop_heartbeat
 
-		;poner arriba
 		CALL		render_sprites			;actualiza array de sprites y los pinta en pantalla
 	
 		JP			loop_principal
 fin_programa_principal:
-	;no necesita RET
 
 
 ;;=====================================================
@@ -174,8 +172,33 @@ fin_inicializa_variables_juego:
 
 
 
-
+efecto_enemigos_tira_reliquia:
+		LD		IX, enemigo1
+		LD		 B, 7
+		LD		 C, 2
 		
+.loop:	
+
+.examina_enemigo:
+		
+		LD			 A, (IX)
+		CP			 C
+		JP			 C, .fin_examina_enemigo
+		
+		PUSH		BC
+		CALL		mata_enemigo
+		POP			BC
+		
+[21]	INC			IX		
+		
+
+.fin_examina_enemigo:
+	
+		DJNZ	.loop
+fin_efecto_enemigos_tira_reliquia:
+		RET
+
+;;************************************************************************		
 
 
 ;;=====================================================

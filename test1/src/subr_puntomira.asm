@@ -80,14 +80,13 @@ fin_accion_boton1:
 ; función: 	acción cuando se pulsa botón secundario (tira bomba - reliquia)
 ; entrada:	A datos del byte de disparo que se obtiene de mira_disparo, prota_reliquias
 ; salida: 	-
-; toca:		-
+; toca:		HL
 accion_boton2:	
 		LD		 A, (prota_reliquias)	;miro si le quedan reliquias
 		OR		 A
 		RET		 Z						;si no le quedan salgo ya
 	
 		;actuaciones si se usa la reliquia botón 2 o M y quedn reliquias.. (antes ya se puso el valor en A)
-		LD		A, (prota_reliquias)
 		DEC		 A
 		LD		(prota_reliquias), A
 	
@@ -96,6 +95,8 @@ accion_boton2:
 		CALL		ayFX_INIT
 	
 		CALL 	efecto_imagen_tira_reliquia
+		
+		CALL	efecto_enemigos_tira_reliquia
 	
 		JP		pinta_reliquias
 fin_accion_boton2:
