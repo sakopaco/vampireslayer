@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.10.09 - 15:01:12]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.10.09 - 20:56:24]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -216,16 +216,17 @@ Errors: 0
      201.  00:C000  (00:0000)           PROTAENERGIABYTEBAJO equ	0			;cuando se llene este es cuando se pierde prota_energí
      202.  00:C000  (00:0003)           PROTADANO1			equ		3			;daño del punto de mira
      203.  00:C000  (00:0006)           PROTADANO2			equ		6			;daño del punto de mira cuando se tiene la ayuda
-     204.  00:C000                      
+     204.  00:C000  (00:0019)           PROTADANORELIQUIA	equ		25			;daño del punto de mira cuando se tiene la ayuda
      205.  00:C000                      
-     206.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-     207.  00:C000                      ;; CONSTANTES PARA INTERRUPCIONES
-     208.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-     209.  00:C000  (00:FD9A)           H.KEYI		equ     	#FD9A
-     210.  00:C000  (00:FD9F)           H.TIMI	 	equ     	#FD9F
-     211.  00:C000                      
+     206.  00:C000                      
+     207.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     208.  00:C000                      ;; CONSTANTES PARA INTERRUPCIONES
+     209.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     210.  00:C000  (00:FD9A)           H.KEYI		equ     	#FD9A
+     211.  00:C000  (00:FD9F)           H.TIMI	 	equ     	#FD9F
      212.  00:C000                      
      213.  00:C000                      
+     214.  00:C000                      
       11   00:C000                      include "constantesyvariables/constantesenemigos.asm"
        1.  00:C000                      ;;=====================================================
        2.  00:C000                      ;; FICHERO constantesenemigos.asm
@@ -341,7 +342,7 @@ Errors: 0
      112.  00:C000  (00:00FC)           JEFELOBO_SPRITE4D		equ		252
      113.  00:C000  (00:0010)           JEFELOBO_VELESCENA 		equ		00010000b
      114.  00:C000  (00:0005)           JEFELOBO_DANO			equ		5
-     115.  00:C000  (00:000A)           JEFELOBO_ENERGIA		equ		10
+     115.  00:C000  (00:003C)           JEFELOBO_ENERGIA		equ		60
      116.  00:C000                      
      117.  00:C000                      ;;ETIQUETAS/CONSTANTES ESQUELETO
      118.  00:C000  (00:0007)           TIPOESQUELETO			equ		7
@@ -1331,6 +1332,7 @@ Errors: 0
 00:00000000 X PROTAENERGIABYTEBAJO
 00:00000003   PROTADANO1
 00:00000006 X PROTADANO2
+00:00000019 X PROTADANORELIQUIA
 00:0000FD9A X H.KEYI
 00:0000FD9F X H.TIMI
 00:00000000 X INACTIVA
@@ -1430,7 +1432,7 @@ Errors: 0
 00:000000FC X JEFELOBO_SPRITE4D
 00:00000010 X JEFELOBO_VELESCENA
 00:00000005 X JEFELOBO_DANO
-00:0000000A X JEFELOBO_ENERGIA
+00:0000003C X JEFELOBO_ENERGIA
 00:00000007 X TIPOESQUELETO
 00:0000000F X ESQUELETO_COLOR
 00:00000060 X ESQUELETO_SPRITE1A

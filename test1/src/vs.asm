@@ -173,30 +173,63 @@ fin_inicializa_variables_juego:
 
 
 efecto_enemigos_tira_reliquia:
-		LD		IX, enemigo1
+;es enemigo jefe
+		LD		 B, 6
+		
+		LD		 A, (prota_pos_mapy);primero miro la posición y. los jefes están en la 6 (7 en realidad)
+		CP		 B
+		JP		 Z, enemigo_jefe
+		
+		LD		 A, (prota_nivel)	;si el nivel es 6 (7 en realidad) son todos jefes)
+		CP		 B
+		JP		 Z, enemigo_jefe
+
+;tira bomba a enemigo NO JEFE
+enemigo_nojefe:
+		LD		IX, enemigos
 		LD		 B, 7
 		LD		 C, 2
 		
 .loop:	
-
 .examina_enemigo:
-		
 		LD			 A, (IX)
 		CP			 C
 		JP			 C, .fin_examina_enemigo
 		
 		PUSH		BC
 		CALL		mata_enemigo
-		POP			BC
-		
-[21]	INC			IX		
-		
-
+		POP			BC	
 .fin_examina_enemigo:
-	
+		[21]	INC			IX
 		DJNZ	.loop
-fin_efecto_enemigos_tira_reliquia:
 		RET
+		
+;tira bomba a enemigo JEFE --- nota: se mantiene el bucle porque el últio enemigo (drácula) es equivalente a 3 enemigos
+enemigo_jefe:
+		LD		IX, enemigos
+		LD		 B, 7
+		LD		 C, 2
+		
+.loop:	
+.examina_enemigo:
+		LD			 A, (IX)
+		CP			 C
+		JP			 C, .fin_examina_enemigo
+		
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+		SUB			PROTADANORELIQUIA
+		JP			NC, .fin_examina_enemigo
+		
+		PUSH		BC
+		CALL		mata_enemigo
+		POP			BC
+.fin_examina_enemigo:
+		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
+[21]	INC			IX
+		DJNZ	.loop
+		RET
+fin_efecto_enemigos_tira_reliquia:
+
 
 ;;************************************************************************		
 

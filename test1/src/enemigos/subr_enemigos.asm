@@ -508,9 +508,9 @@ fin_inicializa_enemigos_fase0_nivel5:
 		RET
 
 inicializa_enemigos_fase0_niveljefe:	
-		LD			DE, enemigo6
+		LD			DE, enemigo1
 		CALL		anade_enemigo_jefelobo
-		LD			IX, enemigo6
+		LD			IX, enemigo1
 fin_inicializa_enemigos_fase0_niveljefe:
 		RET
 	
@@ -625,9 +625,9 @@ inicializa_enemigos_fase1_nivel5:
 fin_inicializa_enemigos_fase1_nivel5:
 
 inicializa_enemigos_fase1_niveljefe:	
-		LD			DE, enemigo7
+		LD			DE, enemigo1
 		CALL		anade_enemigo_jefemurcielago
-		LD			IX, enemigo7
+		LD			IX, enemigo1
 		JP			actualiza_valores_jefemurcielago
 fin_inicializa_enemigos_fase1_niveljefe:
 
@@ -734,9 +734,9 @@ fin_inicializa_enemigos_fase2_nivel5:
 		RET
 
 inicializa_enemigos_fase2_niveljefe:	
-		LD			DE, enemigo7
+		LD			DE, enemigo1
 		CALL		anade_enemigo_jefefantasma
-		LD			IX, enemigo7
+		LD			IX, enemigo1
 fin_inicializa_enemigos_fase2_niveljefe:
 		RET
 
