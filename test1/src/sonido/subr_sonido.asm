@@ -14,9 +14,6 @@ inicializa_replayer_efectos_interrupciones:
 	DI
 
 	;inicializacion de replayer musical
-	;múscia de GAME OVER
-	;~ LD		HL, PT3_SETUP
-	;~ RES		 0, (HL)
 	LD		HL, song-99			; hl <- initial address of module - 99
 	CALL	PT3_INIT			; Inits PT3 player
 		
@@ -66,8 +63,8 @@ subrutinas_sonido:
 ;;DEFINICIÓN DE CANCIONES Y EFECTOS DE SONIDO
 ;;=====================================================		
 song:
-	;incbin "ingame7.99"
-	incbin "empty.99"
+	incbin "ingame7.99"
+	;incbin "empty.99"
 	
 sfx_bank:
 	incbin "sfx.afb"

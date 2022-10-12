@@ -4,8 +4,8 @@
 datos_jefelobo:
 			DB		TIPOJEFELOBO;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
 			DB		0		;(escena) sprite a mostrar 1/2
-			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
-			DB		JEFELOBO_ENERGIA		;(energia) energía del enemigo antes de morir
+			DB		01000000b;00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
+			DB		99;JEFELOBO_ENERGIANORMAL	;(energia) energía del enemigo antes de morir
 			DB		JEFELOBO_X	;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		JEFELOBO_Y	;(posy) pos y para mover y punto central del sprite para revisar disparo
 			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
@@ -47,15 +47,15 @@ fin_anade_enemigo_jefelobo:
 ;;=====================================================
 ;;ACTUALIZA_VALORES_LOBO
 ;;=====================================================	
-; función: 	inicializa valores aleatorios del lobo
+; función: 	inicializa valores aleatorios del lobo (sólo se usa en la fase 7)
 ; entrada:	IX que equivaldrá a qué nº de enemigo estamos inicializando (por ejemplo enemigo1)
-; salida: 	posicion_anterior_arana
+; salida: 	-
 ; toca:		-
 actualiza_valores_jefelobo_BR:
-		LD			(IX + ESTRUCTURA_ENEMIGO.energia), 64
+		LD			(IX + ESTRUCTURA_ENEMIGO.energia), AA;JEFELOBO_ENERGIAFASE7
 		
-		;quitar cuando se cree el daño a los jefes
-		LD			 (IX + ESTRUCTURA_ENEMIGO.pocavida), 1
+		;~ ;quitar cuando se cree el daño a los jefes
+		;~ LD			 (IX + ESTRUCTURA_ENEMIGO.pocavida), 1
 fin_actualiza_valores_jefelobo_BR:
 		RET
 

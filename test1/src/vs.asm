@@ -200,36 +200,41 @@ enemigo_nojefe:
 		CALL		mata_enemigo
 		POP			BC	
 .fin_examina_enemigo:
-		[21]	INC			IX
+		CALL		pasa_siguiente_enemigo
 		DJNZ	.loop
 		RET
 		
 ;tira bomba a enemigo JEFE --- nota: se mantiene el bucle porque el últio enemigo (drácula) es equivalente a 3 enemigos
 enemigo_jefe:
 		LD		IX, enemigos
-		LD		 B, 7
+		LD		 B, 5
 		LD		 C, 2
 		
-.loop:	
-.examina_enemigo:
+.loopjefe:	
+.examina_enemigojefe:
 		LD			 A, (IX)
 		CP			 C
-		JP			 C, .fin_examina_enemigo
+		JP			 C, .fin_examina_enemigojefe
 		
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
 		SUB			PROTADANORELIQUIA
-		JP			NC, .fin_examina_enemigo
+		JP			NC, .fin_examina_enemigojefe
 		
 		PUSH		BC
 		CALL		mata_enemigo
 		POP			BC
-.fin_examina_enemigo:
+.fin_examina_enemigojefe:
 		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
-[21]	INC			IX
-		DJNZ	.loop
+		CALL		pasa_siguiente_enemigo
+		DJNZ	.loopjefe
 		RET
 fin_efecto_enemigos_tira_reliquia:
 
+
+pasa_siguiente_enemigo:
+		[21]	INC			IX
+fin_pasa_siguiente_enemigo:
+		RET
 
 ;;************************************************************************		
 
