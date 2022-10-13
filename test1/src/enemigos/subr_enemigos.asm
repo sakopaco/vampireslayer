@@ -1818,10 +1818,14 @@ examina_enemigo1:
 			LD			 B, A
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
 			SUB			 B
-			JP			NC, examina_enemigo2			
+			JP			NC, .restaenergia1			
 				CALL		mata_enemigo
+				JP			examina_enemigo2
+.restaenergia1:			
+			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
+				
 examina_enemigo2:	
-		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
+		
 		
 		LD			IX, enemigo2
 		LD			 A, (IX)
@@ -1834,8 +1838,11 @@ examina_enemigo2:
 			LD			 B, A
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
 			SUB			 B
-			JP			NC, examina_enemigo3			
+			JP			NC, .restaenergia2
 				CALL		mata_enemigo
+				JP			examina_enemigo3
+.restaenergia2:
+			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
 
 examina_enemigo3:	
 		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
@@ -1851,8 +1858,11 @@ examina_enemigo3:
 			LD			 B, A
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
 			SUB			 B
-			JP			NC, examina_enemigo4			
+			JP			NC, .restaenergia3
 				CALL		mata_enemigo
+				JP			examina_enemigo4
+.restaenergia3:	
+			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
 		
 examina_enemigo4:	
 		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
@@ -1868,8 +1878,11 @@ examina_enemigo4:
 			LD			 B, A
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
 			SUB			 B
-			JP			NC, examina_enemigo5			
-				CALL		mata_enemigo	
+			JP			NC, .restaenergia4
+				CALL		mata_enemigo
+				JP			examina_enemigo5
+.restaenergia4:
+			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
 		
 examina_enemigo5:	
 		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
@@ -1885,8 +1898,11 @@ examina_enemigo5:
 			LD			 B, A
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
 			SUB			 B
-			JP			NC, examina_enemigo6		
-				CALL		mata_enemigo		
+			JP			NC, .restaenergia5
+				CALL		mata_enemigo
+				JP			examina_enemigo6
+.restaenergia5:
+			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
 			
 examina_enemigo6:	
 		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
@@ -1897,13 +1913,15 @@ examina_enemigo6:
 		JP			 Z, examina_enemigo7
 		
 		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z
-		JP			 Z, examina_enemigo7	; IF hubo colisión
 			LD			 A, (prota_dano_actual)
 			LD			 B, A
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
 			SUB			 B
-			JP			NC, examina_enemigo7	
+			JP			NC, .restaenergia6
 				CALL		mata_enemigo
+				JP			examina_enemigo7
+.restaenergia6:
+			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
 
 examina_enemigo7:	
 		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
@@ -1919,13 +1937,15 @@ examina_enemigo7:
 			LD			 B, A
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
 			SUB			 B
-			JP			NC, .fin_examina_enemigos	
+			JP			NC, .restaenergia7
 				CALL		mata_enemigo
-				
+				JP			.fin_examina_enemigos
+.restaenergia7:
+			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
+		
 .fin_examina_enemigos:
-		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
-		
-		
+
+			;Si NO quedan enemigos pongo habiación como vacía
 			;miro si por el nº de enemigos (necesitaré una variable) está terminada la habitación
 			;esta función no va aquí sino en check colisiones pero se pone aquí para realizar pruebas
 			;CALL		terminada_habitacion_recorrida ;para cuando se maten todos los enemigos de la habitación

@@ -52,7 +52,7 @@ fin_anade_enemigo_jefelobo:
 ; salida: 	-
 ; toca:		-
 actualiza_valores_jefelobo_BR:
-		LD			(IX + ESTRUCTURA_ENEMIGO.energia), AA;JEFELOBO_ENERGIAFASE7
+		LD			(IX + ESTRUCTURA_ENEMIGO.energia), JEFELOBO_ENERGIAFASE7
 		
 		;~ ;quitar cuando se cree el daño a los jefes
 		;~ LD			 (IX + ESTRUCTURA_ENEMIGO.pocavida), 1
