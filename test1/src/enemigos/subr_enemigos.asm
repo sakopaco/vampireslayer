@@ -847,9 +847,9 @@ fin_inicializa_enemigos_fase3_nivel5:
 		RET
 
 inicializa_enemigos_fase3_niveljefe:	
-		LD			DE, enemigo7
+		LD			DE, enemigo1
 		CALL		anade_enemigo_jefezombi
-		LD			IX, enemigo7
+		LD			IX, enemigo1
 fin_inicializa_enemigos_fase3_niveljefe:
 		RET
 
@@ -960,9 +960,9 @@ fin_inicializa_enemigos_fase4_nivel5:
 		RET
 
 inicializa_enemigos_fase4_niveljefe:	
-		LD			DE, enemigo7
+		LD			DE, enemigo1
 		CALL		anade_enemigo_jefecaballero
-		LD			IX, enemigo7
+		LD			IX, enemigo1
 		JP		actualiza_valores_jefecaballero
 fin_inicializa_enemigos_fase4_niveljefe:
 
@@ -1073,9 +1073,9 @@ fin_inicializa_enemigos_fase5_nivel5:
 		RET
 
 inicializa_enemigos_fase5_niveljefe:	
-		LD			DE, enemigo7
+		LD			DE, enemigo1
 		CALL		anade_enemigo_jefebeholder
-		LD			IX, enemigo7
+		LD			IX, enemigo1
 fin_inicializa_enemigos_fase5_niveljefe:
 		RET
 
@@ -1085,6 +1085,7 @@ fin_inicializa_enemigos_fase5_niveljefe:
 ;;=====================================================	
 inicializa_enemigos_fase6_nivel0:
 		CALL		carga_patrones_sprites_nivel6_nivel0
+		
 		LD			DE, enemigo1
 		CALL		anade_enemigo_jefelobo
 		LD			IX, enemigo1
@@ -1094,6 +1095,7 @@ fin_inicializa_enemigos_fase6_nivel0:
 
 inicializa_enemigos_fase6_nivel1:
 		CALL		carga_patrones_sprites_nivel6_nivel1
+		
 		LD			DE, enemigo1
 		CALL		anade_enemigo_jefemurcielago
 		LD			IX, enemigo1
@@ -1102,6 +1104,7 @@ fin_inicializa_enemigos_fase6_nivel1:
 
 inicializa_enemigos_fase6_nivel2:
 		CALL		carga_patrones_sprites_nivel6_nivel2
+		
 		LD			DE, enemigo1
 		CALL		anade_enemigo_jefefantasma
 		LD			IX, enemigo1
@@ -1118,6 +1121,7 @@ fin_inicializa_enemigos_fase6_nivel3:
 
 inicializa_enemigos_fase6_nivel4:
 		CALL		carga_patrones_sprites_nivel6_nivel4
+		
 		LD			DE, enemigo1
 		CALL		anade_enemigo_jefecaballero
 		LD			IX, enemigo1
@@ -1126,6 +1130,7 @@ fin_inicializa_enemigos_fase6_nivel4:
 
 inicializa_enemigos_fase6_nivel5: 						
 		CALL		carga_patrones_sprites_nivel6_nivel5
+		
 		LD			DE, enemigo1
 		CALL		anade_enemigo_jefebeholder
 		LD			IX, enemigo1

@@ -1,0 +1,18 @@
+BUGS
+- en el conde drácula las manos no cambian de escena
+- en el conde drácula al matar una ano sale un sprite en la parte superior
+- que aparezcan las ayudas
+
+TODO A
+- controlar lo de vaciar habitaciones
+- crear interrupción vacía para que no salga música
+- final pantalla final del juego (final bueno)
+- que los disparos sean al centro de los enemigos (ajustar)
+- que los disparos a los enemigos de más de un sprite sean de un radio mayor
+- que el prota tenga tiempo límite para salir
+- final malo2 si no le dió tiempo al prota a salir
+
+TODO B
+- hacer sprites que faltan
+- crear pantallas de cada nivel
+
