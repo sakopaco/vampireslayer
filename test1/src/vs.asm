@@ -64,7 +64,7 @@ inicio_juego:
 ;		CALL		inicializa_replayer_efectos_interrupciones
 	
 pantalla_inicial:
-		CALL		muestra_pantalla_inicial
+;		CALL		muestra_pantalla_inicial
 
 		;inicializa variables para parametrizar funciones y que lo que se muestre sea variable (nº vidas, mapa, puertas, pantalla, etc...)
 		CALL		inicializa_variables_prota
