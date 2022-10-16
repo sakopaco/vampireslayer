@@ -1826,12 +1826,19 @@ examina_enemigo1:
 			JP			NC, .restaenergia1			
 				CALL		mata_enemigo
 				JP			examina_enemigo2
-.restaenergia1:			
+.restaenergia1:	
+			;hay una excepción... hay que matar las manos del conde drácula antes de matar a drácula
+			LD			 B, A	;copia daño (si es que al final se hace)
+			
+			CALL		dano_excepcion_dracula	; devuelve A=1 (si) si estás con drácula y no has matado las manos primero, devuelve A=0
+			OR			 A	;el valor de z ya lo devuelve la función
+			JP			NZ, examina_enemigo2	; excepción drácula y anos vivas
+			
+			;esta es la resta de energía normal pero no se aplica si: drácula y siguen vivas sus manos
+			LD			 A, B
 			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
 				
-examina_enemigo2:	
-		
-		
+examina_enemigo2:
 		LD			IX, enemigo2
 		LD			 A, (IX)
 		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición

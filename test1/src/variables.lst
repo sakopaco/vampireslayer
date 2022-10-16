@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.10.16 - 17:52:32]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.10.16 - 21:14:21]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -611,7 +611,7 @@ Errors: 0
      381.  00:C000  (00:0005)           MANOI_INCREMENTO		equ		5
      382.  00:C000  (00:0010)           MANOI_VELESCENA			equ		00010000b
      383.  00:C000  (00:0005)           MANOI_DANO				equ		5
-     384.  00:C000  (00:000A)           MANOI_ENERGIA			equ		10
+     384.  00:C000  (00:0014)           MANOI_ENERGIA			equ		20
      385.  00:C000                      
      386.  00:C000                      ;;ETIQUETAS/CONSTANTES MANODERECHA
      387.  00:C000  (00:0014)           TIPOMANODERECHA			equ		20
@@ -624,7 +624,7 @@ Errors: 0
      394.  00:C000  (00:0005)           MANOD_INCREMENTO		equ		5
      395.  00:C000  (00:0010)           MANOD_VELESCENA			equ		00010000b
      396.  00:C000  (00:0005)           MANOD_DANO				equ		5
-     397.  00:C000  (00:000A)           MANOD_ENERGIA			equ		10
+     397.  00:C000  (00:0014)           MANOD_ENERGIA			equ		20
      398.  00:C000                      
       12   00:C000                      include "constantesyvariables/estructuras.asm"
        1.  00:C000                      ;;=====================================================
@@ -1678,7 +1678,7 @@ Errors: 0
 00:00000005 X MANOI_INCREMENTO
 00:00000010 X MANOI_VELESCENA
 00:00000005 X MANOI_DANO
-00:0000000A X MANOI_ENERGIA
+00:00000014 X MANOI_ENERGIA
 00:00000014 X TIPOMANODERECHA
 00:00000001 X MANOD_COLOR
 00:000000E8 X MANOD_SPRITE1A
@@ -1689,7 +1689,7 @@ Errors: 0
 00:00000005 X MANOD_INCREMENTO
 00:00000010 X MANOD_VELESCENA
 00:00000005 X MANOD_DANO
-00:0000000A X MANOD_ENERGIA
+00:00000014 X MANOD_ENERGIA
 00:00000000 X ESTRUCTURA_PUNTOMIRA.posx
 00:00000001 X ESTRUCTURA_PUNTOMIRA.posy
 00:00000002 X ESTRUCTURA_PUNTOMIRA.escena

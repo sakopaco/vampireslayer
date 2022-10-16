@@ -102,3 +102,71 @@ accion_boton2:
 fin_accion_boton2:
 
 
+;;=====================================================
+;;EFECTO_ENEMIGOS_TIRA_RELIQUIA
+;;=====================================================
+; funcion:	Mata enemigos de una pantalla o resta vida (mucha) a jefes enemigos.
+efecto_enemigos_tira_reliquia:
+;es enemigo jefe
+		LD		 B, 6
+		
+		LD		 A, (prota_pos_mapy);primero miro la posición y. los jefes están en la 6 (7 en realidad)
+		CP		 B
+		JP		 Z, enemigo_jefe
+		
+		LD		 A, (prota_nivel)	;si el nivel es 6 (7 en realidad) son todos jefes)
+		CP		 B
+		JP		 Z, enemigo_jefe
+
+;tira bomba a enemigo NO JEFE
+enemigo_nojefe:
+		LD		IX, enemigos
+		LD		 B, 7
+		LD		 C, 2
+		
+.loop:	
+.examina_enemigo:
+		LD			 A, (IX)
+		CP			 C
+		JP			 C, .fin_examina_enemigo
+		
+		PUSH		BC
+		CALL		mata_enemigo
+		POP			BC	
+.fin_examina_enemigo:
+		CALL		pasa_siguiente_enemigo
+		DJNZ	.loop
+		RET
+		
+;tira bomba a enemigo JEFE --- nota: se mantiene el bucle porque el últio enemigo (drácula) es equivalente a 3 enemigos
+enemigo_jefe:
+		LD		IX, enemigos
+		LD		 B, 5
+		LD		 C, 2
+		
+.loopjefe:	
+.examina_enemigojefe:
+		LD			 A, (IX)
+		CP			 C
+		JP			 C, .fin_examina_enemigojefe
+		
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+		SUB			PROTADANORELIQUIA
+		JP			NC, .fin_examina_enemigojefe
+		
+		PUSH		BC
+		CALL		mata_enemigo
+		POP			BC
+.fin_examina_enemigojefe:
+		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
+		CALL		pasa_siguiente_enemigo
+		DJNZ	.loopjefe
+		RET
+fin_efecto_enemigos_tira_reliquia:
+
+
+pasa_siguiente_enemigo:
+		[21]	INC			IX
+fin_pasa_siguiente_enemigo:
+		RET
+

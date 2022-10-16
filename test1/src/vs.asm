@@ -146,7 +146,7 @@ inicializa_variables_prota:
 		;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
 		;será igual la posición inicial en todos los niveles
 	
-		LD		 A, 6; PROTANIVEL	***************	
+		LD		 A, 2;6; PROTANIVEL
 		LD		(prota_nivel), A
 
 		LD		 A, 6; PROTAPOSMAPY
@@ -172,69 +172,32 @@ fin_inicializa_variables_juego:
 
 
 
-efecto_enemigos_tira_reliquia:
-;es enemigo jefe
-		LD		 B, 6
-		
-		LD		 A, (prota_pos_mapy);primero miro la posición y. los jefes están en la 6 (7 en realidad)
-		CP		 B
-		JP		 Z, enemigo_jefe
-		
-		LD		 A, (prota_nivel)	;si el nivel es 6 (7 en realidad) son todos jefes)
-		CP		 B
-		JP		 Z, enemigo_jefe
+; funcion:	mira si hace excepción y no hace daño porque al drácula no se le han maado las manos primero
+dano_excepcion_dracula:
+		;SI NIVEL 6
+		LD			 A, (prota_nivel)
+		CP			 6
+		JP			 Z, .devuelveSI
+		;~ ;Y MANOD NO MUERTA
+		;~ LD			 A, (enemigo2)
+		;~ OR			 A
+		;~ JP			NZ, .devuelveSI
+		;~ ; Y MANOI NO MUERTA
+		;~ LD			 A, (enemigo3)
+		;~ OR			 A
+		;~ JP			NZ, .devuelveSI
 
-;tira bomba a enemigo NO JEFE
-enemigo_nojefe:
-		LD		IX, enemigos
-		LD		 B, 7
-		LD		 C, 2
-		
-.loop:	
-.examina_enemigo:
-		LD			 A, (IX)
-		CP			 C
-		JP			 C, .fin_examina_enemigo
-		
-		PUSH		BC
-		CALL		mata_enemigo
-		POP			BC	
-.fin_examina_enemigo:
-		CALL		pasa_siguiente_enemigo
-		DJNZ	.loop
+.devuelveSI:
+		LD			 A, 1
 		RET
-		
-;tira bomba a enemigo JEFE --- nota: se mantiene el bucle porque el últio enemigo (drácula) es equivalente a 3 enemigos
-enemigo_jefe:
-		LD		IX, enemigos
-		LD		 B, 5
-		LD		 C, 2
-		
-.loopjefe:	
-.examina_enemigojefe:
-		LD			 A, (IX)
-		CP			 C
-		JP			 C, .fin_examina_enemigojefe
-		
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
-		SUB			PROTADANORELIQUIA
-		JP			NC, .fin_examina_enemigojefe
-		
-		PUSH		BC
-		CALL		mata_enemigo
-		POP			BC
-.fin_examina_enemigojefe:
-		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
-		CALL		pasa_siguiente_enemigo
-		DJNZ	.loopjefe
+.devuelveNO:
+		XOR			 A
 		RET
-fin_efecto_enemigos_tira_reliquia:
+fin_dano_excepcion_dracula:
+		
 
 
-pasa_siguiente_enemigo:
-		[21]	INC			IX
-fin_pasa_siguiente_enemigo:
-		RET
+
 
 ;;************************************************************************		
 
