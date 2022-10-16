@@ -110,30 +110,28 @@ fin_mover_manoi:
 ;;CALCULA_MANO IZQUIERDA_ESCENA
 ;;=====================================================	
 calcula_manoi_escena:
-		LD			 A, (heartbeat_general)
+		LD			 A, (heartbeat_manoi)
 		AND			MANOI_VELESCENA
 		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
 			;reseteo el cambio de escena de la mano izquierda
 			XOR			 A
-			LD			(heartbeat_general), A
+			LD			(heartbeat_manoi), A
 			
 			;hace daño
 			LD			 B, (IX + ESTRUCTURA_ENEMIGO.dano)
 			CALL		enemigo_hace_dano
 			
-			;THEN cambia escena
+			;cambio de escena
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
 			XOR			00000001b
 			LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
 			
-			OR			 A
-			JP			 Z, .escena2
-.escena1:
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), MANOI_SPRITE1A
+			JP			 Z, .poner_escena2				; IF ESCENA 1 THEN
+				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), MANOD_SPRITE1A
 				RET
-.escena2:
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), MANOI_SPRITE1B
-				RET	
+.poner_escena2:											; ELSE
+				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), MANOD_SPRITE1B
+				RET
 fin_calcula_manoi_escena:
 		
 

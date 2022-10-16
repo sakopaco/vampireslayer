@@ -111,7 +111,7 @@ loop_principal:
 		CALL		check_player			;MIRA EL CONTROL Y APLICA LA LOGICA DE MOVIMIENTO DEL PROTAGONISTA
 	
 		;incrementa el hearbeat para el movimiento (escena) de los distintos enemigos		
-		LD			 B, 12	;se han definido 12 escena de enemigos distintas
+		LD			 B, 14	;se han definido 14 escena de enemigos distintas
 		LD			HL, heartbeat_enemigos
 .loop_heartbeat:	INC			(HL)
 					INC			HL

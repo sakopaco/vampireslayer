@@ -102,15 +102,14 @@ calcula_murcielago_escena:
 			LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
 			
 			JP			 Z, .enemigo1_poner_escena2			; IF ESCENA 1 THEN
-				LD			 A, MURCIELAGO_SPRITE1A
-				JP			.fin_enemigo1_poner_escena2
+				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), MURCIELAGO_SPRITE1A
+				RET
 .enemigo1_poner_escena2:									; ELSE
-				LD			 A, MURCIELAGO_SPRITE1B
-.fin_enemigo1_poner_escena2:								; END IF
-;.fin_cambia_escena_enemigo1:							; END IF	
-		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), A
+				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), MURCIELAGO_SPRITE1B
+				RET
+.fin_enemigo1_poner_escena2:								; END IF		
 fin_calcula_murcielago_escena:
-		RET
+
 
 
 ;;=====================================================

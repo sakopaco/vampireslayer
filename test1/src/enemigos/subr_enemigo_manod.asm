@@ -17,10 +17,10 @@ datos_manod:
 			DB		MANOD_PASOS		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 			DB		1				;pocavida 0 y 1 para indicar cuando le queda poca vida al enemigo
 			DW		mover_manod		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
-			DB		MANOD_SPRITE1A	;izq arriba
-			DB		MANOD_SPRITE1B	;der_arriba
-			DB		MANOD_SPRITE1A	;izq abajo
-			DB		MANOD_SPRITE1B	;der_abajo
+			DB		248;MANOD_SPRITE1A	;izq arriba
+			DB		252;MANOD_SPRITE1B	;der_arriba
+			DB		248;MANOD_SPRITE1A	;izq abajo
+			DB		252;MANOD_SPRITE1B	;der_abajo
 			DB		MANOD_DANO 		;dano
 
 array_manod_derecha_posx:
@@ -109,31 +109,29 @@ fin_mover_manod:
 ;;=====================================================
 ;;CALCULA_MANO DERECHA_ESCENA
 ;;=====================================================	
-calcula_manod_escena:
-		LD			 A, (heartbeat_general)
+calcula_manod_escena:				
+		LD			 A, (heartbeat_manod)
 		AND			MANOD_VELESCENA
 		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
-			;reseteo el cambio de escena de la mano derecha
+			;reseteo el cambio de escena del murcielago
 			XOR			 A
-			LD			(heartbeat_general), A
+			LD			(heartbeat_manod), A 
 			
 			;hace daño
 			LD			 B, (IX + ESTRUCTURA_ENEMIGO.dano)
 			CALL		enemigo_hace_dano
-			
-			;THEN cambia escena
+		
+			;cambio de escena
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
 			XOR			00000001b
 			LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
 			
-			OR			 A
-			JP			 Z, .escena2
-.escena1:
+			JP			 Z, .enemigo1_poner_escena2			; IF ESCENA 1 THEN
 				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), MANOD_SPRITE1A
 				RET
-.escena2:
+.enemigo1_poner_escena2:									; ELSE
 				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), MANOD_SPRITE1B
-				RET	
+				RET
 fin_calcula_manod_escena:
 		
 
