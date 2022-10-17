@@ -1830,10 +1830,25 @@ examina_enemigo1:
 			;hay una excepción... hay que matar las manos del conde drácula antes de matar a drácula
 			LD			 B, A	;copia daño (si es que al final se hace)
 			
-			CALL		dano_excepcion_dracula	; devuelve A=1 (si) si estás con drácula y no has matado las manos primero, devuelve A=0
-			OR			 A	;el valor de z ya lo devuelve la función
-			JP			NZ, examina_enemigo2	; excepción drácula y anos vivas
+			;primer filtro que el nivel no sea el último
+			LD			 A, (prota_nivel)
+			CP			 6
+			JP			NZ, .resta_energia_no_excepcion
 			
+			;nota: aquí debería haber otro filtro (ya que drácula está en la últia fila)
+			;pero no es necesario comprobar ya que en todo el nivel 6 excepto drácula sólo hay un enemigo por habitación
+			
+			;filtro de mano derecha
+			LD			 A, (enemigo2)
+			OR			 A
+			JP			NZ, examina_enemigo2
+			
+			;filtro de mano derecha
+			LD			 A, (enemigo3)
+			OR			 A
+			JP			NZ, examina_enemigo2
+			
+.resta_energia_no_excepcion:
 			;esta es la resta de energía normal pero no se aplica si: drácula y siguen vivas sus manos
 			LD			 A, B
 			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
@@ -2026,6 +2041,10 @@ accion_enemigo_muerto1:
 .desaparece_enemigo:
 			;situo las visceras fuera de pantalla
 			LD			(IY), 	 	BORRASPRITE
+			
+.elimino_enemigo:
+			;marco enemigo como muerto para saltarlo incluso al examinar
+			LD			(IX), 0
 		RET
 fin_accion_enemigo_muerto1:
 
@@ -2047,6 +2066,10 @@ accion_enemigo_muerto2:
 			;situo las visceras fuera de pantalla
 			LD			(IY), 	 	BORRASPRITE
 			LD			(IY + 4),  	BORRASPRITE
+			
+.elimino_enemigo:
+			;marco enemigo como muerto para saltarlo incluso al examinar
+			LD			(IX), 0
 		RET
 fin_accion_enemigo_muerto2:
 
@@ -2074,5 +2097,9 @@ accion_enemigo_muerto4:
 			LD			(IY + 4),  	BORRASPRITE
 			LD			(IY + 8),  	BORRASPRITE
 			LD			(IY + 12), 	BORRASPRITE
+
+.elimino_enemigo:
+			;marco enemigo como muerto para saltarlo incluso al examinar
+			LD			(IX), 0
 		RET
 fin_accion_enemigo_muerto4:

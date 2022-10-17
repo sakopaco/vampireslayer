@@ -146,7 +146,7 @@ inicializa_variables_prota:
 		;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
 		;será igual la posición inicial en todos los niveles
 	
-		LD		 A, 2;6; PROTANIVEL
+		LD		 A, 5;6; PROTANIVEL
 		LD		(prota_nivel), A
 
 		LD		 A, 6; PROTAPOSMAPY
@@ -171,30 +171,6 @@ fin_inicializa_variables_juego:
 ;;************************************************************************
 
 
-
-; funcion:	mira si hace excepción y no hace daño porque al drácula no se le han maado las manos primero
-dano_excepcion_dracula:
-		;SI NIVEL 6
-		LD			 A, (prota_nivel)
-		CP			 6
-		JP			 Z, .devuelveSI
-		;~ ;Y MANOD NO MUERTA
-		;~ LD			 A, (enemigo2)
-		;~ OR			 A
-		;~ JP			NZ, .devuelveSI
-		;~ ; Y MANOI NO MUERTA
-		;~ LD			 A, (enemigo3)
-		;~ OR			 A
-		;~ JP			NZ, .devuelveSI
-
-.devuelveSI:
-		LD			 A, 1
-		RET
-.devuelveNO:
-		XOR			 A
-		RET
-fin_dano_excepcion_dracula:
-		
 
 
 
