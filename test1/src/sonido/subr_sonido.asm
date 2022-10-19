@@ -72,4 +72,5 @@ sfx_bank:
 ;otras melodías
 musica_gameover:
 	incbin "death2.99"
-
+musica_finalbueno:
+	incbin "victory2.99"

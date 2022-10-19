@@ -4,6 +4,13 @@ BUGS
 - Revisar que el enemigo jefe se ponga en rojo al quedarle poca energía
 
 TODO A
+
+* poner todas las músicas
+* el tiempo del gameover bueno debe durar más
+* poner las músicas de los enemigos finales
+* intertar de nuevo la música empty
+
+
 - controlar lo de vaciar habitaciones
 - crear interrupción vacía para que no salga música
 - final pantalla final del juego (final bueno)

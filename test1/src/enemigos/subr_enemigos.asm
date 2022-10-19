@@ -1987,6 +1987,11 @@ fin_check_colisiones_enemigos:
 ;			también sustituye la subrutina de acción por la de muerte
 ;			usa TIEMPO_ESPERA_VISCERA/escena como contador hacia atrás para que desaparezcan las visceras del enemigo
 mata_enemigo:
+		;***********************************************************************
+		LD			 A, (IX)
+		CP			TIPODRACULA
+		JP			 Z, muere_dracula
+
 		LD			 A, (IX);guardo el tipo que me hará falta más tarde
 		LD			(IX), 1													;se pone tipo a enemigo muerto
 		LD			(IX + ESTRUCTURA_ENEMIGO.escena), TIEMPO_ESPERA_VISCERA	;contador para que desaparezcan las vísceras del enemigo
@@ -2103,3 +2108,8 @@ accion_enemigo_muerto4:
 			LD			(IX), 0
 		RET
 fin_accion_enemigo_muerto4:
+
+
+
+
+

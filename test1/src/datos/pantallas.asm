@@ -6,15 +6,15 @@
 ; se usa un banco común (en este caso el banco 1)
 ; el mapa afecta al banco 1 y 2
 
-tiles_patrones_inicio:	incbin "pantallas/inicio.tiles.banco1.chr.plet5"
-tiles_color_inicio:		incbin "pantallas/inicio.tiles.banco1.clr.plet5"
-tiles_mapa_inicio:		incbin "pantallas/inicio.map.bin.plet5"
+tiles_patrones_inicio:			incbin "pantallas/inicio.tiles.banco1.chr.plet5"
+tiles_color_inicio:				incbin "pantallas/inicio.tiles.banco1.clr.plet5"
+tiles_mapa_inicio:				incbin "pantallas/inicio.map.bin.plet5"
 
-tiles_mapa_entrefases:	incbin "pantallas/fondoentrefases.map.bin.plet5"
+tiles_mapa_entrefases:			incbin "pantallas/fondoentrefases.map.bin.plet5"
 
-tiles_patrones_nivel0:	incbin "pantallas/nivel0.bank1.til.bin.chr.plet5"
-tiles_color_nivel0:		incbin "pantallas/nivel0.bank1.til.bin.clr.plet5"
-tiles_mapa_nivel0:		incbin "pantallas/nivel0.bank01.map.bin.plet5"
+tiles_patrones_nivel0:			incbin "pantallas/nivel0.bank1.til.bin.chr.plet5"
+tiles_color_nivel0:				incbin "pantallas/nivel0.bank1.til.bin.clr.plet5"
+tiles_mapa_nivel0:				incbin "pantallas/nivel0.bank01.map.bin.plet5"
 
 ;~ tiles_patrones_nivel1:	incbin "pantallas/nivel0.bank1.til.bin.chr.plet5"
 ;~ tiles_color_nivel1:		incbin "pantallas/nivel0.bank1.til.bin.clr.plet5"
@@ -41,9 +41,9 @@ tiles_mapa_nivel0:		incbin "pantallas/nivel0.bank01.map.bin.plet5"
 ;~ tiles_mapa_nivel6:		incbin "pantallas/nivel0.bank01.map.bin.plet5"
 
 ; 3º banco que es la parte de puntos, vidas, mapas, etc... es común
-tiles_patrones_marcador:	incbin "pantallas/marcador.til.bin.chr.plet5"
-tiles_color_marcador:		incbin "pantallas/marcador.til.bin.clr.plet5"
-tiles_mapa_marcador:		incbin "pantallas/marcador.map.bin.plet5"
+tiles_patrones_marcador:		incbin "pantallas/marcador.til.bin.chr.plet5"
+tiles_color_marcador:			incbin "pantallas/marcador.til.bin.clr.plet5"
+tiles_mapa_marcador:			incbin "pantallas/marcador.map.bin.plet5"
 
 ;pantalla de game over 1
 tiles_patrones_gameover1_bank0:	incbin "pantallas/gameover1.bank0.til.chr.plet5"
@@ -52,8 +52,9 @@ tiles_patrones_gameover1_bank1:	incbin "pantallas/gameover1.bank1.til.chr.plet5"
 tiles_color_gameover1_bank1:	incbin "pantallas/gameover1.bank1.til.clr.plet5"
 tiles_mapa_gameover1_bank01:	incbin "pantallas/gameover1.map.plet5"
 
-
-;NOTA: FALTARÍAN PANTALLAS ESPECIALES (POR DEFINIR)
-; HUIDA
-; 2 FINAL BUENO
-; 1 FINAL MALO
+;pantalla de game over 1
+tiles_patrones_finalbueno_bank0:incbin "pantallas/finbueno.tiles.bank0.bin.chr.plet5"
+tiles_color_finalbueno_bank0:	incbin "pantallas/finbueno.tiles.bank0.bin.clr.plet5"
+tiles_patrones_finalbueno_bank1:incbin "pantallas/finbueno.tiles.bank0.bin.chr.plet5"
+tiles_color_finalbueno_bank1:	incbin "pantallas/finbueno.tiles.bank1.bin.clr.plet5"
+tiles_mapa_finalbueno_bank01:	incbin "pantallas/finbueno.map.bin.plet5"
