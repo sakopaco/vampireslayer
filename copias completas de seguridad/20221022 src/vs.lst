@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.10.22 - 13:18:41]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.10.22 - 13:11:06]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/vs.asm
 Errors: 0
@@ -14092,27 +14092,27 @@ Errors: 0
        4.  00:B885                      
        5.  00:B885                      IF	1=0	; 1=1 versión en español y 1=0 verión en inglés
        6.  00:B885                    ~ ;textos en español
-       7.  00:B885                    ~ texto_vidas:		DB	'VIDAS'
+       7.  00:B885                    ~ texto_vidas:		DB	'V','I','D','A','S'
        8.  00:B885                    ~ 
-       9.  00:B885                    ~ texto_energia:		DB	'ENERG.'
+       9.  00:B885                    ~ texto_energia:		DB	'E','N','E','R','G','.'
       10.  00:B885                    ~ 
-      11.  00:B885                    ~ texto_reliquias:	DB	'RELIQ.'
+      11.  00:B885                    ~ texto_reliquias:	DB	'R','E','L','I','Q','.'
       12.  00:B885                    ~ 
-      13.  00:B885                    ~ texto_nivel:		DB	'NIVEL'
+      13.  00:B885                    ~ texto_nivel:		DB	'N','I','V','E','L'
       14.  00:B885                    ~ 
       15.  00:B885                    ~ texto_entrefases:
-      16.  00:B885                    ~ texto_entrefases1:	DB	'  ESPERAS UN MOMENTO EN LAS   '	; 30 caracteres
-      17.  00:B885                    ~ texto_entrefases2:	DB  'ESCALERAS MIENTRAS TUS OJOS   '	; 30 caracteres
-      18.  00:B885                    ~ texto_entrefases3:	DB  'SE ACOSTUMBRAN A LA OSCURIDAD '	; 30 caracteres
-      19.  00:B885                    ~ texto_entrefases4:	DB  'Y EL HORROVR QUE TE ESPERA.   '	; 30 caracteres
+      16.  00:B885                    ~ texto_entrefases1:	DB	' ',' ','E','S','P','E','R','A','S',' ','U','N',' ','M','O','M','E','N','T','O',' ','E','N',' ','L','A','S',' ',' ',' '	; 30 caracteres
+      17.  00:B885                    ~ texto_entrefases2:	DB  'E','S','C','A','L','E','R','A','S',' ','M','I','E','N','T','R','A','S',' ','T','U','S',' ','O','J','O','S',' ',' ',' '	; 30 caracteres
+      18.  00:B885                    ~ texto_entrefases3:	DB  'S','E',' ','A','C','O','S','T','U','M','B','R','A','N','V',' ','A',' ','L','A',' ','O','S','C','U','R','I','D','A','D'	; 30 caracteres
+      19.  00:B885                    ~ texto_entrefases4:	DB  'Y',' ','E','L',' ','H','O','R','R','O','V','R',' ','Q','U','E',' ','T','E',' ','E','S','P','E','R','A','.',' ',' ',' '	; 30 caracteres
       20.  00:B885                    ~ 
-      21.  00:B885                    ~ texto_iniciar:		DB	'   PULSA FUEGO PARA COMENZAR  '	;30 caracteres
+      21.  00:B885                    ~ texto_iniciar:		DB	' ',' ',' ','P','U','L','S','A',' ','F','U','E','G','O',' ','P','A','R','A',' ','C','O','M','E','N','Z','A','R',' ',' '	;30 caracteres
       22.  00:B885                    ~ 
-      23.  00:B885                    ~ texto_vidamenos:	DB 	'VIGILA TUS VIDAS'	;16 caracteres
+      23.  00:B885                    ~ texto_vidamenos:	DB 	'V','I','G','I','L','A',' ','T','U','S',' ','V','I','D','A','S'	;16 caracteres
       24.  00:B885                    ~ 
-      25.  00:B885                    ~ texto_gameover:		DB	'HAS MUERTO'	;10 caracteres
+      25.  00:B885                    ~ texto_gameover:		DB	'H','A','S',' ','M','U','E','R','T','O'	;10 caracteres
       26.  00:B885                    ~ 
-      27.  00:B885                    ~ texto_gameover1A:	DB	'VIVIRAS PARA SIEMPRE COMO UN'	;29 caracteres
+      27.  00:B885                    ~ texto_gameover1A:	DB	'V','I','V','I','R','A','S',' ','P','A','R','A',' ','S','I','E','M','P','R','E',' ','C','O','M','O',' ','U','N'	;29 caracteres
       28.  00:B885                    ~ texto_gameover1B:	DB	'ZOMBI. SER ESCLAVO DE DRACULA'	;29 caracteres
       29.  00:B885                    ~ texto_gameover1C:	DB	'        SERA TU FIN.         ' ;29 caracteres
       30.  00:B885                    ~ 
@@ -14133,36 +14133,36 @@ Errors: 0
       45.  00:B885                    ~ 
       46.  00:B885                    ~ ELSE		
       47.  00:B885                      ;textos en inglés
-      48.  00:B885  4C 49 56 45 53      texto_vidas:		DB	'LIVES'
+      48.  00:B885  4C 49 56 45 53      texto_vidas:		DB	'L','I','V','E','S'
       49.  00:B88A                      
-      50.  00:B88A  45 4E 45 52 47 59   texto_energia:		DB	'ENERGY'
+      50.  00:B88A  45 4E 45 52 47 59   texto_energia:		DB	'E','N','E','R','G','Y'
       51.  00:B890                      
-      52.  00:B890  52 45 4C 49 43 53   texto_reliquias:	DB	'RELICS'
+      52.  00:B890  52 45 4C 49 43 53   texto_reliquias:	DB	'R','E','L','I','C','S'
       53.  00:B896                      
-      54.  00:B896  4C 45 56 45 4C      texto_nivel:		DB	'LEVEL'
+      54.  00:B896  4C 45 56 45 4C      texto_nivel:		DB	'L','E','V','E','L'
       55.  00:B89B                      
       56.  00:B89B                      texto_entrefases:
-      57.  00:B89B                      texto_entrefases1:	DB	'  YOU WAIT FOR A MOMENT ON THE'	; 30 caracteres
+      57.  00:B89B                      texto_entrefases1:	DB	' ',' ','Y','O','U',' ','W','A','I','T',' ','F','O','R',' ','A',' ','M','O','M','E','N','T',' ','O','N',' ','T','H','E'	; 30 caracteres
       57.  00:B89B  20 20 59 4F 55 20 57 41 49 54 20 46 4F 52 20 41 
       57.  00:B8AB  20 4D 4F 4D 45 4E 54 20 4F 4E 20 54 48 45 
-      58.  00:B8B9                      texto_entrefases2:	DB  'STAIRS WHILE YOUR EYES ADJUST '	; 30 caracteres
+      58.  00:B8B9                      texto_entrefases2:	DB  'S','T','A','I','R','S',' ','W','H','I','L','E',' ','Y','O','U','R',' ','E','Y','E','S',' ','A','D','J','U','S','T',' '	; 30 caracteres
       58.  00:B8B9  53 54 41 49 52 53 20 57 48 49 4C 45 20 59 4F 55 
       58.  00:B8C9  52 20 45 59 45 53 20 41 44 4A 55 53 54 20 
-      59.  00:B8D7                      texto_entrefases3:	DB  'TO THE DARKNESS AND THE HORROR'	; 30 caracteres
+      59.  00:B8D7                      texto_entrefases3:	DB  'T','O',' ','T','H','E',' ','D','A','R','K','N','E','S','S',' ','A','N','D',' ','T','H','E',' ','H','O','R','R','O','R'	; 30 caracteres
       59.  00:B8D7  54 4F 20 54 48 45 20 44 41 52 4B 4E 45 53 53 20 
       59.  00:B8E7  41 4E 44 20 54 48 45 20 48 4F 52 52 4F 52 
-      60.  00:B8F5                      texto_entrefases4:	DB  'THAT AWAITS YOU.              '	; 30 caracteres
+      60.  00:B8F5                      texto_entrefases4:	DB  'T','H','A','T',' ','A','W','A','I','T','S',' ','Y','O','U','.',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '	; 30 caracteres
       60.  00:B8F5  54 48 41 54 20 41 57 41 49 54 53 20 59 4F 55 2E 
       60.  00:B905  20 20 20 20 20 20 20 20 20 20 20 20 20 20 
       61.  00:B913                      
-      62.  00:B913                      texto_iniciar:		DB	' PUSH TRIGER TO START THE GAME'
+      62.  00:B913                      texto_iniciar:		DB	' ','P','U','S','H',' ','T','R','I','G','E','R',' ','T','O',' ','S','T','A','R','T',' ','T','H','E',' ','G','A','M','E'
       62.  00:B913  20 50 55 53 48 20 54 52 49 47 45 52 20 54 4F 20 
       62.  00:B923  53 54 41 52 54 20 54 48 45 20 47 41 4D 45 
       63.  00:B931                      
-      64.  00:B931                      texto_vidamenos:	DB 	'WATCH YOUR LIVES'	;16 caracteres
+      64.  00:B931                      texto_vidamenos:	DB 	'W','A','T','C','H',' ','Y','O','U','R',' ','L','I','V','E','S'	;16 caracteres
       64.  00:B931  57 41 54 43 48 20 59 4F 55 52 20 4C 49 56 45 53 
       65.  00:B941                      
-      66.  00:B941                      texto_gameover:		DB	'GAME OVER '	;10 caracteres
+      66.  00:B941                      texto_gameover:		DB	'G','A','M','E',' ','O','V','E','R',' '	;10 caracteres
       66.  00:B941  47 41 4D 45 20 4F 56 45 52 20 
       67.  00:B94B                      
       68.  00:B94B                      texto_gameover1A:	DB	' YOU WILL LIVE FOREVER LIKE  '	;29 caracteres
@@ -14176,9 +14176,9 @@ Errors: 0
       70.  00:B995  59 4F 55 52 20 45 4E 44 20 20 20 20 20 
       71.  00:B9A2                      ENDIF
       72.  00:B9A2                      
-      73.  00:B9A2                      texto_autoria:		DB	'SAKOPACO  2022' ; 14 caracteres
+      73.  00:B9A2                      texto_autoria:		DB	'S','A','K','O','P','A','C','O',' ',' ','2','0','2','2' ; 14 caracteres
       73.  00:B9A2  53 41 4B 4F 50 41 43 4F 20 20 32 30 32 32 
-      74.  00:B9B0                      texto_iniciar_blanco:	DB	'                              '
+      74.  00:B9B0                      texto_iniciar_blanco:	DB	' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '
       74.  00:B9B0  20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 
       74.  00:B9C0  20 20 20 20 20 20 20 20 20 20 20 20 20 20 
       75.  00:B9CE                      

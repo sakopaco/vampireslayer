@@ -4,27 +4,27 @@
 
 IF	1=0	; 1=1 versión en español y 1=0 verión en inglés
 ;textos en español
-texto_vidas:		DB	'VIDAS'
+texto_vidas:		DB	'V','I','D','A','S'
 
-texto_energia:		DB	'ENERG.'
+texto_energia:		DB	'E','N','E','R','G','.'
 
-texto_reliquias:	DB	'RELIQ.'
+texto_reliquias:	DB	'R','E','L','I','Q','.'
 
-texto_nivel:		DB	'NIVEL'
+texto_nivel:		DB	'N','I','V','E','L'
 
 texto_entrefases:
-texto_entrefases1:	DB	'  ESPERAS UN MOMENTO EN LAS   '	; 30 caracteres
-texto_entrefases2:	DB  'ESCALERAS MIENTRAS TUS OJOS   '	; 30 caracteres
-texto_entrefases3:	DB  'SE ACOSTUMBRAN A LA OSCURIDAD '	; 30 caracteres
-texto_entrefases4:	DB  'Y EL HORROVR QUE TE ESPERA.   '	; 30 caracteres
+texto_entrefases1:	DB	' ',' ','E','S','P','E','R','A','S',' ','U','N',' ','M','O','M','E','N','T','O',' ','E','N',' ','L','A','S',' ',' ',' '	; 30 caracteres
+texto_entrefases2:	DB  'E','S','C','A','L','E','R','A','S',' ','M','I','E','N','T','R','A','S',' ','T','U','S',' ','O','J','O','S',' ',' ',' '	; 30 caracteres
+texto_entrefases3:	DB  'S','E',' ','A','C','O','S','T','U','M','B','R','A','N','V',' ','A',' ','L','A',' ','O','S','C','U','R','I','D','A','D'	; 30 caracteres
+texto_entrefases4:	DB  'Y',' ','E','L',' ','H','O','R','R','O','V','R',' ','Q','U','E',' ','T','E',' ','E','S','P','E','R','A','.',' ',' ',' '	; 30 caracteres
 
-texto_iniciar:		DB	'   PULSA FUEGO PARA COMENZAR  '	;30 caracteres
+texto_iniciar:		DB	' ',' ',' ','P','U','L','S','A',' ','F','U','E','G','O',' ','P','A','R','A',' ','C','O','M','E','N','Z','A','R',' ',' '	;30 caracteres
 
-texto_vidamenos:	DB 	'VIGILA TUS VIDAS'	;16 caracteres
+texto_vidamenos:	DB 	'V','I','G','I','L','A',' ','T','U','S',' ','V','I','D','A','S'	;16 caracteres
 
-texto_gameover:		DB	'HAS MUERTO'	;10 caracteres
+texto_gameover:		DB	'H','A','S',' ','M','U','E','R','T','O'	;10 caracteres
 
-texto_gameover1A:	DB	'VIVIRAS PARA SIEMPRE COMO UN'	;29 caracteres
+texto_gameover1A:	DB	'V','I','V','I','R','A','S',' ','P','A','R','A',' ','S','I','E','M','P','R','E',' ','C','O','M','O',' ','U','N'	;29 caracteres
 texto_gameover1B:	DB	'ZOMBI. SER ESCLAVO DE DRACULA'	;29 caracteres
 texto_gameover1C:	DB	'        SERA TU FIN.         ' ;29 caracteres
 
@@ -45,33 +45,33 @@ texto_gameover1C:	DB	'        SERA TU FIN.         ' ;29 caracteres
 
 ELSE		
 ;textos en inglés
-texto_vidas:		DB	'LIVES'
+texto_vidas:		DB	'L','I','V','E','S'
 
-texto_energia:		DB	'ENERGY'
+texto_energia:		DB	'E','N','E','R','G','Y'
 
-texto_reliquias:	DB	'RELICS'
+texto_reliquias:	DB	'R','E','L','I','C','S'
 
-texto_nivel:		DB	'LEVEL'
+texto_nivel:		DB	'L','E','V','E','L'
 
 texto_entrefases:
-texto_entrefases1:	DB	'  YOU WAIT FOR A MOMENT ON THE'	; 30 caracteres
-texto_entrefases2:	DB  'STAIRS WHILE YOUR EYES ADJUST '	; 30 caracteres
-texto_entrefases3:	DB  'TO THE DARKNESS AND THE HORROR'	; 30 caracteres
-texto_entrefases4:	DB  'THAT AWAITS YOU.              '	; 30 caracteres
+texto_entrefases1:	DB	' ',' ','Y','O','U',' ','W','A','I','T',' ','F','O','R',' ','A',' ','M','O','M','E','N','T',' ','O','N',' ','T','H','E'	; 30 caracteres
+texto_entrefases2:	DB  'S','T','A','I','R','S',' ','W','H','I','L','E',' ','Y','O','U','R',' ','E','Y','E','S',' ','A','D','J','U','S','T',' '	; 30 caracteres
+texto_entrefases3:	DB  'T','O',' ','T','H','E',' ','D','A','R','K','N','E','S','S',' ','A','N','D',' ','T','H','E',' ','H','O','R','R','O','R'	; 30 caracteres
+texto_entrefases4:	DB  'T','H','A','T',' ','A','W','A','I','T','S',' ','Y','O','U','.',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '	; 30 caracteres
 
-texto_iniciar:		DB	' PUSH TRIGER TO START THE GAME'
+texto_iniciar:		DB	' ','P','U','S','H',' ','T','R','I','G','E','R',' ','T','O',' ','S','T','A','R','T',' ','T','H','E',' ','G','A','M','E'
 
-texto_vidamenos:	DB 	'WATCH YOUR LIVES'	;16 caracteres
+texto_vidamenos:	DB 	'W','A','T','C','H',' ','Y','O','U','R',' ','L','I','V','E','S'	;16 caracteres
 
-texto_gameover:		DB	'GAME OVER '	;10 caracteres
+texto_gameover:		DB	'G','A','M','E',' ','O','V','E','R',' '	;10 caracteres
 
 texto_gameover1A:	DB	' YOU WILL LIVE FOREVER LIKE  '	;29 caracteres
 texto_gameover1B:	DB	'A ZOMBI. BEING DRACULAS SLAVE'	;29 caracteres
 texto_gameover1C:	DB	'        WILL BE YOUR END     ' ;29 caracteres
 ENDIF
 
-texto_autoria:		DB	'SAKOPACO  2022' ; 14 caracteres
-texto_iniciar_blanco:	DB	'                              '
+texto_autoria:		DB	'S','A','K','O','P','A','C','O',' ',' ','2','0','2','2' ; 14 caracteres
+texto_iniciar_blanco:	DB	' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '
 
 
 ;;=====================================================
