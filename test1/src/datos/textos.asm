@@ -59,7 +59,6 @@ texto_iniciar:		DB	' PUSH TRIGER TO START THE GAME'
 texto_vidamenos:	DB 	'WATCH YOUR LIVES'	;16 caracteres
 
 texto_gameover:		DB	'GAME OVER '	;10 caracteres
-
 texto_gameover1A:	DB	' YOU WILL LIVE FOREVER LIKE  '	;29 caracteres
 texto_gameover1B:	DB	'A ZOMBI. BEING DRACULAS SLAVE'	;29 caracteres
 texto_gameover1C:	DB	'        WILL BE YOUR END     ' ;29 caracteres

@@ -185,30 +185,30 @@ pinta_parte_superior_pantalla:
 ;	JP		.fin_carga niveles			;no necesario
 .fin_carga_niveles:
 
-	;cargando banco 1
-	;cargamos los patrones
-	LD		HL, (tiles_patrones)
-	LD		DE, CHRTBL
-	CALL	depack_VRAM
-	;cargamos los colores de los patrones
-	LD		HL, (tiles_colores)
-	LD		DE, CLRTBL
-	CALL	depack_VRAM
+		;cargando banco 1
+		;cargamos los patrones
+		LD		HL, (tiles_patrones)
+		LD		DE, CHRTBL
+		CALL	depack_VRAM
+		;cargamos los colores de los patrones
+		LD		HL, (tiles_colores)
+		LD		DE, CLRTBL
+		CALL	depack_VRAM
 	
-	;cargando banco 2
-	;cargamos los patrones
-	LD		HL, (tiles_patrones)
-	LD		DE, CHRTBL + #0800
-	CALL	depack_VRAM	
-	;cargamos los colores de los patrones
-	LD		HL, (tiles_colores)
-	LD		DE, CLRTBL + #0800
-	CALL	depack_VRAM
+		;cargando banco 2
+		;cargamos los patrones
+		LD		HL, (tiles_patrones)
+		LD		DE, CHRTBL + #0800
+		CALL	depack_VRAM	
+		;cargamos los colores de los patrones
+		LD		HL, (tiles_colores)
+		LD		DE, CLRTBL + #0800
+		CALL	depack_VRAM
 	
-	;cargamos mapa de pantalla banco 1 y 2
-	LD		HL, (tiles_mapa)
-	LD		DE, TILMAP
-	JP		depack_VRAM
+		;cargamos mapa de pantalla banco 1 y 2
+		LD		HL, (tiles_mapa)
+		LD		DE, TILMAP
+		JP		depack_VRAM
 fin_pinta_parte_superior_pantalla:
 ;variables que usa
 ;tiles_patrones:		DW	0
@@ -1072,11 +1072,11 @@ muestra_pantalla_inicial:
 		
 		;cargamos tiles y colores del banco 0
 		;cargamos los patrones
-		LD			HL, tiles_patrones_inicio
+		LD			HL, tiles_patrones_vacio
 		LD			DE, CHRTBL
 		CALL		depack_VRAM
 		;cargamos los colores
-		LD			HL, tiles_color_inicio
+		LD			HL, tiles_color_vacio
 		LD			DE, CLRTBL
 		CALL		depack_VRAM
 		
@@ -1090,7 +1090,7 @@ muestra_pantalla_inicial:
 		LD			DE, CLRTBL + #0800
 		CALL		depack_VRAM
 		
-		;cangando banco 3
+		;cangando banco 2
 		;cargamos los patrones
 		LD			HL,tiles_patrones_marcador
 		LD			DE,CHRTBL + #1000
@@ -1247,17 +1247,17 @@ game_over1:
 
 		CALL		limpia_pantalla_completa
 		
-		;cargando banco 1
+		;cargamos tiles y colores del banco 0
 		;cargamos los patrones
-		LD			HL, tiles_patrones_gameover1_bank0
+		LD			HL, tiles_patrones_vacio
 		LD			DE, CHRTBL
 		CALL		depack_VRAM
-		;cargamos los colores de los patrones
-		LD			HL, tiles_color_gameover1_bank0
+		;cargamos los colores
+		LD			HL, tiles_color_vacio
 		LD			DE, CLRTBL
 		CALL		depack_VRAM
 	
-		;cargando banco 2
+		;cargando banco 1
 		;cargamos los patrones
 		LD			HL, tiles_patrones_gameover1_bank1
 		LD			DE, CHRTBL + #0800
@@ -1272,7 +1272,7 @@ game_over1:
 		LD			DE, TILMAP
 		CALL		depack_VRAM
 
-		;cangando banco 3
+		;cangando banco 2
 		;cargamos los patrones
 		LD			HL,tiles_patrones_marcador
 		LD			DE,CHRTBL + #1000

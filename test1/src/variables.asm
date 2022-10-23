@@ -152,10 +152,10 @@ dracula_muerto:				DB		NO					;equ 0
 ;~ ;;=====================================================
 ;~ ;;VARIABLES TIEMPO
 ;~ ;;=====================================================
-;~ tiempo:
-;~ contador:				DB	0
-;~ segundos:				DB	0
-;~ minutos:					DB	0
+tiempo:
+contador:					DB	0
+segundos:					DB	0
+minutos:					DB	0
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
