@@ -1987,7 +1987,7 @@ fin_check_colisiones_enemigos:
 ;			también sustituye la subrutina de acción por la de muerte
 ;			usa TIEMPO_ESPERA_VISCERA/escena como contador hacia atrás para que desaparezcan las visceras del enemigo
 mata_enemigo:
-		;***********************************************************************
+		;examino si se mató al dracula que activaría el final de juego (finales: muerto, derrumbe de castillo o final bueno)
 		LD			 A, (IX)
 		CP			TIPODRACULA
 		JP			 Z, muere_dracula

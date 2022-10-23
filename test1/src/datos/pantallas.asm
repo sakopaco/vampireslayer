@@ -52,10 +52,10 @@ tiles_patrones_gameover1_bank1:	incbin "pantallas/gameover1.bank1.til.chr.plet5"
 tiles_color_gameover1_bank1:	incbin "pantallas/gameover1.bank1.til.clr.plet5"
 tiles_mapa_gameover1_bank01:	incbin "pantallas/gameover1.map.plet5"
 
-;pantalla de final bueno
-tiles_patrones_finalbueno_bank0:incbin "pantallas/finbueno.bank0.chr.plet5"
-tiles_color_finalbueno_bank0:	incbin "pantallas/finbueno.bank0.clr.plet5"
-tiles_patrones_finalbueno_bank1:incbin "pantallas/finbueno.bank1.chr.plet5"
-tiles_color_finalbueno_bank1:	incbin "pantallas/finbueno.bank1.clr.plet5"
-tiles_mapa_finalbueno_bank01:	incbin "pantallas/finbueno.map.plet5"
+;~ ;pantalla de final bueno
+;~ tiles_patrones_finalbueno_bank0:incbin "pantallas/finbueno.bank0.chr.plet5"
+;~ tiles_color_finalbueno_bank0:	incbin "pantallas/finbueno.bank0.clr.plet5"
+;~ tiles_patrones_finalbueno_bank1:incbin "pantallas/finbueno.bank1.chr.plet5"
+;~ tiles_color_finalbueno_bank1:	incbin "pantallas/finbueno.bank1.clr.plet5"
+;~ tiles_mapa_finalbueno_bank01:	incbin "pantallas/finbueno.map.plet5"
 
