@@ -1143,7 +1143,9 @@ muestra_pantalla_inicial:
 		DJNZ 		.parpadeo
 		
 		;borra pantalla bonito
-		JP			borra_pantalla_inicio
+		CALL		borra_pantalla_inicio
+		
+		JP			inicializa_replayer_efectos_interrupciones
 fin_muestra_pantalla_inicial:
 
 

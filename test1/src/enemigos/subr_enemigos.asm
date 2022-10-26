@@ -507,7 +507,10 @@ inicializa_enemigos_fase0_nivel5:
 fin_inicializa_enemigos_fase0_nivel5:
 		RET
 
-inicializa_enemigos_fase0_niveljefe:	
+inicializa_enemigos_fase0_niveljefe:
+		;primero pone música de jefe fin de fase
+		CALL		musica_jefe
+
 		LD			DE, enemigo1
 		CALL		anade_enemigo_jefelobo
 		LD			IX, enemigo1

@@ -18,10 +18,10 @@ inicializa_replayer_efectos_interrupciones:
 	CALL	PT3_INIT			; Inits PT3 player
 		
 	;inicializacion del reproductor de efectos sonoros
-	LD		HL, sfx_bank
-	CALL	ayFX_SETUP
+	;~ LD		HL, sfx_bank
+	;~ CALL	ayFX_SETUP
 	
-	;Engancha nuestra rutina de servicio al gancha que deja preparado la BIOS cuando se termina de pintar la pantalla (50 o 60 veces por segundo)
+	;Engancha nuestra rutina de servicio al gancho que deja preparado la BIOS cuando se termina de pintar la pantalla (50 o 60 veces por segundo)
 	LD		A, #C3
 	LD		[H.TIMI], A
 	LD		HL, subrutina_isr
@@ -44,11 +44,90 @@ fin_inicializa_replayer_efectos_interrupciones:
 ; salida: 	-
 ; toca: 	HL, A
 subrutina_isr:
-	CALL	PT3_ROUT			;envia los datos a los registros del PSG
-	CALL	PT3_PLAY			;calcula el siguiente 'trocito' de musica que sera enviado al proxima vez
-	JP		ayFX_PLAY			;calcula el siguiente 'trocito' de efecto especial de sonido que sera enviado la proxima vez
+		CALL	PT3_ROUT			;envia los datos a los registros del PSG
+		CALL	PT3_PLAY			;calcula el siguiente 'trocito' de musica que sera enviado al proxima vez
+		JP		ayFX_PLAY			;calcula el siguiente 'trocito' de efecto especial de sonido que sera enviado la proxima vez
 fin_subrutina_isr:
 	;RET
+
+
+
+;;=====================================================
+;;NUESTRA_ISR_OFF
+;;=====================================================	
+; función: 	sustituye la función de la interrupción por una función vacía
+; entrada: 	-
+; salida: 	-
+; toca: 	-
+subrutina_isr_off:
+fin_subrutina_isr_off:
+		RET
+		
+
+;;=====================================================
+;;NUESTRA_ISR_FX
+;;=====================================================	
+; función: 	sustituye la función de la interrupción por una función vacía
+; entrada: 	-
+; salida: 	-
+; toca: 	-
+subrutina_isr_fx:
+		CALL	PT3_ROUT			;envia los datos a los registros del PSG
+		JP		ayFX_PLAY			;calcula el siguiente 'trocito' de efecto especial de sonido que sera enviado la proxima vez
+fin_subrutina_isr_fx:
+
+
+apaga_sonido:
+		DI
+
+		;Engancha nuestra rutina de servicio al gancho que deja preparado la BIOS cuando se termina de pintar la pantalla (50 o 60 veces por segundo)
+		LD			A, #C3
+		LD			[H.TIMI], A
+		LD			HL, subrutina_isr_off
+		LD			[H.TIMI+1], HL
+	
+		EI
+fin_apaga_sonido:
+		RET
+
+
+enciende_sonido:
+		DI
+
+		;Engancha nuestra rutina de servicio al gancho que deja preparado la BIOS cuando se termina de pintar la pantalla (50 o 60 veces por segundo)
+		LD			A, #C3
+		LD			[H.TIMI], A
+		LD			HL, subrutina_isr
+		LD			[H.TIMI+1], HL
+	
+		EI
+fin_enciende_sonido:
+		RET
+
+
+enciende_sonido_solofx:		
+		DI
+
+		;inicializacion del reproductor de efectos sonoros
+		LD		HL, sfx_bank
+		CALL	ayFX_SETUP
+	
+		;Engancha nuestra rutina de servicio al gancho que deja preparado la BIOS cuando se termina de pintar la pantalla (50 o 60 veces por segundo)
+		LD		A, #C3
+		LD		[H.TIMI], A
+		LD		HL, subrutina_isr_fx
+		LD		[H.TIMI+1], HL
+	
+		EI		;optimizacion:
+fin_enciende_sonido_solofx:
+		RET
+
+
+musica_jefe:
+		;múscia de JEFE FIN DE FASE
+		LD			HL, musica_boss-99	; hl <- initial address of module - 99
+		JP			PT3_INIT			; Inits PT3 player
+fin_musica_jefe:
 
 
 ;;=====================================================
@@ -64,12 +143,12 @@ subrutinas_sonido:
 ;;=====================================================		
 song:
 	incbin "ingame7.99"
-	;incbin "empty.99"
 	
 sfx_bank:
 	incbin "sfx.afb"
 	
-;otras melodías
 musica_gameover:
 	incbin "death2.99"
-
+	
+musica_boss:
+	incbin "boss.99"

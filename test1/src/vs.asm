@@ -61,7 +61,8 @@ START:
 
 inicio_juego:
 		;incializacion de replayer con interrupciones
-;		CALL		inicializa_replayer_efectos_interrupciones
+		;CALL		inicializa_replayer_efectos_interrupciones
+		CALL		enciende_sonido_solofx
 	
 pantalla_inicial:
 		CALL		muestra_pantalla_inicial
@@ -128,7 +129,7 @@ fin_programa_principal:
 ;;=====================================================
 ; funcion: inicializa las variables que afectan al prota y dónde empieza la partida
 inicializa_variables_prota:
-		LD		 A, 1;PROTAVIDAS
+		LD		 A, PROTAVIDAS
 		LD		(prota_vidas),A
 
 		LD		 A, PROTARELIQUIAS
@@ -146,10 +147,10 @@ inicializa_variables_prota:
 		;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
 		;será igual la posición inicial en todos los niveles
 	
-		LD		 A, 6; PROTANIVEL
+		LD		 A, PROTANIVEL
 		LD		(prota_nivel), A
 
-		LD		 A, 6; PROTAPOSMAPY
+		LD		 A, 5;PROTAPOSMAPY
 		LD		(prota_pos_mapy), A	
 
 		LD		 A, PROTAPOSMAPX	
