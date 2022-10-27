@@ -401,6 +401,9 @@ fin_inicializa_enemigos_fase6:
 ;;INICIALIZA_ENEMIGOS_FASE0_NIVELX
 ;;=====================================================	
 inicializa_enemigos_fase0_nivel0:
+		;pone música para 
+;		CALL		inicializa_replayer_efectos_interrupciones
+
 		LD			DE, enemigo1
 		CALL		anade_enemigo_cienpies
 		LD			IX, enemigo1
@@ -522,6 +525,9 @@ fin_inicializa_enemigos_fase0_niveljefe:
 ;;INICIALIZA_ENEMIGOS_FASE1_NIVELX
 ;;=====================================================	
 inicializa_enemigos_fase1_nivel0:
+		;pone música para 
+		CALL		inicializa_replayer_efectos_interrupciones
+		
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo1
@@ -627,7 +633,10 @@ inicializa_enemigos_fase1_nivel5:
 		RET
 fin_inicializa_enemigos_fase1_nivel5:
 
-inicializa_enemigos_fase1_niveljefe:	
+inicializa_enemigos_fase1_niveljefe:
+		;primero pone música de jefe fin de fase
+		CALL		musica_jefe
+
 		LD			DE, enemigo1
 		CALL		anade_enemigo_jefemurcielago
 		LD			IX, enemigo1
@@ -639,6 +648,9 @@ fin_inicializa_enemigos_fase1_niveljefe:
 ;;INICIALIZA_ENEMIGOS_FASE2_NIVELX
 ;;=====================================================	
 inicializa_enemigos_fase2_nivel0:
+		;pone música para 
+		CALL		inicializa_replayer_efectos_interrupciones
+		
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo1
@@ -736,7 +748,10 @@ inicializa_enemigos_fase2_nivel5:
 fin_inicializa_enemigos_fase2_nivel5:
 		RET
 
-inicializa_enemigos_fase2_niveljefe:	
+inicializa_enemigos_fase2_niveljefe:
+		;primero pone música de jefe fin de fase
+		CALL		musica_jefe
+
 		LD			DE, enemigo1
 		CALL		anade_enemigo_jefefantasma
 		LD			IX, enemigo1
@@ -748,6 +763,9 @@ fin_inicializa_enemigos_fase2_niveljefe:
 ;;INICIALIZA_ENEMIGOS_FASE3_NIVELX
 ;;=====================================================	
 inicializa_enemigos_fase3_nivel0:
+		;pone música para 
+		CALL		inicializa_replayer_efectos_interrupciones
+		
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
 		LD			IX, enemigo1
@@ -849,7 +867,10 @@ inicializa_enemigos_fase3_nivel5:
 fin_inicializa_enemigos_fase3_nivel5:
 		RET
 
-inicializa_enemigos_fase3_niveljefe:	
+inicializa_enemigos_fase3_niveljefe:
+		;primero pone música de jefe fin de fase
+		CALL		musica_jefe
+		
 		LD			DE, enemigo1
 		CALL		anade_enemigo_jefezombi
 		LD			IX, enemigo1
@@ -861,6 +882,9 @@ fin_inicializa_enemigos_fase3_niveljefe:
 ;;INICIALIZA_ENEMIGOS_FASE4_NIVELX
 ;;=====================================================	
 inicializa_enemigos_fase4_nivel0:
+		;pone música para 
+		CALL		inicializa_replayer_efectos_interrupciones
+		
 		LD			DE, enemigo1
 		CALL		anade_enemigo_murcielago
 		LD			IX, enemigo1
@@ -962,7 +986,10 @@ inicializa_enemigos_fase4_nivel5:
 fin_inicializa_enemigos_fase4_nivel5:
 		RET
 
-inicializa_enemigos_fase4_niveljefe:	
+inicializa_enemigos_fase4_niveljefe:
+		;primero pone música de jefe fin de fase
+		CALL		musica_jefe
+		
 		LD			DE, enemigo1
 		CALL		anade_enemigo_jefecaballero
 		LD			IX, enemigo1
@@ -974,6 +1001,9 @@ fin_inicializa_enemigos_fase4_niveljefe:
 ;;INICIALIZA_ENEMIGOS_FASE5_NIVELX
 ;;=====================================================	
 inicializa_enemigos_fase5_nivel0:
+		;pone música para 
+		CALL		inicializa_replayer_efectos_interrupciones
+		
 		LD			DE, enemigo1
 		CALL		anade_enemigo_magia
 		LD			IX, enemigo1
@@ -1075,7 +1105,10 @@ inicializa_enemigos_fase5_nivel5:
 fin_inicializa_enemigos_fase5_nivel5:
 		RET
 
-inicializa_enemigos_fase5_niveljefe:	
+inicializa_enemigos_fase5_niveljefe:
+		;primero pone música de jefe fin de fase
+		CALL		musica_jefe
+			
 		LD			DE, enemigo1
 		CALL		anade_enemigo_jefebeholder
 		LD			IX, enemigo1
@@ -1087,6 +1120,9 @@ fin_inicializa_enemigos_fase5_niveljefe:
 ;;INICIALIZA_ENEMIGOS_FASE6_NIVELX
 ;;=====================================================	
 inicializa_enemigos_fase6_nivel0:
+		;pone música para 
+		CALL		inicializa_replayer_efectos_interrupciones
+		
 		CALL		carga_patrones_sprites_nivel6_nivel0
 		
 		LD			DE, enemigo1
@@ -1141,6 +1177,9 @@ inicializa_enemigos_fase6_nivel5:
 fin_inicializa_enemigos_fase6_nivel5:
 
 inicializa_enemigos_fase6_nivel6:
+		;primero pone música de jefe fin de fase
+		CALL		musica_jefe
+		
 		CALL		carga_patrones_sprites_nivel6_nivel6
 		
 		LD			DE, enemigo1
@@ -2114,5 +2153,23 @@ fin_accion_enemigo_muerto4:
 
 
 
+;;=====================================================
+;;MUERE_DRACULA
+;;=====================================================
+; funcion: realiza acciones cuando se mata a drácula
+muere_dracula:
+			LD			 A, SI
+			LD			(dracula_muerto), A
+
+;inicializar contador de tiempo
+			XOR			 A
+			LD			(contador), A
+			LD			(segundos), A
+			LD			(minutos),  A
+			
+			;CALL		texto de matar a drácula y que tengas que dar la vuelta ... + OPCIONAL: poner tiles de drácula muerto y la chica
+			
+			JP			pantalla_final_bueno ;// ESTE FINAL NO VA AQUÍ... SÓLO PARA LA BETA... REALMENTE HAY QUE VOLVER... PERO PRIMERO HAY QUE IMPLEMENTAR LA VUELTA
+fin_muere_dracula:
 
 

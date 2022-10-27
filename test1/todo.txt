@@ -13,15 +13,17 @@ TODO A
 
 - controlar lo de vaciar habitaciones
 - crear interrupción vacía para que no salga música
-- final pantalla final del juego (final bueno)
 - repasar todos sonidos (novedades: muerte dura más y música final bueno)
 - que los disparos sean al centro de los enemigos (ajustar)
 - que los disparos a los enemigos de más de un sprite sean de un radio mayor
 - que el prota tenga tiempo límite para salir
 - final malo2 si no le dió tiempo al prota a salir
+
+- poner texto al matar a drácula
+- crear la vuelta y enlazar con final bueno
+
 TODO B
 - crear pantalla game over 2
-- crear pantalla final bueno
 - hacer sprites que faltan
 - crear pantallas de cada nivel
 

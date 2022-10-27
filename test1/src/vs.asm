@@ -172,86 +172,8 @@ fin_inicializa_variables_juego:
 ;;************************************************************************
 
 
-muere_dracula:
-			LD			 A, SI
-			LD			(dracula_muerto), A
-
-;inicializar contador de tiempo
-			XOR			 A
-			LD			(contador), A
-			LD			(segundos), A
-			LD			(minutos),  A
-			
-			JP			pantalla_final_bueno
-fin_muere_dracula:
 
 
-pantalla_final_bueno:
-			;oculta los sprites que haya en pantalla
-			CALL		oculta_todos_sprites
-			
-			;limpiamos la pantalla
-			CALL		limpia_pantalla_completa
-			
-			;cargamos tiles y colores del banco 0
-			;cargamos los patrones
-			LD			HL, tiles_patrones_vacio
-			LD			DE, CHRTBL
-			CALL		depack_VRAM
-			;cargamos los colores
-			LD			HL, tiles_color_vacio
-			LD			DE, CLRTBL
-			CALL		depack_VRAM
-		
-			;cargando banco 2
-			;cargamos los patrones
-			LD			HL, tiles_patrones_finalbueno_bank1
-			LD			DE, CHRTBL + #0800
-			CALL		depack_VRAM	
-			;cargamos los colores de los patrones
-			LD			HL, tiles_color_finalbueno_bank1
-			LD			DE, CLRTBL + #0800
-			CALL		depack_VRAM
-		
-			;cargamos mapa de pantalla banco 1 y 2
-			LD			HL, tiles_mapa_finalbueno_bank01
-			LD			DE, TILMAP
-			CALL		depack_VRAM
-
-			;cangando banco 3
-			;cargamos los patrones
-			LD			HL,tiles_patrones_marcador
-			LD			DE,CHRTBL + #1000
-			CALL		depack_VRAM	
-			;cargamos los colores
-			LD			HL,tiles_color_marcador
-			LD			DE,CLRTBL + #1000
-			CALL		depack_VRAM
-
-			LD			 B, 32;8
-			LD			DE, TILMAP + 512	;destino en vram
-			LD			HL, texto_finalbueno;guardo puntero al array a pintar (como psar por referencia)
-.loop_texto:	
-				PUSH		BC
-				LD			BC, 32				;nº posiciones a pintar
-				CALL		LDIRVM
-				POP			BC
-			DJNZ		.loop_texto
-
-			;múscia de FINAL BUENO ********************************************************************************************
-			LD			HL, PT3_SETUP
-			SET			 0, (HL)
-			LD			HL, musica_gameover-99	; hl <- initial address of module - 99
-			CALL		PT3_INIT			; Inits PT3 player
-
-			CALL		espera_estandar
-			CALL		espera_estandar
-		
-			CALL		limpia_pantalla_completa
-		
-			;ESTO LO TIENE QUE VER FERNANDO PORQUE NO CREO QUE ESTÉ BIEN ... LA PILA TENDRÁ MUCHA BASURA
-			JP			inicio_juego		;##*******************************************************************	
-fin_pantalla_final_bueno:
 
 
 

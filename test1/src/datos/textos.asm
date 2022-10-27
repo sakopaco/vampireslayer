@@ -99,12 +99,14 @@ pinta_texto_vida:
 		JP			LDIRVM
 fin_pinta_texto_vida:
 
+
 pinta_texto_energia:
 		LD			HL, texto_energia	;guardo puntero al array a pintar (como psar por referencia)
 		LD			BC, 6				;nº posiciones a pintar
 		LD			DE, TILMAP + 641	;destino en vram
 		JP			LDIRVM
 fin_pinta_texto_energia:
+
 
 pinta_texto_reliquias:
 		LD			HL, texto_reliquias	;guardo puntero al array a pintar (como psar por referencia)
@@ -113,12 +115,14 @@ pinta_texto_reliquias:
 		JP			LDIRVM
 fin_pinta_texto_reliquias:
 
+
 pinta_texto_nivel:
 		LD			HL, texto_nivel		;guardo puntero al array a pintar (como psar por referencia)
 		LD			BC, 5				;nº posiciones a pintar
 		LD			DE, TILMAP + 626	;destino en vram
 		JP			LDIRVM
 fin_pinta_texto_nivel:
+
 
 pinta_texto_entrefases:
 		LD			HL, texto_entrefases1;guardo puntero al array a pintar (como psar por referencia)
@@ -150,6 +154,7 @@ pinta_textos_inicio_disparo:
 		LD			DE, TILMAP + 32 * 16;destino en vram
 		JP			LDIRVM
 fin_pinta_textos_inicio_disparo:
+
 
 pinta_textos_inicio_disparo_blanco:
 		;pinta texto blanco

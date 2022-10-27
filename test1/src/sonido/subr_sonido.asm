@@ -18,8 +18,8 @@ inicializa_replayer_efectos_interrupciones:
 	CALL	PT3_INIT			; Inits PT3 player
 		
 	;inicializacion del reproductor de efectos sonoros
-	;~ LD		HL, sfx_bank
-	;~ CALL	ayFX_SETUP
+	LD		HL, sfx_bank
+	CALL	ayFX_SETUP
 	
 	;Engancha nuestra rutina de servicio al gancho que deja preparado la BIOS cuando se termina de pintar la pantalla (50 o 60 veces por segundo)
 	LD		A, #C3
@@ -52,16 +52,16 @@ fin_subrutina_isr:
 
 
 
-;;=====================================================
-;;NUESTRA_ISR_OFF
-;;=====================================================	
-; función: 	sustituye la función de la interrupción por una función vacía
-; entrada: 	-
-; salida: 	-
-; toca: 	-
-subrutina_isr_off:
-fin_subrutina_isr_off:
-		RET
+;~ ;;=====================================================
+;~ ;;NUESTRA_ISR_OFF
+;~ ;;=====================================================	
+;~ ; función: 	sustituye la función de la interrupción por una función vacía
+;~ ; entrada: 	-
+;~ ; salida: 	-
+;~ ; toca: 	-
+;~ subrutina_isr_off:
+;~ fin_subrutina_isr_off:
+		;~ RET
 		
 
 ;;=====================================================
@@ -77,32 +77,32 @@ subrutina_isr_fx:
 fin_subrutina_isr_fx:
 
 
-apaga_sonido:
-		DI
+;~ apaga_sonido:
+		;~ DI
 
-		;Engancha nuestra rutina de servicio al gancho que deja preparado la BIOS cuando se termina de pintar la pantalla (50 o 60 veces por segundo)
-		LD			A, #C3
-		LD			[H.TIMI], A
-		LD			HL, subrutina_isr_off
-		LD			[H.TIMI+1], HL
+		;~ ;Engancha nuestra rutina de servicio al gancho que deja preparado la BIOS cuando se termina de pintar la pantalla (50 o 60 veces por segundo)
+		;~ LD			A, #C3
+		;~ LD			[H.TIMI], A
+		;~ LD			HL, subrutina_isr_off
+		;~ LD			[H.TIMI+1], HL
 	
-		EI
-fin_apaga_sonido:
-		RET
+		;~ EI
+;~ fin_apaga_sonido:
+		;~ RET
 
 
-enciende_sonido:
-		DI
+;~ enciende_sonido:
+		;~ DI
 
-		;Engancha nuestra rutina de servicio al gancho que deja preparado la BIOS cuando se termina de pintar la pantalla (50 o 60 veces por segundo)
-		LD			A, #C3
-		LD			[H.TIMI], A
-		LD			HL, subrutina_isr
-		LD			[H.TIMI+1], HL
+		;~ ;Engancha nuestra rutina de servicio al gancho que deja preparado la BIOS cuando se termina de pintar la pantalla (50 o 60 veces por segundo)
+		;~ LD			A, #C3
+		;~ LD			[H.TIMI], A
+		;~ LD			HL, subrutina_isr
+		;~ LD			[H.TIMI+1], HL
 	
-		EI
-fin_enciende_sonido:
-		RET
+		;~ EI
+;~ fin_enciende_sonido:
+		;~ RET
 
 
 enciende_sonido_solofx:		
