@@ -402,7 +402,8 @@ fin_inicializa_enemigos_fase6:
 ;;=====================================================	
 inicializa_enemigos_fase0_nivel0:
 		;pone música para 
-;		CALL		inicializa_replayer_efectos_interrupciones
+		CALL		PT3_INIT
+		CALL		inicializa_replayer_efectos_interrupciones
 
 		LD			DE, enemigo1
 		CALL		anade_enemigo_cienpies
@@ -526,6 +527,7 @@ fin_inicializa_enemigos_fase0_niveljefe:
 ;;=====================================================	
 inicializa_enemigos_fase1_nivel0:
 		;pone música para 
+		CALL		PT3_INIT
 		CALL		inicializa_replayer_efectos_interrupciones
 		
 		LD			DE, enemigo1
@@ -649,6 +651,7 @@ fin_inicializa_enemigos_fase1_niveljefe:
 ;;=====================================================	
 inicializa_enemigos_fase2_nivel0:
 		;pone música para 
+		CALL		PT3_INIT
 		CALL		inicializa_replayer_efectos_interrupciones
 		
 		LD			DE, enemigo1
@@ -750,7 +753,8 @@ fin_inicializa_enemigos_fase2_nivel5:
 
 inicializa_enemigos_fase2_niveljefe:
 		;primero pone música de jefe fin de fase
-		CALL		musica_jefe
+		CALL		PT3_INIT
+		CALL		inicializa_replayer_efectos_interrupciones
 
 		LD			DE, enemigo1
 		CALL		anade_enemigo_jefefantasma
@@ -883,6 +887,7 @@ fin_inicializa_enemigos_fase3_niveljefe:
 ;;=====================================================	
 inicializa_enemigos_fase4_nivel0:
 		;pone música para 
+		CALL		PT3_INIT
 		CALL		inicializa_replayer_efectos_interrupciones
 		
 		LD			DE, enemigo1
@@ -1002,6 +1007,7 @@ fin_inicializa_enemigos_fase4_niveljefe:
 ;;=====================================================	
 inicializa_enemigos_fase5_nivel0:
 		;pone música para 
+		CALL		PT3_INIT
 		CALL		inicializa_replayer_efectos_interrupciones
 		
 		LD			DE, enemigo1
@@ -1121,6 +1127,7 @@ fin_inicializa_enemigos_fase5_niveljefe:
 ;;=====================================================	
 inicializa_enemigos_fase6_nivel0:
 		;pone música para 
+		CALL		PT3_INIT
 		CALL		inicializa_replayer_efectos_interrupciones
 		
 		CALL		carga_patrones_sprites_nivel6_nivel0
@@ -1763,36 +1770,24 @@ enemigo_hace_dano:
 		LD			(prota_energia), A
 		
 		;vida menos?
-		;	NO
-		;		SALIR
+		;	NO -> SALIR
 				RET			NC			;IF VIDA MUERTA
 		;	SI
-		;		quedan vidas?
-					LD			 A, (prota_vidas)
-					DEC			 A
-					JP			 Z, no_quedan_vidas
-					;SI
-						;restovidas
-						LD			(prota_vidas), A
-						;pinto_vidas_actuales
-						CALL		pinta_vidas
-						;pinto mensaje de una vida menos
-						CALL		una_vida_menos
-						;pongo energía al máximo
-						LD			 A, MAXENERGIA
-						LD			(prota_energia), A
-						;SALIR
-						RET
-					;NO
-no_quedan_vidas:
-						;gameover normal (tipo 1)
-						CALL		game_over1
-						;SALIR
-						JP			pantalla_inicial	;***************+ PREGUNTAR FERNANDO SI HABRÍA QUE REINICIAR LA PILA DE ALGUNA FORMA
-					;FINSI
+				LD			 A, (prota_vidas)
+				DEC			 A
+				;restovidas
+				LD			(prota_vidas), A
+				;pinto mensaje de una vida menos
+				CALL		una_vida_menos
+				;pinto_vidas_actuales
+				CALL		pinta_vidas
+				;pongo energía al máximo
+				LD			 A, MAXENERGIA
+				LD			(prota_energia), A
+				;SALIR
+				RET
 		;	FINSI
 fin_enemigo_hace_dano:
-
 
 
 ;;=====================================================

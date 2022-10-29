@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.10.27 - 20:51:11]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.10.29 - 21:15:26]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -209,7 +209,7 @@ Errors: 0
      194.  00:C000                      ;constantes de inicio para el prota
      195.  00:C000  (00:0000)           PROTANIVEL			equ		0			;nivel del castillo donde está 0-6 - los niveles (matrices) son 7 del 0 al 6
      196.  00:C000  (00:0003)           PROTAVIDAS			equ		3
-     197.  00:C000  (00:0007)           PROTARELIQUIAS		equ		7;3
+     197.  00:C000  (00:0003)           PROTARELIQUIAS		equ		3
      198.  00:C000  (00:0003)           PROTAPOSMAPX		equ		3			;pos columna 7 columnas 7: del 0 al 6 ;pos X dentro del nivel (se empieza en 0)
      199.  00:C000  (00:0000)           PROTAPOSMAPY		equ		0			;pos fila los subniveles (filas) son 7 del 0 al 6 ;pos Y dentro del nivel (se empieza en 0)
      200.  00:C000  (00:00F8)           PROTAENERGIA		equ		248			;MAXENERGIA;valor real de la energía
@@ -222,8 +222,8 @@ Errors: 0
      207.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
      208.  00:C000                      ;; CONSTANTES PARA INTERRUPCIONES
      209.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-     210.  00:C000  (00:FD9A)           H.KEYI		equ     	#FD9A
-     211.  00:C000  (00:FD9F)           H.TIMI	 	equ     	#FD9F
+     210.  00:C000  (00:FD9A)           H.KEYI				equ     	#FD9A
+     211.  00:C000  (00:FD9F)           H.TIMI	 			equ     	#FD9F
      212.  00:C000                      
      213.  00:C000                      
      214.  00:C000                      
@@ -1329,7 +1329,7 @@ Errors: 0
 00:00000003 X BASEMAPX
 00:00000000 X PROTANIVEL
 00:00000003 X PROTAVIDAS
-00:00000007 X PROTARELIQUIAS
+00:00000003 X PROTARELIQUIAS
 00:00000003 X PROTAPOSMAPX
 00:00000000 X PROTAPOSMAPY
 00:000000F8 X PROTAENERGIA

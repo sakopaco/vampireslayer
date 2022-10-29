@@ -961,6 +961,10 @@ fin_actualiza_escena_calavera:
 ;;=====================================================	
 ; función: 	pone un texto cada vex que se sube o baja de nivel en el castillo
 cambio_nivel_entrefases:
+		;paro música		
+		CALL		enciende_sonido_solofx
+		CALL		PT3_MUTE
+
 		CALL		borra_mapa
 
 		;Ocultamos todos los sprites
@@ -989,6 +993,8 @@ cambio_nivel_entrefases:
 		CALL		pinta_texto_entrefases
 
 		CALL		espera_estandar
+		
+		JP			inicializa_replayer_efectos_interrupciones
 		
 		;este texto es por si quito la espera estandar por pulsar fuego
 ;~ .mientras_nopulsado:
@@ -1125,16 +1131,16 @@ muestra_pantalla_inicial:
 		CALL		ayFX_INIT
 		
 		;parpadeo del texto
-		LD			 B,10
+		LD			 B,7
 .parpadeo:		
 		PUSH		BC
 
-		LD 			BC, 9000
+		LD 			BC, 8000
 		CALL		retardo16bits
 		
 		CALL		pinta_textos_inicio_disparo_blanco
 		
-		LD 			BC, 9000
+		LD 			BC, 8000
 		CALL		retardo16bits
 		
 		CALL		pinta_textos_inicio_disparo
@@ -1202,25 +1208,43 @@ fin_oculta_tile_vida0:
 ;;=====================================================
 ; funcion: muestra mensaje cuando te matan una vida
 una_vida_menos;
-		;vacia vida (el nivel mínimo lo pone en negro)
-		CALL		oculta_tile_energia_minima
+		;paro música		
+		CALL		enciende_sonido_solofx
+		CALL		PT3_MUTE
 		
-		;oculta los sprites que haya en pantalla
-		CALL		oculta_todos_sprites
+		LD			 A, (prota_vidas)
+		OR			 A
+		JP			NZ, quedan_vidas
+no_quedan_vidas:
+			;gameover normal (tipo 1)
+			CALL		game_over1
 
-		;limpia superior pantalla
-		CALL		limpia_pantalla_superior
+			;SALIR
+			JP			pantalla_inicial	;***************+ PREGUNTAR FERNANDO SI HABRÍA QUE REINICIAR LA PILA DE ALGUNA FORMA
+quedan_vidas:
+			;vacia vida (el nivel mínimo lo pone en negro)
+			CALL		oculta_tile_energia_minima
 		
-		LD			HL, texto_vidamenos;guardo puntero al array a pintar (como psar por referencia)
-		LD			BC, 16				;nº posiciones a pintar
-		LD			DE, TILMAP + 200	;destino en vram
-		CALL		LDIRVM
+			;oculta los sprites que haya en pantalla
+			CALL		oculta_todos_sprites
 
-		CALL		espera_estandar
+			;limpia superior pantalla
+			CALL		limpia_pantalla_superior
 		
-		;repinto la pantalla y las puertas que correspondan
-		CALL		pinta_parte_superior_pantalla
-		JP			pinta_puertas
+			LD			HL, texto_vidamenos ;guardo puntero al array a pintar (como psar por referencia)
+			LD			BC, 16				;nº posiciones a pintar
+			LD			DE, TILMAP + 200	;destino en vram
+			CALL		LDIRVM
+
+			CALL		espera_estandar
+			
+			;repinto la pantalla y las puertas que correspondan
+			CALL		pinta_parte_superior_pantalla
+			CALL		pinta_puertas
+			
+			;repongo la música y efectos
+			CALL		PT3_INIT
+			JP			inicializa_replayer_efectos_interrupciones
 fin_una_vida_menos:
 
 
