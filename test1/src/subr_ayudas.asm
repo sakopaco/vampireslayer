@@ -240,9 +240,9 @@ fin_pinta_obj_ayuda:
 ; entrada: 	habitacion_extras
 ; salida: 	-
 pinta_ayudas_habitacion:
-	LD		 A, (hay_ayudas_en_pantalla)
-	OR		 A
-	RET		 Z							;0 ya no hay ayudas activas (se actualiza cuando se usa la ayuda)
+	;~ LD		 A, (hay_ayudas_en_pantalla)
+	;~ OR		 A
+	;~ RET		 Z							;0 ya no hay ayudas activas (se actualiza cuando se usa la ayuda)
 	
 .examina_oracion:
 	LD		 A, (habitacion_extras)
@@ -255,7 +255,7 @@ pinta_ayudas_habitacion:
 	LD		 A, ACTIVA
 	LD		(IX), A						;si lo pinta activo pone el bit a 1 por si el último lo puso a 0
 	CALL	pinta_obj_ayuda
-	JP		fin_pinta_ayudas_habitacion
+	RET
 .fin_examina_oracion:
 
 .examina_cruz:
@@ -269,7 +269,7 @@ pinta_ayudas_habitacion:
 	LD		 A, ACTIVA
 	LD		(IX), A						;si lo pinta activo pone el bit a 1 por si el último lo puso a 0
 	CALL	pinta_obj_ayuda
-	JP		fin_pinta_ayudas_habitacion
+	RET
 .fin_examina_cruz:
 
 .examina_aguabendita:
@@ -283,7 +283,7 @@ pinta_ayudas_habitacion:
 	LD		 A, ACTIVA
 	LD		(IX), A						;si lo pinta activo pone el bit a 1 por si el último lo puso a 0
 	CALL	pinta_obj_ayuda
-	JP		fin_pinta_ayudas_habitacion
+	RET
 .fin_examina_aguabendita:
 
 .examina_armadura:
@@ -297,7 +297,7 @@ pinta_ayudas_habitacion:
 	LD		 A, ACTIVA
 	LD		(IX), A						;si lo pinta activo pone el bit a 1 por si el último lo puso a 0
 	CALL	pinta_obj_ayuda
-	JP		fin_pinta_ayudas_habitacion
+	RET
 .fin_examina_armadura:
 
 .examina_planta:
@@ -311,7 +311,7 @@ pinta_ayudas_habitacion:
 	LD		 A, ACTIVA
 	LD		(IX), A						;si lo pinta activo pone el bit a 1 por si el último lo puso a 0
 	CALL	pinta_obj_ayuda
-	JP		fin_pinta_ayudas_habitacion
+	RET
 .fin_examina_planta:
 
 .examina_vidaextra:
@@ -325,7 +325,7 @@ pinta_ayudas_habitacion:
 	LD		 A, ACTIVA
 	LD		(IX), A						;si lo pinta activo pone el bit a 1 por si el último lo puso a 0
 	CALL	pinta_obj_ayuda
-	JP		fin_pinta_ayudas_habitacion
+	RET
 .fin_examina_vidaextra:
 
 .examina_ballesta:
@@ -338,11 +338,11 @@ pinta_ayudas_habitacion:
 	LD		(puntero_ayuda_actual), IX
 	LD		 A, ACTIVA
 	LD		(IX), A						;si lo pinta activo pone el bit a 1 por si el último lo puso a 0
-	JP		pinta_obj_ayuda
-.fin_examina_ballesta:
-
-fin_pinta_ayudas_habitacion:
+	CALL	pinta_obj_ayuda
 	RET
+.fin_examina_ballesta:
+fin_pinta_ayudas_habitacion:
+
 
 
 ;;=====================================================
@@ -363,6 +363,13 @@ check_colision_ayudas:
 		OR		 0						;hubo colisión?
 		RET		 Z						;no hubo colisión por lo que sale
 		;hubo colisión
+
+		;sonido dispara ayuda
+		LD		 A, SONIDORELIQUIA		;5
+		CALL	ayFX_INIT	
+		LD		BC, 20000
+		CALL 	retardo16bits
+		
 		;EJECUTA ACCIÓN Y SALE DE LA RUTINA	
 		LD		HL, fin_check_colision_ayudas ;se guarda dónde volver
 		PUSH	HL
@@ -652,3 +659,4 @@ accion_ballesta:
 		LD		(IX), A
 		JP		pinta_obj_ayuda			;se le pasa A = 0 para que pinte desactivado
 fin_accion_ballesta:
+

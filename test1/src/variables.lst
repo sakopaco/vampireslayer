@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.10.29 - 21:15:26]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.10.30 - 20:46:16]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -141,92 +141,100 @@ Errors: 0
      126.  00:C000  (00:0002)           ALTOAYUDA			equ		#02
      127.  00:C000  (00:0002)           ANCHOAYUDA			equ		#02
      128.  00:C000                      
-     129.  00:C000                      ;; RADIOS DE DISPARO
-     130.  00:C000  (00:0008)           RADIOAYUDAX 		equ		#08
-     131.  00:C000  (00:0008)           RADIOAYUDAY 		equ		#08
-     132.  00:C000                      
-     133.  00:C000                      ;;POSICIÓN INICIAL DEL SPRITE DEL PUNTO DE MIRA
-     134.  00:C000  (00:0078)           POSXPM				equ		120
-     135.  00:C000  (00:006C)           POSYPM				equ		108
-     136.  00:C000                      
-     137.  00:C000                      ;;ESTADO HABITACION
-     138.  00:C000  (00:0001)           ISHABTERMIN			equ		1 	;0 sería no terminada
+     129.  00:C000                      ;; RETARDO TIEMPO QUE PARA EL JUEGO POR TIRAR UNA RELIQUIA
+     130.  00:C000  (00:07D0)           RETARDOREL			equ		2000
+     131.  00:C000                      
+     132.  00:C000                      ;; RADIOS DE DISPARO
+     133.  00:C000  (00:0008)           RADIOAYUDAX 		equ		#08
+     134.  00:C000  (00:0008)           RADIOAYUDAY 		equ		#08
+     135.  00:C000                      
+     136.  00:C000                      ;;POSICIÓN INICIAL DEL SPRITE DEL PUNTO DE MIRA
+     137.  00:C000  (00:0078)           POSXPM				equ		120
+     138.  00:C000  (00:006C)           POSYPM				equ		108
      139.  00:C000                      
-     140.  00:C000                      ;;ETIQUETAS PARA PUNTO DE MIRA
-     141.  00:C000  (00:0004)           LIMCADENCIA 		equ		4	;nº de veces que se ejecutará el disparo antes de ejecutar un disparo real (porque cuando se pulsa la tecl dispara 3 ó 4 veces de rápido que va)
-     142.  00:C000  (00:0000)           SPRI_DANO1A 		equ		0	;posiciones de los sprites en memoria (va de 4 en 4 al tratarse de sprites de 16 x 16)
-     143.  00:C000  (00:0004)           SPRI_DANO1B 		equ		4
-     144.  00:C000  (00:0008)           SPRI_DANO2A 		equ		8
-     145.  00:C000  (00:000C)           SPRI_DANO2B 		equ		12
-     146.  00:C000                      
-     147.  00:C000                      ;;POSICIONES DE LAS ANTORCHAS
-     148.  00:C000  (00:0088)           POSANTOR1			equ		136
-     149.  00:C000  (00:0097)           POSANTOR2			equ		151
-     150.  00:C000  (00:00C4)           MAPLLAMA1			equ		196
-     151.  00:C000  (00:00C5)           MAPLLAMA2			equ		197
-     152.  00:C000  (00:00FF)           RESETLLAMA			equ		255
-     153.  00:C000                      
-     154.  00:C000                      ;;POSICIONES DE LOS ESQUELETOS
-     155.  00:C000  (00:0088)           POSESQUEL1			equ		136
-     156.  00:C000  (00:0095)           POSESQUEL2			equ		149
-     157.  00:C000  (00:00A9)           POSCALAVE1			equ		169
-     158.  00:C000  (00:00B6)           POSCALAVE2			equ		182
-     159.  00:C000  (00:0019)           RESETESQUEL			equ		25
-     160.  00:C000  (00:0004)           RESETESCENAESQUEL 	equ		4	;hay 4 caras con las que el esqueleto cambia (se ha metido el 0 para facilitar código)
-     161.  00:C000                      
-     162.  00:C000                      ;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (relacionadas con posiciones en en el banco de memoria)
-     163.  00:C000  (00:0013)           TILEPROTAM  		equ		19		;tile del prota para pintar en mapa
-     164.  00:C000  (00:0009)           TILEGRISM			equ		9		;tile gris que representa vacio (por donde el prota va pasando)
-     165.  00:C000  (00:0010)           TILEMAPROJO 		equ		16
-     166.  00:C000  (00:000F)           TILEMAPAMAR 		equ		15
-     167.  00:C000  (00:000E)           TILEMAPVERD 		equ		14
-     168.  00:C000                      
-     169.  00:C000                      ;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (generales)
-     170.  00:C000  (00:0008)           NMAXVIDREL			equ		8		;el número máximo de vidas y de reliquias es de 8
-     171.  00:C000  (00:0007)           NHABNIVEL			equ		7
-     172.  00:C000  (00:00F8)           MAXENERGIA  		equ		248
-     173.  00:C000  (00:00D9)           TILEENERG8  		equ		217
-     174.  00:C000  (00:00BA)           TILEENERG7  		equ		186
-     175.  00:C000  (00:009B)           TILEENERG6  		equ		155
-     176.  00:C000  (00:007C)           TILEENERG5  		equ		124
-     177.  00:C000  (00:005D)           TILEENERG4  		equ		93
-     178.  00:C000  (00:003E)           TILEENERG3  		equ		62
-     179.  00:C000  (00:001F)           TILEENERG2  		equ		31
-     180.  00:C000  (00:0288)           TILEENERG1			equ 	648
-     181.  00:C000  (00:0000)           TILENEGRO			equ		0
-     182.  00:C000  (00:0248)           TILEVIDA1			equ 	584
-     183.  00:C000                      
-     184.  00:C000                      ;limites
-     185.  00:C000  (00:0000)           LIMPANTIZQ  		equ		0
-     186.  00:C000  (00:00FF)           LIMPANTDER 			equ		255
-     187.  00:C000  (00:0000)           LIMPANTARR 			equ		0
-     188.  00:C000  (00:0080)           LIMPANTABA  		equ		128
-     189.  00:C000                      
-     190.  00:C000                      ;matriz de 7x7 empieza en 0, y fila y x col, cuento desde esquina sup izq
-     191.  00:C000  (00:0006)           BASEMAPY			equ		6
-     192.  00:C000  (00:0003)           BASEMAPX			equ		3
-     193.  00:C000                      
-     194.  00:C000                      ;constantes de inicio para el prota
-     195.  00:C000  (00:0000)           PROTANIVEL			equ		0			;nivel del castillo donde está 0-6 - los niveles (matrices) son 7 del 0 al 6
-     196.  00:C000  (00:0003)           PROTAVIDAS			equ		3
-     197.  00:C000  (00:0003)           PROTARELIQUIAS		equ		3
-     198.  00:C000  (00:0003)           PROTAPOSMAPX		equ		3			;pos columna 7 columnas 7: del 0 al 6 ;pos X dentro del nivel (se empieza en 0)
-     199.  00:C000  (00:0000)           PROTAPOSMAPY		equ		0			;pos fila los subniveles (filas) son 7 del 0 al 6 ;pos Y dentro del nivel (se empieza en 0)
-     200.  00:C000  (00:00F8)           PROTAENERGIA		equ		248			;MAXENERGIA;valor real de la energía
-     201.  00:C000  (00:0000)           PROTAENERGIABYTEBAJO equ	0			;cuando se llene este es cuando se pierde prota_energí
-     202.  00:C000  (00:0003)           PROTADANO1			equ		3			;daño del punto de mira
-     203.  00:C000  (00:0006)           PROTADANO2			equ		6			;daño del punto de mira cuando se tiene la ayuda
-     204.  00:C000  (00:0019)           PROTADANORELIQUIA	equ		25			;daño del punto de mira cuando se tiene la ayuda
-     205.  00:C000                      
-     206.  00:C000                      
-     207.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-     208.  00:C000                      ;; CONSTANTES PARA INTERRUPCIONES
-     209.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-     210.  00:C000  (00:FD9A)           H.KEYI				equ     	#FD9A
-     211.  00:C000  (00:FD9F)           H.TIMI	 			equ     	#FD9F
-     212.  00:C000                      
-     213.  00:C000                      
+     140.  00:C000                      ;;ESTADO HABITACION
+     141.  00:C000  (00:0001)           ISHABTERMIN			equ		1 	;0 sería no terminada
+     142.  00:C000                      
+     143.  00:C000                      ;;ETIQUETAS PARA PUNTO DE MIRA
+     144.  00:C000  (00:0004)           LIMCADENCIA 		equ		4	;nº de veces que se ejecutará el disparo antes de ejecutar un disparo real (porque cuando se pulsa la tecl dispara 3 ó 4 veces de rápido que va)
+     145.  00:C000  (00:0000)           SPRI_DANO1A 		equ		0	;posiciones de los sprites en memoria (va de 4 en 4 al tratarse de sprites de 16 x 16)
+     146.  00:C000  (00:0004)           SPRI_DANO1B 		equ		4
+     147.  00:C000  (00:0008)           SPRI_DANO2A 		equ		8
+     148.  00:C000  (00:000C)           SPRI_DANO2B 		equ		12
+     149.  00:C000                      
+     150.  00:C000                      ;;POSICIONES DE LAS ANTORCHAS
+     151.  00:C000  (00:0088)           POSANTOR1			equ		136
+     152.  00:C000  (00:0097)           POSANTOR2			equ		151
+     153.  00:C000  (00:00C4)           MAPLLAMA1			equ		196
+     154.  00:C000  (00:00C5)           MAPLLAMA2			equ		197
+     155.  00:C000  (00:00FF)           RESETLLAMA			equ		255
+     156.  00:C000                      
+     157.  00:C000                      ;;POSICIONES DE LOS ESQUELETOS
+     158.  00:C000  (00:0088)           POSESQUEL1			equ		136
+     159.  00:C000  (00:0095)           POSESQUEL2			equ		149
+     160.  00:C000  (00:00A9)           POSCALAVE1			equ		169
+     161.  00:C000  (00:00B6)           POSCALAVE2			equ		182
+     162.  00:C000  (00:0019)           RESETESQUEL			equ		25
+     163.  00:C000  (00:0004)           RESETESCENAESQUEL 	equ		4	;hay 4 caras con las que el esqueleto cambia (se ha metido el 0 para facilitar código)
+     164.  00:C000                      
+     165.  00:C000                      ;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (relacionadas con posiciones en en el banco de memoria)
+     166.  00:C000  (00:0013)           TILEPROTAM  		equ		19		;tile del prota para pintar en mapa
+     167.  00:C000  (00:0009)           TILEGRISM			equ		9		;tile gris que representa vacio (por donde el prota va pasando)
+     168.  00:C000  (00:0010)           TILEMAPROJO 		equ		16
+     169.  00:C000  (00:000F)           TILEMAPAMAR 		equ		15
+     170.  00:C000  (00:000E)           TILEMAPVERD 		equ		14
+     171.  00:C000                      
+     172.  00:C000                      ;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (generales)
+     173.  00:C000  (00:0008)           NMAXVIDREL			equ		8		;el número máximo de vidas y de reliquias es de 8
+     174.  00:C000  (00:0007)           NHABNIVEL			equ		7
+     175.  00:C000  (00:00F8)           MAXENERGIA  		equ		248
+     176.  00:C000  (00:00D9)           TILEENERG8  		equ		217
+     177.  00:C000  (00:00BA)           TILEENERG7  		equ		186
+     178.  00:C000  (00:009B)           TILEENERG6  		equ		155
+     179.  00:C000  (00:007C)           TILEENERG5  		equ		124
+     180.  00:C000  (00:005D)           TILEENERG4  		equ		93
+     181.  00:C000  (00:003E)           TILEENERG3  		equ		62
+     182.  00:C000  (00:001F)           TILEENERG2  		equ		31
+     183.  00:C000  (00:0288)           TILEENERG1			equ 	648
+     184.  00:C000  (00:0000)           TILENEGRO			equ		0
+     185.  00:C000  (00:0248)           TILEVIDA1			equ 	584
+     186.  00:C000                      
+     187.  00:C000                      ;limites
+     188.  00:C000  (00:0000)           LIMPANTIZQ  		equ		0
+     189.  00:C000  (00:00FF)           LIMPANTDER 			equ		255
+     190.  00:C000  (00:0000)           LIMPANTARR 			equ		0
+     191.  00:C000  (00:0080)           LIMPANTABA  		equ		128
+     192.  00:C000                      
+     193.  00:C000                      ;matriz de 7x7 empieza en 0, y fila y x col, cuento desde esquina sup izq
+     194.  00:C000  (00:0006)           BASEMAPY			equ		6
+     195.  00:C000  (00:0003)           BASEMAPX			equ		3
+     196.  00:C000                      
+     197.  00:C000                      ;; CONSTANTES DE INICIO PARA EL PROTA
+     198.  00:C000  (00:0000)           PROTANIVEL			equ		0			;nivel del castillo donde está 0-6 - los niveles (matrices) son 7 del 0 al 6
+     199.  00:C000  (00:0003)           PROTAVIDAS			equ		3
+     200.  00:C000  (00:0003)           PROTARELIQUIAS		equ		3
+     201.  00:C000  (00:0003)           PROTAPOSMAPX		equ		3			;pos columna 7 columnas 7: del 0 al 6 ;pos X dentro del nivel (se empieza en 0)
+     202.  00:C000  (00:0000)           PROTAPOSMAPY		equ		0			;pos fila los subniveles (filas) son 7 del 0 al 6 ;pos Y dentro del nivel (se empieza en 0)
+     203.  00:C000  (00:00F8)           PROTAENERGIA		equ		248			;MAXENERGIA;valor real de la energía
+     204.  00:C000  (00:0000)           PROTAENERGIABYTEBAJO equ	0			;cuando se llene este es cuando se pierde prota_energí
+     205.  00:C000  (00:0003)           PROTADANO1			equ		3			;daño del punto de mira
+     206.  00:C000  (00:0006)           PROTADANO2			equ		6			;daño del punto de mira cuando se tiene la ayuda
+     207.  00:C000  (00:0019)           PROTADANORELIQUIA	equ		25			;daño del punto de mira cuando se tiene la ayuda
+     208.  00:C000                      
+     209.  00:C000                      ;;CONTANTES PARA SONIDO
+     210.  00:C000  (00:0005)           SONIDORELIQUIA		equ		5
+     211.  00:C000  (00:0004)           SONIDOINICIO		equ		4
+     212.  00:C000  (00:0002)           SONIDOBOMBA			equ		2
+     213.  00:C000  (00:0001)           SONIDODISPARO		equ		1
      214.  00:C000                      
+     215.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     216.  00:C000                      ;; CONSTANTES PARA INTERRUPCIONES
+     217.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     218.  00:C000  (00:FD9A)           H.KEYI				equ     	#FD9A
+     219.  00:C000  (00:FD9F)           H.TIMI	 			equ     	#FD9F
+     220.  00:C000                      
+     221.  00:C000                      
+     222.  00:C000                      
       11   00:C000                      include "constantesyvariables/constantesenemigos.asm"
        1.  00:C000                      ;;=====================================================
        2.  00:C000                      ;; FICHERO constantesenemigos.asm
@@ -1282,6 +1290,7 @@ Errors: 0
 00:00000058 X POSBALLESTAY
 00:00000002 X ALTOAYUDA
 00:00000002 X ANCHOAYUDA
+00:000007D0 X RETARDOREL
 00:00000008 X RADIOAYUDAX
 00:00000008 X RADIOAYUDAY
 00:00000078 X POSXPM
@@ -1337,6 +1346,10 @@ Errors: 0
 00:00000003   PROTADANO1
 00:00000006 X PROTADANO2
 00:00000019 X PROTADANORELIQUIA
+00:00000005 X SONIDORELIQUIA
+00:00000004 X SONIDOINICIO
+00:00000002 X SONIDOBOMBA
+00:00000001 X SONIDODISPARO
 00:0000FD9A X H.KEYI
 00:0000FD9F X H.TIMI
 00:00000000 X INACTIVA

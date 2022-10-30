@@ -1,18 +1,11 @@
 BUGS
+- que la música principal suene en bucle (parece que tras varios bucles se corta)
 - cuando se mate al drácula o a una de sus manos que no salga el sprite arriba
-- que aparezcan las ayudas
 - Revisar que el enemigo jefe se ponga en rojo al quedarle poca energía
 
 TODO A
-
-* poner todas las músicas
-* el tiempo del gameover bueno debe durar más
-* poner las músicas de los enemigos finales
-* intertar de nuevo la música empty
-
-
+- controlar que el disparo normal y avanzado puedan itercalarse correctamente y que el avanzado sólo dure 5 pantallas
 - controlar lo de vaciar habitaciones
-- crear interrupción vacía para que no salga música
 - repasar todos sonidos (novedades: muerte dura más y música final bueno)
 - que los disparos sean al centro de los enemigos (ajustar)
 - que los disparos a los enemigos de más de un sprite sean de un radio mayor
@@ -20,10 +13,11 @@ TODO A
 - final malo2 si no le dió tiempo al prota a salir
 
 - poner texto al matar a drácula
+- poner sprites al matar a drácula
 - crear la vuelta y enlazar con final bueno
 
 TODO B
-- crear pantalla game over 2
+- crear pantalla game over 2 (modificar gameover 1 con nuevo texto)
 - hacer sprites que faltan
 - crear pantallas de cada nivel
 

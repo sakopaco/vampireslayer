@@ -126,6 +126,9 @@ POSBALLESTAY 		equ		#58;88
 ALTOAYUDA			equ		#02
 ANCHOAYUDA			equ		#02
 
+;; RETARDO TIEMPO QUE PARA EL JUEGO POR TIRAR UNA RELIQUIA
+RETARDOREL			equ		2000
+
 ;; RADIOS DE DISPARO
 RADIOAYUDAX 		equ		#08
 RADIOAYUDAY 		equ		#08
@@ -191,7 +194,7 @@ LIMPANTABA  		equ		128
 BASEMAPY			equ		6
 BASEMAPX			equ		3
 
-;constantes de inicio para el prota
+;; CONSTANTES DE INICIO PARA EL PROTA
 PROTANIVEL			equ		0			;nivel del castillo donde está 0-6 - los niveles (matrices) son 7 del 0 al 6
 PROTAVIDAS			equ		3
 PROTARELIQUIAS		equ		3
@@ -203,6 +206,11 @@ PROTADANO1			equ		3			;daño del punto de mira
 PROTADANO2			equ		6			;daño del punto de mira cuando se tiene la ayuda
 PROTADANORELIQUIA	equ		25			;daño del punto de mira cuando se tiene la ayuda
 
+;;CONTANTES PARA SONIDO
+SONIDORELIQUIA		equ		5
+SONIDOINICIO		equ		4
+SONIDOBOMBA			equ		2
+SONIDODISPARO		equ		1
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; CONSTANTES PARA INTERRUPCIONES

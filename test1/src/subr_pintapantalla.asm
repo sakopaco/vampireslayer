@@ -567,22 +567,13 @@ fin_posiciona_en_mapa:
 ; salida: 	-
 ; toca: 	todo
 efecto_imagen_tira_reliquia:
-	LD		 A, 20;RETARDOREL
-	LD		 B, A
-
 .parpadea_fondo:
 	PUSH	BC
 	LD		HL, color_bomba1
 	CALL	color_pantalla
 	
-	;~ PUSH	BC
-	;~ LD		 A, 255
-	;~ LD		 B, A
-;~ .bucle_de_espera:
-	;~ NOP
-	;~ DJNZ	 .bucle_de_espera
-	;~ POP		BC
-	HALT
+	LD		BC, RETARDOREL
+	CALL	retardo16bits
 
 	LD		HL, color_bomba2
 	CALL	color_pantalla
@@ -1126,7 +1117,7 @@ muestra_pantalla_inicial:
 		JP			 Z, .mientras_nopulsado	;si A=0 no se pulsó ni disparo ni botón
 		
 		;ejecuto sonido
-		LD			 A, 4
+		LD			 A, SONIDOINICIO	;4
 		LD			 C, 1
 		CALL		ayFX_INIT
 		

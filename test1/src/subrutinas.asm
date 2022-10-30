@@ -467,13 +467,15 @@ entra_habitacion:
 .mira_nivel6:
 		CALL		inicializa_enemigos_fase6
 .fin_mira_nivel:
-		CALL		pinta_ayudas_habitacion
+		
 
 ;~ pinta_habitacion_comun:	;(haya o no enemigos)
 
 		CALL		pinta_parte_superior_pantalla
 		CALL		pinta_puertas
 		CALL		pinta_extra_fondo
+		
+		CALL		pinta_ayudas_habitacion
 		
 		JP			pinta_heroe_mapa
 fin_entra_habitacion:

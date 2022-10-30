@@ -65,7 +65,7 @@ accion_boton1:
 		LD			(IX + ESTRUCTURA_PUNTOMIRA.cadencia), A		;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 		
 		;ejecuto sonido						;; ajustar cadencia y que cuando el disparo sea efectivo se reseteen los colores
-		LD			 A, 3
+		LD			 A, SONIDODISPARO	;1
 		LD			 C, 1
 		CALL		ayFX_INIT
 			
@@ -90,8 +90,7 @@ accion_boton2:
 		DEC		 A
 		LD		(prota_reliquias), A
 	
-		LD			 A, 2
-		LD			 C, 1
+		LD			 A, SONIDOBOMBA		;2
 		CALL		ayFX_INIT
 	
 		CALL 	efecto_imagen_tira_reliquia
