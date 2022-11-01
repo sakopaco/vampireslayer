@@ -2027,7 +2027,7 @@ mata_enemigo:
 		;examino si se mató al dracula que activaría el final de juego (finales: muerto, derrumbe de castillo o final bueno)
 		LD			 A, (IX)
 		CP			TIPODRACULA
-		JP			 Z, muere_dracula
+		JP			 Z, accion_mata_dracula
 
 		LD			 A, (IX);guardo el tipo que me hará falta más tarde
 		LD			(IX), 1													;se pone tipo a enemigo muerto
@@ -2145,26 +2145,5 @@ accion_enemigo_muerto4:
 			LD			(IX), 0
 		RET
 fin_accion_enemigo_muerto4:
-
-
-
-;;=====================================================
-;;MUERE_DRACULA
-;;=====================================================
-; funcion: realiza acciones cuando se mata a drácula
-muere_dracula:
-			LD			 A, SI
-			LD			(dracula_muerto), A
-
-;inicializar contador de tiempo
-			XOR			 A
-			LD			(contador), A
-			LD			(segundos), A
-			LD			(minutos),  A
-			
-			;CALL		texto de matar a drácula y que tengas que dar la vuelta ... + OPCIONAL: poner tiles de drácula muerto y la chica
-			
-			JP			pantalla_final_bueno ;// ESTE FINAL NO VA AQUÍ... SÓLO PARA LA BETA... REALMENTE HAY QUE VOLVER... PERO PRIMERO HAY QUE IMPLEMENTAR LA VUELTA
-fin_muere_dracula:
 
 

@@ -147,7 +147,7 @@ inicializa_variables_prota:
 		;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
 		;será igual la posición inicial en todos los niveles
 	
-		LD		 A, PROTANIVEL
+		LD		 A, 6;PROTANIVEL
 		LD		(prota_nivel), A
 
 		LD		 A, PROTAPOSMAPY
@@ -172,7 +172,66 @@ fin_inicializa_variables_juego:
 ;;************************************************************************
 
 
+;;=====================================================
+;;CAMBIO_NIVEL_ENTREFASES
+;;=====================================================	
+; función: 	pone un texto cada vex que se sube o baja de nivel en el castillo
+accion_mata_dracula:
+		LD			IX, enemigo1
+		LD			 A, (IX);guardo el tipo que me hará falta más tarde
+		LD			(IX), 0			
+		
+		;Ocultamos todos los sprites
+		CALL		oculta_todos_sprites
+		CALL		render_sprites
 
+		
+										;se pone tipo a enemigo muerto
+
+		
+		;~ ;esto es necesario para enemigos de más de un sprite
+		;~ LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), SPRI_BLANCO	;se setean los sprites de las visceras
+		;~ LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), SPRI_BLANCO	;se setean los sprites de las visceras
+		;~ LD			(IX + ESTRUCTURA_ENEMIGO.sprite_c), SPRI_BLANCO	;se setean los sprites de las visceras
+		;~ LD			(IX + ESTRUCTURA_ENEMIGO.sprite_d), SPRI_BLANCO	;se setean los sprites de las visceras
+
+
+		;paro música		
+		CALL		enciende_sonido_solofx
+
+		CALL		borra_mapa
+
+
+		
+		;activo variable drácula muerto		
+		LD			 A, SI
+		LD			(dracula_muerto), A
+
+;inicializar contador de tiempo
+		XOR			 A
+		LD			(contador), A
+		LD			(segundos), A
+		LD			(minutos),  A
+		
+			
+		;JP			pantalla_final_bueno ;// ESTE FINAL NO VA AQUÍ... SÓLO PARA LA BETA... REALMENTE HAY QUE VOLVER... PERO PRIMERO HAY QUE IMPLEMENTAR LA VUELTA
+
+		;cargamos mapa de pantalla banco 1 y 2
+		LD			HL, tiles_mapa_entrefases
+		LD			DE, TILMAP
+		CALL		depack_VRAM
+		
+		;pinto texto de matar a drácula
+		LD			DE, TILMAP + 256		;destino en vram (pos tiles + 256 (banco 0 + 256 banco )
+		LD			HL, texto_deaddracula	;guardo puntero al array a pintar (como psar por referencia)
+		CALL		pinta_textos_8lineas
+
+		CALL		espera_estandar
+		
+		CALL		pinta_parte_superior_pantalla
+		
+		JP			inicializa_replayer_efectos_interrupciones
+fin_accion_mata_dracula:
 
 
 

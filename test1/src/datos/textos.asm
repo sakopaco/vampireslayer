@@ -38,6 +38,16 @@ texto_finalbueno6:	DB	'LA CHICA A SU PADRE Y RECIBES TU';32 caracteres
 texto_finalbueno7:	DB	'MERECIDA RECOMPENSA. HASTA OTRA ';32 caracteres
 texto_finalbueno8:	DB	'AVENTURA.                       ';32 caracteres
 
+texto_deaddracula:
+texto_deaddracula1:	DB	'FELICIDADES. VENCISTE A DRACULA ';32 caracteres
+texto_deaddracula2:	DB	'Y RESCATASTE A LA CHICA. PERO   ';32 caracteres
+texto_deaddracula3:	DB	'NO ES EL FINAL. EL PODER DEL    ';32 caracteres
+texto_deaddracula4:	DB	'VAMPIRO MANTENÍA EN PIE EL      ';32 caracteres
+texto_deaddracula5:	DB	'CASTILLO. DEBES ESCAPAR ANTES   ';32 caracteres
+texto_deaddracula6:	DB	'DE QUE DERRUMBE SOBRE VUESTRAS  ';32 caracteres
+texto_deaddracula7:	DB	'CABEZAS. ESTO AUN NO HA ACABADO.';32 caracteres
+texto_deaddracula8:	DB	'                                ';32 caracteres
+
 ELSE		
 ;textos en inglés
 texto_vidas:		DB	'LIVES'
@@ -72,9 +82,20 @@ texto_finalbueno5:	DB	'FOREVER YOU ARE EXHAUSTED AFTER ';32 caracteres
 texto_finalbueno6:	DB	'THE VICTORY. YOU GIVE THE GIRL  ';32 caracteres
 texto_finalbueno7:	DB	'TO HER FATHER AND RECEIVE YOUR  ';32 caracteres
 texto_finalbueno8:	DB	'DESERVED REWARD. SEE YOU SOON   ';32 caracteres
+
+texto_deaddracula:
+texto_deaddracula1:	DB	'CONGRATULATIONS. YOU BEAT       ';32 caracteres
+texto_deaddracula2:	DB	'DRACULA AND YOU RESCUED THE     ';32 caracteres
+texto_deaddracula3:	DB	'GIRL. BUT IT IS NOT THE END.    ';32 caracteres
+texto_deaddracula4:	DB	'THE POWER OF VAMPIRE KEPT THE   ';32 caracteres
+texto_deaddracula5:	DB	'CASTLE. YOU MUST ESCAPE BEFORE  ';32 caracteres
+texto_deaddracula6:	DB	'IT COLLAPSES ON YOU HEADS       ';32 caracteres
+texto_deaddracula7:	DB	'THIS IS NOT OVER YET.           ';32 caracteres
+texto_deaddracula8:	DB	'                                ';32 caracteres
+
 ENDIF
 
-texto_autoria:		DB	'SAKOPACO  2022' ; 14 caracteres
+texto_autoria:		DB	'SEAMSOFT  2022' ; 14 caracteres
 texto_iniciar_blanco:	DB	'                              '
 
 
