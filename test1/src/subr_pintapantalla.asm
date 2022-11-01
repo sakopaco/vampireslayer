@@ -954,7 +954,6 @@ fin_actualiza_escena_calavera:
 cambio_nivel_entrefases:
 		;paro música		
 		CALL		enciende_sonido_solofx
-		CALL		PT3_MUTE
 
 		CALL		borra_mapa
 
@@ -1201,7 +1200,6 @@ fin_oculta_tile_vida0:
 una_vida_menos;
 		;paro música		
 		CALL		enciende_sonido_solofx
-		CALL		PT3_MUTE
 		
 		LD			 A, (prota_vidas)
 		OR			 A
@@ -1253,6 +1251,9 @@ game_over1:
 		
 		;oculta los sprites que haya en pantalla
 		CALL		oculta_todos_sprites
+		
+		;pone la música de game over
+		CALL		play_musica_gameover
 		
 		;poner texto game over
 		LD			HL, texto_gameover	;guardo puntero al array a pintar (como pasar por referencia)
@@ -1314,24 +1315,15 @@ game_over1:
 		LD			DE, TILMAP + 641	;destino en vram
 		CALL		LDIRVM
 
-		;múscia de GAME OVER
-		LD			HL, PT3_SETUP
-		SET			 0, (HL)
-		LD			HL, musica_gameover-99	; hl <- initial address of module - 99
-		CALL		PT3_INIT			; Inits PT3 player
-
+		CALL		espera_estandar
 		CALL		espera_estandar
 		CALL		espera_estandar
 		
 		CALL		limpia_pantalla_completa
 
-		CALL		PT3_MUTE
-
 		;ESTO LO TIENE QUE VER FERNANDO PORQUE NO CREO QUE ESTÉ BIEN ... LA PILA TENDRÁ MUCHA BASURA
 		JP			inicio_juego		;##*******************************************************************		
 fin_game_over1:
-;		RET									;##*******************************************************************
-
 
 
 ;;=====================================================
@@ -1396,6 +1388,7 @@ pantalla_final_bueno:
 			LD			HL, musica_gameover-99	; hl <- initial address of module - 99
 			CALL		PT3_INIT			; Inits PT3 player
 
+			CALL		espera_estandar
 			CALL		espera_estandar
 			CALL		espera_estandar
 		

@@ -51,28 +51,18 @@ fin_subrutina_isr:
 	;RET
 
 
-apaga_sonido:
-	DI
-	LD		A, #C3
-	LD		[H.TIMI], A
-	LD		HL, subrutina_isr
-	LD		[H.TIMI+1], HL
-	EI
-fin_apaga_sonido:
-	RET
-
-
 ;;=====================================================
-;;NUESTRA_ISR_OFF
+;;SUBRUTINA_ISR_FX
 ;;=====================================================	
-; función: 	sustituye la función de la interrupción por una función vacía
+; función: 	nos vale como para apagar sonido
 ; entrada: 	-
 ; salida: 	-
 ; toca: 	-
-subrutina_isr_off:
-fin_subrutina_isr_off:
-		RET
-		
+subrutina_isr_fx:
+		CALL		PT3_ROUT			;envia los datos a los registros del PSG
+		JP			ayFX_PLAY			;calcula el siguiente 'trocito' de efecto especial de sonido que sera enviado la proxima vez
+fin_subrutina_isr_fx:
+
 
 ;;=====================================================
 ;;NUESTRA_ISR_FX
@@ -81,13 +71,9 @@ fin_subrutina_isr_off:
 ; entrada: 	-
 ; salida: 	-
 ; toca: 	-
-subrutina_isr_fx:
-		CALL	PT3_ROUT			;envia los datos a los registros del PSG
-		JP		ayFX_PLAY			;calcula el siguiente 'trocito' de efecto especial de sonido que sera enviado la proxima vez
-fin_subrutina_isr_fx:
-
-
 enciende_sonido_solofx:		
+		CALL		PT3_MUTE
+		
 		DI
 
 		;inicializacion del reproductor de efectos sonoros
@@ -105,7 +91,7 @@ fin_enciende_sonido_solofx:
 		RET
 
 
-musica_jefe:
+play_musica_jefe:
 		;múscia de JEFE FIN DE FASE
 		; Inits PT3 player
 		CALL		inicializa_replayer_efectos_interrupciones
@@ -117,6 +103,15 @@ musica_jefe:
 fin_musica_jefe:
 		RET
 
+
+play_musica_gameover:		
+		CALL		inicializa_replayer_efectos_interrupciones
+		LD			HL, musica_gameover-99	; hl <- initial address of module - 99
+		CALL		PT3_INIT
+		LD			HL, PT3_SETUP
+		RES		0, (HL)
+fin_play_musica_gameover:
+		RET
 
 ;;=====================================================
 ;;DEFINICIÓN DE SUBRUTINAS DE FERNANDO PARA COMPRESIÓN Y SONIDO
