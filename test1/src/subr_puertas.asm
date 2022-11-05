@@ -226,6 +226,8 @@ fin_accion_puerta_derecha:
 ; entrada: 	
 ; salida: 	
 accion_puerta_abajo:
+		CALL			mira_si_esta_juego_terminado
+		
 		CALL			pinta_blanco_mapa
 	
 		LD		 		 A, (prota_pos_mapy)

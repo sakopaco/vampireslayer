@@ -753,8 +753,7 @@ fin_inicializa_enemigos_fase2_nivel5:
 
 inicializa_enemigos_fase2_niveljefe:
 		;primero pone música de jefe fin de fase
-		CALL		PT3_INIT
-		CALL		inicializa_replayer_efectos_interrupciones
+		CALL		play_musica_jefe
 
 		LD			DE, enemigo1
 		CALL		anade_enemigo_jefefantasma
@@ -1184,22 +1183,28 @@ inicializa_enemigos_fase6_nivel5:
 fin_inicializa_enemigos_fase6_nivel5:
 
 inicializa_enemigos_fase6_nivel6:
+		;está muerto drácula
+		LD			 A, (dracula_muerto)
+		OR			 A
+			RET			NZ	;SI
+
+dracula_NO_esta_muerto:
 		;primero pone música de jefe fin de fase
-		CALL		play_musica_jefe
+			CALL		play_musica_jefe
+			
+			CALL		carga_patrones_sprites_nivel6_nivel6
 		
-		CALL		carga_patrones_sprites_nivel6_nivel6
+			LD			DE, enemigo1
+			CALL		anade_enemigo_dracula
+			LD			IX, enemigo1
 		
-		LD			DE, enemigo1
-		CALL		anade_enemigo_dracula
-		LD			IX, enemigo1
+			LD			DE, enemigo2
+			CALL		anade_enemigo_manoi
+			LD			IX, enemigo2
 		
-		LD			DE, enemigo2
-		CALL		anade_enemigo_manoi
-		LD			IX, enemigo2
-		
-		LD			DE, enemigo3
-		CALL		anade_enemigo_manod
-		LD			IX, enemigo3
+			LD			DE, enemigo3
+			CALL		anade_enemigo_manod
+			LD			IX, enemigo3
 fin_inicializa_enemigos_fase6_nivel6:
 		RET
 
@@ -2027,7 +2032,7 @@ mata_enemigo:
 		;examino si se mató al dracula que activaría el final de juego (finales: muerto, derrumbe de castillo o final bueno)
 		LD			 A, (IX)
 		CP			TIPODRACULA
-		JP			 Z, accion_mata_dracula
+		JP			 Z, .accion_solo_si_dracula
 
 		LD			 A, (IX);guardo el tipo que me hará falta más tarde
 		LD			(IX), 1													;se pone tipo a enemigo muerto
@@ -2065,8 +2070,13 @@ mata_enemigo:
 		LD			 A, 2
 		LD			 C, 1
 		CALL		ayFX_INIT
-fin_mata_enemigo:
 		RET
+		
+.accion_solo_si_dracula:
+		CALL		accion_mata_dracula
+		JP			oculta_todos_sprites
+fin_mata_enemigo:
+		
 
 accion_enemigo_muerto1:
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)

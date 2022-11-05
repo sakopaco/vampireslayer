@@ -569,3 +569,76 @@ actualiza_habitacion_terminada:
 		;~ LD			(habitacion_terminada), A
 fin_actualiza_habitacion_terminada
 		RET
+
+
+;;=====================================================
+;;ACCION_MATA_DRACULA
+;;=====================================================	
+; función: 	pone un texto cuando matas a drácula y preparo variables para que cuente el tiempo y dracula muerto
+accion_mata_dracula:
+		LD			IX, enemigo1
+		LD			 A, (IX);guardo el tipo que me hará falta más tarde
+		LD			(IX), 0			
+		
+		;Ocultamos todos los sprites
+		CALL		oculta_todos_sprites
+
+		;paro música		
+		CALL		enciende_sonido_solofx
+
+		CALL		borra_mapa
+
+		;activo variable drácula muerto		
+		LD			 A, SI
+		LD			(dracula_muerto), A
+
+		;inicializar contador de tiempo
+		XOR			 A
+		LD			(contador), A
+		LD			(segundos), A
+		LD			(minutos),  A
+
+		;cargamos mapa de pantalla banco 1 y 2
+		LD			HL, tiles_mapa_entrefases
+		LD			DE, TILMAP
+		CALL		depack_VRAM
+		
+		;pinto texto de matar a drácula
+		LD			DE, TILMAP + 256		;destino en vram (pos tiles + 256 (banco 0 + 256 banco )
+		LD			HL, texto_deaddracula	;guardo puntero al array a pintar (como psar por referencia)
+		CALL		pinta_textos_8lineas
+		
+		CALL		oculta_todos_sprites
+		
+		CALL		espera_estandar
+		CALL		espera_estandar
+		
+		CALL		entra_habitacion
+		
+		JP			inicializa_replayer_efectos_interrupciones
+fin_accion_mata_dracula:
+
+
+;;=====================================================
+;;DEFINICIÓN DE SUBRUTINAS
+;;=====================================================
+; funcion:	para que cuando se salga por la puerta inferior del nivel 0 llegue al final bueno del juego
+mira_si_esta_juego_terminado:
+			;está muerto drácula?
+			LD				 A, (dracula_muerto)
+			OR				 A
+			RET				 Z
+			
+			;estás en el nivel 0?
+			LD				 A, (prota_nivel)
+			OR				 A
+			RET				NZ
+			
+			;estás en la fila de abajo?
+			LD				 A, (prota_pos_mapy)
+			OR				 A
+			RET				NZ
+			
+			JP				pantalla_final_bueno
+fin_mira_si_esta_juego_terminado:
+
