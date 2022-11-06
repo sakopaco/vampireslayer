@@ -401,9 +401,7 @@ fin_inicializa_enemigos_fase6:
 ;;INICIALIZA_ENEMIGOS_FASE0_NIVELX
 ;;=====================================================	
 inicializa_enemigos_fase0_nivel0:
-		;pone música para 
-		CALL		PT3_INIT
-		CALL		inicializa_replayer_efectos_interrupciones
+		CALL		play_musica_apropiada
 
 		LD			DE, enemigo1
 		CALL		anade_enemigo_cienpies
@@ -526,9 +524,7 @@ fin_inicializa_enemigos_fase0_niveljefe:
 ;;INICIALIZA_ENEMIGOS_FASE1_NIVELX
 ;;=====================================================	
 inicializa_enemigos_fase1_nivel0:
-		;pone música para 
-		CALL		PT3_INIT
-		CALL		inicializa_replayer_efectos_interrupciones
+		CALL		play_musica_apropiada
 		
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
@@ -650,9 +646,7 @@ fin_inicializa_enemigos_fase1_niveljefe:
 ;;INICIALIZA_ENEMIGOS_FASE2_NIVELX
 ;;=====================================================	
 inicializa_enemigos_fase2_nivel0:
-		;pone música para 
-		CALL		PT3_INIT
-		CALL		inicializa_replayer_efectos_interrupciones
+		CALL		play_musica_apropiada
 		
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
@@ -766,8 +760,7 @@ fin_inicializa_enemigos_fase2_niveljefe:
 ;;INICIALIZA_ENEMIGOS_FASE3_NIVELX
 ;;=====================================================	
 inicializa_enemigos_fase3_nivel0:
-		;pone música para 
-		CALL		inicializa_replayer_efectos_interrupciones
+		CALL		play_musica_apropiada
 		
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
@@ -885,9 +878,7 @@ fin_inicializa_enemigos_fase3_niveljefe:
 ;;INICIALIZA_ENEMIGOS_FASE4_NIVELX
 ;;=====================================================	
 inicializa_enemigos_fase4_nivel0:
-		;pone música para 
-		CALL		PT3_INIT
-		CALL		inicializa_replayer_efectos_interrupciones
+		CALL		play_musica_apropiada
 		
 		LD			DE, enemigo1
 		CALL		anade_enemigo_murcielago
@@ -1005,9 +996,7 @@ fin_inicializa_enemigos_fase4_niveljefe:
 ;;INICIALIZA_ENEMIGOS_FASE5_NIVELX
 ;;=====================================================	
 inicializa_enemigos_fase5_nivel0:
-		;pone música para 
-		CALL		PT3_INIT
-		CALL		inicializa_replayer_efectos_interrupciones
+		CALL		play_musica_apropiada
 		
 		LD			DE, enemigo1
 		CALL		anade_enemigo_magia
@@ -1125,9 +1114,7 @@ fin_inicializa_enemigos_fase5_niveljefe:
 ;;INICIALIZA_ENEMIGOS_FASE6_NIVELX
 ;;=====================================================	
 inicializa_enemigos_fase6_nivel0:
-		;pone música para 
-		CALL		PT3_INIT
-		CALL		inicializa_replayer_efectos_interrupciones
+		CALL		play_musica_apropiada
 		
 		CALL		carga_patrones_sprites_nivel6_nivel0
 		

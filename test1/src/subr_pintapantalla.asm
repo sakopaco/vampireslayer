@@ -984,24 +984,7 @@ cambio_nivel_entrefases:
 
 		CALL		espera_estandar
 		
-		JP			inicializa_replayer_efectos_interrupciones
-		
-		;este texto es por si quito la espera estandar por pulsar fuego
-;~ .mientras_nopulsado:
-		;~ ;compruebo espacio
-		;~ XOR			 A
-		;~ CALL		#00D8
-		;~ LD			 B, A
-		
-		;~ PUSH		BC
-		;~ ;compruebo botón 1 joystick
-		;~ LD			 A, 1
-		;~ CALL		#00D8
-		;~ POP 		BC
-		
-		;~ OR			 B		;uno el resultado del espacio + el resultado del botón de disparo
-		
-		;~ JP			 Z, .mientras_nopulsado	;si A=0 no se pulsó ni disparo ni botón
+		JP			play_musica_apropiada
 fin_cabio_nivel_entrefases:
 
 
@@ -1140,7 +1123,7 @@ muestra_pantalla_inicial:
 		;borra pantalla bonito
 		CALL		borra_pantalla_inicio
 		
-		JP			inicializa_replayer_efectos_interrupciones
+		JP			play_musica_apropiada
 fin_muestra_pantalla_inicial:
 
 
@@ -1231,8 +1214,7 @@ quedan_vidas:
 			CALL		pinta_puertas
 			
 			;repongo la música y efectos
-			CALL		PT3_INIT
-			JP			inicializa_replayer_efectos_interrupciones
+			JP			play_musica_apropiada
 fin_una_vida_menos:
 
 

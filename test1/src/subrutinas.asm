@@ -615,7 +615,7 @@ accion_mata_dracula:
 		
 		CALL		entra_habitacion
 		
-		JP			inicializa_replayer_efectos_interrupciones
+		JP			play_musica_apropiada
 fin_accion_mata_dracula:
 
 

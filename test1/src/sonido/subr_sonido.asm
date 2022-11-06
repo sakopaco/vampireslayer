@@ -93,7 +93,6 @@ fin_enciende_sonido_solofx:
 
 play_musica_jefe:
 		;múscia de JEFE FIN DE FASE
-		; Inits PT3 player
 		CALL		inicializa_replayer_efectos_interrupciones
 		
 		LD			HL, musica_boss-99	; hl <- initial address of module - 99
@@ -112,6 +111,20 @@ play_musica_gameover:
 		RES		0, (HL)
 fin_play_musica_gameover:
 		RET
+
+
+play_musica_apropiada:
+		;está muerto dracula?
+		LD				 A, (dracula_muerto)
+		OR				 A
+		JP				 Z, .dracula_NO_esta_muerto
+		CALL			play_musica_jefe
+		RET
+		;SI música jefe
+.dracula_NO_esta_muerto:	;musica normal
+		JP				inicializa_replayer_efectos_interrupciones
+fin_play_musica_apropiada:
+
 
 ;;=====================================================
 ;;DEFINICIÓN DE SUBRUTINAS DE FERNANDO PARA COMPRESIÓN Y SONIDO
