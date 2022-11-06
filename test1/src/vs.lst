@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.11.06 - 19:16:04]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.11.06 - 19:51:10]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/vs.asm
 Errors: 0
@@ -107,8 +107,8 @@ Errors: 0
       99.  00:4000  (00:07D0)           RETARDOREL: equ 000007D0h
      100.  00:4000  (00:0008)           RADIOAYUDAX: equ 00000008h
      101.  00:4000  (00:0008)           RADIOAYUDAY: equ 00000008h
-     102.  00:4000  (00:0078)           POSXPM: equ 00000078h
-     103.  00:4000  (00:006C)           POSYPM: equ 0000006Ch
+     102.  00:4000  (00:0074)           POSXPM: equ 00000074h
+     103.  00:4000  (00:0060)           POSYPM: equ 00000060h
      104.  00:4000  (00:0001)           ISHABTERMIN: equ 00000001h
      105.  00:4000  (00:0004)           LIMCADENCIA: equ 00000004h
      106.  00:4000  (00:0000)           SPRI_DANO1A: equ 00000000h
@@ -884,7 +884,7 @@ Errors: 0
      147   00:409E                      		;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
      148   00:409E                      		;será igual la posición inicial en todos los niveles
      149   00:409E                      	
-     150   00:409E  3E 06               		LD		 A, 6;PROTANIVEL
+     150   00:409E  3E 00               		LD		 A, PROTANIVEL
      151   00:40A0  32 00 C0            		LD		(prota_nivel), A
      152   00:40A3                      
      153   00:40A3  3E 00               		LD		 A, PROTAPOSMAPY
@@ -1388,180 +1388,176 @@ Errors: 0
      468.  00:42A7  CD A4 69            		CALL		inicializa_enemigos_fase6
      469.  00:42AA                      .fin_mira_nivel:
      470.  00:42AA                      		
-     471.  00:42AA                      
-     472.  00:42AA                      ;~ pinta_habitacion_comun:	;(haya o no enemigos)
-     473.  00:42AA                      
-     474.  00:42AA  CD C3 43            		CALL		pinta_parte_superior_pantalla
-     475.  00:42AD  CD 68 4C            		CALL		pinta_puertas
-     476.  00:42B0  CD DC 46            		CALL		pinta_extra_fondo
-     477.  00:42B3                      		
-     478.  00:42B3  CD 4F 51            		CALL		pinta_ayudas_habitacion
-     479.  00:42B6                      		
-     480.  00:42B6  C3 B9 42            		JP			pinta_heroe_mapa
-     481.  00:42B9                      fin_entra_habitacion:
+     471.  00:42AA                      pinta_habitacion_comun:	;(haya o no enemigos)
+     472.  00:42AA                      
+     473.  00:42AA  CD C3 43            		CALL		pinta_parte_superior_pantalla
+     474.  00:42AD  CD 68 4C            		CALL		pinta_puertas
+     475.  00:42B0  CD DC 46            		CALL		pinta_extra_fondo
+     476.  00:42B3                      		
+     477.  00:42B3  CD 4F 51            		CALL		pinta_ayudas_habitacion
+     478.  00:42B6                      
+     479.  00:42B6  C3 B9 42            		JP			pinta_heroe_mapa
+     480.  00:42B9                      fin_entra_habitacion:
+     481.  00:42B9                      
      482.  00:42B9                      
-     483.  00:42B9                      
-     484.  00:42B9                      ;;=====================================================
-     485.  00:42B9                      ;;PINTA_HEROE_MAPA
-     486.  00:42B9                      ;;PINTA_BLANCO_MAPA
-     487.  00:42B9                      ;;=====================================================	
-     488.  00:42B9                      ; función: 	pinta el iconito del heroe en el mapa o un espacio en blanco
-     489.  00:42B9                      ; entrada: 	
-     490.  00:42B9                      ; salida: 	
-     491.  00:42B9                      ; toca:		todo
-     492.  00:42B9                      pinta_heroe_mapa:
-     493.  00:42B9  3E 13               		LD			 A, TILEPROTAM
-     494.  00:42BB  32 27 C0            		LD			(elemento_pintar_mapa), A
-     495.  00:42BE  C3 CA 45            		JP			posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.posx y posy
-     496.  00:42C1                      fin_pinta_heroe_mapa:
-     497.  00:42C1                      pinta_blanco_mapa:
-     498.  00:42C1  3E 09               		LD			 A, TILEGRISM
-     499.  00:42C3  32 27 C0            		LD			(elemento_pintar_mapa), A
-     500.  00:42C6  C3 CA 45            		JP			posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.posx y posy
-     501.  00:42C9                      fin_pinta_blanco_mapa:
-     502.  00:42C9                      	
-     503.  00:42C9                      
-     504.  00:42C9                      ;;=====================================================
-     505.  00:42C9                      ;;CAMBIO_NIVEL
-     506.  00:42C9                      ;;=====================================================	
-     507.  00:42C9                      ; función: 	pinta el iconito del heroe en el mapa o un espacio en blanco
-     508.  00:42C9                      ;			cambia el número de nivel
-     509.  00:42C9                      ; entrada: 	
-     510.  00:42C9                      ; salida: 	
-     511.  00:42C9                      ; toca:		todo	
-     512.  00:42C9                      cambio_nivel:
-     513.  00:42C9                      		;MIRAR CUANDO EL NIVEL SEA -1 (SE SALE DEL CASTILLO Y PUEDE QUE SEA POR TERMINAR JUEGO O SALIR ANTES DE TIEMPO)
-     514.  00:42C9                      ;		*****************************************************************************************************************************+
-     515.  00:42C9                      
-     516.  00:42C9  CD F5 44            		CALL		pinta_nivel
-     517.  00:42CC                      		
-     518.  00:42CC                      		;carga sprites en memoria
-     519.  00:42CC  CD B7 4E            		CALL 		carga_patrones_sprites_nivel
-     520.  00:42CF                      	
-     521.  00:42CF  C3 73 45            		JP			borra_mapa	
-     522.  00:42D2                      fin_cambio_nivel:
-     523.  00:42D2                      
-     524.  00:42D2                      
-     525.  00:42D2                      ;;=====================================================
-     526.  00:42D2                      ;;CHECK_COLISIONES_OBJETOS
-     527.  00:42D2                      ;;=====================================================	
-     528.  00:42D2                      ; función: 	revisa (con enemigos+ayudas o puertas según si la habitación ha sido recorrida o no) las variables para ver si se disparó sobre ellas
-     529.  00:42D2                      ; entrada: 	habitacion_terminada
-     530.  00:42D2                      ; salida: 	-
-     531.  00:42D2                      ; toca:		HL,BC, DE
-     532.  00:42D2                      check_colisiones_objetos:
-     533.  00:42D2                      		;pantalla limpia?
-     534.  00:42D2                      		;~ LD			 A, (habitacion_terminada)
-     535.  00:42D2                      		;~ OR			 A
-     536.  00:42D2                      		;~ JP			 Z, .habitacion_no_terminada
-     537.  00:42D2                      		;SI 
-     538.  00:42D2                      			;recorre puertas y sale
-     539.  00:42D2  CD 1C 4D            			CALL		check_colisiones_puertas
-     540.  00:42D5                      			;RET
-     541.  00:42D5                      		;NO 
-     542.  00:42D5                      .habitacion_no_terminada:
-     543.  00:42D5                      		;recorre enemigos
-     544.  00:42D5  CD 96 73            		CALL		check_colisiones_enemigos
-     545.  00:42D8                      		
-     546.  00:42D8                      		;recorre ayudas
-     547.  00:42D8                      		;SI ;mira si hay colisiones con la ayuda que haya puntero_ayuda_actual
-     548.  00:42D8  3A 6B C1            		LD			 A, (hay_ayudas_en_pantalla)
-     549.  00:42DB  B7                  		OR			 A
-     550.  00:42DC  C8                  		RET			 Z	; no hay ayudas que examinar
-     551.  00:42DD                      		;THEN
-     552.  00:42DD  C3 FE 51            			JP		check_colision_ayudas	; si hay ayudas que examinar
-     553.  00:42E0                      		;ENDIF
-     554.  00:42E0                      fin_check_colisiones_objetos:	
-     555.  00:42E0                      
-     556.  00:42E0                      
-     557.  00:42E0                      ;;=====================================================
-     558.  00:42E0                      ;;ACTUALIZA_HABITACION_TERMINADA
-     559.  00:42E0                      ;;=====================================================	
-     560.  00:42E0                      ; función: 	actualiza la variable habitacion_terminada
-     561.  00:42E0                      actualiza_habitacion_terminada:
-     562.  00:42E0                      		;~ XOR			 A
-     563.  00:42E0                      		;~ LD			(habitacion_terminada), A
-     564.  00:42E0                      		;~ LD			HL, puntero_habitacion_actual
-     565.  00:42E0                      		;~ BIT			 4, (HL)
-     566.  00:42E0                      		;~ RET			NZ
-     567.  00:42E0                      		
-     568.  00:42E0                      		;~ LD			 A, ISHABTERMIN			;1 => cierto habitación terminada
-     569.  00:42E0                      		;~ LD			(habitacion_terminada), A
-     570.  00:42E0                      fin_actualiza_habitacion_terminada
-     571.  00:42E0  C9                  		RET
-     572.  00:42E1                      
-     573.  00:42E1                      
-     574.  00:42E1                      ;;=====================================================
-     575.  00:42E1                      ;;ACCION_MATA_DRACULA
-     576.  00:42E1                      ;;=====================================================	
-     577.  00:42E1                      ; función: 	pone un texto cuando matas a drácula y preparo variables para que cuente el tiempo y dracula muerto
-     578.  00:42E1                      accion_mata_dracula:
-     579.  00:42E1  DD 21 58 C0         		LD			IX, enemigo1
-     580.  00:42E5  DD 7E 00            		LD			 A, (IX);guardo el tipo que me hará falta más tarde
-     581.  00:42E8  DD 36 00 00         		LD			(IX), 0			
-     582.  00:42EC                      		
-     583.  00:42EC                      		;Ocultamos todos los sprites
-     584.  00:42EC  CD 45 48            		CALL		oculta_todos_sprites
-     585.  00:42EF                      
-     586.  00:42EF                      		;paro música		
-     587.  00:42EF  CD C6 75            		CALL		enciende_sonido_solofx
-     588.  00:42F2                      
-     589.  00:42F2  CD 73 45            		CALL		borra_mapa
-     590.  00:42F5                      
-     591.  00:42F5                      		;activo variable drácula muerto		
-     592.  00:42F5  3E 01               		LD			 A, SI
-     593.  00:42F7  32 32 C2            		LD			(dracula_muerto), A
-     594.  00:42FA                      
-     595.  00:42FA                      		;inicializar contador de tiempo
-     596.  00:42FA  AF                  		XOR			 A
-     597.  00:42FB  32 33 C2            		LD			(contador), A
-     598.  00:42FE  32 34 C2            		LD			(segundos), A
-     599.  00:4301  32 35 C2            		LD			(minutos),  A
-     600.  00:4304                      
-     601.  00:4304                      		;cargamos mapa de pantalla banco 1 y 2
-     602.  00:4304  21 58 8E            		LD			HL, tiles_mapa_entrefases
-     603.  00:4307  11 00 18            		LD			DE, TILMAP
-     604.  00:430A  CD FF 89            		CALL		depack_VRAM
-     605.  00:430D                      		
-     606.  00:430D                      		;pinto texto de matar a drácula
-     607.  00:430D  11 00 19            		LD			DE, TILMAP + 256		;destino en vram (pos tiles + 256 (banco 0 + 256 banco )
-     608.  00:4310  21 7C B4            		LD			HL, texto_deaddracula	;guardo puntero al array a pintar (como psar por referencia)
-     609.  00:4313  CD 39 4A            		CALL		pinta_textos_8lineas
-     610.  00:4316                      		
-     611.  00:4316  CD 45 48            		CALL		oculta_todos_sprites
-     612.  00:4319                      		
-     613.  00:4319  CD 74 43            		CALL		espera_estandar
-     614.  00:431C  CD 74 43            		CALL		espera_estandar
-     615.  00:431F                      		
-     616.  00:431F  CD 60 42            		CALL		entra_habitacion
-     617.  00:4322                      		
-     618.  00:4322  C3 FB 75            		JP			play_musica_apropiada
-     619.  00:4325                      fin_accion_mata_dracula:
-     620.  00:4325                      
-     621.  00:4325                      
-     622.  00:4325                      ;;=====================================================
-     623.  00:4325                      ;;DEFINICIÓN DE SUBRUTINAS
-     624.  00:4325                      ;;=====================================================
-     625.  00:4325                      ; funcion:	para que cuando se salga por la puerta inferior del nivel 0 llegue al final bueno del juego
-     626.  00:4325                      mira_si_esta_juego_terminado:
-     627.  00:4325                      			;está muerto drácula?
-     628.  00:4325  3A 32 C2            			LD				 A, (dracula_muerto)
-     629.  00:4328  B7                  			OR				 A
-     630.  00:4329  C8                  			RET				 Z
-     631.  00:432A                      			
-     632.  00:432A                      			;estás en el nivel 0?
-     633.  00:432A  3A 00 C0            			LD				 A, (prota_nivel)
-     634.  00:432D  B7                  			OR				 A
-     635.  00:432E  C0                  			RET				NZ
-     636.  00:432F                      			
-     637.  00:432F                      			;estás en la fila de abajo?
-     638.  00:432F  3A 04 C0            			LD				 A, (prota_pos_mapy)
-     639.  00:4332  B7                  			OR				 A
-     640.  00:4333  C0                  			RET				NZ
-     641.  00:4334                      			
-     642.  00:4334  C3 D1 49            			JP				pantalla_final_bueno
-     643.  00:4337                      fin_mira_si_esta_juego_terminado:
-     644.  00:4337                      
+     483.  00:42B9                      ;;=====================================================
+     484.  00:42B9                      ;;PINTA_HEROE_MAPA
+     485.  00:42B9                      ;;PINTA_BLANCO_MAPA
+     486.  00:42B9                      ;;=====================================================	
+     487.  00:42B9                      ; función: 	pinta el iconito del heroe en el mapa o un espacio en blanco
+     488.  00:42B9                      ; entrada: 	
+     489.  00:42B9                      ; salida: 	
+     490.  00:42B9                      ; toca:		todo
+     491.  00:42B9                      pinta_heroe_mapa:
+     492.  00:42B9  3E 13               		LD			 A, TILEPROTAM
+     493.  00:42BB  32 27 C0            		LD			(elemento_pintar_mapa), A
+     494.  00:42BE  C3 CA 45            		JP			posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.posx y posy
+     495.  00:42C1                      fin_pinta_heroe_mapa:
+     496.  00:42C1                      pinta_blanco_mapa:
+     497.  00:42C1  3E 09               		LD			 A, TILEGRISM
+     498.  00:42C3  32 27 C0            		LD			(elemento_pintar_mapa), A
+     499.  00:42C6  C3 CA 45            		JP			posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.posx y posy
+     500.  00:42C9                      fin_pinta_blanco_mapa:
+     501.  00:42C9                      	
+     502.  00:42C9                      
+     503.  00:42C9                      ;;=====================================================
+     504.  00:42C9                      ;;CAMBIO_NIVEL
+     505.  00:42C9                      ;;=====================================================	
+     506.  00:42C9                      ; función: 	pinta el iconito del heroe en el mapa o un espacio en blanco
+     507.  00:42C9                      ;			cambia el número de nivel
+     508.  00:42C9                      ; entrada: 	
+     509.  00:42C9                      ; salida: 	
+     510.  00:42C9                      ; toca:		todo	
+     511.  00:42C9                      cambio_nivel:
+     512.  00:42C9  CD F5 44            		CALL		pinta_nivel
+     513.  00:42CC                      		
+     514.  00:42CC                      		;carga sprites en memoria
+     515.  00:42CC  CD B7 4E            		CALL 		carga_patrones_sprites_nivel
+     516.  00:42CF                      	
+     517.  00:42CF  C3 73 45            		JP			borra_mapa	
+     518.  00:42D2                      fin_cambio_nivel:
+     519.  00:42D2                      
+     520.  00:42D2                      
+     521.  00:42D2                      ;;=====================================================
+     522.  00:42D2                      ;;CHECK_COLISIONES_OBJETOS
+     523.  00:42D2                      ;;=====================================================	
+     524.  00:42D2                      ; función: 	revisa (con enemigos+ayudas o puertas según si la habitación ha sido recorrida o no) las variables para ver si se disparó sobre ellas
+     525.  00:42D2                      ; entrada: 	habitacion_terminada
+     526.  00:42D2                      ; salida: 	-
+     527.  00:42D2                      ; toca:		HL,BC, DE
+     528.  00:42D2                      check_colisiones_objetos:
+     529.  00:42D2                      		;pantalla limpia?
+     530.  00:42D2                      		;~ LD			 A, (habitacion_terminada)
+     531.  00:42D2                      		;~ OR			 A
+     532.  00:42D2                      		;~ JP			 Z, .habitacion_no_terminada
+     533.  00:42D2                      		;SI 
+     534.  00:42D2                      			;recorre puertas y sale
+     535.  00:42D2  CD 1C 4D            			CALL		check_colisiones_puertas
+     536.  00:42D5                      			;RET
+     537.  00:42D5                      		;NO 
+     538.  00:42D5                      .habitacion_no_terminada:
+     539.  00:42D5                      		;recorre enemigos
+     540.  00:42D5  CD 96 73            		CALL		check_colisiones_enemigos
+     541.  00:42D8                      		
+     542.  00:42D8                      		;recorre ayudas
+     543.  00:42D8                      		;SI ;mira si hay colisiones con la ayuda que haya puntero_ayuda_actual
+     544.  00:42D8  3A 6B C1            		LD			 A, (hay_ayudas_en_pantalla)
+     545.  00:42DB  B7                  		OR			 A
+     546.  00:42DC  C8                  		RET			 Z	; no hay ayudas que examinar
+     547.  00:42DD                      		;THEN
+     548.  00:42DD  C3 FE 51            			JP		check_colision_ayudas	; si hay ayudas que examinar
+     549.  00:42E0                      		;ENDIF
+     550.  00:42E0                      fin_check_colisiones_objetos:	
+     551.  00:42E0                      
+     552.  00:42E0                      
+     553.  00:42E0                      ;;=====================================================
+     554.  00:42E0                      ;;ACTUALIZA_HABITACION_TERMINADA
+     555.  00:42E0                      ;;=====================================================	
+     556.  00:42E0                      ; función: 	actualiza la variable habitacion_terminada
+     557.  00:42E0                      actualiza_habitacion_terminada:
+     558.  00:42E0                      		;~ XOR			 A
+     559.  00:42E0                      		;~ LD			(habitacion_terminada), A
+     560.  00:42E0                      		;~ LD			HL, puntero_habitacion_actual
+     561.  00:42E0                      		;~ BIT			 4, (HL)
+     562.  00:42E0                      		;~ RET			NZ
+     563.  00:42E0                      		
+     564.  00:42E0                      		;~ LD			 A, ISHABTERMIN			;1 => cierto habitación terminada
+     565.  00:42E0                      		;~ LD			(habitacion_terminada), A
+     566.  00:42E0                      fin_actualiza_habitacion_terminada
+     567.  00:42E0  C9                  		RET
+     568.  00:42E1                      
+     569.  00:42E1                      
+     570.  00:42E1                      ;;=====================================================
+     571.  00:42E1                      ;;ACCION_MATA_DRACULA
+     572.  00:42E1                      ;;=====================================================	
+     573.  00:42E1                      ; función: 	pone un texto cuando matas a drácula y preparo variables para que cuente el tiempo y dracula muerto
+     574.  00:42E1                      accion_mata_dracula:
+     575.  00:42E1  DD 21 58 C0         		LD			IX, enemigo1
+     576.  00:42E5  DD 7E 00            		LD			 A, (IX);guardo el tipo que me hará falta más tarde
+     577.  00:42E8  DD 36 00 00         		LD			(IX), 0			
+     578.  00:42EC                      		
+     579.  00:42EC                      		;Ocultamos todos los sprites
+     580.  00:42EC  CD 45 48            		CALL		oculta_todos_sprites
+     581.  00:42EF                      
+     582.  00:42EF                      		;paro música		
+     583.  00:42EF  CD C6 75            		CALL		enciende_sonido_solofx
+     584.  00:42F2                      
+     585.  00:42F2  CD 73 45            		CALL		borra_mapa
+     586.  00:42F5                      
+     587.  00:42F5                      		;activo variable drácula muerto		
+     588.  00:42F5  3E 01               		LD			 A, SI
+     589.  00:42F7  32 32 C2            		LD			(dracula_muerto), A
+     590.  00:42FA                      
+     591.  00:42FA                      		;inicializar contador de tiempo
+     592.  00:42FA  AF                  		XOR			 A
+     593.  00:42FB  32 33 C2            		LD			(contador), A
+     594.  00:42FE  32 34 C2            		LD			(segundos), A
+     595.  00:4301  32 35 C2            		LD			(minutos),  A
+     596.  00:4304                      
+     597.  00:4304                      		;cargamos mapa de pantalla banco 1 y 2
+     598.  00:4304  21 58 8E            		LD			HL, tiles_mapa_entrefases
+     599.  00:4307  11 00 18            		LD			DE, TILMAP
+     600.  00:430A  CD FF 89            		CALL		depack_VRAM
+     601.  00:430D                      		
+     602.  00:430D                      		;pinto texto de matar a drácula
+     603.  00:430D  11 00 19            		LD			DE, TILMAP + 256		;destino en vram (pos tiles + 256 (banco 0 + 256 banco )
+     604.  00:4310  21 7C B4            		LD			HL, texto_deaddracula	;guardo puntero al array a pintar (como psar por referencia)
+     605.  00:4313  CD 39 4A            		CALL		pinta_textos_8lineas
+     606.  00:4316                      		
+     607.  00:4316  CD 45 48            		CALL		oculta_todos_sprites
+     608.  00:4319                      		
+     609.  00:4319  CD 74 43 CD 74 43   [2]		CALL		espera_estandar
+     610.  00:431F                      		
+     611.  00:431F  CD 60 42            		CALL		entra_habitacion
+     612.  00:4322                      		
+     613.  00:4322  C3 FB 75            		JP			play_musica_apropiada
+     614.  00:4325                      fin_accion_mata_dracula:
+     615.  00:4325                      
+     616.  00:4325                      
+     617.  00:4325                      ;;=====================================================
+     618.  00:4325                      ;;MIRA_SI_ESTA_JUEGO_TERMINADO
+     619.  00:4325                      ;;=====================================================
+     620.  00:4325                      ; funcion:	para que cuando se salga por la puerta inferior del nivel 0 llegue al final bueno del juego
+     621.  00:4325                      mira_si_esta_juego_terminado:
+     622.  00:4325                      			;está muerto drácula?
+     623.  00:4325  3A 32 C2            			LD				 A, (dracula_muerto)
+     624.  00:4328  B7                  			OR				 A
+     625.  00:4329  C8                  			RET				 Z
+     626.  00:432A                      			
+     627.  00:432A                      			;estás en el nivel 0?
+     628.  00:432A  3A 00 C0            			LD				 A, (prota_nivel)
+     629.  00:432D  B7                  			OR				 A
+     630.  00:432E  C0                  			RET				NZ
+     631.  00:432F                      			
+     632.  00:432F                      			;estás en la fila de abajo?
+     633.  00:432F  3A 04 C0            			LD				 A, (prota_pos_mapy)
+     634.  00:4332  B7                  			OR				 A
+     635.  00:4333  C0                  			RET				NZ
+     636.  00:4334                      			
+     637.  00:4334  C3 D1 49            			JP				pantalla_final_bueno
+     638.  00:4337                      fin_mira_si_esta_juego_terminado:
+     639.  00:4337                      
+     640.  00:4337                      
      184   00:4337                      	
      185   00:4337                      	include "subr_general.asm"
        1.  00:4337                      ;;=====================================================
@@ -3110,8 +3106,8 @@ Errors: 0
        2.  00:4A46                      ;;CONTANTES PUNTOMIRA
        3.  00:4A46                      ;;=====================================================
        4.  00:4A46                      datos_puntomira:			
-       5.  00:4A46  78                  				DB		POSXPM		;posición X de los sprites del punto de mira
-       6.  00:4A47  6C                  				DB		POSYPM		;posición Y de los sprites del punto de mira
+       5.  00:4A46  74                  				DB		POSXPM		;posición X de los sprites del punto de mira
+       6.  00:4A47  60                  				DB		POSYPM		;posición Y de los sprites del punto de mira
        7.  00:4A48  00                  				DB		0			;valores posibles 0 (blanco+rojo en punto de mira) y NEG 0 (al revés)
        8.  00:4A49  00                  				DB		0			;velocidad (por si lo pongo variable)
        9.  00:4A4A  04                  				DB		4			;cadencia
@@ -14655,8 +14651,8 @@ Errors: 0
 00:000007D0   RETARDOREL
 00:00000008   RADIOAYUDAX
 00:00000008   RADIOAYUDAY
-00:00000078   POSXPM
-00:0000006C   POSYPM
+00:00000074   POSXPM
+00:00000060   POSYPM
 00:00000001   ISHABTERMIN
 00:00000004   LIMCADENCIA
 00:00000000   SPRI_DANO1A
@@ -14698,7 +14694,7 @@ Errors: 0
 00:00000080   LIMPANTABA
 00:00000006 X BASEMAPY
 00:00000003 X BASEMAPX
-00:00000000 X PROTANIVEL
+00:00000000   PROTANIVEL
 00:00000003   PROTAVIDAS
 00:00000003   PROTARELIQUIAS
 00:00000003   PROTAPOSMAPX
@@ -15347,6 +15343,7 @@ Errors: 0
 00:0000429C   entra_habitacion.mira_nivel5
 00:000042A7   entra_habitacion.mira_nivel6
 00:000042AA   entra_habitacion.fin_mira_nivel
+00:000042AA X pinta_habitacion_comun
 00:000042B9 X fin_entra_habitacion
 00:000042B9   pinta_heroe_mapa
 00:000042C1 X fin_pinta_heroe_mapa

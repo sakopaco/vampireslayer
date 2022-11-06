@@ -99,8 +99,8 @@ ANCHOAYUDA: equ 00000002h
 RETARDOREL: equ 000007D0h
 RADIOAYUDAX: equ 00000008h
 RADIOAYUDAY: equ 00000008h
-POSXPM: equ 00000078h
-POSYPM: equ 0000006Ch
+POSXPM: equ 00000074h
+POSYPM: equ 00000060h
 ISHABTERMIN: equ 00000001h
 LIMCADENCIA: equ 00000004h
 SPRI_DANO1A: equ 00000000h
@@ -791,6 +791,7 @@ entra_habitacion.mira_nivel4: equ 00004291h
 entra_habitacion.mira_nivel5: equ 0000429Ch
 entra_habitacion.mira_nivel6: equ 000042A7h
 entra_habitacion.fin_mira_nivel: equ 000042AAh
+pinta_habitacion_comun: equ 000042AAh
 fin_entra_habitacion: equ 000042B9h
 pinta_heroe_mapa: equ 000042B9h
 fin_pinta_heroe_mapa: equ 000042C1h

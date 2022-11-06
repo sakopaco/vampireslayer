@@ -1,13 +1,11 @@
 BUGS
-- cuando se vuelve en las filas 1 la música cambia y no debería (pasa a la normal y debería ser la de jefe)
-- centrar punto de mira al entrar en una habitación
 - cuando se mate al drácula o a una de sus manos que no salga el sprite arriba
 - Revisar que el enemigo jefe se ponga en rojo al quedarle poca energía
 - el zombi muere sin apuntar ¿?¿?¿?
 
 TODO A
 - controlar que el disparo normal y avanzado puedan itercalarse correctamente y que el avanzado sólo dure 5 pantallas
-- controlar lo de vaciar habitaciones
+- controlar lo de vaciar habitaciones (ufff... esto va a costar)
 - que los disparos sean al centro de los enemigos (ajustar)
 - que los disparos a los enemigos de más de un sprite sean de un radio mayor
 - que el prota tenga tiempo límite para salir

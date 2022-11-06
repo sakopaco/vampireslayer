@@ -468,15 +468,14 @@ entra_habitacion:
 		CALL		inicializa_enemigos_fase6
 .fin_mira_nivel:
 		
-
-;~ pinta_habitacion_comun:	;(haya o no enemigos)
+pinta_habitacion_comun:	;(haya o no enemigos)
 
 		CALL		pinta_parte_superior_pantalla
 		CALL		pinta_puertas
 		CALL		pinta_extra_fondo
 		
 		CALL		pinta_ayudas_habitacion
-		
+
 		JP			pinta_heroe_mapa
 fin_entra_habitacion:
 
@@ -510,9 +509,6 @@ fin_pinta_blanco_mapa:
 ; salida: 	
 ; toca:		todo	
 cambio_nivel:
-		;MIRAR CUANDO EL NIVEL SEA -1 (SE SALE DEL CASTILLO Y PUEDE QUE SEA POR TERMINAR JUEGO O SALIR ANTES DE TIEMPO)
-;		*****************************************************************************************************************************+
-
 		CALL		pinta_nivel
 		
 		;carga sprites en memoria
@@ -610,8 +606,7 @@ accion_mata_dracula:
 		
 		CALL		oculta_todos_sprites
 		
-		CALL		espera_estandar
-		CALL		espera_estandar
+[2]		CALL		espera_estandar
 		
 		CALL		entra_habitacion
 		
@@ -620,7 +615,7 @@ fin_accion_mata_dracula:
 
 
 ;;=====================================================
-;;DEFINICIÓN DE SUBRUTINAS
+;;MIRA_SI_ESTA_JUEGO_TERMINADO
 ;;=====================================================
 ; funcion:	para que cuando se salga por la puerta inferior del nivel 0 llegue al final bueno del juego
 mira_si_esta_juego_terminado:
@@ -641,4 +636,5 @@ mira_si_esta_juego_terminado:
 			
 			JP				pantalla_final_bueno
 fin_mira_si_esta_juego_terminado:
+
 
