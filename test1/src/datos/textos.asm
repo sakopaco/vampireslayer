@@ -2,7 +2,7 @@
 ;;CONTANTES TEXTOS
 ;;=====================================================
 
-IF	1=0	; 1=1 versión en español y 1=0 verión en inglés
+IF	1=1	; 1=1 versión en español y 1=0 verión en inglés
 ;textos en español
 texto_vidas:		DB	'VIDAS'
 
@@ -16,7 +16,7 @@ texto_entrefases:
 texto_entrefases1:	DB	'  ESPERAS UN MOMENTO EN LAS   '	; 30 caracteres
 texto_entrefases2:	DB  'ESCALERAS MIENTRAS TUS OJOS   '	; 30 caracteres
 texto_entrefases3:	DB  'SE ACOSTUMBRAN A LA OSCURIDAD '	; 30 caracteres
-texto_entrefases4:	DB  'Y EL HORROVR QUE TE ESPERA.   '	; 30 caracteres
+texto_entrefases4:	DB  'Y EL HORROR QUE TE ESPERA.    '	; 30 caracteres
 
 texto_iniciar:		DB	'   PULSA FUEGO PARA COMENZAR  '	;30 caracteres
 
