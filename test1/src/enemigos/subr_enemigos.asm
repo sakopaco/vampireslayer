@@ -431,10 +431,8 @@ inicializa_enemigos_fase0_nivel2:
 		CALL		actualiza_valores_arana
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_serpiente
-		LD			IX, enemigo3
+		JP			anade_enemigo_serpiente
 fin_inicializa_enemigos_fase0_nivel2:
-		RET
 
 inicializa_enemigos_fase0_nivel3:
 		LD			DE, enemigo1
@@ -449,13 +447,10 @@ inicializa_enemigos_fase0_nivel3:
 		
 		LD			DE, enemigo3
 		CALL		anade_enemigo_serpiente
-		LD			IX, enemigo3
 		
 		LD			DE, enemigo4
-		CALL		anade_enemigo_murcielago
-		LD			IX, enemigo4
+		JP			anade_enemigo_murcielago
 fin_inicializa_enemigos_fase0_nivel3:
-		RET
 
 inicializa_enemigos_fase0_nivel4:
 		LD			DE, enemigo1
@@ -470,17 +465,13 @@ inicializa_enemigos_fase0_nivel4:
 		
 		LD			DE, enemigo3
 		CALL		anade_enemigo_serpiente
-		LD			IX, enemigo3
 		
 		LD			DE, enemigo4
 		CALL		anade_enemigo_murcielago
-		LD			IX, enemigo4
 		
 		LD			DE, enemigo5
-		CALL		anade_enemigo_lobo
-		LD			IX, enemigo5
+		JP			anade_enemigo_lobo
 fin_inicializa_enemigos_fase0_nivel4:
-		RET
 
 inicializa_enemigos_fase0_nivel5:
 		LD			DE, enemigo1
@@ -495,27 +486,21 @@ inicializa_enemigos_fase0_nivel5:
 		
 		LD			DE, enemigo3
 		CALL		anade_enemigo_serpiente
-		LD			IX, enemigo3
 		
 		LD			DE, enemigo4
 		CALL		anade_enemigo_murcielago
-		LD			IX, enemigo4
 		
 		LD			DE, enemigo5
-		CALL		anade_enemigo_lobo
-		LD			IX, enemigo5
+		JP			anade_enemigo_lobo
 fin_inicializa_enemigos_fase0_nivel5:
-		RET
 
 inicializa_enemigos_fase0_niveljefe:
 		;primero pone música de jefe fin de fase
 		CALL		play_musica_jefe
 
 		LD			DE, enemigo1
-		CALL		anade_enemigo_jefelobo
-		LD			IX, enemigo1
+		JP			anade_enemigo_jefelobo
 fin_inicializa_enemigos_fase0_niveljefe:
-		RET
 	
 
 ;;=====================================================
@@ -523,15 +508,12 @@ fin_inicializa_enemigos_fase0_niveljefe:
 ;;=====================================================	
 inicializa_enemigos_fase1_nivel0:
 		LD			DE, enemigo1
-		CALL		anade_enemigo_serpiente
-		LD			IX, enemigo1
+		JP			anade_enemigo_serpiente
 fin_inicializa_enemigos_fase1_nivel0:
-		RET
 
 inicializa_enemigos_fase1_nivel1:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
-		LD			IX, enemigo1
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_arana
@@ -542,7 +524,6 @@ fin_inicializa_enemigos_fase1_nivel1:
 inicializa_enemigos_fase1_nivel2:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
-		LD			IX, enemigo1
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_arana
@@ -550,15 +531,12 @@ inicializa_enemigos_fase1_nivel2:
 		CALL		actualiza_valores_arana
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_murcielago
-		LD			IX, enemigo3
+		JP			anade_enemigo_murcielago
 fin_inicializa_enemigos_fase1_nivel2:
-		RET
 
 inicializa_enemigos_fase1_nivel3:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
-		LD			IX, enemigo1
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_arana
@@ -567,18 +545,14 @@ inicializa_enemigos_fase1_nivel3:
 		
 		LD			DE, enemigo3
 		CALL		anade_enemigo_murcielago
-		LD			IX, enemigo3
 		
 		LD			DE, enemigo4
-		CALL		anade_enemigo_lobo
-		LD			IX, enemigo4
+		JP			anade_enemigo_lobo
 fin_inicializa_enemigos_fase1_nivel3:
-		RET
 
 inicializa_enemigos_fase1_nivel4:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
-		LD			IX, enemigo1
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_arana
@@ -587,22 +561,17 @@ inicializa_enemigos_fase1_nivel4:
 		
 		LD			DE, enemigo3
 		CALL		anade_enemigo_murcielago
-		LD			IX, enemigo3
 		
 		LD			DE, enemigo4
 		CALL		anade_enemigo_lobo
-		LD			IX, enemigo4
 		
 		LD			DE, enemigo5
-		CALL		anade_enemigo_esqueleto
-		LD			IX, enemigo5
+		JP			anade_enemigo_esqueleto
 fin_inicializa_enemigos_fase1_nivel4:
-		RET
 
 inicializa_enemigos_fase1_nivel5: 						
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
-		LD			IX, enemigo1
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_arana
@@ -611,20 +580,15 @@ inicializa_enemigos_fase1_nivel5:
 		
 		LD			DE, enemigo3
 		CALL		anade_enemigo_murcielago
-		LD			IX, enemigo3
 		
 		LD			DE, enemigo4
 		CALL		anade_enemigo_lobo
-		LD			IX, enemigo4
 		
 		LD			DE, enemigo5
 		CALL		anade_enemigo_esqueleto
-		LD			IX, enemigo5
 		
 		LD			DE, enemigo6
-		CALL		anade_enemigo_zombi
-		LD			IX, enemigo6
-		RET
+		JP			anade_enemigo_zombi
 fin_inicializa_enemigos_fase1_nivel5:
 
 inicializa_enemigos_fase1_niveljefe:
@@ -643,111 +607,83 @@ fin_inicializa_enemigos_fase1_niveljefe:
 ;;=====================================================	
 inicializa_enemigos_fase2_nivel0:
 		LD			DE, enemigo1
-		CALL		anade_enemigo_serpiente
-		LD			IX, enemigo1
+		JP			anade_enemigo_serpiente
 fin_inicializa_enemigos_fase2_nivel0:
-		RET
 
 inicializa_enemigos_fase2_nivel1:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
-		LD			IX, enemigo1
 		
 		LD			DE, enemigo2
-		CALL		anade_enemigo_murcielago
-		LD			IX, enemigo2
+		JP			anade_enemigo_murcielago
 fin_inicializa_enemigos_fase2_nivel1:
-		RET
 
 inicializa_enemigos_fase2_nivel2:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
-		LD			IX, enemigo1
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_murcielago
-		LD			IX, enemigo2
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_lobo
-		LD			IX, enemigo3
+		JP			anade_enemigo_lobo
 fin_inicializa_enemigos_fase2_nivel2:
-		RET
 
 inicializa_enemigos_fase2_nivel3:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
-		LD			IX, enemigo1
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_murcielago
-		LD			IX, enemigo2
 		
 		LD			DE, enemigo3
 		CALL		anade_enemigo_lobo
-		LD			IX, enemigo3
 		
 		LD			DE, enemigo4
-		CALL		anade_enemigo_esqueleto
-		LD			IX, enemigo4
+		JP			anade_enemigo_esqueleto
 fin_inicializa_enemigos_fase2_nivel3:
-		RET
 
 inicializa_enemigos_fase2_nivel4:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
-		LD			IX, enemigo1
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_murcielago
-		LD			IX, enemigo2
 		
 		LD			DE, enemigo3
 		CALL		anade_enemigo_lobo
-		LD			IX, enemigo3
 		
 		LD			DE, enemigo4
 		CALL		anade_enemigo_esqueleto
-		LD			IX, enemigo4
 		
 		LD			DE, enemigo5
-		CALL		anade_enemigo_zombi
-		LD			IX, enemigo5
+		JP			anade_enemigo_zombi
 fin_inicializa_enemigos_fase2_nivel4:
-		RET
 
 inicializa_enemigos_fase2_nivel5: 							
 		LD			DE, enemigo1
 		CALL		anade_enemigo_murcielago
-		LD			IX, enemigo1
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_lobo
-		LD			IX, enemigo2
 		
 		LD			DE, enemigo3
 		CALL		anade_enemigo_esqueleto
-		LD			IX, enemigo3
 		
 		LD			DE, enemigo4
 		CALL		anade_enemigo_zombi
-		LD			IX, enemigo4
 		
 		LD			DE, enemigo5
-		CALL		anade_enemigo_fantasma
-		LD			IX, enemigo5
+		JP			anade_enemigo_fantasma
 fin_inicializa_enemigos_fase2_nivel5:
-		RET
 
 inicializa_enemigos_fase2_niveljefe:
 		;primero pone música de jefe fin de fase
 		CALL		play_musica_jefe
 
 		LD			DE, enemigo1
-		CALL		anade_enemigo_jefefantasma
-		LD			IX, enemigo1
+		JP			anade_enemigo_jefefantasma
 fin_inicializa_enemigos_fase2_niveljefe:
-		RET
 
 
 ;;=====================================================
@@ -755,15 +691,12 @@ fin_inicializa_enemigos_fase2_niveljefe:
 ;;=====================================================	
 inicializa_enemigos_fase3_nivel0:
 		LD			DE, enemigo1
-		CALL		anade_enemigo_serpiente
-		LD			IX, enemigo1
+		JP			anade_enemigo_serpiente
 fin_inicializa_enemigos_fase3_nivel0:
-		RET
 
 inicializa_enemigos_fase3_nivel1:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
-		LD			IX, enemigo1
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_arana
@@ -774,7 +707,6 @@ fin_inicializa_enemigos_fase3_nivel1:
 inicializa_enemigos_fase3_nivel2:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
-		LD			IX, enemigo1
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_arana
@@ -782,15 +714,12 @@ inicializa_enemigos_fase3_nivel2:
 		CALL		actualiza_valores_arana
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_caballero
-		LD			IX, enemigo3
+		JP			anade_enemigo_caballero
 fin_inicializa_enemigos_fase3_nivel2:
-		RET
 
 inicializa_enemigos_fase3_nivel3:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
-		LD			IX, enemigo1
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_arana
@@ -799,18 +728,14 @@ inicializa_enemigos_fase3_nivel3:
 		
 		LD			DE, enemigo3
 		CALL		anade_enemigo_caballero
-		LD			IX, enemigo3
 		
 		LD			DE, enemigo4
-		CALL		anade_enemigo_esqueleto
-		LD			IX, enemigo4
+		JP			anade_enemigo_esqueleto
 fin_inicializa_enemigos_fase3_nivel3:
-		RET
 
 inicializa_enemigos_fase3_nivel4:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
-		LD			IX, enemigo1
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_arana
@@ -819,22 +744,17 @@ inicializa_enemigos_fase3_nivel4:
 		
 		LD			DE, enemigo3
 		CALL		anade_enemigo_caballero
-		LD			IX, enemigo3
 		
 		LD			DE, enemigo4
 		CALL		anade_enemigo_esqueleto
-		LD			IX, enemigo4
 		
 		LD			DE, enemigo5
-		CALL		anade_enemigo_zombi
-		LD			IX, enemigo5
+		JP			anade_enemigo_zombi
 fin_inicializa_enemigos_fase3_nivel4:
-		RET
 
 inicializa_enemigos_fase3_nivel5: 							
 		LD			DE, enemigo1
 		CALL		anade_enemigo_serpiente
-		LD			IX, enemigo1
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_arana
@@ -843,27 +763,21 @@ inicializa_enemigos_fase3_nivel5:
 		
 		LD			DE, enemigo3
 		CALL		anade_enemigo_caballero
-		LD			IX, enemigo3
 		
 		LD			DE, enemigo4
 		CALL		anade_enemigo_zombi
-		LD			IX, enemigo4
 		
 		LD			DE, enemigo5
-		CALL		anade_enemigo_fantasma
-		LD			IX, enemigo5
+		JP			anade_enemigo_fantasma
 fin_inicializa_enemigos_fase3_nivel5:
-		RET
 
 inicializa_enemigos_fase3_niveljefe:
 		;primero pone música de jefe fin de fase
 		CALL		play_musica_jefe
 		
 		LD			DE, enemigo1
-		CALL		anade_enemigo_jefezombi
-		LD			IX, enemigo1
+		JP			anade_enemigo_jefezombi
 fin_inicializa_enemigos_fase3_niveljefe:
-		RET
 
 
 ;;=====================================================
@@ -871,105 +785,78 @@ fin_inicializa_enemigos_fase3_niveljefe:
 ;;=====================================================	
 inicializa_enemigos_fase4_nivel0:
 		LD			DE, enemigo1
-		CALL		anade_enemigo_murcielago
-		LD			IX, enemigo1
+		JP			anade_enemigo_murcielago
 fin_inicializa_enemigos_fase4_nivel0:
-		RET
 
 inicializa_enemigos_fase4_nivel1:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_murcielago
-		LD			IX, enemigo1
 		
 		LD			DE, enemigo2
-		CALL		anade_enemigo_caballero
-		LD			IX, enemigo2
+		JP			anade_enemigo_caballero
 fin_inicializa_enemigos_fase4_nivel1:
-		RET
 
 inicializa_enemigos_fase4_nivel2:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_murcielago
-		LD			IX, enemigo1
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_caballero
-		LD			IX, enemigo2
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_esqueleto
-		LD			IX, enemigo3
+		JP			anade_enemigo_esqueleto
 fin_inicializa_enemigos_fase4_nivel2:
-		RET
 
 inicializa_enemigos_fase4_nivel3:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_murcielago
-		LD			IX, enemigo1
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_caballero
-		LD			IX, enemigo2
 		
 		LD			DE, enemigo3
 		CALL		anade_enemigo_esqueleto
-		LD			IX, enemigo3
 		
 		LD			DE, enemigo4
-		CALL		anade_enemigo_zombi
-		LD			IX, enemigo4
+		JP			anade_enemigo_zombi
 fin_inicializa_enemigos_fase4_nivel3:
-		RET
 
 inicializa_enemigos_fase4_nivel4:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_murcielago
-		LD			IX, enemigo1
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_caballero
-		LD			IX, enemigo2
 		
 		LD			DE, enemigo3
 		CALL		anade_enemigo_esqueleto
-		LD			IX, enemigo3
 		
 		LD			DE, enemigo4
 		CALL		anade_enemigo_zombi
-		LD			IX, enemigo4
 		
 		LD			DE, enemigo5
-		CALL		anade_enemigo_fantasma
-		LD			IX, enemigo5
+		JP			anade_enemigo_fantasma
 fin_inicializa_enemigos_fase4_nivel4:
-		RET
 
 inicializa_enemigos_fase4_nivel5: 							
 		LD			DE, enemigo1
 		CALL		anade_enemigo_murcielago
-		LD			IX, enemigo1
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_caballero
-		LD			IX, enemigo2
 		
 		LD			DE, enemigo3
 		CALL		anade_enemigo_esqueleto
-		LD			IX, enemigo3
 		
 		LD			DE, enemigo4
 		CALL		anade_enemigo_zombi
-		LD			IX, enemigo4
 		
 		LD			DE, enemigo5
 		CALL		anade_enemigo_fantasma
-		LD			IX, enemigo5
 		
 		LD			DE, enemigo6
-		CALL		anade_enemigo_fuego
-		LD			IX, enemigo6
+		JP			anade_enemigo_fuego
 fin_inicializa_enemigos_fase4_nivel5:
-		RET
 
 inicializa_enemigos_fase4_niveljefe:
 		;primero pone música de jefe fin de fase
@@ -978,7 +865,7 @@ inicializa_enemigos_fase4_niveljefe:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_jefecaballero
 		LD			IX, enemigo1
-		JP		actualiza_valores_jefecaballero
+		JP			actualiza_valores_jefecaballero
 fin_inicializa_enemigos_fase4_niveljefe:
 
 
@@ -987,115 +874,86 @@ fin_inicializa_enemigos_fase4_niveljefe:
 ;;=====================================================	
 inicializa_enemigos_fase5_nivel0:
 		LD			DE, enemigo1
-		CALL		anade_enemigo_magia
-		LD			IX, enemigo1
+		JP			anade_enemigo_magia
 fin_inicializa_enemigos_fase5_nivel0:
-		RET
 
 inicializa_enemigos_fase5_nivel1:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_magia
-		LD			IX, enemigo1
 		
 		LD			DE, enemigo2
-		CALL		anade_enemigo_caballero
-		LD			IX, enemigo2
+		JP			anade_enemigo_caballero
 fin_inicializa_enemigos_fase5_nivel1:
-		RET
 
 inicializa_enemigos_fase5_nivel2:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_magia
-		LD			IX, enemigo1
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_caballero
-		LD			IX, enemigo2
 		
 		LD			DE, enemigo3
-		CALL		anade_enemigo_esqueleto
-		LD			IX, enemigo3
+		JP			anade_enemigo_esqueleto
 fin_inicializa_enemigos_fase5_nivel2:
-		RET
 
 inicializa_enemigos_fase5_nivel3:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_magia
-		LD			IX, enemigo1
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_caballero
-		LD			IX, enemigo2
 		
 		LD			DE, enemigo3
 		CALL		anade_enemigo_esqueleto
-		LD			IX, enemigo3
 		
 		LD			DE, enemigo4
-		CALL		anade_enemigo_zombi
-		LD			IX, enemigo4
+		JP			anade_enemigo_zombi
 fin_inicializa_enemigos_fase5_nivel3:
-		RET
 
 inicializa_enemigos_fase5_nivel4:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_magia
-		LD			IX, enemigo1
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_caballero
-		LD			IX, enemigo2
 		
 		LD			DE, enemigo3
 		CALL		anade_enemigo_esqueleto
-		LD			IX, enemigo3
 		
 		LD			DE, enemigo4
 		CALL		anade_enemigo_zombi
-		LD			IX, enemigo4
 		
 		LD			DE, enemigo5
-		CALL		anade_enemigo_fantasma
-		LD			IX, enemigo5
+		JP			anade_enemigo_fantasma
 fin_inicializa_enemigos_fase5_nivel4:
-		RET
 
 inicializa_enemigos_fase5_nivel5: 							
 		LD			DE, enemigo1
 		CALL		anade_enemigo_magia
-		LD			IX, enemigo1
 		
 		LD			DE, enemigo2
 		CALL		anade_enemigo_caballero
-		LD			IX, enemigo2
 		
 		LD			DE, enemigo3
 		CALL		anade_enemigo_esqueleto
-		LD			IX, enemigo3
 		
 		LD			DE, enemigo4
 		CALL		anade_enemigo_zombi
-		LD			IX, enemigo4
 		
 		LD			DE, enemigo5
 		CALL		anade_enemigo_fantasma
-		LD			IX, enemigo5
 		
 		LD			DE, enemigo6
-		CALL		anade_enemigo_fuego
-		LD			IX, enemigo6
+		JP			anade_enemigo_fuego
 fin_inicializa_enemigos_fase5_nivel5:
-		RET
 
 inicializa_enemigos_fase5_niveljefe:
 		;primero pone música de jefe fin de fase
 		CALL		play_musica_jefe
 			
 		LD			DE, enemigo1
-		CALL		anade_enemigo_jefebeholder
-		LD			IX, enemigo1
+		JP			anade_enemigo_jefebeholder
 fin_inicializa_enemigos_fase5_niveljefe:
-		RET
 
 
 ;;=====================================================
@@ -1169,17 +1027,13 @@ dracula_NO_esta_muerto:
 		
 			LD			DE, enemigo1
 			CALL		anade_enemigo_dracula
-			LD			IX, enemigo1
 		
 			LD			DE, enemigo2
 			CALL		anade_enemigo_manoi
-			LD			IX, enemigo2
 		
 			LD			DE, enemigo3
-			CALL		anade_enemigo_manod
-			LD			IX, enemigo3
+			JP			anade_enemigo_manod
 fin_inicializa_enemigos_fase6_nivel6:
-		RET
 
 
 ;;=====================================================
