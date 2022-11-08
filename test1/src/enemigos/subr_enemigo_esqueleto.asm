@@ -116,7 +116,6 @@ calcula_esqueleto_escena:
 			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), ESQUELETO_SPRITE3A
 			RET
 fin_calcula_esqueleto_escena:
-		;RET
 
 
 ;;=====================================================

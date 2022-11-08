@@ -1809,6 +1809,7 @@ examina_enemigo6:
 		JP			 Z, examina_enemigo7
 		
 		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z
+		JP			 Z, examina_enemigo7	; IF hubo colisión
 			LD			 A, (prota_dano_actual)
 			LD			 B, A
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)

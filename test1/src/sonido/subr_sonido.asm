@@ -20,7 +20,9 @@ inicializa_replayer_efectos_interrupciones:
 	;inicializacion del reproductor de efectos sonoros
 	LD		HL, sfx_bank
 	CALL	ayFX_SETUP
-	
+		;inicializacion del reproductor de efectos sonoros
+	LD		HL, sfx_bank
+	CALL	ayFX_SETUP
 	;Engancha nuestra rutina de servicio al gancho que deja preparado la BIOS cuando se termina de pintar la pantalla (50 o 60 veces por segundo)
 	LD		A, #C3
 	LD		[H.TIMI], A
@@ -92,23 +94,31 @@ fin_enciende_sonido_solofx:
 
 
 play_musica_jefe:
-		;múscia de JEFE FIN DE FASE
 		CALL		inicializa_replayer_efectos_interrupciones
 		
 		LD			HL, musica_boss-99	; hl <- initial address of module - 99
 		CALL		PT3_INIT
 		LD			HL, PT3_SETUP
 		RES		0, (HL)
+		
+		;inicializacion del reproductor de efectos sonoros
+		LD		HL, sfx_bank
+		CALL	ayFX_SETUP
 fin_musica_jefe:
 		RET
 
 
 play_musica_gameover:		
 		CALL		inicializa_replayer_efectos_interrupciones
+		
 		LD			HL, musica_gameover-99	; hl <- initial address of module - 99
 		CALL		PT3_INIT
 		LD			HL, PT3_SETUP
 		RES		0, (HL)
+		
+		;inicializacion del reproductor de efectos sonoros
+		LD		HL, sfx_bank
+		CALL	ayFX_SETUP
 fin_play_musica_gameover:
 		RET
 
