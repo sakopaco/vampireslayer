@@ -1213,8 +1213,10 @@ quedan_vidas:
 			CALL		pinta_parte_superior_pantalla
 			CALL		pinta_puertas
 			
+		
+			
 			;repongo la música y efectos
-			JP			play_musica_apropiada
+			JP			play_musica_apropiada			
 fin_una_vida_menos:
 
 

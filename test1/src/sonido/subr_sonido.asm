@@ -11,29 +11,27 @@
 ; salida: 	-
 ; toca: 	HL, A
 inicializa_replayer_efectos_interrupciones:
-	DI
+		DI
 
-	;inicializacion de replayer musical
-	LD		HL, song-99			; hl <- initial address of module - 99
-	CALL	PT3_INIT			; Inits PT3 player
+		;inicializacion de replayer musical
+		LD		HL, song-99			; hl <- initial address of module - 99
+		CALL	PT3_INIT			; Inits PT3 player
 		
-	;inicializacion del reproductor de efectos sonoros
-	LD		HL, sfx_bank
-	CALL	ayFX_SETUP
 		;inicializacion del reproductor de efectos sonoros
-	LD		HL, sfx_bank
-	CALL	ayFX_SETUP
-	;Engancha nuestra rutina de servicio al gancho que deja preparado la BIOS cuando se termina de pintar la pantalla (50 o 60 veces por segundo)
-	LD		A, #C3
-	LD		[H.TIMI], A
-	LD		HL, subrutina_isr
-	LD		[H.TIMI+1], HL
+		LD		HL, sfx_bank
+		CALL	ayFX_SETUP
 	
-	EI		;optimizacion:
-			;piensa que las dos ultimas lineas podrian haber sido: 
-			;ei						;primero ei
-			;ld		[H.TIMI+1],hl	;luego este ld
-									;PENSAR (y consultar ) PORQUE!!!!
+		;Engancha nuestra rutina de servicio al gancho que deja preparado la BIOS cuando se termina de pintar la pantalla (50 o 60 veces por segundo)
+		LD		A, #C3
+		LD		[H.TIMI], A
+		LD		HL, subrutina_isr
+		LD		[H.TIMI+1], HL
+	
+		EI		;optimizacion:
+				;piensa que las dos ultimas lineas podrian haber sido: 
+				;ei						;primero ei
+				;ld		[H.TIMI+1],hl	;luego este ld
+										;PENSAR (y consultar ) PORQUE!!!!
 fin_inicializa_replayer_efectos_interrupciones:
 	RET
 
@@ -94,45 +92,64 @@ fin_enciende_sonido_solofx:
 
 
 play_musica_jefe:
-		CALL		inicializa_replayer_efectos_interrupciones
-		
-		LD			HL, musica_boss-99	; hl <- initial address of module - 99
-		CALL		PT3_INIT
-		LD			HL, PT3_SETUP
-		RES		0, (HL)
+		DI
+
+		;inicializacion de replayer musical
+		LD		HL, musica_boss-99	; hl <- initial address of module - 99
+		CALL	PT3_INIT			; Inits PT3 player
 		
 		;inicializacion del reproductor de efectos sonoros
 		LD		HL, sfx_bank
 		CALL	ayFX_SETUP
+		;Engancha nuestra rutina de servicio al gancho que deja preparado la BIOS cuando se termina de pintar la pantalla (50 o 60 veces por segundo)
+		LD		A, #C3
+		LD		[H.TIMI], A
+		LD		HL, subrutina_isr
+		LD		[H.TIMI+1], HL
+	
+		EI		;optimizacion:
+			;piensa que las dos ultimas lineas podrian haber sido: 
+			;ei						;primero ei
+			;ld		[H.TIMI+1],hl	;luego este ld
+									;PENSAR (y consultar ) PORQUE!!!
 fin_musica_jefe:
 		RET
 
 
 play_musica_gameover:		
-		CALL		inicializa_replayer_efectos_interrupciones
-		
-		LD			HL, musica_gameover-99	; hl <- initial address of module - 99
-		CALL		PT3_INIT
-		LD			HL, PT3_SETUP
-		RES		0, (HL)
-		
-		;inicializacion del reproductor de efectos sonoros
-		LD		HL, sfx_bank
-		CALL	ayFX_SETUP
+		DI
+
+		;inicializacion de replayer musical
+		LD		HL, musica_gameover-99			; hl <- initial address of module - 99
+		CALL	PT3_INIT			; Inits PT3 player
+	
+		;Engancha nuestra rutina de servicio al gancho que deja preparado la BIOS cuando se termina de pintar la pantalla (50 o 60 veces por segundo)
+		LD		A, #C3
+		LD		[H.TIMI], A
+		LD		HL, subrutina_isr
+		LD		[H.TIMI+1], HL
+	
+		EI		;optimizacion:
+				;piensa que las dos ultimas lineas podrian haber sido: 
+				;ei						;primero ei
+				;ld		[H.TIMI+1],hl	;luego este ld
+										;PENSAR (y consultar ) PORQUE!!!!
 fin_play_musica_gameover:
 		RET
+		
 
-
-play_musica_apropiada:
+play_musica_apropiada:	
 		;está muerto dracula?
 		LD				 A, (dracula_muerto)
 		OR				 A
 		JP				 Z, .dracula_NO_esta_muerto
 		CALL			play_musica_jefe
 		RET
+		
 		;SI música jefe
 .dracula_NO_esta_muerto:	;musica normal
-		JP				inicializa_replayer_efectos_interrupciones
+		CALL			inicializa_replayer_efectos_interrupciones
+		RET
 fin_play_musica_apropiada:
 
 

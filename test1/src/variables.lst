@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.11.08 - 22:01:20]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.11.21 - 18:55:22]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -1114,81 +1114,86 @@ Errors: 0
      106.  00:C546                      
      159   00:C546                      
      160   00:C546                      
-     161   00:C546                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-     162   00:C546                      ;; VARIABLES PARA SONIDO 
-     163   00:C546                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-     164   00:C546                      
-     165   00:C546  (F000)              	map		#f000	;IMPRESCINDIBLE PARA MÚSICA Y SONIDO !!!
-     166   00:C546                      
-     167   00:C546                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PT3 REPLAYER
-     168   00:C546  (00:F000)           PT3_SETUP:		#1	;set bit0 to 1, if you want to play without looping
-     169   00:C546                      					;bit7 is set each time, when loop point is passed
-     170   00:C546  (00:F001)           PT3_MODADDR:	#2
-     171   00:C546  (00:F003)           PT3_CrPsPtr:	#2
-     172   00:C546  (00:F005)           PT3_SAMPTRS:	#2
-     173   00:C546  (00:F007)           PT3_OrnPtrs:	#2
-     174   00:C546  (00:F009)           PT3_PDSP:		#2
-     175   00:C546  (00:F00B)           PT3_CSP:		#2
-     176   00:C546  (00:F00D)           PT3_PSP:		#2
-     177   00:C546  (00:F00F)           PT3_PrNote:		#1
-     178   00:C546  (00:F010)           PT3_PrSlide:	#2
-     179   00:C546  (00:F012)           PT3_AdInPtA:	#2
-     180   00:C546  (00:F014)           PT3_AdInPtB:	#2
-     181   00:C546  (00:F016)           PT3_AdInPtC:	#2
-     182   00:C546  (00:F018)           PT3_LPosPtr:	#2
-     183   00:C546  (00:F01A)           PT3_PatsPtr:	#2
-     184   00:C546  (00:F01C)           PT3_Delay:		#1
-     185   00:C546  (00:F01D)           PT3_AddToEn:	#1
-     186   00:C546  (00:F01E)           PT3_Env_Del:	#1
-     187   00:C546  (00:F01F)           PT3_ESldAdd:	#2
-     188   00:C546  (00:F021)           PT3_NTL3:		#2	; AND A / NOP (note table creator)
-     189   00:C546                      
-     190   00:C546  (00:F023)           VARS:			#0
-     191   00:C546                      
-     192   00:C546  (00:F023)           ChanA:			#29			;CHNPRM_Size
-     193   00:C546  (00:F040)           ChanB:			#29			;CHNPRM_Size
-     194   00:C546  (00:F05D)           ChanC:			#29			;CHNPRM_Size
-     195   00:C546                      
-     196   00:C546                      ;GlobalVars
-     197   00:C546  (00:F07A)           DelyCnt:		#1
-     198   00:C546  (00:F07B)           CurESld:		#2
-     199   00:C546  (00:F07D)           CurEDel:		#1
-     200   00:C546  (00:F07E)           Ns_Base_AddToNs:	#0
-     201   00:C546  (00:F07E)           Ns_Base:		#1
-     202   00:C546  (00:F07F)           AddToNs:		#1
-     203   00:C546                      
-     204   00:C546  (00:F080)           NT_:			#192	; Puntero a/tabla de frecuencias
-     205   00:C546                      
-     206   00:C546  (00:F140)           AYREGS:			#0
-     207   00:C546  (00:F140)           VT_:			#14
-     208   00:C546  (00:F14E)           EnvBase:		#2
-     209   00:C546  (00:F150)           VAR0END:		#0
-     210   00:C546                      
-     211   00:C546  (00:F150)           T1_:			#0		
-     212   00:C546  (00:F150)           T_NEW_1:		#0
-     213   00:C546  (00:F150)           T_OLD_1:		#24
-     214   00:C546  (00:F168)           T_OLD_2:		#24
-     215   00:C546  (00:F180)           T_NEW_3:		#0
-     216   00:C546  (00:F180)           T_OLD_3:		#2
-     217   00:C546  (00:F182)           T_OLD_0:		#0
-     218   00:C546  (00:F182)           T_NEW_0:		#24
-     219   00:C546  (00:F19A)           T_NEW_2:		#166
-     220   00:C546                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PT3 REPLAYER END
-     221   00:C546                      
-     222   00:C546                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ayFX REPLAYER 
-     223   00:C546  (00:F240)           ayFX_MODE:		#1			; ayFX mode
-     224   00:C546  (00:F241)           ayFX_BANK:		#2			; Current ayFX Bank
-     225   00:C546  (00:F243)           ayFX_PRIORITY:	#1			; Current ayFX stream priotity
-     226   00:C546  (00:F244)           ayFX_POINTER:	#2			; Pointer to the current ayFX stream
-     227   00:C546  (00:F246)           ayFX_TONE:		#2			; Current tone of the ayFX stream
-     228   00:C546  (00:F248)           ayFX_NOISE:		#1			; Current noise of the ayFX stream
-     229   00:C546  (00:F249)           ayFX_VOLUME:	#1			; Current volume of the ayFX stream
-     230   00:C546  (00:F24A)           ayFX_CHANNEL:	#1			; PSG channel to play the ayFX stream
-     231   00:C546                      
-     232   00:C546                      	;IF (AYFXRELATIVE == 1 ) 
-     233   00:C546                      ;ayFX_VT:	ds	2			; ayFX relative volume table pointer
-     234   00:C546                      	;ENDIF
-     235   00:C546                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ayFX REPLAYER END
+     161   00:C546                      ;;=====================================================
+     162   00:C546                      ;;VARIABLES PARA SONIDO 
+     163   00:C546                      ;;=====================================================
+     164   00:C546                      	include "datos/var_pt3_ayfx.asm"
+       1.  00:C546                      ;;=====================================================
+       2.  00:C546                      ;;VARIABLES PARA SONIDO 
+       3.  00:C546                      ;;=====================================================
+       4.  00:C546                      
+       5.  00:C546  (F000)              	map		#f000	;IMPRESCINDIBLE PARA MÚSICA Y SONIDO !!!
+       6.  00:C546                      
+       7.  00:C546                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PT3 REPLAYER
+       8.  00:C546  (00:F000)           PT3_SETUP:		#1	;set bit0 to 1, if you want to play without looping
+       9.  00:C546                      					;bit7 is set each time, when loop point is passed
+      10.  00:C546  (00:F001)           PT3_MODADDR:	#2
+      11.  00:C546  (00:F003)           PT3_CrPsPtr:	#2
+      12.  00:C546  (00:F005)           PT3_SAMPTRS:	#2
+      13.  00:C546  (00:F007)           PT3_OrnPtrs:	#2
+      14.  00:C546  (00:F009)           PT3_PDSP:		#2
+      15.  00:C546  (00:F00B)           PT3_CSP:		#2
+      16.  00:C546  (00:F00D)           PT3_PSP:		#2
+      17.  00:C546  (00:F00F)           PT3_PrNote:		#1
+      18.  00:C546  (00:F010)           PT3_PrSlide:	#2
+      19.  00:C546  (00:F012)           PT3_AdInPtA:	#2
+      20.  00:C546  (00:F014)           PT3_AdInPtB:	#2
+      21.  00:C546  (00:F016)           PT3_AdInPtC:	#2
+      22.  00:C546  (00:F018)           PT3_LPosPtr:	#2
+      23.  00:C546  (00:F01A)           PT3_PatsPtr:	#2
+      24.  00:C546  (00:F01C)           PT3_Delay:		#1
+      25.  00:C546  (00:F01D)           PT3_AddToEn:	#1
+      26.  00:C546  (00:F01E)           PT3_Env_Del:	#1
+      27.  00:C546  (00:F01F)           PT3_ESldAdd:	#2
+      28.  00:C546  (00:F021)           PT3_NTL3:		#2	; AND A / NOP (note table creator)
+      29.  00:C546                      
+      30.  00:C546  (00:F023)           VARS:			#0
+      31.  00:C546                      
+      32.  00:C546  (00:F023)           ChanA:			#29			;CHNPRM_Size
+      33.  00:C546  (00:F040)           ChanB:			#29			;CHNPRM_Size
+      34.  00:C546  (00:F05D)           ChanC:			#29			;CHNPRM_Size
+      35.  00:C546                      
+      36.  00:C546                      ;GlobalVars
+      37.  00:C546  (00:F07A)           DelyCnt:		#1
+      38.  00:C546  (00:F07B)           CurESld:		#2
+      39.  00:C546  (00:F07D)           CurEDel:		#1
+      40.  00:C546  (00:F07E)           Ns_Base_AddToNs:	#0
+      41.  00:C546  (00:F07E)           Ns_Base:		#1
+      42.  00:C546  (00:F07F)           AddToNs:		#1
+      43.  00:C546                      
+      44.  00:C546  (00:F080)           NT_:			#192	; Puntero a/tabla de frecuencias
+      45.  00:C546                      
+      46.  00:C546  (00:F140)           AYREGS:			#0
+      47.  00:C546  (00:F140)           VT_:			#14
+      48.  00:C546  (00:F14E)           EnvBase:		#2
+      49.  00:C546  (00:F150)           VAR0END:		#0
+      50.  00:C546                      
+      51.  00:C546  (00:F150)           T1_:			#0		
+      52.  00:C546  (00:F150)           T_NEW_1:		#0
+      53.  00:C546  (00:F150)           T_OLD_1:		#24
+      54.  00:C546  (00:F168)           T_OLD_2:		#24
+      55.  00:C546  (00:F180)           T_NEW_3:		#0
+      56.  00:C546  (00:F180)           T_OLD_3:		#2
+      57.  00:C546  (00:F182)           T_OLD_0:		#0
+      58.  00:C546  (00:F182)           T_NEW_0:		#24
+      59.  00:C546  (00:F19A)           T_NEW_2:		#166
+      60.  00:C546                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PT3 REPLAYER END
+      61.  00:C546                      
+      62.  00:C546                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ayFX REPLAYER 
+      63.  00:C546  (00:F240)           ayFX_MODE:		#1			; ayFX mode
+      64.  00:C546  (00:F241)           ayFX_BANK:		#2			; Current ayFX Bank
+      65.  00:C546  (00:F243)           ayFX_PRIORITY:	#1			; Current ayFX stream priotity
+      66.  00:C546  (00:F244)           ayFX_POINTER:	#2			; Pointer to the current ayFX stream
+      67.  00:C546  (00:F246)           ayFX_TONE:		#2			; Current tone of the ayFX stream
+      68.  00:C546  (00:F248)           ayFX_NOISE:		#1			; Current noise of the ayFX stream
+      69.  00:C546  (00:F249)           ayFX_VOLUME:	#1			; Current volume of the ayFX stream
+      70.  00:C546  (00:F24A)           ayFX_CHANNEL:	#1			; PSG channel to play the ayFX stream
+      71.  00:C546                      
+      72.  00:C546                      	;IF (AYFXRELATIVE == 1 ) 
+      73.  00:C546                      ;ayFX_VT:	ds	2			; ayFX relative volume table pointer
+      74.  00:C546                      	;ENDIF
+      75.  00:C546                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ayFX REPLAYER END
+     165   00:C546                      
 
     LABELS
 -------------------------------------------------
