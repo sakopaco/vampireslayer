@@ -1213,8 +1213,15 @@ quedan_vidas:
 			;repinto la pantalla y las puertas que correspondan
 			CALL		pinta_parte_superior_pantalla
 			CALL		pinta_puertas
-				
-			JP			reponer_musica_tras_muerte_cambio_nivel
+			
+			
+			;JP			reponer_musica_tras_muerte_cambio_nivel
+			
+			
+			
+			CALL		ayFX_PLAY
+			CALL		reponer_musica_tras_muerte_cambio_nivel
+			RET
 fin_una_vida_menos:
 
 
@@ -1252,8 +1259,6 @@ fin_reponer_musica_tras_muerte_cambio_nivel:
 ;;=====================================================	
 ; función: muestra la página de fin de juego en caso de que nos maten por daño
 game_over1:
-		CALL		musica_off
-
 		;limpiar pantalla
 		CALL		limpia_pantalla_superior
 		
@@ -1265,7 +1270,7 @@ game_over1:
 		CALL		oculta_todos_sprites
 		
 		;pone la música de game over
-		LD			 A, 2 ;A=1 musica gameover
+		LD			 A, 2 ;A=2 musica gameover
 		CALL		musica_on
 		
 		;poner texto game over
