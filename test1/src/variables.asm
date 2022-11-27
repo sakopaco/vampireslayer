@@ -161,5 +161,7 @@ minutos:					DB	0
 ;;=====================================================
 ;;VARIABLES PARA SONIDO 
 ;;=====================================================
+musica_activa:				DB	0			;se examina en subrutina_isr
+musica_tipo:				DB  0			;se examina en play_musica_apropiada
 	include "datos/var_pt3_ayfx.asm"
 

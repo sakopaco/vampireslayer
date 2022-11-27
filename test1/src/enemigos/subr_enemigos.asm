@@ -496,7 +496,8 @@ fin_inicializa_enemigos_fase0_nivel5:
 
 inicializa_enemigos_fase0_niveljefe:
 		;primero pone música de jefe fin de fase
-		CALL		play_musica_jefe
+		LD			 A, 1 ;A=1 musica jefe
+		CALL		musica_on
 
 		LD			DE, enemigo1
 		JP			anade_enemigo_jefelobo
@@ -593,7 +594,8 @@ fin_inicializa_enemigos_fase1_nivel5:
 
 inicializa_enemigos_fase1_niveljefe:
 		;primero pone música de jefe fin de fase
-		CALL		play_musica_jefe
+		LD			 A, 1 ;A=1 musica jefe
+		CALL		musica_on
 
 		LD			DE, enemigo1
 		CALL		anade_enemigo_jefemurcielago
@@ -679,7 +681,8 @@ fin_inicializa_enemigos_fase2_nivel5:
 
 inicializa_enemigos_fase2_niveljefe:
 		;primero pone música de jefe fin de fase
-		CALL		play_musica_jefe
+		LD			 A, 1 ;A=1 musica jefe
+		CALL		musica_on
 
 		LD			DE, enemigo1
 		JP			anade_enemigo_jefefantasma
@@ -773,7 +776,8 @@ fin_inicializa_enemigos_fase3_nivel5:
 
 inicializa_enemigos_fase3_niveljefe:
 		;primero pone música de jefe fin de fase
-		CALL		play_musica_jefe
+		LD			 A, 1 ;A=1 musica jefe
+		CALL		musica_on
 		
 		LD			DE, enemigo1
 		JP			anade_enemigo_jefezombi
@@ -860,7 +864,8 @@ fin_inicializa_enemigos_fase4_nivel5:
 
 inicializa_enemigos_fase4_niveljefe:
 		;primero pone música de jefe fin de fase
-		CALL		play_musica_jefe
+		LD			 A, 1 ;A=1 musica jefe
+		CALL		musica_on
 		
 		LD			DE, enemigo1
 		CALL		anade_enemigo_jefecaballero
@@ -949,7 +954,8 @@ fin_inicializa_enemigos_fase5_nivel5:
 
 inicializa_enemigos_fase5_niveljefe:
 		;primero pone música de jefe fin de fase
-		CALL		play_musica_jefe
+		LD			 A, 1 ;A=1 musica jefe
+		CALL		musica_on
 			
 		LD			DE, enemigo1
 		JP			anade_enemigo_jefebeholder
@@ -1014,15 +1020,16 @@ inicializa_enemigos_fase6_nivel5:
 fin_inicializa_enemigos_fase6_nivel5:
 
 inicializa_enemigos_fase6_nivel6:
+		;primero pone música de jefe fin de fase
+		LD			 A, 1 ;A=1 musica jefe
+		CALL		musica_on
+		
 		;está muerto drácula
 		LD			 A, (dracula_muerto)
 		OR			 A
 			RET			NZ	;SI
 
-dracula_NO_esta_muerto:
-		;primero pone música de jefe fin de fase
-			CALL		play_musica_jefe
-			
+dracula_NO_esta_muerto:	
 			CALL		carga_patrones_sprites_nivel6_nivel6
 		
 			LD			DE, enemigo1

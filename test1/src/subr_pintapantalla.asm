@@ -926,23 +926,23 @@ fin_flip_calavera_esqueletos:
 ; salida: 	DE (iportante porque se usa fuera) y ESTRUCTURA_ESQUELETO.escena
 ; toca:		TODOS.... muy importante DE
 actualiza_escena_calavera:
-	;consulta_escena
-	LD		 A, (IX + ESTRUCTURA_ESQUELETO.escena)
-	LD		(var_aux_calavera), A
-	OR		 A
-	JP		 NZ, .decrementa_escenas
-	LD		 A, RESETESCENAESQUEL
+		;consulta_escena
+		LD		 A, (IX + ESTRUCTURA_ESQUELETO.escena)
+		LD		(var_aux_calavera), A
+		OR		 A
+		JP		 NZ, .decrementa_escenas
+		LD		 A, RESETESCENAESQUEL
 .decrementa_escenas
-	DEC		 A
+		DEC		 A
 .fin_consulta_escena
-	LD		 (IX + ESTRUCTURA_ESQUELETO.escena), A
-	
-	LD		HL, lista_escenas_calavera
-	LD		 A, (var_aux_calavera)
-	CALL	suma_A_HL
-	
-	LD		 D, H
-	LD		 E, L
+		LD		 (IX + ESTRUCTURA_ESQUELETO.escena), A
+		
+		LD		HL, lista_escenas_calavera
+		LD		 A, (var_aux_calavera)
+		CALL	suma_A_HL
+		
+		LD		 D, H
+		LD		 E, L
 fin_actualiza_escena_calavera:
 	RET
 
@@ -952,39 +952,39 @@ fin_actualiza_escena_calavera:
 ;;=====================================================	
 ; función: 	pone un texto cada vex que se sube o baja de nivel en el castillo
 cambio_nivel_entrefases:
-		;paro música		
-		CALL		enciende_sonido_solofx
+			CALL		musica_off
 
-		CALL		borra_mapa
+			CALL		borra_mapa
 
-		;Ocultamos todos los sprites
-		CALL		oculta_todos_sprites
+			;Ocultamos todos los sprites
+			CALL		oculta_todos_sprites
 			
-		;ocultamos posición superior en mapa
-		LD			BC, TILMAP + (17 * 32) + 27
-		LD		 	D, 0
-		CALL		pinta_tile_suelto	
+			;ocultamos posición superior en mapa
+			LD			BC, TILMAP + (17 * 32) + 27
+			LD		 	D, 0
+			CALL		pinta_tile_suelto	
 				
-		;ocultamos posición inferior en mapa
-		LD			BC, TILMAP + (23 * 32) + 27
-		LD		 	D, 0
-		CALL		pinta_tile_suelto	
+			;ocultamos posición inferior en mapa
+			LD			BC, TILMAP + (23 * 32) + 27
+			LD		 	D, 0
+			CALL		pinta_tile_suelto	
 
-		;ocultamos numero de nivel
-		LD			BC, TILMAP + (21 * 32) + 20
-		LD		 	D, 0
-		CALL		pinta_tile_suelto	
+			;ocultamos numero de nivel
+			LD			BC, TILMAP + (21 * 32) + 20
+			LD		 	D, 0
+			CALL		pinta_tile_suelto	
 
-		;cargamos mapa de pantalla banco 1 y 2
-		LD			HL, tiles_mapa_entrefases
-		LD			DE, TILMAP
-		CALL		depack_VRAM
+			;cargamos mapa de pantalla banco 1 y 2
+			LD			HL, tiles_mapa_entrefases
+			LD			DE, TILMAP
+			CALL		depack_VRAM
 			
-		CALL		pinta_texto_entrefases
+			CALL		pinta_texto_entrefases
 
-		CALL		espera_estandar
+			CALL		espera_estandar
 		
-		JP			play_musica_apropiada
+			;repongo la música y efectos
+			JP			reponer_musica_tras_muerte_cambio_nivel	
 fin_cabio_nivel_entrefases:
 
 
@@ -1123,7 +1123,8 @@ muestra_pantalla_inicial:
 		;borra pantalla bonito
 		CALL		borra_pantalla_inicio
 		
-		JP			play_musica_apropiada
+		XOR			 A ;A=0 musica normal
+		JP			musica_on
 fin_muestra_pantalla_inicial:
 
 
@@ -1181,7 +1182,7 @@ fin_oculta_tile_vida0:
 ; funcion: muestra mensaje cuando te matan una vida
 una_vida_menos;
 		;paro música		
-		CALL		enciende_sonido_solofx
+		CALL		musica_off
 		
 		LD			 A, (prota_vidas)
 		OR			 A
@@ -1191,7 +1192,7 @@ no_quedan_vidas:
 			CALL		game_over1
 
 			;SALIR
-			JP			pantalla_inicial	;***************+ PREGUNTAR FERNANDO SI HABRÍA QUE REINICIAR LA PILA DE ALGUNA FORMA
+			JP			pantalla_inicial
 quedan_vidas:
 			;vacia vida (el nivel mínimo lo pone en negro)
 			CALL		oculta_tile_energia_minima
@@ -1212,12 +1213,38 @@ quedan_vidas:
 			;repinto la pantalla y las puertas que correspondan
 			CALL		pinta_parte_superior_pantalla
 			CALL		pinta_puertas
-			
-		
-			
-			;repongo la música y efectos
-			JP			play_musica_apropiada			
+				
+			JP			reponer_musica_tras_muerte_cambio_nivel
 fin_una_vida_menos:
+
+
+;;=====================================================
+;;REPONER_MUSICA_TRAS_MUERTE_CAMBIO_NIVEL
+;;=====================================================	
+; función:  evita repetir el mismo código si te han matado o cambias de nivel
+;			si está muerto drácula o estás en una pantalla con jefe (posy = 6) musica jefe A=1
+;			si no A = 0 musica normal
+; nota:		se aprovecha para cuando matas a drácula (se hace más lento pero ahorras código)
+reponer_musica_tras_muerte_cambio_nivel:
+			;repongo la música y efectos
+			LD			 B, 0
+;está muerto dracula
+.examina_dracula_muerto:
+			LD			 A, (dracula_muerto)
+			OR			 A
+			JP			 Z, .examina_pantalla_jefe
+			LD			 B, 1 
+			JP			.fin_examina_tipo_musica
+;estoy en pantalla de jefe
+.examina_pantalla_jefe:
+			LD			 A, (prota_pos_mapy)
+			CP			 6
+			JP			 Z, .fin_examina_tipo_musica
+			LD			 B, 1 
+.fin_examina_tipo_musica:
+			LD			 A, B
+			JP			musica_on			
+fin_reponer_musica_tras_muerte_cambio_nivel:
 
 
 ;;=====================================================
@@ -1225,6 +1252,8 @@ fin_una_vida_menos:
 ;;=====================================================	
 ; función: muestra la página de fin de juego en caso de que nos maten por daño
 game_over1:
+		CALL		musica_off
+
 		;limpiar pantalla
 		CALL		limpia_pantalla_superior
 		
@@ -1236,7 +1265,8 @@ game_over1:
 		CALL		oculta_todos_sprites
 		
 		;pone la música de game over
-		CALL		play_musica_gameover
+		LD			 A, 2 ;A=1 musica gameover
+		CALL		musica_on
 		
 		;poner texto game over
 		LD			HL, texto_gameover	;guardo puntero al array a pintar (como pasar por referencia)

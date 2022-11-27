@@ -60,9 +60,7 @@ START:
 		CALL		sub_preparapantalla			;screen 2,2 sin click al pulsar tecla y color 16,1,1
 
 inicio_juego:
-		;incializacion de replayer con interrupciones
-		;CALL		inicializa_replayer_efectos_interrupciones
-		CALL		enciende_sonido_solofx
+		CALL		musica_off
 	
 pantalla_inicial:
 		CALL		muestra_pantalla_inicial
@@ -102,6 +100,8 @@ pantalla_inicial:
 	
 		CALL		entra_habitacion 		;CALL resetea enemigos + CALL inicializa_enemigos_fase + CALL	pinta_puertas + CALL pinta_ayudas_habitacion + CALL	pinta_extra_fondo 
 
+		XOR			 A ;A=0 entrada para musica normal
+		CALL		musica_on
 loop_principal:
 		HALT								;espera VBLANK y sincroniza	
 
@@ -147,7 +147,7 @@ inicializa_variables_prota:
 		;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
 		;será igual la posición inicial en todos los niveles
 	
-		LD		 A, 5;PROTANIVEL
+		LD		 A, 6;PROTANIVEL
 		LD		(prota_nivel), A
 
 		LD		 A, PROTAPOSMAPY
@@ -166,12 +166,52 @@ fin_inicializa_variables_prota:
 inicializa_variables_juego:
 		XOR			 A
 		LD			(dracula_muerto), A
+		
+		LD			(musica_tipo), A
+		
+		LD			(musica_activa), A
 fin_inicializa_variables_juego:
 		RET
 
 ;;************************************************************************
 
 
+;	entrada: A
+play_musica_apropiada:		
+		;A=0 musica normal
+		;A=1 musica jefe
+		;A=2 musica gameover
+.mira_musica_normal:
+		OR			 A
+		JP			NZ, .mira_musica_jefe
+		LD			HL, musica_normal-99			; hl <- initial address of module - 99
+		JP			.fin_mira_posibles_musicas
+.mira_musica_jefe:
+		CP			MUSICAJEFE
+		JP			NZ, .mira_musica_gameover
+		LD			HL, musica_boss-99			; hl <- initial address of module - 99
+		JP			.fin_mira_posibles_musicas
+.mira_musica_gameover:	;si no es usica normal ni jefe es gameover
+		LD			HL, musica_gameover-99			; hl <- initial address of module - 99
+.fin_mira_posibles_musicas:
+		JP			inicializa_replayer_efectos_interrupciones
+fin_play_musica_apropiada:
+
+
+musica_on:
+		;incializacion de replayer con interrupciones
+		PUSH		AF
+		LD			 A, 1
+		LD			(musica_activa), A	;musica off... sólo fx
+		POP			AF
+		JP			play_musica_apropiada
+fin_musica_on:
+musica_off:
+		;incializacion de replayer con interrupciones
+		XOR			 A
+		LD			(musica_activa), A	;musica off... sólo fx
+		JP			play_musica_apropiada
+fin_musica_off:
 
 
 ;;************************************************************************		

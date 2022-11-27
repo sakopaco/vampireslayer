@@ -580,7 +580,7 @@ accion_mata_dracula:
 		CALL		oculta_todos_sprites
 
 		;paro música		
-		CALL		enciende_sonido_solofx
+		CALL		musica_off
 
 		CALL		borra_mapa
 
@@ -610,7 +610,7 @@ accion_mata_dracula:
 		
 		CALL		entra_habitacion
 		
-		JP			play_musica_apropiada
+		JP			reponer_musica_tras_muerte_cambio_nivel
 fin_accion_mata_dracula:
 
 
