@@ -1215,13 +1215,23 @@ quedan_vidas:
 			CALL		pinta_puertas
 			
 			
-			;JP			reponer_musica_tras_muerte_cambio_nivel
+			JP			reponer_musica_tras_muerte_cambio_nivel
 			
 			
 			
-			CALL		ayFX_PLAY
-			CALL		reponer_musica_tras_muerte_cambio_nivel
-			RET
+			;CALL		musica_off
+			;LD			HL, musica_boss-99	
+			;CALL		inicializa_replayer_efectos_interrupciones
+			;CALL		reponer_musica_tras_muerte_cambio_nivel
+			
+		;~ LD		HL, song-99			; hl <- initial address of module - 99
+		;~ CALL	PT3_INIT			; Inits PT3 player
+		
+		;~ ;inicializacion del reproductor de efectos sonoros
+		;~ LD		HL, sfx_bank
+		;~ CALL	ayFX_SETUP
+			
+			;~ RET
 fin_una_vida_menos:
 
 

@@ -3,7 +3,7 @@
 ;;=====================================================	
 ;de cuántos sprites está formado el eneigo de tipo nº=posición en array... las posiciones 0 y 1 (desaparece y muerto) no cuentan
 ;spritesxenemigo:	DB	0,0,1,1,1,1,2,2,2,2,2,2,2,2,4,4,4,4,4,4,2,2,2
-spritesxenemigo:	DB	0,0,1,1,1,1,0,0,0,0,0,0,0,0,2,2,2,2,2,2,0,0,0
+spritesxenemigo:	DB	0,0,1,1,1,1,0,0,0,0,0,0,0,0,2,2,2,2,2,2,1,1,0
 ;es más rápido si le resto a los de 2 sprites que son la mayoría le pongo el valor 0 a los de 1 los dejo con 1 y a los de 4 con 2 para realizar un if más rápido
 
 
