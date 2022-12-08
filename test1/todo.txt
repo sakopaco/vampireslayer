@@ -1,5 +1,5 @@
 BUGS
-- los efectos dejan de funcionar cuando te matan!!!!
+- los efectos dejan de funcionar cuando te matan pero se recupera si cambias de nivel!!!!
 - revisar funcion de gameover1 y 2 y sustituir las dos funciones por una con parámetros y se ahorra espacio
 - ya no muere el zombi sin apuntar pero se muere casi al prier tiro independientemente de la vida que tenga
 

@@ -1400,10 +1400,10 @@ pantalla_final_bueno:
 			LD			DE,CLRTBL + #1000
 			CALL		depack_VRAM
 
-			;pinto texto de final bueno
 			LD			DE, TILMAP + 512	;destino en vram (pos tiles + 256 (banco 0 + 256 banco )
-			LD			HL, texto_finalbueno;guardo puntero al array a pintar (como psar por referencia)
-			CALL		pinta_textos_8lineas
+			LD			HL, texto_finalbueno
+			LD			BC, 32 * 8
+			CALL		LDIRVM			
 
 			;múscia de FINAL BUENO ********************************************************************************************
 			LD			HL, PT3_SETUP
@@ -1421,21 +1421,3 @@ pantalla_final_bueno:
 			JP			inicio_juego		;##*******************************************************************	
 fin_pantalla_final_bueno:
 
-
-;;=====================================================
-;;PINTA_TEXTOS_8LINEAS
-;;=====================================================
-; funcion: pinta en pantalla 8 lineas de texto de 32 caracteres    ;##******************+ qué falla ¿?¿?¿? por qué B <> 8?
-; entrada:
-;			LD			DE, TILMAP + 512	;destino en vram
-;			LD			HL, texto_finalbueno;guardo puntero al array a pintar (como psar por referencia)
-pinta_textos_8lineas:
-			LD			 B, 16;*****************************************************************************    32¿?¿?¿?¿?
-.loop_texto:	
-				PUSH		BC
-				LD			BC, 32				;nº posiciones a pintar
-				CALL		LDIRVM
-				POP			BC
-			DJNZ		.loop_texto
-fin_pinta_textos_8lineas:
-			RET

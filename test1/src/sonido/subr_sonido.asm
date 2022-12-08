@@ -59,6 +59,45 @@ subrutina_isr:
 fin_subrutina_isr:
 	
 
+
+;	entrada: A
+play_musica_apropiada:		
+		;A=0 musica normal
+		;A=1 musica jefe
+		;A=2 musica gameover
+.mira_musica_normal:
+		OR			 A
+		JP			NZ, .mira_musica_jefe
+		LD			HL, musica_normal-99			; hl <- initial address of module - 99
+		JP			.fin_mira_posibles_musicas
+.mira_musica_jefe:
+		CP			MUSICAJEFE
+		JP			NZ, .mira_musica_gameover
+		LD			HL, musica_boss-99			; hl <- initial address of module - 99
+		JP			.fin_mira_posibles_musicas
+.mira_musica_gameover:	;si no es usica normal ni jefe es gameover
+		LD			HL, musica_gameover-99			; hl <- initial address of module - 99
+.fin_mira_posibles_musicas:
+		JP			inicializa_replayer_efectos_interrupciones
+fin_play_musica_apropiada:
+
+
+musica_on:
+		;incializacion de replayer con interrupciones
+		PUSH		AF
+		LD			 A, 1
+		LD			(musica_activa), A	;musica off... sólo fx
+		POP			AF
+		JP			play_musica_apropiada
+fin_musica_on:
+musica_off:
+		;incializacion de replayer con interrupciones
+		XOR			 A
+		LD			(musica_activa), A	;musica off... sólo fx
+		JP			play_musica_apropiada
+fin_musica_off:
+
+
 ;;=====================================================
 ;;DEFINICIÓN DE SUBRUTINAS DE FERNANDO PARA COMPRESIÓN Y SONIDO
 ;;=====================================================

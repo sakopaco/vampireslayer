@@ -602,7 +602,8 @@ accion_mata_dracula:
 		;pinto texto de matar a drácula
 		LD			DE, TILMAP + 256		;destino en vram (pos tiles + 256 (banco 0 + 256 banco )
 		LD			HL, texto_deaddracula	;guardo puntero al array a pintar (como psar por referencia)
-		CALL		pinta_textos_8lineas
+		LD			BC, 32 * 8
+		CALL		LDIRVM
 		
 		CALL		oculta_todos_sprites
 		
