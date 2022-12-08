@@ -23,7 +23,6 @@ texto_iniciar:		DB	'   PULSA FUEGO PARA COMENZAR  '	;30 caracteres
 texto_vidamenos:	DB 	'VIGILA TUS VIDAS'	;16 caracteres
 
 texto_gameover:		DB	'HAS MUERTO'	;10 caracteres
-
 texto_gameover1A:	DB	'VIVIRAS PARA SIEMPRE COMO UN'	;29 caracteres
 texto_gameover1B:	DB	'ZOMBI. SER ESCLAVO DE DRACULA'	;29 caracteres
 texto_gameover1C:	DB	'        SERA TU FIN.         ' ;29 caracteres
