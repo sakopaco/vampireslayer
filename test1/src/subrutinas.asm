@@ -634,8 +634,10 @@ mira_si_esta_juego_terminado:
 			LD				 A, (prota_pos_mapy)
 			OR				 A
 			RET				NZ
-			
-			JP				pantalla_final_bueno
+;se han complido todas las condiciones... fin del juego bueno
+			LD			 A, 1
+			LD			(tipo_gameover), A
+			JP			game_over
 fin_mira_si_esta_juego_terminado:
 
 

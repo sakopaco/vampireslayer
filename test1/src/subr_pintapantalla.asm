@@ -1216,22 +1216,6 @@ quedan_vidas:
 			
 			
 			JP			reponer_musica_tras_muerte_cambio_nivel
-			
-			
-			
-			;CALL		musica_off
-			;LD			HL, musica_boss-99	
-			;CALL		inicializa_replayer_efectos_interrupciones
-			;CALL		reponer_musica_tras_muerte_cambio_nivel
-			
-		;~ LD		HL, song-99			; hl <- initial address of module - 99
-		;~ CALL	PT3_INIT			; Inits PT3 player
-		
-		;~ ;inicializacion del reproductor de efectos sonoros
-		;~ LD		HL, sfx_bank
-		;~ CALL	ayFX_SETUP
-			
-			;~ RET
 fin_una_vida_menos:
 
 
@@ -1264,6 +1248,104 @@ reponer_musica_tras_muerte_cambio_nivel:
 fin_reponer_musica_tras_muerte_cambio_nivel:
 
 
+
+;;=====================================================
+;;GAME_OVER
+;;=====================================================	
+; función: muestra la página de fin de juego según parámetro de entrada
+; entrada: PROTAMUERTO	0  FINBUENO	1
+game_over:
+		CALL		limpia_pantalla_completa
+		
+		;pone la música de game over
+		LD			 A, 2 ;A=2 musica gameover
+		CALL		musica_on
+
+		LD			 A, (tipo_gameover)
+		OR			 A
+			
+			JP			 NZ, .fin_bueno
+.noquedanvidas:
+			;cargando banco 1
+			;cargamos los patrones
+			LD			HL, tiles_patrones_gameover1_bank1
+			LD			DE, CHRTBL + #0800
+			CALL		depack_VRAM	
+			;cargamos los colores de los patrones
+			LD			HL, tiles_color_gameover1_bank1
+			LD			DE, CLRTBL + #0800
+			CALL		depack_VRAM
+		
+			;cargamos mapa de pantalla banco 1 y 2
+			LD			HL, tiles_mapa_gameover1_bank01
+			LD			DE, TILMAP
+			CALL		depack_VRAM
+
+			;cangando banco 2
+			;cargamos los patrones
+			LD			HL,tiles_patrones_marcador
+			LD			DE,CHRTBL + #1000
+			CALL		depack_VRAM	
+			;cargamos los colores
+			LD			HL,tiles_color_marcador
+			LD			DE,CLRTBL + #1000
+			CALL		depack_VRAM
+
+			LD			HL, texto_gameover1A;guardo puntero al array a pintar (como psar por referencia)
+			LD			BC, 29				;nº posiciones a pintar
+			LD			DE, TILMAP + 577	;destino en vram
+			CALL		LDIRVM
+			
+			LD			HL, texto_gameover1B;guardo puntero al array a pintar (como psar por referencia)
+			LD			BC, 29				;nº posiciones a pintar
+			LD			DE, TILMAP + 609	;destino en vram
+			CALL		LDIRVM
+			
+			LD			HL, texto_gameover1C;guardo puntero al array a pintar (como psar por referencia)
+			LD			BC, 29				;nº posiciones a pintar
+			LD			DE, TILMAP + 641	;destino en vram
+			CALL		LDIRVM
+
+.fin_bueno:
+			;cargando banco 2
+			;cargamos los patrones
+			LD			HL, tiles_patrones_finalbueno_bank1
+			LD			DE, CHRTBL + #0800
+			CALL		depack_VRAM	
+			;cargamos los colores de los patrones
+			LD			HL, tiles_color_finalbueno_bank1
+			LD			DE, CLRTBL + #0800
+			CALL		depack_VRAM
+		
+			;cargamos mapa de pantalla banco 1 y 2
+			LD			HL, tiles_mapa_finalbueno_bank01
+			LD			DE, TILMAP
+			CALL		depack_VRAM
+
+			;cangando banco 3
+			;cargamos los patrones
+			LD			HL,tiles_patrones_marcador
+			LD			DE,CHRTBL + #1000
+			CALL		depack_VRAM	
+			;cargamos los colores
+			LD			HL,tiles_color_marcador
+			LD			DE,CLRTBL + #1000
+			CALL		depack_VRAM
+
+			LD			DE, TILMAP + 512	;destino en vram (pos tiles + 256 (banco 0 + 256 banco )
+			LD			HL, texto_finalbueno
+			LD			BC, 32 * 8
+			CALL		LDIRVM	
+fin_game_over:
+		CALL		espera_estandar
+		CALL		espera_estandar
+		CALL		espera_estandar
+		
+		CALL		limpia_pantalla_completa
+		
+		JP			inicio_juego
+
+
 ;;=====================================================
 ;;GAME_OVER1
 ;;=====================================================	
@@ -1290,67 +1372,10 @@ game_over1:
 		CALL		LDIRVM
 		
 		CALL		espera_estandar
-
-		CALL		limpia_pantalla_completa
 		
-		;cargamos tiles y colores del banco 0
-		;cargamos los patrones
-		LD			HL, tiles_patrones_vacio
-		LD			DE, CHRTBL
-		CALL		depack_VRAM
-		;cargamos los colores
-		LD			HL, tiles_color_vacio
-		LD			DE, CLRTBL
-		CALL		depack_VRAM
-	
-		;cargando banco 1
-		;cargamos los patrones
-		LD			HL, tiles_patrones_gameover1_bank1
-		LD			DE, CHRTBL + #0800
-		CALL		depack_VRAM	
-		;cargamos los colores de los patrones
-		LD			HL, tiles_color_gameover1_bank1
-		LD			DE, CLRTBL + #0800
-		CALL		depack_VRAM
-	
-		;cargamos mapa de pantalla banco 1 y 2
-		LD			HL, tiles_mapa_gameover1_bank01
-		LD			DE, TILMAP
-		CALL		depack_VRAM
-
-		;cangando banco 2
-		;cargamos los patrones
-		LD			HL,tiles_patrones_marcador
-		LD			DE,CHRTBL + #1000
-		CALL		depack_VRAM	
-		;cargamos los colores
-		LD			HL,tiles_color_marcador
-		LD			DE,CLRTBL + #1000
-		CALL		depack_VRAM
-
-		LD			HL, texto_gameover1A;guardo puntero al array a pintar (como psar por referencia)
-		LD			BC, 29				;nº posiciones a pintar
-		LD			DE, TILMAP + 577	;destino en vram
-		CALL		LDIRVM
-		
-		LD			HL, texto_gameover1B;guardo puntero al array a pintar (como psar por referencia)
-		LD			BC, 29				;nº posiciones a pintar
-		LD			DE, TILMAP + 609	;destino en vram
-		CALL		LDIRVM
-		
-		LD			HL, texto_gameover1C;guardo puntero al array a pintar (como psar por referencia)
-		LD			BC, 29				;nº posiciones a pintar
-		LD			DE, TILMAP + 641	;destino en vram
-		CALL		LDIRVM
-
-		CALL		espera_estandar
-		CALL		espera_estandar
-		CALL		espera_estandar
-		
-		CALL		limpia_pantalla_completa
-
-		;ESTO LO TIENE QUE VER FERNANDO PORQUE NO CREO QUE ESTÉ BIEN ... LA PILA TENDRÁ MUCHA BASURA
-		JP			inicio_juego		;##*******************************************************************		
+		XOR			 A
+		LD			(tipo_gameover), A
+		JP			game_over
 fin_game_over1:
 
 
@@ -1358,7 +1383,11 @@ fin_game_over1:
 ;;PANTALLA_FINAL_BUENO
 ;;=====================================================
 ; funcion: muestra el final bueno del juego cuando se ha atado a drácula y regresado con vida antes de que acabe el tiempo
-pantalla_final_bueno:
+pantalla_final_buenoewweewewew:
+			;pone la música de game over
+			LD			 A, 2 ;A=2 musica gameover
+			CALL		musica_on
+
 			;oculta los sprites que haya en pantalla
 			CALL		oculta_todos_sprites
 			
@@ -1405,11 +1434,7 @@ pantalla_final_bueno:
 			LD			BC, 32 * 8
 			CALL		LDIRVM			
 
-			;múscia de FINAL BUENO ********************************************************************************************
-			LD			HL, PT3_SETUP
-			SET			 0, (HL)
-			LD			HL, musica_gameover-99	; hl <- initial address of module - 99
-			CALL		PT3_INIT			; Inits PT3 player
+
 
 			CALL		espera_estandar
 			CALL		espera_estandar
@@ -1417,7 +1442,6 @@ pantalla_final_bueno:
 		
 			CALL		limpia_pantalla_completa
 		
-			;ESTO LO TIENE QUE VER FERNANDO PORQUE NO CREO QUE ESTÉ BIEN ... LA PILA TENDRÁ MUCHA BASURA
-			JP			inicio_juego		;##*******************************************************************	
+			JP			inicio_juego
 fin_pantalla_final_bueno:
 

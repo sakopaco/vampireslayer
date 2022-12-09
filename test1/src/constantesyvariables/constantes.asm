@@ -206,6 +206,10 @@ PROTADANO1			equ		3			;daño del punto de mira
 PROTADANO2			equ		6			;daño del punto de mira cuando se tiene la ayuda
 PROTADANORELIQUIA	equ		25			;daño del punto de mira cuando se tiene la ayuda
 
+;; TIPOS DE GAMEOVER
+NOQUEDANVIDAS		equ		0
+FINBUENO			equ		1
+
 ;;CONTANTES PARA SONIDO
 SONIDORELIQUIA		equ		5
 SONIDOINICIO		equ		4
