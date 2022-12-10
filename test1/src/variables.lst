@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.12.10 - 11:19:43]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2022.12.10 - 20:39:51]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -936,8 +936,8 @@ Errors: 0
      127   00:C225  00                  habitacion_extras:			DB		0		;donde van las ayudas de una habitación
      128   00:C226  00                  habitacion_terminada:		DB		0		;variable para consultar más rápido si se ha pasado (<>0 si se ha pasado y 0 no se ha pasado o no terminada)
      129   00:C227                      
-     130   00:C227  00 00               puntero_extras_habitacion_actual:	DW	0		;puntero a los extras de la habitación actual para poder modificarlo (para que no salgan extras)
-     131   00:C229  00 00               puntero_habitacion_actual:			DW	0		;puntero a la habitación actual para poder modificarlo 
+     130   00:C227  00 00               puntero_extras_habitacion_actual:	DW	0	;puntero a los extras de la habitación actual para poder modificarlo (para que no salgan extras)
+     131   00:C229  00 00               puntero_habitacion_actual:	DW		0		;puntero a la habitación actual para poder modificarlo 
      132   00:C22B                      
      133   00:C22B                      
      134   00:C22B                      ;;=====================================================

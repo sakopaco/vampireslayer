@@ -45,28 +45,24 @@ fin_color_pantalla:
 ; salida: -
 ; toca: si no son todos los regristros, casi todos
 sub_preparapantalla:
-	;toca A y Z
-elimina_clic;
+;elimina_clic
 	XOR		 A
 	LD		(CLIKSW),A
-fin_elimina_clic:
 
-	;toca A
-limpia_pantalla:
+;cls_pantalla
 	XOR		 A
 	CALL 	CLS
-fin_limpia_pantalla:
 
 	;toca A y direcciones #F3E9/#F3EA/#F3EB, poner en HL array con 3 valores
 	LD		HL, color_base
 	CALL	color_pantalla
 	
 	;cambiamos a SCREEN 2,2 del BASIC
-	;toca A
-screen2:
+;screen2
 	LD		 A, 2
 	CALL	CHGMOD			;selecciona screen 2
-sprites_16_16:
+
+;sprites_16_16
 	LD		 A, (RG1SAV)
 	OR		00000010b		;fuerza sprites de 16x16
 	LD		(RG1SAV), A		;no lo guardamos en la copia de variables del sistema
@@ -1043,19 +1039,11 @@ fin_borra_pantalla_inicio:
 ; salida: 	
 ; toca:		TODOS.... muy importante DE
 muestra_pantalla_inicial:
+		CALL		limpia_pantalla
+		
 		;cargamos mapa de pantalla completa
 		LD			HL, tiles_mapa_inicio
 		LD			DE, TILMAP
-		CALL		depack_VRAM
-		
-		;cargamos tiles y colores del banco 0
-		;cargamos los patrones
-		LD			HL, tiles_patrones_vacio
-		LD			DE, CHRTBL
-		CALL		depack_VRAM
-		;cargamos los colores
-		LD			HL, tiles_color_vacio
-		LD			DE, CLRTBL
 		CALL		depack_VRAM
 		
 		;cargamos tiles y colores del banco 1
@@ -1107,12 +1095,12 @@ muestra_pantalla_inicial:
 .parpadeo:		
 		PUSH		BC
 
-		LD 			BC, 8000
+		LD 			BC, 9000
 		CALL		retardo16bits
 		
 		CALL		pinta_textos_inicio_disparo_blanco
 		
-		LD 			BC, 8000
+		LD 			BC, 9000
 		CALL		retardo16bits
 		
 		CALL		pinta_textos_inicio_disparo
@@ -1146,12 +1134,52 @@ fin_limpia_pantalla_superior:
 ;;=====================================================	
 ; función: limpia toda la pantlla poniendo el tile vacio en todas las posiciones (el tile vacio está definido en los 3 bancos)
 limpia_pantalla_completa:
-		;limpia todo y evita que se vea cuando se cargan los nuevos tiles por pantalla
-		XOR		 	 A
-		LD			HL, TILMAP
-		LD			BC, 768
-		JP			FILVRM
+		;oculta los sprites que haya en pantalla
+		CALL		oculta_todos_sprites
+		;limpia los tiles
+		JP			limpia_pantalla
 fin_limpia_pantalla_completa:
+
+
+;;=====================================================
+;;LIMPIA_PANTALLA
+;;=====================================================	
+; función: limpia tiles en bancos
+limpia_pantalla:
+			;cargamos tiles y colores del banco 0
+			;cargamos los patrones
+			LD			HL, tiles_patrones_vacio
+			LD			DE, CHRTBL
+			CALL		depack_VRAM
+			;cargamos los colores
+			LD			HL, tiles_color_vacio
+			LD			DE, CLRTBL
+			CALL		depack_VRAM
+			
+			;cargamos los patrones
+			LD			HL, tiles_patrones_vacio
+			LD			DE, CHRTBL + 256 * 8
+			CALL		depack_VRAM
+			;cargamos los colores
+			LD			HL, tiles_color_vacio
+			LD			DE, CLRTBL + 256 * 8
+			CALL		depack_VRAM
+			
+			;cargamos los patrones
+			LD			HL, tiles_patrones_vacio
+			LD			DE, CHRTBL + 256 * 8 * 2
+			CALL		depack_VRAM
+			;cargamos los colores
+			LD			HL, tiles_color_vacio
+			LD			DE, CLRTBL + 256 * 8 * 2
+			CALL		depack_VRAM
+			
+			;limpia todo y evita que se vea cuando se cargan los nuevos tiles por pantalla
+			XOR		 	 A
+			LD			HL, TILMAP
+			LD			BC, 768
+			JP			FILVRM
+fin_limpia_pantalla:
 
 
 ;;=====================================================
@@ -1189,10 +1217,10 @@ una_vida_menos;
 		JP			NZ, quedan_vidas
 no_quedan_vidas:
 			;gameover normal (tipo 1)
-			CALL		game_over1
+			XOR			 A
+			LD			(tipo_gameover), A
+			JP			game_over
 
-			;SALIR
-			JP			pantalla_inicial
 quedan_vidas:
 			;vacia vida (el nivel mínimo lo pone en negro)
 			CALL		oculta_tile_energia_minima
@@ -1213,8 +1241,7 @@ quedan_vidas:
 			;repinto la pantalla y las puertas que correspondan
 			CALL		pinta_parte_superior_pantalla
 			CALL		pinta_puertas
-			
-			
+	
 			JP			reponer_musica_tras_muerte_cambio_nivel
 fin_una_vida_menos:
 
@@ -1240,208 +1267,10 @@ reponer_musica_tras_muerte_cambio_nivel:
 .examina_pantalla_jefe:
 			LD			 A, (prota_pos_mapy)
 			CP			 6
-			JP			 Z, .fin_examina_tipo_musica
+			JP			 NZ, .fin_examina_tipo_musica
 			LD			 B, 1 
 .fin_examina_tipo_musica:
 			LD			 A, B
 			JP			musica_on			
 fin_reponer_musica_tras_muerte_cambio_nivel:
-
-
-
-;;=====================================================
-;;GAME_OVER
-;;=====================================================	
-; función: muestra la página de fin de juego según parámetro de entrada
-; entrada: PROTAMUERTO	0  FINBUENO	1
-game_over:
-		CALL		limpia_pantalla_completa
-		
-		;pone la música de game over
-		LD			 A, 2 ;A=2 musica gameover
-		CALL		musica_on
-
-		LD			 A, (tipo_gameover)
-		OR			 A
-			
-			JP			 NZ, .fin_bueno
-.noquedanvidas:
-			;cargando banco 1
-			;cargamos los patrones
-			LD			HL, tiles_patrones_gameover1_bank1
-			LD			DE, CHRTBL + #0800
-			CALL		depack_VRAM	
-			;cargamos los colores de los patrones
-			LD			HL, tiles_color_gameover1_bank1
-			LD			DE, CLRTBL + #0800
-			CALL		depack_VRAM
-		
-			;cargamos mapa de pantalla banco 1 y 2
-			LD			HL, tiles_mapa_gameover1_bank01
-			LD			DE, TILMAP
-			CALL		depack_VRAM
-
-			;cangando banco 2
-			;cargamos los patrones
-			LD			HL,tiles_patrones_marcador
-			LD			DE,CHRTBL + #1000
-			CALL		depack_VRAM	
-			;cargamos los colores
-			LD			HL,tiles_color_marcador
-			LD			DE,CLRTBL + #1000
-			CALL		depack_VRAM
-
-			LD			HL, texto_gameover1A;guardo puntero al array a pintar (como psar por referencia)
-			LD			BC, 29				;nº posiciones a pintar
-			LD			DE, TILMAP + 577	;destino en vram
-			CALL		LDIRVM
-			
-			LD			HL, texto_gameover1B;guardo puntero al array a pintar (como psar por referencia)
-			LD			BC, 29				;nº posiciones a pintar
-			LD			DE, TILMAP + 609	;destino en vram
-			CALL		LDIRVM
-			
-			LD			HL, texto_gameover1C;guardo puntero al array a pintar (como psar por referencia)
-			LD			BC, 29				;nº posiciones a pintar
-			LD			DE, TILMAP + 641	;destino en vram
-			CALL		LDIRVM
-
-.fin_bueno:
-			;cargando banco 2
-			;cargamos los patrones
-			LD			HL, tiles_patrones_finalbueno_bank1
-			LD			DE, CHRTBL + #0800
-			CALL		depack_VRAM	
-			;cargamos los colores de los patrones
-			LD			HL, tiles_color_finalbueno_bank1
-			LD			DE, CLRTBL + #0800
-			CALL		depack_VRAM
-		
-			;cargamos mapa de pantalla banco 1 y 2
-			LD			HL, tiles_mapa_finalbueno_bank01
-			LD			DE, TILMAP
-			CALL		depack_VRAM
-
-			;cangando banco 3
-			;cargamos los patrones
-			LD			HL,tiles_patrones_marcador
-			LD			DE,CHRTBL + #1000
-			CALL		depack_VRAM	
-			;cargamos los colores
-			LD			HL,tiles_color_marcador
-			LD			DE,CLRTBL + #1000
-			CALL		depack_VRAM
-
-			LD			DE, TILMAP + 512	;destino en vram (pos tiles + 256 (banco 0 + 256 banco )
-			LD			HL, texto_finalbueno
-			LD			BC, 32 * 8
-			CALL		LDIRVM	
-fin_game_over:
-		CALL		espera_estandar
-		CALL		espera_estandar
-		CALL		espera_estandar
-		
-		CALL		limpia_pantalla_completa
-		
-		JP			inicio_juego
-
-
-;;=====================================================
-;;GAME_OVER1
-;;=====================================================	
-; función: muestra la página de fin de juego en caso de que nos maten por daño
-game_over1:
-		;limpiar pantalla
-		CALL		limpia_pantalla_superior
-		
-		;limpia caracteres de energia (para poner a 0 y vidas para poner a 0)
-		CALL		oculta_tile_energia_minima
-		CALL		oculta_tile_vida0
-		
-		;oculta los sprites que haya en pantalla
-		CALL		oculta_todos_sprites
-		
-		;pone la música de game over
-		LD			 A, 2 ;A=2 musica gameover
-		CALL		musica_on
-		
-		;poner texto game over
-		LD			HL, texto_gameover	;guardo puntero al array a pintar (como pasar por referencia)
-		LD			BC, 10				;nº posiciones a pintar
-		LD			DE, TILMAP + 236	;destino en vram
-		CALL		LDIRVM
-		
-		CALL		espera_estandar
-		
-		XOR			 A
-		LD			(tipo_gameover), A
-		JP			game_over
-fin_game_over1:
-
-
-;;=====================================================
-;;PANTALLA_FINAL_BUENO
-;;=====================================================
-; funcion: muestra el final bueno del juego cuando se ha atado a drácula y regresado con vida antes de que acabe el tiempo
-pantalla_final_buenoewweewewew:
-			;pone la música de game over
-			LD			 A, 2 ;A=2 musica gameover
-			CALL		musica_on
-
-			;oculta los sprites que haya en pantalla
-			CALL		oculta_todos_sprites
-			
-			;limpiamos la pantalla
-			CALL		limpia_pantalla_completa
-			
-			;cargamos tiles y colores del banco 0
-			;cargamos los patrones
-			LD			HL, tiles_patrones_vacio
-			LD			DE, CHRTBL
-			CALL		depack_VRAM
-			;cargamos los colores
-			LD			HL, tiles_color_vacio
-			LD			DE, CLRTBL
-			CALL		depack_VRAM
-		
-			;cargando banco 2
-			;cargamos los patrones
-			LD			HL, tiles_patrones_finalbueno_bank1
-			LD			DE, CHRTBL + #0800
-			CALL		depack_VRAM	
-			;cargamos los colores de los patrones
-			LD			HL, tiles_color_finalbueno_bank1
-			LD			DE, CLRTBL + #0800
-			CALL		depack_VRAM
-		
-			;cargamos mapa de pantalla banco 1 y 2
-			LD			HL, tiles_mapa_finalbueno_bank01
-			LD			DE, TILMAP
-			CALL		depack_VRAM
-
-			;cangando banco 3
-			;cargamos los patrones
-			LD			HL,tiles_patrones_marcador
-			LD			DE,CHRTBL + #1000
-			CALL		depack_VRAM	
-			;cargamos los colores
-			LD			HL,tiles_color_marcador
-			LD			DE,CLRTBL + #1000
-			CALL		depack_VRAM
-
-			LD			DE, TILMAP + 512	;destino en vram (pos tiles + 256 (banco 0 + 256 banco )
-			LD			HL, texto_finalbueno
-			LD			BC, 32 * 8
-			CALL		LDIRVM			
-
-
-
-			CALL		espera_estandar
-			CALL		espera_estandar
-			CALL		espera_estandar
-		
-			CALL		limpia_pantalla_completa
-		
-			JP			inicio_juego
-fin_pantalla_final_bueno:
 

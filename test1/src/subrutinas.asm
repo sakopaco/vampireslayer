@@ -641,3 +641,98 @@ mira_si_esta_juego_terminado:
 fin_mira_si_esta_juego_terminado:
 
 
+;;=====================================================
+;;GAME_OVER
+;;=====================================================	
+; función: muestra la página de fin de juego según parámetro de entrada
+; entrada: PROTAMUERTO	0  FINBUENO	1
+game_over:
+			;pone la música de game over
+			LD			 A, 2 ;A=2 musica gameover
+			CALL		musica_on
+			
+			;limpia la pantalla
+			CALL		limpia_pantalla_completa
+
+			LD			 A, (tipo_gameover)
+			OR			 A
+			JP			 Z, .fin_protamuerto
+				;cargando banco 2
+				;cargamos los patrones
+				LD			HL, tiles_patrones_finalbueno_bank1
+				LD			DE, CHRTBL + #0800
+				CALL		depack_VRAM	
+				;cargamos los colores de los patrones
+				LD			HL, tiles_color_finalbueno_bank1
+				LD			DE, CLRTBL + #0800
+				CALL		depack_VRAM
+			
+				;cargamos mapa de pantalla banco 1 y 2
+				LD			HL, tiles_mapa_finalbueno_bank01
+				LD			DE, TILMAP
+				CALL		depack_VRAM
+
+				;cangando banco 3
+				;cargamos los patrones
+				LD			HL,tiles_patrones_marcador
+				LD			DE,CHRTBL + #1000
+				CALL		depack_VRAM	
+				;cargamos los colores
+				LD			HL,tiles_color_marcador
+				LD			DE,CLRTBL + #1000
+				CALL		depack_VRAM
+
+				LD			DE, TILMAP + 512	;destino en vram (pos tiles + 256 (banco 0 + 256 banco )
+				LD			HL, texto_finalbueno
+				LD			BC, 32 * 8
+				CALL		LDIRVM	
+
+			JP			.fin_examina_final
+			
+.fin_protamuerto:
+				;cargando banco 1
+				;cargamos los patrones
+				LD			HL, tiles_patrones_gameover1_bank1
+				LD			DE, CHRTBL + #0800
+				CALL		depack_VRAM	
+				;cargamos los colores de los patrones
+				LD			HL, tiles_color_gameover1_bank1
+				LD			DE, CLRTBL + #0800
+				CALL		depack_VRAM
+			
+				;cargamos mapa de pantalla banco 1 y 2
+				LD			HL, tiles_mapa_gameover1_bank01
+				LD			DE, TILMAP
+				CALL		depack_VRAM
+
+				;cangando banco 2
+				;cargamos los patrones
+				LD			HL,tiles_patrones_marcador
+				LD			DE,CHRTBL + #1000
+				CALL		depack_VRAM	
+				;cargamos los colores
+				LD			HL,tiles_color_marcador
+				LD			DE,CLRTBL + #1000
+				CALL		depack_VRAM
+
+				LD			HL, texto_gameover1A;guardo puntero al array a pintar (como psar por referencia)
+				LD			BC, 29				;nº posiciones a pintar
+				LD			DE, TILMAP + 577	;destino en vram
+				CALL		LDIRVM
+				
+				LD			HL, texto_gameover1B;guardo puntero al array a pintar (como psar por referencia)
+				LD			BC, 29				;nº posiciones a pintar
+				LD			DE, TILMAP + 609	;destino en vram
+				CALL		LDIRVM
+				
+				LD			HL, texto_gameover1C;guardo puntero al array a pintar (como psar por referencia)
+				LD			BC, 29				;nº posiciones a pintar
+				LD			DE, TILMAP + 641	;destino en vram
+				CALL		LDIRVM
+
+.fin_examina_final:
+
+[4]			CALL		espera_estandar
+		
+			JP			inicio_juego
+fin_game_over:
