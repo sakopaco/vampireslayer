@@ -513,13 +513,21 @@ inicializa_enemigos_fase1_nivel0:
 fin_inicializa_enemigos_fase1_nivel0:
 
 inicializa_enemigos_fase1_nivel1:
-		LD			DE, enemigo1
-		CALL		anade_enemigo_serpiente
+		;~ LD			DE, enemigo1
+		;~ CALL		anade_enemigo_serpiente
 		
-		LD			DE, enemigo2
+		;~ LD			DE, enemigo2
+		;~ CALL		anade_enemigo_arana
+		;~ LD			IX, enemigo2
+		;~ JP			actualiza_valores_arana
+		LD			DE, enemigo1
 		CALL		anade_enemigo_arana
-		LD			IX, enemigo2
+		LD			IX, enemigo1
 		JP			actualiza_valores_arana
+		
+		
+		;*********************************************
+		
 fin_inicializa_enemigos_fase1_nivel1:
 
 inicializa_enemigos_fase1_nivel2:

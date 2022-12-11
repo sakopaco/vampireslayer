@@ -14,7 +14,7 @@ datos_zombi:
 			DB		0				;(inxy) incremento y para mover
 			DB		DIRDERECHA		;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		0				;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
-			DB		100				;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
+			DB		ZOMBI_PASOS		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 			DB		0				;(radio) radio para movimientos circulares
 			DW		mover_zombi		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 			DB		ZOMBI_SPRITE1A	;izq arriba

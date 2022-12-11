@@ -2,8 +2,8 @@ PROJECT
 SCREEN
 pan1.scr
 TILES
-prueba.til
+pantalla0.til
 ALLBANKS
 PALETTE
-prueba.pal
+paleta_base.pal
 END

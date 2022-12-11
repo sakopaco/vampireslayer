@@ -160,5 +160,5 @@ calcula_serpiente_incrementox:
 			;implica que se han terminado los pasos y hay que cambiar de sentido
 			LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), DIRDERECHA
 			LD			(IX + ESTRUCTURA_ENEMIGO.pasos), SERPIENTE_PASOS
-		RET	
 fin_calcula_serpiente_incrementox:
+		RET

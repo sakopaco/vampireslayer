@@ -147,7 +147,7 @@ inicializa_variables_prota:
 		;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
 		;será igual la posición inicial en todos los niveles
 	
-		LD		 A, PROTANIVEL
+		LD		 A, 1;PROTANIVEL
 		LD		(prota_nivel), A
 
 		LD		 A, PROTAPOSMAPY
@@ -171,10 +171,10 @@ inicializa_variables_juego:
 		
 		LD			(musica_activa), A
 		
-		;pruebas
-		LD			a, 1
-		LD			(dracula_muerto), A
-		LD			(tipo_gameover), A
+		;~ ;pruebas
+		;~ LD			a, 1
+		;~ LD			(dracula_muerto), A
+		;~ LD			(tipo_gameover), A
 fin_inicializa_variables_juego:
 		RET
 

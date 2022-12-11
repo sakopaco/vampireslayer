@@ -26,25 +26,9 @@ datos_puntomira:
 inicializa_punto_mira:
 		LD			HL, datos_puntomira
 		LD			DE, puntomira
-		JP			carga_datos_puntomira
-fin_inicializa_punto_mira:	
-	
-	
-;;=====================================================
-;;CARGA_DATOS_PUNTOMIRA
-;;=====================================================	
-; función: 	carga los datos de la ayuda de una variable dentro de la variable estructura (más carga y espacio que rellenar a pelo desde IX en adelante pero más simple)
-;			en realidad carga cualquier dato de 5 bytes
-; entrada:
-;  hl: origen de datos
-;  de: destino de datos
-; salida: 	-
-; toca:		HL, DE, BC
-carga_datos_puntomira:
 		LD			BC, ESTRUCTURA_PUNTOMIRA;ESTRUCTURA_PUNTOMIRA ;equivale a 8.. el tamaño de la estructura en bytes
 		LDIR
-fin_carga_datos_puntomira:
-		RET
+fin_inicializa_punto_mira:	
 	
 	
 ;;=====================================================
