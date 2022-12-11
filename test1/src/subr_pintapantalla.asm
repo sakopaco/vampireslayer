@@ -1156,23 +1156,23 @@ limpia_pantalla:
 			LD			DE, CLRTBL
 			CALL		depack_VRAM
 			
-			;cargamos los patrones
-			LD			HL, tiles_patrones_vacio
-			LD			DE, CHRTBL + 256 * 8
-			CALL		depack_VRAM
-			;cargamos los colores
-			LD			HL, tiles_color_vacio
-			LD			DE, CLRTBL + 256 * 8
-			CALL		depack_VRAM
+			;~ ;cargamos los patrones
+			;~ LD			HL, tiles_patrones_vacio
+			;~ LD			DE, CHRTBL + 256 * 8
+			;~ CALL		depack_VRAM
+			;~ ;cargamos los colores
+			;~ LD			HL, tiles_color_vacio
+			;~ LD			DE, CLRTBL + 256 * 8
+			;~ CALL		depack_VRAM
 			
-			;cargamos los patrones
-			LD			HL, tiles_patrones_vacio
-			LD			DE, CHRTBL + 256 * 8 * 2
-			CALL		depack_VRAM
-			;cargamos los colores
-			LD			HL, tiles_color_vacio
-			LD			DE, CLRTBL + 256 * 8 * 2
-			CALL		depack_VRAM
+			;~ ;cargamos los patrones
+			;~ LD			HL, tiles_patrones_vacio
+			;~ LD			DE, CHRTBL + 256 * 8 * 2
+			;~ CALL		depack_VRAM
+			;~ ;cargamos los colores
+			;~ LD			HL, tiles_color_vacio
+			;~ LD			DE, CLRTBL + 256 * 8 * 2
+			;~ CALL		depack_VRAM
 			
 			;limpia todo y evita que se vea cuando se cargan los nuevos tiles por pantalla
 			XOR		 	 A

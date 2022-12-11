@@ -171,10 +171,10 @@ inicializa_variables_juego:
 		
 		LD			(musica_activa), A
 		
-		;~ ;pruebas
-		;~ LD			a, 1
-		;~ LD			(dracula_muerto), A
-		;~ LD			(tipo_gameover), A
+		;pruebas
+		LD			a, 1
+		LD			(dracula_muerto), A
+		LD			(tipo_gameover), A
 fin_inicializa_variables_juego:
 		RET
 
