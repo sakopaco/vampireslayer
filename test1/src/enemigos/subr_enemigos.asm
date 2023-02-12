@@ -171,7 +171,6 @@ inicializa_enemigos_fase1:	;; para no poner más complejo se hace uno por fase q
 fin_inicializa_enemigos_fase1:
 		
 
-
 ;;=====================================================
 ;;INICIALIZA_ENEMIGOS_FASE 2
 ;;=====================================================	
@@ -429,7 +428,7 @@ inicializa_enemigos_fase0_nivel2:
 		CALL		anade_enemigo_arana
 		LD			IX, enemigo2
 		CALL		actualiza_valores_arana
-		
+
 		LD			DE, enemigo3
 		JP			anade_enemigo_serpiente
 fin_inicializa_enemigos_fase0_nivel2:
@@ -519,18 +518,7 @@ inicializa_enemigos_fase1_nivel1:
 		LD			DE, enemigo2
 		CALL		anade_enemigo_arana
 		LD			IX, enemigo2
-		JP			actualiza_valores_arana
-		
-		
-		
-			;~ ;*********************************************
-		;~ LD			DE, enemigo1
-		;~ CALL		anade_enemigo_arana
-		;~ LD			IX, enemigo1
-		;~ JP			actualiza_valores_arana
-	
-		;~ ;*********************************************
-		
+		JP			actualiza_valores_arana		
 fin_inicializa_enemigos_fase1_nivel1:
 
 inicializa_enemigos_fase1_nivel2:
@@ -1752,14 +1740,11 @@ examina_enemigo2:
 			LD			 B, A
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
 			SUB			 B
-			JP			NC, .restaenergia2
+			JP			NC, .asignaenergia2
 				CALL		mata_enemigo
 				JP			examina_enemigo3
-.restaenergia2:
-			LD			 B, A									;copia daño (si es que al final se hace)
-			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
-			SUB			 B
-			LD			A, (IX + ESTRUCTURA_ENEMIGO.energia)	;se asigna la energía restada
+.asignaenergia2:
+			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se asigna la energía tras la resta
 			
 examina_enemigo3:		
 		LD			IX, enemigo3
@@ -1773,18 +1758,13 @@ examina_enemigo3:
 			LD			 B, A
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
 			SUB			 B
-			JP			NC, .restaenergia3
+			JP			NC, .asignaenergia3
 				CALL		mata_enemigo
 				JP			examina_enemigo4
-.restaenergia3:	
-			LD			 B, A									;copia daño (si es que al final se hace)
-			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
-			SUB			 B
-			LD			A, (IX + ESTRUCTURA_ENEMIGO.energia)	;se asigna la energía restada
+.asignaenergia3:	
+			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se asigna la energía tras la resta
 		
 examina_enemigo4:	
-		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
-		
 		LD			IX, enemigo4
 		LD			 A, (IX)
 		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
@@ -1796,18 +1776,13 @@ examina_enemigo4:
 			LD			 B, A
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
 			SUB			 B
-			JP			NC, .restaenergia4
+			JP			NC, .asignaenergia4
 				CALL		mata_enemigo
 				JP			examina_enemigo5
-.restaenergia4:
-			LD			 B, A									;copia daño (si es que al final se hace)
-			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
-			SUB			 B
-			LD			A, (IX + ESTRUCTURA_ENEMIGO.energia)	;se asigna la energía restada
+.asignaenergia4:
+			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se asigna la energía tras la resta
 		
 examina_enemigo5:	
-		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
-		
 		LD			IX, enemigo5
 		LD			 A, (IX)
 		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
@@ -1819,14 +1794,11 @@ examina_enemigo5:
 			LD			 B, A
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
 			SUB			 B
-			JP			NC, .restaenergia5
+			JP			NC, .asignaenergia5
 				CALL		mata_enemigo
 				JP			examina_enemigo6
-.restaenergia5:
-			LD			 B, A									;copia daño (si es que al final se hace)
-			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
-			SUB			 B
-			LD			A, (IX + ESTRUCTURA_ENEMIGO.energia)	;se asigna la energía restada
+.asignaenergia5:
+			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se asigna la energía tras la resta
 			
 examina_enemigo6:	
 		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
@@ -1842,17 +1814,13 @@ examina_enemigo6:
 			LD			 B, A
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
 			SUB			 B
-			JP			NC, .restaenergia6
+			JP			NC, .asignaenergia6
 				CALL		mata_enemigo
 				JP			examina_enemigo7
-.restaenergia6:
-			LD			 B, A									;copia daño (si es que al final se hace)
-			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
-			SUB			 B
-			LD			A, (IX + ESTRUCTURA_ENEMIGO.energia)	;se asigna la energía restada
+.asignaenergia6:
+			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se asigna la energía tras la resta
 
 examina_enemigo7:	
-		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
 		
 		LD			IX, enemigo7
 		LD			 A, (IX)
@@ -1865,14 +1833,11 @@ examina_enemigo7:
 			LD			 B, A
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
 			SUB			 B
-			JP			NC, .restaenergia7
+			JP			NC, .asignaenergia7
 				CALL		mata_enemigo
 				JP			.fin_examina_enemigos
-.restaenergia7:
-			LD			 B, A									;copia daño (si es que al final se hace)
-			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
-			SUB			 B
-			LD			A, (IX + ESTRUCTURA_ENEMIGO.energia)	;se asigna la energía restada
+.asignaenergia7:
+			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se asigna la energía tras la resta
 		
 .fin_examina_enemigos:
 
