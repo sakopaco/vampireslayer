@@ -97,9 +97,9 @@ mover_jefelobo:
 		LD			(IY + 14), A
 
 		;colorea jefelobo
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.pocavida)
-		OR			 A
-		JP			 Z, .nointercambiacolor
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+		CP			(IX + ESTRUCTURA_ENEMIGO.pocavida)
+		JP			 NC, .nointercambiacolor
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
 			OR			 A
 			JP			 Z, .nointercambiacolor	

@@ -1800,9 +1800,7 @@ examina_enemigo5:
 .asignaenergia5:
 			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se asigna la energía tras la resta
 			
-examina_enemigo6:	
-		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
-		
+examina_enemigo6:			
 		LD			IX, enemigo6
 		LD			 A, (IX)
 		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
@@ -1821,7 +1819,6 @@ examina_enemigo6:
 			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se asigna la energía tras la resta
 
 examina_enemigo7:	
-		
 		LD			IX, enemigo7
 		LD			 A, (IX)
 		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
