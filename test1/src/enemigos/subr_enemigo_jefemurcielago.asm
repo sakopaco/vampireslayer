@@ -24,7 +24,7 @@ datos_jefemurcielago:
 			DB		JEFEMURCIELAGO_DANO 	;dano
 			
 posiciones_iniciales_jefemurcielago:
-			DB		10,75,150,224
+			DB		20,75,150,204
 
 		
 ;;=====================================================
@@ -114,7 +114,7 @@ mover_jefemurcielago:
 
 		;colorea jefemurcielago
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
-		CP			(IX + ESTRUCTURA_ENEMIGO.pocavida)
+		SUB			JEFEMURCIELAGO_POCAVIDA;(IX + ESTRUCTURA_ENEMIGO.pocavida)
 		JP			 NC, .nointercambiacolor
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
 			OR			 A

@@ -79,9 +79,9 @@ mover_dracula:
 		LD			(IY + 6), A
 		
 		;colorea dracula
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.pocavida)
-		OR			 A
-		JP			 Z, .nointercambiacolor
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+		SUB			DRACULA_POCAVIDA;(IX + ESTRUCTURA_ENEMIGO.pocavida)
+		JP			 NC, .nointercambiacolor
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
 			OR			 A
 			JP			 Z, .nointercambiacolor	

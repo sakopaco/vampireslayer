@@ -97,9 +97,9 @@ mover_jefefantasma:
 		LD			(IY + 14), A
 		
 		;color jefefantasma
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.pocavida)
-		OR			 A
-		JP			 Z, .nointercambiacolor
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+		SUB			JEFEFANTASMA_POCAVIDA;(IX + ESTRUCTURA_ENEMIGO.pocavida)
+		JP			 NC, .nointercambiacolor
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
 			OR			 A
 			JP			 Z, .nointercambiacolor	

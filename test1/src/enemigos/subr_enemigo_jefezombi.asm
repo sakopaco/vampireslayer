@@ -94,9 +94,9 @@ mover_jefezombi:
 		LD			(IY + 14), A
 		
 		;colorea jefe zombi
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.pocavida)
-		OR			 A
-		JP			 Z, .nointercambiacolor
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+		SUB			JEFEZOMBI_POCAVIDA;(IX + ESTRUCTURA_ENEMIGO.pocavida)
+		JP			 NC, .nointercambiacolor
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
 			OR			 A
 			JP			 Z, .nointercambiacolor	
