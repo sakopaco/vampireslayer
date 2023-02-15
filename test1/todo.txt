@@ -1,9 +1,5 @@
 BUGS
 
-
-* controlar que el disparo normal y avanzado puedan itercalarse correctamente y que el avanzado sólo dure 5 pantallas
-
-
 TODO A
 - controlar lo de vaciar habitaciones (ufff... esto va a costar)
 - que los disparos a los enemigos de más de un sprite sean de un radio mayor
@@ -13,8 +9,10 @@ TODO A
 - que los disparos sean al centro de los enemigos (ajustar) Esto tendré que verlo con Fernando
 
 TODO B
+- cambiar más los sprites de disparo normal y mejorado
 - hacer sprites que faltan
 - crear pantallas de cada nivel
+- quitar musica ingame y repasar música
 
 - mirar lo de la pila y tal con Fernando
 
