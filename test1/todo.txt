@@ -1,37 +1,12 @@
 BUGS
 
-* sólo el enemigo 1 tiene la vida correcta... el resto mueren de 1 disparo
 
-
-
-- los efectos dejan de funcionar cuando te matan pero se recupera si cambias de nivel!!!!
-mirar esto en subr_puntomira
-accion_boton1:
-		;cambio colores del sprite
-		LD			IX, puntomira
-		LD			 A, (IX + ESTRUCTURA_PUNTOMIRA.escena)
-		CPL		 
-		LD			(IX + ESTRUCTURA_PUNTOMIRA.escena), A
-		;reseteo cadencia para el próximo disparo
-		LD			 A, LIMCADENCIA				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-		LD			(IX + ESTRUCTURA_PUNTOMIRA.cadencia), A		;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-		
-		;ejecuto sonido						;; ajustar cadencia y que cuando el disparo sea efectivo se reseteen los colores
-		LD			 A, SONIDODISPARO	;1
-		LD			 C, 2
-		CALL		ayFX_INIT
-		
+* que los disparos sean al centro de los enemigos (ajustar)
 
 
 TODO A
-- Revisar vida de enemigos:
-* cienpiés
-
-
-- Revisar que el enemigo jefe se ponga en rojo al quedarle poca energía
 - controlar que el disparo normal y avanzado puedan itercalarse correctamente y que el avanzado sólo dure 5 pantallas
 - controlar lo de vaciar habitaciones (ufff... esto va a costar)
-- que los disparos sean al centro de los enemigos (ajustar)
 - que los disparos a los enemigos de más de un sprite sean de un radio mayor
 - que el prota tenga tiempo límite para salir
 - crear pantalla game over 2 ... muerto por no salir a tiempo del castilla tras matar a dracula (modificar gameover 1 con nuevo texto)
