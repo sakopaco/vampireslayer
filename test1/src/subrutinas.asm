@@ -468,8 +468,16 @@ entra_habitacion:
 		CALL		inicializa_enemigos_fase6
 .fin_mira_nivel:
 		
+actualiza_ballesta_mejorada:
+		LD			 A, (contador_ayuda_ballesta)
+		OR			 A
+		JP			 Z, pinta_habitacion_comun 		;si era ya 0 vamos directamente a pintar la habitación
+		DEC			 A								;resto una habitación para disparar con si no es 0
+		LD			(contador_ayuda_ballesta), A
+		JP			NZ, pinta_habitacion_comun		;si quedan habitaciones a las que puedo entra con ballesta mejorada (contador_ayuda_ballesta>0) no hago nada más
+		CALL		resetea_ballesta				;si contador_ayuda_ballesta=0 vuelvo a poner la ballesta por defecto
+													
 pinta_habitacion_comun:	;(haya o no enemigos)
-
 		CALL		pinta_parte_superior_pantalla
 		CALL		pinta_puertas
 		CALL		pinta_extra_fondo

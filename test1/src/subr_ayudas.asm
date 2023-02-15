@@ -628,7 +628,7 @@ fin_accion_vidaextra:
 ;;=====================================================
 ;;ACCION_BALLESTA
 ;;=====================================================	
-; función: 	suma 
+; función: 	cambia sprite a ballesta mejorada, cambia daño, especifica pantallas que dura la nueva ballesta 
 ; entrada: 	
 ; salida: 	-
 accion_ballesta:
@@ -649,10 +649,10 @@ accion_ballesta:
 		LD		 A, PROTADANO2
 		LD		(prota_dano_actual), A
 		
-		
-		;***************************** cuando se cambia de nivel se vuelve al punto de mira y daño iniciales
-		
-		
+		;inicia contador pantallas ballesta mejorada
+		LD		 A, DURACIONBALLEJ
+		LD		(contador_ayuda_ballesta), A
+	
 		;desactiva ayuda
 		LD		IX, (puntero_ayuda_actual)
 		XOR		 A
@@ -660,3 +660,20 @@ accion_ballesta:
 		JP		pinta_obj_ayuda			;se le pasa A = 0 para que pinte desactivado
 fin_accion_ballesta:
 
+
+;;=====================================================
+;;RESETEA_BALLESTA
+;;=====================================================	
+; función: 	vuelve la ballesta al estado original
+; entrada: 	
+; salida: 	-
+resetea_ballesta:
+		LD		IX, puntomira
+		LD		(IX + ESTRUCTURA_PUNTOMIRA.spritea), SPRI_DANO1A
+		LD		(IX + ESTRUCTURA_PUNTOMIRA.spriteb), SPRI_DANO1B
+		
+		;cambio daño a daño mejorado
+		LD		 A, PROTADANO1
+		LD		(prota_dano_actual), A
+fin_resetea_ballesta:
+		RET

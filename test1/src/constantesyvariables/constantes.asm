@@ -129,6 +129,9 @@ ANCHOAYUDA			equ		#02
 ;; RETARDO TIEMPO QUE PARA EL JUEGO POR TIRAR UNA RELIQUIA
 RETARDOREL			equ		2000
 
+;;DURACION AYUDA BALLESTA MEJORADA (pantallas que dura)
+DURACIONBALLEJ      equ		7
+
 ;; RADIOS DE DISPARO
 RADIOAYUDAX 		equ		#08
 RADIOAYUDAY 		equ		#08
@@ -195,11 +198,11 @@ BASEMAPY			equ		6
 BASEMAPX			equ		3
 
 ;; CONSTANTES DE INICIO PARA EL PROTA
-PROTANIVEL			equ		4;0			;nivel del castillo donde está 0-6 - los niveles (matrices) son 7 del 0 al 6
+PROTANIVEL			equ		0			;nivel del castillo donde está 0-6 - los niveles (matrices) son 7 del 0 al 6
 PROTAVIDAS			equ		3
 PROTARELIQUIAS		equ		3
 PROTAPOSMAPX		equ		3			;pos columna 7 columnas 7: del 0 al 6 ;pos X dentro del nivel (se empieza en 0)
-PROTAPOSMAPY		equ		6;0			;pos fila los subniveles (filas) son 7 del 0 al 6 ;pos Y dentro del nivel (se empieza en 0)
+PROTAPOSMAPY		equ		0			;pos fila los subniveles (filas) son 7 del 0 al 6 ;pos Y dentro del nivel (se empieza en 0)
 PROTAENERGIA		equ		248			;MAXENERGIA;valor real de la energía
 PROTAENERGIABYTEBAJO equ	0			;cuando se llene este es cuando se pierde prota_energí
 PROTADANO1			equ		3			;daño del punto de mira

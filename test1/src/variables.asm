@@ -88,9 +88,9 @@ array_sprites_enem:			DS		30 * 4		;resto de sprites
 ;;=====================================================
 ;;VARIABLES AYUDAS
 ;;=====================================================
-hay_ayudas_en_pantalla:		DB	0		;1 => hay / 0 => no hay; variable que se actualiza cuando cambiemos de habitación para no mirar el bit de habitación cada vez
-
-puntero_ayuda_actual:		DW	0		;puntero a ayuda que se muestra en pantalla (sólo se muestra una a la vez)
+hay_ayudas_en_pantalla:		DB		0	;1 => hay / 0 => no hay; variable que se actualiza cuando cambiemos de habitación para no mirar el bit de habitación cada vez
+puntero_ayuda_actual:		DW		0	;puntero a ayuda que se muestra en pantalla (sólo se muestra una a la vez)
+contador_ayuda_ballesta     DB  	0	;contador hacia atrás de pantallas que durará la ballesta
 
 lista_ayudas:
 ayuda_oracion:				DS		ESTRUCTURA_AYUDA		

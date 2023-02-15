@@ -1,17 +1,16 @@
 BUGS
 
 
-* que los disparos sean al centro de los enemigos (ajustar)
+* controlar que el disparo normal y avanzado puedan itercalarse correctamente y que el avanzado sólo dure 5 pantallas
 
 
 TODO A
-- controlar que el disparo normal y avanzado puedan itercalarse correctamente y que el avanzado sólo dure 5 pantallas
 - controlar lo de vaciar habitaciones (ufff... esto va a costar)
 - que los disparos a los enemigos de más de un sprite sean de un radio mayor
 - que el prota tenga tiempo límite para salir
 - crear pantalla game over 2 ... muerto por no salir a tiempo del castilla tras matar a dracula (modificar gameover 1 con nuevo texto)
 - poner tiles al matar a drácula
-
+- que los disparos sean al centro de los enemigos (ajustar) Esto tendré que verlo con Fernando
 
 TODO B
 - hacer sprites que faltan
