@@ -400,6 +400,9 @@ fin_inicializa_enemigos_fase6:
 ;;INICIALIZA_ENEMIGOS_FASE0_NIVELX
 ;;=====================================================	
 inicializa_enemigos_fase0_nivel0:
+		LD			 A, 1
+		LD			(enemiesleft), A
+
 		LD			DE, enemigo1
 		CALL		anade_enemigo_cienpies
 		LD			IX, enemigo1
@@ -407,6 +410,9 @@ inicializa_enemigos_fase0_nivel0:
 fin_inicializa_enemigos_fase0_nivel0:
 
 inicializa_enemigos_fase0_nivel1:
+		LD			 A, 2
+		LD			(enemiesleft), A
+		
 		LD			DE, enemigo1
 		CALL		anade_enemigo_cienpies
 		LD			IX, enemigo1
@@ -419,6 +425,9 @@ inicializa_enemigos_fase0_nivel1:
 fin_inicializa_enemigos_fase0_nivel1:
 
 inicializa_enemigos_fase0_nivel2:
+		LD			 A, 3
+		LD			(enemiesleft), A
+		
 		LD			DE, enemigo1
 		CALL		anade_enemigo_cienpies
 		LD			IX, enemigo1
@@ -434,6 +443,9 @@ inicializa_enemigos_fase0_nivel2:
 fin_inicializa_enemigos_fase0_nivel2:
 
 inicializa_enemigos_fase0_nivel3:
+		LD			 A, 4
+		LD			(enemiesleft), A
+		
 		LD			DE, enemigo1
 		CALL		anade_enemigo_cienpies
 		LD			IX, enemigo1
@@ -452,6 +464,9 @@ inicializa_enemigos_fase0_nivel3:
 fin_inicializa_enemigos_fase0_nivel3:
 
 inicializa_enemigos_fase0_nivel4:
+		LD			 A, 5
+		LD			(enemiesleft), A
+		
 		LD			DE, enemigo1
 		CALL		anade_enemigo_cienpies
 		LD			IX, enemigo1
@@ -473,6 +488,9 @@ inicializa_enemigos_fase0_nivel4:
 fin_inicializa_enemigos_fase0_nivel4:
 
 inicializa_enemigos_fase0_nivel5:
+		LD			 A, 5
+		LD			(enemiesleft), A
+		
 		LD			DE, enemigo1
 		CALL		anade_enemigo_cienpies
 		LD			IX, enemigo1
@@ -497,6 +515,9 @@ inicializa_enemigos_fase0_niveljefe:
 		;primero pone música de jefe fin de fase
 		LD			 A, 1 ;A=1 musica jefe
 		CALL		musica_on
+		
+		LD			 A, 1
+		LD			(enemiesleft), A
 
 		LD			DE, enemigo1
 		JP			anade_enemigo_jefelobo
@@ -1921,7 +1942,8 @@ accion_enemigo_muerto1:
 .elimino_enemigo:
 			;marco enemigo como muerto para saltarlo incluso al examinar
 			LD			(IX), 0
-		RET
+			
+			JP			decrementa_contador_enemigos
 fin_accion_enemigo_muerto1:
 
 accion_enemigo_muerto2:
@@ -1946,7 +1968,8 @@ accion_enemigo_muerto2:
 .elimino_enemigo:
 			;marco enemigo como muerto para saltarlo incluso al examinar
 			LD			(IX), 0
-		RET
+			
+			JP			decrementa_contador_enemigos
 fin_accion_enemigo_muerto2:
 
 accion_enemigo_muerto4:
@@ -1977,7 +2000,19 @@ accion_enemigo_muerto4:
 .elimino_enemigo:
 			;marco enemigo como muerto para saltarlo incluso al examinar
 			LD			(IX), 0
-		RET
+			
+			JP			decrementa_contador_enemigos
 fin_accion_enemigo_muerto4:
 
 
+;;=====================================================
+;;DECREMENTA_CONTADOR_ENEMIGOS
+;;=====================================================	
+; función:  decrementa el contador de eemigos muertos. Hasta que no es 0 no se activan las puertas
+decrementa_contador_enemigos:
+			;decrementa enemigos en pantalla
+			LD			 A, (enemiesleft)
+			DEC			 A
+			LD			(enemiesleft), A
+fin_decrementa_contador_enemigos:
+			RET
