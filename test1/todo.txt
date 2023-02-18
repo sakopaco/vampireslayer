@@ -1,7 +1,9 @@
 BUGS
 
+- ya sólo se sale de habiación si todos enemigos muertos... falta que se queden vacías las habitaciones
+
 TODO A
-- controlar lo de vaciar habitaciones (ufff... esto va a costar)
+
 - que los disparos a los enemigos de más de un sprite sean de un radio mayor
 - que el prota tenga tiempo límite para salir
 - crear pantalla game over 2 ... muerto por no salir a tiempo del castilla tras matar a dracula (modificar gameover 1 con nuevo texto)
