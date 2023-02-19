@@ -145,6 +145,7 @@ puntomira:					DS		ESTRUCTURA_PUNTOMIRA
 dracula_muerto:				DB		NO					;equ 0
 tipo_gameover:				DB		0
 
+
 ;;=====================================================
 ;;VARIABLES TIEMPO
 ;;=====================================================

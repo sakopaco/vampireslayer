@@ -342,32 +342,30 @@ localiza_info_habitacion:
 	LD		 A, (HL)
 	LD		(habitacion_actual), A
 	
+;actualizo la variable habitacion_terminada
+	BIT		  	 4, A					;está terminada la habitación
+	JP			NZ, .si_terminada
+.no_terminada:						;pongo un 0 en habitacion_terminada
+	XOR		 	 A
+	LD			(habitacion_terminada), A
+	JP			.fin_esta_terminada
+.si_terminada:						;pongo un 1 en habitacion_terminada
+	LD		 	 A, 1		
+	LD			(habitacion_terminada), A
+.fin_esta_terminada:
+	
+
+	;****************** CORREGIRLO
 	;actualizo la variable habitacion_actual y su puntero para poder modificar por si se vuelve a pasar por ahí
 	LD		IX, puntero_habitacion_actual
 	LD		(IX), H
 	LD		(IX + 1), L
 	
-	
-	
-	;******************************************************
-	
-	
-	;~ ;actualizo la variable habitacion_terminada
-	;~ LD		  	 A, (habitacion_actual)
-	;~ BIT		  	 4, A					;está terminada la habitación
-	;~ JP			NZ, .si_terminada
-;~ .no_terminada:						;pongo un 0 en habitacion_terminada
-	;~ XOR		 	 A
-	;~ LD			(habitacion_terminada), A
-	;~ JP			.fin_esta_terminada
-;~ .si_terminada:						;pongo un 1 en habitacion_terminada
-	;~ LD		 	 A, 1		
-	;~ LD			(habitacion_terminada), A
-;~ .fin_esta_terminada:
-	
-	
-	
-	
+
+
+
+
+;*****************************************************************
 	
 	;actualizo la variable hay_ayudas
 	LD		 A, (habitacion_actual)
