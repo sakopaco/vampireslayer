@@ -32,16 +32,10 @@ inicializa_niveles:
 		LD			IX, habitaciones_nivel0
 		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
 .inicia_nivel_0:
-
-
-
 		LD		 	 C, (HL)
 		;pongo habitación no terminada bit 4 habitación a 1
 		RES			 4, C		;0 es que hay enemigos (HABITACIÓN NO TERMINADA) y 1 es que no los hay
 		
-
-
-
 		;examino si hay ayudas en siguiente byte
 		LD			 A, (IX)
 		AND			11111110b
@@ -341,9 +335,13 @@ localiza_info_habitacion:
 .actualiza_variable_habitacion
 	LD		 A, (HL)
 	LD		(habitacion_actual), A
+
+
+
 	
 ;actualizo la variable habitacion_terminada
-	BIT		  	 4, A					;está terminada la habitación
+	;BIT		  	 4, A					;está terminada la habitación
+	AND			00010000b
 	JP			NZ, .si_terminada
 .no_terminada:						;pongo un 0 en habitacion_terminada
 	XOR		 	 A
@@ -353,19 +351,15 @@ localiza_info_habitacion:
 	LD		 	 A, 1		
 	LD			(habitacion_terminada), A
 .fin_esta_terminada:
+
+
 	
 
-	;****************** CORREGIRLO
+	
 	;actualizo la variable habitacion_actual y su puntero para poder modificar por si se vuelve a pasar por ahí
 	LD		IX, puntero_habitacion_actual
 	LD		(IX), H
 	LD		(IX + 1), L
-	
-
-
-
-
-;*****************************************************************
 	
 	;actualizo la variable hay_ayudas
 	LD		 A, (habitacion_actual)
@@ -398,16 +392,13 @@ fin_localiza_info_habitacion:
 ; salida: 	habitacion_recorrida (byte 14 de la fila de habitaciones) actualizada con OR A (en A la habitacion)
 ; toca:		IX, HL, AF
 terminada_habitacion_recorrida:
-		LD			HL, puntero_habitacion_actual
+		LD			IX, puntero_habitacion_actual
+		LD			 H, (IX)
+		LD			 L, (IX+1)
 		SET			 4, (HL)	
 		
 		LD			 A, ISHABTERMIN			;1 => cierto habitación terminada
 		LD			(habitacion_terminada), A
-		
-		;este trozo no sirve de nada pero ya me quedo más tranquilo si lo pongo, por ser exacto y completo
-		;no sirve porque se cambiará de habitación y se perderá/actualizará el dato
-		LD			HL, habitacion_actual
-		SET			 4, (HL)
 fin_terminada_habitacion_recorrida:
 		RET
 

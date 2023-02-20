@@ -129,6 +129,7 @@ habitacion_terminada:		DB		0		;variable para consultar más rápido si se ha pas
 
 puntero_extras_habitacion_actual:	DW	0	;puntero a los extras de la habitación actual para poder modificarlo (para que no salgan extras)
 puntero_habitacion_actual:	DW		0		;puntero a la habitación actual para poder modificarlo 
+;puntero_habitacion_actual:	DB		0		;puntero a la habitación actual para poder modificarlo 
 
 enemiesleft:				DB		0		;enemigos que quedan por matar en una pantalla. No se podrá acceder a las puertas hasta que no queden enemigos vivos. Si se ha pasado por una pantalla no quedan enemigos vivos (no se respawnean).
 

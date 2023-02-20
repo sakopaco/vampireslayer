@@ -2165,5 +2165,13 @@ decrementa_contador_enemigos:
 			LD			 A, (enemiesleft)
 			DEC			 A
 			LD			(enemiesleft), A
-fin_decrementa_contador_enemigos:
+			RET			NZ
+			
+			;si no quedan enemigos marco la pantalla como superada
+			CALL		terminada_habitacion_recorrida
+			
+			;~ LD			IX, puntero_habitacion_actual
+			;~ SET			 4, (IX)
+			
 			RET
+fin_decrementa_contador_enemigos:

@@ -282,8 +282,8 @@ fin_accion_puerta_izquierda:
 pinta_puertas:
 	CALL	localiza_info_habitacion	;busca qué puertas debe pintar y lo mete en habitación_actual
 
-	;~ ;*********************************************************************+ SÓLO SI HABITACIÓN NO COPLETADA
-	;~ CALL	desactiva_todas_puertas
+	;*********************************************************************+ SÓLO SI HABITACIÓN NO COPLETADA
+	CALL	desactiva_todas_puertas
 
 	;examina puerta arrba
 	LD		 A, (habitacion_actual)
@@ -558,3 +558,21 @@ fin_check_colision_puerta:
 		RET
 
 
+;;=====================================================
+;;DESACTIVA_TODAS_PUERTAS
+;;=====================================================	
+; función: 	desactiva todas las puertas (es más rápido todas que mirar cuál estaba activa en la habitación aanterior) y ya se activarán las que se muestren
+; entrada: 	puerta_arriba, puerta_derecha, puerta_abajo, puerta_izquierda
+; salida: 	las estructuras de la puertas (entrada) con el valor activo a 0 (PUERTAINACT)
+; toca:		IX
+desactiva_todas_puertas:
+		LD			IX, puerta_arriba		;desactivo_puerta arriba
+		LD			(IX), INACTIVA
+		LD			IX, puerta_derecha		;desactivo_puerta derecha
+		LD			(IX), INACTIVA
+		LD			IX, puerta_abajo		;desactivo_puerta abajo
+		LD			(IX), INACTIVA
+		LD			IX, puerta_izquierda	;desactivo_puerta izquierda
+		LD			(IX), INACTIVA
+fin_desactiva_todas_puertas:
+		RET
