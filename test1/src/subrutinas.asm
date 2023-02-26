@@ -18,201 +18,80 @@
 ;ayudas bit 6 1 hay ayudas y 0 no hay ayudas
 
 inicializa_niveles:
-		PUSH		AF
-		PUSH		BC
-		PUSH		HL
+		EXX		
 
 		;inicia habitación para decir si por esa habitación no se ha pasado
 		;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
 		;el 6 bit a 1 indica que en esa habitación hay ayudas no utilizadas
 
 ;nivel 0 -----------------------------------------------------------------------
-		LD			 B, 56	;la mitad de bytes del array de un nivel
+		LD			 B, 56 	;la mitad de bytes del array de un nivel
 		LD 			HL, habitaciones_nivel0	;puntero al byte de la habitación
 		LD			IX, habitaciones_nivel0
-		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
-.inicia_nivel_0:
+		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas		
+		CALL 		resetea_habitaciones_enemigos_nivel
+
+;nivel 1 -----------------------------------------------------------------------
+		LD			 B, 56 	;la mitad de bytes del array de un nivel
+		LD 			HL, habitaciones_nivel1	;puntero al byte de la habitación
+		LD			IX, habitaciones_nivel1
+		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas		
+		CALL 		resetea_habitaciones_enemigos_nivel
+
+;nivel 2 -----------------------------------------------------------------------
+		LD			 B, 56 	;la mitad de bytes del array de un nivel
+		LD 			HL, habitaciones_nivel2	;puntero al byte de la habitación
+		LD			IX, habitaciones_nivel2
+		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas		
+		CALL 		resetea_habitaciones_enemigos_nivel
+
+;nivel 3 -----------------------------------------------------------------------
+		LD			 B, 56 	;la mitad de bytes del array de un nivel
+		LD 			HL, habitaciones_nivel3	;puntero al byte de la habitación
+		LD			IX, habitaciones_nivel3
+		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas		
+		CALL 		resetea_habitaciones_enemigos_nivel
+
+;nivel 4 -----------------------------------------------------------------------
+		LD			 B, 56 	;la mitad de bytes del array de un nivel
+		LD 			HL, habitaciones_nivel4	;puntero al byte de la habitación
+		LD			IX, habitaciones_nivel4
+		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas		
+		CALL 		resetea_habitaciones_enemigos_nivel
+
+;nivel 5 -----------------------------------------------------------------------
+		LD			 B, 56 	;la mitad de bytes del array de un nivel
+		LD 			HL, habitaciones_nivel5	;puntero al byte de la habitación
+		LD			IX, habitaciones_nivel5
+		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas		
+		CALL 		resetea_habitaciones_enemigos_nivel
+
+;nivel 6 -----------------------------------------------------------------------
+		LD			 B, 56 	;la mitad de bytes del array de un nivel
+		LD 			HL, habitaciones_nivel6	;puntero al byte de la habitación
+		LD			IX, habitaciones_nivel6
+		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas		
+		CALL 		resetea_habitaciones_enemigos_nivel
+
+		EXX
+fin_iniciliza_niveles:
+		RET
+
+
+
+resetea_habitaciones_enemigos_nivel:
+.inicia_nivel:
 		LD		 	 C, (HL)
 		;pongo habitación no terminada bit 4 habitación a 1
 		RES			 4, C		;0 es que hay enemigos (HABITACIÓN NO TERMINADA) y 1 es que no los hay
 		
-		;examino si hay ayudas en siguiente byte
-		LD			 A, (IX)
-		AND			11111110b
-		JR			 Z, .no_tiene_ayuda_nivel0
-.si_tiene_ayuda_nivel0:
-		SET			 6, C
-		JP			.fin_tiene_ayuda_nivel0
-.no_tiene_ayuda_nivel0:
-		RES			 6, C
-.fin_tiene_ayuda_nivel0:
-		
 		LD			(HL), C
 [2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
 [2]		INC			IX		;pongo puntero en la siguiente habitación (2 saltos)
-		DJNZ		.inicia_nivel_0
-
-;nivel 1 -----------------------------------------------------------------------
-		LD			 B, 56	;la mitad de bytes del array de un nivel
-		LD 			HL, habitaciones_nivel1	;puntero al byte de la habitación
-		LD			IX, habitaciones_nivel1
-		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
-.inicia_nivel_1:
-		LD		 	 C, (HL)
-		;pongo habitación no terminada bit 4 habitación a 1
-		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
-		
-		;examino si hay ayudas en siguiente byte
-		LD			 A, (IX)
-		AND			1111110b
-		JP			 Z, .no_tiene_ayuda_nivel1
-.si_tiene_ayuda_nivel1:
-		SET			 6, C
-		JP			.fin_tiene_ayuda_nivel1
-.no_tiene_ayuda_nivel1:
-		RES			 6, C
-.fin_tiene_ayuda_nivel1:
-		
-		LD			(HL), C
-[2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
-[2]		INC			IX		;pongo puntero en la siguiente habitación (2 saltos)
-		DJNZ		.inicia_nivel_1
-
-;nivel 2 -----------------------------------------------------------------------
-		LD			 B, 56	;la mitad de bytes del array de un nivel
-		LD 			HL, habitaciones_nivel2	;puntero al byte de la habitación
-		LD			IX, habitaciones_nivel2
-		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
-.inicia_nivel_2:
-		LD		 	 C, (HL)
-		;pongo habitación no terminada bit 4 habitación a 1
-		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
-		
-		;examino si hay ayudas en siguiente byte
-		LD			 A, (IX)
-		AND			1111110b
-		JP			 Z, .no_tiene_ayuda_nivel2
-.si_tiene_ayuda_nivel2:
-		SET			 6, C
-		JP			.fin_tiene_ayuda_nivel2
-.no_tiene_ayuda_nivel2:
-		RES			 6, C
-.fin_tiene_ayuda_nivel2:
-		
-		LD			(HL), C
-[2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
-[2]		INC			IX		;pongo puntero en la siguiente habitación (2 saltos)
-		DJNZ		.inicia_nivel_2
-
-;nivel 3 -----------------------------------------------------------------------
-		LD			 B, 56	;la mitad de bytes del array de un nivel
-		LD 			HL, habitaciones_nivel3	;puntero al byte de la habitación
-		LD			IX, habitaciones_nivel3
-		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
-.inicia_nivel_3:
-		LD		 	 C, (HL)
-		;pongo habitación no terminada bit 4 habitación a 1
-		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
-		
-		;examino si hay ayudas en siguiente byte
-		LD			 A, (IX)
-		AND			1111110b
-		JP			 Z, .no_tiene_ayuda_nivel3
-.si_tiene_ayuda_nivel3:
-		SET			 6, C
-		JP			.fin_tiene_ayuda_nivel3
-.no_tiene_ayuda_nivel3:
-		RES			 6, C
-.fin_tiene_ayuda_nivel3:
-		
-		LD			(HL), C
-[2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
-[2]		INC			IX		;pongo puntero en la siguiente habitación (2 saltos)
-		DJNZ		.inicia_nivel_3
-
-;nivel 4 -----------------------------------------------------------------------
-		LD			 B, 56	;la mitad de bytes del array de un nivel
-		LD 			HL, habitaciones_nivel4	;puntero al byte de la habitación
-		LD			IX, habitaciones_nivel4
-		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
-.inicia_nivel_4:
-		LD		 	 C, (HL)
-		;pongo habitación no terminada bit 4 habitación a 1
-		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
-		
-		;examino si hay ayudas en siguiente byte
-		LD			 A, (IX)
-		AND			1111110b
-		JP			 Z, .no_tiene_ayuda_nivel4
-.si_tiene_ayuda_nivel4:
-		SET			 6, C
-		JP			.fin_tiene_ayuda_nivel4
-.no_tiene_ayuda_nivel4:
-		RES			 6, C
-.fin_tiene_ayuda_nivel4:
-		
-		LD			(HL), C
-[2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
-[2]		INC			IX		;pongo puntero en la siguiente habitación (2 saltos)
-		DJNZ		.inicia_nivel_4
-		
-;nivel 5 -----------------------------------------------------------------------
-		LD			 B, 56	;la mitad de bytes del array de un nivel
-		LD 			HL, habitaciones_nivel5	;puntero al byte de la habitación
-		LD			IX, habitaciones_nivel5
-		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
-.inicia_nivel_5:
-		LD		 	 C, (HL)
-		;pongo habitación no terminada bit 4 habitación a 1
-		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
-		
-		;examino si hay ayudas en siguiente byte
-		LD			 A, (IX)
-		AND			1111110b
-		JP			 Z, .no_tiene_ayuda_nivel5
-.si_tiene_ayuda_nivel5:
-		SET			 6, C
-		JP			.fin_tiene_ayuda_nivel5
-.no_tiene_ayuda_nivel5:
-		RES			 6, C
-.fin_tiene_ayuda_nivel5:
-		
-		LD			(HL), C
-[2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
-[2]		INC			IX		;pongo puntero en la siguiente habitación (2 saltos)
-		DJNZ		.inicia_nivel_5
-		
-;nivel 6 -----------------------------------------------------------------------
-		LD			 B, 56	;la mitad de bytes del array de un nivel
-		LD 			HL, habitaciones_nivel6	;puntero al byte de la habitación
-		LD			IX, habitaciones_nivel6
-		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas
-.inicia_nivel_6:
-		LD		 	 C, (HL)
-		;pongo habitación no terminada bit 4 habitación a 1
-		SET			 4, C	;***********************************************************************   ESTO HAY QUE PONERLO A 0 CUANDO HAYA ENEMIGOS
-
-		;examino si hay ayudas en siguiente byte
-		LD			 A, (IX)
-		AND			11111110b
-		JR			 Z, .no_tiene_ayuda_nivel6
-.si_tiene_ayuda_nivel6:
-		SET			 6, C
-		JP			.fin_tiene_ayuda_nivel6
-.no_tiene_ayuda_nivel6:
-		RES			 6, C
-.fin_tiene_ayuda_nivel6:
-		
-		LD			(HL), C
-[2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
-[2]		INC			IX		;pongo puntero en la siguiente habitación (2 saltos)
-		DJNZ		.inicia_nivel_6
-
-		POP			HL
-		POP			BC
-		POP			AF
-fin_iniciliza_niveles:
+		DJNZ		.inicia_nivel
+fin_resetea_habitaciones_enemigos_nivel:
 		RET
+
 
 
 ;;=====================================================
@@ -336,9 +215,6 @@ localiza_info_habitacion:
 	LD		 A, (HL)
 	LD		(habitacion_actual), A
 
-
-;????????????????????????????
-	
 ;actualizo la variable habitacion_terminada
 	;BIT		  	 4, A					;está terminada la habitación
 	AND			00010000b
@@ -351,11 +227,6 @@ localiza_info_habitacion:
 	LD		 	 A, 1		
 	LD			(habitacion_terminada), A
 .fin_esta_terminada:
-
-
-
-;????????????????????????????
-
 
 	;actualizo la variable habitacion_actual y su puntero para poder modificar por si se vuelve a pasar por ahí
 	LD		IX, puntero_habitacion_actual

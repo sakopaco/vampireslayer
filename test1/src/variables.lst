@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.02.26 - 19:58:50]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.02.26 - 20:28:44]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -138,18 +138,18 @@ Errors: 0
      123.  00:C000  (00:0058)           POSBALLESTAY 		equ		#58;88
      124.  00:C000                      
      125.  00:C000                      ;; TAMAÑO AYUDAS
-     126.  00:C000  (00:0002)           ALTOAYUDA			equ		#02
-     127.  00:C000  (00:0002)           ANCHOAYUDA			equ		#02
+     126.  00:C000  (00:0002)           ALTOAYUDA			equ		#02;2
+     127.  00:C000  (00:0002)           ANCHOAYUDA			equ		#02;2
      128.  00:C000                      
      129.  00:C000                      ;; RETARDO TIEMPO QUE PARA EL JUEGO POR TIRAR UNA RELIQUIA
      130.  00:C000  (00:07D0)           RETARDOREL			equ		2000
      131.  00:C000                      
      132.  00:C000                      ;;DURACION AYUDA BALLESTA MEJORADA (pantallas que dura)
-     133.  00:C000  (00:0007)           DURACIONBALLEJ      equ		7
+     133.  00:C000  (00:0007)           DURACIONBALLEJ      equ		#07;7
      134.  00:C000                      
      135.  00:C000                      ;; RADIOS DE DISPARO
-     136.  00:C000  (00:0008)           RADIOAYUDAX 		equ		#08
-     137.  00:C000  (00:0008)           RADIOAYUDAY 		equ		#08
+     136.  00:C000  (00:0008)           RADIOAYUDAX 		equ		#08;8
+     137.  00:C000  (00:0008)           RADIOAYUDAY 		equ		#08;8
      138.  00:C000                      
      139.  00:C000                      ;;POSICIÓN INICIAL DEL SPRITE DEL PUNTO DE MIRA
      140.  00:C000  (00:0074)           POSXPM				equ		116

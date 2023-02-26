@@ -1,10 +1,10 @@
 BUGS
 
-- ya sólo se sale de habiación si todos enemigos muertos... falta que se queden vacías las habitaciones
+* revisar que aparezcan las ayudas en una habitación siempre que haya anemigos sin necesidas de examinar el bite 6 de la habitación
 
 TODO A
 
-- que los disparos a los enemigos de más de un sprite sean de un radio mayor
+- que los disparos a los enemigos de más de un sprite sean de un radio mayor. y las ayudas ... Centrar disparo (preg. Fernando)
 - que el prota tenga tiempo límite para salir
 - crear pantalla game over 2 ... muerto por no salir a tiempo del castilla tras matar a dracula (modificar gameover 1 con nuevo texto)
 - poner tiles al matar a drácula
