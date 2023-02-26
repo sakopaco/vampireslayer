@@ -134,7 +134,7 @@ fin_inicializa_enemigos_fase0:
 ; entrada:	-
 ; salida: 	-
 ; toca:		-
-inicializa_enemigos_fase1:	;; para no poner más complejo se hace uno por fase que se actualiza al pasar por escaleras o puerta inferior
+inicializa_enemigos_fase1:	;; para no poner más complejo se hace uno por fase que se actualiza al pasar por escaleras o puerta inferior		
 		LD			 A, (prota_pos_mapy)
 		OR			 A
 .nivel0:
@@ -400,7 +400,7 @@ fin_inicializa_enemigos_fase6:
 ;;INICIALIZA_ENEMIGOS_FASE0_NIVELX
 ;;=====================================================	
 inicializa_enemigos_fase0_nivel0:
-		LD			 A, (habitacion_terminada) ;SI enemigos => 0 y NO enemigos 1 => toca la variable "habitacion_terminada" (se inicializan al empezar la partida) 
+		LD			 A, (habitacion_terminada)
 		OR			 A
 		RET			NZ
 
@@ -414,7 +414,7 @@ inicializa_enemigos_fase0_nivel0:
 fin_inicializa_enemigos_fase0_nivel0:
 
 inicializa_enemigos_fase0_nivel1:
-		LD			 A, (habitacion_terminada) ;SI enemigos => 0 y NO enemigos 1 => toca la variable "habitacion_terminada" (se inicializan al empezar la partida) 
+		LD			 A, (habitacion_terminada)
 		OR			 A
 		RET			NZ
 		
@@ -433,7 +433,7 @@ inicializa_enemigos_fase0_nivel1:
 fin_inicializa_enemigos_fase0_nivel1:
 
 inicializa_enemigos_fase0_nivel2:
-		LD			 A, (habitacion_terminada) ;SI enemigos => 0 y NO enemigos 1 => toca la variable "habitacion_terminada" (se inicializan al empezar la partida) 
+		LD			 A, (habitacion_terminada)
 		OR			 A
 		RET			NZ
 		
@@ -455,7 +455,7 @@ inicializa_enemigos_fase0_nivel2:
 fin_inicializa_enemigos_fase0_nivel2:
 
 inicializa_enemigos_fase0_nivel3:
-		LD			 A, (habitacion_terminada) ;SI enemigos => 0 y NO enemigos 1 => toca la variable "habitacion_terminada" (se inicializan al empezar la partida) 
+		LD			 A, (habitacion_terminada)
 		OR			 A
 		RET			NZ
 		
@@ -480,7 +480,7 @@ inicializa_enemigos_fase0_nivel3:
 fin_inicializa_enemigos_fase0_nivel3:
 
 inicializa_enemigos_fase0_nivel4:
-		LD			 A, (habitacion_terminada) ;SI enemigos => 0 y NO enemigos 1 => toca la variable "habitacion_terminada" (se inicializan al empezar la partida) 
+		LD			 A, (habitacion_terminada)
 		OR			 A
 		RET			NZ
 		
@@ -508,7 +508,7 @@ inicializa_enemigos_fase0_nivel4:
 fin_inicializa_enemigos_fase0_nivel4:
 
 inicializa_enemigos_fase0_nivel5:
-		LD			 A, (habitacion_terminada) ;SI enemigos => 0 y NO enemigos 1 => toca la variable "habitacion_terminada" (se inicializan al empezar la partida) 
+		LD			 A, (habitacion_terminada)
 		OR			 A
 		RET			NZ
 		
@@ -536,7 +536,7 @@ inicializa_enemigos_fase0_nivel5:
 fin_inicializa_enemigos_fase0_nivel5:
 
 inicializa_enemigos_fase0_niveljefe:
-		LD			 A, (habitacion_terminada) ;SI enemigos => 0 y NO enemigos 1 => toca la variable "habitacion_terminada" (se inicializan al empezar la partida) 
+		LD			 A, (habitacion_terminada)
 		OR			 A
 		RET			NZ
 		
@@ -552,6 +552,10 @@ fin_inicializa_enemigos_fase0_niveljefe:
 ;;INICIALIZA_ENEMIGOS_FASE1_NIVELX
 ;;=====================================================	
 inicializa_enemigos_fase1_nivel0:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+
 		LD			 A, 1
 		LD			(enemiesleft), A
 		
@@ -560,6 +564,10 @@ inicializa_enemigos_fase1_nivel0:
 fin_inicializa_enemigos_fase1_nivel0:
 
 inicializa_enemigos_fase1_nivel1:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		LD			 A, 2
 		LD			(enemiesleft), A
 		
@@ -573,6 +581,10 @@ inicializa_enemigos_fase1_nivel1:
 fin_inicializa_enemigos_fase1_nivel1:
 
 inicializa_enemigos_fase1_nivel2:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		LD			 A, 3
 		LD			(enemiesleft), A 
 		
@@ -589,6 +601,10 @@ inicializa_enemigos_fase1_nivel2:
 fin_inicializa_enemigos_fase1_nivel2:
 
 inicializa_enemigos_fase1_nivel3:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		LD			 A, 4
 		LD			(enemiesleft), A
 		
@@ -608,6 +624,10 @@ inicializa_enemigos_fase1_nivel3:
 fin_inicializa_enemigos_fase1_nivel3:
 
 inicializa_enemigos_fase1_nivel4:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		LD			 A, 5
 		LD			(enemiesleft), A
 		
@@ -629,7 +649,11 @@ inicializa_enemigos_fase1_nivel4:
 		JP			anade_enemigo_esqueleto
 fin_inicializa_enemigos_fase1_nivel4:
 
-inicializa_enemigos_fase1_nivel5: 
+inicializa_enemigos_fase1_nivel5:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		LD			 A, 6
 		LD			(enemiesleft), A
 								
@@ -655,6 +679,10 @@ inicializa_enemigos_fase1_nivel5:
 fin_inicializa_enemigos_fase1_nivel5:
 
 inicializa_enemigos_fase1_niveljefe:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		;primero pone música de jefe fin de fase
 		LD			 A, 1 ;A=1 musica jefe
 		CALL		musica_on
@@ -673,6 +701,10 @@ fin_inicializa_enemigos_fase1_niveljefe:
 ;;INICIALIZA_ENEMIGOS_FASE2_NIVELX
 ;;=====================================================	
 inicializa_enemigos_fase2_nivel0:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		LD			 A, 1
 		LD			(enemiesleft), A
 		
@@ -681,6 +713,10 @@ inicializa_enemigos_fase2_nivel0:
 fin_inicializa_enemigos_fase2_nivel0:
 
 inicializa_enemigos_fase2_nivel1:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		LD			 A, 2
 		LD			(enemiesleft), A
 		
@@ -692,6 +728,10 @@ inicializa_enemigos_fase2_nivel1:
 fin_inicializa_enemigos_fase2_nivel1:
 
 inicializa_enemigos_fase2_nivel2:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		LD			 A, 3
 		LD			(enemiesleft), A
 		
@@ -706,6 +746,10 @@ inicializa_enemigos_fase2_nivel2:
 fin_inicializa_enemigos_fase2_nivel2:
 
 inicializa_enemigos_fase2_nivel3:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		LD			 A, 4
 		LD			(enemiesleft), A
 		
@@ -723,6 +767,10 @@ inicializa_enemigos_fase2_nivel3:
 fin_inicializa_enemigos_fase2_nivel3:
 
 inicializa_enemigos_fase2_nivel4:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		LD			 A, 5
 		LD			(enemiesleft), A
 		
@@ -742,7 +790,11 @@ inicializa_enemigos_fase2_nivel4:
 		JP			anade_enemigo_zombi
 fin_inicializa_enemigos_fase2_nivel4:
 
-inicializa_enemigos_fase2_nivel5: 	
+inicializa_enemigos_fase2_nivel5:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		LD			 A, 5
 		LD			(enemiesleft), A
 								
@@ -763,6 +815,10 @@ inicializa_enemigos_fase2_nivel5:
 fin_inicializa_enemigos_fase2_nivel5:
 
 inicializa_enemigos_fase2_niveljefe:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		;primero pone música de jefe fin de fase
 		LD			 A, 1 ;A=1 musica jefe
 		CALL		musica_on
@@ -779,6 +835,10 @@ fin_inicializa_enemigos_fase2_niveljefe:
 ;;INICIALIZA_ENEMIGOS_FASE3_NIVELX
 ;;=====================================================	
 inicializa_enemigos_fase3_nivel0:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		LD			 A, 1
 		LD			(enemiesleft), A
 		
@@ -787,6 +847,10 @@ inicializa_enemigos_fase3_nivel0:
 fin_inicializa_enemigos_fase3_nivel0:
 
 inicializa_enemigos_fase3_nivel1:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		LD			 A, 2
 		LD			(enemiesleft), A
 		
@@ -800,6 +864,10 @@ inicializa_enemigos_fase3_nivel1:
 fin_inicializa_enemigos_fase3_nivel1:
 
 inicializa_enemigos_fase3_nivel2:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		LD			 A, 3
 		LD			(enemiesleft), A
 		
@@ -816,6 +884,10 @@ inicializa_enemigos_fase3_nivel2:
 fin_inicializa_enemigos_fase3_nivel2:
 
 inicializa_enemigos_fase3_nivel3:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		LD			 A, 4
 		LD			(enemiesleft), A
 		
@@ -835,6 +907,10 @@ inicializa_enemigos_fase3_nivel3:
 fin_inicializa_enemigos_fase3_nivel3:
 
 inicializa_enemigos_fase3_nivel4:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		LD			 A, 5
 		LD			(enemiesleft), A
 		
@@ -856,7 +932,11 @@ inicializa_enemigos_fase3_nivel4:
 		JP			anade_enemigo_zombi
 fin_inicializa_enemigos_fase3_nivel4:
 
-inicializa_enemigos_fase3_nivel5: 	
+inicializa_enemigos_fase3_nivel5:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		LD			 A, 5
 		LD			(enemiesleft), A
 								
@@ -879,6 +959,10 @@ inicializa_enemigos_fase3_nivel5:
 fin_inicializa_enemigos_fase3_nivel5:
 
 inicializa_enemigos_fase3_niveljefe:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		;primero pone música de jefe fin de fase
 		LD			 A, 1 ;A=1 musica jefe
 		CALL		musica_on
@@ -895,6 +979,10 @@ fin_inicializa_enemigos_fase3_niveljefe:
 ;;INICIALIZA_ENEMIGOS_FASE4_NIVELX
 ;;=====================================================	
 inicializa_enemigos_fase4_nivel0:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		LD			 A, 1
 		LD			(enemiesleft), A
 		
@@ -903,6 +991,10 @@ inicializa_enemigos_fase4_nivel0:
 fin_inicializa_enemigos_fase4_nivel0:
 
 inicializa_enemigos_fase4_nivel1:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		LD			 A, 2
 		LD			(enemiesleft), A
 		
@@ -914,6 +1006,10 @@ inicializa_enemigos_fase4_nivel1:
 fin_inicializa_enemigos_fase4_nivel1:
 
 inicializa_enemigos_fase4_nivel2:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		LD			 A, 3
 		LD			(enemiesleft), A
 		
@@ -928,6 +1024,10 @@ inicializa_enemigos_fase4_nivel2:
 fin_inicializa_enemigos_fase4_nivel2:
 
 inicializa_enemigos_fase4_nivel3:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		LD			 A, 4
 		LD			(enemiesleft), A
 		
@@ -945,6 +1045,10 @@ inicializa_enemigos_fase4_nivel3:
 fin_inicializa_enemigos_fase4_nivel3:
 
 inicializa_enemigos_fase4_nivel4:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		LD			 A, 5
 		LD			(enemiesleft), A
 		
@@ -964,7 +1068,11 @@ inicializa_enemigos_fase4_nivel4:
 		JP			anade_enemigo_fantasma
 fin_inicializa_enemigos_fase4_nivel4:
 
-inicializa_enemigos_fase4_nivel5: 	
+inicializa_enemigos_fase4_nivel5:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		LD			 A, 6
 		LD			(enemiesleft), A
 								
@@ -988,6 +1096,10 @@ inicializa_enemigos_fase4_nivel5:
 fin_inicializa_enemigos_fase4_nivel5:
 
 inicializa_enemigos_fase4_niveljefe:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		;primero pone música de jefe fin de fase
 		LD			 A, 1 ;A=1 musica jefe
 		CALL		musica_on
@@ -1006,6 +1118,10 @@ fin_inicializa_enemigos_fase4_niveljefe:
 ;;INICIALIZA_ENEMIGOS_FASE5_NIVELX
 ;;=====================================================	
 inicializa_enemigos_fase5_nivel0:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		LD			 A, 1
 		LD			(enemiesleft), A
 		
@@ -1014,6 +1130,10 @@ inicializa_enemigos_fase5_nivel0:
 fin_inicializa_enemigos_fase5_nivel0:
 
 inicializa_enemigos_fase5_nivel1:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		LD			 A, 2
 		LD			(enemiesleft), A
 		
@@ -1025,6 +1145,10 @@ inicializa_enemigos_fase5_nivel1:
 fin_inicializa_enemigos_fase5_nivel1:
 
 inicializa_enemigos_fase5_nivel2:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		LD			 A, 3
 		LD			(enemiesleft), A
 		
@@ -1039,6 +1163,10 @@ inicializa_enemigos_fase5_nivel2:
 fin_inicializa_enemigos_fase5_nivel2:
 
 inicializa_enemigos_fase5_nivel3:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		LD			 A, 4
 		LD			(enemiesleft), A
 		
@@ -1056,6 +1184,10 @@ inicializa_enemigos_fase5_nivel3:
 fin_inicializa_enemigos_fase5_nivel3:
 
 inicializa_enemigos_fase5_nivel4:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		LD			 A, 5
 		LD			(enemiesleft), A
 		
@@ -1076,6 +1208,10 @@ inicializa_enemigos_fase5_nivel4:
 fin_inicializa_enemigos_fase5_nivel4:
 
 inicializa_enemigos_fase5_nivel5: 	
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		LD			 A, 6
 		LD			(enemiesleft), A
 								
@@ -1099,6 +1235,7 @@ inicializa_enemigos_fase5_nivel5:
 fin_inicializa_enemigos_fase5_nivel5:
 
 inicializa_enemigos_fase5_niveljefe:
+
 		;primero pone música de jefe fin de fase
 		LD			 A, 1 ;A=1 musica jefe
 		CALL		musica_on
@@ -1115,6 +1252,10 @@ fin_inicializa_enemigos_fase5_niveljefe:
 ;;INICIALIZA_ENEMIGOS_FASE6_NIVELX
 ;;=====================================================	
 inicializa_enemigos_fase6_nivel0:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		CALL		carga_patrones_sprites_nivel6_nivel0
 		
 		LD			 A, 1
@@ -1128,6 +1269,10 @@ fin_inicializa_enemigos_fase6_nivel0:
 
 
 inicializa_enemigos_fase6_nivel1:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		CALL		carga_patrones_sprites_nivel6_nivel1
 		
 		LD			 A, 1
@@ -1140,6 +1285,10 @@ inicializa_enemigos_fase6_nivel1:
 fin_inicializa_enemigos_fase6_nivel1:
 
 inicializa_enemigos_fase6_nivel2:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		CALL		carga_patrones_sprites_nivel6_nivel2
 		
 		LD			 A, 1
@@ -1152,6 +1301,10 @@ inicializa_enemigos_fase6_nivel2:
 fin_inicializa_enemigos_fase6_nivel2:
 
 inicializa_enemigos_fase6_nivel3:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		CALL		carga_patrones_sprites_nivel6_nivel3
 		
 		LD			 A, 1
@@ -1164,6 +1317,10 @@ inicializa_enemigos_fase6_nivel3:
 fin_inicializa_enemigos_fase6_nivel3:
 
 inicializa_enemigos_fase6_nivel4:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 		CALL		carga_patrones_sprites_nivel6_nivel4
 		
 		LD			 A, 1
@@ -1175,7 +1332,11 @@ inicializa_enemigos_fase6_nivel4:
 		JP			actualiza_valores_jefecaballero
 fin_inicializa_enemigos_fase6_nivel4:
 
-inicializa_enemigos_fase6_nivel5: 						
+inicializa_enemigos_fase6_nivel5: 
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+								
 		CALL		carga_patrones_sprites_nivel6_nivel5
 		
 		LD			 A, 1
@@ -1188,6 +1349,13 @@ inicializa_enemigos_fase6_nivel5:
 fin_inicializa_enemigos_fase6_nivel5:
 
 inicializa_enemigos_fase6_nivel6:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
+		LD			 A, 3
+		LD			(enemiesleft), A
+		
 		;primero pone música de jefe fin de fase
 		LD			 A, 1 ;A=1 musica jefe
 		CALL		musica_on

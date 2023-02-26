@@ -1,0 +1,17 @@
+;~ ;;=====================================================
+;~ ;;ACTUALIZA_HABITACION_TERMINADA
+;~ ;;=====================================================	
+;~ ; función: 	actualiza la variable habitacion_terminada
+;~ actualiza_habitacion_terminada:
+		;~ XOR			 A
+		;~ LD			(habitacion_terminada), A
+		;~ LD			HL, puntero_habitacion_actual
+		;~ BIT			 4, (HL)
+		;~ RET			NZ
+		
+		;~ LD			 A, ISHABTERMIN			;1 => cierto habitación terminada
+		;~ LD			(habitacion_terminada), A
+;~ fin_actualiza_habitacion_terminada
+		;~ RET
+		
+;???????????????????????????

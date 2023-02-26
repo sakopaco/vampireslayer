@@ -430,16 +430,9 @@ fin_actualiza_variables_pinta_array:
 ; salida: 	-
 ; toca:		todo
 check_colisiones_puertas:
-		
-		
-		;~ ;se comenta para poder depurar com más rapidez
-		;~ LD		 A, (enemiesleft) 			;si quedan enemigos vivos (no no se mató ninguno) no verifica nada (no puede salir habitación disparando puerta)
-		;~ OR		 A
-		;~ RET		NZ
-		
-		
-		
-		
+		LD		 A, (enemiesleft) 			;si quedan enemigos vivos (no no se mató ninguno) no verifica nada (no puede salir habitación disparando puerta)
+		OR		 A
+		RET		NZ		
 		
 .examina_puerta_arriba:
 		LD		IX, puerta_arriba

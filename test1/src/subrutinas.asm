@@ -337,7 +337,7 @@ localiza_info_habitacion:
 	LD		(habitacion_actual), A
 
 
-
+;????????????????????????????
 	
 ;actualizo la variable habitacion_terminada
 	;BIT		  	 4, A					;está terminada la habitación
@@ -353,9 +353,10 @@ localiza_info_habitacion:
 .fin_esta_terminada:
 
 
-	
 
-	
+;????????????????????????????
+
+
 	;actualizo la variable habitacion_actual y su puntero para poder modificar por si se vuelve a pasar por ahí
 	LD		IX, puntero_habitacion_actual
 	LD		(IX), H
@@ -416,10 +417,16 @@ fin_terminada_habitacion_recorrida:
 ; entrada: 	prota_pos_mapy, prota_pos_mapy, prota_nivel
 ; salida: 	
 entra_habitacion:
-		;~ LD			HL, puntero_habitacion_actual
-		;~ BIT			 4, (HL)
-		;~ JP			NZ, pinta_habitacion_comun
-		
+;nos ocupaos de pinar la habitación
+		CALL		pinta_parte_superior_pantalla
+		CALL		pinta_puertas
+		CALL		pinta_extra_fondo
+		CALL		pinta_heroe_mapa
+
+;pintamos si hay ayudaas en la habitación		
+		CALL		pinta_ayudas_habitacion
+
+;ahora nos ocupamos de los enemigos
 		CALL		resetea_enemigos
 
 .mira_nivel0:
@@ -456,24 +463,15 @@ entra_habitacion:
 .mira_nivel6:
 		CALL		inicializa_enemigos_fase6
 .fin_mira_nivel:
-		
-actualiza_ballesta_mejorada:
+
+;examinamos lo que le queda si es que tiene ballesta mejorada
 		LD			 A, (contador_ayuda_ballesta)
 		OR			 A
-		JP			 Z, pinta_habitacion_comun 		;si era ya 0 vamos directamente a pintar la habitación
+		RET			 Z			;si era ya 0 vamos directamente a pintar la habitación
 		DEC			 A								;resto una habitación para disparar con si no es 0
 		LD			(contador_ayuda_ballesta), A
-		JP			NZ, pinta_habitacion_comun		;si quedan habitaciones a las que puedo entra con ballesta mejorada (contador_ayuda_ballesta>0) no hago nada más
-		CALL		resetea_ballesta				;si contador_ayuda_ballesta=0 vuelvo a poner la ballesta por defecto
-													
-pinta_habitacion_comun:	;(haya o no enemigos)
-		CALL		pinta_parte_superior_pantalla
-		CALL		pinta_puertas
-		CALL		pinta_extra_fondo
-		
-		CALL		pinta_ayudas_habitacion
-
-		JP			pinta_heroe_mapa
+		RET			NZ
+		JP			resetea_ballesta				;si contador_ayuda_ballesta=0 vuelvo a poner la ballesta por defecto
 fin_entra_habitacion:
 
 
@@ -523,16 +521,15 @@ fin_cambio_nivel:
 ; salida: 	-
 ; toca:		HL,BC, DE
 check_colisiones_objetos:
+		;recorre puertas y sale
+		CALL		check_colisiones_puertas
+
 		;pantalla limpia?
-		;~ LD			 A, (habitacion_terminada)
-		;~ OR			 A
-		;~ JP			 Z, .habitacion_no_terminada
-		;SI 
-			;recorre puertas y sale
-			CALL		check_colisiones_puertas
-			;RET
-		;NO 
-.habitacion_no_terminada:
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ 		;pantalla limpia? SI
+		 
+.habitacion_no_terminada:	;pantalla limpia? NO
 		;recorre enemigos
 		CALL		check_colisiones_enemigos
 		
@@ -545,23 +542,6 @@ check_colisiones_objetos:
 			JP		check_colision_ayudas	; si hay ayudas que examinar
 		;ENDIF
 fin_check_colisiones_objetos:	
-
-
-;;=====================================================
-;;ACTUALIZA_HABITACION_TERMINADA
-;;=====================================================	
-; función: 	actualiza la variable habitacion_terminada
-actualiza_habitacion_terminada:
-		;~ XOR			 A
-		;~ LD			(habitacion_terminada), A
-		;~ LD			HL, puntero_habitacion_actual
-		;~ BIT			 4, (HL)
-		;~ RET			NZ
-		
-		;~ LD			 A, ISHABTERMIN			;1 => cierto habitación terminada
-		;~ LD			(habitacion_terminada), A
-fin_actualiza_habitacion_terminada
-		RET
 
 
 ;;=====================================================
