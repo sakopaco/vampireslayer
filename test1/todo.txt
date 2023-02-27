@@ -1,9 +1,8 @@
 BUGS
 
-* revisar que aparezcan las ayudas en una habitación siempre que haya anemigos sin necesidas de examinar el bite 6 de la habitación
+* quitar musica ingame y repasar música
 
 TODO A
-
 - que los disparos a los enemigos de más de un sprite sean de un radio mayor. y las ayudas ... Centrar disparo (preg. Fernando)
 - que el prota tenga tiempo límite para salir
 - crear pantalla game over 2 ... muerto por no salir a tiempo del castilla tras matar a dracula (modificar gameover 1 con nuevo texto)
@@ -11,10 +10,9 @@ TODO A
 - que los disparos sean al centro de los enemigos (ajustar) Esto tendré que verlo con Fernando
 
 TODO B
-- cambiar más los sprites de disparo normal y mejorado
-- hacer sprites que faltan
+- revisar todos los sprites (incluidos los del punto de mira)
 - crear pantallas de cada nivel
-- quitar musica ingame y repasar música
+
 
 - mirar lo de la pila y tal con Fernando
 

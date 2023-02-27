@@ -240,108 +240,85 @@ fin_pinta_obj_ayuda:
 ; entrada: 	habitacion_extras
 ; salida: 	-
 pinta_ayudas_habitacion:
-	;~ LD		 A, (hay_ayudas_en_pantalla)
-	;~ OR		 A
-	;~ RET		 Z							;0 ya no hay ayudas activas (se actualiza cuando se usa la ayuda)
-	
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
+		XOR			 A
+		LD			(hay_ayudas_en_pantalla), A
 .examina_oracion:
-	LD		 A, (habitacion_extras)
-	BIT		 7, A						;bit 7 oracion
-	JP		 Z, .fin_examina_oracion	
+		LD		 A, (habitacion_extras)
+		BIT		 7, A						;bit 7 oracion
+		JP		 Z, .fin_examina_oracion
 	
-	LD		IX, ayuda_oracion
-	;puntero_ayuda_actual
-	LD		(puntero_ayuda_actual), IX
-	LD		 A, ACTIVA
-	LD		(IX), A						;si lo pinta activo pone el bit a 1 por si el último lo puso a 0
-	CALL	pinta_obj_ayuda
-	RET
+		LD		IX, ayuda_oracion
+		JP		.pintar_ayuda
 .fin_examina_oracion:
 
 .examina_cruz:
-	LD		 A, (habitacion_extras)
-	BIT		 6, A						;bit 6 cruz
-	JP		 Z, .fin_examina_cruz		
-	
-	LD		IX, ayuda_cruz
-	;puntero_ayuda_actual
-	LD		(puntero_ayuda_actual), IX
-	LD		 A, ACTIVA
-	LD		(IX), A						;si lo pinta activo pone el bit a 1 por si el último lo puso a 0
-	CALL	pinta_obj_ayuda
-	RET
+		LD		 A, (habitacion_extras)
+		BIT		 6, A						;bit 6 cruz
+		JP		 Z, .fin_examina_cruz		
+		
+		LD		IX, ayuda_cruz
+		JP		.pintar_ayuda
 .fin_examina_cruz:
 
 .examina_aguabendita:
-	LD		 A, (habitacion_extras)
-	BIT		 5, A						;bit 5 aguabendita
-	JP		 Z, .fin_examina_aguabendita
-	
-	LD		IX, ayuda_aguabendita
-	;puntero_ayuda_actual
-	LD		(puntero_ayuda_actual), IX
-	LD		 A, ACTIVA
-	LD		(IX), A						;si lo pinta activo pone el bit a 1 por si el último lo puso a 0
-	CALL	pinta_obj_ayuda
-	RET
+		LD		 A, (habitacion_extras)
+		BIT		 5, A						;bit 5 aguabendita
+		JP		 Z, .fin_examina_aguabendita
+		
+		LD		IX, ayuda_aguabendita
+		JP		.pintar_ayuda
 .fin_examina_aguabendita:
 
 .examina_armadura:
-	LD		 A, (habitacion_extras)
-	BIT		 4, A						;bit 4 armadura
-	JP		 Z, .fin_examina_armadura
-	
-	LD		IX, ayuda_armadura
-	;puntero_ayuda_actual
-	LD		(puntero_ayuda_actual), IX
-	LD		 A, ACTIVA
-	LD		(IX), A						;si lo pinta activo pone el bit a 1 por si el último lo puso a 0
-	CALL	pinta_obj_ayuda
-	RET
+		LD		 A, (habitacion_extras)
+		BIT		 4, A						;bit 4 armadura
+		JP		 Z, .fin_examina_armadura
+		
+		LD		IX, ayuda_armadura
+		JP		.pintar_ayuda
 .fin_examina_armadura:
 
 .examina_planta:
-	LD		 A, (habitacion_extras)
-	BIT		 3, A						;bit 3 planta
-	JP		 Z, .fin_examina_planta
-	
-	LD		IX, ayuda_planta
-	;puntero_ayuda_actual
-	LD		(puntero_ayuda_actual), IX
-	LD		 A, ACTIVA
-	LD		(IX), A						;si lo pinta activo pone el bit a 1 por si el último lo puso a 0
-	CALL	pinta_obj_ayuda
-	RET
+		LD		 A, (habitacion_extras)
+		BIT		 3, A						;bit 3 planta
+		JP		 Z, .fin_examina_planta
+		
+		LD		IX, ayuda_planta
+		JP		.pintar_ayuda
 .fin_examina_planta:
 
 .examina_vidaextra:
-	LD		 A, (habitacion_extras)
-	BIT		 2, A						;bit 2 planta
-	JP		 Z, .fin_examina_vidaextra
-	
-	LD		IX, ayuda_vidaextra
-	;puntero_ayuda_actual
-	LD		(puntero_ayuda_actual), IX
-	LD		 A, ACTIVA
-	LD		(IX), A						;si lo pinta activo pone el bit a 1 por si el último lo puso a 0
-	CALL	pinta_obj_ayuda
-	RET
+		LD		 A, (habitacion_extras)
+		BIT		 2, A						;bit 2 planta
+		JP		 Z, .fin_examina_vidaextra
+		
+		LD		IX, ayuda_vidaextra
+		JP		.pintar_ayuda
 .fin_examina_vidaextra:
 
 .examina_ballesta:
-	LD		 A, (habitacion_extras)
-	BIT		 1, A						;bit 2 planta
-	JP		 Z, fin_pinta_ayudas_habitacion
-	
-	LD		IX, ayuda_ballesta
-	;puntero_ayuda_actual
-	LD		(puntero_ayuda_actual), IX
-	LD		 A, ACTIVA
-	LD		(IX), A						;si lo pinta activo pone el bit a 1 por si el último lo puso a 0
-	CALL	pinta_obj_ayuda
-	RET
+		LD		 A, (habitacion_extras)
+		BIT		 1, A						;bit 2 planta
+		JP		 Z, fin_pinta_ayudas_habitacion
+		
+		LD		IX, ayuda_ballesta
 .fin_examina_ballesta:
+
+.pintar_ayuda:
+		;puntero_ayuda_actual
+		LD		(puntero_ayuda_actual), IX
+		LD		 A, ACTIVA
+		LD		(IX), A						;si lo pinta activo pone el bit a 1 por si el último lo puso a 0
+		CALL	pinta_obj_ayuda
+		
+		LD			 A, 1
+		LD			(hay_ayudas_en_pantalla), A
 fin_pinta_ayudas_habitacion:
+		RET
 
 
 
