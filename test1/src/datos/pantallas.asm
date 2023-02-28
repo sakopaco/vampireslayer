@@ -20,10 +20,6 @@ tiles_color_nivel0:				incbin "pantallas/tiles.banco01.bin.clr.plet5"
 
 tiles_mapa_nivel0:				incbin "pantallas/nivel0.bank01.map.bin.plet5"
 
-;~ tiles_patrones_nivel1:	incbin "pantallas/nivel0.bank1.til.bin.chr.plet5"
-;~ tiles_color_nivel1:		incbin "pantallas/nivel0.bank1.til.bin.clr.plet5"
-;~ tiles_mapa_nivel1:		incbin "pantallas/nivel0.bank01.map.bin.plet5"
-
 ; 3º banco que es la parte de puntos, vidas, mapas, etc... es común
 tiles_patrones_marcador:		incbin "pantallas/marcador.til.bin.chr.plet5"
 tiles_color_marcador:			incbin "pantallas/marcador.til.bin.clr.plet5"

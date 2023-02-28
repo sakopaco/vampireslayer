@@ -180,28 +180,87 @@ fin_inicializa_variables_juego:
 
 ;;************************************************************************
 
+actualiza_tiles_nivel:
+		;~ LD			 A, (prota_nivel)
+		;~ OR			 A
+;~ .examina_si_nivel0:
+		;~ JP			NZ, .examina_si_nivel1
+		CALL		actualiza_tiles_nivel0		
+		RET
+.examina_si_nivel1:
+.examina_si_nivel2:
+.examina_si_nivel3:
+.examina_si_nivel4:
+.examina_si_nivel5:
+.examina_si_nivel6:
+fin_actualiza_tiles_nivel:
+		RET
 
-actualiza_suelo_nivel0:
-		LD			BC, 8
-		;~ DE			
-		
-		;~ LDIRMV
+actualiza_tiles_nivel0:
+;pinta estrallas (2 por linea)
+		LD			BC, TILMAP + (32 * 0) + 3
+		LD			 D, 30
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 0) + 23
+		LD			 D, 31
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 1) + 7
+		LD			 D, 31
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 1) + 16
+		LD			 D, 30
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 2) + 0
+		LD			 D, 30
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 2) + 11
+		LD			 D, 31
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 3) + 20
+		LD			 D, 31
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 3) + 23
+		LD			 D, 30
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 4) + 1
+		LD			 D, 30
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 4) + 30
+		LD			 D, 31
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 5) + 2
+		LD			 D, 31
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 5) + 28
+		LD			 D, 30
+		CALL		pinta_tile_suelto	
+		LD			BC, TILMAP + (32 * 6) + 3
+		LD			 D, 30
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 6) + 23
+		LD			 D, 31
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 7) + 19
+		LD			 D, 31
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 7) + 13
+		LD			 D, 30
+		CALL		pinta_tile_suelto
 
-;~ Address  : #0059
-;~ Function : Block transfer to memory from VRAM
-;~ Input    : BC - Block length
-           ;~ DE - Start address of memory
-           ;~ HL - Start address of VRAM
-;~ Registers: All
-
-;~ LDIRVM
-
-;~ Address  : #005C
-;~ Function : Block transfer to VRAM from memory
-;~ Input    : BC - Block length
-           ;~ DE - Start address of VRAM
-           ;~ HL - Start address of memory
-fin_actualiza_suelo_nivel0:
+;pinta luna
+		LD			BC, TILMAP + (32 * 0) + 26
+		LD			 D, 33
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 0) + 27
+		LD			 D, 34
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 1) + 26
+		LD			 D, 35
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 1) + 27
+		LD			 D, 36
+		CALL		pinta_tile_suelto
+fin_actualiza_tiles_nivel0:
 		RET
 
 

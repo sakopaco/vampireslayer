@@ -82,9 +82,9 @@ fin_sub_preparapantalla:
 ; salida: -
 ; toca: si no son todos los regristros, casi todos
 pinta_pantalla_completa:
-	CALL 	pinta_parte_superior_pantalla
+		CALL 		pinta_parte_superior_pantalla
 	
-	CALL 	pinta_parte_inferior_pantalla	
+		CALL	 	pinta_parte_inferior_pantalla	
 fin_pinta_pantalla_completa:
 	RET
 
@@ -96,122 +96,45 @@ fin_pinta_pantalla_completa:
 ; entrada: -
 ; salida: -
 ; toca: si no son todos los regristros, casi todos
-pinta_parte_superior_pantalla:
-	LD		 A, (prota_nivel)
-	OR		 A
-	JP		 Z, .carga_nivel_0
-	DEC		 A
-	LD		 A, (prota_nivel)
-	JP		 Z, .carga_nivel_1
-	DEC		 A
-	LD		 A, (prota_nivel)
-	JP		 Z, .carga_nivel_2
-	DEC		 A
-	LD		 A, (prota_nivel)
-	JP		 Z, .carga_nivel_3
-	DEC		 A
-	LD		 A, (prota_nivel)
-	JP		 Z, .carga_nivel_4
-	DEC		 A
-	LD		 A, (prota_nivel)
-	JP		 Z, .carga_nivel_5
-	;esta opción es la de por defecto... si no cabe en ninguna anterior
-	LD		 A, (prota_nivel)
-	JP		 .carga_nivel_6
-	
-.carga_nivel_0:
-	LD		HL, tiles_patrones_nivel0
-	LD		(tiles_patrones), HL
-	LD		HL, tiles_color_nivel0
-	LD		(tiles_colores), HL
-	LD		HL, tiles_mapa_nivel0
-	LD		(tiles_mapa), HL
-	
-	XOR		 A
-	CALL	actualiza_suelo_nivel0
-	
-	JP		.fin_carga_niveles
+pinta_parte_superior_pantalla:	
+.carga_nivel:
+		LD			HL, tiles_patrones_nivel0
+		LD			(tiles_patrones), HL
+		LD			HL, tiles_color_nivel0
+		LD			(tiles_colores), HL
+		LD			HL, tiles_mapa_nivel0
+		LD			(tiles_mapa), HL	
 
-.carga_nivel_1:
-	LD		HL, tiles_patrones_nivel0
-	LD		(tiles_patrones), HL
-	LD		HL, tiles_color_nivel0
-	LD		(tiles_colores), HL
-	LD		HL, tiles_mapa_nivel0
-	LD		(tiles_mapa), HL
-	JP		.fin_carga_niveles
-	
-.carga_nivel_2:
-	LD		HL, tiles_patrones_nivel0
-	LD		(tiles_patrones), HL
-	LD		HL, tiles_color_nivel0
-	LD		(tiles_colores), HL
-	LD		HL, tiles_mapa_nivel0
-	LD		(tiles_mapa), HL
-	JP		.fin_carga_niveles
-	
-.carga_nivel_3:
-	LD		HL, tiles_patrones_nivel0
-	LD		(tiles_patrones), HL
-	LD		HL, tiles_color_nivel0
-	LD		(tiles_colores), HL
-	LD		HL, tiles_mapa_nivel0
-	LD		(tiles_mapa), HL
-	JP		.fin_carga_niveles
-	
-.carga_nivel_4:
-	LD		HL, tiles_patrones_nivel0
-	LD		(tiles_patrones), HL
-	LD		HL, tiles_color_nivel0
-	LD		(tiles_colores), HL
-	LD		HL, tiles_mapa_nivel0
-	LD		(tiles_mapa), HL
-	JP		.fin_carga_niveles
-	
-.carga_nivel_5:
-	LD		HL, tiles_patrones_nivel0
-	LD		(tiles_patrones), HL
-	LD		HL, tiles_color_nivel0
-	LD		(tiles_colores), HL
-	LD		HL, tiles_mapa_nivel0
-	LD		(tiles_mapa), HL
-	JP		.fin_carga_niveles
-	
-.carga_nivel_6:
-	LD		HL, tiles_patrones_nivel0
-	LD		(tiles_patrones), HL
-	LD		HL, tiles_color_nivel0
-	LD		(tiles_colores), HL
-	LD		HL, tiles_mapa_nivel0
-	LD		(tiles_mapa), HL
-;	JP		.fin_carga niveles			;no necesario
-.fin_carga_niveles:
 
 		;cargando banco 1
 		;cargamos los patrones
-		LD		HL, (tiles_patrones)
-		LD		DE, CHRTBL
-		CALL	depack_VRAM
+		LD			HL, (tiles_patrones)
+		LD			DE, CHRTBL
+		CALL		depack_VRAM
 		;cargamos los colores de los patrones
-		LD		HL, (tiles_colores)
-		LD		DE, CLRTBL
-		CALL	depack_VRAM
+		LD			HL, (tiles_colores)
+		LD			DE, CLRTBL
+		CALL		depack_VRAM
 	
 		;cargando banco 2
 		;cargamos los patrones
-		LD		HL, (tiles_patrones)
-		LD		DE, CHRTBL + #0800
-		CALL	depack_VRAM	
+		LD			HL, (tiles_patrones)
+		LD			DE, CHRTBL + #0800
+		CALL		depack_VRAM	
 		;cargamos los colores de los patrones
-		LD		HL, (tiles_colores)
-		LD		DE, CLRTBL + #0800
-		CALL	depack_VRAM
+		LD			HL, (tiles_colores)
+		LD			DE, CLRTBL + #0800
+		CALL		depack_VRAM
 	
 		;cargamos mapa de pantalla banco 1 y 2
-		LD		HL, (tiles_mapa)
-		LD		DE, TILMAP
-		JP		depack_VRAM
+		LD			HL, (tiles_mapa)
+		LD			DE, TILMAP
+		CALL		depack_VRAM
+		
+		;aquí se actualizan las particularidades de cada nivel
+		CALL		actualiza_tiles_nivel
 fin_pinta_parte_superior_pantalla:
+		RET
 ;variables que usa
 ;tiles_patrones:		DW	0
 ;tiles_colores:			DW	0

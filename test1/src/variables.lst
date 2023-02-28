@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.02.28 - 13:29:40]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.02.28 - 20:15:14]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -305,12 +305,12 @@ Errors: 0
       56.  00:C000                      
       57.  00:C000                      ;;ETIQUETAS/CONSTANTES MURCIELAGO
       58.  00:C000  (00:0005)           TIPOMURCIELAGO			equ		5
-      59.  00:C000  (00:0001)           MURCIELAGO_COLOR		equ		#0001	;1 - NEGRO
-      60.  00:C000  (00:0038)           MURCIELAGO_SPRITE1A		equ		#0038	;56
-      61.  00:C000  (00:003C)           MURCIELAGO_SPRITE1B		equ		#003C	;60
-      62.  00:C000  (00:0020)           MURCIELAGO_LIMIZQ		equ		#0020	;16
-      63.  00:C000  (00:00DE)           MURCIELAGO_LIMDER		equ		#00DE	;232
-      64.  00:C000  (00:0018)           MURCIELAGO_HORIZON		equ		#0018	;24
+      59.  00:C000  (00:0004)           MURCIELAGO_COLOR		equ		#04	;4 azul oscuro
+      60.  00:C000  (00:0038)           MURCIELAGO_SPRITE1A		equ		#38	;56
+      61.  00:C000  (00:003C)           MURCIELAGO_SPRITE1B		equ		#3C	;60
+      62.  00:C000  (00:0020)           MURCIELAGO_LIMIZQ		equ		#20	;16
+      63.  00:C000  (00:00DE)           MURCIELAGO_LIMDER		equ		#DE	;232
+      64.  00:C000  (00:0018)           MURCIELAGO_HORIZON		equ		#18	;24
       65.  00:C000  (00:00C0)           MURCIELAGO_PASOS  		equ		192
       66.  00:C000  (00:0010)           MURCIELAGO_VELESCENA 	equ		00010000b
       67.  00:C000  (00:0005)           MURCIELAGO_DANO			equ		5
@@ -318,7 +318,7 @@ Errors: 0
       69.  00:C000                      
       70.  00:C000                      ;;ETIQUETAS/CONSTANTES LOBO
       71.  00:C000  (00:0006)           TIPOLOBO				equ		6
-      72.  00:C000  (00:0001)           LOBO_COLOR				equ		#01		;1 - NEGRO
+      72.  00:C000  (00:000E)           LOBO_COLOR				equ		#0E ;14 gris
       73.  00:C000  (00:0040)           LOBO_SPRITE1A			equ		64
       74.  00:C000  (00:0044)           LOBO_SPRITE2A			equ		68
       75.  00:C000  (00:0048)           LOBO_SPRITE3A			equ		72
@@ -336,7 +336,7 @@ Errors: 0
       87.  00:C000                      
       88.  00:C000                      ;;ETIQUETAS/CONSTANTES JEFELOBO
       89.  00:C000  (00:000E)           TIPOJEFELOBO			equ		14
-      90.  00:C000  (00:0001)           JEFELOBO_COLOR			equ		#01		;1 - NEGRO
+      90.  00:C000  (00:000E)           JEFELOBO_COLOR			equ		#0E ;14 gris
       91.  00:C000  (00:00CD)           JEFELOBO_LIM_PASOS1 	equ		205
       92.  00:C000  (00:0028)           JEFELOBO_LIM_PASOS2 	equ		40
       93.  00:C000  (00:0075)           JEFELOBO_LIM_PASOS3 	equ		117
@@ -1431,7 +1431,7 @@ Errors: 0
 00:00000005 X SERPIENTE_DANO
 00:00000032 X SERPIENTE_ENERGIA
 00:00000005 X TIPOMURCIELAGO
-00:00000001 X MURCIELAGO_COLOR
+00:00000004 X MURCIELAGO_COLOR
 00:00000038 X MURCIELAGO_SPRITE1A
 00:0000003C X MURCIELAGO_SPRITE1B
 00:00000020 X MURCIELAGO_LIMIZQ
@@ -1442,7 +1442,7 @@ Errors: 0
 00:00000005 X MURCIELAGO_DANO
 00:0000001E X MUERCIELAGO_ENERGIA
 00:00000006 X TIPOLOBO
-00:00000001 X LOBO_COLOR
+00:0000000E X LOBO_COLOR
 00:00000040 X LOBO_SPRITE1A
 00:00000044 X LOBO_SPRITE2A
 00:00000048 X LOBO_SPRITE3A
@@ -1458,7 +1458,7 @@ Errors: 0
 00:00000005 X LOBO_DANO
 00:0000003C X LOBO_ENERGIA
 00:0000000E X TIPOJEFELOBO
-00:00000001 X JEFELOBO_COLOR
+00:0000000E X JEFELOBO_COLOR
 00:000000CD X JEFELOBO_LIM_PASOS1
 00:00000028 X JEFELOBO_LIM_PASOS2
 00:00000075 X JEFELOBO_LIM_PASOS3
