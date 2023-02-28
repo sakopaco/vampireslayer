@@ -8,6 +8,8 @@ color_base:					DB		COLNEGRO,COLNEGRO,COLNEGRO
 color_bomba1:				DB		COLROJO,COLROJO,COLROJO
 color_bomba2:				DB		COLROJOOSC,COLROJOOSC,COLROJOOSC
 
+tile_auxiliar:				DB		#00,#00,#00,#00,#00,#00,#00,#00
+
 
 ;;=====================================================
 ;;DEFINICIÓN DE SUBRUTINAS
@@ -124,6 +126,10 @@ pinta_parte_superior_pantalla:
 	LD		(tiles_colores), HL
 	LD		HL, tiles_mapa_nivel0
 	LD		(tiles_mapa), HL
+	
+	XOR		 A
+	CALL	actualiza_suelo_nivel0
+	
 	JP		.fin_carga_niveles
 
 .carga_nivel_1:

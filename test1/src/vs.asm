@@ -181,6 +181,29 @@ fin_inicializa_variables_juego:
 ;;************************************************************************
 
 
+actualiza_suelo_nivel0:
+		LD			BC, 8
+		;~ DE			
+		
+		;~ LDIRMV
+
+;~ Address  : #0059
+;~ Function : Block transfer to memory from VRAM
+;~ Input    : BC - Block length
+           ;~ DE - Start address of memory
+           ;~ HL - Start address of VRAM
+;~ Registers: All
+
+;~ LDIRVM
+
+;~ Address  : #005C
+;~ Function : Block transfer to VRAM from memory
+;~ Input    : BC - Block length
+           ;~ DE - Start address of VRAM
+           ;~ HL - Start address of memory
+fin_actualiza_suelo_nivel0:
+		RET
+
 
 ;;************************************************************************		
 
