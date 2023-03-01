@@ -197,7 +197,149 @@ fin_actualiza_tiles_nivel:
 		RET
 
 actualiza_tiles_nivel0:
-;pinta estrallas (2 por linea)
+		CALL		nivel0_pinta_suelo
+		
+		CALL		nivel0_pinta_paredes
+		
+		CALL		nivel0_pinta_marco
+		
+		CALL		nivel0_pinta_puertas
+
+		CALL		nivel0_pinta_estrellas	;pinta estrellas (2 por linea)
+
+		JP			nivel0_pinta_luna
+fin_actualiza_tiles_nivel0:
+
+
+nivel0_pinta_suelo:
+;como el suelo sólo está en el banco 1 sólo se mueven los tiles en el banco 1
+;realmente lo que hace es cambiar los tiles del suelo por los que corresponden al nivel 0
+		;poniendo patron en memoria RAM
+		LD			BC, 8
+		LD			DE, CHRTBLBANCO1 + (8 * 8)	;8 BYTES * TILE 8º
+		LD			HL, tile_auxiliar
+		CALL		LDIRVM
+		
+		;poniendo patron en memoria VRAM
+		LD			BC, 8
+		LD			DE, tile_auxiliar
+		LD			HL, CLRTBLBANCO1 + (8 * 4)	;8 BYTES * TILE 1ª pos que es el suelo
+		CALL		LDIRMV
+		
+		;poniendo color en memoria RAM
+		LD			BC, 8
+		LD			DE, CHRTBLBANCO1 + (8 * 8)	;8 BYTES * TILE 8º
+		LD			HL, tile_auxiliar
+		CALL		LDIRVM
+		
+		;poniendo color en memoria VRAM
+		LD			BC, 8
+		LD			DE, tile_auxiliar
+		LD			HL, CLRTBLBANCO1 + (8 * 4)	;8 BYTES * TILE 1ª pos que es el suelo
+		JP			LDIRMV
+fin_nivel0_pinta_suelo:
+
+
+nivel0_pinta_paredes:
+		XOR			 A
+		LD			BC,	8
+		LD			HL, CHRTBL + (8 * 3)	;8 BYTES * TILE 3º pos que es la pared
+		CALL		FILVRM
+		
+		XOR			 A
+		LD			BC,	8
+		LD			HL, CLRTBL + (8 * 3)	;8 BYTES * TILE 3º pos que es la pared
+		CALL		FILVRM
+		
+		XOR			 A
+		LD			BC,	8
+		LD			HL, CHRTBLBANCO1 + (8 * 3)	;8 BYTES * TILE 3º pos que es la pared
+		CALL		FILVRM
+		
+		XOR			 A
+		LD			BC,	8
+		LD			HL, CLRTBLBANCO1 + (8 * 3)	;8 BYTES * TILE 3º pos que es la pared
+		JP			FILVRM
+fin_nivel0_pinta_paredes:
+
+
+nivel0_pinta_puertas:
+;A) banco 0
+		;poniendo patron en memoria RAM
+		LD			BC, 8
+		LD			DE, CHRTBL + (8 * 23)	;8 BYTES * TILE 8º
+		LD			HL, tile_auxiliar
+		CALL		LDIRVM
+		
+		;poniendo patron en memoria VRAM
+		LD			BC, 8
+		LD			DE, tile_auxiliar
+		LD			HL, CLRTBL + (8 * 1)	;8 BYTES * TILE 1ª pos que es el suelo
+		CALL		LDIRMV
+		
+		;poniendo color en memoria RAM
+		LD			BC, 8
+		LD			DE, CHRTBL + (8 * 23)	;8 BYTES * TILE 8º
+		LD			HL, tile_auxiliar
+		CALL		LDIRVM
+		
+		;poniendo color en memoria VRAM
+		LD			BC, 8
+		LD			DE, tile_auxiliar
+		LD			HL, CLRTBL + (8 * 1)	;8 BYTES * TILE 1ª pos que es el suelo
+		CALL		LDIRMV
+
+;B) banco 1
+		;poniendo patron en memoria RAM
+		LD			BC, 8
+		LD			DE, CHRTBLBANCO1 + (8 * 23)	;8 BYTES * TILE 8º
+		LD			HL, tile_auxiliar
+		CALL		LDIRVM
+		
+		;poniendo patron en memoria VRAM
+		LD			BC, 8
+		LD			DE, tile_auxiliar
+		LD			HL, CLRTBLBANCO1 + (8 * 1)	;8 BYTES * TILE 1ª pos que es el suelo
+		CALL		LDIRMV
+		
+		;poniendo color en memoria RAM
+		LD			BC, 8
+		LD			DE, CHRTBLBANCO1 + (8 * 23)	;8 BYTES * TILE 8º
+		LD			HL, tile_auxiliar
+		CALL		LDIRVM
+		
+		;poniendo color en memoria VRAM
+		LD			BC, 8
+		LD			DE, tile_auxiliar
+		LD			HL, CLRTBLBANCO1 + (8 * 1)	;8 BYTES * TILE 1ª pos que es el suelo
+		JP			LDIRMV
+fin_nivel0_pinta_puertas:
+
+
+nivel0_pinta_marco:
+		XOR			 A
+		LD			BC,	8
+		LD			HL, CHRTBLBANCO1 + (8 * 2)	;8 BYTES * TILE 3º pos que es el marco
+		CALL		FILVRM
+		
+		XOR			 A
+		LD			BC,	8
+		LD			HL, CLRTBLBANCO1 + (8 * 3)	;8 BYTES * TILE 3º pos que es el marco
+		CALL		FILVRM
+		
+		XOR			 A
+		LD			BC,	8
+		LD			HL, CHRTBLBANCO1 + (8 * 2)	;8 BYTES * TILE 3º pos que es el marco
+		CALL		FILVRM
+		
+		XOR			 A
+		LD			BC,	8
+		LD			HL, CLRTBLBANCO1 + (8 * 3)	;8 BYTES * TILE 3º pos que es el marco
+		JP			FILVRM
+fin_nivel0_pinta_marco:
+
+
+nivel0_pinta_estrellas:
 		LD			BC, TILMAP + (32 * 0) + 3
 		LD			 D, 30
 		CALL		pinta_tile_suelto
@@ -245,9 +387,10 @@ actualiza_tiles_nivel0:
 		CALL		pinta_tile_suelto
 		LD			BC, TILMAP + (32 * 7) + 13
 		LD			 D, 30
-		CALL		pinta_tile_suelto
-
-;pinta luna
+		JP			pinta_tile_suelto
+fin_nivel0_pinta_estrellas:
+		
+nivel0_pinta_luna:
 		LD			BC, TILMAP + (32 * 0) + 26
 		LD			 D, 33
 		CALL		pinta_tile_suelto
@@ -259,9 +402,8 @@ actualiza_tiles_nivel0:
 		CALL		pinta_tile_suelto
 		LD			BC, TILMAP + (32 * 1) + 27
 		LD			 D, 36
-		CALL		pinta_tile_suelto
-fin_actualiza_tiles_nivel0:
-		RET
+		JP			pinta_tile_suelto
+fin_nivel0_pinta_luna
 
 
 ;;************************************************************************		

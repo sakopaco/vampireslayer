@@ -35,7 +35,10 @@ ultimo_pos_array_aux_energia:
 ;;MAPA	
 array_aux_mapa_limpiar:		DB		0,0,0,0,0,0,0	;es por facilitar el reseteo del mapa (pinto 7 lineas en negro con bios) la otra opción es más larga en código y complicada aunque más rápida
 elemento_pintar_mapa:		DB		0			;TILEPROTAM = 19, ;TILEGRISM = 9
-			
+
+
+;;TILES PANTALLA
+tile_auxiliar:				DB		0,0,0,0,0,0,0,0
 
 ;;=====================================================
 ;;DECORACION PAREDES

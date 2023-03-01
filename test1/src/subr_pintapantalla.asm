@@ -8,8 +8,6 @@ color_base:					DB		COLNEGRO,COLNEGRO,COLNEGRO
 color_bomba1:				DB		COLROJO,COLROJO,COLROJO
 color_bomba2:				DB		COLROJOOSC,COLROJOOSC,COLROJOOSC
 
-tile_auxiliar:				DB		#00,#00,#00,#00,#00,#00,#00,#00
-
 
 ;;=====================================================
 ;;DEFINICIÓN DE SUBRUTINAS
