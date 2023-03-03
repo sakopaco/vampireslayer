@@ -38,7 +38,7 @@ elemento_pintar_mapa:		DB		0			;TILEPROTAM = 19, ;TILEGRISM = 9
 
 
 ;;TILES PANTALLA
-tile_auxiliar:				DB		0,0,0,0,0,0,0,0
+tile_auxiliar:				DB		#FF,#00,#FF,#FF,#FF,#FF,#00,#FF
 
 ;;=====================================================
 ;;DECORACION PAREDES

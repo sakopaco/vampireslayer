@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.03.01 - 22:33:25]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.03.03 - 22:12:09]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -857,8 +857,8 @@ Errors: 0
       38   00:C028                      
       39   00:C028                      
       40   00:C028                      ;;TILES PANTALLA
-      41   00:C028                      tile_auxiliar:				DB		0,0,0,0,0,0,0,0
-      41   00:C028  00 00 00 00 00 00 00 00 
+      41   00:C028                      tile_auxiliar:				DB		#FF,#00,#FF,#FF,#FF,#FF,#00,#FF
+      41   00:C028  FF 00 FF FF FF FF 00 FF 
       42   00:C030                      
       43   00:C030                      ;;=====================================================
       44   00:C030                      ;;DECORACION PAREDES
