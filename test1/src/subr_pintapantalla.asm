@@ -80,7 +80,9 @@ fin_sub_preparapantalla:
 ; salida: -
 ; toca: si no son todos los regristros, casi todos
 pinta_pantalla_completa:
-		CALL 		pinta_parte_superior_pantalla
+		;CALL 		pinta_parte_superior_pantalla
+		;aquí se actualizan las particularidades de cada nivel
+		CALL		actualiza_tiles_nivel
 	
 		CALL	 	pinta_parte_inferior_pantalla	
 fin_pinta_pantalla_completa:
@@ -94,6 +96,11 @@ fin_pinta_pantalla_completa:
 ; entrada: -
 ; salida: -
 ; toca: si no son todos los regristros, casi todos
+
+
+;**** esto hay que rehacerlo
+
+
 pinta_parte_superior_pantalla:	
 .carga_nivel:
 		LD			HL, tiles_patrones_nivel0
@@ -102,7 +109,6 @@ pinta_parte_superior_pantalla:
 		LD			(tiles_colores), HL
 		LD			HL, tiles_mapa_nivel0
 		LD			(tiles_mapa), HL	
-
 
 		;cargando banco 1
 		;cargamos los patrones
@@ -127,12 +133,8 @@ pinta_parte_superior_pantalla:
 		;cargamos mapa de pantalla banco 1 y 2
 		LD			HL, (tiles_mapa)
 		LD			DE, TILMAP
-		CALL		depack_VRAM
-		
-		;aquí se actualizan las particularidades de cada nivel
-		CALL		actualiza_tiles_nivel
+		JP			depack_VRAM
 fin_pinta_parte_superior_pantalla:
-		RET
 ;variables que usa
 ;tiles_patrones:		DW	0
 ;tiles_colores:			DW	0
