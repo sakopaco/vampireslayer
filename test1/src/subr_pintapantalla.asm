@@ -80,9 +80,7 @@ fin_sub_preparapantalla:
 ; salida: -
 ; toca: si no son todos los regristros, casi todos
 pinta_pantalla_completa:
-		;CALL 		pinta_parte_superior_pantalla
-		;aquí se actualizan las particularidades de cada nivel
-		CALL		actualiza_tiles_nivel
+		CALL 		pinta_parte_superior_pantalla
 	
 		CALL	 	pinta_parte_inferior_pantalla	
 fin_pinta_pantalla_completa:
@@ -133,8 +131,13 @@ pinta_parte_superior_pantalla:
 		;cargamos mapa de pantalla banco 1 y 2
 		LD			HL, (tiles_mapa)
 		LD			DE, TILMAP
-		JP			depack_VRAM
+		CALL		depack_VRAM
+		
+		
+		;aquí se actualizan las particularidades de cada nivel
+		CALL		actualiza_tiles_nivel
 fin_pinta_parte_superior_pantalla:
+		RET
 ;variables que usa
 ;tiles_patrones:		DW	0
 ;tiles_colores:			DW	0

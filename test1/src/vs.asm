@@ -147,7 +147,7 @@ inicializa_variables_prota:
 		;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
 		;será igual la posición inicial en todos los niveles
 	
-		LD		 A, 0;1;PROTANIVEL
+		LD		 A, 1;PROTANIVEL
 		LD		(prota_nivel), A
 
 		LD		 A, PROTAPOSMAPY
@@ -184,17 +184,19 @@ actualiza_tiles_nivel:
 		LD			 A, (prota_nivel)
 		OR			 A
 .examina_si_nivel0:
-		;~ JP			NZ, .examina_si_nivel1
-		;~ CALL		nivel0_pinta_suelo
-		;~ CALL		nivel0_pinta_paredes
-		;~ CALL		nivel0_pinta_marco
-		;~ CALL		nivel0_pinta_puertas
+		JP			NZ, .examina_si_nivel1
+		LD			 A, 8 					;ver entrada funcion nivel0_pinta_suelo
+		CALL		nivelX_pinta_suelo
+		CALL		nivel0_pinta_paredes
+		CALL		nivel0_pinta_marco
+		CALL		nivel0_pinta_puertas
 
-		;~ CALL		nivel0_pinta_estrellas	;pinta estrellas (2 por linea)
-		;~ CALL		nivel0_pinta_luna	
-		;~ RET
+		CALL		nivel0_pinta_estrellas	;pinta estrellas (2 por linea)
+		CALL		nivel0_pinta_luna	
+		RET
 .examina_si_nivel1:
-		CALL		nivel1_pinta_suelo
+		LD			 A, 9 					;ver entrada funcion nivel0_pinta_suelo
+		CALL		nivelX_pinta_suelo
 .examina_si_nivel2:
 .examina_si_nivel3:
 .examina_si_nivel4:
@@ -204,27 +206,56 @@ fin_actualiza_tiles_nivel:
 		RET
 
 
-nivel0_pinta_suelo:
-;como el suelo sólo está en el banco 1 sólo se mueven los tiles en el banco 1
-;realmente lo que hace es cambiar los tiles del suelo por los que corresponden al nivel 0
+;;=====================================================
+;;NIVELX_PINTA_SUELO
+;;=====================================================
+; funcion:  buscar el tile que corresponde al nivel del suelo y lo coloca en la variable tile_auxiliar
+; entrada:  DE con el nivel del suelo pero valores
+;			nivel 0: DE 8
+;			nivel 1: DE 9
+;			nivel 2: DE 10
+;			nivel 3: DE 11
+;			nivel 4: DE 12
+nivelX_pinta_suelo:
+		LD			 D, 0
+		LD			 E, A
+		EX			AF, AF'
+		CALL		poner_tile_suelo_variable_tile_auxiliar
 
-;************* ver si puedo parametrizarlo y pasarlo a función
+		CALL		poner_tile_aux_en_suelo_patron
+
+		LD			DE, CHRTBLBANCO1 + 8
+		CALL		poner_tile_suelo_variable_tile_auxiliar
+
+		EX			AF, AF'
+		LD			 D, 0
+		LD			 E, A				
+		JP			poner_tile_aux_en_suelo_color
+fin_nivelX_pinta_suelo:
+
+poner_tile_suelo_variable_tile_auxiliar:
 		;poniendo patron en memoria RAM
 		LD			BC, 8
-		LD			DE, CHRTBLBANCO1 + (8 * 8)	;8 BYTES * TILE 8º
+		;LD			DE					; se recibe coo parámetro
 		LD			HL, tile_auxiliar
-		CALL		LDIRVM
-		
-		CALL		poner_tile_aux_en_suelo_patron
-				
-		;poniendo color en memoria RAM
+		JP			LDIRVM
+fin_poner_tile_suelo_variable_tile_auxiliar:
+
+poner_tile_aux_en_suelo_patron:
+		;poniendo patron en memoria VRAM
 		LD			BC, 8
-		LD			DE, CHRTBLBANCO1 + (8 * 8)	;8 BYTES * TILE 8º
+		LD			DE, CHRTBLBANCO1 + 4
 		LD			HL, tile_auxiliar
-		CALL		LDIRVM
-		
-		JP			poner_tile_aux_en_suelo_color
-fin_nivel0_pinta_suelo:
+		JP			LDIRVM
+fin_poner_tile_aux_en_suelo_patron:
+
+poner_tile_aux_en_suelo_color:
+		;poniendo color en memoria VRAM
+		LD			BC, 8
+		LD			DE, CHRTBLBANCO1 + 4
+		LD			HL, tile_auxiliar
+		JP			LDIRVM
+fin_poner_tile_aux_en_suelo_color:
 
 
 nivel0_pinta_paredes:
@@ -390,50 +421,7 @@ nivel0_pinta_luna:
 		LD			BC, TILMAP + (32 * 1) + 27
 		LD			 D, 36
 		JP			pinta_tile_suelto
-fin_nivel0_pinta_luna
-
-
-poner_tile_aux_en_suelo_patron:
-		;poniendo patron en memoria VRAM
-		LD			BC, 8
-		LD			DE, CHRTBLBANCO1 + (8 * 4); + 8 ;+ 219 + 8	;8 BYTES * TILE 8º
-		LD			HL, tile_auxiliar
-		JP			LDIRVM
-fin_poner_tile_aux_en_suelo_patron:
-
-poner_tile_aux_en_suelo_color:
-		;poniendo color en memoria VRAM
-		LD			BC, 8
-		LD			DE, CLRTBLBANCO1 + (8 * 4); + 8 ;+ 219 + 8	;8 BYTES * TILE 8º
-		LD			HL, tile_auxiliar
-		JP			LDIRVM
-fin_poner_tile_aux_en_suelo_color:
-
-
-nivel1_pinta_suelo:
-;como el suelo sólo está en el banco 1 sólo se mueven los tiles en el banco 1
-;realmente lo que hace es cambiar los tiles del suelo por los que corresponden al nivel 0
-		;poniendo patron en memoria RAM
-		LD			BC, 8
-		LD			DE, tile_auxiliar
-		;la dirección de VRAM se usa la 0 porque el primer banco nos sirve
-		LD			HL, 8 * 9	;8 BYTES * TILE 9ª pos que es el suelo del nivel 1
-		CALL		LDIRMV
-		
-		;************* ver si puedo parametrizarlo y pasarlo a función
-		;poniendo patro en memoria VRAM
-		CALL		poner_tile_aux_en_suelo_patron
-				
-		;~ ;poniendo color en memoria RAM
-		;poniendo patron en memoria RAM
-		LD			BC, 8
-		LD			DE, tile_auxiliar
-		LD			HL, CLRTBLBANCO1 + (8 * 9)	;8 BYTES * TILE 9ª pos que es el suelo del nivel 1
-		CALL		LDIRMV
-		
-		;************* ver si puedo parametrizarlo y pasarlo a función
-		JP			poner_tile_aux_en_suelo_color
-fin_nivel1_pinta_suelo:
+fin_nivel0_pinta_luna:
 
 
 
