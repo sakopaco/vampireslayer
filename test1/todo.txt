@@ -1,8 +1,13 @@
 BUGS
 
-* quitar musica ingame y repasar música
+
+- crear pantallas de cada nivel
+- crear mapa
+- importante bug: que no carge 2 veces la misma pantalla
+
 
 TODO A
+- quitar musica ingame y repasar música
 - que los disparos a los enemigos de más de un sprite sean de un radio mayor. y las ayudas ... Centrar disparo (preg. Fernando)
 - que el prota tenga tiempo límite para salir
 - crear pantalla game over 2 ... muerto por no salir a tiempo del castilla tras matar a dracula (modificar gameover 1 con nuevo texto)
@@ -11,7 +16,6 @@ TODO A
 
 TODO B
 - revisar todos los sprites (incluidos los del punto de mira)
-- crear pantallas de cada nivel
 
 
 - mirar lo de la pila y tal con Fernando

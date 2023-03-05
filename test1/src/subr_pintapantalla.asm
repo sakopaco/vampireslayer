@@ -1088,24 +1088,6 @@ limpia_pantalla:
 			LD			DE, CLRTBL
 			CALL		depack_VRAM
 			
-			;~ ;cargamos los patrones
-			;~ LD			HL, tiles_patrones_vacio
-			;~ LD			DE, CHRTBL + 256 * 8
-			;~ CALL		depack_VRAM
-			;~ ;cargamos los colores
-			;~ LD			HL, tiles_color_vacio
-			;~ LD			DE, CLRTBL + 256 * 8
-			;~ CALL		depack_VRAM
-			
-			;~ ;cargamos los patrones
-			;~ LD			HL, tiles_patrones_vacio
-			;~ LD			DE, CHRTBL + 256 * 8 * 2
-			;~ CALL		depack_VRAM
-			;~ ;cargamos los colores
-			;~ LD			HL, tiles_color_vacio
-			;~ LD			DE, CLRTBL + 256 * 8 * 2
-			;~ CALL		depack_VRAM
-			
 			;limpia todo y evita que se vea cuando se cargan los nuevos tiles por pantalla
 			XOR		 	 A
 			LD			HL, TILMAP
@@ -1205,4 +1187,248 @@ reponer_musica_tras_muerte_cambio_nivel:
 			LD			 A, B
 			JP			musica_on			
 fin_reponer_musica_tras_muerte_cambio_nivel:
+
+
+;;=====================================================
+;;INSTRUCCIONES PARA PINTAR PANTALLAS DIFERENTES SEGÚN NIVEL
+;;=====================================================	
+actualiza_tiles_nivel:
+		LD			 A, (prota_nivel)
+		OR			 A
+.examina_si_nivel0:
+		JP			NZ, .examina_si_nivel1
+		LD			 A, 8 					;ver entrada funcion nivel0_pinta_suelo
+		CALL		nivelX_pinta_suelo
+		;~ LD			 A, 8 					;ver entrada funcion nivel0_pinta_suelo
+		;~ CALL		nivel0_pinta_paredes
+		;~ CALL		nivel0_pinta_marco
+		;~ LD			 A, 23 					;ver entrada funcion nivel0_pinta_suelo
+		;~ CALL		nivelX_pinta_puertas
+
+		CALL		nivel0_pinta_estrellas	;pinta estrellas (2 por linea)
+		CALL		nivel0_pinta_luna	
+		RET
+.examina_si_nivel1:
+		LD			 A, 9 					;ver entrada funcion nivel0_pinta_suelo
+		CALL		nivelX_pinta_suelo
+.examina_si_nivel2:
+.examina_si_nivel3:
+.examina_si_nivel4:
+.examina_si_nivel5:
+.examina_si_nivel6:
+fin_actualiza_tiles_nivel:
+		RET
+
+
+;;=====================================================
+;;NIVELX_PINTA_SUELO
+;;=====================================================
+; funcion:  buscar el tile que corresponde al nivel del suelo y lo coloca en la variable tile_auxiliar
+; entrada:  DE con el nivel del suelo pero valores
+;			nivel 0: DE 8
+;			nivel 1: DE 9
+;			nivel 2: DE 10
+;			nivel 3: DE 11
+;			nivel 4: DE 12
+;			nivel 5: DE 13
+;			nivel 6: DE 14
+nivelX_pinta_suelo:
+		LD			 D, 0
+		LD			 E, A
+		EX			AF, AF'
+		CALL		poner_tile_suelo_variable_tile_auxiliar
+
+		CALL		poner_tile_aux_en_suelo_patron
+
+		EX			AF, AF'
+		LD			 D, 0
+		LD			 E, A	
+		CALL		poner_tile_suelo_variable_tile_auxiliar
+
+		JP			poner_tile_aux_en_suelo_color
+fin_nivelX_pinta_suelo:
+
+poner_tile_suelo_variable_tile_auxiliar:
+		;poniendo patron en memoria RAM
+		LD			BC, 8
+		;LD			DE					; se recibe coo parámetro
+		LD			HL, tile_auxiliar
+		JP			LDIRVM
+fin_poner_tile_suelo_variable_tile_auxiliar:
+
+poner_tile_aux_en_suelo_patron:
+		;poniendo patron en memoria VRAM
+		LD			BC, 8
+		LD			DE, CHRTBLBANCO1 + 4
+		LD			HL, tile_auxiliar
+		JP			LDIRVM
+fin_poner_tile_aux_en_suelo_patron:
+
+poner_tile_aux_en_suelo_color:
+		;poniendo patron en memoria VRAM
+		LD			BC, 8
+		LD			DE, CLRTBLBANCO1 + 4
+		LD			HL, tile_auxiliar
+		JP			LDIRVM
+fin_poner_tile_aux_en_suelo_color:
+
+;~ poner_tile_aux_en_puerta_patron:
+		;~ ;poniendo patron en memoria VRAM
+		;~ LD			BC, 8
+		;~ LD			DE, CHRTBL + 1
+		;~ LD			HL, tile_auxiliar
+		;~ CALL		LDIRVM
+		
+		;~ LD			BC, 8
+		;~ LD			DE, CHRTBLBANCO1 + 1
+		;~ LD			HL, tile_auxiliar
+		;~ JP			LDIRVM
+;~ fin_poner_tile_aux_en_puerta_patron:
+
+;~ poner_tile_aux_en_puerta_color:
+		;~ ;poniendo color en memoria VRAM
+		;~ LD			BC, 8
+		;~ LD			DE, CHRTBL + 1
+		;~ LD			HL, tile_auxiliar
+		;~ CALL		LDIRVM
+
+		;~ ;poniendo color en memoria VRAM
+		;~ LD			BC, 8
+		;~ LD			DE, CHRTBLBANCO1 + 1
+		;~ LD			HL, tile_auxiliar
+		;~ JP			LDIRVM
+;~ fin_poner_tile_aux_en_puerta_color:
+
+
+
+;~ nivel0_pinta_paredes:
+		;~ XOR			 A
+		;~ LD			BC,	8
+		;~ LD			HL, CHRTBL + (8 * 3)	;8 BYTES * TILE 3º pos que es la pared
+		;~ CALL		FILVRM
+		
+		;~ XOR			 A
+		;~ LD			BC,	8
+		;~ LD			HL, CLRTBL + (8 * 3)	;8 BYTES * TILE 3º pos que es la pared
+		;~ CALL		FILVRM
+		
+		;~ XOR			 A
+		;~ LD			BC,	8
+		;~ LD			HL, CHRTBLBANCO1 + (8 * 3)	;8 BYTES * TILE 3º pos que es la pared
+		;~ CALL		FILVRM
+		
+		;~ XOR			 A
+		;~ LD			BC,	8
+		;~ LD			HL, CLRTBLBANCO1 + (8 * 3)	;8 BYTES * TILE 3º pos que es la pared
+		;~ JP			FILVRM
+;~ fin_nivel0_pinta_paredes:
+
+
+;~ nivelX_pinta_puertas:
+		;~ LD			 D, 0
+		;~ LD			 E, A
+		;~ EX			AF, AF'
+		;~ CALL		poner_tile_suelo_variable_tile_auxiliar
+
+		;~ CALL		poner_tile_aux_en_puerta_patron
+
+		;~ LD			DE, CHRTBLBANCO1 + 8
+		;~ CALL		poner_tile_suelo_variable_tile_auxiliar
+
+		;~ EX			AF, AF'
+		;~ LD			 D, 0
+		;~ LD			 E, A				
+		;~ JP			poner_tile_aux_en_puerta_color	
+;~ fin_nivelX_pinta_puertas:
+
+
+;~ nivel0_pinta_marco:
+		;~ XOR			 A
+		;~ LD			BC,	8
+		;~ LD			HL, CHRTBLBANCO1 + (8 * 2)	;8 BYTES * TILE 3º pos que es el marco
+		;~ CALL		FILVRM
+		
+		;~ XOR			 A
+		;~ LD			BC,	8
+		;~ LD			HL, CLRTBLBANCO1 + (8 * 3)	;8 BYTES * TILE 3º pos que es el marco
+		;~ CALL		FILVRM
+		
+		;~ XOR			 A
+		;~ LD			BC,	8
+		;~ LD			HL, CHRTBLBANCO1 + (8 * 2)	;8 BYTES * TILE 3º pos que es el marco
+		;~ CALL		FILVRM
+		
+		;~ XOR			 A
+		;~ LD			BC,	8
+		;~ LD			HL, CLRTBLBANCO1 + (8 * 3)	;8 BYTES * TILE 3º pos que es el marco
+		;~ JP			FILVRM
+;~ fin_nivel0_pinta_marco:
+
+
+nivel0_pinta_estrellas:
+		LD			BC, TILMAP + (32 * 0) + 3
+		LD			 D, 30
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 0) + 23
+		LD			 D, 31
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 1) + 7
+		LD			 D, 31
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 1) + 16
+		LD			 D, 30
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 2) + 0
+		LD			 D, 30
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 2) + 11
+		LD			 D, 31
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 3) + 20
+		LD			 D, 31
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 3) + 23
+		LD			 D, 30
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 4) + 1
+		LD			 D, 30
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 4) + 30
+		LD			 D, 31
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 5) + 2
+		LD			 D, 31
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 5) + 28
+		LD			 D, 30
+		CALL		pinta_tile_suelto	
+		LD			BC, TILMAP + (32 * 6) + 3
+		LD			 D, 30
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 6) + 23
+		LD			 D, 31
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 7) + 19
+		LD			 D, 31
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 7) + 13
+		LD			 D, 30
+		JP			pinta_tile_suelto
+fin_nivel0_pinta_estrellas:
+		
+nivel0_pinta_luna:
+		LD			BC, TILMAP + (32 * 0) + 26
+		LD			 D, 33
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 0) + 27
+		LD			 D, 34
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 1) + 26
+		LD			 D, 35
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 1) + 27
+		LD			 D, 36
+		JP			pinta_tile_suelto
+fin_nivel0_pinta_luna:
+
 
