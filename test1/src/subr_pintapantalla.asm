@@ -1198,11 +1198,12 @@ actualiza_tiles_nivel:
 .examina_si_nivel0:
 		JP			NZ, .examina_si_nivel1
 		LD			 A, 8 					;ver entrada funcion nivel0_pinta_suelo
+		LD			(byteaux1), A
 		CALL		nivelX_pinta_suelo
-		;~ LD			 A, 8 					;ver entrada funcion nivel0_pinta_suelo
+		;~ LD			 A, 8 				;ver entrada funcion nivel0_pinta_suelo
 		;~ CALL		nivel0_pinta_paredes
 		;~ CALL		nivel0_pinta_marco
-		;~ LD			 A, 23 					;ver entrada funcion nivel0_pinta_suelo
+		;~ LD			 A, 23 				;ver entrada funcion nivel0_pinta_suelo
 		;~ CALL		nivelX_pinta_puertas
 
 		CALL		nivel0_pinta_estrellas	;pinta estrellas (2 por linea)
@@ -1223,8 +1224,8 @@ fin_actualiza_tiles_nivel:
 ;;=====================================================
 ;;NIVELX_PINTA_SUELO
 ;;=====================================================
-; funcion:  buscar el tile que corresponde al nivel del suelo y lo coloca en la variable tile_auxiliar
-; entrada:  DE con el nivel del suelo pero valores
+; funcion:  pone el tile y el color que se le pase como parámetro en el suelo
+; entrada:  A, byteaux1 con el nivel del suelo pero valores
 ;			nivel 0: DE 8
 ;			nivel 1: DE 9
 ;			nivel 2: DE 10
@@ -1233,33 +1234,31 @@ fin_actualiza_tiles_nivel:
 ;			nivel 5: DE 13
 ;			nivel 6: DE 14
 nivelX_pinta_suelo:
-		LD			 D, 0
-		LD			 E, A
-		EX			AF, AF'
+[3]		RLA
+		LD			 L, A
+		LD			 H, 0
 		CALL		poner_tile_suelo_variable_tile_auxiliar
-
 		CALL		poner_tile_aux_en_suelo_patron
 
-		EX			AF, AF'
-		LD			 D, 0
-		LD			 E, A	
+		LD			 A, (byteaux1)
+[3]		RLA
+		LD			HL, CLRTBLBANCO1
+		CALL		suma_A_HL
 		CALL		poner_tile_suelo_variable_tile_auxiliar
-
 		JP			poner_tile_aux_en_suelo_color
 fin_nivelX_pinta_suelo:
 
 poner_tile_suelo_variable_tile_auxiliar:
 		;poniendo patron en memoria RAM
 		LD			BC, 8
-		;LD			DE					; se recibe coo parámetro
-		LD			HL, tile_auxiliar
-		JP			LDIRVM
+		LD			DE, tile_auxiliar
+		JP			LDIRMV
 fin_poner_tile_suelo_variable_tile_auxiliar:
 
 poner_tile_aux_en_suelo_patron:
 		;poniendo patron en memoria VRAM
 		LD			BC, 8
-		LD			DE, CHRTBLBANCO1 + 4
+		LD			DE, CHRTBLBANCO1 + (8  * 4)
 		LD			HL, tile_auxiliar
 		JP			LDIRVM
 fin_poner_tile_aux_en_suelo_patron:
@@ -1267,7 +1266,7 @@ fin_poner_tile_aux_en_suelo_patron:
 poner_tile_aux_en_suelo_color:
 		;poniendo patron en memoria VRAM
 		LD			BC, 8
-		LD			DE, CLRTBLBANCO1 + 4
+		LD			DE, CLRTBLBANCO1 + (8  * 4)
 		LD			HL, tile_auxiliar
 		JP			LDIRVM
 fin_poner_tile_aux_en_suelo_color:

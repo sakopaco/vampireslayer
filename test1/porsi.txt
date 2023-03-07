@@ -1,17 +1,26 @@
-;~ ;;=====================================================
-;~ ;;ACTUALIZA_HABITACION_TERMINADA
-;~ ;;=====================================================	
-;~ ; función: 	actualiza la variable habitacion_terminada
-;~ actualiza_habitacion_terminada:
-		;~ XOR			 A
-		;~ LD			(habitacion_terminada), A
-		;~ LD			HL, puntero_habitacion_actual
-		;~ BIT			 4, (HL)
-		;~ RET			NZ
-		
-		;~ LD			 A, ISHABTERMIN			;1 => cierto habitación terminada
-		;~ LD			(habitacion_terminada), A
-;~ fin_actualiza_habitacion_terminada
-		;~ RET
-		
-;???????????????????????????
+
+poner_tile_suelo_variable_tile_auxiliar:
+		;poniendo patron en memoria RAM
+[3]		RLA
+		LD			 L, A
+		LD			 H, 0
+		LD			BC, 8
+		LD			DE, tile_auxiliar
+		JP			LDIRMV
+fin_poner_tile_suelo_variable_tile_auxiliar:
+
+poner_tile_aux_en_suelo_patron:
+		;poniendo patron en memoria VRAM
+		LD			BC, 8
+		LD			DE, CHRTBLBANCO1 + (8  * 4)
+		LD			HL, tile_auxiliar
+		JP			LDIRVM
+fin_poner_tile_aux_en_suelo_patron:
+
+poner_tile_aux_en_suelo_color:
+		;poniendo patron en memoria VRAM
+		LD			BC, 8
+		LD			DE, CLRTBLBANCO1 + (8  * 4)
+		LD			HL, tile_auxiliar
+		JP			LDIRVM
+fin_poner_tile_aux_en_suelo_color:
