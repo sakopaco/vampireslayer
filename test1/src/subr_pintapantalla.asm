@@ -1197,11 +1197,12 @@ actualiza_tiles_nivel:
 		OR			 A
 .examina_si_nivel0:
 		JP			NZ, .examina_si_nivel1
-		LD			 A, 8 					;ver entrada funcion nivel0_pinta_suelo
-		LD			(byteaux1), A
+		LD			 A, 8 					
 		CALL		nivelX_pinta_suelo
-		;~ LD			 A, 8 				;ver entrada funcion nivel0_pinta_suelo
-		;~ CALL		nivel0_pinta_paredes
+		
+		LD			 A, 16 					
+		CALL		nivelX_pinta_pared
+		
 		;~ CALL		nivel0_pinta_marco
 		;~ LD			 A, 23 				;ver entrada funcion nivel0_pinta_suelo
 		;~ CALL		nivelX_pinta_puertas
@@ -1212,6 +1213,9 @@ actualiza_tiles_nivel:
 .examina_si_nivel1:
 		LD			 A, 9 					;ver entrada funcion nivel0_pinta_suelo
 		CALL		nivelX_pinta_suelo
+		
+		LD			 A, 17					
+		CALL		nivelX_pinta_pared
 .examina_si_nivel2:
 .examina_si_nivel3:
 .examina_si_nivel4:
@@ -1234,21 +1238,56 @@ fin_actualiza_tiles_nivel:
 ;			nivel 5: DE 13
 ;			nivel 6: DE 14
 nivelX_pinta_suelo:
+		LD			(byteaux1), A
+		
 [3]		RLA
 		LD			 L, A
 		LD			 H, 0
-		CALL		poner_tile_suelo_variable_tile_auxiliar
+		CALL		poner_tile_variable_tile_auxiliar
 		CALL		poner_tile_aux_en_suelo_patron
 
 		LD			 A, (byteaux1)
 [3]		RLA
 		LD			HL, CLRTBLBANCO1
 		CALL		suma_A_HL
-		CALL		poner_tile_suelo_variable_tile_auxiliar
+		CALL		poner_tile_variable_tile_auxiliar
 		JP			poner_tile_aux_en_suelo_color
 fin_nivelX_pinta_suelo:
 
-poner_tile_suelo_variable_tile_auxiliar:
+;;=====================================================
+;;NIVELX_PINTA_PARED
+;;=====================================================
+; funcion:  pone el tile y el color que se le pase como parámetro en el suelo
+; entrada:  A
+;			nivel 0: DE 8
+;			nivel 1: DE 9
+;			nivel 2: DE 10
+;			nivel 3: DE 11
+;			nivel 4: DE 12
+;			nivel 5: DE 13
+;			nivel 6: DE 14
+nivelX_pinta_pared:
+		LD			(byteaux1), A
+		
+[3]		RLA
+		LD			 L, A
+		LD			 H, 0
+		CALL		poner_tile_variable_tile_auxiliar
+		CALL		poner_tile_aux_en_paredes_patron
+
+		LD			 A, (byteaux1)
+[3]		RLA
+		LD			HL, CLRTBLBANCO1
+		CALL		suma_A_HL
+		CALL		poner_tile_variable_tile_auxiliar
+		JP			poner_tile_aux_en_paredes_color
+fin_nivelX_pinta_pared:
+
+
+
+
+
+poner_tile_variable_tile_auxiliar:
 		;poniendo patron en memoria RAM
 		LD			BC, 8
 		LD			DE, tile_auxiliar
@@ -1271,97 +1310,31 @@ poner_tile_aux_en_suelo_color:
 		JP			LDIRVM
 fin_poner_tile_aux_en_suelo_color:
 
-;~ poner_tile_aux_en_puerta_patron:
-		;~ ;poniendo patron en memoria VRAM
-		;~ LD			BC, 8
-		;~ LD			DE, CHRTBL + 1
-		;~ LD			HL, tile_auxiliar
-		;~ CALL		LDIRVM
+poner_tile_aux_en_paredes_patron:
+		;poniendo patron en memoria VRAM
+		LD			BC, 8
+		LD			DE, CHRTBL + (8  * 3)
+		LD			HL, tile_auxiliar
+		CALL		LDIRVM
 		
-		;~ LD			BC, 8
-		;~ LD			DE, CHRTBLBANCO1 + 1
-		;~ LD			HL, tile_auxiliar
-		;~ JP			LDIRVM
-;~ fin_poner_tile_aux_en_puerta_patron:
+		LD			BC, 8
+		LD			DE, CHRTBLBANCO1 + (8  * 3)
+		LD			HL, tile_auxiliar
+		JP			LDIRVM
+fin_poner_tile_aux_en_paredes_patron:
 
-;~ poner_tile_aux_en_puerta_color:
-		;~ ;poniendo color en memoria VRAM
-		;~ LD			BC, 8
-		;~ LD			DE, CHRTBL + 1
-		;~ LD			HL, tile_auxiliar
-		;~ CALL		LDIRVM
-
-		;~ ;poniendo color en memoria VRAM
-		;~ LD			BC, 8
-		;~ LD			DE, CHRTBLBANCO1 + 1
-		;~ LD			HL, tile_auxiliar
-		;~ JP			LDIRVM
-;~ fin_poner_tile_aux_en_puerta_color:
-
-
-
-;~ nivel0_pinta_paredes:
-		;~ XOR			 A
-		;~ LD			BC,	8
-		;~ LD			HL, CHRTBL + (8 * 3)	;8 BYTES * TILE 3º pos que es la pared
-		;~ CALL		FILVRM
+poner_tile_aux_en_paredes_color:
+		;poniendo patron en memoria VRAM
+		LD			BC, 8
+		LD			DE, CLRTBL + (8  * 3)
+		LD			HL, tile_auxiliar
+		CALL		LDIRVM
 		
-		;~ XOR			 A
-		;~ LD			BC,	8
-		;~ LD			HL, CLRTBL + (8 * 3)	;8 BYTES * TILE 3º pos que es la pared
-		;~ CALL		FILVRM
-		
-		;~ XOR			 A
-		;~ LD			BC,	8
-		;~ LD			HL, CHRTBLBANCO1 + (8 * 3)	;8 BYTES * TILE 3º pos que es la pared
-		;~ CALL		FILVRM
-		
-		;~ XOR			 A
-		;~ LD			BC,	8
-		;~ LD			HL, CLRTBLBANCO1 + (8 * 3)	;8 BYTES * TILE 3º pos que es la pared
-		;~ JP			FILVRM
-;~ fin_nivel0_pinta_paredes:
-
-
-;~ nivelX_pinta_puertas:
-		;~ LD			 D, 0
-		;~ LD			 E, A
-		;~ EX			AF, AF'
-		;~ CALL		poner_tile_suelo_variable_tile_auxiliar
-
-		;~ CALL		poner_tile_aux_en_puerta_patron
-
-		;~ LD			DE, CHRTBLBANCO1 + 8
-		;~ CALL		poner_tile_suelo_variable_tile_auxiliar
-
-		;~ EX			AF, AF'
-		;~ LD			 D, 0
-		;~ LD			 E, A				
-		;~ JP			poner_tile_aux_en_puerta_color	
-;~ fin_nivelX_pinta_puertas:
-
-
-;~ nivel0_pinta_marco:
-		;~ XOR			 A
-		;~ LD			BC,	8
-		;~ LD			HL, CHRTBLBANCO1 + (8 * 2)	;8 BYTES * TILE 3º pos que es el marco
-		;~ CALL		FILVRM
-		
-		;~ XOR			 A
-		;~ LD			BC,	8
-		;~ LD			HL, CLRTBLBANCO1 + (8 * 3)	;8 BYTES * TILE 3º pos que es el marco
-		;~ CALL		FILVRM
-		
-		;~ XOR			 A
-		;~ LD			BC,	8
-		;~ LD			HL, CHRTBLBANCO1 + (8 * 2)	;8 BYTES * TILE 3º pos que es el marco
-		;~ CALL		FILVRM
-		
-		;~ XOR			 A
-		;~ LD			BC,	8
-		;~ LD			HL, CLRTBLBANCO1 + (8 * 3)	;8 BYTES * TILE 3º pos que es el marco
-		;~ JP			FILVRM
-;~ fin_nivel0_pinta_marco:
+		LD			BC, 8
+		LD			DE, CLRTBLBANCO1 + (8  * 3)
+		LD			HL, tile_auxiliar
+		JP			LDIRVM
+fin_poner_tile_aux_en_paredes_color:
 
 
 nivel0_pinta_estrellas:
