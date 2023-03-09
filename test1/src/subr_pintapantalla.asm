@@ -1206,8 +1206,8 @@ actualiza_tiles_nivel:
 		LD			 A, 96
 		CALL		nivelX_pinta_marco
 		
-		;~ LD			 A, 23 				;ver entrada funcion nivel0_pinta_suelo
-		;~ CALL		nivelX_pinta_puertas
+		LD			 A, 23 				;ver entrada funcion nivel0_pinta_suelo
+		CALL		nivelX_pinta_puerta
 
 		CALL		nivel0_pinta_estrellas	;pinta estrellas (2 por linea)
 		CALL		nivel0_pinta_luna	
@@ -1221,6 +1221,9 @@ actualiza_tiles_nivel:
 		
 		LD			 A, 97
 		CALL		nivelX_pinta_marco
+		
+		LD			 A, 24 				;ver entrada funcion nivel0_pinta_suelo
+		CALL		nivelX_pinta_puerta
 .examina_si_nivel2:
 .examina_si_nivel3:
 .examina_si_nivel4:
@@ -1319,6 +1322,34 @@ nivelX_pinta_marco:
 		JP			poner_tile_aux_en_marco_color
 fin_nivelX_pinta_marco:
 
+;;=====================================================
+;;NIVELX_PINTA_PUERTA
+;;=====================================================
+; funcion:  pone el tile en el marco que sea para no liar mucho tengo 
+; entrada:  A
+;			nivel 0: 23
+;			nivel 1: 24
+;			nivel 2: 25
+;			nivel 3: 26
+;			nivel 4: 27
+;			nivel 5: 28
+;			nivel 6: 29
+nivelX_pinta_puerta:
+		LD			(byteaux1), A
+		
+[3]		RLA
+		LD			 L, A
+		LD			 H, 0
+		CALL		poner_tile_variable_tile_auxiliar
+		CALL		poner_tile_aux_en_puerta_patron
+
+		LD			 A, (byteaux1)
+[3]		RLA
+		LD			HL, CLRTBLBANCO1
+		CALL		suma_A_HL
+		CALL		poner_tile_variable_tile_auxiliar
+		JP			poner_tile_aux_en_puerta_color
+fin_nivelX_pinta_puerta:
 
 
 poner_tile_variable_tile_auxiliar:
@@ -1395,6 +1426,33 @@ poner_tile_aux_en_marco_color:
 		LD			HL, tile_auxiliar
 		JP			LDIRVM
 fin_poner_tile_aux_en_marco_color:
+
+poner_tile_aux_en_puerta_patron:
+		;poniendo patron en memoria VRAM
+		LD			BC, 8
+		LD			DE, CHRTBL + (8  * 1)
+		LD			HL, tile_auxiliar
+		CALL		LDIRVM
+		
+		LD			BC, 8
+		LD			DE, CHRTBLBANCO1 + (8  * 1)
+		LD			HL, tile_auxiliar
+		JP			LDIRVM
+fin_poner_tile_aux_en_puerta_patron:
+
+poner_tile_aux_en_puerta_color:
+		;poniendo patron en memoria VRAM
+		LD			BC, 8
+		LD			DE, CLRTBL + (8  * 1)
+		LD			HL, tile_auxiliar
+		CALL		LDIRVM
+		
+		LD			BC, 8
+		LD			DE, CLRTBLBANCO1 + (8  * 1)
+		LD			HL, tile_auxiliar
+		JP			LDIRVM
+fin_poner_tile_aux_en_puerta_color:
+
 
 nivel0_pinta_estrellas:
 		LD			BC, TILMAP + (32 * 0) + 3
