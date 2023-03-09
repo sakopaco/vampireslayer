@@ -1336,7 +1336,6 @@ poner_tile_aux_en_paredes_color:
 		JP			LDIRVM
 fin_poner_tile_aux_en_paredes_color:
 
-
 nivel0_pinta_estrellas:
 		LD			BC, TILMAP + (32 * 0) + 3
 		LD			 D, 30
