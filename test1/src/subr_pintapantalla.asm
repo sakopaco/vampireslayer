@@ -1293,45 +1293,28 @@ fin_nivelX_pinta_pared:
 ;;=====================================================
 ; funcion:  pone el tile en el marco que sea para no liar mucho tengo 
 ; entrada:  A
-;			nivel 0: DE 0 
-;			nivel 1: DE 15
-;			nivel 2: 
-;			nivel 3: 
-;			nivel 4: 
-;			nivel 5: 
-;			nivel 6: 
+;			nivel 0: 96
+;			nivel 1: 97
+;			nivel 2: 98
+;			nivel 3: 99
+;			nivel 4: 100
+;			nivel 5: 101
+;			nivel 6: 102
 nivelX_pinta_marco:
-		;~ LD			(byteaux1), A
-		
-		;~ LD			 L, A
-		;~ LD			 H, 0
-;~ [2]		ADD			HL, HL
-		
+		LD			(byteaux1), A
 
 		LD			 H, 0
-		LD			 L, 97
-[7]		ADD			HL, HL
-		;LD			HL, 97*8
-		
+		LD			 L, A
+[3]		ADD			HL, HL
 		CALL		poner_tile_variable_tile_auxiliar
 		CALL		poner_tile_aux_en_marco_patron
 
-		;~ LD			 A, (byteaux1)
-;~ [2]		ADD			HL, HL
-		;~ LD			DE, CLRTBLBANCO1
-		;~ ADD			HL, DE;CLRTBLBANCO1
-		
-		;~ LD			HL, CLRTBLBANCO1
-		;~ LD			DE, 97*8
-		;~ ADD			HL, DE
-		
+		LD			 A, (byteaux1)
 		LD			DE, CLRTBLBANCO1
 		LD			 H, 0
-		LD			 L, 97
-[7]		ADD			HL, HL
+		LD			 L, A
+[3]		ADD			HL, HL
 		ADD			HL, DE
-		;LD			HL, 97*8
-		
 		CALL		poner_tile_variable_tile_auxiliar
 		JP			poner_tile_aux_en_marco_color
 fin_nivelX_pinta_marco:
