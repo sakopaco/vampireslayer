@@ -4,6 +4,7 @@ BUGS
 - crear pantallas de cada nivel
 - crear mapa
 - importante bug: que no carge 2 veces la misma pantalla
+- bug: si matas todos los enemigos ya no puedes coger ua ayuda
 
 
 TODO A

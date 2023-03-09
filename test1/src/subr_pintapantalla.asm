@@ -1203,7 +1203,9 @@ actualiza_tiles_nivel:
 		LD			 A, 16 					
 		CALL		nivelX_pinta_pared
 		
-		;~ CALL		nivel0_pinta_marco
+		LD			 A, 96
+		CALL		nivelX_pinta_marco
+		
 		;~ LD			 A, 23 				;ver entrada funcion nivel0_pinta_suelo
 		;~ CALL		nivelX_pinta_puertas
 
@@ -1216,6 +1218,9 @@ actualiza_tiles_nivel:
 		
 		LD			 A, 17					
 		CALL		nivelX_pinta_pared
+		
+		LD			 A, 97
+		CALL		nivelX_pinta_marco
 .examina_si_nivel2:
 .examina_si_nivel3:
 .examina_si_nivel4:
@@ -1283,7 +1288,53 @@ nivelX_pinta_pared:
 		JP			poner_tile_aux_en_paredes_color
 fin_nivelX_pinta_pared:
 
+;;=====================================================
+;;NIVELX_PINTA_MARCO
+;;=====================================================
+; funcion:  pone el tile en el marco que sea para no liar mucho tengo 
+; entrada:  A
+;			nivel 0: DE 0 
+;			nivel 1: DE 15
+;			nivel 2: 
+;			nivel 3: 
+;			nivel 4: 
+;			nivel 5: 
+;			nivel 6: 
+nivelX_pinta_marco:
+		;~ LD			(byteaux1), A
+		
+		;~ LD			 L, A
+		;~ LD			 H, 0
+;~ [2]		ADD			HL, HL
+		
 
+		LD			 H, 0
+		LD			 L, 97
+[7]		ADD			HL, HL
+		;LD			HL, 97*8
+		
+		CALL		poner_tile_variable_tile_auxiliar
+		CALL		poner_tile_aux_en_marco_patron
+
+		;~ LD			 A, (byteaux1)
+;~ [2]		ADD			HL, HL
+		;~ LD			DE, CLRTBLBANCO1
+		;~ ADD			HL, DE;CLRTBLBANCO1
+		
+		;~ LD			HL, CLRTBLBANCO1
+		;~ LD			DE, 97*8
+		;~ ADD			HL, DE
+		
+		LD			DE, CLRTBLBANCO1
+		LD			 H, 0
+		LD			 L, 97
+[7]		ADD			HL, HL
+		ADD			HL, DE
+		;LD			HL, 97*8
+		
+		CALL		poner_tile_variable_tile_auxiliar
+		JP			poner_tile_aux_en_marco_color
+fin_nivelX_pinta_marco:
 
 
 
@@ -1335,6 +1386,32 @@ poner_tile_aux_en_paredes_color:
 		LD			HL, tile_auxiliar
 		JP			LDIRVM
 fin_poner_tile_aux_en_paredes_color:
+
+poner_tile_aux_en_marco_patron:
+		;poniendo patron en memoria VRAM
+		LD			BC, 8
+		LD			DE, CHRTBL + (8  * 2)
+		LD			HL, tile_auxiliar
+		CALL		LDIRVM
+		
+		LD			BC, 8
+		LD			DE, CHRTBLBANCO1 + (8  * 2)
+		LD			HL, tile_auxiliar
+		JP			LDIRVM
+fin_poner_tile_aux_en_marco_patron:
+
+poner_tile_aux_en_marco_color:
+		;poniendo patron en memoria VRAM
+		LD			BC, 8
+		LD			DE, CLRTBL + (8  * 2)
+		LD			HL, tile_auxiliar
+		CALL		LDIRVM
+		
+		LD			BC, 8
+		LD			DE, CLRTBLBANCO1 + (8  * 2)
+		LD			HL, tile_auxiliar
+		JP			LDIRVM
+fin_poner_tile_aux_en_marco_color:
 
 nivel0_pinta_estrellas:
 		LD			BC, TILMAP + (32 * 0) + 3

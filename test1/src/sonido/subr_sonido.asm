@@ -48,14 +48,16 @@ fin_inicializa_replayer_efectos_interrupciones:
 ; salida: 	-
 ; toca: 	HL, A
 subrutina_isr:
-		CALL	PT3_ROUT			;envia los datos a los registros del PSG
-.musica:
-		LD		 A, (musica_activa)	;si musica inactiva
-		OR		 A
-		JP		 Z, .efectos_sonido
-			CALL	PT3_PLAY		;calcula el siguiente 'trocito' de musica que sera enviado al proxima vez
-.efectos_sonido:
-		JP		ayFX_PLAY			;calcula el siguiente 'trocito' de efecto especial de sonido que sera enviado la proxima vez
+		;~ CALL	PT3_ROUT			;envia los datos a los registros del PSG
+;~ .musica:
+		;~ LD		 A, (musica_activa)	;si musica inactiva
+		;~ OR		 A
+		;~ JP		 Z, .efectos_sonido
+			;~ CALL	PT3_PLAY		;calcula el siguiente 'trocito' de musica que sera enviado al proxima vez
+;~ .efectos_sonido:
+		;~ JP		ayFX_PLAY			;calcula el siguiente 'trocito' de efecto especial de sonido que sera enviado la proxima vez
+
+		RET
 fin_subrutina_isr:
 	
 
