@@ -1192,7 +1192,7 @@ fin_reponer_musica_tras_muerte_cambio_nivel:
 ;;=====================================================
 ;;INSTRUCCIONES PARA PINTAR PANTALLAS DIFERENTES SEGÚN NIVEL
 ;;=====================================================	
-actualiza_tiles_nivel: ****************************************************
+actualiza_tiles_nivel:
 		LD			 A, (prota_nivel)
 		OR			 A
 .examina_si_nivel0:
@@ -1206,14 +1206,14 @@ actualiza_tiles_nivel: ****************************************************
 		LD			 A, 96
 		CALL		nivelX_pinta_marco
 		
-		LD			 A, 23 				;ver entrada funcion nivel0_pinta_suelo
+		LD			 A, 23 	
 		CALL		nivelX_pinta_puerta
 
 		CALL		nivel0_pinta_estrellas	;pinta estrellas (2 por linea)
 		CALL		nivel0_pinta_luna	
 		RET
 .examina_si_nivel1:
-		LD			 A, 9 					;ver entrada funcion nivel0_pinta_suelo
+		LD			 A, 9 
 		CALL		nivelX_pinta_suelo
 		
 		LD			 A, 17					
@@ -1222,15 +1222,74 @@ actualiza_tiles_nivel: ****************************************************
 		LD			 A, 97
 		CALL		nivelX_pinta_marco
 		
-		LD			 A, 24 				;ver entrada funcion nivel0_pinta_suelo
+		LD			 A, 24
 		CALL		nivelX_pinta_puerta
-.examina_si_nivel2:
-.examina_si_nivel3:
-.examina_si_nivel4:
-.examina_si_nivel5:
-.examina_si_nivel6:
-fin_actualiza_tiles_nivel:
 		RET
+.examina_si_nivel2:
+		LD			 A, 10
+		CALL		nivelX_pinta_suelo
+		
+		LD			 A, 18				
+		CALL		nivelX_pinta_pared
+		
+		LD			 A, 98
+		CALL		nivelX_pinta_marco
+		
+		LD			 A, 25
+		CALL		nivelX_pinta_puerta
+		RET
+.examina_si_nivel3:
+		LD			 A, 11
+		CALL		nivelX_pinta_suelo
+		
+		LD			 A, 19				
+		CALL		nivelX_pinta_pared
+		
+		LD			 A, 99
+		CALL		nivelX_pinta_marco
+		
+		LD			 A, 26
+		CALL		nivelX_pinta_puerta
+		RET
+.examina_si_nivel4:
+		LD			 A, 12
+		CALL		nivelX_pinta_suelo
+		
+		LD			 A, 20				
+		CALL		nivelX_pinta_pared
+		
+		LD			 A, 100
+		CALL		nivelX_pinta_marco
+		
+		LD			 A, 27
+		CALL		nivelX_pinta_puerta
+		RET
+.examina_si_nivel5:
+		LD			 A, 13
+		CALL		nivelX_pinta_suelo
+		
+		LD			 A, 21				
+		CALL		nivelX_pinta_pared
+		
+		LD			 A, 101
+		CALL		nivelX_pinta_marco
+		
+		LD			 A, 28
+		CALL		nivelX_pinta_puerta
+		RET
+.examina_si_nivel6:
+		LD			 A, 14
+		CALL		nivelX_pinta_suelo
+		
+		LD			 A, 22				
+		CALL		nivelX_pinta_pared
+		
+		LD			 A, 102
+		CALL		nivelX_pinta_marco
+		
+		LD			 A, 29
+		JP			nivelX_pinta_puerta
+fin_actualiza_tiles_nivel:
 
 
 ;;=====================================================
