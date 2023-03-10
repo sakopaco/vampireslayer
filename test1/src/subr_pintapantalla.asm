@@ -1192,7 +1192,7 @@ fin_reponer_musica_tras_muerte_cambio_nivel:
 ;;=====================================================
 ;;INSTRUCCIONES PARA PINTAR PANTALLAS DIFERENTES SEGÚN NIVEL
 ;;=====================================================	
-actualiza_tiles_nivel:
+actualiza_tiles_nivel: ****************************************************
 		LD			 A, (prota_nivel)
 		OR			 A
 .examina_si_nivel0:
