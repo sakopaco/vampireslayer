@@ -1,9 +1,8 @@
 
 EN REALIZACION:
 - crear pantallas de cada nivel
-- documentar mapas
-- crear mapa
 - posicionar ayudas
+- diseñar pantallas de los niveles
 
 
 BUGS
