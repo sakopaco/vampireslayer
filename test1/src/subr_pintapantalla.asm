@@ -1213,6 +1213,9 @@ actualiza_tiles_nivel:
 		CALL		nivel0_pinta_luna	
 		RET
 .examina_si_nivel1:
+		CP			 1
+		JP			NZ, .examina_si_nivel2
+		
 		LD			 A, 9 
 		CALL		nivelX_pinta_suelo
 		
@@ -1226,6 +1229,9 @@ actualiza_tiles_nivel:
 		CALL		nivelX_pinta_puerta
 		RET
 .examina_si_nivel2:
+		CP			 2
+		JP			NZ, .examina_si_nivel3
+		
 		LD			 A, 10
 		CALL		nivelX_pinta_suelo
 		
@@ -1239,6 +1245,9 @@ actualiza_tiles_nivel:
 		CALL		nivelX_pinta_puerta
 		RET
 .examina_si_nivel3:
+		CP			 3
+		JP			NZ, .examina_si_nivel4
+		
 		LD			 A, 11
 		CALL		nivelX_pinta_suelo
 		
@@ -1252,6 +1261,9 @@ actualiza_tiles_nivel:
 		CALL		nivelX_pinta_puerta
 		RET
 .examina_si_nivel4:
+		CP			 4
+		JP			NZ, .examina_si_nivel5
+		
 		LD			 A, 12
 		CALL		nivelX_pinta_suelo
 		
@@ -1265,6 +1277,9 @@ actualiza_tiles_nivel:
 		CALL		nivelX_pinta_puerta
 		RET
 .examina_si_nivel5:
+		CP			 5
+		JP			NZ, .examina_si_nivel6
+		
 		LD			 A, 13
 		CALL		nivelX_pinta_suelo
 		
