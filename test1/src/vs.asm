@@ -119,7 +119,7 @@ loop_principal:
 .fin_loop_hearbeat:	DJNZ		.loop_heartbeat
 
 		CALL		render_sprites			;actualiza array de sprites y los pinta en pantalla
-	
+
 		JP			loop_principal
 fin_programa_principal:
 

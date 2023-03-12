@@ -661,26 +661,23 @@ pinta_extra_fondo:
 	
 .hayantorchas:
 	LD		(IX), ACTIVA
-	;pinta antorcha izquierdda
-	LD		 H, (IX + 1)
-	LD		 L, (IX + 2)
-	LD		(wordaux2), HL				;guarda pos array en wordaux2
-	
-	LD		HL, TILMAP + POSANTOR1		;calcula posición en tilemap
-	LD		(wordaux1), HL				;guarda valor pos tilemap en wordaux1
-	LD		 A, 3						;nº de filas	
-	LD		(byteaux1), A
-	LD		 A, 1						;nº de columnas
-	LD		(byteaux2), A				
-	
-	CALL	pinta_array
-	
-	;pinta antorcha derecha
-	LD		HL, TILMAP + POSANTOR2		;calcula posición en tilemap
-	LD		(wordaux1), HL				;guarda valor pos tilemap en wordaux1
-	
-	CALL	pinta_array 				;no ecesita CALL ya que la subrutina termina aquí
-	RET
+		;pinta antorcha izquierda
+		LD			BC, TILMAP + (32 * 5) + 8
+		LD			 D, (32 * 6) + 6
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 6) + 8
+		LD			 D, (32 * 6) + 7
+		CALL		pinta_tile_suelto
+
+		;pinta antorcha derecha
+		LD			BC, TILMAP + (32 * 5) + 23
+		LD			 D, (32 * 6) + 6
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 6) + 23
+		LD			 D, (32 * 6) + 7
+		CALL		pinta_tile_suelto
+		
+		RET
 	
 .examina_sihay_esqueletos
 	LD		IX, esqueletos
@@ -751,31 +748,27 @@ fin_actualiza_elementos_fondo:
 ; salida: 	
 ; toca:		
 flip_llamas_antorchas:
-
-		call test_OK
-
-
 		;pos llamas: 136 / 151
 		LD			 A, (heartbeat_general)
-		AND			00000010b
-		JP			.pos2
+		AND			00000100b
+		JP			NZ, .pos2
 .pos1:
 		;tiles 196 / 197
-		LD			BC, 136
+		LD			BC, TILMAP + 136
 		LD			 D, 196
 		CALL		pinta_tile_suelto
 
-		LD			BC, 151
+		LD			BC, TILMAP + 151
 		LD			 D, 197
 		CALL		pinta_tile_suelto
 		RET
 .pos2:
 		;tiles 197 / 196
-		LD			BC, 136
+		LD			BC, TILMAP + 136
 		LD			 D, 197
 		CALL		pinta_tile_suelto
 
-		LD			BC, 151
+		LD			BC, TILMAP + 151
 		LD			 D, 196
 		JP			pinta_tile_suelto
 fin_flip_llamas_antorchas:
