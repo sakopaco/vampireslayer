@@ -397,6 +397,9 @@ borra_mapa:
 	CALL	LDIRVM
 	
 	EXX
+	
+	;**********************************************************
+	
 fin_borra_mapa:
 	RET
 
@@ -640,7 +643,7 @@ fin_inicializa_esqueletos:
 	
 
 ;;=====================================================
-;;PINTA_ANTORCHAS
+;;PINTA_EXTRA_FONDO (antorchas / esqueletos)
 ;;=====================================================	
 ; función: 	pinta las antorchas con valores base
 ; entrada: 	antorchas, array_antorcha
@@ -665,7 +668,6 @@ pinta_extra_fondo:
 	
 	LD		HL, TILMAP + POSANTOR1		;calcula posición en tilemap
 	LD		(wordaux1), HL				;guarda valor pos tilemap en wordaux1
-
 	LD		 A, 3						;nº de filas	
 	LD		(byteaux1), A
 	LD		 A, 1						;nº de columnas
@@ -677,7 +679,8 @@ pinta_extra_fondo:
 	LD		HL, TILMAP + POSANTOR2		;calcula posición en tilemap
 	LD		(wordaux1), HL				;guarda valor pos tilemap en wordaux1
 	
-	JP		pinta_array 				;no ecesita CALL ya que la subrutina termina aquí
+	CALL	pinta_array 				;no ecesita CALL ya que la subrutina termina aquí
+	RET
 	
 .examina_sihay_esqueletos
 	LD		IX, esqueletos
@@ -729,6 +732,7 @@ actualiza_elementos_fondo:
 	JP 	 	 Z, .examina_esqueletos
 	
 	CALL	flip_llamas_antorchas
+	RET
 .examina_esqueletos:
 	LD		IX, esqueletos
 	LD		 A, (IX)
@@ -747,64 +751,34 @@ fin_actualiza_elementos_fondo:
 ; salida: 	
 ; toca:		
 flip_llamas_antorchas:
-		LD		IX, antorchas
-		;tiene que cambiar de llama?
-		LD		 A, (IX + 6)
-		DEC		 A
-		LD		 (IX + 6), A
-		;no
-		RET		NZ
-		;si
-		PUSH	BC
-		PUSH	DE
-	
-		LD		(IX + 6), RESETLLAMA	
-	
-		;qué llama toca?
-		LD		 A, (IX + 5)
-		OR		 A
-		JP		 Z, .llama_par
-.llama_impar
-		;cambio a llama par
-		XOR		 A
-		LD		(IX + 5), A
-		;pinto llamas
-		LD		BC, TILMAP
-		LD		 A, POSANTOR1
-		CALL	suma_A_BC
-		LD		 D, MAPLLAMA1
-		CALL	pinta_tile_suelto
-		
-		LD		BC, TILMAP
-		LD		 A, POSANTOR2
-		CALL	suma_A_BC
-		LD		 D, MAPLLAMA2
-		CALL	pinta_tile_suelto	
-		JP		fin_flip_llamas_antorchas
-	
-.llama_par
-		;cambio a llama par
-		LD		 A, 1
-		LD		(IX + 5), A
-		;pinto llamas
-		LD		BC, TILMAP
-		LD		 A, POSANTOR1
-		CALL	suma_A_BC
-		LD		 D, MAPLLAMA2
-		CALL	pinta_tile_suelto
-	
-		LD		BC, TILMAP
-		LD		 A, POSANTOR2
-		CALL	suma_A_BC
-		LD		 D, MAPLLAMA1
-		CALL	pinta_tile_suelto
 
-		;restauro los balores de los registros tocados antes
-		POP		DE
-		POP		BC
-		POP		AF
-fin_flip_llamas_antorchas:
+		call test_OK
+
+
+		;pos llamas: 136 / 151
+		LD			 A, (heartbeat_general)
+		AND			00000010b
+		JP			.pos2
+.pos1:
+		;tiles 196 / 197
+		LD			BC, 136
+		LD			 D, 196
+		CALL		pinta_tile_suelto
+
+		LD			BC, 151
+		LD			 D, 197
+		CALL		pinta_tile_suelto
 		RET
+.pos2:
+		;tiles 197 / 196
+		LD			BC, 136
+		LD			 D, 197
+		CALL		pinta_tile_suelto
+
+		LD			BC, 151
+		LD			 D, 196
+		JP			pinta_tile_suelto
+fin_flip_llamas_antorchas:
 
 
 ;;=====================================================

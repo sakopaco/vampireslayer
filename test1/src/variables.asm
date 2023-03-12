@@ -70,7 +70,7 @@ heartbeat_fuego:			DB		0;			;reloj central que moverá los enemigos (fuego)
 heartbeat_magia:			DB		0;			;reloj central que moverá los enemigos (magia)
 heartbeat_manoi:			DB		0;			;reloj central que moverá los enemigos (magia)
 heartbeat_manod:			DB		0;			;reloj central que moverá los enemigos (magia)
-heartbeat_general:			DB		0;			;reloj central que moverá los enemigos (dracula, mano derecha, mano izquierda y jefes)
+heartbeat_general:			DB		0;			;reloj central que moverá los enemigos (dracula, mano derecha, mano izquierda y jefes y elementos de fondo)
 
 enemigos:
 enemigo1:					DS		ESTRUCTURA_ENEMIGO

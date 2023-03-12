@@ -2,27 +2,27 @@
 EN REALIZACION:
 - crear pantallas de cada nivel
 - posicionar ayudas
-- diseñar pantallas de los niveles
 
 
 BUGS
+* no funcionan esqueletos ni antorchas !!!!!!!!!!!!
+
 - importante bug: que no carge 2 veces la misma pantalla
 - bug: si matas todos los enemigos ya no puedes coger ua ayuda
 
 
 TODO A
 - quitar musica ingame y repasar música
-- que los disparos a los enemigos de más de un sprite sean de un radio 
-  mayor. y las ayudas ... Centrar disparo (preg. Fernando)
 - que el prota tenga tiempo límite para salir
 - crear pantalla game over 2 ... muerto por no salir a tiempo del 
   castilla tras matar a dracula (modificar gameover 1 con nuevo texto)
 - poner tiles al matar a drácula
-- que los disparos sean al centro de los enemigos (ajustar) Esto tendré 
-  que verlo con Fernando
+- que los disparos sean al centro de los enemigos (y el radio se coja 
+  de las variables) Esto tendré que verlo con Fernando
 
 TODO B
 - revisar todos los sprites (incluidos los del punto de mira)
+- revisar letras
 
 
 TUNNING
