@@ -81,10 +81,6 @@ pantalla_inicial:
 		;inicializa las estructuras de forma particular según ayuda pero sin poner valores de posición
 		CALL		inicializa_ayudas
 	
-		;inicializa las estructuras de las antorchas y esqueletos
-		CALL		inicializa_antorchas
-		CALL		inicializa_esqueletos
-	
 		;pinta la pantalla (la primera o algunas especiales se pintan completamente)
 		CALL		pinta_pantalla_completa
 	
@@ -147,7 +143,7 @@ inicializa_variables_prota:
 		;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
 		;será igual la posición inicial en todos los niveles
 	
-		LD		 A, 3;PROTANIVEL
+		LD		 A, 4;PROTANIVEL
 		LD		(prota_nivel), A
 
 		LD		 A, PROTAPOSMAPY

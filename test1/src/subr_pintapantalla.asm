@@ -600,47 +600,6 @@ fin_pinta_array:
 ;byteaux2:		DB	0	;nº columnas Registro E
 
 
-;;=====================================================
-;;INICIALIZA_ANTORCHAS
-;;=====================================================	
-; función: 	inicializa las variables de estructuras de las antorchas
-; entrada: 	antorchas, array_antorcha
-; salida: 	
-; toca:		HL, IX
-inicializa_antorchas:
-		LD			IX, antorchas
-		LD			(IX), INACTIVA
-		LD			HL, array_antorcha
-		LD			(IX + 1), H
-		LD			(IX + 2), L
-		LD			(IX + 3), POSANTOR1
-		LD			(IX + 4), POSANTOR2
-		LD			(IX + 5), 0
-		LD			(IX + 6), RESETLLAMA
-fin_inicializa_antorchas:
-		RET
-		
-
-;;=====================================================
-;;INICIALIZA_esqueletos
-;;=====================================================	
-; función: 	inicializa las variables de estructuras de los esqueletos
-; entrada: 	esqueletos, array_esqueletos
-; salida: 	
-; toca:		HL, IX
-inicializa_esqueletos:
-	LD		IX, esqueletos
-	LD		(IX), INACTIVA
-	LD		HL, array_esqueleto
-	LD		(IX + 1), H
-	LD		(IX + 2), L
-	LD		(IX + 3), POSESQUEL1
-	LD		(IX + 4), POSESQUEL2
-	LD		(IX + 5), 0
-	LD		(IX + 6), RESETESQUEL
-fin_inicializa_esqueletos:
-	RET
-	
 
 ;;=====================================================
 ;;PINTA_EXTRA_FONDO (antorchas / esqueletos)
@@ -650,66 +609,48 @@ fin_inicializa_esqueletos:
 ; salida: 	
 ; toca:		HL
 pinta_extra_fondo:
-	LD		IX, antorchas
-.examina_sihay_antorchas
-	;hay que pintarlas?
-	LD		 A, (habitacion_extras)
-	BIT		 0, A
-	JP		NZ, .hayantorchas			;si el bit 0 de extras es 0 no se pintan antorchas
-	LD		(IX), INACTIVA
-	JP		.examina_sihay_esqueletos
+	;~ LD		IX, antorchas
+;~ .examina_sihay_antorchas
+	;~ ;hay que pintarlas?
+	;~ LD		 A, (habitacion_extras)
+	;~ BIT		 0, A
+	;~ JP		NZ, .hayantorchas			;si el bit 0 de extras es 0 no se pintan antorchas
+	;~ LD		(IX), INACTIVA
+	;~ JP		.examina_sihay_esqueletos
 	
-.hayantorchas:
-	LD		(IX), ACTIVA
-		;pinta antorcha izquierda
-		LD			BC, TILMAP + (32 * 5) + 8
-		LD			 D, (32 * 6) + 6
-		CALL		pinta_tile_suelto
-		LD			BC, TILMAP + (32 * 6) + 8
-		LD			 D, (32 * 6) + 7
-		CALL		pinta_tile_suelto
+;~ .hayantorchas:
+	;~ LD		(IX), ACTIVA
+		;~ ;pinta antorcha izquierda
+		;~ LD			BC, TILMAP + (32 * 5) + 8
+		;~ LD			 D, (32 * 6) + 6
+		;~ CALL		pinta_tile_suelto
+		;~ LD			BC, TILMAP + (32 * 6) + 8
+		;~ LD			 D, (32 * 6) + 7
+		;~ CALL		pinta_tile_suelto
 
-		;pinta antorcha derecha
-		LD			BC, TILMAP + (32 * 5) + 23
-		LD			 D, (32 * 6) + 6
-		CALL		pinta_tile_suelto
-		LD			BC, TILMAP + (32 * 6) + 23
-		LD			 D, (32 * 6) + 7
-		CALL		pinta_tile_suelto
+		;~ ;pinta antorcha derecha
+		;~ LD			BC, TILMAP + (32 * 5) + 23
+		;~ LD			 D, (32 * 6) + 6
+		;~ CALL		pinta_tile_suelto
+		;~ LD			BC, TILMAP + (32 * 6) + 23
+		;~ LD			 D, (32 * 6) + 7
+		;~ CALL		pinta_tile_suelto
 		
-		RET
+		;~ RET
 	
-.examina_sihay_esqueletos
-	LD		IX, esqueletos
-	;hay que pintarlos?
-	LD		 A, (habitacion_actual)
-	BIT		 5, A
-	JP		NZ, .hayesqueletos			;si el bit 0 de extras es 0 no se pintan antorchas
-	LD		(IX), INACTIVA
-	RET									;no hay que pintarlo. no hay que continuar
+;~ .examina_sihay_esqueletos
+	;~ LD		IX, esqueletos
+	;~ ;hay que pintarlos?
+	;~ LD		 A, (habitacion_actual)
+	;~ BIT		 5, A
+	;~ JP		NZ, .hayesqueletos			;si el bit 0 de extras es 0 no se pintan antorchas
+	;~ LD		(IX), INACTIVA
+	;~ RET									;no hay que pintarlo. no hay que continuar
 
 .hayesqueletos
-	LD		(IX), ACTIVA
-	;pinta antorcha izquierdda
-	LD		 H, (IX + 1)
-	LD		 L, (IX + 2)
-	LD		(wordaux2), HL				;guarda pos array en wordaux2
-	
-	LD		HL, TILMAP + POSESQUEL1		;calcula posición en tilemap
-	LD		(wordaux1), HL				;guarda valor pos tilemap en wordaux1
-
-	LD		 A, 4						;nº de filas	
-	LD		(byteaux1), A
-	LD		 A, 3						;nº de columnas
-	LD		(byteaux2), A				
-	
-	CALL	pinta_array
-	
-	;pinta antorcha derecha
-	LD		HL, TILMAP + POSESQUEL2		;calcula posición en tilemap
-	LD		(wordaux1), HL				;guarda valor pos tilemap en wordaux1
-	
-	JP		pinta_array 				;no ecesita CALL ya que la subrutina termina aquí
+		LD			(IX), ACTIVA
+		;pinta esqueletos (sin la cabeza)
+		JP		pinta_esqueletos
 fin_pinta_extra_fondo:
 
 
@@ -722,19 +663,19 @@ fin_pinta_extra_fondo:
 ; salida: 	
 ; toca:		A
 actualiza_elementos_fondo:
-.examina_antorchas:
-	LD		IX, antorchas
-	LD		 A, (IX)
-	OR		 A
-	JP 	 	 Z, .examina_esqueletos
+;~ .examina_antorchas:
+	;~ LD		IX, antorchas
+	;~ LD		 A, (IX)
+	;~ OR		 A
+	;~ JP 	 	 Z, .examina_esqueletos
 	
-	CALL	flip_llamas_antorchas
-	RET
-.examina_esqueletos:
-	LD		IX, esqueletos
-	LD		 A, (IX)
-	OR		 A
-	RET	 	 Z
+	;~ CALL	flip_llamas_antorchas
+	;~ RET
+;~ .examina_esqueletos:
+	;~ LD		IX, esqueletos
+	;~ LD		 A, (IX)
+	;~ OR		 A
+	;~ RET	 	 Z
 	
 	JP		flip_calavera_esqueletos
 fin_actualiza_elementos_fondo:
@@ -775,71 +716,120 @@ fin_flip_llamas_antorchas:
 
 
 ;;=====================================================
+;;PINTA_ESQUELETOS
+;;=====================================================
+; funcion: pinta los esqueletos del fondo sin la cabeza
+pinta_esqueletos:
+		;esqueleto izq.
+		LD			BC, TILMAP + 137
+		LD			 D, 194
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + 138
+		LD			 D, 0
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + 139
+		LD			 D, 195
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + 169
+		LD			 D, 160
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + 170
+		LD			 D, 164
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + 171
+		LD			 D, 161
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + 201
+		LD			 D, 0
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + 202
+		LD			 D, 163
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + 203
+		LD			 D, 0
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + 233
+		LD			 D, 192
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + 234
+		LD			 D, 162
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + 235
+		LD			 D, 193
+		CALL		pinta_tile_suelto
+
+		;esqueleto der.
+		LD			BC, TILMAP + 137 + 11
+		LD			 D, 194
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + 138 + 11
+		LD			 D, 0
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + 139 + 11
+		LD			 D, 195
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + 169 + 11
+		LD			 D, 160
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + 170 + 11
+		LD			 D, 164
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + 171 + 11
+		LD			 D, 161
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + 201 + 11
+		LD			 D, 0
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + 202 + 11
+		LD			 D, 163
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + 203 + 11
+		LD			 D, 0
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + 233 + 11
+		LD			 D, 192
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + 234 + 11
+		LD			 D, 162
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + 235 + 11
+		LD			 D, 193
+		JP			pinta_tile_suelto		
+fin_pinta_esqueletos:
+
+
+
+;;=====================================================
 ;;FLIP_CALAVERA_ESQUELETOS
 ;;=====================================================	
 ; función: 	modifica las calaveras de los esqueletos
 ; entrada: 	
 ; salida: 	
-; toca:		TODOS.... muy importante DE
 flip_calavera_esqueletos:
-		LD		IX, esqueletos
-	
-		;tiene que cambiar de calavera?
-		LD		 A, (IX + ESTRUCTURA_ESQUELETO.cont_sig_escena)
-		DEC		 A
-		LD		 (IX + ESTRUCTURA_ESQUELETO.cont_sig_escena), A
-		;no
-		RET		NZ
-		;si
-		LD		(IX + ESTRUCTURA_ESQUELETO.cont_sig_escena), RESETESQUEL		;resetea contador de nueve escena
-	
-		CALL	actualiza_escena_calavera
+		;pos llamas: 136 / 151
+		LD			 A, (heartbeat_general)
+		AND			00010000b
+		JP			NZ, .pos2
+.pos1:
+		;tiles 196 / 197
+		LD			BC, TILMAP + 170
+		LD			 D, 165
+		CALL		pinta_tile_suelto
 
-		;pinto calaveras
-		LD		BC, TILMAP
-		LD		 A, POSCALAVE1
-		CALL	suma_A_BC
-		PUSH	DE
-		LD		 D, (HL)
-		CALL	pinta_tile_suelto
-	
-		LD		BC, TILMAP
-		LD		 A, POSCALAVE2
-		CALL	suma_A_BC
-		POP		HL
-		LD		 D, (HL)
-		JP		pinta_tile_suelto	
+		LD			BC, TILMAP + 170 + 11
+		LD			 D, 166
+		CALL		pinta_tile_suelto
+		RET
+.pos2:
+		;tiles 197 / 196
+		LD			BC, TILMAP + 170
+		LD			 D, 166
+		CALL		pinta_tile_suelto
+
+		LD			BC, TILMAP + 170 + 11
+		LD			 D, 165
+		JP			pinta_tile_suelto
 fin_flip_calavera_esqueletos:
-;var_aux_calavera	DB	0;
-
-
-;;=====================================================
-;;ACTUALIZA_ESCENA_CALAVERA
-;;=====================================================	
-; función: 	modifica las siguiente calavera a mostrar
-; entrada: 	
-; salida: 	DE (iportante porque se usa fuera) y ESTRUCTURA_ESQUELETO.escena
-; toca:		TODOS.... muy importante DE
-actualiza_escena_calavera:
-		;consulta_escena
-		LD		 A, (IX + ESTRUCTURA_ESQUELETO.escena)
-		LD		(var_aux_calavera), A
-		OR		 A
-		JP		 NZ, .decrementa_escenas
-		LD		 A, RESETESCENAESQUEL
-.decrementa_escenas
-		DEC		 A
-.fin_consulta_escena
-		LD		 (IX + ESTRUCTURA_ESQUELETO.escena), A
-		
-		LD		HL, lista_escenas_calavera
-		LD		 A, (var_aux_calavera)
-		CALL	suma_A_HL
-		
-		LD		 D, H
-		LD		 E, L
-fin_actualiza_escena_calavera:
-	RET
 
 
 ;;=====================================================
