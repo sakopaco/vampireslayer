@@ -40,16 +40,12 @@ elemento_pintar_mapa:		DB		0			;TILEPROTAM = 19, ;TILEGRISM = 9
 ;;TILES PANTALLA
 tile_auxiliar:				DB		#FF,#00,#FF,#FF,#FF,#FF,#00,#FF
 
+
 ;;=====================================================
 ;;DECORACION PAREDES
 ;;=====================================================
-antorchas:					DS		ESTRUCTURA_ANTORCHA
-array_antorcha:				DB		197,198,199	;fuego + madera1 + madera2
-
-esqueletos:					DS		ESTRUCTURA_ESQUELETO
-array_esqueleto:			DB		194, 0, 195, 160, 164, 161, 0, 163, 0, 193, 162, 192
-lista_escenas_calavera:		DB		164, 165, 164, 166
-var_aux_calavera:			DB		0			;flip_calavera_esqueletos
+hay_antorchas:				DB		0
+hay_esqueletos:				DB		0
 
 
 ;;=====================================================

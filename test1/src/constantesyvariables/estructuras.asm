@@ -10,26 +10,6 @@ cadencia		DB		0	;velocidad de disparo si botón pulsado
 spritea			DB		0	;valor en pos de memoria del sprite grande del punto de mira
 spriteb			DB		0 	;valor en pos de memoria del sprite pequeño del punto de mira
 	ENDSTRUCT;ESTRUCTURA_PUNTOMIRA
-
-
-	STRUCT ESTRUCTURA_ANTORCHA
-activo				DB		0	;0 no activa <>0 activo
-postilemem_antor1	DW		0	;pos en memoria ver array_antorcha de cómo se mostrará (wordaux2)	1,2
-pospantalla_antor1	DB		0	;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	3
-pospantalla_antor2	DB		0	;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	4
-escena				DB		0	;(va entre 0 y 1 - 0=>llama1 y llama2 o 1=>llama2 y llama1	7 - tiles 196 y 197)	5
-cont_sig_escena		DB		10	;	6
-	ENDSTRUCT;ESTRUCTURA_ANTORCHA
-
-
-	STRUCT ESTRUCTURA_ESQUELETO
-activo				DB		0	;0 no activa <>0 activo
-postilemem_antor1	DW		0	;pos en memoria ver array_antorcha de cómo se mostrará (wordaux2)	1,2
-pospantalla_esquel1	DB		0	;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	3
-pospantalla_esquel2	DB		0	;pos en pantalla (memoria en el banco 1 se le suma 256 + TILEMAP) (wordaux1)	4
-escena				DB		0	;(va entre 0 y 4 - tiles 164, 165, 164, 166)	5
-cont_sig_escena		DB		0	;	6
-	ENDSTRUCT;ESTRUCTURA_ESQUELETO
 	
 
 	STRUCT ESTRUCTURA_AYUDA	

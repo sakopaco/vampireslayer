@@ -609,75 +609,45 @@ fin_pinta_array:
 ; salida: 	
 ; toca:		HL
 pinta_extra_fondo:
-	;~ LD		IX, antorchas
-;~ .examina_sihay_antorchas
-	;~ ;hay que pintarlas?
-	;~ LD		 A, (habitacion_extras)
-	;~ BIT		 0, A
-	;~ JP		NZ, .hayantorchas			;si el bit 0 de extras es 0 no se pintan antorchas
-	;~ LD		(IX), INACTIVA
-	;~ JP		.examina_sihay_esqueletos
+		XOR			 A
+		LD			(hay_antorchas), A
+		LD			(hay_esqueletos), A
+.examina_sihay_antorchas:
+		LD			 A, (habitacion_extras)
+		BIT			 0, A
+		JP			 Z, .examina_sihay_esqueletos	;si el bit 0 de extras es 0 no se pintan antorchas
+		LD			 A, 1
+		LD			(hay_antorchas), A
+		CALL		pinta_antorchas
+		RET
 	
-;~ .hayantorchas:
-	;~ LD		(IX), ACTIVA
-		;~ ;pinta antorcha izquierda
-		;~ LD			BC, TILMAP + (32 * 5) + 8
-		;~ LD			 D, (32 * 6) + 6
-		;~ CALL		pinta_tile_suelto
-		;~ LD			BC, TILMAP + (32 * 6) + 8
-		;~ LD			 D, (32 * 6) + 7
-		;~ CALL		pinta_tile_suelto
-
-		;~ ;pinta antorcha derecha
-		;~ LD			BC, TILMAP + (32 * 5) + 23
-		;~ LD			 D, (32 * 6) + 6
-		;~ CALL		pinta_tile_suelto
-		;~ LD			BC, TILMAP + (32 * 6) + 23
-		;~ LD			 D, (32 * 6) + 7
-		;~ CALL		pinta_tile_suelto
-		
-		;~ RET
-	
-;~ .examina_sihay_esqueletos
-	;~ LD		IX, esqueletos
-	;~ ;hay que pintarlos?
-	;~ LD		 A, (habitacion_actual)
-	;~ BIT		 5, A
-	;~ JP		NZ, .hayesqueletos			;si el bit 0 de extras es 0 no se pintan antorchas
-	;~ LD		(IX), INACTIVA
-	;~ RET									;no hay que pintarlo. no hay que continuar
-
-.hayesqueletos
-		LD			(IX), ACTIVA
-		;pinta esqueletos (sin la cabeza)
-		JP		pinta_esqueletos
+.examina_sihay_esqueletos:
+		LD			 A, (habitacion_actual)
+		AND			00010000b
+		RET			 Z		;si el bit 0 de extras es 0 no se pintan los esqueletos
+		LD			 A, 1
+		LD			(hay_esqueletos), A
+		JP			pinta_esqueletos
 fin_pinta_extra_fondo:
 
 
 ;;=====================================================
 ;;ACTUALIZA_ELEMENTOS_FONDO
 ;;=====================================================	
-; función: 	de los elementos que pueda haber en el fondo de la pared (pantalla) actualiza si procede
-;			actualmente: antorchas y a futuro esqueletos
-; entrada: 	
-; salida: 	
-; toca:		A
+; función: 	varia los tiles de llama o calavera según haya de fondo antorchas o esqueletos
+; entrada:	hay_antorchas / hay_esqueletos
 actualiza_elementos_fondo:
-;~ .examina_antorchas:
-	;~ LD		IX, antorchas
-	;~ LD		 A, (IX)
-	;~ OR		 A
-	;~ JP 	 	 Z, .examina_esqueletos
-	
-	;~ CALL	flip_llamas_antorchas
-	;~ RET
-;~ .examina_esqueletos:
-	;~ LD		IX, esqueletos
-	;~ LD		 A, (IX)
-	;~ OR		 A
-	;~ RET	 	 Z
-	
-	JP		flip_calavera_esqueletos
+.examina_antorchas:
+		LD			 A, (hay_antorchas)
+		OR			 A
+		JP			 Z, .examina_esqueletos
+		CALL		flip_llamas_antorchas
+		RET
+.examina_esqueletos:
+		LD			 A, (hay_esqueletos)
+		OR			 A
+		RET			 Z
+		JP			flip_calavera_esqueletos
 fin_actualiza_elementos_fondo:
 
 
@@ -716,9 +686,32 @@ fin_flip_llamas_antorchas:
 
 
 ;;=====================================================
+;;PINTA_ANTORCHAS
+;;=====================================================
+; funcion: pinta las antorchas del fondo (luego sólo se mueve el fuecgo)
+pinta_antorchas:
+		;pinta antorcha izquierda
+		LD			BC, TILMAP + (32 * 5) + 8
+		LD			 D, (32 * 6) + 6
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 6) + 8
+		LD			 D, (32 * 6) + 7
+		CALL		pinta_tile_suelto
+
+		;pinta antorcha derecha
+		LD			BC, TILMAP + (32 * 5) + 23
+		LD			 D, (32 * 6) + 6
+		CALL		pinta_tile_suelto
+		LD			BC, TILMAP + (32 * 6) + 23
+		LD			 D, (32 * 6) + 7
+		JP			pinta_tile_suelto
+fin_pinta_antorchas:
+
+
+;;=====================================================
 ;;PINTA_ESQUELETOS
 ;;=====================================================
-; funcion: pinta los esqueletos del fondo sin la cabeza
+; funcion: pinta los esqueletos del fondo (se mueve luego la cabeza)
 pinta_esqueletos:
 		;esqueleto izq.
 		LD			BC, TILMAP + 137
