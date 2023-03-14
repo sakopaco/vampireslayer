@@ -623,8 +623,8 @@ pinta_extra_fondo:
 	
 .examina_sihay_esqueletos:
 		LD			 A, (habitacion_actual)
-		AND			00010000b
-		RET			 Z		;si el bit 0 de extras es 0 no se pintan los esqueletos
+		AND			00100000b 	;el bit 5 del byte de posición dice si hay esqueletos
+		RET			 Z			;si el bit 0 de extras es 0 no se pintan los esqueletos
 		LD			 A, 1
 		LD			(hay_esqueletos), A
 		JP			pinta_esqueletos

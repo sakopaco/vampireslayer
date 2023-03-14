@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.03.13 - 21:49:31]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.03.14 - 19:43:03]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/vs.asm
 Errors: 0
@@ -867,7 +867,7 @@ Errors: 0
      128   00:4083  3E 03               		LD		 A, PROTAVIDAS
      129   00:4085  32 01 C0            		LD		(prota_vidas),A
      130   00:4088                      
-     131   00:4088  3E 03               		LD		 A, PROTARELIQUIAS
+     131   00:4088  3E 08               		LD		 A, 8;PROTARELIQUIAS
      132   00:408A  32 02 C0            		LD		(prota_reliquias), A
      133   00:408D                      
      134   00:408D  3E F8               		LD		 A, PROTAENERGIA			
@@ -882,7 +882,7 @@ Errors: 0
      143   00:409C                      		;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
      144   00:409C                      		;será igual la posición inicial en todos los niveles
      145   00:409C                      	
-     146   00:409C  3E 04               		LD		 A, 4;PROTANIVEL
+     146   00:409C  3E 06               		LD		 A, 6;PROTANIVEL
      147   00:409E  32 00 C0            		LD		(prota_nivel), A
      148   00:40A1                      
      149   00:40A1  3E 00               		LD		 A, PROTAPOSMAPY
@@ -2283,8 +2283,8 @@ Errors: 0
      623.  00:4644                      	
      624.  00:4644                      .examina_sihay_esqueletos:
      625.  00:4644  3A 0D C2            		LD			 A, (habitacion_actual)
-     626.  00:4647  E6 10               		AND			00010000b
-     627.  00:4649  C8                  		RET			 Z		;si el bit 0 de extras es 0 no se pintan los esqueletos
+     626.  00:4647  E6 20               		AND			00100000b 	;el bit 5 del byte de posición dice si hay esqueletos
+     627.  00:4649  C8                  		RET			 Z			;si el bit 0 de extras es 0 no se pintan los esqueletos
      628.  00:464A  3E 01               		LD			 A, 1
      629.  00:464C  32 31 C0            		LD			(hay_esqueletos), A
      630.  00:464F  C3 AE 46            		JP			pinta_esqueletos
@@ -14955,7 +14955,7 @@ Errors: 0
 00:00000003 X BASEMAPX
 00:00000000 X PROTANIVEL
 00:00000003   PROTAVIDAS
-00:00000003   PROTARELIQUIAS
+00:00000003 X PROTARELIQUIAS
 00:00000003   PROTAPOSMAPX
 00:00000000   PROTAPOSMAPY
 00:000000F8   PROTAENERGIA
