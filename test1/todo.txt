@@ -1,14 +1,12 @@
 
 EN REALIZACION:
-- crear pantallas de cada nivel
 - posicionar ayudas
 
 
 BUGS
-* no funcionan esqueletos ni antorchas !!!!!!!!!!!!
-
+* cuando matas a drácula no te deja salir
 - importante bug: que no carge 2 veces la misma pantalla
-- bug: si matas todos los enemigos ya no puedes coger ua ayuda
+- bug: si matas todos los enemigos ya no puedes coger una ayuda
 
 
 TODO A
