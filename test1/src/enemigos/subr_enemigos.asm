@@ -78,9 +78,8 @@ resetea_enemigos:
 		DJNZ		.loop
 		
 ;actualiza vector de sprites
-		CALL		render_sprites
+		JP			render_sprites
 fin_resetea_enemigos:
-		RET
 
 
 ;;=====================================================
@@ -2172,16 +2171,9 @@ examina_enemigo7:
 			SUB			 B
 			JP			NC, .asignaenergia7
 				CALL		mata_enemigo
-				JP			.fin_examina_enemigos
+				RET
 .asignaenergia7:
 			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se asigna la energía tras la resta
-		
-.fin_examina_enemigos:
-
-			;Si NO quedan enemigos pongo habiación como vacía
-			;miro si por el nº de enemigos (necesitaré una variable) está terminada la habitación
-			;esta función no va aquí sino en check colisiones pero se pone aquí para realizar pruebas
-			;CALL		terminada_habitacion_recorrida ;para cuando se maten todos los enemigos de la habitación
 fin_check_colisiones_enemigos:
 		RET
 
@@ -2197,7 +2189,7 @@ mata_enemigo:
 		LD			 A, (IX)
 		CP			TIPODRACULA
 		JP			 Z, .accion_solo_si_dracula
-
+		
 		LD			 A, (IX);guardo el tipo que me hará falta más tarde
 		LD			(IX), 1													;se pone tipo a enemigo muerto
 		LD			(IX + ESTRUCTURA_ENEMIGO.escena), TIEMPO_ESPERA_VISCERA	;contador para que desaparezcan las vísceras del enemigo
@@ -2207,7 +2199,6 @@ mata_enemigo:
 		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), SPRI_BLANCO	;se setean los sprites de las visceras
 		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_c), SPRI_BLANCO	;se setean los sprites de las visceras
 		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_d), SPRI_BLANCO	;se setean los sprites de las visceras
-		
 
 		;sustituyo la función de mover enemigo
 		LD			HL, spritesxenemigo
@@ -2234,11 +2225,11 @@ mata_enemigo:
 		LD			 A, 2
 		LD			 C, 1
 		CALL		ayFX_INIT
+		
 		RET
 		
 .accion_solo_si_dracula:
-		CALL		accion_mata_dracula
-		JP			oculta_todos_sprites
+		JP		accion_mata_dracula
 fin_mata_enemigo:
 		
 
@@ -2336,10 +2327,5 @@ decrementa_contador_enemigos:
 			RET			NZ
 			
 			;si no quedan enemigos marco la pantalla como superada
-			CALL		terminada_habitacion_recorrida
-			
-			;~ LD			IX, puntero_habitacion_actual
-			;~ SET			 4, (IX)
-			
-			RET
+			JP			terminada_habitacion_recorrida
 fin_decrementa_contador_enemigos:

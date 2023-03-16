@@ -1,10 +1,10 @@
 
 EN REALIZACION:
 - posicionar ayudas
+- crear mapas: ya está el nivel 0 y el 6
 
 
 BUGS
-* cuando matas a drácula no te deja salir
 - importante bug: que no carge 2 veces la misma pantalla
 - bug: si matas todos los enemigos ya no puedes coger una ayuda
 

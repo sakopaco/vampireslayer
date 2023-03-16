@@ -146,7 +146,7 @@ inicializa_variables_prota:
 		LD		 A, 6;PROTANIVEL
 		LD		(prota_nivel), A
 
-		LD		 A, PROTAPOSMAPY
+		LD		 A, 5;PROTAPOSMAPY
 		LD		(prota_pos_mapy), A	
 
 		LD		 A, PROTAPOSMAPX	

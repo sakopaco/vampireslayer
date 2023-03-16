@@ -420,9 +420,7 @@ fin_check_colisiones_objetos:
 ;;=====================================================	
 ; función: 	pone un texto cuando matas a drácula y preparo variables para que cuente el tiempo y dracula muerto
 accion_mata_dracula:
-		LD			IX, enemigo1
-		LD			 A, (IX);guardo el tipo que me hará falta más tarde
-		LD			(IX), 0			
+		CALL		decrementa_contador_enemigos
 		
 		;Ocultamos todos los sprites
 		CALL		oculta_todos_sprites
@@ -457,9 +455,7 @@ accion_mata_dracula:
 		
 [2]		CALL		espera_estandar
 		
-		CALL		entra_habitacion
-		
-		JP			reponer_musica_tras_muerte_cambio_nivel
+		JP			entra_habitacion
 fin_accion_mata_dracula:
 
 

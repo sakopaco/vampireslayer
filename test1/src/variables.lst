@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.03.14 - 19:43:03]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.03.16 - 20:15:10]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -624,7 +624,7 @@ Errors: 0
      373.  00:C000  (00:00F8)           DRACULA_SPRITE2A		equ		248
      374.  00:C000  (00:00FC)           DRACULA_SPRITE2B		equ		252
      375.  00:C000  (00:0010)           DRACULA_VELESCENA		equ		00010000b
-     376.  00:C000  (00:0078)           DRACULA_DANO			equ		120
+     376.  00:C000  (00:000A)           DRACULA_DANO			equ		10
      377.  00:C000  (00:0064)           DRACULA_ENERGIA			equ		100
      378.  00:C000  (00:0021)           DRACULA_POCAVIDA		equ		33
      379.  00:C000                      
@@ -1704,7 +1704,7 @@ Errors: 0
 00:000000F8 X DRACULA_SPRITE2A
 00:000000FC X DRACULA_SPRITE2B
 00:00000010 X DRACULA_VELESCENA
-00:00000078 X DRACULA_DANO
+00:0000000A X DRACULA_DANO
 00:00000064 X DRACULA_ENERGIA
 00:00000021 X DRACULA_POCAVIDA
 00:00000015 X TIPOMANOIZQUIERDA
