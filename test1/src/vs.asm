@@ -125,7 +125,7 @@ fin_programa_principal:
 ;;=====================================================
 ; funcion: inicializa las variables que afectan al prota y dónde empieza la partida
 inicializa_variables_prota:
-		LD		 A, PROTAVIDAS
+		LD		 A, 8;PROTAVIDAS
 		LD		(prota_vidas),A
 
 		LD		 A, 8;PROTARELIQUIAS
@@ -137,16 +137,16 @@ inicializa_variables_prota:
 		LD		 A, PROTAENERGIABYTEBAJO			
 		LD		(prota_energia_bytebajo), A
 		
-		LD		 A, PROTADANO1
+		LD		 A, 20;PROTADANO1
 		LD		(prota_dano_actual), A	;daño actual cuando el prota dispara
 
 		;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
 		;será igual la posición inicial en todos los niveles
 	
-		LD		 A, 6;PROTANIVEL
+		LD		 A, 2;PROTANIVEL
 		LD		(prota_nivel), A
 
-		LD		 A, 5;PROTAPOSMAPY
+		LD		 A, PROTAPOSMAPY
 		LD		(prota_pos_mapy), A	
 
 		LD		 A, PROTAPOSMAPX	
