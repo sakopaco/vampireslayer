@@ -34,18 +34,18 @@ texto_finalbueno3:	DB	'Y ENEMIGOS DESAPARECE Y LOS     ';32 caracteres
 texto_finalbueno4:	DB	'SEPULTA PARA SIEMPRE. ESTAS     ';32 caracteres
 texto_finalbueno5:	DB	'EXTENUADO TRAS LA VICTORIA. DAS ';32 caracteres
 texto_finalbueno6:	DB	'LA CHICA A SU PADRE Y RECIBES TU';32 caracteres
-texto_finalbueno7:	DB	'MERECIDA RECOMPENSA. HASTA OTRA ';32 caracteres
-texto_finalbueno8:	DB	'AVENTURA.                       ';32 caracteres
+texto_finalbueno7:	DB	'MERECIDA RECOMPENSA.            ';32 caracteres
+texto_finalbueno8:	DB	'TE HAS CONVERTIDO EN UNA LEYENDA';32 caracteres
 
 texto_finalmalo:
-texto_finalmalo1:	DB	'NO FUISTE SUFICIETEMENTE RAPIDO ';32 caracteres
-texto_finalmalo2:	DB	'TRAS ACABAR CON EL VAMPIRO JEFE ';32 caracteres
-texto_finalmalo3:	DB	'LA ENERGIA QUE MANTENIA CASTILLO';32 caracteres
-texto_finalmalo4:	DB	'Y ENEMIGOS DESAPARECE. MARITZA Y';32 caracteres
-texto_finalmalo5:	DB	'TU CAEIS SEPULTADOS BAJO LOS    ';32 caracteres
-texto_finalmalo6:	DB	'ESCOMBROS. LASTIMA.             ';32 caracteres
-texto_finalmalo7:	DB	'ESCOMBROS. LASTIMA.             ';32 caracteres
-texto_finalmalo8:	DB	'ESCOMBROS. LASTIMA.             ';32 caracteres
+texto_finalmalo1:	DB	'                                ';32 caracteres
+texto_finalmalo2:	DB	'NO FUISTE SUFICIENTEMENTE RAPIDO';32 caracteres
+texto_finalmalo3:	DB	'TRAS ACABAR CON EL VAMPIRO JEFE ';32 caracteres
+texto_finalmalo4:	DB	'LA ENERGIA QUE MANTENIA CASTILLO';32 caracteres
+texto_finalmalo5:	DB	'Y ENEMIGOS DESAPARECE. MARITZA Y';32 caracteres
+texto_finalmalo6:	DB	'TU CAEIS SEPULTADOS BAJO LOS    ';32 caracteres
+texto_finalmalo7:	DB	'ESCOMBROS.                      ';32 caracteres
+texto_finalmalo8:	DB	'                                ';32 caracteres
 
 texto_deaddracula:
 texto_deaddracula1:	DB	'FELICIDADES. VENCISTE A DRACULA ';32 caracteres
@@ -90,17 +90,17 @@ texto_finalbueno4:	DB	'DISAPPEARS AND BURIES THEM      ';32 caracteres
 texto_finalbueno5:	DB	'FOREVER YOU ARE EXHAUSTED AFTER ';32 caracteres
 texto_finalbueno6:	DB	'THE VICTORY. YOU GIVE THE GIRL  ';32 caracteres
 texto_finalbueno7:	DB	'TO HER FATHER AND RECEIVE YOUR  ';32 caracteres
-texto_finalbueno8:	DB	'DESERVED REWARD. SEE YOU SOON   ';32 caracteres
+texto_finalbueno8:	DB	'DESERVED REWARD. YOU RE A LEGEND';32 caracteres
 
 texto_finalmalo:
-texto_finalmalo1:	DB	'NO FUISTE SUFICIETEMENTE RAPIDO ';32 caracteres
-texto_finalmalo2:	DB	'TRAS ACABAR CON EL VAMPIRO JEFE ';32 caracteres
-texto_finalmalo3:	DB	'LA ENERGIA QUE MANTENIA CASTILLO';32 caracteres
-texto_finalmalo4:	DB	'Y ENEMIGOS DESAPARECE. MARITZA Y';32 caracteres
-texto_finalmalo5:	DB	'TU CAEIS SEPULTADOS BAJO LOS    ';32 caracteres
-texto_finalmalo6:	DB	'ESCOMBROS. LASTIMA.             ';32 caracteres
-texto_finalmalo7:	DB	'ESCOMBROS. LASTIMA.             ';32 caracteres
-texto_finalmalo8:	DB	'ESCOMBROS. LASTIMA.             ';32 caracteres
+texto_finalmalo1:	DB	'                                ';32 caracteres
+texto_finalmalo2:	DB	'YOU WERE NOT FAST ENOUGHT       ';32 caracteres
+texto_finalmalo3:	DB	'AFTER FINISHING THE BOSS VAMPIRE';32 caracteres
+texto_finalmalo4:	DB	'THE ENERGY THAT MAINTAINED THE  ';32 caracteres
+texto_finalmalo5:	DB	'CASTLE AND ENEMIES DISAPPEARED  ';32 caracteres
+texto_finalmalo6:	DB	'YOU AND MARITZA ARE BURIED DOWN ';32 caracteres
+texto_finalmalo7:	DB	'UNDER TONS OF RUBBLE            ';32 caracteres
+texto_finalmalo8:	DB	'                                ';32 caracteres
 
 texto_deaddracula:
 texto_deaddracula1:	DB	'CONGRATULATIONS. YOU BEAT       ';32 caracteres

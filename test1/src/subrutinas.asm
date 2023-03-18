@@ -295,9 +295,14 @@ entra_habitacion:
 		
 		
 		
+		
+		
+		
+		
 		;ñññññ
 		LD			 A, 1
 		LD			(dracula_muerto), A
+		CALL		resetea_tiempo
 		RET
 		
 		
@@ -462,6 +467,8 @@ accion_mata_dracula:
 		CALL		oculta_todos_sprites
 		
 [2]		CALL		espera_estandar
+
+		CALL		resetea_tiempo
 		
 		JP			entra_habitacion
 fin_accion_mata_dracula:
@@ -497,18 +504,15 @@ fin_mira_si_esta_juego_terminado:
 ;;GAME_OVER
 ;;=====================================================	
 ; función: muestra la página de fin de juego según parámetro de entrada
-; entrada: PROTAMUERTO	0  FINBUENO	1
-game_over:
-			;pone la música de game over
-			LD			 A, 2 ;A=2 musica gameover
-			CALL		musica_on
-			
+; entrada: PROTAMUERTO	0  FINBUENO	1  FINMALO 2
+game_over:			
 			;limpia la pantalla
 			CALL		limpia_pantalla_completa
 
+.fin_bueno:
 			LD			 A, (tipo_gameover)
-			OR			 A
-			JP			 Z, .fin_protamuerto
+			CP			 1
+			JP			NZ, .fin_protamuerto
 				;cargando banco 2
 				;cargamos los patrones
 				LD			HL, tiles_patrones_finalbueno_bank1
@@ -542,6 +546,9 @@ game_over:
 			JP			.fin_examina_final
 			
 .fin_protamuerto:
+			LD			 A, (tipo_gameover)
+			OR			 A
+			JP			NZ, .fin_malo
 				;cargando banco 1
 				;cargamos los patrones
 				LD			HL, tiles_patrones_gameover1_bank1
@@ -581,10 +588,76 @@ game_over:
 				LD			BC, 29				;nº posiciones a pintar
 				LD			DE, TILMAP + 641	;destino en vram
 				CALL		LDIRVM
+				
+			JP			.fin_examina_final
+
+.fin_malo:
+				;cargando banco 2
+				;cargamos los patrones
+				LD			HL, tiles_patrones_finalbueno_bank1
+				LD			DE, CHRTBL + #0800
+				CALL		depack_VRAM	
+				;cargamos los colores de los patrones
+				LD			HL, tiles_color_finalbueno_bank1
+				LD			DE, CLRTBL + #0800
+				CALL		depack_VRAM
+			
+				;cargamos mapa de pantalla banco 1 y 2
+				LD			HL, tiles_mapa_finalbueno_bank01
+				LD			DE, TILMAP
+				CALL		depack_VRAM
+
+				;cangando banco 3
+				;cargamos los patrones
+				LD			HL,tiles_patrones_marcador
+				LD			DE,CHRTBL + #1000
+				CALL		depack_VRAM	
+				;cargamos los colores
+				LD			HL,tiles_color_marcador
+				LD			DE,CLRTBL + #1000
+				CALL		depack_VRAM
+
+				LD			DE, TILMAP + 512	;destino en vram (pos tiles + 256 (banco 0 + 256 banco )
+				LD			HL, texto_finalmalo
+				LD			BC, 32 * 8
+				CALL		LDIRVM	
 
 .fin_examina_final:
-
 [4]			CALL		espera_estandar
-		
 			JP			inicio_juego
 fin_game_over:
+
+
+;;=====================================================
+;;ACTUALIZA_HEARTBEAT
+;;=====================================================	
+; función: incrementa el hearbeat para el movimiento (escena) de los distintos enemigos
+actualiza_heartbeat:
+		LD			 B, 14	;se han definido 14 escena de enemigos distintas + uno genérico para jefes
+		LD			HL, heartbeat_enemigos
+.loop_heartbeat:	
+					INC			(HL)
+					INC			HL
+		DJNZ		.loop_heartbeat
+fin_actualiza_heartbeat:
+			RET
+			
+
+;;=====================================================
+;;ACTUALIZA_CRONOMETRO_SALIDA
+;;=====================================================	
+; función: inc
+actualiza_cronometro_salida:
+		LD			 A, (dracula_muerto)
+		RET			 Z
+		CALL		incrementa_reloj
+		LD			 A, (minutos)
+		CP			TIEMPO_LIMITE_SALIR_CAS
+		RET			NZ
+		;gameover (tipo 2: matas a drácula pero no te da tiepo a salir en 2 minutos)
+		LD			(tipo_gameover), A ;A = 2 que ya lo tenemos en minutos entrada para funcion game over
+		JP			game_over
+fin_actualiza_cronometro_salida:	
+
+
+		

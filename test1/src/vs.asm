@@ -107,14 +107,9 @@ loop_principal:
 
 		CALL		check_player			;MIRA EL CONTROL Y APLICA LA LOGICA DE MOVIMIENTO DEL PROTAGONISTA
 	
-		;incrementa el hearbeat para el movimiento (escena) de los distintos enemigos		
-		LD			 B, 14	;se han definido 14 escena de enemigos distintas
-		LD			HL, heartbeat_enemigos
-.loop_heartbeat:	INC			(HL)
-					INC			HL
-.fin_loop_hearbeat:	DJNZ		.loop_heartbeat
+		CALL		actualiza_heartbeat
 
-		CALL		incrementa_reloj
+		CALL		actualiza_cronometro_salida
 
 		CALL		render_sprites			;actualiza array de sprites y los pinta en pantalla
 
@@ -168,11 +163,6 @@ inicializa_variables_juego:
 		LD			(musica_tipo), A
 		
 		LD			(musica_activa), A
-		
-		;resetea tiempo
-		LD			(contador), A
-		LD			(segundos), A
-		LD			(minutos),  A
 fin_inicializa_variables_juego:
 		RET
 
