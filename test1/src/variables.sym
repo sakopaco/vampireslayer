@@ -655,9 +655,9 @@ puntomira: equ 0000C215h
 dracula_muerto: equ 0000C21Ch
 tipo_gameover: equ 0000C21Dh
 tiempo: equ 0000C21Eh
-contador: equ 0000C21Eh
+minutos: equ 0000C21Eh
 segundos: equ 0000C21Fh
-minutos: equ 0000C220h
+contador: equ 0000C220h
 habitaciones_juego: equ 0000C221h
 habitaciones_nivel0: equ 0000C221h
 habitaciones_nivel1: equ 0000C291h

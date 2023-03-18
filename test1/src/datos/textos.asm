@@ -37,6 +37,16 @@ texto_finalbueno6:	DB	'LA CHICA A SU PADRE Y RECIBES TU';32 caracteres
 texto_finalbueno7:	DB	'MERECIDA RECOMPENSA. HASTA OTRA ';32 caracteres
 texto_finalbueno8:	DB	'AVENTURA.                       ';32 caracteres
 
+texto_finalmalo:
+texto_finalmalo1:	DB	'NO FUISTE SUFICIETEMENTE RAPIDO ';32 caracteres
+texto_finalmalo2:	DB	'TRAS ACABAR CON EL VAMPIRO JEFE ';32 caracteres
+texto_finalmalo3:	DB	'LA ENERGIA QUE MANTENIA CASTILLO';32 caracteres
+texto_finalmalo4:	DB	'Y ENEMIGOS DESAPARECE. MARITZA Y';32 caracteres
+texto_finalmalo5:	DB	'TU CAEIS SEPULTADOS BAJO LOS    ';32 caracteres
+texto_finalmalo6:	DB	'ESCOMBROS. LASTIMA.             ';32 caracteres
+texto_finalmalo7:	DB	'ESCOMBROS. LASTIMA.             ';32 caracteres
+texto_finalmalo8:	DB	'ESCOMBROS. LASTIMA.             ';32 caracteres
+
 texto_deaddracula:
 texto_deaddracula1:	DB	'FELICIDADES. VENCISTE A DRACULA ';32 caracteres
 texto_deaddracula2:	DB	'Y RESCATASTE A LA CHICA. PERO   ';32 caracteres
@@ -81,6 +91,16 @@ texto_finalbueno5:	DB	'FOREVER YOU ARE EXHAUSTED AFTER ';32 caracteres
 texto_finalbueno6:	DB	'THE VICTORY. YOU GIVE THE GIRL  ';32 caracteres
 texto_finalbueno7:	DB	'TO HER FATHER AND RECEIVE YOUR  ';32 caracteres
 texto_finalbueno8:	DB	'DESERVED REWARD. SEE YOU SOON   ';32 caracteres
+
+texto_finalmalo:
+texto_finalmalo1:	DB	'NO FUISTE SUFICIETEMENTE RAPIDO ';32 caracteres
+texto_finalmalo2:	DB	'TRAS ACABAR CON EL VAMPIRO JEFE ';32 caracteres
+texto_finalmalo3:	DB	'LA ENERGIA QUE MANTENIA CASTILLO';32 caracteres
+texto_finalmalo4:	DB	'Y ENEMIGOS DESAPARECE. MARITZA Y';32 caracteres
+texto_finalmalo5:	DB	'TU CAEIS SEPULTADOS BAJO LOS    ';32 caracteres
+texto_finalmalo6:	DB	'ESCOMBROS. LASTIMA.             ';32 caracteres
+texto_finalmalo7:	DB	'ESCOMBROS. LASTIMA.             ';32 caracteres
+texto_finalmalo8:	DB	'ESCOMBROS. LASTIMA.             ';32 caracteres
 
 texto_deaddracula:
 texto_deaddracula1:	DB	'CONGRATULATIONS. YOU BEAT       ';32 caracteres

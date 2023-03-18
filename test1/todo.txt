@@ -1,6 +1,7 @@
 
 EN REALIZACION:
-- posicionar ayudas
+- que el prota tenga tiempo límite para salir
+- final con tiempo limite cumplido: refinar textos y traducir
 
 
 BUGS
@@ -10,7 +11,7 @@ BUGS
 
 TODO A
 - quitar musica ingame y repasar música
-- que el prota tenga tiempo límite para salir
+- posicionar ayudas
 - crear pantalla game over 2 ... muerto por no salir a tiempo del 
   castilla tras matar a dracula (modificar gameover 1 con nuevo texto)
 - poner tiles al matar a drácula

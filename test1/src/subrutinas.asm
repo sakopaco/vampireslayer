@@ -18,8 +18,6 @@
 ;ayudas bit 6 1 hay ayudas y 0 no hay ayudas
 
 inicializa_niveles:
-		EXX		
-
 		;inicia habitación para decir si por esa habitación no se ha pasado
 		;el 4 bit a 0 indica que por esa habitacion no se ha pasado/no se han atado todos los enemigos
 		;el 6 bit a 1 indica que en esa habitación hay ayudas no utilizadas
@@ -71,12 +69,8 @@ inicializa_niveles:
 		LD 			HL, habitaciones_nivel6	;puntero al byte de la habitación
 		LD			IX, habitaciones_nivel6
 		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas		
-		CALL 		resetea_habitaciones_enemigos_nivel
-
-		EXX
+		JP 			resetea_habitaciones_enemigos_nivel
 fin_iniciliza_niveles:
-		RET
-
 
 
 resetea_habitaciones_enemigos_nivel:
@@ -91,7 +85,6 @@ resetea_habitaciones_enemigos_nivel:
 		DJNZ		.inicia_nivel
 fin_resetea_habitaciones_enemigos_nivel:
 		RET
-
 
 
 ;;=====================================================
@@ -299,6 +292,21 @@ entra_habitacion:
 
 ;ahora nos ocupamos de los enemigos
 		CALL		resetea_enemigos
+		
+		
+		
+		;ñññññ
+		LD			 A, 1
+		LD			(dracula_muerto), A
+		RET
+		
+		
+		
+		
+		
+		
+		
+		
 
 .mira_nivel0:
 		LD			 A, (prota_nivel)

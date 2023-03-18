@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.03.18 - 10:34:00]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.03.18 - 13:23:08]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -950,9 +950,9 @@ Errors: 0
      150   00:C21E                      ;;VARIABLES TIEMPO
      151   00:C21E                      ;;=====================================================
      152   00:C21E                      tiempo:
-     153   00:C21E  00                  contador:					DB	0
+     153   00:C21E  00                  minutos:					DB	0
      154   00:C21F  00                  segundos:					DB	0
-     155   00:C220  00                  minutos:					DB	0
+     155   00:C220  00                  contador:					DB	0
      156   00:C221                      
      157   00:C221                      
      158   00:C221                      ;;=====================================================
@@ -1859,9 +1859,9 @@ Errors: 0
 00:0000C21C X dracula_muerto
 00:0000C21D X tipo_gameover
 00:0000C21E X tiempo
-00:0000C21E X contador
+00:0000C21E X minutos
 00:0000C21F X segundos
-00:0000C220 X minutos
+00:0000C220 X contador
 00:0000C221 X habitaciones_juego
 00:0000C221 X habitaciones_nivel0
 00:0000C291 X habitaciones_nivel1

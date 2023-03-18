@@ -99,7 +99,7 @@ pantalla_inicial:
 		XOR			 A ;A=0 entrada para musica normal
 		CALL		musica_on
 loop_principal:
-		HALT								;espera VBLANK y sincroniza	
+		HALT								;espera VBLANK y sincroniza
 
 		CALL		actualiza_elementos_fondo;como antorchas o esqueletos
 		
@@ -113,6 +113,8 @@ loop_principal:
 .loop_heartbeat:	INC			(HL)
 					INC			HL
 .fin_loop_hearbeat:	DJNZ		.loop_heartbeat
+
+		CALL		incrementa_reloj
 
 		CALL		render_sprites			;actualiza array de sprites y los pinta en pantalla
 
@@ -137,7 +139,7 @@ inicializa_variables_prota:
 		LD		 A, PROTAENERGIABYTEBAJO			
 		LD		(prota_energia_bytebajo), A
 		
-		LD		 A, 20;PROTADANO1
+		LD		 A, PROTADANO1
 		LD		(prota_dano_actual), A	;daño actual cuando el prota dispara
 
 		;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
@@ -146,7 +148,7 @@ inicializa_variables_prota:
 		LD		 A, 6;PROTANIVEL
 		LD		(prota_nivel), A
 
-		LD		 A, PROTAPOSMAPY
+		LD		 A, 6;PROTAPOSMAPY
 		LD		(prota_pos_mapy), A	
 
 		LD		 A, PROTAPOSMAPX	
@@ -167,14 +169,15 @@ inicializa_variables_juego:
 		
 		LD			(musica_activa), A
 		
-		;~ ;pruebas
-		;~ LD			a, 1
-		;~ LD			(dracula_muerto), A
-		;~ LD			(tipo_gameover), A
+		;resetea tiempo
+		LD			(contador), A
+		LD			(segundos), A
+		LD			(minutos),  A
 fin_inicializa_variables_juego:
 		RET
 
 ;;************************************************************************
+
 
 
 ;;************************************************************************		

@@ -799,9 +799,6 @@ fin_pinta_esqueletos:
 ; entrada: 	
 ; salida: 	
 flip_calavera_esqueletos:
-		;pos llamas: 136 / 151
-;		LD			 A, (heartbeat_general)
-;***************
 		LD			 A, (heartbeat_cienpies)	;si pongo el hearbeat_cienpies, porque no se usa si hay calaveras 
 		
 		AND			00100000b
