@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.03.17 - 21:12:39]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.03.18 - 10:34:00]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/vs.asm
 Errors: 0
@@ -882,7 +882,7 @@ Errors: 0
      143   00:409C                      		;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
      144   00:409C                      		;será igual la posición inicial en todos los niveles
      145   00:409C                      	
-     146   00:409C  3E 02               		LD		 A, 2;PROTANIVEL
+     146   00:409C  3E 06               		LD		 A, 6;PROTANIVEL
      147   00:409E  32 00 C0            		LD		(prota_nivel), A
      148   00:40A1                      
      149   00:40A1  3E 00               		LD		 A, PROTAPOSMAPY
@@ -2456,751 +2456,754 @@ Errors: 0
      800.  00:4763                      ; salida: 	
      801.  00:4763                      flip_calavera_esqueletos:
      802.  00:4763                      		;pos llamas: 136 / 151
-     803.  00:4763  3A 3F C0            		LD			 A, (heartbeat_general)
-     804.  00:4766  E6 10               		AND			00010000b
-     805.  00:4768  C2 7C 47            		JP			NZ, .pos2
-     806.  00:476B                      .pos1:
-     807.  00:476B                      		;tiles 196 / 197
-     808.  00:476B  01 AA 18            		LD			BC, TILMAP + 170
-     809.  00:476E  16 A5               		LD			 D, 165
-     810.  00:4770  CD 8A 44            		CALL		pinta_tile_suelto
-     811.  00:4773                      
-     812.  00:4773  01 B5 18            		LD			BC, TILMAP + 170 + 11
-     813.  00:4776  16 A6               		LD			 D, 166
-     814.  00:4778  CD 8A 44            		CALL		pinta_tile_suelto
-     815.  00:477B  C9                  		RET
-     816.  00:477C                      .pos2:
-     817.  00:477C                      		;tiles 197 / 196
-     818.  00:477C  01 AA 18            		LD			BC, TILMAP + 170
-     819.  00:477F  16 A6               		LD			 D, 166
-     820.  00:4781  CD 8A 44            		CALL		pinta_tile_suelto
-     821.  00:4784                      
-     822.  00:4784  01 B5 18            		LD			BC, TILMAP + 170 + 11
-     823.  00:4787  16 A5               		LD			 D, 165
-     824.  00:4789  C3 8A 44            		JP			pinta_tile_suelto
-     825.  00:478C                      fin_flip_calavera_esqueletos:
-     826.  00:478C                      
-     827.  00:478C                      
-     828.  00:478C                      ;;=====================================================
-     829.  00:478C                      ;;CAMBIO_NIVEL_ENTREFASES
-     830.  00:478C                      ;;=====================================================	
-     831.  00:478C                      ; función: 	pone un texto cada vex que se sube o baja de nivel en el castillo
-     832.  00:478C                      cambio_nivel_entrefases:
-     833.  00:478C  CD 13 77            			CALL		musica_off
-     834.  00:478F                      
-     835.  00:478F  CD FC 44            			CALL		borra_mapa
-     836.  00:4792                      
-     837.  00:4792                      			;Ocultamos todos los sprites
-     838.  00:4792  CD BF 47            			CALL		oculta_todos_sprites
-     839.  00:4795                      			
-     840.  00:4795                      			;ocultamos posición superior en mapa
-     841.  00:4795  01 3B 1A            			LD			BC, TILMAP + (17 * 32) + 27
-     842.  00:4798  16 00               			LD		 	D, 0
-     843.  00:479A  CD 8A 44            			CALL		pinta_tile_suelto	
-     844.  00:479D                      				
-     845.  00:479D                      			;ocultamos posición inferior en mapa
-     846.  00:479D  01 FB 1A            			LD			BC, TILMAP + (23 * 32) + 27
-     847.  00:47A0  16 00               			LD		 	D, 0
-     848.  00:47A2  CD 8A 44            			CALL		pinta_tile_suelto	
-     849.  00:47A5                      
-     850.  00:47A5                      			;ocultamos numero de nivel
-     851.  00:47A5  01 B4 1A            			LD			BC, TILMAP + (21 * 32) + 20
-     852.  00:47A8  16 00               			LD		 	D, 0
-     853.  00:47AA  CD 8A 44            			CALL		pinta_tile_suelto	
-     854.  00:47AD                      
-     855.  00:47AD                      			;cargamos mapa de pantalla banco 1 y 2
-     856.  00:47AD  21 69 8F            			LD			HL, tiles_mapa_entrefases
-     857.  00:47B0  11 00 18            			LD			DE, TILMAP
-     858.  00:47B3  CD 10 8B            			CALL		depack_VRAM
-     859.  00:47B6                      			
-     860.  00:47B6  CD 6E B7            			CALL		pinta_texto_entrefases
-     861.  00:47B9                      
-     862.  00:47B9  CD A7 43            			CALL		espera_estandar
-     863.  00:47BC                      		
-     864.  00:47BC                      			;repongo la música y efectos
-     865.  00:47BC  C3 C3 48            			JP			reponer_musica_tras_muerte_cambio_nivel	
-     866.  00:47BF                      fin_cabio_nivel_entrefases:
-     867.  00:47BF                      
-     868.  00:47BF                      
-     869.  00:47BF                      ;;=====================================================
-     870.  00:47BF                      ;;OCULTA_TODOS_SPRITES
-     871.  00:47BF                      ;;=====================================================	
-     872.  00:47BF                      ; función: 	oculta el sprite 0 con y=208 para que oculte el resto de sprites
-     873.  00:47BF                      ; entrada: 	
-     874.  00:47BF                      ; salida: 	-
-     875.  00:47BF                      ; toca:		TODOS
-     876.  00:47BF                      oculta_todos_sprites:	
-     877.  00:47BF                      ;~ 1B00		Sprite attributes
-     878.  00:47BF                      ;~ BORRASPRITESIG valor 208 que coulta todos los sprites de un plano haci a los superiores
-     879.  00:47BF  01 00 1B            			LD			BC, #1B00
-     880.  00:47C2  16 D0               			LD			 D, BORRASPRITESIG
-     881.  00:47C4  C3 8A 44            			JP			pinta_tile_suelto
-     882.  00:47C7                      fin_oculta_todos_sprites:
-     883.  00:47C7                      
-     884.  00:47C7                      
-     885.  00:47C7                      ;;=====================================================
-     886.  00:47C7                      ;;BORRA_PANTALLA_INICIO
-     887.  00:47C7                      ;;=====================================================	
-     888.  00:47C7                      ; función: 	borra la pantalla de inicio de una forma chula caracter a caracter
-     889.  00:47C7                      ; entrada: 	-
-     890.  00:47C7                      ; salida: 	-
-     891.  00:47C7                      ; toca:		AF, BC
-     892.  00:47C7                      borra_pantalla_inicio:
-     893.  00:47C7  01 00 01            			LD			 BC, 256	;tiles por pantalla en screen2 - 1 (768 total)
-     894.  00:47CA  11 00 00            			LD			 DE, 0		;posición tile "vacio"
-     895.  00:47CD                      .loop:
-     896.  00:47CD  C5                  			PUSH		BC
-     897.  00:47CE  01 00 19            				LD			BC, TILMAP + 256
-     898.  00:47D1  7B                  				LD			 A, E
-     899.  00:47D2  CD 6A 43            				CALL	suma_A_BC
-     900.  00:47D5                      			
-     901.  00:47D5  CD 8A 44            				CALL		pinta_tile_suelto
-     902.  00:47D8  1C                  				INC			 E
-     903.  00:47D9                      		
-     904.  00:47D9  01 52 03            				LD			 BC, 850
-     905.  00:47DC  CD 9C 43            				CALL		retardo16bits
-     906.  00:47DF  C1                  			POP			BC
-     907.  00:47E0  0B                  			DEC			BC
-     908.  00:47E1  78                  			LD			 A, B
-     909.  00:47E2  B1                  			OR			 C
-     910.  00:47E3  C2 CD 47            			JP			NZ, .loop
-     911.  00:47E6                      			
-     912.  00:47E6  C3 5F 48            			JP			limpia_pantalla_completa
-     913.  00:47E9                      fin_borra_pantalla_inicio:
-     914.  00:47E9                      
-     915.  00:47E9                      
-     916.  00:47E9                      ;;=====================================================
-     917.  00:47E9                      ;;MUESTRA_PANTALLA_INICIAL
-     918.  00:47E9                      ;;=====================================================	
-     919.  00:47E9                      ; función: 	muestra la pantalla de inicio del juego y queda ahí hasta que se pulse disparo (joystick o espacio)
-     920.  00:47E9                      ; entrada: 	
-     921.  00:47E9                      ; salida: 	
-     922.  00:47E9                      ; toca:		TODOS.... muy importante DE
-     923.  00:47E9                      muestra_pantalla_inicial:
-     924.  00:47E9  CD 65 48            		CALL		limpia_pantalla
-     925.  00:47EC                      		
-     926.  00:47EC                      		;cargamos mapa de pantalla completa
-     927.  00:47EC  21 85 8E            		LD			HL, tiles_mapa_inicio
-     928.  00:47EF  11 00 18            		LD			DE, TILMAP
-     929.  00:47F2  CD 10 8B            		CALL		depack_VRAM
-     930.  00:47F5                      		
-     931.  00:47F5                      		;cargamos tiles y colores del banco 1
-     932.  00:47F5                      		;cargamos los patrones
-     933.  00:47F5  21 00 8C            		LD			HL, tiles_patrones_inicio
-     934.  00:47F8  11 00 08            		LD			DE, CHRTBL + #0800
-     935.  00:47FB  CD 10 8B            		CALL		depack_VRAM
-     936.  00:47FE                      		;cargamos los colores
-     937.  00:47FE  21 11 8E            		LD			HL, tiles_color_inicio
-     938.  00:4801  11 00 28            		LD			DE, CLRTBL + #0800
-     939.  00:4804  CD 10 8B            		CALL		depack_VRAM
-     940.  00:4807                      		
-     941.  00:4807                      		;cangando banco 2
-     942.  00:4807                      		;cargamos los patrones
-     943.  00:4807  21 0B 94            		LD			HL,tiles_patrones_marcador
-     944.  00:480A  11 00 10            		LD			DE,CHRTBL + #1000
-     945.  00:480D  CD 10 8B            		CALL		depack_VRAM	
-     946.  00:4810                      		;cargamos los colores
-     947.  00:4810  21 5E 95            		LD			HL,tiles_color_marcador
-     948.  00:4813  11 00 30            		LD			DE,CLRTBL + #1000
-     949.  00:4816  CD 10 8B            		CALL		depack_VRAM
-     950.  00:4819                      	
-     951.  00:4819  CD 9E B7            		CALL		pinta_textos_inicio_disparo
-     952.  00:481C  CD B6 B7            		CALL		pinta_textos_inicio_autoria
-     953.  00:481F                      
-     954.  00:481F                      .mientras_nopulsado:
-     955.  00:481F                      		;compruebo espacio
-     956.  00:481F  AF                  		XOR			 A
-     957.  00:4820  CD D8 00            		CALL		#00D8
-     958.  00:4823  47                  		LD			 B, A
-     959.  00:4824                      		
-     960.  00:4824  C5                  		PUSH		BC
-     961.  00:4825                      		;compruebo botón 1 joystick
-     962.  00:4825  3E 01               		LD			 A, 1
-     963.  00:4827  CD D8 00            		CALL		#00D8
-     964.  00:482A  C1                  		POP 		BC
-     965.  00:482B                      		
-     966.  00:482B  B0                  		OR			 B		;uno el resultado del espacio + el resultado del botón de disparo
-     967.  00:482C                      		
-     968.  00:482C  CA 1F 48            		JP			 Z, .mientras_nopulsado	;si A=0 no se pulsó ni disparo ni botón
-     969.  00:482F                      		
-     970.  00:482F                      		;ejecuto sonido
-     971.  00:482F  3E 04               		LD			 A, SONIDOINICIO	;4
-     972.  00:4831  0E 01               		LD			 C, 1
-     973.  00:4833  CD 38 7D            		CALL		ayFX_INIT
-     974.  00:4836                      		
-     975.  00:4836                      		;parpadeo del texto
-     976.  00:4836  06 07               		LD			 B,7
-     977.  00:4838                      .parpadeo:		
-     978.  00:4838  C5                  		PUSH		BC
-     979.  00:4839                      
-     980.  00:4839  01 28 23            		LD 			BC, 9000
-     981.  00:483C  CD 9C 43            		CALL		retardo16bits
-     982.  00:483F                      		
-     983.  00:483F  CD AA B7            		CALL		pinta_textos_inicio_disparo_blanco
-     984.  00:4842                      		
-     985.  00:4842  01 28 23            		LD 			BC, 9000
-     986.  00:4845  CD 9C 43            		CALL		retardo16bits
-     987.  00:4848                      		
-     988.  00:4848  CD 9E B7            		CALL		pinta_textos_inicio_disparo
-     989.  00:484B                      		
-     990.  00:484B  C1                  		POP			BC
-     991.  00:484C  10 EA               		DJNZ 		.parpadeo
-     992.  00:484E                      		
-     993.  00:484E                      		;borra pantalla bonito
-     994.  00:484E  CD C7 47            		CALL		borra_pantalla_inicio
-     995.  00:4851                      		
-     996.  00:4851  AF                  		XOR			 A ;A=0 musica normal
-     997.  00:4852  C3 09 77            		JP			musica_on
-     998.  00:4855                      fin_muestra_pantalla_inicial:
-     999.  00:4855                      
-    1000.  00:4855                      
-    1001.  00:4855                      ;;=====================================================
-    1002.  00:4855                      ;;LIMPIA_PANTALLA_SUPERIOR
-    1003.  00:4855                      ;;=====================================================	
-    1004.  00:4855                      ; función: limpia toda la pantlla poniendo el tile vacio en todas las posiciones (el tile vacio está definido en los 3 bancos)
-    1005.  00:4855                      limpia_pantalla_superior:
-    1006.  00:4855                      		;limpia todo y evita que se vea cuando se cargan los nuevos tiles por pantalla
-    1007.  00:4855  AF                  		XOR		 	 A
-    1008.  00:4856  21 00 18            		LD			HL, TILMAP
-    1009.  00:4859  01 00 02            		LD			BC, 512
-    1010.  00:485C  C3 56 00            		JP			FILVRM
-    1011.  00:485F                      fin_limpia_pantalla_superior:
-    1012.  00:485F                      
-    1013.  00:485F                      
-    1014.  00:485F                      ;;=====================================================
-    1015.  00:485F                      ;;LIMPIA_PANTALLA_COMPLETA
-    1016.  00:485F                      ;;=====================================================	
-    1017.  00:485F                      ; función: limpia toda la pantlla poniendo el tile vacio en todas las posiciones (el tile vacio está definido en los 3 bancos)
-    1018.  00:485F                      limpia_pantalla_completa:
-    1019.  00:485F                      		;oculta los sprites que haya en pantalla
-    1020.  00:485F  CD BF 47            		CALL		oculta_todos_sprites
-    1021.  00:4862                      		;limpia los tiles
-    1022.  00:4862  C3 65 48            		JP			limpia_pantalla
-    1023.  00:4865                      fin_limpia_pantalla_completa:
-    1024.  00:4865                      
-    1025.  00:4865                      
-    1026.  00:4865                      ;;=====================================================
-    1027.  00:4865                      ;;LIMPIA_PANTALLA
-    1028.  00:4865                      ;;=====================================================	
-    1029.  00:4865                      ; función: limpia tiles en bancos
-    1030.  00:4865                      limpia_pantalla:
-    1031.  00:4865                      			;cargamos tiles y colores del banco 0
-    1032.  00:4865                      			;cargamos los patrones
-    1033.  00:4865  21 59 A2            			LD			HL, tiles_patrones_vacio
-    1034.  00:4868  11 00 00            			LD			DE, CHRTBL
-    1035.  00:486B  CD 10 8B            			CALL		depack_VRAM
-    1036.  00:486E                      			;cargamos los colores
-    1037.  00:486E  21 63 A2            			LD			HL, tiles_color_vacio
-    1038.  00:4871  11 00 20            			LD			DE, CLRTBL
-    1039.  00:4874  CD 10 8B            			CALL		depack_VRAM
-    1040.  00:4877                      			
-    1041.  00:4877                      			;limpia todo y evita que se vea cuando se cargan los nuevos tiles por pantalla
-    1042.  00:4877  AF                  			XOR		 	 A
-    1043.  00:4878  21 00 18            			LD			HL, TILMAP
-    1044.  00:487B  01 00 03            			LD			BC, 768
-    1045.  00:487E  C3 56 00            			JP			FILVRM
-    1046.  00:4881                      fin_limpia_pantalla:
-    1047.  00:4881                      
-    1048.  00:4881                      
-    1049.  00:4881                      ;;=====================================================
-    1050.  00:4881                      ;;OCULTA_TILE_ENERGIA_MINIMA
-    1051.  00:4881                      ;;=====================================================	
-    1052.  00:4881                      ; función: limpia tile de energía mínima
-    1053.  00:4881                      oculta_tile_energia_minima:
-    1054.  00:4881  3E 00               		LD			 A, TILENEGRO
-    1055.  00:4883  21 88 1A            		LD			HL, TILMAP + TILEENERG1
-    1056.  00:4886  C3 4D 00            		JP			WRTVRM
-    1057.  00:4889                      fin_oculta_tile_energia_minima:
-    1058.  00:4889                      		
-    1059.  00:4889                      
-    1060.  00:4889                      ;;=====================================================
-    1061.  00:4889                      ;;OCULTA_TILE_VIDA0
-    1062.  00:4889                      ;;=====================================================	
-    1063.  00:4889                      ; función: limpia tile de de vida 0
-    1064.  00:4889                      oculta_tile_vida0:
-    1065.  00:4889  3E 00               		LD			 A, TILENEGRO
-    1066.  00:488B  21 48 1A            		LD			HL, TILMAP + TILEVIDA1
-    1067.  00:488E  C3 4D 00            		JP			WRTVRM
-    1068.  00:4891                      fin_oculta_tile_vida0:
-    1069.  00:4891                      
-    1070.  00:4891                      
-    1071.  00:4891                      ;;=====================================================
-    1072.  00:4891                      ;;UNA_VIDA_MENOS
-    1073.  00:4891                      ;;=====================================================
-    1074.  00:4891                      ; funcion: muestra mensaje cuando te matan una vida
-    1075.  00:4891                      una_vida_menos;
-    1076.  00:4891                      		;paro música		
-    1077.  00:4891  CD 13 77            		CALL		musica_off
-    1078.  00:4894                      		
-    1079.  00:4894  3A 01 C0            		LD			 A, (prota_vidas)
-    1080.  00:4897  B7                  		OR			 A
-    1081.  00:4898  C2 A2 48            		JP			NZ, quedan_vidas
-    1082.  00:489B                      no_quedan_vidas:
-    1083.  00:489B                      			;gameover normal (tipo 1)
-    1084.  00:489B  AF                  			XOR			 A
-    1085.  00:489C  32 1D C2            			LD			(tipo_gameover), A
-    1086.  00:489F  C3 BF 42            			JP			game_over
-    1087.  00:48A2                      
-    1088.  00:48A2                      quedan_vidas:
-    1089.  00:48A2                      			;vacia vida (el nivel mínimo lo pone en negro)
-    1090.  00:48A2  CD 81 48            			CALL		oculta_tile_energia_minima
-    1091.  00:48A5                      		
-    1092.  00:48A5                      			;oculta los sprites que haya en pantalla
-    1093.  00:48A5  CD BF 47            			CALL		oculta_todos_sprites
-    1094.  00:48A8                      
-    1095.  00:48A8                      			;limpia superior pantalla
-    1096.  00:48A8  CD 55 48            			CALL		limpia_pantalla_superior
-    1097.  00:48AB                      		
-    1098.  00:48AB  21 A2 B4            			LD			HL, texto_vidamenos ;guardo puntero al array a pintar (como psar por referencia)
-    1099.  00:48AE  01 10 00            			LD			BC, 16				;nº posiciones a pintar
-    1100.  00:48B1  11 C8 18            			LD			DE, TILMAP + 200	;destino en vram
-    1101.  00:48B4  CD 5C 00            			CALL		LDIRVM
-    1102.  00:48B7                      
-    1103.  00:48B7  CD A7 43            			CALL		espera_estandar
-    1104.  00:48BA                      			
-    1105.  00:48BA                      			;repinto la pantalla y las puertas que correspondan
-    1106.  00:48BA  CD F6 43            			CALL		pinta_parte_superior_pantalla
-    1107.  00:48BD  CD 8B 4D            			CALL		pinta_puertas
-    1108.  00:48C0                      	
-    1109.  00:48C0  C3 C3 48            			JP			reponer_musica_tras_muerte_cambio_nivel
-    1110.  00:48C3                      fin_una_vida_menos:
-    1111.  00:48C3                      
-    1112.  00:48C3                      
-    1113.  00:48C3                      ;;=====================================================
-    1114.  00:48C3                      ;;REPONER_MUSICA_TRAS_MUERTE_CAMBIO_NIVEL
-    1115.  00:48C3                      ;;=====================================================	
-    1116.  00:48C3                      ; función:  evita repetir el mismo código si te han matado o cambias de nivel
-    1117.  00:48C3                      ;			si está muerto drácula o estás en una pantalla con jefe (posy = 6) musica jefe A=1
-    1118.  00:48C3                      ;			si no A = 0 musica normal
-    1119.  00:48C3                      ; nota:		se aprovecha para cuando matas a drácula (se hace más lento pero ahorras código)
-    1120.  00:48C3                      reponer_musica_tras_muerte_cambio_nivel:
-    1121.  00:48C3                      			;repongo la música y efectos
-    1122.  00:48C3  06 00               			LD			 B, 0
-    1123.  00:48C5                      ;está muerto dracula
-    1124.  00:48C5                      .examina_dracula_muerto:
-    1125.  00:48C5  3A 1C C2            			LD			 A, (dracula_muerto)
-    1126.  00:48C8  B7                  			OR			 A
-    1127.  00:48C9  CA D1 48            			JP			 Z, .examina_pantalla_jefe
-    1128.  00:48CC  06 01               			LD			 B, 1 
-    1129.  00:48CE  C3 DB 48            			JP			.fin_examina_tipo_musica
-    1130.  00:48D1                      ;estoy en pantalla de jefe
-    1131.  00:48D1                      .examina_pantalla_jefe:
-    1132.  00:48D1  3A 04 C0            			LD			 A, (prota_pos_mapy)
-    1133.  00:48D4  FE 06               			CP			 6
-    1134.  00:48D6  C2 DB 48            			JP			 NZ, .fin_examina_tipo_musica
-    1135.  00:48D9  06 01               			LD			 B, 1 
-    1136.  00:48DB                      .fin_examina_tipo_musica:
-    1137.  00:48DB  78                  			LD			 A, B
-    1138.  00:48DC  C3 09 77            			JP			musica_on			
-    1139.  00:48DF                      fin_reponer_musica_tras_muerte_cambio_nivel:
-    1140.  00:48DF                      
-    1141.  00:48DF                      
-    1142.  00:48DF                      ;;=====================================================
-    1143.  00:48DF                      ;;INSTRUCCIONES PARA PINTAR PANTALLAS DIFERENTES SEGÚN NIVEL
-    1144.  00:48DF                      ;;=====================================================	
-    1145.  00:48DF                      actualiza_tiles_nivel:
-    1146.  00:48DF  3A 00 C0            		LD			 A, (prota_nivel)
-    1147.  00:48E2  B7                  		OR			 A
-    1148.  00:48E3                      .examina_si_nivel0:
-    1149.  00:48E3  C2 01 49            		JP			NZ, .examina_si_nivel1
-    1150.  00:48E6  3E 08               		LD			 A, 8 					
-    1151.  00:48E8  CD 97 49            		CALL		nivelX_pinta_suelo
-    1152.  00:48EB                      		
-    1153.  00:48EB  3E 10               		LD			 A, 16 					
-    1154.  00:48ED  CD B8 49            		CALL		nivelX_pinta_pared
-    1155.  00:48F0                      		
-    1156.  00:48F0  3E 60               		LD			 A, 96
-    1157.  00:48F2  CD D9 49            		CALL		nivelX_pinta_marco
-    1158.  00:48F5                      		
-    1159.  00:48F5  3E 17               		LD			 A, 23 	
-    1160.  00:48F7  CD FB 49            		CALL		nivelX_pinta_puerta
-    1161.  00:48FA                      
-    1162.  00:48FA  CD CD 4A            		CALL		nivel0_pinta_estrellas	;pinta estrellas (2 por linea)
-    1163.  00:48FD  CD 4D 4B            		CALL		nivel0_pinta_luna	
-    1164.  00:4900  C9                  		RET
-    1165.  00:4901                      .examina_si_nivel1:
-    1166.  00:4901  FE 01               		CP			 1
-    1167.  00:4903  C2 1B 49            		JP			NZ, .examina_si_nivel2
-    1168.  00:4906                      		
-    1169.  00:4906  3E 09               		LD			 A, 9 
-    1170.  00:4908  CD 97 49            		CALL		nivelX_pinta_suelo
-    1171.  00:490B                      		
-    1172.  00:490B  3E 11               		LD			 A, 17					
-    1173.  00:490D  CD B8 49            		CALL		nivelX_pinta_pared
-    1174.  00:4910                      		
-    1175.  00:4910  3E 61               		LD			 A, 97
-    1176.  00:4912  CD D9 49            		CALL		nivelX_pinta_marco
-    1177.  00:4915                      		
-    1178.  00:4915  3E 18               		LD			 A, 24
-    1179.  00:4917  CD FB 49            		CALL		nivelX_pinta_puerta
-    1180.  00:491A  C9                  		RET
-    1181.  00:491B                      .examina_si_nivel2:
-    1182.  00:491B  FE 02               		CP			 2
-    1183.  00:491D  C2 35 49            		JP			NZ, .examina_si_nivel3
-    1184.  00:4920                      		
-    1185.  00:4920  3E 0A               		LD			 A, 10
-    1186.  00:4922  CD 97 49            		CALL		nivelX_pinta_suelo
-    1187.  00:4925                      		
-    1188.  00:4925  3E 12               		LD			 A, 18				
-    1189.  00:4927  CD B8 49            		CALL		nivelX_pinta_pared
-    1190.  00:492A                      		
-    1191.  00:492A  3E 62               		LD			 A, 98
-    1192.  00:492C  CD D9 49            		CALL		nivelX_pinta_marco
-    1193.  00:492F                      		
-    1194.  00:492F  3E 19               		LD			 A, 25
-    1195.  00:4931  CD FB 49            		CALL		nivelX_pinta_puerta
-    1196.  00:4934  C9                  		RET
-    1197.  00:4935                      .examina_si_nivel3:
-    1198.  00:4935  FE 03               		CP			 3
-    1199.  00:4937  C2 4F 49            		JP			NZ, .examina_si_nivel4
-    1200.  00:493A                      		
-    1201.  00:493A  3E 0B               		LD			 A, 11
-    1202.  00:493C  CD 97 49            		CALL		nivelX_pinta_suelo
-    1203.  00:493F                      		
-    1204.  00:493F  3E 13               		LD			 A, 19				
-    1205.  00:4941  CD B8 49            		CALL		nivelX_pinta_pared
-    1206.  00:4944                      		
-    1207.  00:4944  3E 63               		LD			 A, 99
-    1208.  00:4946  CD D9 49            		CALL		nivelX_pinta_marco
-    1209.  00:4949                      		
-    1210.  00:4949  3E 1A               		LD			 A, 26
-    1211.  00:494B  CD FB 49            		CALL		nivelX_pinta_puerta
-    1212.  00:494E  C9                  		RET
-    1213.  00:494F                      .examina_si_nivel4:
-    1214.  00:494F  FE 04               		CP			 4
-    1215.  00:4951  C2 69 49            		JP			NZ, .examina_si_nivel5
-    1216.  00:4954                      		
-    1217.  00:4954  3E 0C               		LD			 A, 12
-    1218.  00:4956  CD 97 49            		CALL		nivelX_pinta_suelo
-    1219.  00:4959                      		
-    1220.  00:4959  3E 14               		LD			 A, 20				
-    1221.  00:495B  CD B8 49            		CALL		nivelX_pinta_pared
-    1222.  00:495E                      		
-    1223.  00:495E  3E 64               		LD			 A, 100
-    1224.  00:4960  CD D9 49            		CALL		nivelX_pinta_marco
-    1225.  00:4963                      		
-    1226.  00:4963  3E 1B               		LD			 A, 27
-    1227.  00:4965  CD FB 49            		CALL		nivelX_pinta_puerta
-    1228.  00:4968  C9                  		RET
-    1229.  00:4969                      .examina_si_nivel5:
-    1230.  00:4969  FE 05               		CP			 5
-    1231.  00:496B  C2 83 49            		JP			NZ, .examina_si_nivel6
-    1232.  00:496E                      		
-    1233.  00:496E  3E 0D               		LD			 A, 13
-    1234.  00:4970  CD 97 49            		CALL		nivelX_pinta_suelo
-    1235.  00:4973                      		
-    1236.  00:4973  3E 15               		LD			 A, 21				
-    1237.  00:4975  CD B8 49            		CALL		nivelX_pinta_pared
-    1238.  00:4978                      		
-    1239.  00:4978  3E 65               		LD			 A, 101
-    1240.  00:497A  CD D9 49            		CALL		nivelX_pinta_marco
-    1241.  00:497D                      		
-    1242.  00:497D  3E 1C               		LD			 A, 28
-    1243.  00:497F  CD FB 49            		CALL		nivelX_pinta_puerta
-    1244.  00:4982  C9                  		RET
-    1245.  00:4983                      .examina_si_nivel6:
-    1246.  00:4983  3E 0E               		LD			 A, 14
-    1247.  00:4985  CD 97 49            		CALL		nivelX_pinta_suelo
-    1248.  00:4988                      		
-    1249.  00:4988  3E 16               		LD			 A, 22				
-    1250.  00:498A  CD B8 49            		CALL		nivelX_pinta_pared
-    1251.  00:498D                      		
-    1252.  00:498D  3E 66               		LD			 A, 102
-    1253.  00:498F  CD D9 49            		CALL		nivelX_pinta_marco
-    1254.  00:4992                      		
-    1255.  00:4992  3E 1D               		LD			 A, 29
-    1256.  00:4994  C3 FB 49            		JP			nivelX_pinta_puerta
-    1257.  00:4997                      fin_actualiza_tiles_nivel:
-    1258.  00:4997                      
-    1259.  00:4997                      
-    1260.  00:4997                      ;;=====================================================
-    1261.  00:4997                      ;;NIVELX_PINTA_SUELO
-    1262.  00:4997                      ;;=====================================================
-    1263.  00:4997                      ; funcion:  pone el tile y el color que se le pase como parámetro en el suelo
-    1264.  00:4997                      ; entrada:  A, byteaux1 con el nivel del suelo pero valores
-    1265.  00:4997                      ;			nivel 0: DE 8
-    1266.  00:4997                      ;			nivel 1: DE 9
-    1267.  00:4997                      ;			nivel 2: DE 10
-    1268.  00:4997                      ;			nivel 3: DE 11
-    1269.  00:4997                      ;			nivel 4: DE 12
-    1270.  00:4997                      ;			nivel 5: DE 13
-    1271.  00:4997                      ;			nivel 6: DE 14
-    1272.  00:4997                      nivelX_pinta_suelo:
-    1273.  00:4997  32 CA C1            		LD			(byteaux1), A
-    1274.  00:499A                      		
-    1275.  00:499A  17 17 17            [3]		RLA
-    1276.  00:499D  6F                  		LD			 L, A
-    1277.  00:499E  26 00               		LD			 H, 0
-    1278.  00:49A0  CD 1C 4A            		CALL		poner_tile_variable_tile_auxiliar
-    1279.  00:49A3  CD 25 4A            		CALL		poner_tile_aux_en_suelo_patron
-    1280.  00:49A6                      
-    1281.  00:49A6  3A CA C1            		LD			 A, (byteaux1)
-    1282.  00:49A9  17 17 17            [3]		RLA
-    1283.  00:49AC  21 00 28            		LD			HL, CLRTBLBANCO1
-    1284.  00:49AF  CD 76 43            		CALL		suma_A_HL
-    1285.  00:49B2  CD 1C 4A            		CALL		poner_tile_variable_tile_auxiliar
-    1286.  00:49B5  C3 31 4A            		JP			poner_tile_aux_en_suelo_color
-    1287.  00:49B8                      fin_nivelX_pinta_suelo:
-    1288.  00:49B8                      
-    1289.  00:49B8                      ;;=====================================================
-    1290.  00:49B8                      ;;NIVELX_PINTA_PARED
-    1291.  00:49B8                      ;;=====================================================
-    1292.  00:49B8                      ; funcion:  pone el tile y el color que se le pase como parámetro en el suelo
-    1293.  00:49B8                      ; entrada:  A
-    1294.  00:49B8                      ;			nivel 0: DE 8
-    1295.  00:49B8                      ;			nivel 1: DE 9
-    1296.  00:49B8                      ;			nivel 2: DE 10
-    1297.  00:49B8                      ;			nivel 3: DE 11
-    1298.  00:49B8                      ;			nivel 4: DE 12
-    1299.  00:49B8                      ;			nivel 5: DE 13
-    1300.  00:49B8                      ;			nivel 6: DE 14
-    1301.  00:49B8                      nivelX_pinta_pared:
-    1302.  00:49B8  32 CA C1            		LD			(byteaux1), A
-    1303.  00:49BB                      		
-    1304.  00:49BB  17 17 17            [3]		RLA
-    1305.  00:49BE  6F                  		LD			 L, A
-    1306.  00:49BF  26 00               		LD			 H, 0
-    1307.  00:49C1  CD 1C 4A            		CALL		poner_tile_variable_tile_auxiliar
-    1308.  00:49C4  CD 3D 4A            		CALL		poner_tile_aux_en_paredes_patron
-    1309.  00:49C7                      
-    1310.  00:49C7  3A CA C1            		LD			 A, (byteaux1)
-    1311.  00:49CA  17 17 17            [3]		RLA
-    1312.  00:49CD  21 00 28            		LD			HL, CLRTBLBANCO1
-    1313.  00:49D0  CD 76 43            		CALL		suma_A_HL
-    1314.  00:49D3  CD 1C 4A            		CALL		poner_tile_variable_tile_auxiliar
-    1315.  00:49D6  C3 55 4A            		JP			poner_tile_aux_en_paredes_color
-    1316.  00:49D9                      fin_nivelX_pinta_pared:
-    1317.  00:49D9                      
-    1318.  00:49D9                      ;;=====================================================
-    1319.  00:49D9                      ;;NIVELX_PINTA_MARCO
-    1320.  00:49D9                      ;;=====================================================
-    1321.  00:49D9                      ; funcion:  pone el tile en el marco que sea para no liar mucho tengo 
-    1322.  00:49D9                      ; entrada:  A
-    1323.  00:49D9                      ;			nivel 0: 96
-    1324.  00:49D9                      ;			nivel 1: 97
-    1325.  00:49D9                      ;			nivel 2: 98
-    1326.  00:49D9                      ;			nivel 3: 99
-    1327.  00:49D9                      ;			nivel 4: 100
-    1328.  00:49D9                      ;			nivel 5: 101
-    1329.  00:49D9                      ;			nivel 6: 102
-    1330.  00:49D9                      nivelX_pinta_marco:
-    1331.  00:49D9  32 CA C1            		LD			(byteaux1), A
-    1332.  00:49DC                      
-    1333.  00:49DC  26 00               		LD			 H, 0
-    1334.  00:49DE  6F                  		LD			 L, A
-    1335.  00:49DF  29 29 29            [3]		ADD			HL, HL
-    1336.  00:49E2  CD 1C 4A            		CALL		poner_tile_variable_tile_auxiliar
-    1337.  00:49E5  CD 6D 4A            		CALL		poner_tile_aux_en_marco_patron
-    1338.  00:49E8                      
-    1339.  00:49E8  3A CA C1            		LD			 A, (byteaux1)
-    1340.  00:49EB  11 00 28            		LD			DE, CLRTBLBANCO1
-    1341.  00:49EE  26 00               		LD			 H, 0
-    1342.  00:49F0  6F                  		LD			 L, A
-    1343.  00:49F1  29 29 29            [3]		ADD			HL, HL
-    1344.  00:49F4  19                  		ADD			HL, DE
-    1345.  00:49F5  CD 1C 4A            		CALL		poner_tile_variable_tile_auxiliar
-    1346.  00:49F8  C3 85 4A            		JP			poner_tile_aux_en_marco_color
-    1347.  00:49FB                      fin_nivelX_pinta_marco:
-    1348.  00:49FB                      
-    1349.  00:49FB                      ;;=====================================================
-    1350.  00:49FB                      ;;NIVELX_PINTA_PUERTA
-    1351.  00:49FB                      ;;=====================================================
-    1352.  00:49FB                      ; funcion:  pone el tile en el marco que sea para no liar mucho tengo 
-    1353.  00:49FB                      ; entrada:  A
-    1354.  00:49FB                      ;			nivel 0: 23
-    1355.  00:49FB                      ;			nivel 1: 24
-    1356.  00:49FB                      ;			nivel 2: 25
-    1357.  00:49FB                      ;			nivel 3: 26
-    1358.  00:49FB                      ;			nivel 4: 27
-    1359.  00:49FB                      ;			nivel 5: 28
-    1360.  00:49FB                      ;			nivel 6: 29
-    1361.  00:49FB                      nivelX_pinta_puerta:
-    1362.  00:49FB  32 CA C1            		LD			(byteaux1), A
-    1363.  00:49FE                      		
-    1364.  00:49FE  17 17 17            [3]		RLA
-    1365.  00:4A01  6F                  		LD			 L, A
-    1366.  00:4A02  26 00               		LD			 H, 0
-    1367.  00:4A04  CD 1C 4A            		CALL		poner_tile_variable_tile_auxiliar
-    1368.  00:4A07  CD 9D 4A            		CALL		poner_tile_aux_en_puerta_patron
-    1369.  00:4A0A                      
-    1370.  00:4A0A  3A CA C1            		LD			 A, (byteaux1)
-    1371.  00:4A0D  17 17 17            [3]		RLA
-    1372.  00:4A10  21 00 28            		LD			HL, CLRTBLBANCO1
-    1373.  00:4A13  CD 76 43            		CALL		suma_A_HL
-    1374.  00:4A16  CD 1C 4A            		CALL		poner_tile_variable_tile_auxiliar
-    1375.  00:4A19  C3 B5 4A            		JP			poner_tile_aux_en_puerta_color
-    1376.  00:4A1C                      fin_nivelX_pinta_puerta:
-    1377.  00:4A1C                      
-    1378.  00:4A1C                      
-    1379.  00:4A1C                      poner_tile_variable_tile_auxiliar:
-    1380.  00:4A1C                      		;poniendo patron en memoria RAM
-    1381.  00:4A1C  01 08 00            		LD			BC, 8
-    1382.  00:4A1F  11 28 C0            		LD			DE, tile_auxiliar
-    1383.  00:4A22  C3 59 00            		JP			LDIRMV
-    1384.  00:4A25                      fin_poner_tile_suelo_variable_tile_auxiliar:
-    1385.  00:4A25                      
-    1386.  00:4A25                      poner_tile_aux_en_suelo_patron:
-    1387.  00:4A25                      		;poniendo patron en memoria VRAM
-    1388.  00:4A25  01 08 00            		LD			BC, 8
-    1389.  00:4A28  11 20 08            		LD			DE, CHRTBLBANCO1 + (8  * 4)
-    1390.  00:4A2B  21 28 C0            		LD			HL, tile_auxiliar
-    1391.  00:4A2E  C3 5C 00            		JP			LDIRVM
-    1392.  00:4A31                      fin_poner_tile_aux_en_suelo_patron:
-    1393.  00:4A31                      
-    1394.  00:4A31                      poner_tile_aux_en_suelo_color:
-    1395.  00:4A31                      		;poniendo patron en memoria VRAM
-    1396.  00:4A31  01 08 00            		LD			BC, 8
-    1397.  00:4A34  11 20 28            		LD			DE, CLRTBLBANCO1 + (8  * 4)
-    1398.  00:4A37  21 28 C0            		LD			HL, tile_auxiliar
-    1399.  00:4A3A  C3 5C 00            		JP			LDIRVM
-    1400.  00:4A3D                      fin_poner_tile_aux_en_suelo_color:
-    1401.  00:4A3D                      
-    1402.  00:4A3D                      poner_tile_aux_en_paredes_patron:
-    1403.  00:4A3D                      		;poniendo patron en memoria VRAM
-    1404.  00:4A3D  01 08 00            		LD			BC, 8
-    1405.  00:4A40  11 18 00            		LD			DE, CHRTBL + (8  * 3)
-    1406.  00:4A43  21 28 C0            		LD			HL, tile_auxiliar
-    1407.  00:4A46  CD 5C 00            		CALL		LDIRVM
-    1408.  00:4A49                      		
-    1409.  00:4A49  01 08 00            		LD			BC, 8
-    1410.  00:4A4C  11 18 08            		LD			DE, CHRTBLBANCO1 + (8  * 3)
-    1411.  00:4A4F  21 28 C0            		LD			HL, tile_auxiliar
-    1412.  00:4A52  C3 5C 00            		JP			LDIRVM
-    1413.  00:4A55                      fin_poner_tile_aux_en_paredes_patron:
-    1414.  00:4A55                      
-    1415.  00:4A55                      poner_tile_aux_en_paredes_color:
-    1416.  00:4A55                      		;poniendo patron en memoria VRAM
-    1417.  00:4A55  01 08 00            		LD			BC, 8
-    1418.  00:4A58  11 18 20            		LD			DE, CLRTBL + (8  * 3)
-    1419.  00:4A5B  21 28 C0            		LD			HL, tile_auxiliar
-    1420.  00:4A5E  CD 5C 00            		CALL		LDIRVM
-    1421.  00:4A61                      		
-    1422.  00:4A61  01 08 00            		LD			BC, 8
-    1423.  00:4A64  11 18 28            		LD			DE, CLRTBLBANCO1 + (8  * 3)
-    1424.  00:4A67  21 28 C0            		LD			HL, tile_auxiliar
-    1425.  00:4A6A  C3 5C 00            		JP			LDIRVM
-    1426.  00:4A6D                      fin_poner_tile_aux_en_paredes_color:
-    1427.  00:4A6D                      
-    1428.  00:4A6D                      poner_tile_aux_en_marco_patron:
-    1429.  00:4A6D                      		;poniendo patron en memoria VRAM
-    1430.  00:4A6D  01 08 00            		LD			BC, 8
-    1431.  00:4A70  11 10 00            		LD			DE, CHRTBL + (8  * 2)
-    1432.  00:4A73  21 28 C0            		LD			HL, tile_auxiliar
-    1433.  00:4A76  CD 5C 00            		CALL		LDIRVM
-    1434.  00:4A79                      		
-    1435.  00:4A79  01 08 00            		LD			BC, 8
-    1436.  00:4A7C  11 10 08            		LD			DE, CHRTBLBANCO1 + (8  * 2)
-    1437.  00:4A7F  21 28 C0            		LD			HL, tile_auxiliar
-    1438.  00:4A82  C3 5C 00            		JP			LDIRVM
-    1439.  00:4A85                      fin_poner_tile_aux_en_marco_patron:
-    1440.  00:4A85                      
-    1441.  00:4A85                      poner_tile_aux_en_marco_color:
-    1442.  00:4A85                      		;poniendo patron en memoria VRAM
-    1443.  00:4A85  01 08 00            		LD			BC, 8
-    1444.  00:4A88  11 10 20            		LD			DE, CLRTBL + (8  * 2)
-    1445.  00:4A8B  21 28 C0            		LD			HL, tile_auxiliar
-    1446.  00:4A8E  CD 5C 00            		CALL		LDIRVM
-    1447.  00:4A91                      		
-    1448.  00:4A91  01 08 00            		LD			BC, 8
-    1449.  00:4A94  11 10 28            		LD			DE, CLRTBLBANCO1 + (8  * 2)
-    1450.  00:4A97  21 28 C0            		LD			HL, tile_auxiliar
-    1451.  00:4A9A  C3 5C 00            		JP			LDIRVM
-    1452.  00:4A9D                      fin_poner_tile_aux_en_marco_color:
-    1453.  00:4A9D                      
-    1454.  00:4A9D                      poner_tile_aux_en_puerta_patron:
-    1455.  00:4A9D                      		;poniendo patron en memoria VRAM
-    1456.  00:4A9D  01 08 00            		LD			BC, 8
-    1457.  00:4AA0  11 08 00            		LD			DE, CHRTBL + (8  * 1)
-    1458.  00:4AA3  21 28 C0            		LD			HL, tile_auxiliar
-    1459.  00:4AA6  CD 5C 00            		CALL		LDIRVM
-    1460.  00:4AA9                      		
-    1461.  00:4AA9  01 08 00            		LD			BC, 8
-    1462.  00:4AAC  11 08 08            		LD			DE, CHRTBLBANCO1 + (8  * 1)
-    1463.  00:4AAF  21 28 C0            		LD			HL, tile_auxiliar
-    1464.  00:4AB2  C3 5C 00            		JP			LDIRVM
-    1465.  00:4AB5                      fin_poner_tile_aux_en_puerta_patron:
-    1466.  00:4AB5                      
-    1467.  00:4AB5                      poner_tile_aux_en_puerta_color:
-    1468.  00:4AB5                      		;poniendo patron en memoria VRAM
-    1469.  00:4AB5  01 08 00            		LD			BC, 8
-    1470.  00:4AB8  11 08 20            		LD			DE, CLRTBL + (8  * 1)
-    1471.  00:4ABB  21 28 C0            		LD			HL, tile_auxiliar
-    1472.  00:4ABE  CD 5C 00            		CALL		LDIRVM
-    1473.  00:4AC1                      		
-    1474.  00:4AC1  01 08 00            		LD			BC, 8
-    1475.  00:4AC4  11 08 28            		LD			DE, CLRTBLBANCO1 + (8  * 1)
-    1476.  00:4AC7  21 28 C0            		LD			HL, tile_auxiliar
-    1477.  00:4ACA  C3 5C 00            		JP			LDIRVM
-    1478.  00:4ACD                      fin_poner_tile_aux_en_puerta_color:
-    1479.  00:4ACD                      
-    1480.  00:4ACD                      
-    1481.  00:4ACD                      nivel0_pinta_estrellas:
-    1482.  00:4ACD  01 03 18            		LD			BC, TILMAP + (32 * 0) + 3
-    1483.  00:4AD0  16 1E               		LD			 D, 30
-    1484.  00:4AD2  CD 8A 44            		CALL		pinta_tile_suelto
-    1485.  00:4AD5  01 17 18            		LD			BC, TILMAP + (32 * 0) + 23
-    1486.  00:4AD8  16 1F               		LD			 D, 31
-    1487.  00:4ADA  CD 8A 44            		CALL		pinta_tile_suelto
-    1488.  00:4ADD  01 27 18            		LD			BC, TILMAP + (32 * 1) + 7
-    1489.  00:4AE0  16 1F               		LD			 D, 31
-    1490.  00:4AE2  CD 8A 44            		CALL		pinta_tile_suelto
-    1491.  00:4AE5  01 30 18            		LD			BC, TILMAP + (32 * 1) + 16
-    1492.  00:4AE8  16 1E               		LD			 D, 30
-    1493.  00:4AEA  CD 8A 44            		CALL		pinta_tile_suelto
-    1494.  00:4AED  01 40 18            		LD			BC, TILMAP + (32 * 2) + 0
-    1495.  00:4AF0  16 1E               		LD			 D, 30
-    1496.  00:4AF2  CD 8A 44            		CALL		pinta_tile_suelto
-    1497.  00:4AF5  01 4B 18            		LD			BC, TILMAP + (32 * 2) + 11
-    1498.  00:4AF8  16 1F               		LD			 D, 31
-    1499.  00:4AFA  CD 8A 44            		CALL		pinta_tile_suelto
-    1500.  00:4AFD  01 74 18            		LD			BC, TILMAP + (32 * 3) + 20
-    1501.  00:4B00  16 1F               		LD			 D, 31
-    1502.  00:4B02  CD 8A 44            		CALL		pinta_tile_suelto
-    1503.  00:4B05  01 77 18            		LD			BC, TILMAP + (32 * 3) + 23
-    1504.  00:4B08  16 1E               		LD			 D, 30
-    1505.  00:4B0A  CD 8A 44            		CALL		pinta_tile_suelto
-    1506.  00:4B0D  01 81 18            		LD			BC, TILMAP + (32 * 4) + 1
-    1507.  00:4B10  16 1E               		LD			 D, 30
-    1508.  00:4B12  CD 8A 44            		CALL		pinta_tile_suelto
-    1509.  00:4B15  01 9E 18            		LD			BC, TILMAP + (32 * 4) + 30
-    1510.  00:4B18  16 1F               		LD			 D, 31
-    1511.  00:4B1A  CD 8A 44            		CALL		pinta_tile_suelto
-    1512.  00:4B1D  01 A2 18            		LD			BC, TILMAP + (32 * 5) + 2
-    1513.  00:4B20  16 1F               		LD			 D, 31
-    1514.  00:4B22  CD 8A 44            		CALL		pinta_tile_suelto
-    1515.  00:4B25  01 BC 18            		LD			BC, TILMAP + (32 * 5) + 28
-    1516.  00:4B28  16 1E               		LD			 D, 30
-    1517.  00:4B2A  CD 8A 44            		CALL		pinta_tile_suelto	
-    1518.  00:4B2D  01 C3 18            		LD			BC, TILMAP + (32 * 6) + 3
-    1519.  00:4B30  16 1E               		LD			 D, 30
-    1520.  00:4B32  CD 8A 44            		CALL		pinta_tile_suelto
-    1521.  00:4B35  01 D7 18            		LD			BC, TILMAP + (32 * 6) + 23
-    1522.  00:4B38  16 1F               		LD			 D, 31
-    1523.  00:4B3A  CD 8A 44            		CALL		pinta_tile_suelto
-    1524.  00:4B3D  01 F3 18            		LD			BC, TILMAP + (32 * 7) + 19
-    1525.  00:4B40  16 1F               		LD			 D, 31
-    1526.  00:4B42  CD 8A 44            		CALL		pinta_tile_suelto
-    1527.  00:4B45  01 ED 18            		LD			BC, TILMAP + (32 * 7) + 13
-    1528.  00:4B48  16 1E               		LD			 D, 30
-    1529.  00:4B4A  C3 8A 44            		JP			pinta_tile_suelto
-    1530.  00:4B4D                      fin_nivel0_pinta_estrellas:
-    1531.  00:4B4D                      		
-    1532.  00:4B4D                      nivel0_pinta_luna:
-    1533.  00:4B4D  01 1A 18            		LD			BC, TILMAP + (32 * 0) + 26
-    1534.  00:4B50  16 21               		LD			 D, 33
-    1535.  00:4B52  CD 8A 44            		CALL		pinta_tile_suelto
-    1536.  00:4B55  01 1B 18            		LD			BC, TILMAP + (32 * 0) + 27
-    1537.  00:4B58  16 22               		LD			 D, 34
-    1538.  00:4B5A  CD 8A 44            		CALL		pinta_tile_suelto
-    1539.  00:4B5D  01 3A 18            		LD			BC, TILMAP + (32 * 1) + 26
-    1540.  00:4B60  16 23               		LD			 D, 35
-    1541.  00:4B62  CD 8A 44            		CALL		pinta_tile_suelto
-    1542.  00:4B65  01 3B 18            		LD			BC, TILMAP + (32 * 1) + 27
-    1543.  00:4B68  16 24               		LD			 D, 36
-    1544.  00:4B6A  C3 8A 44            		JP			pinta_tile_suelto
-    1545.  00:4B6D                      fin_nivel0_pinta_luna:
-    1546.  00:4B6D                      
-    1547.  00:4B6D                      
+     803.  00:4763                      ;		LD			 A, (heartbeat_general)
+     804.  00:4763                      ;***************
+     805.  00:4763  3A 32 C0            		LD			 A, (heartbeat_cienpies)	;si pongo el hearbeat_cienpies, porque no se usa si hay calaveras 
+     806.  00:4766                      		
+     807.  00:4766  E6 20               		AND			00100000b
+     808.  00:4768  C2 7C 47            		JP			NZ, .pos2
+     809.  00:476B                      .pos1:
+     810.  00:476B                      		;tiles 196 / 197
+     811.  00:476B  01 AA 18            		LD			BC, TILMAP + 170
+     812.  00:476E  16 A5               		LD			 D, 165
+     813.  00:4770  CD 8A 44            		CALL		pinta_tile_suelto
+     814.  00:4773                      
+     815.  00:4773  01 B5 18            		LD			BC, TILMAP + 170 + 11
+     816.  00:4776  16 A6               		LD			 D, 166
+     817.  00:4778  CD 8A 44            		CALL		pinta_tile_suelto
+     818.  00:477B  C9                  		RET
+     819.  00:477C                      .pos2:
+     820.  00:477C                      		;tiles 197 / 196
+     821.  00:477C  01 AA 18            		LD			BC, TILMAP + 170
+     822.  00:477F  16 A6               		LD			 D, 166
+     823.  00:4781  CD 8A 44            		CALL		pinta_tile_suelto
+     824.  00:4784                      
+     825.  00:4784  01 B5 18            		LD			BC, TILMAP + 170 + 11
+     826.  00:4787  16 A5               		LD			 D, 165
+     827.  00:4789  C3 8A 44            		JP			pinta_tile_suelto
+     828.  00:478C                      fin_flip_calavera_esqueletos:
+     829.  00:478C                      
+     830.  00:478C                      
+     831.  00:478C                      ;;=====================================================
+     832.  00:478C                      ;;CAMBIO_NIVEL_ENTREFASES
+     833.  00:478C                      ;;=====================================================	
+     834.  00:478C                      ; función: 	pone un texto cada vex que se sube o baja de nivel en el castillo
+     835.  00:478C                      cambio_nivel_entrefases:
+     836.  00:478C  CD 13 77            			CALL		musica_off
+     837.  00:478F                      
+     838.  00:478F  CD FC 44            			CALL		borra_mapa
+     839.  00:4792                      
+     840.  00:4792                      			;Ocultamos todos los sprites
+     841.  00:4792  CD BF 47            			CALL		oculta_todos_sprites
+     842.  00:4795                      			
+     843.  00:4795                      			;ocultamos posición superior en mapa
+     844.  00:4795  01 3B 1A            			LD			BC, TILMAP + (17 * 32) + 27
+     845.  00:4798  16 00               			LD		 	D, 0
+     846.  00:479A  CD 8A 44            			CALL		pinta_tile_suelto	
+     847.  00:479D                      				
+     848.  00:479D                      			;ocultamos posición inferior en mapa
+     849.  00:479D  01 FB 1A            			LD			BC, TILMAP + (23 * 32) + 27
+     850.  00:47A0  16 00               			LD		 	D, 0
+     851.  00:47A2  CD 8A 44            			CALL		pinta_tile_suelto	
+     852.  00:47A5                      
+     853.  00:47A5                      			;ocultamos numero de nivel
+     854.  00:47A5  01 B4 1A            			LD			BC, TILMAP + (21 * 32) + 20
+     855.  00:47A8  16 00               			LD		 	D, 0
+     856.  00:47AA  CD 8A 44            			CALL		pinta_tile_suelto	
+     857.  00:47AD                      
+     858.  00:47AD                      			;cargamos mapa de pantalla banco 1 y 2
+     859.  00:47AD  21 69 8F            			LD			HL, tiles_mapa_entrefases
+     860.  00:47B0  11 00 18            			LD			DE, TILMAP
+     861.  00:47B3  CD 10 8B            			CALL		depack_VRAM
+     862.  00:47B6                      			
+     863.  00:47B6  CD 6E B7            			CALL		pinta_texto_entrefases
+     864.  00:47B9                      
+     865.  00:47B9  CD A7 43            			CALL		espera_estandar
+     866.  00:47BC                      		
+     867.  00:47BC                      			;repongo la música y efectos
+     868.  00:47BC  C3 C3 48            			JP			reponer_musica_tras_muerte_cambio_nivel	
+     869.  00:47BF                      fin_cabio_nivel_entrefases:
+     870.  00:47BF                      
+     871.  00:47BF                      
+     872.  00:47BF                      ;;=====================================================
+     873.  00:47BF                      ;;OCULTA_TODOS_SPRITES
+     874.  00:47BF                      ;;=====================================================	
+     875.  00:47BF                      ; función: 	oculta el sprite 0 con y=208 para que oculte el resto de sprites
+     876.  00:47BF                      ; entrada: 	
+     877.  00:47BF                      ; salida: 	-
+     878.  00:47BF                      ; toca:		TODOS
+     879.  00:47BF                      oculta_todos_sprites:	
+     880.  00:47BF                      ;~ 1B00		Sprite attributes
+     881.  00:47BF                      ;~ BORRASPRITESIG valor 208 que coulta todos los sprites de un plano haci a los superiores
+     882.  00:47BF  01 00 1B            			LD			BC, #1B00
+     883.  00:47C2  16 D0               			LD			 D, BORRASPRITESIG
+     884.  00:47C4  C3 8A 44            			JP			pinta_tile_suelto
+     885.  00:47C7                      fin_oculta_todos_sprites:
+     886.  00:47C7                      
+     887.  00:47C7                      
+     888.  00:47C7                      ;;=====================================================
+     889.  00:47C7                      ;;BORRA_PANTALLA_INICIO
+     890.  00:47C7                      ;;=====================================================	
+     891.  00:47C7                      ; función: 	borra la pantalla de inicio de una forma chula caracter a caracter
+     892.  00:47C7                      ; entrada: 	-
+     893.  00:47C7                      ; salida: 	-
+     894.  00:47C7                      ; toca:		AF, BC
+     895.  00:47C7                      borra_pantalla_inicio:
+     896.  00:47C7  01 00 01            			LD			 BC, 256	;tiles por pantalla en screen2 - 1 (768 total)
+     897.  00:47CA  11 00 00            			LD			 DE, 0		;posición tile "vacio"
+     898.  00:47CD                      .loop:
+     899.  00:47CD  C5                  			PUSH		BC
+     900.  00:47CE  01 00 19            				LD			BC, TILMAP + 256
+     901.  00:47D1  7B                  				LD			 A, E
+     902.  00:47D2  CD 6A 43            				CALL	suma_A_BC
+     903.  00:47D5                      			
+     904.  00:47D5  CD 8A 44            				CALL		pinta_tile_suelto
+     905.  00:47D8  1C                  				INC			 E
+     906.  00:47D9                      		
+     907.  00:47D9  01 52 03            				LD			 BC, 850
+     908.  00:47DC  CD 9C 43            				CALL		retardo16bits
+     909.  00:47DF  C1                  			POP			BC
+     910.  00:47E0  0B                  			DEC			BC
+     911.  00:47E1  78                  			LD			 A, B
+     912.  00:47E2  B1                  			OR			 C
+     913.  00:47E3  C2 CD 47            			JP			NZ, .loop
+     914.  00:47E6                      			
+     915.  00:47E6  C3 5F 48            			JP			limpia_pantalla_completa
+     916.  00:47E9                      fin_borra_pantalla_inicio:
+     917.  00:47E9                      
+     918.  00:47E9                      
+     919.  00:47E9                      ;;=====================================================
+     920.  00:47E9                      ;;MUESTRA_PANTALLA_INICIAL
+     921.  00:47E9                      ;;=====================================================	
+     922.  00:47E9                      ; función: 	muestra la pantalla de inicio del juego y queda ahí hasta que se pulse disparo (joystick o espacio)
+     923.  00:47E9                      ; entrada: 	
+     924.  00:47E9                      ; salida: 	
+     925.  00:47E9                      ; toca:		TODOS.... muy importante DE
+     926.  00:47E9                      muestra_pantalla_inicial:
+     927.  00:47E9  CD 65 48            		CALL		limpia_pantalla
+     928.  00:47EC                      		
+     929.  00:47EC                      		;cargamos mapa de pantalla completa
+     930.  00:47EC  21 85 8E            		LD			HL, tiles_mapa_inicio
+     931.  00:47EF  11 00 18            		LD			DE, TILMAP
+     932.  00:47F2  CD 10 8B            		CALL		depack_VRAM
+     933.  00:47F5                      		
+     934.  00:47F5                      		;cargamos tiles y colores del banco 1
+     935.  00:47F5                      		;cargamos los patrones
+     936.  00:47F5  21 00 8C            		LD			HL, tiles_patrones_inicio
+     937.  00:47F8  11 00 08            		LD			DE, CHRTBL + #0800
+     938.  00:47FB  CD 10 8B            		CALL		depack_VRAM
+     939.  00:47FE                      		;cargamos los colores
+     940.  00:47FE  21 11 8E            		LD			HL, tiles_color_inicio
+     941.  00:4801  11 00 28            		LD			DE, CLRTBL + #0800
+     942.  00:4804  CD 10 8B            		CALL		depack_VRAM
+     943.  00:4807                      		
+     944.  00:4807                      		;cangando banco 2
+     945.  00:4807                      		;cargamos los patrones
+     946.  00:4807  21 0B 94            		LD			HL,tiles_patrones_marcador
+     947.  00:480A  11 00 10            		LD			DE,CHRTBL + #1000
+     948.  00:480D  CD 10 8B            		CALL		depack_VRAM	
+     949.  00:4810                      		;cargamos los colores
+     950.  00:4810  21 5E 95            		LD			HL,tiles_color_marcador
+     951.  00:4813  11 00 30            		LD			DE,CLRTBL + #1000
+     952.  00:4816  CD 10 8B            		CALL		depack_VRAM
+     953.  00:4819                      	
+     954.  00:4819  CD 9E B7            		CALL		pinta_textos_inicio_disparo
+     955.  00:481C  CD B6 B7            		CALL		pinta_textos_inicio_autoria
+     956.  00:481F                      
+     957.  00:481F                      .mientras_nopulsado:
+     958.  00:481F                      		;compruebo espacio
+     959.  00:481F  AF                  		XOR			 A
+     960.  00:4820  CD D8 00            		CALL		#00D8
+     961.  00:4823  47                  		LD			 B, A
+     962.  00:4824                      		
+     963.  00:4824  C5                  		PUSH		BC
+     964.  00:4825                      		;compruebo botón 1 joystick
+     965.  00:4825  3E 01               		LD			 A, 1
+     966.  00:4827  CD D8 00            		CALL		#00D8
+     967.  00:482A  C1                  		POP 		BC
+     968.  00:482B                      		
+     969.  00:482B  B0                  		OR			 B		;uno el resultado del espacio + el resultado del botón de disparo
+     970.  00:482C                      		
+     971.  00:482C  CA 1F 48            		JP			 Z, .mientras_nopulsado	;si A=0 no se pulsó ni disparo ni botón
+     972.  00:482F                      		
+     973.  00:482F                      		;ejecuto sonido
+     974.  00:482F  3E 04               		LD			 A, SONIDOINICIO	;4
+     975.  00:4831  0E 01               		LD			 C, 1
+     976.  00:4833  CD 38 7D            		CALL		ayFX_INIT
+     977.  00:4836                      		
+     978.  00:4836                      		;parpadeo del texto
+     979.  00:4836  06 07               		LD			 B,7
+     980.  00:4838                      .parpadeo:		
+     981.  00:4838  C5                  		PUSH		BC
+     982.  00:4839                      
+     983.  00:4839  01 28 23            		LD 			BC, 9000
+     984.  00:483C  CD 9C 43            		CALL		retardo16bits
+     985.  00:483F                      		
+     986.  00:483F  CD AA B7            		CALL		pinta_textos_inicio_disparo_blanco
+     987.  00:4842                      		
+     988.  00:4842  01 28 23            		LD 			BC, 9000
+     989.  00:4845  CD 9C 43            		CALL		retardo16bits
+     990.  00:4848                      		
+     991.  00:4848  CD 9E B7            		CALL		pinta_textos_inicio_disparo
+     992.  00:484B                      		
+     993.  00:484B  C1                  		POP			BC
+     994.  00:484C  10 EA               		DJNZ 		.parpadeo
+     995.  00:484E                      		
+     996.  00:484E                      		;borra pantalla bonito
+     997.  00:484E  CD C7 47            		CALL		borra_pantalla_inicio
+     998.  00:4851                      		
+     999.  00:4851  AF                  		XOR			 A ;A=0 musica normal
+    1000.  00:4852  C3 09 77            		JP			musica_on
+    1001.  00:4855                      fin_muestra_pantalla_inicial:
+    1002.  00:4855                      
+    1003.  00:4855                      
+    1004.  00:4855                      ;;=====================================================
+    1005.  00:4855                      ;;LIMPIA_PANTALLA_SUPERIOR
+    1006.  00:4855                      ;;=====================================================	
+    1007.  00:4855                      ; función: limpia toda la pantlla poniendo el tile vacio en todas las posiciones (el tile vacio está definido en los 3 bancos)
+    1008.  00:4855                      limpia_pantalla_superior:
+    1009.  00:4855                      		;limpia todo y evita que se vea cuando se cargan los nuevos tiles por pantalla
+    1010.  00:4855  AF                  		XOR		 	 A
+    1011.  00:4856  21 00 18            		LD			HL, TILMAP
+    1012.  00:4859  01 00 02            		LD			BC, 512
+    1013.  00:485C  C3 56 00            		JP			FILVRM
+    1014.  00:485F                      fin_limpia_pantalla_superior:
+    1015.  00:485F                      
+    1016.  00:485F                      
+    1017.  00:485F                      ;;=====================================================
+    1018.  00:485F                      ;;LIMPIA_PANTALLA_COMPLETA
+    1019.  00:485F                      ;;=====================================================	
+    1020.  00:485F                      ; función: limpia toda la pantlla poniendo el tile vacio en todas las posiciones (el tile vacio está definido en los 3 bancos)
+    1021.  00:485F                      limpia_pantalla_completa:
+    1022.  00:485F                      		;oculta los sprites que haya en pantalla
+    1023.  00:485F  CD BF 47            		CALL		oculta_todos_sprites
+    1024.  00:4862                      		;limpia los tiles
+    1025.  00:4862  C3 65 48            		JP			limpia_pantalla
+    1026.  00:4865                      fin_limpia_pantalla_completa:
+    1027.  00:4865                      
+    1028.  00:4865                      
+    1029.  00:4865                      ;;=====================================================
+    1030.  00:4865                      ;;LIMPIA_PANTALLA
+    1031.  00:4865                      ;;=====================================================	
+    1032.  00:4865                      ; función: limpia tiles en bancos
+    1033.  00:4865                      limpia_pantalla:
+    1034.  00:4865                      			;cargamos tiles y colores del banco 0
+    1035.  00:4865                      			;cargamos los patrones
+    1036.  00:4865  21 59 A2            			LD			HL, tiles_patrones_vacio
+    1037.  00:4868  11 00 00            			LD			DE, CHRTBL
+    1038.  00:486B  CD 10 8B            			CALL		depack_VRAM
+    1039.  00:486E                      			;cargamos los colores
+    1040.  00:486E  21 63 A2            			LD			HL, tiles_color_vacio
+    1041.  00:4871  11 00 20            			LD			DE, CLRTBL
+    1042.  00:4874  CD 10 8B            			CALL		depack_VRAM
+    1043.  00:4877                      			
+    1044.  00:4877                      			;limpia todo y evita que se vea cuando se cargan los nuevos tiles por pantalla
+    1045.  00:4877  AF                  			XOR		 	 A
+    1046.  00:4878  21 00 18            			LD			HL, TILMAP
+    1047.  00:487B  01 00 03            			LD			BC, 768
+    1048.  00:487E  C3 56 00            			JP			FILVRM
+    1049.  00:4881                      fin_limpia_pantalla:
+    1050.  00:4881                      
+    1051.  00:4881                      
+    1052.  00:4881                      ;;=====================================================
+    1053.  00:4881                      ;;OCULTA_TILE_ENERGIA_MINIMA
+    1054.  00:4881                      ;;=====================================================	
+    1055.  00:4881                      ; función: limpia tile de energía mínima
+    1056.  00:4881                      oculta_tile_energia_minima:
+    1057.  00:4881  3E 00               		LD			 A, TILENEGRO
+    1058.  00:4883  21 88 1A            		LD			HL, TILMAP + TILEENERG1
+    1059.  00:4886  C3 4D 00            		JP			WRTVRM
+    1060.  00:4889                      fin_oculta_tile_energia_minima:
+    1061.  00:4889                      		
+    1062.  00:4889                      
+    1063.  00:4889                      ;;=====================================================
+    1064.  00:4889                      ;;OCULTA_TILE_VIDA0
+    1065.  00:4889                      ;;=====================================================	
+    1066.  00:4889                      ; función: limpia tile de de vida 0
+    1067.  00:4889                      oculta_tile_vida0:
+    1068.  00:4889  3E 00               		LD			 A, TILENEGRO
+    1069.  00:488B  21 48 1A            		LD			HL, TILMAP + TILEVIDA1
+    1070.  00:488E  C3 4D 00            		JP			WRTVRM
+    1071.  00:4891                      fin_oculta_tile_vida0:
+    1072.  00:4891                      
+    1073.  00:4891                      
+    1074.  00:4891                      ;;=====================================================
+    1075.  00:4891                      ;;UNA_VIDA_MENOS
+    1076.  00:4891                      ;;=====================================================
+    1077.  00:4891                      ; funcion: muestra mensaje cuando te matan una vida
+    1078.  00:4891                      una_vida_menos;
+    1079.  00:4891                      		;paro música		
+    1080.  00:4891  CD 13 77            		CALL		musica_off
+    1081.  00:4894                      		
+    1082.  00:4894  3A 01 C0            		LD			 A, (prota_vidas)
+    1083.  00:4897  B7                  		OR			 A
+    1084.  00:4898  C2 A2 48            		JP			NZ, quedan_vidas
+    1085.  00:489B                      no_quedan_vidas:
+    1086.  00:489B                      			;gameover normal (tipo 1)
+    1087.  00:489B  AF                  			XOR			 A
+    1088.  00:489C  32 1D C2            			LD			(tipo_gameover), A
+    1089.  00:489F  C3 BF 42            			JP			game_over
+    1090.  00:48A2                      
+    1091.  00:48A2                      quedan_vidas:
+    1092.  00:48A2                      			;vacia vida (el nivel mínimo lo pone en negro)
+    1093.  00:48A2  CD 81 48            			CALL		oculta_tile_energia_minima
+    1094.  00:48A5                      		
+    1095.  00:48A5                      			;oculta los sprites que haya en pantalla
+    1096.  00:48A5  CD BF 47            			CALL		oculta_todos_sprites
+    1097.  00:48A8                      
+    1098.  00:48A8                      			;limpia superior pantalla
+    1099.  00:48A8  CD 55 48            			CALL		limpia_pantalla_superior
+    1100.  00:48AB                      		
+    1101.  00:48AB  21 A2 B4            			LD			HL, texto_vidamenos ;guardo puntero al array a pintar (como psar por referencia)
+    1102.  00:48AE  01 10 00            			LD			BC, 16				;nº posiciones a pintar
+    1103.  00:48B1  11 C8 18            			LD			DE, TILMAP + 200	;destino en vram
+    1104.  00:48B4  CD 5C 00            			CALL		LDIRVM
+    1105.  00:48B7                      
+    1106.  00:48B7  CD A7 43            			CALL		espera_estandar
+    1107.  00:48BA                      			
+    1108.  00:48BA                      			;repinto la pantalla y las puertas que correspondan
+    1109.  00:48BA  CD F6 43            			CALL		pinta_parte_superior_pantalla
+    1110.  00:48BD  CD 8B 4D            			CALL		pinta_puertas
+    1111.  00:48C0                      	
+    1112.  00:48C0  C3 C3 48            			JP			reponer_musica_tras_muerte_cambio_nivel
+    1113.  00:48C3                      fin_una_vida_menos:
+    1114.  00:48C3                      
+    1115.  00:48C3                      
+    1116.  00:48C3                      ;;=====================================================
+    1117.  00:48C3                      ;;REPONER_MUSICA_TRAS_MUERTE_CAMBIO_NIVEL
+    1118.  00:48C3                      ;;=====================================================	
+    1119.  00:48C3                      ; función:  evita repetir el mismo código si te han matado o cambias de nivel
+    1120.  00:48C3                      ;			si está muerto drácula o estás en una pantalla con jefe (posy = 6) musica jefe A=1
+    1121.  00:48C3                      ;			si no A = 0 musica normal
+    1122.  00:48C3                      ; nota:		se aprovecha para cuando matas a drácula (se hace más lento pero ahorras código)
+    1123.  00:48C3                      reponer_musica_tras_muerte_cambio_nivel:
+    1124.  00:48C3                      			;repongo la música y efectos
+    1125.  00:48C3  06 00               			LD			 B, 0
+    1126.  00:48C5                      ;está muerto dracula
+    1127.  00:48C5                      .examina_dracula_muerto:
+    1128.  00:48C5  3A 1C C2            			LD			 A, (dracula_muerto)
+    1129.  00:48C8  B7                  			OR			 A
+    1130.  00:48C9  CA D1 48            			JP			 Z, .examina_pantalla_jefe
+    1131.  00:48CC  06 01               			LD			 B, 1 
+    1132.  00:48CE  C3 DB 48            			JP			.fin_examina_tipo_musica
+    1133.  00:48D1                      ;estoy en pantalla de jefe
+    1134.  00:48D1                      .examina_pantalla_jefe:
+    1135.  00:48D1  3A 04 C0            			LD			 A, (prota_pos_mapy)
+    1136.  00:48D4  FE 06               			CP			 6
+    1137.  00:48D6  C2 DB 48            			JP			 NZ, .fin_examina_tipo_musica
+    1138.  00:48D9  06 01               			LD			 B, 1 
+    1139.  00:48DB                      .fin_examina_tipo_musica:
+    1140.  00:48DB  78                  			LD			 A, B
+    1141.  00:48DC  C3 09 77            			JP			musica_on			
+    1142.  00:48DF                      fin_reponer_musica_tras_muerte_cambio_nivel:
+    1143.  00:48DF                      
+    1144.  00:48DF                      
+    1145.  00:48DF                      ;;=====================================================
+    1146.  00:48DF                      ;;INSTRUCCIONES PARA PINTAR PANTALLAS DIFERENTES SEGÚN NIVEL
+    1147.  00:48DF                      ;;=====================================================	
+    1148.  00:48DF                      actualiza_tiles_nivel:
+    1149.  00:48DF  3A 00 C0            		LD			 A, (prota_nivel)
+    1150.  00:48E2  B7                  		OR			 A
+    1151.  00:48E3                      .examina_si_nivel0:
+    1152.  00:48E3  C2 01 49            		JP			NZ, .examina_si_nivel1
+    1153.  00:48E6  3E 08               		LD			 A, 8 					
+    1154.  00:48E8  CD 97 49            		CALL		nivelX_pinta_suelo
+    1155.  00:48EB                      		
+    1156.  00:48EB  3E 10               		LD			 A, 16 					
+    1157.  00:48ED  CD B8 49            		CALL		nivelX_pinta_pared
+    1158.  00:48F0                      		
+    1159.  00:48F0  3E 60               		LD			 A, 96
+    1160.  00:48F2  CD D9 49            		CALL		nivelX_pinta_marco
+    1161.  00:48F5                      		
+    1162.  00:48F5  3E 17               		LD			 A, 23 	
+    1163.  00:48F7  CD FB 49            		CALL		nivelX_pinta_puerta
+    1164.  00:48FA                      
+    1165.  00:48FA  CD CD 4A            		CALL		nivel0_pinta_estrellas	;pinta estrellas (2 por linea)
+    1166.  00:48FD  CD 4D 4B            		CALL		nivel0_pinta_luna	
+    1167.  00:4900  C9                  		RET
+    1168.  00:4901                      .examina_si_nivel1:
+    1169.  00:4901  FE 01               		CP			 1
+    1170.  00:4903  C2 1B 49            		JP			NZ, .examina_si_nivel2
+    1171.  00:4906                      		
+    1172.  00:4906  3E 09               		LD			 A, 9 
+    1173.  00:4908  CD 97 49            		CALL		nivelX_pinta_suelo
+    1174.  00:490B                      		
+    1175.  00:490B  3E 11               		LD			 A, 17					
+    1176.  00:490D  CD B8 49            		CALL		nivelX_pinta_pared
+    1177.  00:4910                      		
+    1178.  00:4910  3E 61               		LD			 A, 97
+    1179.  00:4912  CD D9 49            		CALL		nivelX_pinta_marco
+    1180.  00:4915                      		
+    1181.  00:4915  3E 18               		LD			 A, 24
+    1182.  00:4917  CD FB 49            		CALL		nivelX_pinta_puerta
+    1183.  00:491A  C9                  		RET
+    1184.  00:491B                      .examina_si_nivel2:
+    1185.  00:491B  FE 02               		CP			 2
+    1186.  00:491D  C2 35 49            		JP			NZ, .examina_si_nivel3
+    1187.  00:4920                      		
+    1188.  00:4920  3E 0A               		LD			 A, 10
+    1189.  00:4922  CD 97 49            		CALL		nivelX_pinta_suelo
+    1190.  00:4925                      		
+    1191.  00:4925  3E 12               		LD			 A, 18				
+    1192.  00:4927  CD B8 49            		CALL		nivelX_pinta_pared
+    1193.  00:492A                      		
+    1194.  00:492A  3E 62               		LD			 A, 98
+    1195.  00:492C  CD D9 49            		CALL		nivelX_pinta_marco
+    1196.  00:492F                      		
+    1197.  00:492F  3E 19               		LD			 A, 25
+    1198.  00:4931  CD FB 49            		CALL		nivelX_pinta_puerta
+    1199.  00:4934  C9                  		RET
+    1200.  00:4935                      .examina_si_nivel3:
+    1201.  00:4935  FE 03               		CP			 3
+    1202.  00:4937  C2 4F 49            		JP			NZ, .examina_si_nivel4
+    1203.  00:493A                      		
+    1204.  00:493A  3E 0B               		LD			 A, 11
+    1205.  00:493C  CD 97 49            		CALL		nivelX_pinta_suelo
+    1206.  00:493F                      		
+    1207.  00:493F  3E 13               		LD			 A, 19				
+    1208.  00:4941  CD B8 49            		CALL		nivelX_pinta_pared
+    1209.  00:4944                      		
+    1210.  00:4944  3E 63               		LD			 A, 99
+    1211.  00:4946  CD D9 49            		CALL		nivelX_pinta_marco
+    1212.  00:4949                      		
+    1213.  00:4949  3E 1A               		LD			 A, 26
+    1214.  00:494B  CD FB 49            		CALL		nivelX_pinta_puerta
+    1215.  00:494E  C9                  		RET
+    1216.  00:494F                      .examina_si_nivel4:
+    1217.  00:494F  FE 04               		CP			 4
+    1218.  00:4951  C2 69 49            		JP			NZ, .examina_si_nivel5
+    1219.  00:4954                      		
+    1220.  00:4954  3E 0C               		LD			 A, 12
+    1221.  00:4956  CD 97 49            		CALL		nivelX_pinta_suelo
+    1222.  00:4959                      		
+    1223.  00:4959  3E 14               		LD			 A, 20				
+    1224.  00:495B  CD B8 49            		CALL		nivelX_pinta_pared
+    1225.  00:495E                      		
+    1226.  00:495E  3E 64               		LD			 A, 100
+    1227.  00:4960  CD D9 49            		CALL		nivelX_pinta_marco
+    1228.  00:4963                      		
+    1229.  00:4963  3E 1B               		LD			 A, 27
+    1230.  00:4965  CD FB 49            		CALL		nivelX_pinta_puerta
+    1231.  00:4968  C9                  		RET
+    1232.  00:4969                      .examina_si_nivel5:
+    1233.  00:4969  FE 05               		CP			 5
+    1234.  00:496B  C2 83 49            		JP			NZ, .examina_si_nivel6
+    1235.  00:496E                      		
+    1236.  00:496E  3E 0D               		LD			 A, 13
+    1237.  00:4970  CD 97 49            		CALL		nivelX_pinta_suelo
+    1238.  00:4973                      		
+    1239.  00:4973  3E 15               		LD			 A, 21				
+    1240.  00:4975  CD B8 49            		CALL		nivelX_pinta_pared
+    1241.  00:4978                      		
+    1242.  00:4978  3E 65               		LD			 A, 101
+    1243.  00:497A  CD D9 49            		CALL		nivelX_pinta_marco
+    1244.  00:497D                      		
+    1245.  00:497D  3E 1C               		LD			 A, 28
+    1246.  00:497F  CD FB 49            		CALL		nivelX_pinta_puerta
+    1247.  00:4982  C9                  		RET
+    1248.  00:4983                      .examina_si_nivel6:
+    1249.  00:4983  3E 0E               		LD			 A, 14
+    1250.  00:4985  CD 97 49            		CALL		nivelX_pinta_suelo
+    1251.  00:4988                      		
+    1252.  00:4988  3E 16               		LD			 A, 22				
+    1253.  00:498A  CD B8 49            		CALL		nivelX_pinta_pared
+    1254.  00:498D                      		
+    1255.  00:498D  3E 66               		LD			 A, 102
+    1256.  00:498F  CD D9 49            		CALL		nivelX_pinta_marco
+    1257.  00:4992                      		
+    1258.  00:4992  3E 1D               		LD			 A, 29
+    1259.  00:4994  C3 FB 49            		JP			nivelX_pinta_puerta
+    1260.  00:4997                      fin_actualiza_tiles_nivel:
+    1261.  00:4997                      
+    1262.  00:4997                      
+    1263.  00:4997                      ;;=====================================================
+    1264.  00:4997                      ;;NIVELX_PINTA_SUELO
+    1265.  00:4997                      ;;=====================================================
+    1266.  00:4997                      ; funcion:  pone el tile y el color que se le pase como parámetro en el suelo
+    1267.  00:4997                      ; entrada:  A, byteaux1 con el nivel del suelo pero valores
+    1268.  00:4997                      ;			nivel 0: DE 8
+    1269.  00:4997                      ;			nivel 1: DE 9
+    1270.  00:4997                      ;			nivel 2: DE 10
+    1271.  00:4997                      ;			nivel 3: DE 11
+    1272.  00:4997                      ;			nivel 4: DE 12
+    1273.  00:4997                      ;			nivel 5: DE 13
+    1274.  00:4997                      ;			nivel 6: DE 14
+    1275.  00:4997                      nivelX_pinta_suelo:
+    1276.  00:4997  32 CA C1            		LD			(byteaux1), A
+    1277.  00:499A                      		
+    1278.  00:499A  17 17 17            [3]		RLA
+    1279.  00:499D  6F                  		LD			 L, A
+    1280.  00:499E  26 00               		LD			 H, 0
+    1281.  00:49A0  CD 1C 4A            		CALL		poner_tile_variable_tile_auxiliar
+    1282.  00:49A3  CD 25 4A            		CALL		poner_tile_aux_en_suelo_patron
+    1283.  00:49A6                      
+    1284.  00:49A6  3A CA C1            		LD			 A, (byteaux1)
+    1285.  00:49A9  17 17 17            [3]		RLA
+    1286.  00:49AC  21 00 28            		LD			HL, CLRTBLBANCO1
+    1287.  00:49AF  CD 76 43            		CALL		suma_A_HL
+    1288.  00:49B2  CD 1C 4A            		CALL		poner_tile_variable_tile_auxiliar
+    1289.  00:49B5  C3 31 4A            		JP			poner_tile_aux_en_suelo_color
+    1290.  00:49B8                      fin_nivelX_pinta_suelo:
+    1291.  00:49B8                      
+    1292.  00:49B8                      ;;=====================================================
+    1293.  00:49B8                      ;;NIVELX_PINTA_PARED
+    1294.  00:49B8                      ;;=====================================================
+    1295.  00:49B8                      ; funcion:  pone el tile y el color que se le pase como parámetro en el suelo
+    1296.  00:49B8                      ; entrada:  A
+    1297.  00:49B8                      ;			nivel 0: DE 8
+    1298.  00:49B8                      ;			nivel 1: DE 9
+    1299.  00:49B8                      ;			nivel 2: DE 10
+    1300.  00:49B8                      ;			nivel 3: DE 11
+    1301.  00:49B8                      ;			nivel 4: DE 12
+    1302.  00:49B8                      ;			nivel 5: DE 13
+    1303.  00:49B8                      ;			nivel 6: DE 14
+    1304.  00:49B8                      nivelX_pinta_pared:
+    1305.  00:49B8  32 CA C1            		LD			(byteaux1), A
+    1306.  00:49BB                      		
+    1307.  00:49BB  17 17 17            [3]		RLA
+    1308.  00:49BE  6F                  		LD			 L, A
+    1309.  00:49BF  26 00               		LD			 H, 0
+    1310.  00:49C1  CD 1C 4A            		CALL		poner_tile_variable_tile_auxiliar
+    1311.  00:49C4  CD 3D 4A            		CALL		poner_tile_aux_en_paredes_patron
+    1312.  00:49C7                      
+    1313.  00:49C7  3A CA C1            		LD			 A, (byteaux1)
+    1314.  00:49CA  17 17 17            [3]		RLA
+    1315.  00:49CD  21 00 28            		LD			HL, CLRTBLBANCO1
+    1316.  00:49D0  CD 76 43            		CALL		suma_A_HL
+    1317.  00:49D3  CD 1C 4A            		CALL		poner_tile_variable_tile_auxiliar
+    1318.  00:49D6  C3 55 4A            		JP			poner_tile_aux_en_paredes_color
+    1319.  00:49D9                      fin_nivelX_pinta_pared:
+    1320.  00:49D9                      
+    1321.  00:49D9                      ;;=====================================================
+    1322.  00:49D9                      ;;NIVELX_PINTA_MARCO
+    1323.  00:49D9                      ;;=====================================================
+    1324.  00:49D9                      ; funcion:  pone el tile en el marco que sea para no liar mucho tengo 
+    1325.  00:49D9                      ; entrada:  A
+    1326.  00:49D9                      ;			nivel 0: 96
+    1327.  00:49D9                      ;			nivel 1: 97
+    1328.  00:49D9                      ;			nivel 2: 98
+    1329.  00:49D9                      ;			nivel 3: 99
+    1330.  00:49D9                      ;			nivel 4: 100
+    1331.  00:49D9                      ;			nivel 5: 101
+    1332.  00:49D9                      ;			nivel 6: 102
+    1333.  00:49D9                      nivelX_pinta_marco:
+    1334.  00:49D9  32 CA C1            		LD			(byteaux1), A
+    1335.  00:49DC                      
+    1336.  00:49DC  26 00               		LD			 H, 0
+    1337.  00:49DE  6F                  		LD			 L, A
+    1338.  00:49DF  29 29 29            [3]		ADD			HL, HL
+    1339.  00:49E2  CD 1C 4A            		CALL		poner_tile_variable_tile_auxiliar
+    1340.  00:49E5  CD 6D 4A            		CALL		poner_tile_aux_en_marco_patron
+    1341.  00:49E8                      
+    1342.  00:49E8  3A CA C1            		LD			 A, (byteaux1)
+    1343.  00:49EB  11 00 28            		LD			DE, CLRTBLBANCO1
+    1344.  00:49EE  26 00               		LD			 H, 0
+    1345.  00:49F0  6F                  		LD			 L, A
+    1346.  00:49F1  29 29 29            [3]		ADD			HL, HL
+    1347.  00:49F4  19                  		ADD			HL, DE
+    1348.  00:49F5  CD 1C 4A            		CALL		poner_tile_variable_tile_auxiliar
+    1349.  00:49F8  C3 85 4A            		JP			poner_tile_aux_en_marco_color
+    1350.  00:49FB                      fin_nivelX_pinta_marco:
+    1351.  00:49FB                      
+    1352.  00:49FB                      ;;=====================================================
+    1353.  00:49FB                      ;;NIVELX_PINTA_PUERTA
+    1354.  00:49FB                      ;;=====================================================
+    1355.  00:49FB                      ; funcion:  pone el tile en el marco que sea para no liar mucho tengo 
+    1356.  00:49FB                      ; entrada:  A
+    1357.  00:49FB                      ;			nivel 0: 23
+    1358.  00:49FB                      ;			nivel 1: 24
+    1359.  00:49FB                      ;			nivel 2: 25
+    1360.  00:49FB                      ;			nivel 3: 26
+    1361.  00:49FB                      ;			nivel 4: 27
+    1362.  00:49FB                      ;			nivel 5: 28
+    1363.  00:49FB                      ;			nivel 6: 29
+    1364.  00:49FB                      nivelX_pinta_puerta:
+    1365.  00:49FB  32 CA C1            		LD			(byteaux1), A
+    1366.  00:49FE                      		
+    1367.  00:49FE  17 17 17            [3]		RLA
+    1368.  00:4A01  6F                  		LD			 L, A
+    1369.  00:4A02  26 00               		LD			 H, 0
+    1370.  00:4A04  CD 1C 4A            		CALL		poner_tile_variable_tile_auxiliar
+    1371.  00:4A07  CD 9D 4A            		CALL		poner_tile_aux_en_puerta_patron
+    1372.  00:4A0A                      
+    1373.  00:4A0A  3A CA C1            		LD			 A, (byteaux1)
+    1374.  00:4A0D  17 17 17            [3]		RLA
+    1375.  00:4A10  21 00 28            		LD			HL, CLRTBLBANCO1
+    1376.  00:4A13  CD 76 43            		CALL		suma_A_HL
+    1377.  00:4A16  CD 1C 4A            		CALL		poner_tile_variable_tile_auxiliar
+    1378.  00:4A19  C3 B5 4A            		JP			poner_tile_aux_en_puerta_color
+    1379.  00:4A1C                      fin_nivelX_pinta_puerta:
+    1380.  00:4A1C                      
+    1381.  00:4A1C                      
+    1382.  00:4A1C                      poner_tile_variable_tile_auxiliar:
+    1383.  00:4A1C                      		;poniendo patron en memoria RAM
+    1384.  00:4A1C  01 08 00            		LD			BC, 8
+    1385.  00:4A1F  11 28 C0            		LD			DE, tile_auxiliar
+    1386.  00:4A22  C3 59 00            		JP			LDIRMV
+    1387.  00:4A25                      fin_poner_tile_suelo_variable_tile_auxiliar:
+    1388.  00:4A25                      
+    1389.  00:4A25                      poner_tile_aux_en_suelo_patron:
+    1390.  00:4A25                      		;poniendo patron en memoria VRAM
+    1391.  00:4A25  01 08 00            		LD			BC, 8
+    1392.  00:4A28  11 20 08            		LD			DE, CHRTBLBANCO1 + (8  * 4)
+    1393.  00:4A2B  21 28 C0            		LD			HL, tile_auxiliar
+    1394.  00:4A2E  C3 5C 00            		JP			LDIRVM
+    1395.  00:4A31                      fin_poner_tile_aux_en_suelo_patron:
+    1396.  00:4A31                      
+    1397.  00:4A31                      poner_tile_aux_en_suelo_color:
+    1398.  00:4A31                      		;poniendo patron en memoria VRAM
+    1399.  00:4A31  01 08 00            		LD			BC, 8
+    1400.  00:4A34  11 20 28            		LD			DE, CLRTBLBANCO1 + (8  * 4)
+    1401.  00:4A37  21 28 C0            		LD			HL, tile_auxiliar
+    1402.  00:4A3A  C3 5C 00            		JP			LDIRVM
+    1403.  00:4A3D                      fin_poner_tile_aux_en_suelo_color:
+    1404.  00:4A3D                      
+    1405.  00:4A3D                      poner_tile_aux_en_paredes_patron:
+    1406.  00:4A3D                      		;poniendo patron en memoria VRAM
+    1407.  00:4A3D  01 08 00            		LD			BC, 8
+    1408.  00:4A40  11 18 00            		LD			DE, CHRTBL + (8  * 3)
+    1409.  00:4A43  21 28 C0            		LD			HL, tile_auxiliar
+    1410.  00:4A46  CD 5C 00            		CALL		LDIRVM
+    1411.  00:4A49                      		
+    1412.  00:4A49  01 08 00            		LD			BC, 8
+    1413.  00:4A4C  11 18 08            		LD			DE, CHRTBLBANCO1 + (8  * 3)
+    1414.  00:4A4F  21 28 C0            		LD			HL, tile_auxiliar
+    1415.  00:4A52  C3 5C 00            		JP			LDIRVM
+    1416.  00:4A55                      fin_poner_tile_aux_en_paredes_patron:
+    1417.  00:4A55                      
+    1418.  00:4A55                      poner_tile_aux_en_paredes_color:
+    1419.  00:4A55                      		;poniendo patron en memoria VRAM
+    1420.  00:4A55  01 08 00            		LD			BC, 8
+    1421.  00:4A58  11 18 20            		LD			DE, CLRTBL + (8  * 3)
+    1422.  00:4A5B  21 28 C0            		LD			HL, tile_auxiliar
+    1423.  00:4A5E  CD 5C 00            		CALL		LDIRVM
+    1424.  00:4A61                      		
+    1425.  00:4A61  01 08 00            		LD			BC, 8
+    1426.  00:4A64  11 18 28            		LD			DE, CLRTBLBANCO1 + (8  * 3)
+    1427.  00:4A67  21 28 C0            		LD			HL, tile_auxiliar
+    1428.  00:4A6A  C3 5C 00            		JP			LDIRVM
+    1429.  00:4A6D                      fin_poner_tile_aux_en_paredes_color:
+    1430.  00:4A6D                      
+    1431.  00:4A6D                      poner_tile_aux_en_marco_patron:
+    1432.  00:4A6D                      		;poniendo patron en memoria VRAM
+    1433.  00:4A6D  01 08 00            		LD			BC, 8
+    1434.  00:4A70  11 10 00            		LD			DE, CHRTBL + (8  * 2)
+    1435.  00:4A73  21 28 C0            		LD			HL, tile_auxiliar
+    1436.  00:4A76  CD 5C 00            		CALL		LDIRVM
+    1437.  00:4A79                      		
+    1438.  00:4A79  01 08 00            		LD			BC, 8
+    1439.  00:4A7C  11 10 08            		LD			DE, CHRTBLBANCO1 + (8  * 2)
+    1440.  00:4A7F  21 28 C0            		LD			HL, tile_auxiliar
+    1441.  00:4A82  C3 5C 00            		JP			LDIRVM
+    1442.  00:4A85                      fin_poner_tile_aux_en_marco_patron:
+    1443.  00:4A85                      
+    1444.  00:4A85                      poner_tile_aux_en_marco_color:
+    1445.  00:4A85                      		;poniendo patron en memoria VRAM
+    1446.  00:4A85  01 08 00            		LD			BC, 8
+    1447.  00:4A88  11 10 20            		LD			DE, CLRTBL + (8  * 2)
+    1448.  00:4A8B  21 28 C0            		LD			HL, tile_auxiliar
+    1449.  00:4A8E  CD 5C 00            		CALL		LDIRVM
+    1450.  00:4A91                      		
+    1451.  00:4A91  01 08 00            		LD			BC, 8
+    1452.  00:4A94  11 10 28            		LD			DE, CLRTBLBANCO1 + (8  * 2)
+    1453.  00:4A97  21 28 C0            		LD			HL, tile_auxiliar
+    1454.  00:4A9A  C3 5C 00            		JP			LDIRVM
+    1455.  00:4A9D                      fin_poner_tile_aux_en_marco_color:
+    1456.  00:4A9D                      
+    1457.  00:4A9D                      poner_tile_aux_en_puerta_patron:
+    1458.  00:4A9D                      		;poniendo patron en memoria VRAM
+    1459.  00:4A9D  01 08 00            		LD			BC, 8
+    1460.  00:4AA0  11 08 00            		LD			DE, CHRTBL + (8  * 1)
+    1461.  00:4AA3  21 28 C0            		LD			HL, tile_auxiliar
+    1462.  00:4AA6  CD 5C 00            		CALL		LDIRVM
+    1463.  00:4AA9                      		
+    1464.  00:4AA9  01 08 00            		LD			BC, 8
+    1465.  00:4AAC  11 08 08            		LD			DE, CHRTBLBANCO1 + (8  * 1)
+    1466.  00:4AAF  21 28 C0            		LD			HL, tile_auxiliar
+    1467.  00:4AB2  C3 5C 00            		JP			LDIRVM
+    1468.  00:4AB5                      fin_poner_tile_aux_en_puerta_patron:
+    1469.  00:4AB5                      
+    1470.  00:4AB5                      poner_tile_aux_en_puerta_color:
+    1471.  00:4AB5                      		;poniendo patron en memoria VRAM
+    1472.  00:4AB5  01 08 00            		LD			BC, 8
+    1473.  00:4AB8  11 08 20            		LD			DE, CLRTBL + (8  * 1)
+    1474.  00:4ABB  21 28 C0            		LD			HL, tile_auxiliar
+    1475.  00:4ABE  CD 5C 00            		CALL		LDIRVM
+    1476.  00:4AC1                      		
+    1477.  00:4AC1  01 08 00            		LD			BC, 8
+    1478.  00:4AC4  11 08 28            		LD			DE, CLRTBLBANCO1 + (8  * 1)
+    1479.  00:4AC7  21 28 C0            		LD			HL, tile_auxiliar
+    1480.  00:4ACA  C3 5C 00            		JP			LDIRVM
+    1481.  00:4ACD                      fin_poner_tile_aux_en_puerta_color:
+    1482.  00:4ACD                      
+    1483.  00:4ACD                      
+    1484.  00:4ACD                      nivel0_pinta_estrellas:
+    1485.  00:4ACD  01 03 18            		LD			BC, TILMAP + (32 * 0) + 3
+    1486.  00:4AD0  16 1E               		LD			 D, 30
+    1487.  00:4AD2  CD 8A 44            		CALL		pinta_tile_suelto
+    1488.  00:4AD5  01 17 18            		LD			BC, TILMAP + (32 * 0) + 23
+    1489.  00:4AD8  16 1F               		LD			 D, 31
+    1490.  00:4ADA  CD 8A 44            		CALL		pinta_tile_suelto
+    1491.  00:4ADD  01 27 18            		LD			BC, TILMAP + (32 * 1) + 7
+    1492.  00:4AE0  16 1F               		LD			 D, 31
+    1493.  00:4AE2  CD 8A 44            		CALL		pinta_tile_suelto
+    1494.  00:4AE5  01 30 18            		LD			BC, TILMAP + (32 * 1) + 16
+    1495.  00:4AE8  16 1E               		LD			 D, 30
+    1496.  00:4AEA  CD 8A 44            		CALL		pinta_tile_suelto
+    1497.  00:4AED  01 40 18            		LD			BC, TILMAP + (32 * 2) + 0
+    1498.  00:4AF0  16 1E               		LD			 D, 30
+    1499.  00:4AF2  CD 8A 44            		CALL		pinta_tile_suelto
+    1500.  00:4AF5  01 4B 18            		LD			BC, TILMAP + (32 * 2) + 11
+    1501.  00:4AF8  16 1F               		LD			 D, 31
+    1502.  00:4AFA  CD 8A 44            		CALL		pinta_tile_suelto
+    1503.  00:4AFD  01 74 18            		LD			BC, TILMAP + (32 * 3) + 20
+    1504.  00:4B00  16 1F               		LD			 D, 31
+    1505.  00:4B02  CD 8A 44            		CALL		pinta_tile_suelto
+    1506.  00:4B05  01 77 18            		LD			BC, TILMAP + (32 * 3) + 23
+    1507.  00:4B08  16 1E               		LD			 D, 30
+    1508.  00:4B0A  CD 8A 44            		CALL		pinta_tile_suelto
+    1509.  00:4B0D  01 81 18            		LD			BC, TILMAP + (32 * 4) + 1
+    1510.  00:4B10  16 1E               		LD			 D, 30
+    1511.  00:4B12  CD 8A 44            		CALL		pinta_tile_suelto
+    1512.  00:4B15  01 9E 18            		LD			BC, TILMAP + (32 * 4) + 30
+    1513.  00:4B18  16 1F               		LD			 D, 31
+    1514.  00:4B1A  CD 8A 44            		CALL		pinta_tile_suelto
+    1515.  00:4B1D  01 A2 18            		LD			BC, TILMAP + (32 * 5) + 2
+    1516.  00:4B20  16 1F               		LD			 D, 31
+    1517.  00:4B22  CD 8A 44            		CALL		pinta_tile_suelto
+    1518.  00:4B25  01 BC 18            		LD			BC, TILMAP + (32 * 5) + 28
+    1519.  00:4B28  16 1E               		LD			 D, 30
+    1520.  00:4B2A  CD 8A 44            		CALL		pinta_tile_suelto	
+    1521.  00:4B2D  01 C3 18            		LD			BC, TILMAP + (32 * 6) + 3
+    1522.  00:4B30  16 1E               		LD			 D, 30
+    1523.  00:4B32  CD 8A 44            		CALL		pinta_tile_suelto
+    1524.  00:4B35  01 D7 18            		LD			BC, TILMAP + (32 * 6) + 23
+    1525.  00:4B38  16 1F               		LD			 D, 31
+    1526.  00:4B3A  CD 8A 44            		CALL		pinta_tile_suelto
+    1527.  00:4B3D  01 F3 18            		LD			BC, TILMAP + (32 * 7) + 19
+    1528.  00:4B40  16 1F               		LD			 D, 31
+    1529.  00:4B42  CD 8A 44            		CALL		pinta_tile_suelto
+    1530.  00:4B45  01 ED 18            		LD			BC, TILMAP + (32 * 7) + 13
+    1531.  00:4B48  16 1E               		LD			 D, 30
+    1532.  00:4B4A  C3 8A 44            		JP			pinta_tile_suelto
+    1533.  00:4B4D                      fin_nivel0_pinta_estrellas:
+    1534.  00:4B4D                      		
+    1535.  00:4B4D                      nivel0_pinta_luna:
+    1536.  00:4B4D  01 1A 18            		LD			BC, TILMAP + (32 * 0) + 26
+    1537.  00:4B50  16 21               		LD			 D, 33
+    1538.  00:4B52  CD 8A 44            		CALL		pinta_tile_suelto
+    1539.  00:4B55  01 1B 18            		LD			BC, TILMAP + (32 * 0) + 27
+    1540.  00:4B58  16 22               		LD			 D, 34
+    1541.  00:4B5A  CD 8A 44            		CALL		pinta_tile_suelto
+    1542.  00:4B5D  01 3A 18            		LD			BC, TILMAP + (32 * 1) + 26
+    1543.  00:4B60  16 23               		LD			 D, 35
+    1544.  00:4B62  CD 8A 44            		CALL		pinta_tile_suelto
+    1545.  00:4B65  01 3B 18            		LD			BC, TILMAP + (32 * 1) + 27
+    1546.  00:4B68  16 24               		LD			 D, 36
+    1547.  00:4B6A  C3 8A 44            		JP			pinta_tile_suelto
+    1548.  00:4B6D                      fin_nivel0_pinta_luna:
+    1549.  00:4B6D                      
+    1550.  00:4B6D                      
      191   00:4B6D                      	
      192   00:4B6D                      	include "subr_puntomira.asm"
        1.  00:4B6D                      ;;=====================================================

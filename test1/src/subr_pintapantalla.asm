@@ -800,8 +800,11 @@ fin_pinta_esqueletos:
 ; salida: 	
 flip_calavera_esqueletos:
 		;pos llamas: 136 / 151
-		LD			 A, (heartbeat_general)
-		AND			00010000b
+;		LD			 A, (heartbeat_general)
+;***************
+		LD			 A, (heartbeat_cienpies)	;si pongo el hearbeat_cienpies, porque no se usa si hay calaveras 
+		
+		AND			00100000b
 		JP			NZ, .pos2
 .pos1:
 		;tiles 196 / 197
