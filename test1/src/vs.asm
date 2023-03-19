@@ -82,7 +82,7 @@ pantalla_inicial:
 		CALL		inicializa_ayudas
 	
 		;pinta la pantalla (la primera o algunas especiales se pintan completamente)
-		CALL		pinta_pantalla_completa
+		CALL	 	pinta_parte_inferior_pantalla
 	
 		;funciones que modificarian el marcador si se produce un evento cuando toque y cuando se pinta la pantalla ya se mira
 		;una variable para ver si el array hay que actualizarlo en pantalla o no
@@ -140,10 +140,10 @@ inicializa_variables_prota:
 		;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
 		;será igual la posición inicial en todos los niveles
 	
-		LD		 A, 6;PROTANIVEL
+		LD		 A, PROTANIVEL
 		LD		(prota_nivel), A
 
-		LD		 A, 6;PROTAPOSMAPY
+		LD		 A, PROTAPOSMAPY
 		LD		(prota_pos_mapy), A	
 
 		LD		 A, PROTAPOSMAPX	

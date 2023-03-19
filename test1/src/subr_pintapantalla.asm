@@ -84,71 +84,59 @@ fin_sub_preparapantalla:
 	
 
 ;;=====================================================
-;;PINTA_PANTALLA_COMPLETA
-;;=====================================================	
-; función: pinta el escenario, las 3 partes
-; entrada: -
-; salida: -
-; toca: si no son todos los regristros, casi todos
-pinta_pantalla_completa:
-		CALL 		pinta_parte_superior_pantalla
-	
-		CALL	 	pinta_parte_inferior_pantalla	
-fin_pinta_pantalla_completa:
-	RET
-
-
-;;=====================================================
 ;;PINTA_PARTE_SUPERIOR_PANTALLA
 ;;=====================================================	
 ; función: pinta el escenario, los dos bancos superiores
-; entrada: -
-; salida: -
-; toca: si no son todos los regristros, casi todos
-
-
-;ññ**** esto hay que rehacerlo
-
-
 pinta_parte_superior_pantalla:	
-.carga_nivel:
-		LD			HL, tiles_patrones_nivel0
-		LD			(tiles_patrones), HL
-		LD			HL, tiles_color_nivel0
-		LD			(tiles_colores), HL
-		LD			HL, tiles_mapa_nivel0
-		LD			(tiles_mapa), HL	
+		;si es fila 0 o 6 carga todos los tiles, si no sólo actualiza el mapa
+.siposyes0:
+		LD			 A, (prota_pos_mapy)
+		OR			 A
+		JP			NZ, .siposyes6
+		CALL		carga_tiles_bancos	;cargando los tiles en los bancos 0 y 1 que son iguales y se sacan de la misma variable
+		JP			.finsi
+.siposyes6:
+		LD			 A, (prota_pos_mapy)
+		CP			 6
+		JP			NZ, .finsi
+		CALL		carga_tiles_bancos	;cargando los tiles en los bancos 0 y 1 que son iguales y se sacan de la misma variable
+.finsi:
+		
+		;aquí se actualizan las particularidades de cada nivel
+		JP			actualiza_tiles_nivel
+fin_pinta_parte_superior_pantalla:
 
-		;cargando banco 1
+
+;;=====================================================
+;;CARGA_TILES_BANCOS
+;;=====================================================	
+; función: carga en memoria los bancos 0 y 1
+carga_tiles_bancos:
+		;cargando banco 0
 		;cargamos los patrones
-		LD			HL, (tiles_patrones)
+		LD			HL, tiles_patrones_nivel0
 		LD			DE, CHRTBL
 		CALL		depack_VRAM
 		;cargamos los colores de los patrones
-		LD			HL, (tiles_colores)
+		LD			HL, tiles_color_nivel0
 		LD			DE, CLRTBL
 		CALL		depack_VRAM
 	
-		;cargando banco 2
+		;cargando banco 1
 		;cargamos los patrones
-		LD			HL, (tiles_patrones)
+		LD			HL, tiles_patrones_nivel0
 		LD			DE, CHRTBL + #0800
 		CALL		depack_VRAM	
 		;cargamos los colores de los patrones
-		LD			HL, (tiles_colores)
+		LD			HL, tiles_color_nivel0
 		LD			DE, CLRTBL + #0800
 		CALL		depack_VRAM
 	
-		;cargamos mapa de pantalla banco 1 y 2
-		LD			HL, (tiles_mapa)
+		;cargamos mapa de pantalla banco 0 y 1
+		LD			HL, tiles_mapa_nivel0;(tiles_mapa)
 		LD			DE, TILMAP
-		CALL		depack_VRAM
-		
-		;aquí se actualizan las particularidades de cada nivel
-		CALL		actualiza_tiles_nivel
-		;***ññññ
-fin_pinta_parte_superior_pantalla:
-		RET
+		JP			depack_VRAM 
+fin_carga_tiles_bancos:
 
 
 ;;=====================================================
@@ -363,11 +351,7 @@ fin_pinta_energia:
 ;;=====================================================	
 ; función: 	pone todas las habitaciones del mapa a negro (los tiles del mapa los rellena con un array a 0 - caracter en negro)
 ; entrada: 	array_aux_mapa_limpiar
-; salida: 	-
-; toca:		AF
 borra_mapa:
-	EXX
-	
 	LD		HL,array_aux_mapa_limpiar
 	LD		DE,TILMAP + POSMAPLIN1 	;inicio posición en el mapa de tiles de la primera fila del mapa
 	LD		BC,NHABNIVEL			;cada nivel son 7 filas con 7 habitaciones "posibles"
@@ -401,14 +385,9 @@ borra_mapa:
 	LD		HL,array_aux_mapa_limpiar	
 	LD		DE,TILMAP + POSMAPLIN7
 	LD		BC,NHABNIVEL
-	CALL	LDIRVM
-	
-	EXX
-	
-	;**********************************************************
-	
+	JP		LDIRVM
 fin_borra_mapa:
-	RET
+
 
 
 ;;=====================================================
@@ -868,10 +847,7 @@ cambio_nivel_entrefases:
 			
 			CALL		pinta_texto_entrefases
 
-			CALL		espera_estandar
-		
-			;repongo la música y efectos
-			JP			reponer_musica_tras_muerte_cambio_nivel	
+			JP			espera_estandar
 fin_cabio_nivel_entrefases:
 
 
@@ -1112,10 +1088,7 @@ quedan_vidas:
 			CALL		espera_estandar
 			
 			;repinto la pantalla y las puertas que correspondan
-			CALL		pinta_parte_superior_pantalla
-			CALL		pinta_puertas
-	
-			JP			reponer_musica_tras_muerte_cambio_nivel
+			JP			pinta_parte_superior_pantalla
 fin_una_vida_menos:
 
 
@@ -1149,9 +1122,24 @@ fin_reponer_musica_tras_muerte_cambio_nivel:
 
 
 ;;=====================================================
-;;INSTRUCCIONES PARA PINTAR PANTALLAS DIFERENTES SEGÚN NIVEL
+;;BORRA_ELEMENTOS_ANTERIORES
 ;;=====================================================	
+; funcion: resetea los tiles (sgún mapa) de la parte superior. Los carga todos de nuevo
+borra_elementos_anteriores:
+			;cargamos mapa de pantalla banco 0 y 1
+			LD			HL, tiles_mapa_nivel0;(tiles_mapa)
+			LD			DE, TILMAP
+			JP			depack_VRAM
+fin_borra_elementos_anteriores:
+
+
+;;=====================================================
+;;ACTUALIZA_TILES_NIVEL
+;;=====================================================	
+; funcion: actualiza los tiles de la parte superior según el nivel en el que estemos
 actualiza_tiles_nivel:
+		CALL		borra_elementos_anteriores
+
 		LD			 A, (prota_nivel)
 		OR			 A
 .examina_si_nivel0:

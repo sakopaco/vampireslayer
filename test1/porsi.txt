@@ -1,26 +1,48 @@
+pinta_parte_superior_pantalla:	
+		
+.siposyes0:
+		LD			 A, (prota_pos_mapy)
+		OR			 A
+		JP			NZ, .siposyes6
+		
+.siposyes6:
 
-poner_tile_suelo_variable_tile_auxiliar:
-		;poniendo patron en memoria RAM
-[3]		RLA
-		LD			 L, A
-		LD			 H, 0
-		LD			BC, 8
-		LD			DE, tile_auxiliar
-		JP			LDIRMV
-fin_poner_tile_suelo_variable_tile_auxiliar:
 
-poner_tile_aux_en_suelo_patron:
-		;poniendo patron en memoria VRAM
-		LD			BC, 8
-		LD			DE, CHRTBLBANCO1 + (8  * 4)
-		LD			HL, tile_auxiliar
-		JP			LDIRVM
-fin_poner_tile_aux_en_suelo_patron:
+.finsi:
+		
+		;cargando los tiles en los bancos 0 y 1 que son iguales y se sacan de la misma variable
+		CALL		carga_tiles_bancos
 
-poner_tile_aux_en_suelo_color:
-		;poniendo patron en memoria VRAM
-		LD			BC, 8
-		LD			DE, CLRTBLBANCO1 + (8  * 4)
-		LD			HL, tile_auxiliar
-		JP			LDIRVM
-fin_poner_tile_aux_en_suelo_color:
+		
+		;aquí se actualizan las particularidades de cada nivel
+		JP			actualiza_tiles_nivel
+fin_pinta_parte_superior_pantalla:
+
+carga_tiles_bancos:
+		;cargando banco 0
+		;cargamos los patrones
+		LD			HL, tiles_patrones_nivel0
+		LD			DE, CHRTBL
+		CALL		depack_VRAM
+		;cargamos los colores de los patrones
+		LD			HL, tiles_color_nivel0
+		LD			DE, CLRTBL
+		CALL		depack_VRAM
+	
+		;cargando banco 1
+		;cargamos los patrones
+		LD			HL, tiles_patrones_nivel0
+		LD			DE, CHRTBL + #0800
+		CALL		depack_VRAM	
+		;cargamos los colores de los patrones
+		LD			HL, tiles_color_nivel0
+		LD			DE, CLRTBL + #0800
+		CALL		depack_VRAM
+	
+		;cargamos mapa de pantalla banco 0 y 1
+		LD			HL, tiles_mapa_nivel0;(tiles_mapa)
+		LD			DE, TILMAP
+		CALL		depack_VRAM
+fin_carga_tiles_bancos:
+		RET
+

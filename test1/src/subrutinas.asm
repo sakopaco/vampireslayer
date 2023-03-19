@@ -281,6 +281,9 @@ fin_terminada_habitacion_recorrida:
 ; entrada: 	prota_pos_mapy, prota_pos_mapy, prota_nivel
 ; salida: 	
 entra_habitacion:
+		;apago pantalla
+		CALL		DISSCR
+		
 ;nos ocupaos de pinar la habitación
 		CALL		pinta_parte_superior_pantalla
 		CALL		pinta_puertas
@@ -289,28 +292,18 @@ entra_habitacion:
 
 ;pintamos si hay ayudaas en la habitación		
 		CALL		pinta_ayudas_habitacion
+		
+		;apago pantalla
+		CALL		ENASCR
 
 ;ahora nos ocupamos de los enemigos
 		CALL		resetea_enemigos
-		
-		
-		
-		
-		
-		
 		
 		;ñññññ
 		LD			 A, 1
 		LD			(dracula_muerto), A
 		CALL		resetea_tiempo
 		RET
-		
-		
-		
-		
-		
-		
-		
 		
 
 .mira_nivel0:

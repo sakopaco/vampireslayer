@@ -2,7 +2,6 @@
 EN REALIZACION:
 
 BUGS
-- importante bug: que no carge 2 veces la misma pantalla
 - bug: si matas todos los enemigos ya no puedes coger una ayuda
 
 TODO A
@@ -18,7 +17,6 @@ TODO B
 
 TUNNING
 - mirar lo de la pila y tal con Fernando
-- si queda memoria... modificar pantalla inicial, no cambiarla sino que 
-  se alterne con una carga de la carátula
+
 
 
