@@ -81,6 +81,9 @@ pantalla_inicial:
 		;inicializa las estructuras de forma particular según ayuda pero sin poner valores de posición
 		CALL		inicializa_ayudas
 	
+		;se apaga la pantalla y ya no se enciende hasta que empiece el juego y así se ocultan los detalles de pintado
+		CALL		DISSCR
+	
 		;pinta la pantalla (la primera o algunas especiales se pintan completamente)
 		CALL	 	pinta_parte_inferior_pantalla
 	
