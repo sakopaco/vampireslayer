@@ -1,19 +1,13 @@
 
 EN REALIZACION:
-- que el prota tenga tiempo límite para salir
-- final con tiempo limite cumplido
-
 
 BUGS
 - importante bug: que no carge 2 veces la misma pantalla
 - bug: si matas todos los enemigos ya no puedes coger una ayuda
 
-
 TODO A
 - quitar musica ingame y repasar música
 - posicionar ayudas
-- crear pantalla game over 2 ... muerto por no salir a tiempo del 
-  castilla tras matar a dracula (modificar gameover 1 con nuevo texto)
 - poner tiles al matar a drácula
 - que los disparos sean al centro de los enemigos (y el radio se coja 
   de las variables) Esto tendré que verlo con Fernando
@@ -21,7 +15,6 @@ TODO A
 TODO B
 - revisar todos los sprites (incluidos los del punto de mira)
 - revisar letras
-
 
 TUNNING
 - mirar lo de la pila y tal con Fernando

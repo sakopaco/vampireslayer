@@ -69,7 +69,7 @@ datos_puerta_izquierda:
 
 
 ;;=====================================================
-;;CONTANTES PUERTAS
+;;CONSTANTES PUERTAS
 ;;=====================================================
 ;; arrays con mapa de tiles de las puertas
 array_puerta_arriba:

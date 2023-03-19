@@ -8,6 +8,17 @@ color_base:					DB		COLNEGRO,COLNEGRO,COLNEGRO
 color_bomba1:				DB		COLROJO,COLROJO,COLROJO
 color_bomba2:				DB		COLROJOOSC,COLROJOOSC,COLROJOOSC
 
+;fondo para borrar prota en pantalla final
+fondo_patalla_final:
+							DB	1,1,1,1,1,1
+							DB	1,1,1,1,1,1
+							DB	1,1,1,1,1,1
+							DB	1,1,1,1,1,1
+							DB	1,1,1,1,1,1
+							DB	1,1,1,1,1,1
+							DB	1,1,1,1,1,1
+							DB	1,1,1,1,1,1
+
 
 ;;=====================================================
 ;;DEFINICIÓN DE SUBRUTINAS
@@ -96,7 +107,7 @@ fin_pinta_pantalla_completa:
 ; toca: si no son todos los regristros, casi todos
 
 
-;**** esto hay que rehacerlo
+;ññ**** esto hay que rehacerlo
 
 
 pinta_parte_superior_pantalla:	
@@ -133,15 +144,11 @@ pinta_parte_superior_pantalla:
 		LD			DE, TILMAP
 		CALL		depack_VRAM
 		
-		
 		;aquí se actualizan las particularidades de cada nivel
 		CALL		actualiza_tiles_nivel
+		;***ññññ
 fin_pinta_parte_superior_pantalla:
 		RET
-;variables que usa
-;tiles_patrones:		DW	0
-;tiles_colores:			DW	0
-;tiles_mapa:			DW	0
 
 
 ;;=====================================================
@@ -524,16 +531,18 @@ fin_efecto_imagen_tira_reliquia:
 ;;salida:	-
 ;;importante: necesita de una variable wordaux1 tipo WD (wordaux1: 	DW	0)
 ;; ejemplo llamada:
-	;~ LD		HL,array_tiles					;guardo puntero al array a pintar (como psar por referencia)
-	;~ LD		(wordaux2),HL					;en la variable wordaux2
-	;~ LD		HL,SC2MAP + 256 + 32			;calcula posición en tilemap
-	;~ LD		(wordaux1),HL					;guarda valor pos tilemap en wordaux1
-	;~ LD		B,H								;coloca posición tilemap BC
-	;~ LD		C,L
-	;~ LD		D,2								;nº de filas ahora byteaux1
-	;~ LD		E,3								;nº de columnas ahora byteaux2
-	;~ CALL	pinta_array
+			;~ LD			HL,fondo_patalla_final	;guardo puntero al array a pintar (como psar por referencia)
+			;~ LD			(wordaux2),HL			;en la variable wordaux2
 
+			;~ LD			HL,TILMAP + 256 + 4		;calcula posición en tilemap
+			;~ LD			(wordaux1),HL			;guarda valor pos tilemap en wordaux1
+			;~ LD			B,H						;coloca posición tilemap BC
+			;~ LD			C,L
+
+			;~ LD			 A, 8					;nº de filas
+			;~ LD			(byteaux1), A			;nº de filas
+			;~ LD			 A, 6					;nº de columnas
+			;~ LD			(byteaux2), A			;nº de columnas
 pinta_array:
 	EX		AF, AF'
 	

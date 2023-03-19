@@ -506,6 +506,9 @@ fin_mira_si_esta_juego_terminado:
 ; función: muestra la página de fin de juego según parámetro de entrada
 ; entrada: PROTAMUERTO	0  FINBUENO	1  FINMALO 2
 game_over:			
+			;apago pantalla
+			CALL		DISSCR
+
 			;limpia la pantalla
 			CALL		limpia_pantalla_completa
 
@@ -601,11 +604,13 @@ game_over:
 				LD			HL, tiles_color_finalbueno_bank1
 				LD			DE, CLRTBL + #0800
 				CALL		depack_VRAM
-			
 				;cargamos mapa de pantalla banco 1 y 2
 				LD			HL, tiles_mapa_finalbueno_bank01
 				LD			DE, TILMAP
 				CALL		depack_VRAM
+				
+				;borramos al prota
+				CALL		borra_prota_pantalla_fin
 
 				;cangando banco 3
 				;cargamos los patrones
@@ -621,11 +626,35 @@ game_over:
 				LD			HL, texto_finalmalo
 				LD			BC, 32 * 8
 				CALL		LDIRVM	
-
 .fin_examina_final:
+			;apago pantalla
+			CALL		ENASCR
+
 [4]			CALL		espera_estandar
 			JP			inicio_juego
 fin_game_over:
+
+
+;;=====================================================
+;;BORRA_PROTA_PANTALLA_FIN
+;;=====================================================	
+; función: para ahorra memoria el final malo es el final bueno sin el dibujo del prota y esta subrutina lo borra
+borra_prota_pantalla_fin:
+			LD			HL,fondo_patalla_final	;guardo puntero al array a pintar (como psar por referencia)
+			LD			(wordaux2),HL			;en la variable wordaux2
+
+			LD			HL,TILMAP + 256 + 4		;calcula posición en tilemap
+			LD			(wordaux1),HL			;guarda valor pos tilemap en wordaux1
+			LD			B,H						;coloca posición tilemap BC
+			LD			C,L
+
+			LD			 A, 8					;nº de filas
+			LD			(byteaux1), A			;nº de filas
+			LD			 A, 6					;nº de columnas
+			LD			(byteaux2), A			;nº de columnas
+
+			JP			pinta_array
+fin_borra_prota_pantalla_fin:
 
 
 ;;=====================================================
