@@ -101,9 +101,12 @@ pinta_parte_superior_pantalla:
 		JP			NZ, .finsi
 		CALL		carga_tiles_bancos	;cargando los tiles en los bancos 0 y 1 que son iguales y se sacan de la misma variable
 .finsi:
-		
+
 		;aquí se actualizan las particularidades de cada nivel
-		JP			actualiza_tiles_nivel
+		CALL		actualiza_tiles_nivel
+		;pinta puerta si es necesario
+		CALL		pinta_puertas
+		JP			pinta_ayudas_habitacion
 fin_pinta_parte_superior_pantalla:
 
 
@@ -588,7 +591,6 @@ fin_pinta_array:
 ;byteaux2:		DB	0	;nº columnas Registro E
 
 
-
 ;;=====================================================
 ;;PINTA_EXTRA_FONDO (antorchas / esqueletos)
 ;;=====================================================	
@@ -1057,10 +1059,7 @@ fin_oculta_tile_vida0:
 ;;UNA_VIDA_MENOS
 ;;=====================================================
 ; funcion: muestra mensaje cuando te matan una vida
-una_vida_menos;
-		;paro música		
-		CALL		musica_off
-		
+una_vida_menos;		
 		LD			 A, (prota_vidas)
 		OR			 A
 		JP			NZ, quedan_vidas
@@ -1088,6 +1087,10 @@ quedan_vidas:
 			CALL		espera_estandar
 			
 			;repinto la pantalla y las puertas que correspondan
+			
+			
+			;ññññ
+			
 			JP			pinta_parte_superior_pantalla
 fin_una_vida_menos:
 

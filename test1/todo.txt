@@ -3,6 +3,8 @@ EN REALIZACION:
 
 BUGS
 - bug: si matas todos los enemigos ya no puedes coger una ayuda
+- bug: si terminas una partida desaparecen las ayudas
+- bug: si te matan una vida no se ven las paredes
 
 TODO A
 - quitar musica ingame y repasar música
@@ -17,6 +19,4 @@ TODO B
 
 TUNNING
 - mirar lo de la pila y tal con Fernando
-
-
 

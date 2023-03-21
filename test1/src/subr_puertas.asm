@@ -282,8 +282,7 @@ fin_accion_puerta_izquierda:
 pinta_puertas:
 	CALL	localiza_info_habitacion	;busca qué puertas debe pintar y lo mete en habitación_actual
 
-	;*********************************************************************+ SÓLO SI HABITACIÓN NO COPLETADA
-	CALL	desactiva_todas_puertas
+	CALL	desactiva_todas_puertas		;solo si habitación no copletada
 
 	;examina puerta arrba
 	LD		 A, (habitacion_actual)

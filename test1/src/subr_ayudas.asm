@@ -240,10 +240,6 @@ fin_pinta_obj_ayuda:
 ; entrada: 	habitacion_extras
 ; salida: 	-
 pinta_ayudas_habitacion:
-		LD			 A, (habitacion_terminada)
-		OR			 A
-		RET			NZ
-		
 		XOR			 A
 		LD			(hay_ayudas_en_pantalla), A
 .examina_oracion:
@@ -310,10 +306,10 @@ pinta_ayudas_habitacion:
 
 .pintar_ayuda:
 		;puntero_ayuda_actual
-		LD		(puntero_ayuda_actual), IX
-		LD		 A, ACTIVA
-		LD		(IX), A						;si lo pinta activo pone el bit a 1 por si el último lo puso a 0
-		CALL	pinta_obj_ayuda
+		LD			(puntero_ayuda_actual), IX
+		LD		 	 A, ACTIVA
+		LD			(IX), A					;si lo pinta activo pone el bit a 1 por si el último lo puso a 0
+		CALL		pinta_obj_ayuda
 		
 		LD			 A, 1
 		LD			(hay_ayudas_en_pantalla), A

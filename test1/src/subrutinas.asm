@@ -284,14 +284,11 @@ entra_habitacion:
 		;apago pantalla
 		CALL		DISSCR
 		
-;nos ocupaos de pinar la habitación
-		CALL		pinta_parte_superior_pantalla
-		CALL		pinta_puertas
+;nos ocupaos de pintar la habitación
 		CALL		pinta_extra_fondo
 		CALL		pinta_heroe_mapa
-
-;pintamos si hay ayudaas en la habitación		
-		CALL		pinta_ayudas_habitacion
+		
+		CALL		pinta_parte_superior_pantalla
 		
 		;apago pantalla
 		CALL		ENASCR
@@ -299,11 +296,11 @@ entra_habitacion:
 ;ahora nos ocupamos de los enemigos
 		CALL		resetea_enemigos
 		
-		;ñññññ
-		LD			 A, 1
-		LD			(dracula_muerto), A
-		CALL		resetea_tiempo
-		RET
+		;~ ;ñññññ
+		;~ LD			 A, 1
+		;~ LD			(dracula_muerto), A
+		;~ CALL		resetea_tiempo
+		;~ RET
 		
 
 .mira_nivel0:
@@ -401,6 +398,8 @@ check_colisiones_objetos:
 		;recorre puertas y sale
 		CALL		check_colisiones_puertas
 
+		CALL		check_colision_ayudas	; si hay ayudas que examinar
+
 		;pantalla limpia?
 		LD			 A, (habitacion_terminada)
 		OR			 A
@@ -408,16 +407,7 @@ check_colisiones_objetos:
 		 
 .habitacion_no_terminada:	;pantalla limpia? NO
 		;recorre enemigos
-		CALL		check_colisiones_enemigos
-		
-		;recorre ayudas
-		;SI ;mira si hay colisiones con la ayuda que haya puntero_ayuda_actual
-		LD			 A, (hay_ayudas_en_pantalla)
-		OR			 A
-		RET			 Z	; no hay ayudas que examinar
-		;THEN
-			JP		check_colision_ayudas	; si hay ayudas que examinar
-		;ENDIF
+		JP			check_colisiones_enemigos
 fin_check_colisiones_objetos:	
 
 
@@ -671,6 +661,7 @@ fin_actualiza_heartbeat:
 ; función: inc
 actualiza_cronometro_salida:
 		LD			 A, (dracula_muerto)
+		OR			 A
 		RET			 Z
 		CALL		incrementa_reloj
 		LD			 A, (minutos)
