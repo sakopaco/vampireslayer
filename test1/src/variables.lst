@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.03.21 - 22:31:29]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.03.25 - 12:33:21]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -929,37 +929,36 @@ Errors: 0
      128   00:C210                      
      129   00:C210  00 00               puntero_extras_habitacion_actual:	DW	0	;puntero a los extras de la habitación actual para poder modificarlo (para que no salgan extras)
      130   00:C212  00 00               puntero_habitacion_actual:	DW		0		;puntero a la habitación actual para poder modificarlo 
-     131   00:C214                      ;puntero_habitacion_actual:	DB		0		;puntero a la habitación actual para poder modificarlo 
-     132   00:C214                      
-     133   00:C214  00                  enemiesleft:				DB		0		;enemigos que quedan por matar en una pantalla. No se podrá acceder a las puertas hasta que no queden enemigos vivos. Si se ha pasado por una pantalla no quedan enemigos vivos (no se respawnean).
+     131   00:C214                      
+     132   00:C214  00                  enemiesleft:				DB		0		;enemigos que quedan por matar en una pantalla. No se podrá acceder a las puertas hasta que no queden enemigos vivos. Si se ha pasado por una pantalla no quedan enemigos vivos (no se respawnean).
+     133   00:C215                      
      134   00:C215                      
-     135   00:C215                      
-     136   00:C215                      ;;=====================================================
-     137   00:C215                      ;;VARIABLES PUNTO MIRA
-     138   00:C215                      ;;=====================================================
-     139   00:C215  00 (7)              puntomira:					DS		ESTRUCTURA_PUNTOMIRA
+     135   00:C215                      ;;=====================================================
+     136   00:C215                      ;;VARIABLES PUNTO MIRA
+     137   00:C215                      ;;=====================================================
+     138   00:C215  00 (7)              puntomira:					DS		ESTRUCTURA_PUNTOMIRA
+     139   00:C21C                      
      140   00:C21C                      
-     141   00:C21C                      
-     142   00:C21C                      ;;=====================================================
-     143   00:C21C                      ;;VARIABLES GLOBALES
-     144   00:C21C                      ;;=====================================================
-     145   00:C21C  00                  dracula_muerto:				DB		NO					;equ 0
-     146   00:C21D  00                  tipo_gameover:				DB		0
+     141   00:C21C                      ;;=====================================================
+     142   00:C21C                      ;;VARIABLES GLOBALES
+     143   00:C21C                      ;;=====================================================
+     144   00:C21C  00                  dracula_muerto:				DB		NO					;equ 0
+     145   00:C21D  00                  tipo_gameover:				DB		0
+     146   00:C21E                      
      147   00:C21E                      
-     148   00:C21E                      
-     149   00:C21E                      ;;=====================================================
-     150   00:C21E                      ;;VARIABLES TIEMPO
-     151   00:C21E                      ;;=====================================================
-     152   00:C21E                      tiempo:
-     153   00:C21E  00                  minutos:					DB	0
-     154   00:C21F  00                  segundos:					DB	0
-     155   00:C220  00                  contador:					DB	0
+     148   00:C21E                      ;;=====================================================
+     149   00:C21E                      ;;VARIABLES TIEMPO
+     150   00:C21E                      ;;=====================================================
+     151   00:C21E                      tiempo:
+     152   00:C21E  00                  minutos:					DB	0
+     153   00:C21F  00                  segundos:					DB	0
+     154   00:C220  00                  contador:					DB	0
+     155   00:C221                      
      156   00:C221                      
-     157   00:C221                      
-     158   00:C221                      ;;=====================================================
-     159   00:C221                      ;;VARIABLES HABITACIONES
-     160   00:C221                      ;;=====================================================
-     161   00:C221                      	include "datos/habitaciones.asm"
+     157   00:C221                      ;;=====================================================
+     158   00:C221                      ;;VARIABLES HABITACIONES
+     159   00:C221                      ;;=====================================================
+     160   00:C221                      	include "datos/habitaciones.asm"
        1.  00:C221                      ;;=====================================================
        2.  00:C221                      ;;DEFINICIÓN DE HABITACIONES x NIVEL
        3.  00:C221                      ;;=====================================================	
@@ -1116,14 +1115,14 @@ Errors: 0
      106.  00:C521                      	db 00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00000010b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,#00,#00 ;nivel 0 fila 7
      106.  00:C521  00 00 00 00 00 00 02 00 00 00 00 00 00 00 00 00 
      107.  00:C531                      
+     161   00:C531                      
      162   00:C531                      
-     163   00:C531                      
-     164   00:C531                      ;;=====================================================
-     165   00:C531                      ;;VARIABLES PARA SONIDO 
-     166   00:C531                      ;;=====================================================
-     167   00:C531  00                  musica_activa:				DB	0			;se examina en subrutina_isr
-     168   00:C532  00                  musica_tipo:				DB  0			;se examina en play_musica_apropiada
-     169   00:C533                      	include "datos/var_pt3_ayfx.asm"
+     163   00:C531                      ;;=====================================================
+     164   00:C531                      ;;VARIABLES PARA SONIDO 
+     165   00:C531                      ;;=====================================================
+     166   00:C531  00                  musica_activa:				DB	0			;se examina en subrutina_isr
+     167   00:C532  00                  musica_tipo:				DB  0			;se examina en play_musica_apropiada
+     168   00:C533                      	include "datos/var_pt3_ayfx.asm"
        1.  00:C533                      ;;=====================================================
        2.  00:C533                      ;;VARIABLES PARA SONIDO 
        3.  00:C533                      ;;=====================================================
@@ -1199,7 +1198,7 @@ Errors: 0
       73.  00:C533                      ;ayFX_VT:	ds	2			; ayFX relative volume table pointer
       74.  00:C533                      	;ENDIF
       75.  00:C533                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ayFX REPLAYER END
-     170   00:C533                      
+     169   00:C533                      
 
     LABELS
 -------------------------------------------------

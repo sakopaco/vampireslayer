@@ -240,6 +240,11 @@ fin_pinta_obj_ayuda:
 ; entrada: 	habitacion_extras
 ; salida: 	-
 pinta_ayudas_habitacion:
+	;si ya se ha terminado la habitación no se muestran ayudas (como no se muestran enemigos)
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+
 		XOR			 A
 		LD			(hay_ayudas_en_pantalla), A
 .examina_oracion:
@@ -414,13 +419,6 @@ fin_check_colision_ayuda:
 ; entrada: 	puntero_extras_habitacion_actual, puntero_ayuda_actual, prota_reliquias
 ; salida: 	-
 accion_oracion:
-	LD		HL, (puntero_extras_habitacion_actual)
-	LD		 A, (HL)
-	RES		 7, A					;elimino la ayuda del mapa, personalizar para cada ayuda
-	LD		(HL), A
-	XOR		 A
-	LD		(habitacion_extras), A	;para no tener que verificar ayudas
-	
 	;desactiva ayuda
 	LD		IX, (puntero_ayuda_actual)
 	XOR		 A
@@ -445,13 +443,6 @@ fin_accion_oracion:
 ; entrada: 	puntero_extras_habitacion_actual, puntero_ayuda_actual, prota_reliquias
 ; salida: 	-
 accion_cruz:
-	LD		HL, (puntero_extras_habitacion_actual)
-	LD		 A, (HL)
-	RES		 6, A					;elimino la ayuda del mapa, personalizar para cada ayuda
-	LD		(HL), A
-	XOR		 A
-	LD		(habitacion_extras), A	;para no tener que verificar ayudas
-	
 	;desactiva ayuda
 	LD		IX, (puntero_ayuda_actual)
 	XOR		 A
@@ -480,13 +471,6 @@ fin_accion_cruz:
 ; entrada: 	puntero_extras_habitacion_actual, puntero_ayuda_actual, prota_reliquias
 ; salida: 	-
 accion_aguabendita:
-	LD		HL, (puntero_extras_habitacion_actual)
-	LD		 A, (HL)
-	RES		 5, A					;elimino la ayuda del mapa, personalizar para cada ayuda
-	LD		(HL), A
-	XOR		 A
-	LD		(habitacion_extras), A	;para no tener que verificar ayudas
-	
 	;desactiva ayuda
 	LD		IX, (puntero_ayuda_actual)
 	XOR		 A
@@ -515,13 +499,6 @@ fin_accion_aguabendita:
 ; entrada: 	puntero_extras_habitacion_actual, puntero_ayuda_actual, prota_reliquias
 ; salida: 	-
 accion_armadura:
-	LD		HL, (puntero_extras_habitacion_actual)
-	LD		 A, (HL)
-	RES		 4, A					;elimino la ayuda del mapa, personalizar para cada ayuda
-	LD		(HL), A
-	XOR		 A
-	LD		(habitacion_extras), A	;para no tener que verificar ayudas
-	
 	;desactiva ayuda
 	LD		IX, (puntero_ayuda_actual)
 	XOR		 A
@@ -550,13 +527,6 @@ fin_accion_armadura:
 ; entrada: 	
 ; salida: 	-
 accion_planta:
-	LD		HL, (puntero_extras_habitacion_actual)
-	LD		 A, (HL)
-	RES		 3, A					;elimino la ayuda del mapa, personalizar para cada ayuda
-	LD		(HL), A
-	XOR		 A
-	LD		(habitacion_extras), A	;para no tener que verificar ayudas
-	
 	;desactiva ayuda
 	LD		IX, (puntero_ayuda_actual)
 	XOR		 A
@@ -577,13 +547,6 @@ fin_accion_planta:
 ; entrada: 	
 ; salida: 	-
 accion_vidaextra:
-	LD		HL, (puntero_extras_habitacion_actual)
-	LD		 A, (HL)
-	RES		 2, A					;elimino la ayuda del mapa, personalizar para cada ayuda
-	LD		(HL), A
-	XOR		 A
-	LD		(habitacion_extras), A	;para no tener que verificar ayudas
-	
 	;desactiva ayuda
 	LD		IX, (puntero_ayuda_actual)
 	XOR		 A
@@ -605,14 +568,6 @@ fin_accion_vidaextra:
 ; entrada: 	
 ; salida: 	-
 accion_ballesta:
-		;desactivo ayuda en array para que no vuelva a aparecer
-		LD			HL, (puntero_extras_habitacion_actual)
-		LD		 	 A, (HL)
-		RES		 	 1, A					;elimino la ayuda del mapa, personalizar para cada ayuda
-		LD			(HL), A
-		XOR		 	 A
-		LD			(habitacion_extras), A	;para no tener que verificar ayudas
-	
 		;cambio sprites a ballesta mejorada
 		LD		IX, puntomira
 		LD		(IX + ESTRUCTURA_PUNTOMIRA.spritea), SPRI_DANO2A
