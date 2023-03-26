@@ -48,32 +48,38 @@ fin_inicializa_replayer_efectos_interrupciones:
 ; salida: 	-
 ; toca: 	HL, A
 subrutina_isr:
-		;~ CALL	PT3_ROUT			;envia los datos a los registros del PSG
-;~ .musica:
-		;~ LD		 A, (musica_activa)	;si musica inactiva
-		;~ OR		 A
-		;~ JP		 Z, .efectos_sonido
-			;~ CALL	PT3_PLAY		;calcula el siguiente 'trocito' de musica que sera enviado al proxima vez
-;~ .efectos_sonido:
-		;~ JP		ayFX_PLAY			;calcula el siguiente 'trocito' de efecto especial de sonido que sera enviado la proxima vez
-
-		RET
+		CALL	PT3_ROUT			;envia los datos a los registros del PSG
+.musica:
+		LD		 A, (musica_activa)	;si musica inactiva
+		OR		 A
+		JP		 Z, .efectos_sonido
+			CALL	PT3_PLAY		;calcula el siguiente 'trocito' de musica que sera enviado al proxima vez
+.efectos_sonido:
+		JP		ayFX_PLAY			;calcula el siguiente 'trocito' de efecto especial de sonido que sera enviado la proxima vez
 fin_subrutina_isr:
 	
-
-
-;	entrada: A
-play_musica_apropiada:		
-		;A=0 musica normal
-		;A=1 musica jefe
-		;A=2 musica gameover
-.mira_musica_normal:
+;;=====================================================
+;;PLAY_MUSICA
+;;=====================================================	
+; función: 	toca la música que se le idique
+; entrada: 	A : 0
+			;A=0 musica off
+			;A=1 musica inicio
+			;A=2 musica jefe
+			;A=3 musica gameover
+play_musica:		
+		LD			(musica_activa), A
 		OR			 A
+		RET			 Z
+
+.mira_musica_inicio:
+		CP			 1
 		JP			NZ, .mira_musica_jefe
 		LD			HL, musica_normal-99			; hl <- initial address of module - 99
 		JP			.fin_mira_posibles_musicas
+		
 .mira_musica_jefe:
-		CP			MUSICAJEFE
+		CP			2
 		JP			NZ, .mira_musica_gameover
 		LD			HL, musica_boss-99			; hl <- initial address of module - 99
 		JP			.fin_mira_posibles_musicas
@@ -81,22 +87,12 @@ play_musica_apropiada:
 		LD			HL, musica_gameover-99			; hl <- initial address of module - 99
 .fin_mira_posibles_musicas:
 		JP			inicializa_replayer_efectos_interrupciones
-fin_play_musica_apropiada:
+fin_play_musica:
 
 
-musica_on:
-		;incializacion de replayer con interrupciones
-		PUSH		AF
-		LD			 A, 1
-		LD			(musica_activa), A	;musica off... sólo fx
-		POP			AF
-		JP			play_musica_apropiada
-fin_musica_on:
 musica_off:
-		;incializacion de replayer con interrupciones
 		XOR			 A
-		LD			(musica_activa), A	;musica off... sólo fx
-		JP			play_musica_apropiada
+		JP			play_musica	
 fin_musica_off:
 
 

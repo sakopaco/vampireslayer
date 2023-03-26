@@ -820,8 +820,6 @@ fin_flip_calavera_esqueletos:
 ;;=====================================================	
 ; función: 	pone un texto cada vex que se sube o baja de nivel en el castillo
 cambio_nivel_entrefases:
-			CALL		musica_off
-
 			CALL		borra_mapa
 
 			;Ocultamos todos los sprites
@@ -908,6 +906,8 @@ fin_borra_pantalla_inicio:
 ; salida: 	
 ; toca:		TODOS.... muy importante DE
 muestra_pantalla_inicial:
+		CALL		DISSCR
+		
 		CALL		limpia_pantalla
 		
 		;cargamos mapa de pantalla completa
@@ -937,6 +937,11 @@ muestra_pantalla_inicial:
 	
 		CALL		pinta_textos_inicio_disparo
 		CALL		pinta_textos_inicio_autoria
+		
+		CALL		ENASCR 
+		
+		LD			 A, 1
+		CALL		play_musica
 
 .mientras_nopulsado:
 		;compruebo espacio
@@ -953,6 +958,9 @@ muestra_pantalla_inicial:
 		OR			 B		;uno el resultado del espacio + el resultado del botón de disparo
 		
 		JP			 Z, .mientras_nopulsado	;si A=0 no se pulsó ni disparo ni botón
+		
+		;se ha pulsado
+		CALL		musica_off
 		
 		;ejecuto sonido
 		LD			 A, SONIDOINICIO	;4
@@ -979,9 +987,6 @@ muestra_pantalla_inicial:
 		
 		;borra pantalla bonito
 		CALL		borra_pantalla_inicio
-		
-		XOR			 A ;A=0 musica normal
-		JP			musica_on
 fin_muestra_pantalla_inicial:
 
 
@@ -1093,35 +1098,6 @@ quedan_vidas:
 			
 			JP			pinta_parte_superior_pantalla
 fin_una_vida_menos:
-
-
-;;=====================================================
-;;REPONER_MUSICA_TRAS_MUERTE_CAMBIO_NIVEL
-;;=====================================================	
-; función:  evita repetir el mismo código si te han matado o cambias de nivel
-;			si está muerto drácula o estás en una pantalla con jefe (posy = 6) musica jefe A=1
-;			si no A = 0 musica normal
-; nota:		se aprovecha para cuando matas a drácula (se hace más lento pero ahorras código)
-reponer_musica_tras_muerte_cambio_nivel:
-			;repongo la música y efectos
-			LD			 B, 0
-;está muerto dracula
-.examina_dracula_muerto:
-			LD			 A, (dracula_muerto)
-			OR			 A
-			JP			 Z, .examina_pantalla_jefe
-			LD			 B, 1 
-			JP			.fin_examina_tipo_musica
-;estoy en pantalla de jefe
-.examina_pantalla_jefe:
-			LD			 A, (prota_pos_mapy)
-			CP			 6
-			JP			 NZ, .fin_examina_tipo_musica
-			LD			 B, 1 
-.fin_examina_tipo_musica:
-			LD			 A, B
-			JP			musica_on			
-fin_reponer_musica_tras_muerte_cambio_nivel:
 
 
 ;;=====================================================

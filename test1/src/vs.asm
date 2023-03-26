@@ -60,9 +60,7 @@ START:
 		CALL		sub_preparapantalla			;screen 2,2 sin click al pulsar tecla y color 16,1,1
 
 inicio_juego:
-		CALL		musica_off
-	
-pantalla_inicial:
+		;pantalla_inicial
 		CALL		muestra_pantalla_inicial
 
 		;inicializa variables para parametrizar funciones y que lo que se muestre sea variable (nº vidas, mapa, puertas, pantalla, etc...)
@@ -98,9 +96,6 @@ pantalla_inicial:
 		CALL		pinta_energia
 	
 		CALL		entra_habitacion 		;CALL resetea enemigos + CALL inicializa_enemigos_fase + CALL	pinta_puertas + CALL pinta_ayudas_habitacion + CALL	pinta_extra_fondo 
-
-		XOR			 A ;A=0 entrada para musica normal
-		CALL		musica_on
 loop_principal:
 		HALT								;espera VBLANK y sincroniza
 
@@ -162,10 +157,6 @@ fin_inicializa_variables_prota:
 inicializa_variables_juego:
 		XOR			 A
 		LD			(dracula_muerto), A
-		
-		LD			(musica_tipo), A
-		
-		LD			(musica_activa), A
 fin_inicializa_variables_juego:
 		RET
 

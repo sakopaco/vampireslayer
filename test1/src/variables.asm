@@ -149,9 +149,9 @@ tipo_gameover:				DB		0
 ;;VARIABLES TIEMPO
 ;;=====================================================
 tiempo:
-minutos:					DB	0
-segundos:					DB	0
-contador:					DB	0
+minutos:					DB		0
+segundos:					DB		0
+contador:					DB		0
 
 
 ;;=====================================================
@@ -163,7 +163,6 @@ contador:					DB	0
 ;;=====================================================
 ;;VARIABLES PARA SONIDO 
 ;;=====================================================
-musica_activa:				DB	0			;se examina en subrutina_isr
-musica_tipo:				DB  0			;se examina en play_musica_apropiada
+musica_activa				DB 		0
 	include "datos/var_pt3_ayfx.asm"
 

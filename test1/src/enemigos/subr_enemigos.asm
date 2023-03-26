@@ -683,9 +683,6 @@ inicializa_enemigos_fase1_niveljefe:
 		RET			NZ
 		
 		;primero pone música de jefe fin de fase
-		LD			 A, 1 ;A=1 musica jefe
-		CALL		musica_on
-		
 		LD			 A, 1
 		LD			(enemiesleft), A
 
@@ -819,9 +816,6 @@ inicializa_enemigos_fase2_niveljefe:
 		RET			NZ
 		
 		;primero pone música de jefe fin de fase
-		LD			 A, 1 ;A=1 musica jefe
-		CALL		musica_on
-		
 		LD			 A, 1
 		LD			(enemiesleft), A
 
@@ -962,10 +956,6 @@ inicializa_enemigos_fase3_niveljefe:
 		OR			 A
 		RET			NZ
 		
-		;primero pone música de jefe fin de fase
-		LD			 A, 1 ;A=1 musica jefe
-		CALL		musica_on
-		
 		LD			 A, 1
 		LD			(enemiesleft), A
 		
@@ -1099,10 +1089,6 @@ inicializa_enemigos_fase4_niveljefe:
 		OR			 A
 		RET			NZ
 		
-		;primero pone música de jefe fin de fase
-		LD			 A, 1 ;A=1 musica jefe
-		CALL		musica_on
-		
 		LD			 A, 1
 		LD			(enemiesleft), A
 		
@@ -1234,10 +1220,9 @@ inicializa_enemigos_fase5_nivel5:
 fin_inicializa_enemigos_fase5_nivel5:
 
 inicializa_enemigos_fase5_niveljefe:
-
-		;primero pone música de jefe fin de fase
-		LD			 A, 1 ;A=1 musica jefe
-		CALL		musica_on
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
 		
 		LD			 A, 1
 		LD			(enemiesleft), A
@@ -1354,11 +1339,7 @@ inicializa_enemigos_fase6_nivel6:
 		
 		LD			 A, 3
 		LD			(enemiesleft), A
-		
-		;primero pone música de jefe fin de fase
-		LD			 A, 1 ;A=1 musica jefe
-		CALL		musica_on
-		
+
 		;está muerto drácula
 		LD			 A, (dracula_muerto)
 		OR			 A
