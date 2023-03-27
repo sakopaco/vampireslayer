@@ -296,7 +296,7 @@ entra_habitacion:
 ;ahora nos ocupamos de los enemigos
 		CALL		resetea_enemigos
 		
-		;~ ;ñññññ
+		;~ ;ñññññ   para que no salgan enemigos y el conde esté muerto
 		;~ LD			 A, 1
 		;~ LD			(dracula_muerto), A
 		;~ CALL		resetea_tiempo
@@ -342,10 +342,10 @@ entra_habitacion:
 		LD			 A, (contador_ayuda_ballesta)
 		OR			 A
 		RET			 Z			;si era ya 0 vamos directamente a pintar la habitación
-		DEC			 A								;resto una habitación para disparar con si no es 0
-		LD			(contador_ayuda_ballesta), A
-		RET			NZ
-		JP			resetea_ballesta				;si contador_ayuda_ballesta=0 vuelvo a poner la ballesta por defecto
+			DEC			 A								;resto una habitación para disparar con si no es 0
+			LD			(contador_ayuda_ballesta), A
+			RET			NZ
+				JP			resetea_ballesta				;si contador_ayuda_ballesta=0 vuelvo a poner la ballesta por defecto
 fin_entra_habitacion:
 
 

@@ -100,6 +100,14 @@ pinta_parte_superior_pantalla:
 		CP			 6
 		JP			NZ, .finsi
 		CALL		carga_tiles_bancos	;cargando los tiles en los bancos 0 y 1 que son iguales y se sacan de la misma variable
+		
+		;~ ;ñññññññññ
+		LD			 A, (dracula_muerto)
+		OR			 A
+		JP			NZ, .finsi
+			LD			 A, 2
+			CALL		play_musica
+		
 .finsi:
 
 		;aquí se actualizan las particularidades de cada nivel
@@ -820,6 +828,9 @@ fin_flip_calavera_esqueletos:
 ;;=====================================================	
 ; función: 	pone un texto cada vex que se sube o baja de nivel en el castillo
 cambio_nivel_entrefases:
+			LD			 A, 0		;para música
+			CALL		play_musica
+
 			CALL		borra_mapa
 
 			;Ocultamos todos los sprites
@@ -1064,7 +1075,12 @@ fin_oculta_tile_vida0:
 ;;UNA_VIDA_MENOS
 ;;=====================================================
 ; funcion: muestra mensaje cuando te matan una vida
-una_vida_menos;		
+una_vida_menos;
+		LD			 A, 0
+		CALL		play_musica
+
+		CALL		DISSCR
+
 		LD			 A, (prota_vidas)
 		OR			 A
 		JP			NZ, quedan_vidas
@@ -1089,12 +1105,9 @@ quedan_vidas:
 			LD			DE, TILMAP + 200	;destino en vram
 			CALL		LDIRVM
 
+			CALL		ENASCR
+
 			CALL		espera_estandar
-			
-			;repinto la pantalla y las puertas que correspondan
-			
-			
-			;ññññ
 			
 			JP			pinta_parte_superior_pantalla
 fin_una_vida_menos:
