@@ -114,6 +114,10 @@ pinta_parte_superior_pantalla:
 		CALL		actualiza_tiles_nivel
 		;pinta puerta si es necesario
 		CALL		pinta_puertas
+		
+		;pinta extras en el fondo si tiene
+		CALL		pinta_extra_fondo
+		
 		JP			pinta_ayudas_habitacion
 fin_pinta_parte_superior_pantalla:
 

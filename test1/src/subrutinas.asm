@@ -285,7 +285,6 @@ entra_habitacion:
 		CALL		DISSCR
 		
 ;nos ocupaos de pintar la habitación
-		CALL		pinta_extra_fondo
 		CALL		pinta_heroe_mapa
 		
 		CALL		pinta_parte_superior_pantalla
@@ -491,6 +490,10 @@ fin_mira_si_esta_juego_terminado:
 game_over:			
 			;apago pantalla
 			CALL		DISSCR
+			
+			;pone música
+			LD			 A, 3
+			CALL		play_musica
 
 			;limpia la pantalla
 			CALL		limpia_pantalla_completa

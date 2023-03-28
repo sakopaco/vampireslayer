@@ -6,7 +6,6 @@ BUGS
 * el disparo y la explosión parecen el mismo sonido
 
 TODO A
-* quitar musica ingame y repasar música
 - posicionar ayudas
 - poner tiles al matar a drácula
 - que los disparos sean al centro de los enemigos (y el radio se coja 
