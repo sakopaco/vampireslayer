@@ -201,6 +201,15 @@ fin_carga_datos_ayuda:
 ; salida: 	-
 ; toca:		AF, HL, BC, DE
 pinta_obj_ayuda:
+
+
+;ññññññ
+		RET
+
+
+
+
+
 	;se recibe objeto desde fuera, por ejmplo LD IX, ayuda_oracion
 
 	;si A=1 dibujo on (si 0 off)
@@ -322,7 +331,6 @@ fin_pinta_ayudas_habitacion:
 		RET
 
 
-
 ;;=====================================================
 ;;CHECK_COLISION_AYUDAS
 ;;=====================================================	
@@ -331,6 +339,13 @@ fin_pinta_ayudas_habitacion:
 ; salida: 	-
 ; toca:		todo
 check_colision_ayudas:
+
+
+;ññññññ
+		RET
+
+
+
 	LD		IX, (puntero_ayuda_actual)
 	LD		 A, (IX)
 	OR		 A							;está activa la ayuda de pantalla?

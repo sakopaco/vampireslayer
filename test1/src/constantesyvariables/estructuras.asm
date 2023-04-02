@@ -146,5 +146,6 @@ sprite_b			DB		0	;izq abajo
 sprite_c			DB		0	;der_arriba
 sprite_d			DB		0	;der_abajo
 dano				DB		0	;daño que hace el enemigo  si el daño es == 0 el enemigo está muerto
+ptr_colision		DW		0	;puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 	ENDSTRUCT;ESTRUCTURA_ENEMIGO
 

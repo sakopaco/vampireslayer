@@ -8,11 +8,11 @@ datos_jefelobo:
 			DB		JEFELOBO_ENERGIANORMAL	;(energia) energía del enemigo antes de morir
 			DB		JEFELOBO_X				;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		JEFELOBO_Y				;(posy) pos y para mover y punto central del sprite para revisar disparo
-			DB		8		;(radiox) radio x del enemigo para cuando se dispare encima
-			DB		8		;(radioy) radio y del enemigo para cuando se dispare encima
-			DB		0		;(incx) incremento x para mover
-			DB		0		;(inxy) incremento y para mover
-			DB		0		;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		8						;(radiox) radio x del enemigo para cuando se dispare encima
+			DB		8						;(radioy) radio y del enemigo para cuando se dispare encima
+			DB		0						;(incx) incremento x para mover
+			DB		0						;(inxy) incremento y para mover
+			DB		0						;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		00000001b				;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		JEFELOBO_LIM_PASOS1		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 			DB		JEFELOBO_POCAVIDA		;pocavida 0 y 1 para indicar cuando le queda poca vida al enemigo
@@ -22,6 +22,7 @@ datos_jefelobo:
 			DB		JEFELOBO_SPRITE3A		;izq abajo
 			DB		JEFELOBO_SPRITE4A		;der_abajo
 			DB		JEFELOBO_DANO 			;dano
+			DW		check_colision_enemigo16x16		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 			
 			
 ;;=====================================================

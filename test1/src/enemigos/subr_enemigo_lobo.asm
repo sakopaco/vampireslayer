@@ -21,7 +21,8 @@ datos_lobo:
 			DB		LOBO_SPRITE2A	;der_arriba
 			DB		LOBO_SPRITE3A	;izq abajo
 			DB		LOBO_SPRITE4A	;der_abajo
-			DB		LOBO_DANO 	;dano
+			DB		LOBO_DANO 		;dano
+			DW		check_colision_enemigo16x16		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 
 
 ;;=====================================================

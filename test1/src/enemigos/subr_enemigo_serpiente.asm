@@ -25,6 +25,7 @@ datos_serpiente:
 			DB		SERPIENTE_SPRITE1B	;der_arriba
 			DB		SERPIENTE_SPRITE2B	;der_abajo
 			DB		SERPIENTE_DANO 		;dano
+			DW		check_colision_enemigo16x16		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 			
 						
 ;;=====================================================

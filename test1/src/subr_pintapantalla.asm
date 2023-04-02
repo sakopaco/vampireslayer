@@ -102,11 +102,11 @@ pinta_parte_superior_pantalla:
 		CALL		carga_tiles_bancos	;cargando los tiles en los bancos 0 y 1 que son iguales y se sacan de la misma variable
 		
 		;~ ;ñññññññññ
-		LD			 A, (dracula_muerto)
-		OR			 A
-		JP			NZ, .finsi
-			LD			 A, 2
-			CALL		play_musica
+		;~ LD			 A, (dracula_muerto)
+		;~ OR			 A
+		;~ JP			NZ, .finsi
+			;~ LD			 A, 2
+			;~ CALL		play_musica
 		
 .finsi:
 

@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.03.28 - 22:22:06]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.04.02 - 13:34:51]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -804,8 +804,9 @@ Errors: 0
      146.  00:C000                    < sprite_c			DB		0	;der_arriba
      147.  00:C000                    < sprite_d			DB		0	;der_abajo
      148.  00:C000                    < dano				DB		0	;daño que hace el enemigo  si el daño es == 0 el enemigo está muerto
-     149.  00:C000                    < 	ENDSTRUCT;ESTRUCTURA_ENEMIGO
-     150.  00:C000                      
+     149.  00:C000                    < ptr_colision		DW		0	;puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
+     150.  00:C000                    < 	ENDSTRUCT;ESTRUCTURA_ENEMIGO
+     151.  00:C000                      
       13   00:C000                      
       14   00:C000                      ;variables globales del prota
       15   00:C000                      prota:
@@ -870,334 +871,334 @@ Errors: 0
       69   00:C03F  00                  heartbeat_general:			DB		0;			;reloj central que moverá los enemigos (dracula, mano derecha, mano izquierda y jefes y elementos de fondo)
       70   00:C040                      
       71   00:C040                      enemigos:
-      72   00:C040  00 (21)             enemigo1:					DS		ESTRUCTURA_ENEMIGO
-      73   00:C055  00 (21)             enemigo2:					DS		ESTRUCTURA_ENEMIGO
-      74   00:C06A  00 (21)             enemigo3:					DS		ESTRUCTURA_ENEMIGO
-      75   00:C07F  00 (21)             enemigo4:					DS		ESTRUCTURA_ENEMIGO
-      76   00:C094  00 (21)             enemigo5:					DS		ESTRUCTURA_ENEMIGO
-      77   00:C0A9  00 (21)             enemigo6:					DS		ESTRUCTURA_ENEMIGO
-      78   00:C0BE  00 (21)             enemigo7:					DS		ESTRUCTURA_ENEMIGO
-      79   00:C0D3                      
-      80   00:C0D3                      ;;SPRITES GENERAL (PROTA +  ENEMIGOS)
-      81   00:C0D3                      ;array de 4 bytes x 32 sprites posibles en pantalla que sobreescribirá la tabla de sprites actualizando VRAM
-      82   00:C0D3                      array_sprites:
-      83   00:C0D3  00 (8)              array_sprites_pm:			DS		 2 * 4		;el punto de mira siempre tiene 2 sprites
-      84   00:C0DB  00 (120)            array_sprites_enem:			DS		30 * 4		;resto de sprites
-      85   00:C153                      
-      86   00:C153                      
-      87   00:C153                      ;;=====================================================
-      88   00:C153                      ;;VARIABLES AYUDAS
-      89   00:C153                      ;;=====================================================
-      90   00:C153  00                  hay_ayudas_en_pantalla:		DB		0	;1 => hay / 0 => no hay; variable que se actualiza cuando cambiemos de habitación para no mirar el bit de habitación cada vez
-      91   00:C154  00 00               puntero_ayuda_actual:		DW		0	;puntero a ayuda que se muestra en pantalla (sólo se muestra una a la vez)
-      92   00:C156  00                  contador_ayuda_ballesta     DB  	0	;contador hacia atrás de pantallas que durará la ballesta
-      93   00:C157                      
-      94   00:C157                      lista_ayudas:
-      95   00:C157  00 (15)             ayuda_oracion:				DS		ESTRUCTURA_AYUDA		
-      96   00:C166  00 (15)             ayuda_cruz:					DS		ESTRUCTURA_AYUDA
-      97   00:C175  00 (15)             ayuda_aguabendita:			DS		ESTRUCTURA_AYUDA
-      98   00:C184  00 (15)             ayuda_armadura:				DS		ESTRUCTURA_AYUDA
-      99   00:C193  00 (15)             ayuda_planta:				DS		ESTRUCTURA_AYUDA
-     100   00:C1A2  00 (15)             ayuda_vidaextra				DS		ESTRUCTURA_AYUDA
-     101   00:C1B1  00 (15)             ayuda_ballesta:				DS		ESTRUCTURA_AYUDA
-     102   00:C1C0                      
-     103   00:C1C0                      
-     104   00:C1C0                      ;;=====================================================
-     105   00:C1C0                      ;;VARIABLES PINTA PANTALLAS + PUERTAS
-     106   00:C1C0                      ;;=====================================================
-     107   00:C1C0                      ;pinta_parte_superior_pantalla
-     108   00:C1C0  00 00               tiles_patrones:				DW		0
-     109   00:C1C2  00 00               tiles_colores:				DW		0
-     110   00:C1C4  00 00               tiles_mapa:					DW		0
-     111   00:C1C6                      
-     112   00:C1C6                      ;pinta_array
-     113   00:C1C6  00 00               wordaux1:					DW		0		;almacena la posición en el tilemap 0 al 675
-     114   00:C1C8  00 00               wordaux2:					DW		0		;almacena puntero a array de tiles (posiciones en realidad) a pintar (posiciones repetidas en los 2 primeros bancos)
-     115   00:C1CA  00                  byteaux1:					DB		0		;nº filas Registro D
-     116   00:C1CB  00                  byteaux2:					DB		0		;nº columnas Registro E
-     117   00:C1CC                      
-     118   00:C1CC                      lista_puertas:
-     119   00:C1CC  00 (13)             puerta_arriba:				DS		ESTRUCTURA_PUERTA
-     120   00:C1D9  00 (13)             puerta_derecha:				DS		ESTRUCTURA_PUERTA
-     121   00:C1E6  00 (13)             puerta_abajo:				DS		ESTRUCTURA_PUERTA
-     122   00:C1F3  00 (13)             puerta_izquierda:			DS		ESTRUCTURA_PUERTA
-     123   00:C200  00 (13)             puerta_escalera:			DS		ESTRUCTURA_PUERTA
-     124   00:C20D                      
-     125   00:C20D  00                  habitacion_actual:			DB		0		;habitación donde se encuentre el prota. Se mete en una varible par traer todos los datos de golpe y no buscarlos varias veces
-     126   00:C20E  00                  habitacion_extras:			DB		0		;donde van las ayudas de una habitación
-     127   00:C20F  00                  habitacion_terminada:		DB		0		;variable para consultar más rápido si se ha pasado (<>0 si se ha pasado y 0 no se ha pasado o no terminada)
-     128   00:C210                      
-     129   00:C210  00 00               puntero_extras_habitacion_actual:	DW	0	;puntero a los extras de la habitación actual para poder modificarlo (para que no salgan extras)
-     130   00:C212  00 00               puntero_habitacion_actual:	DW		0		;puntero a la habitación actual para poder modificarlo 
-     131   00:C214                      
-     132   00:C214  00                  enemiesleft:				DB		0		;enemigos que quedan por matar en una pantalla. No se podrá acceder a las puertas hasta que no queden enemigos vivos. Si se ha pasado por una pantalla no quedan enemigos vivos (no se respawnean).
-     133   00:C215                      
-     134   00:C215                      
-     135   00:C215                      ;;=====================================================
-     136   00:C215                      ;;VARIABLES PUNTO MIRA
-     137   00:C215                      ;;=====================================================
-     138   00:C215  00 (7)              puntomira:					DS		ESTRUCTURA_PUNTOMIRA
-     139   00:C21C                      
-     140   00:C21C                      
-     141   00:C21C                      ;;=====================================================
-     142   00:C21C                      ;;VARIABLES GLOBALES
-     143   00:C21C                      ;;=====================================================
-     144   00:C21C  00                  dracula_muerto:				DB		NO					;equ 0
-     145   00:C21D  00                  tipo_gameover:				DB		0
-     146   00:C21E                      
-     147   00:C21E                      
-     148   00:C21E                      ;;=====================================================
-     149   00:C21E                      ;;VARIABLES TIEMPO
-     150   00:C21E                      ;;=====================================================
-     151   00:C21E                      tiempo:
-     152   00:C21E  00                  minutos:					DB		0
-     153   00:C21F  00                  segundos:					DB		0
-     154   00:C220  00                  contador:					DB		0
-     155   00:C221                      
-     156   00:C221                      
-     157   00:C221                      ;;=====================================================
-     158   00:C221                      ;;VARIABLES HABITACIONES
-     159   00:C221                      ;;=====================================================
-     160   00:C221                      	include "datos/habitaciones.asm"
-       1.  00:C221                      ;;=====================================================
-       2.  00:C221                      ;;DEFINICIÓN DE HABITACIONES x NIVEL
-       3.  00:C221                      ;;=====================================================	
-       4.  00:C221                      
-       5.  00:C221                      ; sólo voy a usar 7x7 pero como los arrays son lineales y voy a trabajar con matrices
-       6.  00:C221                      ; me interesa que seande  8x8 aunque sólo trabaje con 7x7
-       7.  00:C221                      
-       8.  00:C221                      ; ojo... la primera linea corresponderá a la primera linea del castillo no a la última
-       9.  00:C221                      
-      10.  00:C221                      ;; definición de estructura de bits
-      11.  00:C221                      ;16 bits por habitación
-      12.  00:C221                      
-      13.  00:C221                      ;NOTA: no es necesario asignar un bit para la puerta de arriba ya que en las habitaciones de la fila 7 sólo habrá una puerta que será una escalera
-      14.  00:C221                      ;1º byte
-      15.  00:C221                      ;~ 7 - sin asignar
-      16.  00:C221                      ;~ 6 - si 1 => hay ayudas 0 => no hay ayudas (se inicializan al empezar la partida)
-      17.  00:C221                      ;~ 5 - esqueletos
-      18.  00:C221                      ;~ 4 - SI enemigos => 0 y NO enemigos 1 => toca la variable "habitacion_terminada" (se inicializan al empezar la partida)
-      19.  00:C221                      ;(relacionado con la variable -- habitacion_terminada)
-      20.  00:C221                      ;~ 3,2,1,0 - nº puertas 1 arriba 1 derecha 1 abajo 1 izquierda 
-      21.  00:C221                      
-      22.  00:C221                      ;2º byte
-      23.  00:C221                      ;~ 7 - oracion
-      24.  00:C221                      ;~ 6 - cruz
-      25.  00:C221                      ;~ 5 - agua bendita
-      26.  00:C221                      ;~ 4 - armadura
-      27.  00:C221                      ;~ 3 - planta
-      28.  00:C221                      ;~ 2 - vida extra
-      29.  00:C221                      ;~ 1 - ballesta
-      30.  00:C221                      ;~ 0 - antorchas
-      31.  00:C221                      
-      32.  00:C221                      ;importante: el byte de la columna 15 indicará con 1 y 0 habitaciones por las que se haya pasado
-      33.  00:C221                      ;cuando se inicie la partida todos se pondrán a 0
-      34.  00:C221                      ;por ejemplo 01000000b se ha pasado por la hab. 2 de esa fila en el nivel que sea
-      35.  00:C221                      
-      36.  00:C221                      
-      37.  00:C221                      habitaciones_juego:
-      38.  00:C221                      habitaciones_nivel0:
-      39.  00:C221                      			;0		0'		   1        1'         2         2'         3        3'        4         4'       5         5'        6         6'
-      40.  00:C221                      	db 00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,#00,#00 ;nivel 0 fila 1
-      40.  00:C221  00 00 00 00 00 00 0A 00 00 00 00 00 00 00 00 00 
-      41.  00:C231                      	db 00000000b,00000000b,00001100b,00000000b,00000101b,00000000b,00001111b,00000010b,00000101b,00000000b,00001001b,00000000b,00000000b,00000000b,#00,#00 
-      41.  00:C231  00 00 0C 00 05 00 0F 02 05 00 09 00 00 00 00 00 
-      42.  00:C241                      	db 00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,00001010b,00000100b,00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,#00,#00 
-      42.  00:C241  00 00 0A 00 00 00 0A 04 00 00 0A 00 00 00 00 00 
-      43.  00:C251                      	db 00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,00000010b,00001000b,00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,#00,#00 
-      43.  00:C251  00 00 0A 00 00 00 02 08 00 00 0A 00 00 00 00 00 
-      44.  00:C261                      	db 00000000b,00000000b,00001110b,00000000b,00000001b,00000000b,00000000b,00000000b,00000100b,00000000b,00001011b,00000000b,00000000b,00000000b,#00,#00 
-      44.  00:C261  00 00 0E 00 01 00 00 00 04 00 0B 00 00 00 00 00 
-      45.  00:C271                      	db 00000000b,00000000b,00000110b,00000000b,00000101b,00000000b,00001101b,00000000b,00000101b,00000000b,00000011b,00000000b,00000000b,00000000b,#00,#00 
-      45.  00:C271  00 00 06 00 05 00 0D 00 05 00 03 00 00 00 00 00 
-      46.  00:C281                      	db 00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,#00,#00 ;nivel 0 fila 7
-      46.  00:C281  00 00 00 00 00 00 0A 00 00 00 00 00 00 00 00 00 
-      47.  00:C291                      	
-      48.  00:C291                      habitaciones_nivel1:
-      49.  00:C291                      			;0		0'		   1        1'         2         2'         3        3'        4         4'       5         5'        6         6'
-      50.  00:C291                      	db 00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,#00,#00 ;nivel 0 fila 1
-      50.  00:C291  00 00 00 00 00 00 0A 00 00 00 00 00 00 00 00 00 
-      51.  00:C2A1                      	db 00000000b,00000000b,00001100b,00000000b,00000101b,00000000b,00001111b,00000000b,00000101b,00000000b,00001001b,00000000b,00000000b,00000000b,#00,#00 
-      51.  00:C2A1  00 00 0C 00 05 00 0F 00 05 00 09 00 00 00 00 00 
-      52.  00:C2B1                      	db 00000100b,00000000b,00001011b,00000000b,00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,00001110b,00000000b,00000001b,00000000b,#00,#00 
-      52.  00:C2B1  04 00 0B 00 00 00 0A 00 00 00 0E 00 01 00 00 00 
-      53.  00:C2C1                      	db 00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,00000010b,00000000b,00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,#00,#00 
-      53.  00:C2C1  00 00 0A 00 00 00 02 00 00 00 0A 00 00 00 00 00 
-      54.  00:C2D1                      	db 00000100b,00000000b,00001011b,00000000b,00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,00001110b,00000000b,00000001b,00000000b,#00,#00 
-      54.  00:C2D1  04 00 0B 00 00 00 0A 00 00 00 0E 00 01 00 00 00 
-      55.  00:C2E1                      	db 00000000b,00000000b,00000110b,00000000b,00000101b,00000000b,00001101b,00000000b,00000101b,00000000b,00000011b,00000000b,00000000b,00000000b,#00,#00 
-      55.  00:C2E1  00 00 06 00 05 00 0D 00 05 00 03 00 00 00 00 00 
-      56.  00:C2F1                      	db 00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,#00,#00 ;nivel 0 fila 7
-      56.  00:C2F1  00 00 00 00 00 00 0A 00 00 00 00 00 00 00 00 00 
-      57.  00:C301                      	
-      58.  00:C301                      habitaciones_nivel2:
-      59.  00:C301                      			;0		0'		   1        1'         2         2'         3        3'        4         4'       5         5'        6         6'
-      60.  00:C301                      	db 00000000b,00000001b,00000000b,00000001b,00000000b,00000001b,00001010b,00000001b,00000000b,00000001b,00000000b,00000001b,00000000b,00000001b,#00,#00 ;nivel 0 fila 1
-      60.  00:C301  00 01 00 01 00 01 0A 01 00 01 00 01 00 01 00 00 
-      61.  00:C311                      	db 00000000b,00000001b,00001100b,00000001b,00000101b,00000001b,00001111b,00000001b,00000101b,00000001b,00000101b,00000001b,00001001b,00000001b,#00,#00 
-      61.  00:C311  00 01 0C 01 05 01 0F 01 05 01 05 01 09 01 00 00 
-      62.  00:C321                      	db 00000000b,00000001b,00001010b,00000001b,00000000b,00000001b,00001010b,00000001b,00000000b,00000001b,00000000b,00000001b,00001010b,00000001b,#00,#00 
-      62.  00:C321  00 01 0A 01 00 01 0A 01 00 01 00 01 0A 01 00 00 
-      63.  00:C331                      	db 00000000b,00000001b,00001010b,00000001b,00000000b,00000001b,00001110b,00000001b,00000101b,00000001b,00000101b,00000001b,00001011b,00000001b,#00,#00 
-      63.  00:C331  00 01 0A 01 00 01 0E 01 05 01 05 01 0B 01 00 00 
-      64.  00:C341                      	db 00000000b,00000001b,00001010b,00000001b,00000000b,00000001b,00001010b,00000001b,00000000b,00000001b,00000000b,00000001b,00000010b,00000001b,#00,#00 
-      64.  00:C341  00 01 0A 01 00 01 0A 01 00 01 00 01 02 01 00 00 
-      65.  00:C351                      	db 00000100b,00000001b,00000111b,00000001b,00000101b,00000001b,00001011b,00000001b,00000000b,00000001b,00000000b,00000001b,00000000b,00000001b,#00,#00 
-      65.  00:C351  04 01 07 01 05 01 0B 01 00 01 00 01 00 01 00 00 
-      66.  00:C361                      	db 00000000b,00000001b,00000000b,00000001b,00000000b,00000001b,00001010b,00000001b,00000000b,00000001b,00000000b,00000001b,00000000b,00000001b,#00,#00 ;nivel 0 fila 7
-      66.  00:C361  00 01 00 01 00 01 0A 01 00 01 00 01 00 01 00 00 
-      67.  00:C371                      	
-      68.  00:C371                      habitaciones_nivel3:
-      69.  00:C371                      			;0		0'		   1        1'         2         2'         3        3'        4         4'       5         5'        6         6'
-      70.  00:C371                      	db 00100000b,00000000b,00100000b,00000000b,00100000b,00000000b,00101010b,00000000b,00100000b,00000000b,00100000b,00000000b,00100000b,00000000b,#00,#00 ;nivel 0 fila 1
-      70.  00:C371  20 00 20 00 20 00 2A 00 20 00 20 00 20 00 00 00 
-      71.  00:C381                      	db 00100000b,00000000b,00101100b,00000000b,00100101b,00000000b,00101111b,00000000b,00100101b,00000000b,00101001b,00000000b,00100000b,00000000b,#00,#00 
-      71.  00:C381  20 00 2C 00 25 00 2F 00 25 00 29 00 20 00 00 00 
-      72.  00:C391                      	db 00100100b,00000000b,00101011b,00000000b,00100000b,00000000b,00101010b,00000000b,00100000b,00000000b,00101110b,00000000b,00100001b,00000000b,#00,#00 
-      72.  00:C391  24 00 2B 00 20 00 2A 00 20 00 2E 00 21 00 00 00 
-      73.  00:C3A1                      	db 00100000b,00000000b,00101010b,00000000b,00100000b,00000000b,00100010b,00000000b,00100000b,00000000b,00101010b,00000000b,00100000b,00000000b,#00,#00 
-      73.  00:C3A1  20 00 2A 00 20 00 22 00 20 00 2A 00 20 00 00 00 
-      74.  00:C3B1                      	db 00100100b,00000000b,00101011b,00000000b,00100000b,00000000b,00101010b,00000000b,00100000b,00000000b,00101110b,00000000b,00100001b,00000000b,#00,#00 
-      74.  00:C3B1  24 00 2B 00 20 00 2A 00 20 00 2E 00 21 00 00 00 
-      75.  00:C3C1                      	db 00100000b,00000000b,00100110b,00000000b,00100101b,00000000b,00101101b,00000000b,00100101b,00000000b,00100011b,00000000b,00100000b,00000000b,#00,#00 
-      75.  00:C3C1  20 00 26 00 25 00 2D 00 25 00 23 00 20 00 00 00 
-      76.  00:C3D1                      	db 00100000b,00000000b,00100000b,00000000b,00100000b,00000000b,00101010b,00000000b,00100000b,00000000b,00100000b,00000000b,00100000b,00000000b,#00,#00 ;nivel 0 fila 7
-      76.  00:C3D1  20 00 20 00 20 00 2A 00 20 00 20 00 20 00 00 00 
-      77.  00:C3E1                      	
-      78.  00:C3E1                      habitaciones_nivel4:
-      79.  00:C3E1                      			;0		0'		   1        1'         2         2'         3        3'        4         4'       5         5'        6         6'
-      80.  00:C3E1                      	db 00000000b,00000001b,00000000b,00000001b,00000000b,00000001b,00001010b,00000001b,00000000b,00000001b,00000000b,00000001b,00000000b,00000001b,#00,#00 ;nivel 0 fila 1
-      80.  00:C3E1  00 01 00 01 00 01 0A 01 00 01 00 01 00 01 00 00 
-      81.  00:C3F1                      	db 00001100b,00000001b,00000101b,00000001b,00000101b,00000001b,00001111b,00000001b,00000101b,00000001b,00001001b,00000001b,00000000b,00000001b,#00,#00 
-      81.  00:C3F1  0C 01 05 01 05 01 0F 01 05 01 09 01 00 01 00 00 
-      82.  00:C401                      	db 00001010b,00000001b,00000000b,00000001b,00000000b,00000001b,00001010b,00000001b,00000000b,00000001b,00001010b,00000001b,00000000b,00000001b,#00,#00 
-      82.  00:C401  0A 01 00 01 00 01 0A 01 00 01 0A 01 00 01 00 00 
-      83.  00:C411                      	db 00001010b,00000001b,00000000b,00000001b,00000100b,00000001b,00001011b,00000001b,00000000b,00000001b,00001010b,00000001b,00000000b,00000001b,#00,#00 
-      83.  00:C411  0A 01 00 01 04 01 0B 01 00 01 0A 01 00 01 00 00 
-      84.  00:C421                      	db 00000010b,00000001b,00000000b,00000001b,00000000b,00000001b,00001010b,00000001b,00000000b,00000001b,00001010b,00000001b,00000000b,00000001b,#00,#00 
-      84.  00:C421  02 01 00 01 00 01 0A 01 00 01 0A 01 00 01 00 00 
-      85.  00:C431                      	db 00000000b,00000001b,00000000b,00000001b,00000000b,00000001b,00001110b,00000001b,00000101b,00000001b,00000111b,00000001b,00000001b,00000001b,#00,#00 
-      85.  00:C431  00 01 00 01 00 01 0E 01 05 01 07 01 01 01 00 00 
-      86.  00:C441                      	db 00000000b,00000001b,00000000b,00000001b,00000000b,00000001b,00001010b,00000001b,00000000b,00000001b,00000000b,00000001b,00000000b,00000001b,#00,#00 ;nivel 0 fila 7
-      86.  00:C441  00 01 00 01 00 01 0A 01 00 01 00 01 00 01 00 00 
-      87.  00:C451                      	
-      88.  00:C451                      habitaciones_nivel5:
-      89.  00:C451                      			;0		0'		   1        1'         2         2'         3        3'        4         4'       5         5'        6         6'
-      90.  00:C451                      	db 00100000b,00000000b,00100000b,00000000b,00100000b,00000000b,00101010b,00000000b,00100000b,00000000b,00100000b,00000000b,00100000b,00000000b,#00,#00 ;nivel 0 fila 1
-      90.  00:C451  20 00 20 00 20 00 2A 00 20 00 20 00 20 00 00 00 
-      91.  00:C461                      	db 00100000b,00000000b,00101100b,00000000b,00100101b,00000000b,00101111b,00000000b,00100101b,00000000b,00101001b,00000000b,00100000b,00000000b,#00,#00 
-      91.  00:C461  20 00 2C 00 25 00 2F 00 25 00 29 00 20 00 00 00 
-      92.  00:C471                      	db 00100100b,00000000b,00101011b,00000000b,00100000b,00000000b,00101010b,00000000b,00100000b,00000000b,00101110b,00000000b,00100001b,00000000b,#00,#00 
-      92.  00:C471  24 00 2B 00 20 00 2A 00 20 00 2E 00 21 00 00 00 
-      93.  00:C481                      	db 00100000b,00000000b,00101010b,00000000b,00100000b,00000000b,00100010b,00000000b,00100000b,00000000b,00101010b,00000000b,00100000b,00000000b,#00,#00 
-      93.  00:C481  20 00 2A 00 20 00 22 00 20 00 2A 00 20 00 00 00 
-      94.  00:C491                      	db 00100100b,00000000b,00101011b,00000000b,00100000b,00000000b,00101010b,00000000b,00100000b,00000000b,00101110b,00000000b,00100001b,00000000b,#00,#00 
-      94.  00:C491  24 00 2B 00 20 00 2A 00 20 00 2E 00 21 00 00 00 
-      95.  00:C4A1                      	db 00100000b,00000000b,00100110b,00000000b,00100101b,00000000b,00101101b,00000000b,00100101b,00000000b,00100011b,00000000b,00100000b,00000000b,#00,#00 
-      95.  00:C4A1  20 00 26 00 25 00 2D 00 25 00 23 00 20 00 00 00 
-      96.  00:C4B1                      	db 00100000b,00000000b,00100000b,00000000b,00100000b,00000000b,00101010b,00000000b,00100000b,00000000b,00100000b,00000000b,00100000b,00000000b,#00,#00 ;nivel 0 fila 7
-      96.  00:C4B1  20 00 20 00 20 00 2A 00 20 00 20 00 20 00 00 00 
-      97.  00:C4C1                      	
-      98.  00:C4C1                      habitaciones_nivel6:
-      99.  00:C4C1                      			;0		0'		   1        1'         2         2'         3        3'        4         4'       5         5'        6         6'
-     100.  00:C4C1                      	db 00000000b,00000001b,00000000b,00000001b,00000000b,00000001b,00001010b,00000001b,00000000b,00000001b,00000000b,00000001b,00000000b,00000001b,#00,#00 ;nivel 0 fila 1
-     100.  00:C4C1  00 01 00 01 00 01 0A 01 00 01 00 01 00 01 00 00 
-     101.  00:C4D1                      	db 00100000b,00000000b,00000000b,00000000b,00100100b,00000000b,00101111b,00000000b,00100001b,00000000b,00100000b,00000000b,00100000b,00000000b,#00,#00 
-     101.  00:C4D1  20 00 00 00 24 00 2F 00 21 00 20 00 20 00 00 00 
-     102.  00:C4E1                      	db 00000000b,00000001b,00000000b,00000001b,00000100b,00000001b,00001111b,00000001b,00000001b,00000001b,00000000b,00000001b,00000000b,00000001b,#00,#00 
-     102.  00:C4E1  00 01 00 01 04 01 0F 01 01 01 00 01 00 01 00 00 
-     103.  00:C4F1                      	db 00100000b,00000000b,00000000b,00000000b,00100100b,00000000b,00101111b,00000000b,00100001b,00000000b,00100000b,00000000b,00100000b,00000000b,#00,#00 
-     103.  00:C4F1  20 00 00 00 24 00 2F 00 21 00 20 00 20 00 00 00 
-     104.  00:C501                      	db 00000000b,00000001b,00000000b,00000001b,00000100b,00000001b,00001111b,00000001b,00000001b,00000001b,00000000b,00000001b,00000000b,00000001b,#00,#00 
-     104.  00:C501  00 01 00 01 04 01 0F 01 01 01 00 01 00 01 00 00 
-     105.  00:C511                      	db 00100000b,00000000b,00000000b,00000000b,00100100b,00000000b,00101111b,00000000b,00100001b,00000000b,00100000b,00000000b,00100000b,00000000b,#00,#00 
-     105.  00:C511  20 00 00 00 24 00 2F 00 21 00 20 00 20 00 00 00 
-     106.  00:C521                      	db 00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00000010b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,#00,#00 ;nivel 0 fila 7
-     106.  00:C521  00 00 00 00 00 00 02 00 00 00 00 00 00 00 00 00 
-     107.  00:C531                      
-     161   00:C531                      
-     162   00:C531                      
-     163   00:C531                      ;;=====================================================
-     164   00:C531                      ;;VARIABLES PARA SONIDO 
-     165   00:C531                      ;;=====================================================
-     166   00:C531  00                  musica_activa				DB 		0
-     167   00:C532                      	include "datos/var_pt3_ayfx.asm"
-       1.  00:C532                      ;;=====================================================
-       2.  00:C532                      ;;VARIABLES PARA SONIDO 
-       3.  00:C532                      ;;=====================================================
-       4.  00:C532                      
-       5.  00:C532  (F000)              	map		#f000	;IMPRESCINDIBLE PARA MÚSICA Y SONIDO !!!
-       6.  00:C532                      
-       7.  00:C532                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PT3 REPLAYER
-       8.  00:C532  (00:F000)           PT3_SETUP:		#1	;set bit0 to 1, if you want to play without looping
-       9.  00:C532                      					;bit7 is set each time, when loop point is passed
-      10.  00:C532  (00:F001)           PT3_MODADDR:	#2
-      11.  00:C532  (00:F003)           PT3_CrPsPtr:	#2
-      12.  00:C532  (00:F005)           PT3_SAMPTRS:	#2
-      13.  00:C532  (00:F007)           PT3_OrnPtrs:	#2
-      14.  00:C532  (00:F009)           PT3_PDSP:		#2
-      15.  00:C532  (00:F00B)           PT3_CSP:		#2
-      16.  00:C532  (00:F00D)           PT3_PSP:		#2
-      17.  00:C532  (00:F00F)           PT3_PrNote:		#1
-      18.  00:C532  (00:F010)           PT3_PrSlide:	#2
-      19.  00:C532  (00:F012)           PT3_AdInPtA:	#2
-      20.  00:C532  (00:F014)           PT3_AdInPtB:	#2
-      21.  00:C532  (00:F016)           PT3_AdInPtC:	#2
-      22.  00:C532  (00:F018)           PT3_LPosPtr:	#2
-      23.  00:C532  (00:F01A)           PT3_PatsPtr:	#2
-      24.  00:C532  (00:F01C)           PT3_Delay:		#1
-      25.  00:C532  (00:F01D)           PT3_AddToEn:	#1
-      26.  00:C532  (00:F01E)           PT3_Env_Del:	#1
-      27.  00:C532  (00:F01F)           PT3_ESldAdd:	#2
-      28.  00:C532  (00:F021)           PT3_NTL3:		#2	; AND A / NOP (note table creator)
-      29.  00:C532                      
-      30.  00:C532  (00:F023)           VARS:			#0
-      31.  00:C532                      
-      32.  00:C532  (00:F023)           ChanA:			#29			;CHNPRM_Size
-      33.  00:C532  (00:F040)           ChanB:			#29			;CHNPRM_Size
-      34.  00:C532  (00:F05D)           ChanC:			#29			;CHNPRM_Size
-      35.  00:C532                      
-      36.  00:C532                      ;GlobalVars
-      37.  00:C532  (00:F07A)           DelyCnt:		#1
-      38.  00:C532  (00:F07B)           CurESld:		#2
-      39.  00:C532  (00:F07D)           CurEDel:		#1
-      40.  00:C532  (00:F07E)           Ns_Base_AddToNs:	#0
-      41.  00:C532  (00:F07E)           Ns_Base:		#1
-      42.  00:C532  (00:F07F)           AddToNs:		#1
-      43.  00:C532                      
-      44.  00:C532  (00:F080)           NT_:			#192	; Puntero a/tabla de frecuencias
-      45.  00:C532                      
-      46.  00:C532  (00:F140)           AYREGS:			#0
-      47.  00:C532  (00:F140)           VT_:			#14
-      48.  00:C532  (00:F14E)           EnvBase:		#2
-      49.  00:C532  (00:F150)           VAR0END:		#0
-      50.  00:C532                      
-      51.  00:C532  (00:F150)           T1_:			#0		
-      52.  00:C532  (00:F150)           T_NEW_1:		#0
-      53.  00:C532  (00:F150)           T_OLD_1:		#24
-      54.  00:C532  (00:F168)           T_OLD_2:		#24
-      55.  00:C532  (00:F180)           T_NEW_3:		#0
-      56.  00:C532  (00:F180)           T_OLD_3:		#2
-      57.  00:C532  (00:F182)           T_OLD_0:		#0
-      58.  00:C532  (00:F182)           T_NEW_0:		#24
-      59.  00:C532  (00:F19A)           T_NEW_2:		#166
-      60.  00:C532                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PT3 REPLAYER END
-      61.  00:C532                      
-      62.  00:C532                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ayFX REPLAYER 
-      63.  00:C532  (00:F240)           ayFX_MODE:		#1			; ayFX mode
-      64.  00:C532  (00:F241)           ayFX_BANK:		#2			; Current ayFX Bank
-      65.  00:C532  (00:F243)           ayFX_PRIORITY:	#1			; Current ayFX stream priotity
-      66.  00:C532  (00:F244)           ayFX_POINTER:	#2			; Pointer to the current ayFX stream
-      67.  00:C532  (00:F246)           ayFX_TONE:		#2			; Current tone of the ayFX stream
-      68.  00:C532  (00:F248)           ayFX_NOISE:		#1			; Current noise of the ayFX stream
-      69.  00:C532  (00:F249)           ayFX_VOLUME:	#1			; Current volume of the ayFX stream
-      70.  00:C532  (00:F24A)           ayFX_CHANNEL:	#1			; PSG channel to play the ayFX stream
-      71.  00:C532                      
-      72.  00:C532                      	;IF (AYFXRELATIVE == 1 ) 
-      73.  00:C532                      ;ayFX_VT:	ds	2			; ayFX relative volume table pointer
-      74.  00:C532                      	;ENDIF
-      75.  00:C532                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ayFX REPLAYER END
-     168   00:C532                      
+      72   00:C040  00 (23)             enemigo1:					DS		ESTRUCTURA_ENEMIGO
+      73   00:C057  00 (23)             enemigo2:					DS		ESTRUCTURA_ENEMIGO
+      74   00:C06E  00 (23)             enemigo3:					DS		ESTRUCTURA_ENEMIGO
+      75   00:C085  00 (23)             enemigo4:					DS		ESTRUCTURA_ENEMIGO
+      76   00:C09C  00 (23)             enemigo5:					DS		ESTRUCTURA_ENEMIGO
+      77   00:C0B3  00 (23)             enemigo6:					DS		ESTRUCTURA_ENEMIGO
+      78   00:C0CA  00 (23)             enemigo7:					DS		ESTRUCTURA_ENEMIGO
+      79   00:C0E1                      
+      80   00:C0E1                      ;;SPRITES GENERAL (PROTA +  ENEMIGOS)
+      81   00:C0E1                      ;array de 4 bytes x 32 sprites posibles en pantalla que sobreescribirá la tabla de sprites actualizando VRAM
+      82   00:C0E1                      array_sprites:
+      83   00:C0E1  00 (8)              array_sprites_pm:			DS		 2 * 4		;el punto de mira siempre tiene 2 sprites
+      84   00:C0E9  00 (120)            array_sprites_enem:			DS		30 * 4		;resto de sprites
+      85   00:C161                      
+      86   00:C161                      
+      87   00:C161                      ;;=====================================================
+      88   00:C161                      ;;VARIABLES AYUDAS
+      89   00:C161                      ;;=====================================================
+      90   00:C161  00                  hay_ayudas_en_pantalla:		DB		0	;1 => hay / 0 => no hay; variable que se actualiza cuando cambiemos de habitación para no mirar el bit de habitación cada vez
+      91   00:C162  00 00               puntero_ayuda_actual:		DW		0	;puntero a ayuda que se muestra en pantalla (sólo se muestra una a la vez)
+      92   00:C164  00                  contador_ayuda_ballesta     DB  	0	;contador hacia atrás de pantallas que durará la ballesta
+      93   00:C165                      
+      94   00:C165                      lista_ayudas:
+      95   00:C165  00 (15)             ayuda_oracion:				DS		ESTRUCTURA_AYUDA		
+      96   00:C174  00 (15)             ayuda_cruz:					DS		ESTRUCTURA_AYUDA
+      97   00:C183  00 (15)             ayuda_aguabendita:			DS		ESTRUCTURA_AYUDA
+      98   00:C192  00 (15)             ayuda_armadura:				DS		ESTRUCTURA_AYUDA
+      99   00:C1A1  00 (15)             ayuda_planta:				DS		ESTRUCTURA_AYUDA
+     100   00:C1B0  00 (15)             ayuda_vidaextra				DS		ESTRUCTURA_AYUDA
+     101   00:C1BF  00 (15)             ayuda_ballesta:				DS		ESTRUCTURA_AYUDA
+     102   00:C1CE                      
+     103   00:C1CE                      
+     104   00:C1CE                      ;;=====================================================
+     105   00:C1CE                      ;;VARIABLES PINTA PANTALLAS + PUERTAS
+     106   00:C1CE                      ;;=====================================================
+     107   00:C1CE                      ;pinta_parte_superior_pantalla
+     108   00:C1CE  00 00               tiles_patrones:				DW		0
+     109   00:C1D0  00 00               tiles_colores:				DW		0
+     110   00:C1D2  00 00               tiles_mapa:					DW		0
+     111   00:C1D4                      
+     112   00:C1D4                      ;pinta_array
+     113   00:C1D4  00 00               wordaux1:					DW		0		;almacena la posición en el tilemap 0 al 675
+     114   00:C1D6  00 00               wordaux2:					DW		0		;almacena puntero a array de tiles (posiciones en realidad) a pintar (posiciones repetidas en los 2 primeros bancos)
+     115   00:C1D8  00                  byteaux1:					DB		0		;nº filas Registro D
+     116   00:C1D9  00                  byteaux2:					DB		0		;nº columnas Registro E
+     117   00:C1DA                      
+     118   00:C1DA                      lista_puertas:
+     119   00:C1DA  00 (13)             puerta_arriba:				DS		ESTRUCTURA_PUERTA
+     120   00:C1E7  00 (13)             puerta_derecha:				DS		ESTRUCTURA_PUERTA
+     121   00:C1F4  00 (13)             puerta_abajo:				DS		ESTRUCTURA_PUERTA
+     122   00:C201  00 (13)             puerta_izquierda:			DS		ESTRUCTURA_PUERTA
+     123   00:C20E  00 (13)             puerta_escalera:			DS		ESTRUCTURA_PUERTA
+     124   00:C21B                      
+     125   00:C21B  00                  habitacion_actual:			DB		0		;habitación donde se encuentre el prota. Se mete en una varible par traer todos los datos de golpe y no buscarlos varias veces
+     126   00:C21C  00                  habitacion_extras:			DB		0		;donde van las ayudas de una habitación
+     127   00:C21D  00                  habitacion_terminada:		DB		0		;variable para consultar más rápido si se ha pasado (<>0 si se ha pasado y 0 no se ha pasado o no terminada)
+     128   00:C21E                      
+     129   00:C21E  00 00               puntero_extras_habitacion_actual:	DW	0	;puntero a los extras de la habitación actual para poder modificarlo (para que no salgan extras)
+     130   00:C220  00 00               puntero_habitacion_actual:	DW		0		;puntero a la habitación actual para poder modificarlo 
+     131   00:C222                      
+     132   00:C222  00                  enemiesleft:				DB		0		;enemigos que quedan por matar en una pantalla. No se podrá acceder a las puertas hasta que no queden enemigos vivos. Si se ha pasado por una pantalla no quedan enemigos vivos (no se respawnean).
+     133   00:C223                      
+     134   00:C223                      
+     135   00:C223                      ;;=====================================================
+     136   00:C223                      ;;VARIABLES PUNTO MIRA
+     137   00:C223                      ;;=====================================================
+     138   00:C223  00 (7)              puntomira:					DS		ESTRUCTURA_PUNTOMIRA
+     139   00:C22A                      
+     140   00:C22A                      
+     141   00:C22A                      ;;=====================================================
+     142   00:C22A                      ;;VARIABLES GLOBALES
+     143   00:C22A                      ;;=====================================================
+     144   00:C22A  00                  dracula_muerto:				DB		NO					;equ 0
+     145   00:C22B  00                  tipo_gameover:				DB		0
+     146   00:C22C                      
+     147   00:C22C                      
+     148   00:C22C                      ;;=====================================================
+     149   00:C22C                      ;;VARIABLES TIEMPO
+     150   00:C22C                      ;;=====================================================
+     151   00:C22C                      tiempo:
+     152   00:C22C  00                  minutos:					DB		0
+     153   00:C22D  00                  segundos:					DB		0
+     154   00:C22E  00                  contador:					DB		0
+     155   00:C22F                      
+     156   00:C22F                      
+     157   00:C22F                      ;;=====================================================
+     158   00:C22F                      ;;VARIABLES HABITACIONES
+     159   00:C22F                      ;;=====================================================
+     160   00:C22F                      	include "datos/habitaciones.asm"
+       1.  00:C22F                      ;;=====================================================
+       2.  00:C22F                      ;;DEFINICIÓN DE HABITACIONES x NIVEL
+       3.  00:C22F                      ;;=====================================================	
+       4.  00:C22F                      
+       5.  00:C22F                      ; sólo voy a usar 7x7 pero como los arrays son lineales y voy a trabajar con matrices
+       6.  00:C22F                      ; me interesa que seande  8x8 aunque sólo trabaje con 7x7
+       7.  00:C22F                      
+       8.  00:C22F                      ; ojo... la primera linea corresponderá a la primera linea del castillo no a la última
+       9.  00:C22F                      
+      10.  00:C22F                      ;; definición de estructura de bits
+      11.  00:C22F                      ;16 bits por habitación
+      12.  00:C22F                      
+      13.  00:C22F                      ;NOTA: no es necesario asignar un bit para la puerta de arriba ya que en las habitaciones de la fila 7 sólo habrá una puerta que será una escalera
+      14.  00:C22F                      ;1º byte
+      15.  00:C22F                      ;~ 7 - sin asignar
+      16.  00:C22F                      ;~ 6 - si 1 => hay ayudas 0 => no hay ayudas (se inicializan al empezar la partida)
+      17.  00:C22F                      ;~ 5 - esqueletos
+      18.  00:C22F                      ;~ 4 - SI enemigos => 0 y NO enemigos 1 => toca la variable "habitacion_terminada" (se inicializan al empezar la partida)
+      19.  00:C22F                      ;(relacionado con la variable -- habitacion_terminada)
+      20.  00:C22F                      ;~ 3,2,1,0 - nº puertas 1 arriba 1 derecha 1 abajo 1 izquierda 
+      21.  00:C22F                      
+      22.  00:C22F                      ;2º byte
+      23.  00:C22F                      ;~ 7 - oracion
+      24.  00:C22F                      ;~ 6 - cruz
+      25.  00:C22F                      ;~ 5 - agua bendita
+      26.  00:C22F                      ;~ 4 - armadura
+      27.  00:C22F                      ;~ 3 - planta
+      28.  00:C22F                      ;~ 2 - vida extra
+      29.  00:C22F                      ;~ 1 - ballesta
+      30.  00:C22F                      ;~ 0 - antorchas
+      31.  00:C22F                      
+      32.  00:C22F                      ;importante: el byte de la columna 15 indicará con 1 y 0 habitaciones por las que se haya pasado
+      33.  00:C22F                      ;cuando se inicie la partida todos se pondrán a 0
+      34.  00:C22F                      ;por ejemplo 01000000b se ha pasado por la hab. 2 de esa fila en el nivel que sea
+      35.  00:C22F                      
+      36.  00:C22F                      
+      37.  00:C22F                      habitaciones_juego:
+      38.  00:C22F                      habitaciones_nivel0:
+      39.  00:C22F                      			;0		0'		   1        1'         2         2'         3        3'        4         4'       5         5'        6         6'
+      40.  00:C22F                      	db 00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,#00,#00 ;nivel 0 fila 1
+      40.  00:C22F  00 00 00 00 00 00 0A 00 00 00 00 00 00 00 00 00 
+      41.  00:C23F                      	db 00000000b,00000000b,00001100b,00000000b,00000101b,00000000b,00001111b,00000010b,00000101b,00000000b,00001001b,00000000b,00000000b,00000000b,#00,#00 
+      41.  00:C23F  00 00 0C 00 05 00 0F 02 05 00 09 00 00 00 00 00 
+      42.  00:C24F                      	db 00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,00001010b,00000100b,00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,#00,#00 
+      42.  00:C24F  00 00 0A 00 00 00 0A 04 00 00 0A 00 00 00 00 00 
+      43.  00:C25F                      	db 00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,00000010b,00001000b,00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,#00,#00 
+      43.  00:C25F  00 00 0A 00 00 00 02 08 00 00 0A 00 00 00 00 00 
+      44.  00:C26F                      	db 00000000b,00000000b,00001110b,00000000b,00000001b,00000000b,00000000b,00000000b,00000100b,00000000b,00001011b,00000000b,00000000b,00000000b,#00,#00 
+      44.  00:C26F  00 00 0E 00 01 00 00 00 04 00 0B 00 00 00 00 00 
+      45.  00:C27F                      	db 00000000b,00000000b,00000110b,00000000b,00000101b,00000000b,00001101b,00000000b,00000101b,00000000b,00000011b,00000000b,00000000b,00000000b,#00,#00 
+      45.  00:C27F  00 00 06 00 05 00 0D 00 05 00 03 00 00 00 00 00 
+      46.  00:C28F                      	db 00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,#00,#00 ;nivel 0 fila 7
+      46.  00:C28F  00 00 00 00 00 00 0A 00 00 00 00 00 00 00 00 00 
+      47.  00:C29F                      	
+      48.  00:C29F                      habitaciones_nivel1:
+      49.  00:C29F                      			;0		0'		   1        1'         2         2'         3        3'        4         4'       5         5'        6         6'
+      50.  00:C29F                      	db 00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,#00,#00 ;nivel 0 fila 1
+      50.  00:C29F  00 00 00 00 00 00 0A 00 00 00 00 00 00 00 00 00 
+      51.  00:C2AF                      	db 00000000b,00000000b,00001100b,00000000b,00000101b,00000000b,00001111b,00000000b,00000101b,00000000b,00001001b,00000000b,00000000b,00000000b,#00,#00 
+      51.  00:C2AF  00 00 0C 00 05 00 0F 00 05 00 09 00 00 00 00 00 
+      52.  00:C2BF                      	db 00000100b,00000000b,00001011b,00000000b,00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,00001110b,00000000b,00000001b,00000000b,#00,#00 
+      52.  00:C2BF  04 00 0B 00 00 00 0A 00 00 00 0E 00 01 00 00 00 
+      53.  00:C2CF                      	db 00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,00000010b,00000000b,00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,#00,#00 
+      53.  00:C2CF  00 00 0A 00 00 00 02 00 00 00 0A 00 00 00 00 00 
+      54.  00:C2DF                      	db 00000100b,00000000b,00001011b,00000000b,00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,00001110b,00000000b,00000001b,00000000b,#00,#00 
+      54.  00:C2DF  04 00 0B 00 00 00 0A 00 00 00 0E 00 01 00 00 00 
+      55.  00:C2EF                      	db 00000000b,00000000b,00000110b,00000000b,00000101b,00000000b,00001101b,00000000b,00000101b,00000000b,00000011b,00000000b,00000000b,00000000b,#00,#00 
+      55.  00:C2EF  00 00 06 00 05 00 0D 00 05 00 03 00 00 00 00 00 
+      56.  00:C2FF                      	db 00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00001010b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,#00,#00 ;nivel 0 fila 7
+      56.  00:C2FF  00 00 00 00 00 00 0A 00 00 00 00 00 00 00 00 00 
+      57.  00:C30F                      	
+      58.  00:C30F                      habitaciones_nivel2:
+      59.  00:C30F                      			;0		0'		   1        1'         2         2'         3        3'        4         4'       5         5'        6         6'
+      60.  00:C30F                      	db 00000000b,00000001b,00000000b,00000001b,00000000b,00000001b,00001010b,00000001b,00000000b,00000001b,00000000b,00000001b,00000000b,00000001b,#00,#00 ;nivel 0 fila 1
+      60.  00:C30F  00 01 00 01 00 01 0A 01 00 01 00 01 00 01 00 00 
+      61.  00:C31F                      	db 00000000b,00000001b,00001100b,00000001b,00000101b,00000001b,00001111b,00000001b,00000101b,00000001b,00000101b,00000001b,00001001b,00000001b,#00,#00 
+      61.  00:C31F  00 01 0C 01 05 01 0F 01 05 01 05 01 09 01 00 00 
+      62.  00:C32F                      	db 00000000b,00000001b,00001010b,00000001b,00000000b,00000001b,00001010b,00000001b,00000000b,00000001b,00000000b,00000001b,00001010b,00000001b,#00,#00 
+      62.  00:C32F  00 01 0A 01 00 01 0A 01 00 01 00 01 0A 01 00 00 
+      63.  00:C33F                      	db 00000000b,00000001b,00001010b,00000001b,00000000b,00000001b,00001110b,00000001b,00000101b,00000001b,00000101b,00000001b,00001011b,00000001b,#00,#00 
+      63.  00:C33F  00 01 0A 01 00 01 0E 01 05 01 05 01 0B 01 00 00 
+      64.  00:C34F                      	db 00000000b,00000001b,00001010b,00000001b,00000000b,00000001b,00001010b,00000001b,00000000b,00000001b,00000000b,00000001b,00000010b,00000001b,#00,#00 
+      64.  00:C34F  00 01 0A 01 00 01 0A 01 00 01 00 01 02 01 00 00 
+      65.  00:C35F                      	db 00000100b,00000001b,00000111b,00000001b,00000101b,00000001b,00001011b,00000001b,00000000b,00000001b,00000000b,00000001b,00000000b,00000001b,#00,#00 
+      65.  00:C35F  04 01 07 01 05 01 0B 01 00 01 00 01 00 01 00 00 
+      66.  00:C36F                      	db 00000000b,00000001b,00000000b,00000001b,00000000b,00000001b,00001010b,00000001b,00000000b,00000001b,00000000b,00000001b,00000000b,00000001b,#00,#00 ;nivel 0 fila 7
+      66.  00:C36F  00 01 00 01 00 01 0A 01 00 01 00 01 00 01 00 00 
+      67.  00:C37F                      	
+      68.  00:C37F                      habitaciones_nivel3:
+      69.  00:C37F                      			;0		0'		   1        1'         2         2'         3        3'        4         4'       5         5'        6         6'
+      70.  00:C37F                      	db 00100000b,00000000b,00100000b,00000000b,00100000b,00000000b,00101010b,00000000b,00100000b,00000000b,00100000b,00000000b,00100000b,00000000b,#00,#00 ;nivel 0 fila 1
+      70.  00:C37F  20 00 20 00 20 00 2A 00 20 00 20 00 20 00 00 00 
+      71.  00:C38F                      	db 00100000b,00000000b,00101100b,00000000b,00100101b,00000000b,00101111b,00000000b,00100101b,00000000b,00101001b,00000000b,00100000b,00000000b,#00,#00 
+      71.  00:C38F  20 00 2C 00 25 00 2F 00 25 00 29 00 20 00 00 00 
+      72.  00:C39F                      	db 00100100b,00000000b,00101011b,00000000b,00100000b,00000000b,00101010b,00000000b,00100000b,00000000b,00101110b,00000000b,00100001b,00000000b,#00,#00 
+      72.  00:C39F  24 00 2B 00 20 00 2A 00 20 00 2E 00 21 00 00 00 
+      73.  00:C3AF                      	db 00100000b,00000000b,00101010b,00000000b,00100000b,00000000b,00100010b,00000000b,00100000b,00000000b,00101010b,00000000b,00100000b,00000000b,#00,#00 
+      73.  00:C3AF  20 00 2A 00 20 00 22 00 20 00 2A 00 20 00 00 00 
+      74.  00:C3BF                      	db 00100100b,00000000b,00101011b,00000000b,00100000b,00000000b,00101010b,00000000b,00100000b,00000000b,00101110b,00000000b,00100001b,00000000b,#00,#00 
+      74.  00:C3BF  24 00 2B 00 20 00 2A 00 20 00 2E 00 21 00 00 00 
+      75.  00:C3CF                      	db 00100000b,00000000b,00100110b,00000000b,00100101b,00000000b,00101101b,00000000b,00100101b,00000000b,00100011b,00000000b,00100000b,00000000b,#00,#00 
+      75.  00:C3CF  20 00 26 00 25 00 2D 00 25 00 23 00 20 00 00 00 
+      76.  00:C3DF                      	db 00100000b,00000000b,00100000b,00000000b,00100000b,00000000b,00101010b,00000000b,00100000b,00000000b,00100000b,00000000b,00100000b,00000000b,#00,#00 ;nivel 0 fila 7
+      76.  00:C3DF  20 00 20 00 20 00 2A 00 20 00 20 00 20 00 00 00 
+      77.  00:C3EF                      	
+      78.  00:C3EF                      habitaciones_nivel4:
+      79.  00:C3EF                      			;0		0'		   1        1'         2         2'         3        3'        4         4'       5         5'        6         6'
+      80.  00:C3EF                      	db 00000000b,00000001b,00000000b,00000001b,00000000b,00000001b,00001010b,00000001b,00000000b,00000001b,00000000b,00000001b,00000000b,00000001b,#00,#00 ;nivel 0 fila 1
+      80.  00:C3EF  00 01 00 01 00 01 0A 01 00 01 00 01 00 01 00 00 
+      81.  00:C3FF                      	db 00001100b,00000001b,00000101b,00000001b,00000101b,00000001b,00001111b,00000001b,00000101b,00000001b,00001001b,00000001b,00000000b,00000001b,#00,#00 
+      81.  00:C3FF  0C 01 05 01 05 01 0F 01 05 01 09 01 00 01 00 00 
+      82.  00:C40F                      	db 00001010b,00000001b,00000000b,00000001b,00000000b,00000001b,00001010b,00000001b,00000000b,00000001b,00001010b,00000001b,00000000b,00000001b,#00,#00 
+      82.  00:C40F  0A 01 00 01 00 01 0A 01 00 01 0A 01 00 01 00 00 
+      83.  00:C41F                      	db 00001010b,00000001b,00000000b,00000001b,00000100b,00000001b,00001011b,00000001b,00000000b,00000001b,00001010b,00000001b,00000000b,00000001b,#00,#00 
+      83.  00:C41F  0A 01 00 01 04 01 0B 01 00 01 0A 01 00 01 00 00 
+      84.  00:C42F                      	db 00000010b,00000001b,00000000b,00000001b,00000000b,00000001b,00001010b,00000001b,00000000b,00000001b,00001010b,00000001b,00000000b,00000001b,#00,#00 
+      84.  00:C42F  02 01 00 01 00 01 0A 01 00 01 0A 01 00 01 00 00 
+      85.  00:C43F                      	db 00000000b,00000001b,00000000b,00000001b,00000000b,00000001b,00001110b,00000001b,00000101b,00000001b,00000111b,00000001b,00000001b,00000001b,#00,#00 
+      85.  00:C43F  00 01 00 01 00 01 0E 01 05 01 07 01 01 01 00 00 
+      86.  00:C44F                      	db 00000000b,00000001b,00000000b,00000001b,00000000b,00000001b,00001010b,00000001b,00000000b,00000001b,00000000b,00000001b,00000000b,00000001b,#00,#00 ;nivel 0 fila 7
+      86.  00:C44F  00 01 00 01 00 01 0A 01 00 01 00 01 00 01 00 00 
+      87.  00:C45F                      	
+      88.  00:C45F                      habitaciones_nivel5:
+      89.  00:C45F                      			;0		0'		   1        1'         2         2'         3        3'        4         4'       5         5'        6         6'
+      90.  00:C45F                      	db 00100000b,00000000b,00100000b,00000000b,00100000b,00000000b,00101010b,00000000b,00100000b,00000000b,00100000b,00000000b,00100000b,00000000b,#00,#00 ;nivel 0 fila 1
+      90.  00:C45F  20 00 20 00 20 00 2A 00 20 00 20 00 20 00 00 00 
+      91.  00:C46F                      	db 00100000b,00000000b,00101100b,00000000b,00100101b,00000000b,00101111b,00000000b,00100101b,00000000b,00101001b,00000000b,00100000b,00000000b,#00,#00 
+      91.  00:C46F  20 00 2C 00 25 00 2F 00 25 00 29 00 20 00 00 00 
+      92.  00:C47F                      	db 00100100b,00000000b,00101011b,00000000b,00100000b,00000000b,00101010b,00000000b,00100000b,00000000b,00101110b,00000000b,00100001b,00000000b,#00,#00 
+      92.  00:C47F  24 00 2B 00 20 00 2A 00 20 00 2E 00 21 00 00 00 
+      93.  00:C48F                      	db 00100000b,00000000b,00101010b,00000000b,00100000b,00000000b,00100010b,00000000b,00100000b,00000000b,00101010b,00000000b,00100000b,00000000b,#00,#00 
+      93.  00:C48F  20 00 2A 00 20 00 22 00 20 00 2A 00 20 00 00 00 
+      94.  00:C49F                      	db 00100100b,00000000b,00101011b,00000000b,00100000b,00000000b,00101010b,00000000b,00100000b,00000000b,00101110b,00000000b,00100001b,00000000b,#00,#00 
+      94.  00:C49F  24 00 2B 00 20 00 2A 00 20 00 2E 00 21 00 00 00 
+      95.  00:C4AF                      	db 00100000b,00000000b,00100110b,00000000b,00100101b,00000000b,00101101b,00000000b,00100101b,00000000b,00100011b,00000000b,00100000b,00000000b,#00,#00 
+      95.  00:C4AF  20 00 26 00 25 00 2D 00 25 00 23 00 20 00 00 00 
+      96.  00:C4BF                      	db 00100000b,00000000b,00100000b,00000000b,00100000b,00000000b,00101010b,00000000b,00100000b,00000000b,00100000b,00000000b,00100000b,00000000b,#00,#00 ;nivel 0 fila 7
+      96.  00:C4BF  20 00 20 00 20 00 2A 00 20 00 20 00 20 00 00 00 
+      97.  00:C4CF                      	
+      98.  00:C4CF                      habitaciones_nivel6:
+      99.  00:C4CF                      			;0		0'		   1        1'         2         2'         3        3'        4         4'       5         5'        6         6'
+     100.  00:C4CF                      	db 00000000b,00000001b,00000000b,00000001b,00000000b,00000001b,00001010b,00000001b,00000000b,00000001b,00000000b,00000001b,00000000b,00000001b,#00,#00 ;nivel 0 fila 1
+     100.  00:C4CF  00 01 00 01 00 01 0A 01 00 01 00 01 00 01 00 00 
+     101.  00:C4DF                      	db 00100000b,00000000b,00000000b,00000000b,00100100b,00000000b,00101111b,00000000b,00100001b,00000000b,00100000b,00000000b,00100000b,00000000b,#00,#00 
+     101.  00:C4DF  20 00 00 00 24 00 2F 00 21 00 20 00 20 00 00 00 
+     102.  00:C4EF                      	db 00000000b,00000001b,00000000b,00000001b,00000100b,00000001b,00001111b,00000001b,00000001b,00000001b,00000000b,00000001b,00000000b,00000001b,#00,#00 
+     102.  00:C4EF  00 01 00 01 04 01 0F 01 01 01 00 01 00 01 00 00 
+     103.  00:C4FF                      	db 00100000b,00000000b,00000000b,00000000b,00100100b,00000000b,00101111b,00000000b,00100001b,00000000b,00100000b,00000000b,00100000b,00000000b,#00,#00 
+     103.  00:C4FF  20 00 00 00 24 00 2F 00 21 00 20 00 20 00 00 00 
+     104.  00:C50F                      	db 00000000b,00000001b,00000000b,00000001b,00000100b,00000001b,00001111b,00000001b,00000001b,00000001b,00000000b,00000001b,00000000b,00000001b,#00,#00 
+     104.  00:C50F  00 01 00 01 04 01 0F 01 01 01 00 01 00 01 00 00 
+     105.  00:C51F                      	db 00100000b,00000000b,00000000b,00000000b,00100100b,00000000b,00101111b,00000000b,00100001b,00000000b,00100000b,00000000b,00100000b,00000000b,#00,#00 
+     105.  00:C51F  20 00 00 00 24 00 2F 00 21 00 20 00 20 00 00 00 
+     106.  00:C52F                      	db 00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00000010b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,#00,#00 ;nivel 0 fila 7
+     106.  00:C52F  00 00 00 00 00 00 02 00 00 00 00 00 00 00 00 00 
+     107.  00:C53F                      
+     161   00:C53F                      
+     162   00:C53F                      
+     163   00:C53F                      ;;=====================================================
+     164   00:C53F                      ;;VARIABLES PARA SONIDO 
+     165   00:C53F                      ;;=====================================================
+     166   00:C53F  00                  musica_activa				DB 		0
+     167   00:C540                      	include "datos/var_pt3_ayfx.asm"
+       1.  00:C540                      ;;=====================================================
+       2.  00:C540                      ;;VARIABLES PARA SONIDO 
+       3.  00:C540                      ;;=====================================================
+       4.  00:C540                      
+       5.  00:C540  (F000)              	map		#f000	;IMPRESCINDIBLE PARA MÚSICA Y SONIDO !!!
+       6.  00:C540                      
+       7.  00:C540                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PT3 REPLAYER
+       8.  00:C540  (00:F000)           PT3_SETUP:		#1	;set bit0 to 1, if you want to play without looping
+       9.  00:C540                      					;bit7 is set each time, when loop point is passed
+      10.  00:C540  (00:F001)           PT3_MODADDR:	#2
+      11.  00:C540  (00:F003)           PT3_CrPsPtr:	#2
+      12.  00:C540  (00:F005)           PT3_SAMPTRS:	#2
+      13.  00:C540  (00:F007)           PT3_OrnPtrs:	#2
+      14.  00:C540  (00:F009)           PT3_PDSP:		#2
+      15.  00:C540  (00:F00B)           PT3_CSP:		#2
+      16.  00:C540  (00:F00D)           PT3_PSP:		#2
+      17.  00:C540  (00:F00F)           PT3_PrNote:		#1
+      18.  00:C540  (00:F010)           PT3_PrSlide:	#2
+      19.  00:C540  (00:F012)           PT3_AdInPtA:	#2
+      20.  00:C540  (00:F014)           PT3_AdInPtB:	#2
+      21.  00:C540  (00:F016)           PT3_AdInPtC:	#2
+      22.  00:C540  (00:F018)           PT3_LPosPtr:	#2
+      23.  00:C540  (00:F01A)           PT3_PatsPtr:	#2
+      24.  00:C540  (00:F01C)           PT3_Delay:		#1
+      25.  00:C540  (00:F01D)           PT3_AddToEn:	#1
+      26.  00:C540  (00:F01E)           PT3_Env_Del:	#1
+      27.  00:C540  (00:F01F)           PT3_ESldAdd:	#2
+      28.  00:C540  (00:F021)           PT3_NTL3:		#2	; AND A / NOP (note table creator)
+      29.  00:C540                      
+      30.  00:C540  (00:F023)           VARS:			#0
+      31.  00:C540                      
+      32.  00:C540  (00:F023)           ChanA:			#29			;CHNPRM_Size
+      33.  00:C540  (00:F040)           ChanB:			#29			;CHNPRM_Size
+      34.  00:C540  (00:F05D)           ChanC:			#29			;CHNPRM_Size
+      35.  00:C540                      
+      36.  00:C540                      ;GlobalVars
+      37.  00:C540  (00:F07A)           DelyCnt:		#1
+      38.  00:C540  (00:F07B)           CurESld:		#2
+      39.  00:C540  (00:F07D)           CurEDel:		#1
+      40.  00:C540  (00:F07E)           Ns_Base_AddToNs:	#0
+      41.  00:C540  (00:F07E)           Ns_Base:		#1
+      42.  00:C540  (00:F07F)           AddToNs:		#1
+      43.  00:C540                      
+      44.  00:C540  (00:F080)           NT_:			#192	; Puntero a/tabla de frecuencias
+      45.  00:C540                      
+      46.  00:C540  (00:F140)           AYREGS:			#0
+      47.  00:C540  (00:F140)           VT_:			#14
+      48.  00:C540  (00:F14E)           EnvBase:		#2
+      49.  00:C540  (00:F150)           VAR0END:		#0
+      50.  00:C540                      
+      51.  00:C540  (00:F150)           T1_:			#0		
+      52.  00:C540  (00:F150)           T_NEW_1:		#0
+      53.  00:C540  (00:F150)           T_OLD_1:		#24
+      54.  00:C540  (00:F168)           T_OLD_2:		#24
+      55.  00:C540  (00:F180)           T_NEW_3:		#0
+      56.  00:C540  (00:F180)           T_OLD_3:		#2
+      57.  00:C540  (00:F182)           T_OLD_0:		#0
+      58.  00:C540  (00:F182)           T_NEW_0:		#24
+      59.  00:C540  (00:F19A)           T_NEW_2:		#166
+      60.  00:C540                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;PT3 REPLAYER END
+      61.  00:C540                      
+      62.  00:C540                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ayFX REPLAYER 
+      63.  00:C540  (00:F240)           ayFX_MODE:		#1			; ayFX mode
+      64.  00:C540  (00:F241)           ayFX_BANK:		#2			; Current ayFX Bank
+      65.  00:C540  (00:F243)           ayFX_PRIORITY:	#1			; Current ayFX stream priotity
+      66.  00:C540  (00:F244)           ayFX_POINTER:	#2			; Pointer to the current ayFX stream
+      67.  00:C540  (00:F246)           ayFX_TONE:		#2			; Current tone of the ayFX stream
+      68.  00:C540  (00:F248)           ayFX_NOISE:		#1			; Current noise of the ayFX stream
+      69.  00:C540  (00:F249)           ayFX_VOLUME:	#1			; Current volume of the ayFX stream
+      70.  00:C540  (00:F24A)           ayFX_CHANNEL:	#1			; PSG channel to play the ayFX stream
+      71.  00:C540                      
+      72.  00:C540                      	;IF (AYFXRELATIVE == 1 ) 
+      73.  00:C540                      ;ayFX_VT:	ds	2			; ayFX relative volume table pointer
+      74.  00:C540                      	;ENDIF
+      75.  00:C540                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ayFX REPLAYER END
+     168   00:C540                      
 
     LABELS
 -------------------------------------------------
@@ -1780,7 +1781,8 @@ Errors: 0
 00:00000012 X ESTRUCTURA_ENEMIGO.sprite_c
 00:00000013 X ESTRUCTURA_ENEMIGO.sprite_d
 00:00000014 X ESTRUCTURA_ENEMIGO.dano
-00:00000015   ESTRUCTURA_ENEMIGO
+00:00000015 X ESTRUCTURA_ENEMIGO.ptr_colision
+00:00000017   ESTRUCTURA_ENEMIGO
 00:0000C000 X prota
 00:0000C000 X prota_nivel
 00:0000C001 X prota_vidas
@@ -1816,61 +1818,61 @@ Errors: 0
 00:0000C03F X heartbeat_general
 00:0000C040 X enemigos
 00:0000C040 X enemigo1
-00:0000C055 X enemigo2
-00:0000C06A X enemigo3
-00:0000C07F X enemigo4
-00:0000C094 X enemigo5
-00:0000C0A9 X enemigo6
-00:0000C0BE X enemigo7
-00:0000C0D3 X array_sprites
-00:0000C0D3 X array_sprites_pm
-00:0000C0DB X array_sprites_enem
-00:0000C153 X hay_ayudas_en_pantalla
-00:0000C154 X puntero_ayuda_actual
-00:0000C156 X contador_ayuda_ballesta
-00:0000C157 X lista_ayudas
-00:0000C157 X ayuda_oracion
-00:0000C166 X ayuda_cruz
-00:0000C175 X ayuda_aguabendita
-00:0000C184 X ayuda_armadura
-00:0000C193 X ayuda_planta
-00:0000C1A2 X ayuda_vidaextra
-00:0000C1B1 X ayuda_ballesta
-00:0000C1C0 X tiles_patrones
-00:0000C1C2 X tiles_colores
-00:0000C1C4 X tiles_mapa
-00:0000C1C6 X wordaux1
-00:0000C1C8 X wordaux2
-00:0000C1CA X byteaux1
-00:0000C1CB X byteaux2
-00:0000C1CC X lista_puertas
-00:0000C1CC X puerta_arriba
-00:0000C1D9 X puerta_derecha
-00:0000C1E6 X puerta_abajo
-00:0000C1F3 X puerta_izquierda
-00:0000C200 X puerta_escalera
-00:0000C20D X habitacion_actual
-00:0000C20E X habitacion_extras
-00:0000C20F X habitacion_terminada
-00:0000C210 X puntero_extras_habitacion_actual
-00:0000C212 X puntero_habitacion_actual
-00:0000C214 X enemiesleft
-00:0000C215 X puntomira
-00:0000C21C X dracula_muerto
-00:0000C21D X tipo_gameover
-00:0000C21E X tiempo
-00:0000C21E X minutos
-00:0000C21F X segundos
-00:0000C220 X contador
-00:0000C221 X habitaciones_juego
-00:0000C221 X habitaciones_nivel0
-00:0000C291 X habitaciones_nivel1
-00:0000C301 X habitaciones_nivel2
-00:0000C371 X habitaciones_nivel3
-00:0000C3E1 X habitaciones_nivel4
-00:0000C451 X habitaciones_nivel5
-00:0000C4C1 X habitaciones_nivel6
-00:0000C531 X musica_activa
+00:0000C057 X enemigo2
+00:0000C06E X enemigo3
+00:0000C085 X enemigo4
+00:0000C09C X enemigo5
+00:0000C0B3 X enemigo6
+00:0000C0CA X enemigo7
+00:0000C0E1 X array_sprites
+00:0000C0E1 X array_sprites_pm
+00:0000C0E9 X array_sprites_enem
+00:0000C161 X hay_ayudas_en_pantalla
+00:0000C162 X puntero_ayuda_actual
+00:0000C164 X contador_ayuda_ballesta
+00:0000C165 X lista_ayudas
+00:0000C165 X ayuda_oracion
+00:0000C174 X ayuda_cruz
+00:0000C183 X ayuda_aguabendita
+00:0000C192 X ayuda_armadura
+00:0000C1A1 X ayuda_planta
+00:0000C1B0 X ayuda_vidaextra
+00:0000C1BF X ayuda_ballesta
+00:0000C1CE X tiles_patrones
+00:0000C1D0 X tiles_colores
+00:0000C1D2 X tiles_mapa
+00:0000C1D4 X wordaux1
+00:0000C1D6 X wordaux2
+00:0000C1D8 X byteaux1
+00:0000C1D9 X byteaux2
+00:0000C1DA X lista_puertas
+00:0000C1DA X puerta_arriba
+00:0000C1E7 X puerta_derecha
+00:0000C1F4 X puerta_abajo
+00:0000C201 X puerta_izquierda
+00:0000C20E X puerta_escalera
+00:0000C21B X habitacion_actual
+00:0000C21C X habitacion_extras
+00:0000C21D X habitacion_terminada
+00:0000C21E X puntero_extras_habitacion_actual
+00:0000C220 X puntero_habitacion_actual
+00:0000C222 X enemiesleft
+00:0000C223 X puntomira
+00:0000C22A X dracula_muerto
+00:0000C22B X tipo_gameover
+00:0000C22C X tiempo
+00:0000C22C X minutos
+00:0000C22D X segundos
+00:0000C22E X contador
+00:0000C22F X habitaciones_juego
+00:0000C22F X habitaciones_nivel0
+00:0000C29F X habitaciones_nivel1
+00:0000C30F X habitaciones_nivel2
+00:0000C37F X habitaciones_nivel3
+00:0000C3EF X habitaciones_nivel4
+00:0000C45F X habitaciones_nivel5
+00:0000C4CF X habitaciones_nivel6
+00:0000C53F X musica_activa
 00:0000F000 X PT3_SETUP
 00:0000F001 X PT3_MODADDR
 00:0000F003 X PT3_CrPsPtr
@@ -1937,7 +1939,7 @@ Errors: 0
 -------------------------------------------------
 
  Page: 00
-  Org: 0000C000  Size: *  Used: 00000532
+  Org: 0000C000  Size: *  Used: 00000540
 
    Address   Length Align   Label
-   0000C000    1330         prota
+   0000C000    1344         prota

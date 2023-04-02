@@ -1402,7 +1402,6 @@ check_enemigos:
 fin_check_enemigos:
 
 
-
 ;;=====================================================
 ;;CHECK_ENEMIGOS_FASE0
 ;;=====================================================	
@@ -1949,20 +1948,21 @@ fin_enemigo_hace_dano:
 
 
 ;;=====================================================
-;;CHECK_COLISION_ENEMIGO
+;;CHECK_COLISION_ENEMIGO_16x16
 ;;=====================================================	
-; función: 	revisa la distancia con enemigo activo para ver si se disparó y se le dió
+; función: 	revisa la distancia con enemigo activo para ver si se disparó y se le dió. 
+;			revisa la colisión con sprites de 16x16
 ; entrada: 	IX con el puntero al enemigo que se examina
 ; salida: 	A (0 no hay colisión con enemigo / 1 sí la hay)
 ; toca:		HL,BC, DE
-check_colision_enemigo:
+check_colision_enemigo16x16:
 .deteccioncolision_paso1:
 	LD		IY, puntomira	;IY punto de mira / IX puerta
 	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posx)
 	ADD		 8			;8-es fijo, offset del punto de mira ya que se mueve según la esquina superior izquierda y el centro del punto de mira está en el centro del sprite
 	
 	;ya tengo en A la coordenada X del centro del punto de mira					
-	SUB		(IX + ESTRUCTURA_ENEMIGO.posx)	;le resto el punto x en la puerta
+	SUB		(IX + ESTRUCTURA_ENEMIGO.posx)	;le resto el punto x del enemigo
 	
 	JP		NC, .deteccioncolision_paso2	;si no es negativo comparo con el radio
 
@@ -1997,7 +1997,169 @@ check_colision_enemigo:
 
 .deteccioncolision_paso5:
 	LD		 A, SI
-fin_check_colision_enemigo:
+fin_check_colision_enemigo16x16:
+	RET
+	
+	
+;;=====================================================
+;;CHECK_COLISION_ENEMIGO_16x32
+;;=====================================================	
+; función: 	revisa la distancia con enemigo activo para ver si se disparó y se le dió. 
+;			revisa la colisión con sprites de 16x16 uno encima del otro
+; entrada: 	IX con el puntero al enemigo que se examina
+; salida: 	A (0 no hay colisión con enemigo / 1 sí la hay)
+; toca:		HL,BC, DE
+check_colision_enemigo16x32:
+.deteccioncolision_paso1:
+	LD		IY, puntomira	;IY punto de mira / IX puerta
+	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posx)
+	ADD		 8			;8-es fijo, offset del punto de mira ya que se mueve según la esquina superior izquierda y el centro del punto de mira está en el centro del sprite
+	
+	;ya tengo en A la coordenada X del centro del punto de mira					
+	SUB		(IX + ESTRUCTURA_ENEMIGO.posx)	;le resto el punto x del enemigo
+	
+	JP		NC, .deteccioncolision_paso2	;si no es negativo comparo con el radio
+
+	NEG										;si es negativo lo niego (valor absoluto)
+	
+.deteccioncolision_paso2:
+	CP		(IX + ESTRUCTURA_ENEMIGO.radiox)	;comparo con el radio X de la puerta
+	
+	JP		 C, .deteccioncolision_paso3	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
+	
+	XOR		 A								;el resultado es falso y se guarda en A y ya no hay que seguir coprobando
+	RET
+	
+.deteccioncolision_paso3:					;la distancia X es válida, comprobamos la distancia Y
+	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posy)
+	ADD		 8								;le sumo el offset del punto de mira (8 es fijo)
+
+	;ya tengo en A la coordenada Y del centro del punto de mira					
+	SUB		(IX + ESTRUCTURA_ENEMIGO.posy)	;le resto el punto y en la puerta
+	
+	JP		NC, .deteccioncolision_paso4	;si no es negativo comparo con el radio
+
+	NEG										;si es negativo lo niego (valor absoluto)
+
+.deteccioncolision_paso4:
+	CP		(IX + ESTRUCTURA_ENEMIGO.radioy)	;comparo con el radio Y de la puerta
+
+	JP		 C, .deteccioncolision_paso5	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
+	
+	XOR		 A								;el resultado es falso y se guarda en A un 0 y al ser la 2º comprobación salimos
+	RET
+
+.deteccioncolision_paso5:
+	LD		 A, SI
+fin_check_colision_enemigo16x32:
+	RET
+	
+	
+;;=====================================================
+;;CHECK_COLISION_ENEMIGO_16x32
+;;=====================================================	
+; función: 	revisa la distancia con enemigo activo para ver si se disparó y se le dió. 
+;			revisa la colisión con sprites de 16x16 uno al lado del otro
+; entrada: 	IX con el puntero al enemigo que se examina
+; salida: 	A (0 no hay colisión con enemigo / 1 sí la hay)
+; toca:		HL,BC, DE
+check_colision_enemigo32x16:
+.deteccioncolision_paso1:
+	LD		IY, puntomira	;IY punto de mira / IX puerta
+	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posx)
+	ADD		 8			;8-es fijo, offset del punto de mira ya que se mueve según la esquina superior izquierda y el centro del punto de mira está en el centro del sprite
+	
+	;ya tengo en A la coordenada X del centro del punto de mira					
+	SUB		(IX + ESTRUCTURA_ENEMIGO.posx)	;le resto el punto x del enemigo
+	
+	JP		NC, .deteccioncolision_paso2	;si no es negativo comparo con el radio
+
+	NEG										;si es negativo lo niego (valor absoluto)
+	
+.deteccioncolision_paso2:
+	CP		(IX + ESTRUCTURA_ENEMIGO.radiox)	;comparo con el radio X de la puerta
+	
+	JP		 C, .deteccioncolision_paso3	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
+	
+	XOR		 A								;el resultado es falso y se guarda en A y ya no hay que seguir coprobando
+	RET
+	
+.deteccioncolision_paso3:					;la distancia X es válida, comprobamos la distancia Y
+	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posy)
+	ADD		 8								;le sumo el offset del punto de mira (8 es fijo)
+
+	;ya tengo en A la coordenada Y del centro del punto de mira					
+	SUB		(IX + ESTRUCTURA_ENEMIGO.posy)	;le resto el punto y en la puerta
+	
+	JP		NC, .deteccioncolision_paso4	;si no es negativo comparo con el radio
+
+	NEG										;si es negativo lo niego (valor absoluto)
+
+.deteccioncolision_paso4:
+	CP		(IX + ESTRUCTURA_ENEMIGO.radioy)	;comparo con el radio Y de la puerta
+
+	JP		 C, .deteccioncolision_paso5	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
+	
+	XOR		 A								;el resultado es falso y se guarda en A un 0 y al ser la 2º comprobación salimos
+	RET
+
+.deteccioncolision_paso5:
+	LD		 A, SI
+fin_check_colision_enemigo32x16:
+	RET
+
+
+;;=====================================================
+;;CHECK_COLISION_ENEMIGO_32x32
+;;=====================================================	
+; función: 	revisa la distancia con enemigo activo para ver si se disparó y se le dió. 
+;			revisa la colisión con 4 sprites de 16x16 en cuadrado
+; entrada: 	IX con el puntero al enemigo que se examina
+; salida: 	A (0 no hay colisión con enemigo / 1 sí la hay)
+; toca:		HL,BC, DE
+check_colision_enemigo32x32:
+.deteccioncolision_paso1:
+	LD		IY, puntomira	;IY punto de mira / IX puerta
+	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posx)
+	ADD		 8			;8-es fijo, offset del punto de mira ya que se mueve según la esquina superior izquierda y el centro del punto de mira está en el centro del sprite
+	
+	;ya tengo en A la coordenada X del centro del punto de mira					
+	SUB		(IX + ESTRUCTURA_ENEMIGO.posx)	;le resto el punto x del enemigo
+	
+	JP		NC, .deteccioncolision_paso2	;si no es negativo comparo con el radio
+
+	NEG										;si es negativo lo niego (valor absoluto)
+	
+.deteccioncolision_paso2:
+	CP		(IX + ESTRUCTURA_ENEMIGO.radiox)	;comparo con el radio X de la puerta
+	
+	JP		 C, .deteccioncolision_paso3	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
+	
+	XOR		 A								;el resultado es falso y se guarda en A y ya no hay que seguir coprobando
+	RET
+	
+.deteccioncolision_paso3:					;la distancia X es válida, comprobamos la distancia Y
+	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posy)
+	ADD		 8								;le sumo el offset del punto de mira (8 es fijo)
+
+	;ya tengo en A la coordenada Y del centro del punto de mira					
+	SUB		(IX + ESTRUCTURA_ENEMIGO.posy)	;le resto el punto y en la puerta
+	
+	JP		NC, .deteccioncolision_paso4	;si no es negativo comparo con el radio
+
+	NEG										;si es negativo lo niego (valor absoluto)
+
+.deteccioncolision_paso4:
+	CP		(IX + ESTRUCTURA_ENEMIGO.radioy)	;comparo con el radio Y de la puerta
+
+	JP		 C, .deteccioncolision_paso5	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
+	
+	XOR		 A								;el resultado es falso y se guarda en A un 0 y al ser la 2º comprobación salimos
+	RET
+
+.deteccioncolision_paso5:
+	LD		 A, SI
+fin_check_colision_enemigo32x32:
 	RET
 
 
@@ -2012,7 +2174,7 @@ examina_enemigo1:
 		AND			11111110b				; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
 		JP			 Z, examina_enemigo2
 		
-		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z
+		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z (realmente devuelve Z)
 		JP			 Z, examina_enemigo2	; IF hubo colisión
 			LD			 A, (prota_dano_actual)
 			LD			 B, A
@@ -2054,7 +2216,7 @@ examina_enemigo2:
 		AND			11111110b				; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
 		JP			 Z, examina_enemigo3
 		
-		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z
+		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z (realmente devuelve Z)
 		JP			 Z, examina_enemigo3	; IF hubo colisión
 			LD			 A, (prota_dano_actual)
 			LD			 B, A
@@ -2072,7 +2234,7 @@ examina_enemigo3:
 		AND			11111110b				; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
 		JP			 Z, examina_enemigo4
 		
-		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z
+		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z (realmente devuelve Z)
 		JP			 Z, examina_enemigo4	; IF hubo colisión
 			LD			 A, (prota_dano_actual)
 			LD			 B, A
@@ -2090,7 +2252,7 @@ examina_enemigo4:
 		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
 		JP			 Z, examina_enemigo5
 		
-		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z
+		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z (realmente devuelve Z)
 		JP			 Z, examina_enemigo5	; IF hubo colisión
 			LD			 A, (prota_dano_actual)
 			LD			 B, A
@@ -2108,7 +2270,7 @@ examina_enemigo5:
 		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
 		JP			 Z, examina_enemigo6
 		
-		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z
+		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z (realmente devuelve Z)
 		JP			 Z, examina_enemigo6	; IF hubo colisión
 			LD			 A, (prota_dano_actual)
 			LD			 B, A
@@ -2126,7 +2288,7 @@ examina_enemigo6:
 		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
 		JP			 Z, examina_enemigo7
 		
-		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z
+		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z (realmente devuelve Z)
 		JP			 Z, examina_enemigo7	; IF hubo colisión
 			LD			 A, (prota_dano_actual)
 			LD			 B, A
@@ -2144,7 +2306,7 @@ examina_enemigo7:
 		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
 		RET			 Z
 		
-		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z
+		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z (realmente devuelve Z)
 		JP			 Z, examina_enemigo7	; IF hubo colisión
 			LD			 A, (prota_dano_actual)
 			LD			 B, A
@@ -2156,6 +2318,20 @@ examina_enemigo7:
 .asignaenergia7:
 			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se asigna la energía tras la resta
 fin_check_colisiones_enemigos:
+		RET
+
+;;=====================================================
+;;CHECK_COLISION_ENEMIGO
+;;=====================================================	
+; función:  llama a la función personalizada de verificación de colisión según el tipo de enemigo
+;			que devuelve A y lo devuelvo para que lo que devuelva esta función sea Z
+check_colision_enemigo:
+		LD			 L, (IX + ESTRUCTURA_ENEMIGO.ptr_colision)
+		LD			 H, (IX + ESTRUCTURA_ENEMIGO.ptr_colision + 1)
+		JP		    (HL)
+		
+		OR 			A	
+fin_check_colision_enemigo:
 		RET
 
 

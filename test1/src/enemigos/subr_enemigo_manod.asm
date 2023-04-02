@@ -1,6 +1,19 @@
 ;;=====================================================
 ;;CONTANTES MANO DERECHA
 ;;=====================================================
+
+array_manod_derecha_posx:
+			DB		143,145,148,151,153,156,159,161,164,167,169,172,175,177,180,183,185,188,191,193,196,199,201,204,207,209,212,215,218,220,223,225,228,231,233,236,239
+
+array_manod_izquierda_posx:
+			DB		239,236,233,231,228,225,223,220,218,215,212,209,207,204,201,199,196,193,191,188,185,183,180,177,175,172,169,167,164,161,159,156,153,151,148,145,143
+
+;Esta variable es igual en ambas manos, no merece la pena repetirla. Está de forma real en mano izquierda
+;~ array_mano_derecha_posy:
+			;~ DB		55,40,32,24,18,14,12,10,8,6,4,3,3,2,2,1,0,0,0,0,0,1,2,2,3,3,4,6,8,10,12,14,18,24,32,40,55
+;~ array_mano_izquierda_posy:
+			;~ DB		55,71,79,87,90,96,98,100,102,104,106,107,108,109,109,110,110,111,111,111,110,110,109,109,108,107,106,104,102,100,98,96,90,87,79,71,55
+			
 datos_manod:
 			DB		TIPOMANODERECHA	;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
 			DB		0				;(escena) sprite a mostrar 1/2
@@ -22,18 +35,7 @@ datos_manod:
 			DB		248;MANOD_SPRITE1A	;izq abajo
 			DB		252;MANOD_SPRITE1B	;der_abajo
 			DB		MANOD_DANO 		;dano
-
-array_manod_derecha_posx:
-			DB		143,145,148,151,153,156,159,161,164,167,169,172,175,177,180,183,185,188,191,193,196,199,201,204,207,209,212,215,218,220,223,225,228,231,233,236,239
-
-array_manod_izquierda_posx:
-			DB		239,236,233,231,228,225,223,220,218,215,212,209,207,204,201,199,196,193,191,188,185,183,180,177,175,172,169,167,164,161,159,156,153,151,148,145,143
-
-;Esta variable es igual en ambas manos, no merece la pena repetirla. Está de forma real en mano izquierda
-;~ array_mano_derecha_posy:
-			;~ DB		55,40,32,24,18,14,12,10,8,6,4,3,3,2,2,1,0,0,0,0,0,1,2,2,3,3,4,6,8,10,12,14,18,24,32,40,55
-;~ array_mano_izquierda_posy:
-			;~ DB		55,71,79,87,90,96,98,100,102,104,106,107,108,109,109,110,110,111,111,111,110,110,109,109,108,107,106,104,102,100,98,96,90,87,79,71,55
+			DW		check_colision_enemigo16x16		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 			
 			
 ;;=====================================================

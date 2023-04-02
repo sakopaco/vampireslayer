@@ -22,6 +22,7 @@ datos_zombi:
 			DB		ZOMBI_SPRITE3A	;izq abajo
 			DB		ZOMBI_SPRITE4A	;der_abajo
 			DB		ZOMBI_DANO 		;dano
+			DW		check_colision_enemigo16x16		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 
 
 ;;=====================================================
