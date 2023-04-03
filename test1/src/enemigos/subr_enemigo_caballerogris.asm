@@ -5,11 +5,11 @@ datos_caballero:
 			DB		TIPOCABALLEROGRIS			;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
 			DB		0							;(escena) sprite a mostrar 1/2
 			DB		00010000b					;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
-			DB		CABALERO_ENERGIA			;(energia) energía del enemigo antes de morir
+			DB		CABALLERO_ENERGIA			;(energia) energía del enemigo antes de morir
 			DB		CABALLERO_POSXINI			;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		CABALLERO_POSYINI			;(posy) pos y para mover y punto central del sprite para revisar disparo
-			DB		8							;(radiox) radio x del enemigo para cuando se dispare encima
-			DB		8							;(radioy) radio y del enemigo para cuando se dispare encima
+			DB		CABALLERO_RADIOX			;(radiox) radio x del enemigo para cuando se dispare encima
+			DB		CABALLERO_RADIOY			;(radioy) radio y del enemigo para cuando se dispare encima
 			DB		0							;(incx) incremento x para mover
 			DB		0							;(inxy) incremento y para mover
 			DB		DIRIZQUIERDA				;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
@@ -22,7 +22,7 @@ datos_caballero:
 			DB		CABALLERO_SPRITE3A			;izq abajo
 			DB		CABALLERO_SPRITE4A			;der_abajo
 			DB		CABALLERO_DANO 				;dano
-			DW		check_colision_enemigo16x16	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
+			DW		check_colision_enemigo16x32	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 
 
 ;;=====================================================

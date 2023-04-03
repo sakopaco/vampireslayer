@@ -15,27 +15,27 @@ array_magia_izquierda_posy:
 			DB		55,71,79,87,90,96,98,100,102,104,106,107,108,109,109,110,110,111,111,111,110,110,109,109,108,107,106,104,102,100,98,96,90,87,79,71,55
 			
 datos_magia:
-			DB		TIPOMAGIA		;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
-			DB		0				;(escena) sprite a mostrar 1/2
-			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
-			DB		MAGIA_ENERGIA	;(energia) energía del enemigo antes de morir
-			DB		MAGIA_POSX		;(posx) pos x para mover y punto central del sprite para revisar disparo
-			DB		MAGIA_POSY		;(posy) pos y para mover y punto central del sprite para revisar disparo
-			DB		8				;(radiox) radio x del enemigo para cuando se dispare encima
-			DB		8				;(radioy) radio y del enemigo para cuando se dispare encima
-			DB		MAGIA_INCREMENTO;(incx) incremento x para mover
-			DB		0				;(inxy) incremento y para mover
-			DB		DIRDERECHA		;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
-			DB		0				;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
-			DB		MAGIA_PASOS		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
-			DB		0				;(radio) radio para movimientos circulares
-			DW		mover_magia		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
-			DB		MAGIA_SPRITE1A	;izq arriba
-			DB		MAGIA_SPRITE2A	;der_arriba
-			DB		MAGIA_SPRITE1B	;izq abajo
-			DB		MAGIA_SPRITE2B	;der_abajo
-			DB		MAGIA_DANO 		;dano
-			DW		check_colision_enemigo16x16		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
+			DB		TIPOMAGIA					;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
+			DB		0							;(escena) sprite a mostrar 1/2
+			DB		00010000b					;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
+			DB		MAGIA_ENERGIA				;(energia) energía del enemigo antes de morir
+			DB		MAGIA_POSX					;(posx) pos x para mover y punto central del sprite para revisar disparo
+			DB		MAGIA_POSY					;(posy) pos y para mover y punto central del sprite para revisar disparo
+			DB		MAGIA_RADIOX				;(radiox) radio x del enemigo para cuando se dispare encima
+			DB		MAGIA_RADIOY				;(radioy) radio y del enemigo para cuando se dispare encima
+			DB		MAGIA_INCREMENTO			;(incx) incremento x para mover
+			DB		0							;(inxy) incremento y para mover
+			DB		DIRDERECHA					;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		0							;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		MAGIA_PASOS					;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
+			DB		0							;(radio) radio para movimientos circulares
+			DW		mover_magia					;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
+			DB		MAGIA_SPRITE1A				;izq arriba
+			DB		MAGIA_SPRITE2A				;der_arriba
+			DB		MAGIA_SPRITE1B				;izq abajo
+			DB		MAGIA_SPRITE2B				;der_abajo
+			DB		MAGIA_DANO 					;dano
+			DW		check_colision_enemigo32x16	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 
 
 ;;=====================================================

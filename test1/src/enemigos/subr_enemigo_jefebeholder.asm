@@ -21,8 +21,8 @@ datos_jefebeholder:
 			DB		JEFEBEHOLDER_ENERGIA		;(energia) energía del enemigo antes de morir
 			DB		JEFEBEHOLDER_POSX			;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		JEFEBEHOLDER_POSY			;(posy) pos y para mover y punto central del sprite para revisar disparo
-			DB		8							;(radiox) radio x del enemigo para cuando se dispare encima
-			DB		8							;(radioy) radio y del enemigo para cuando se dispare encima
+			DB		JEFEBEHOLDER_RADIOX			;(radiox) radio x del enemigo para cuando se dispare encima
+			DB		JEFEBEHOLDER_RADIOY			;(radioy) radio y del enemigo para cuando se dispare encima
 			DB		JEFEBEHOLDER_INCREMENTO		;(incx) incremento x para mover
 			DB		0							;(inxy) incremento y para mover
 			DB		DIRDERECHA					;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
@@ -35,7 +35,7 @@ datos_jefebeholder:
 			DB		JEFEBEHOLDER_SPRITE1B		;izq abajo
 			DB		JEFEBEHOLDER_SPRITE2B		;der_abajo
 			DB		JEFEBEHOLDER_DANO 			;dano
-			DW		check_colision_enemigo16x16		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
+			DW		check_colision_enemigo32x32	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 
 
 ;;=====================================================

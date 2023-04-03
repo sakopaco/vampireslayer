@@ -8,8 +8,8 @@ datos_fuego:
 			DB		FUEGO_ENERGIA			;(energia) energía del enemigo antes de morir
 			DB		FUEGO_POS1X				;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		FUEGO_POS1Y				;(posy) pos y para mover y punto central del sprite para revisar disparo
-			DB		8						;(radiox) radio x del enemigo para cuando se dispare encima
-			DB		8						;(radioy) radio y del enemigo para cuando se dispare encima
+			DB		FUEGO_RADIOX			;(radiox) radio x del enemigo para cuando se dispare encima
+			DB		FUEGO_RADIOY			;(radioy) radio y del enemigo para cuando se dispare encima
 			DB		0						;(incx) incremento x para mover
 			DB		0						;(inxy) incremento y para mover
 			DB		00000001				;(direccionx) 00000001 derecha // 00000010 abajo // 00000100 izquierda // 00001000 arriba

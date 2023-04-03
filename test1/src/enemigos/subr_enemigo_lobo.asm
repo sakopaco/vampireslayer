@@ -2,27 +2,27 @@
 ;;CONTANTES LOBO
 ;;=====================================================
 datos_lobo:
-			DB		TIPOLOBO		;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
-			DB		0				;(escena) sprite a mostrar 1/2
-			DB		00010000b		;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
-			DB		LOBO_ENERGIA	;(energia) energía del enemigo antes de morir
-			DB		LOBO_POSX		;(posx) pos x para mover y punto central del sprite para revisar disparo
-			DB		LOBO_POSY		;(posy) pos y para mover y punto central del sprite para revisar disparo
-			DB		8				;(radiox) radio x del enemigo para cuando se dispare encima
-			DB		8				;(radioy) radio y del enemigo para cuando se dispare encima
-			DB		0				;(incx) incremento x para mover
-			DB		0				;(inxy) incremento y para mover
-			DB		DIRDERECHA		;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
-			DB		0				;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
-			DB		LOBO_PASOS		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
-			DB		0				;(radio) radio para movimientos circulares
-			DW		mover_lobo		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
-			DB		LOBO_SPRITE1A	;izq arriba
-			DB		LOBO_SPRITE2A	;der_arriba
-			DB		LOBO_SPRITE3A	;izq abajo
-			DB		LOBO_SPRITE4A	;der_abajo
-			DB		LOBO_DANO 		;dano
-			DW		check_colision_enemigo16x16		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
+			DB		TIPOLOBO					;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
+			DB		0							;(escena) sprite a mostrar 1/2
+			DB		00010000b					;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
+			DB		LOBO_ENERGIA				;(energia) energía del enemigo antes de morir
+			DB		LOBO_POSX					;(posx) pos x para mover y punto central del sprite para revisar disparo
+			DB		LOBO_POSY					;(posy) pos y para mover y punto central del sprite para revisar disparo
+			DB		LOBO_RADIOX					;(radiox) radio x del enemigo para cuando se dispare encima
+			DB		LOBO_RADIOY					;(radioy) radio y del enemigo para cuando se dispare encima
+			DB		0							;(incx) incremento x para mover
+			DB		0							;(inxy) incremento y para mover
+			DB		DIRDERECHA					;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		0							;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
+			DB		LOBO_PASOS					;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
+			DB		0							;(radio) radio para movimientos circulares
+			DW		mover_lobo					;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
+			DB		LOBO_SPRITE1A				;izq arriba
+			DB		LOBO_SPRITE2A				;der_arriba
+			DB		LOBO_SPRITE3A				;izq abajo
+			DB		LOBO_SPRITE4A				;der_abajo
+			DB		LOBO_DANO 					;dano
+			DW		check_colision_enemigo32x16	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 
 
 ;;=====================================================

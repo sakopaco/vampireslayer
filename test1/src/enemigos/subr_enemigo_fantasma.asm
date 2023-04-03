@@ -8,8 +8,8 @@ datos_fantasma:
 			DB		FANTASMA_ENERGIA			;(energia) energía del enemigo antes de morir
 			DB		FANTASMA_X1					;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		FANTASMA_Y1					;(posy) pos y para mover y punto central del sprite para revisar disparo
-			DB		8							;(radiox) radio x del enemigo para cuando se dispare encima
-			DB		8							;(radioy) radio y del enemigo para cuando se dispare encima
+			DB		FANTASMA_RADIOX				;(radiox) radio x del enemigo para cuando se dispare encima
+			DB		FANTASMA_RADIOX				;(radioy) radio y del enemigo para cuando se dispare encima
 			DB		0							;(incx) incremento x para mover
 			DB		0							;(inxy) incremento y para mover
 			DB		1							;(direccionx) 00000001b / 00000010b / 00000100b / 00001000b (las 4 posiciones posibles)
@@ -22,7 +22,7 @@ datos_fantasma:
 			DB		FANTASMA_SPRITE1B			;izq abajo
 			DB		FANTASMA_SPRITE2B			;der_abajo
 			DB		FANTASMA_DANO 				;dano
-			DW		check_colision_enemigo16x16		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
+			DW		check_colision_enemigo32x16		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 
 
 ;;=====================================================

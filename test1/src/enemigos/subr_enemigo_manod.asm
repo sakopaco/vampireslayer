@@ -21,8 +21,8 @@ datos_manod:
 			DB		MANOD_ENERGIA	;(energia) energía del enemigo antes de morir
 			DB		MANOD_POSX		;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		MANOD_POSY		;(posy) pos y para mover y punto central del sprite para revisar disparo
-			DB		8				;(radiox) radio x del enemigo para cuando se dispare encima
-			DB		8				;(radioy) radio y del enemigo para cuando se dispare encima
+			DB		MANOD_RADIOX	;(radiox) radio x del enemigo para cuando se dispare encima
+			DB		MANOD_RADIOY	;(radioy) radio y del enemigo para cuando se dispare encima
 			DB		MANOD_INCREMENTO;(incx) incremento x para mover
 			DB		0				;(inxy) incremento y para mover
 			DB		DIRIZQUIERDA	;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba

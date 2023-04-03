@@ -8,8 +8,8 @@ datos_esqueleto:
 			DB		ESQUELETO_ENERGIA			;(energia) energía del enemigo antes de morir
 			DB		ESQUELETO_POSX				;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		ESQUELETO_POSY				;(posy) pos y para mover y punto central del sprite para revisar disparo
-			DB		8							;(radiox) radio x del enemigo para cuando se dispare encima
-			DB		8							;(radioy) radio y del enemigo para cuando se dispare encima
+			DB		ESQUELETO_RADIOX			;(radiox) radio x del enemigo para cuando se dispare encima
+			DB		ESQUELETO_RADIOY			;(radioy) radio y del enemigo para cuando se dispare encima
 			DB		0							;(incx) incremento x para mover
 			DB		0							;(inxy) incremento y para mover
 			DB		DIRDERECHA					;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
@@ -22,7 +22,7 @@ datos_esqueleto:
 			DB		ESQUELETO_SPRITE3A			;izq abajo
 			DB		ESQUELETO_SPRITE4A			;der_abajo
 			DB		ESQUELETO_DANO 				;dano
-			DW		check_colision_enemigo16x16	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
+			DW		check_colision_enemigo16x32	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 
 
 ;;=====================================================
