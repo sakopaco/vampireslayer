@@ -66,22 +66,22 @@ fin_accion_boton1:
 ; salida: 	-
 ; toca:		HL
 accion_boton2:	
-		LD		 A, (prota_reliquias)	;miro si le quedan reliquias
-		OR		 A
-		RET		 Z						;si no le quedan salgo ya
+			LD			 A, (prota_reliquias)	;miro si le quedan reliquias
+			OR			 A
+			RET			 Z						;si no le quedan salgo ya
 	
-		;actuaciones si se usa la reliquia botón 2 o M y quedn reliquias.. (antes ya se puso el valor en A)
-		DEC		 A
-		LD		(prota_reliquias), A
+			;actuaciones si se usa la reliquia botón 2 o M y quedn reliquias.. (antes ya se puso el valor en A)
+			DEC			 A
+			LD			(prota_reliquias), A
 	
-		LD			 A, SONIDOBOMBA		;2
-		CALL		ayFX_INIT
+			LD			 A, SONIDOBOMBA		;2
+			CALL		ayFX_INIT
 	
-		CALL 	efecto_imagen_tira_reliquia
+			CALL 		efecto_imagen_tira_reliquia
 		
-		CALL	efecto_enemigos_tira_reliquia
+			CALL		efecto_enemigos_tira_reliquia
 	
-		JP		pinta_reliquias
+			JP			pinta_reliquias
 fin_accion_boton2:
 
 
@@ -90,6 +90,11 @@ fin_accion_boton2:
 ;;=====================================================
 ; funcion:	Mata enemigos de una pantalla o resta vida (mucha) a jefes enemigos.
 efecto_enemigos_tira_reliquia:
+
+
+;ñññññññññ
+
+
 ;es enemigo jefe
 		LD		 B, 6
 		
@@ -149,7 +154,8 @@ fin_efecto_enemigos_tira_reliquia:
 
 
 pasa_siguiente_enemigo:
-		[21]	INC			IX
+		[23]	INC			IX
+		;ññññññññññññññññññ
 fin_pasa_siguiente_enemigo:
 		RET
 
