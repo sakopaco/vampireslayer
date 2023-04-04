@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.04.04 - 12:10:25]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.04.04 - 12:14:47]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/vs.asm
 Errors: 0
@@ -3413,78 +3413,72 @@ Errors: 0
       90.  00:4C50                      ;;=====================================================
       91.  00:4C50                      ; funcion:	Mata enemigos de una pantalla o resta vida (mucha) a jefes enemigos.
       92.  00:4C50                      efecto_enemigos_tira_reliquia:
-      93.  00:4C50                      
-      94.  00:4C50                      
-      95.  00:4C50                      ;ñññññññññ
-      96.  00:4C50                      
-      97.  00:4C50                      
-      98.  00:4C50                      ;es enemigo jefe
-      99.  00:4C50  06 06               		LD		 B, 6
-     100.  00:4C52                      		
-     101.  00:4C52  3A 04 C0            		LD		 A, (prota_pos_mapy);primero miro la posición y. los jefes están en la 6 (7 en realidad)
-     102.  00:4C55  B8                  		CP		 B
-     103.  00:4C56  CA 7A 4C            		JP		 Z, enemigo_jefe
-     104.  00:4C59                      		
-     105.  00:4C59  3A 00 C0            		LD		 A, (prota_nivel)	;si el nivel es 6 (7 en realidad) son todos jefes)
-     106.  00:4C5C  B8                  		CP		 B
-     107.  00:4C5D  CA 7A 4C            		JP		 Z, enemigo_jefe
-     108.  00:4C60                      
-     109.  00:4C60                      ;tira bomba a enemigo NO JEFE
-     110.  00:4C60                      enemigo_nojefe:
-     111.  00:4C60  DD 21 40 C0         		LD		IX, enemigos
-     112.  00:4C64  06 07               		LD		 B, 7
-     113.  00:4C66  0E 02               		LD		 C, 2
-     114.  00:4C68                      		
-     115.  00:4C68                      .loop:	
-     116.  00:4C68                      .examina_enemigo:
-     117.  00:4C68  DD 7E 00            		LD			 A, (IX)
-     118.  00:4C6B  B9                  		CP			 C
-     119.  00:4C6C  DA 74 4C            		JP			 C, .fin_examina_enemigo
-     120.  00:4C6F                      		
-     121.  00:4C6F  C5                  		PUSH		BC
-     122.  00:4C70  CD 36 77            		CALL		mata_enemigo
-     123.  00:4C73  C1                  		POP			BC	
-     124.  00:4C74                      .fin_examina_enemigo:
-     125.  00:4C74  CD 9F 4C            		CALL		pasa_siguiente_enemigo
-     126.  00:4C77  10 EF               		DJNZ	.loop
-     127.  00:4C79  C9                  		RET
-     128.  00:4C7A                      		
-     129.  00:4C7A                      ;tira bomba a enemigo JEFE --- nota: se mantiene el bucle porque el últio enemigo (drácula) es equivalente a 3 enemigos
-     130.  00:4C7A                      enemigo_jefe:
-     131.  00:4C7A  DD 21 40 C0         		LD		IX, enemigos
-     132.  00:4C7E  06 05               		LD		 B, 5
-     133.  00:4C80  0E 02               		LD		 C, 2
-     134.  00:4C82                      		
-     135.  00:4C82                      .loopjefe:	
-     136.  00:4C82                      .examina_enemigojefe:
-     137.  00:4C82  DD 7E 00            		LD			 A, (IX)
-     138.  00:4C85  B9                  		CP			 C
-     139.  00:4C86  DA 96 4C            		JP			 C, .fin_examina_enemigojefe
-     140.  00:4C89                      		
-     141.  00:4C89  DD 7E 03            		LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
-     142.  00:4C8C  D6 19               		SUB			PROTADANORELIQUIA
-     143.  00:4C8E  D2 96 4C            		JP			NC, .fin_examina_enemigojefe
-     144.  00:4C91                      		
-     145.  00:4C91  C5                  		PUSH		BC
-     146.  00:4C92  CD 36 77            		CALL		mata_enemigo
-     147.  00:4C95  C1                  		POP			BC
-     148.  00:4C96                      .fin_examina_enemigojefe:
-     149.  00:4C96  DD 77 03            		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
-     150.  00:4C99  CD 9F 4C            		CALL		pasa_siguiente_enemigo
-     151.  00:4C9C  10 E4               		DJNZ	.loopjefe
-     152.  00:4C9E  C9                  		RET
-     153.  00:4C9F                      fin_efecto_enemigos_tira_reliquia:
-     154.  00:4C9F                      
-     155.  00:4C9F                      
-     156.  00:4C9F                      pasa_siguiente_enemigo:
-     157.  00:4C9F                      		[23]	INC			IX
-     157.  00:4C9F  DD 23 DD 23 DD 23 DD 23 DD 23 DD 23 DD 23 DD 23 
-     157.  00:4CAF  DD 23 DD 23 DD 23 DD 23 DD 23 DD 23 DD 23 DD 23 
-     157.  00:4CBF  DD 23 DD 23 DD 23 DD 23 DD 23 DD 23 DD 23 
-     158.  00:4CCD                      		;ññññññññññññññññññ
-     159.  00:4CCD                      fin_pasa_siguiente_enemigo:
-     160.  00:4CCD  C9                  		RET
-     161.  00:4CCE                      
+      93.  00:4C50                      ;es enemigo jefe
+      94.  00:4C50  06 06               		LD		 B, 6
+      95.  00:4C52                      		
+      96.  00:4C52  3A 04 C0            		LD		 A, (prota_pos_mapy);primero miro la posición y. los jefes están en la 6 (7 en realidad)
+      97.  00:4C55  B8                  		CP		 B
+      98.  00:4C56  CA 7A 4C            		JP		 Z, enemigo_jefe
+      99.  00:4C59                      		
+     100.  00:4C59  3A 00 C0            		LD		 A, (prota_nivel)	;si el nivel es 6 (7 en realidad) son todos jefes)
+     101.  00:4C5C  B8                  		CP		 B
+     102.  00:4C5D  CA 7A 4C            		JP		 Z, enemigo_jefe
+     103.  00:4C60                      
+     104.  00:4C60                      ;tira bomba a enemigo NO JEFE
+     105.  00:4C60                      enemigo_nojefe:
+     106.  00:4C60  DD 21 40 C0         		LD		IX, enemigos
+     107.  00:4C64  06 07               		LD		 B, 7
+     108.  00:4C66  0E 02               		LD		 C, 2
+     109.  00:4C68                      		
+     110.  00:4C68                      .loop:	
+     111.  00:4C68                      .examina_enemigo:
+     112.  00:4C68  DD 7E 00            		LD			 A, (IX)
+     113.  00:4C6B  B9                  		CP			 C
+     114.  00:4C6C  DA 74 4C            		JP			 C, .fin_examina_enemigo
+     115.  00:4C6F                      		
+     116.  00:4C6F  C5                  		PUSH		BC
+     117.  00:4C70  CD 36 77            		CALL		mata_enemigo
+     118.  00:4C73  C1                  		POP			BC	
+     119.  00:4C74                      .fin_examina_enemigo:
+     120.  00:4C74  CD 9F 4C            		CALL		pasa_siguiente_enemigo
+     121.  00:4C77  10 EF               		DJNZ	.loop
+     122.  00:4C79  C9                  		RET
+     123.  00:4C7A                      		
+     124.  00:4C7A                      ;tira bomba a enemigo JEFE --- nota: se mantiene el bucle porque el últio enemigo (drácula) es equivalente a 3 enemigos
+     125.  00:4C7A                      enemigo_jefe:
+     126.  00:4C7A  DD 21 40 C0         		LD		IX, enemigos
+     127.  00:4C7E  06 05               		LD		 B, 5
+     128.  00:4C80  0E 02               		LD		 C, 2
+     129.  00:4C82                      		
+     130.  00:4C82                      .loopjefe:	
+     131.  00:4C82                      .examina_enemigojefe:
+     132.  00:4C82  DD 7E 00            		LD			 A, (IX)
+     133.  00:4C85  B9                  		CP			 C
+     134.  00:4C86  DA 96 4C            		JP			 C, .fin_examina_enemigojefe
+     135.  00:4C89                      		
+     136.  00:4C89  DD 7E 03            		LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+     137.  00:4C8C  D6 19               		SUB			PROTADANORELIQUIA
+     138.  00:4C8E  D2 96 4C            		JP			NC, .fin_examina_enemigojefe
+     139.  00:4C91                      		
+     140.  00:4C91  C5                  		PUSH		BC
+     141.  00:4C92  CD 36 77            		CALL		mata_enemigo
+     142.  00:4C95  C1                  		POP			BC
+     143.  00:4C96                      .fin_examina_enemigojefe:
+     144.  00:4C96  DD 77 03            		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
+     145.  00:4C99  CD 9F 4C            		CALL		pasa_siguiente_enemigo
+     146.  00:4C9C  10 E4               		DJNZ	.loopjefe
+     147.  00:4C9E  C9                  		RET
+     148.  00:4C9F                      fin_efecto_enemigos_tira_reliquia:
+     149.  00:4C9F                      
+     150.  00:4C9F                      
+     151.  00:4C9F                      pasa_siguiente_enemigo:
+     152.  00:4C9F                      [ESTRUCTURA_ENEMIGO]	INC			IX
+     152.  00:4C9F  DD 23 DD 23 DD 23 DD 23 DD 23 DD 23 DD 23 DD 23 
+     152.  00:4CAF  DD 23 DD 23 DD 23 DD 23 DD 23 DD 23 DD 23 DD 23 
+     152.  00:4CBF  DD 23 DD 23 DD 23 DD 23 DD 23 DD 23 DD 23 
+     153.  00:4CCD                      fin_pasa_siguiente_enemigo:
+     154.  00:4CCD  C9                  		RET
+     155.  00:4CCE                      
      183   00:4CCE                      	
      184   00:4CCE                      	include "subr_puertas.asm"
        1.  00:4CCE                      ;;=====================================================

@@ -90,11 +90,6 @@ fin_accion_boton2:
 ;;=====================================================
 ; funcion:	Mata enemigos de una pantalla o resta vida (mucha) a jefes enemigos.
 efecto_enemigos_tira_reliquia:
-
-
-;ñññññññññ
-
-
 ;es enemigo jefe
 		LD		 B, 6
 		
@@ -154,8 +149,7 @@ fin_efecto_enemigos_tira_reliquia:
 
 
 pasa_siguiente_enemigo:
-		[23]	INC			IX
-		;ññññññññññññññññññ
+[ESTRUCTURA_ENEMIGO]	INC			IX
 fin_pasa_siguiente_enemigo:
 		RET
 
