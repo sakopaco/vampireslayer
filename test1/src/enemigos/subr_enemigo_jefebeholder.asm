@@ -21,8 +21,6 @@ datos_jefebeholder:
 			DB		JEFEBEHOLDER_ENERGIA		;(energia) energía del enemigo antes de morir
 			DB		JEFEBEHOLDER_POSX			;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		JEFEBEHOLDER_POSY			;(posy) pos y para mover y punto central del sprite para revisar disparo
-			DB		JEFEBEHOLDER_RADIOX			;(radiox) radio x del enemigo para cuando se dispare encima
-			DB		JEFEBEHOLDER_RADIOY			;(radioy) radio y del enemigo para cuando se dispare encima
 			DB		JEFEBEHOLDER_INCREMENTO		;(incx) incremento x para mover
 			DB		0							;(inxy) incremento y para mover
 			DB		DIRDERECHA					;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba

@@ -8,8 +8,6 @@ datos_jefecaballero:
 			DB		JCABALLERO_ENERGIA			;(energia) energía del enemigo antes de morir
 			DB		JCABALLERO_POSXINI			;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		JCABALLERO_POSYINI			;(posy) pos y para mover y punto central del sprite para revisar disparo
-			DB		JCABALLERO_RADIOX			;(radiox) radio x del enemigo para cuando se dispare encima
-			DB		JCABALLERO_RADIOY			;(radioy) radio y del enemigo para cuando se dispare encima
 			DB		0							;(incx) incremento x para mover
 			DB		0							;(inxy) incremento y para mover
 			DB		DIRIZQUIERDA				;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
@@ -79,7 +77,7 @@ actualiza_valores_jefecaballero:
 		;resetea pasos del movimiento
 		LD			(IX + ESTRUCTURA_ENEMIGO.pasos), JCABALLERO_PASOS
 		
-		
+		;ññññññññññññññññññññññññññ
 ;-------------------------------------		
 		;quitar cuando se cree el daño a los jefes
 		LD			 (IX + ESTRUCTURA_ENEMIGO.pocavida), 1

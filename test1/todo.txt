@@ -2,18 +2,19 @@
 EN REALIZACION:
 
 BUGS
-
-* algo se ha jodido cuando tiro una bomba
-
 - cuando coges una ayuda el sonido no acaba
+- apagar música cuando matas a un jefe
+
 - el disparo y la explosión parecen el mismo sonido
 - algo pasa con las ayudas que pitan aunque no estén definidas 
   parte inf derecha (ahora mismo está desactivado)
-- sonido en pantallas de jefes
+
 
 TODO A
+- repasar lo de queda poca vida a cada jefe
 - posicionar ayudas
 - poner tiles al matar a drácula
+- poner nombres de jefes enemigos
 
 TODO B
 - revisar todos los sprites (incluidos los del punto de mira)

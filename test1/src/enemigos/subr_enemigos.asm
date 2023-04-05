@@ -2510,6 +2510,13 @@ accion_enemigo_muerto4:
 			LD			(IY + 12), 	BORRASPRITE
 
 .elimino_enemigo:
+			;apago la música ya que sólo los jefes tienen 4 sprites
+			LD			 A, 0
+			CALL		play_musica
+			
+			
+			
+
 			;marco enemigo como muerto para saltarlo incluso al examinar
 			LD			(IX), 0
 			

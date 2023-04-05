@@ -87,7 +87,11 @@ fin_sub_preparapantalla:
 ;;PINTA_PARTE_SUPERIOR_PANTALLA
 ;;=====================================================	
 ; función: pinta el escenario, los dos bancos superiores
-pinta_parte_superior_pantalla:	
+pinta_parte_superior_pantalla:
+		;se quita la música siempre y sólo se pone si es jefe y drácula no muerto
+		LD			 A, 0
+		CALL		play_musica
+
 		;si es fila 0 o 6 carga todos los tiles, si no sólo actualiza el mapa
 .siposyes0:
 		LD			 A, (prota_pos_mapy)
@@ -101,15 +105,13 @@ pinta_parte_superior_pantalla:
 		JP			NZ, .finsi
 		CALL		carga_tiles_bancos	;cargando los tiles en los bancos 0 y 1 que son iguales y se sacan de la misma variable
 		
-		;~ ;ñññññññññ
-		;~ LD			 A, (dracula_muerto)
-		;~ OR			 A
-		;~ JP			NZ, .finsi
-			;~ LD			 A, 2
-			;~ CALL		play_musica
+		LD			 A, (dracula_muerto) ;si dracula está muerto no hace falta música
+		OR			 A
+		JP			NZ, .finsi
+			LD			 A, 2
+			CALL		play_musica
 		
 .finsi:
-
 		;aquí se actualizan las particularidades de cada nivel
 		CALL		actualiza_tiles_nivel
 		;pinta puerta si es necesario

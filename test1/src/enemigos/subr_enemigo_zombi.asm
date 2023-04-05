@@ -8,8 +8,6 @@ datos_zombi:
 			DB		ZOMBI_ENERGIA				;(energia) energía del enemigo antes de morir
 			DB		ZOMBI_POSX					;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		ZOMBI_POSY					;(posy) pos y para mover y punto central del sprite para revisar disparo
-			DB		ZOMBI_RADIOX				;(radiox) radio x del enemigo para cuando se dispare encima
-			DB		ZOMBI_RADIOY				;(radioy) radio y del enemigo para cuando se dispare encima
 			DB		0							;(incx) incremento x para mover
 			DB		0							;(inxy) incremento y para mover
 			DB		DIRDERECHA					;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
@@ -63,6 +61,10 @@ fin_actualiza_valores_zombi:
 ; salida: 	-
 ; toca:		-
 mover_zombi:
+
+
+
+
 		CALL		calcula_zombi_incrementoy
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
 		LD			(IY), A
@@ -91,6 +93,9 @@ fin_mover_zombi:
 ;;CALCULA_ZOMBI_ESCENA
 ;;=====================================================	
 calcula_zombi_escena:
+
+		RET
+
 		LD			 A, (heartbeat_zombi)
 		AND			ZOMBI_VELESCENA
 		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN

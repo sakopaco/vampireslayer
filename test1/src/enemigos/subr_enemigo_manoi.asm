@@ -21,8 +21,6 @@ datos_manoi:
 			DB		MANOI_ENERGIA		;(energia) energía del enemigo antes de morir
 			DB		MANOI_POSX			;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		MANOI_POSY			;(posy) pos y para mover y punto central del sprite para revisar disparo
-			DB		MANOI_RADIOX		;(radiox) radio x del enemigo para cuando se dispare encima
-			DB		MANOI_RADIOY		;(radioy) radio y del enemigo para cuando se dispare encima
 			DB		MANOI_INCREMENTO	;(incx) incremento x para mover
 			DB		0					;(inxy) incremento y para mover
 			DB		DIRDERECHA			;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba

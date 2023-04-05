@@ -128,8 +128,6 @@ energia				DB		0	;energía del enemigo antes de morir
 ;ptr_accion_dano		DW		0	;realiza cambios en caso daño o de muerte (energía = 0)
 posx				DB		0	;pos x para mover y punto central del sprite para revisar disparo
 posy				DB		0	;pos y para mover y punto central del sprite para revisar disparo
-radiox				DB		0	;radio x del enemigo para cuando se dispare encima
-radioy				DB		0	;radio y del enemigo para cuando se dispare encima
 incx				DB		0	;incremento x para mover
 inxy				DB		0	;incremento y para mover
 direccionx			DB		0	;0 derecha <> 1 izquierda // 0 abajo <> 1 arriba

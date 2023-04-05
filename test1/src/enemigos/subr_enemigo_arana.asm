@@ -11,8 +11,6 @@ datos_arana:
 			DB		ARANA_ENERGIA				;(energia) energía del enemigo antes de morir
 			DB		0							;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		LIMITEPANTALLASUP			;(posy) pos y para mover y punto central del sprite para revisar disparo
-			DB		ARANA_RADIOX				;(radiox) radio x del enemigo para cuando se dispare encima
-			DB		ARANA_RADIOY				;(radioy) radio y del enemigo para cuando se dispare encima
 			DB		0							;(incx) incremento x para mover
 			DB		DIRABAJO					;(inxy) incremento y para mover
 			DB		0							;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba

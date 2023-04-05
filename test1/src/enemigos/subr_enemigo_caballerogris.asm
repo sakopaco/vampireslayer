@@ -8,8 +8,6 @@ datos_caballero:
 			DB		CABALLERO_ENERGIA			;(energia) energía del enemigo antes de morir
 			DB		CABALLERO_POSXINI			;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		CABALLERO_POSYINI			;(posy) pos y para mover y punto central del sprite para revisar disparo
-			DB		CABALLERO_RADIOX			;(radiox) radio x del enemigo para cuando se dispare encima
-			DB		CABALLERO_RADIOY			;(radioy) radio y del enemigo para cuando se dispare encima
 			DB		0							;(incx) incremento x para mover
 			DB		0							;(inxy) incremento y para mover
 			DB		DIRIZQUIERDA				;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba

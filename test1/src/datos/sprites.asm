@@ -225,10 +225,10 @@ fin_sprite_esqueleto:
 ;; ZOMBI 4 + 4
 sprite_zombi:
 sprite_zombi1_1:
-	DB  #00,#F8,#09,#08,#18,#30,#20,#20
-	DB  #60,#40,#80,#80,#80,#80,#F9,#00
-	DB  #00,#8F,#89,#89,#89,#89,#89,#8F
-	DB  #8F,#89,#89,#89,#89,#89,#C9,#00
+	DB  #00,#00,#00,#00,#00,#00,#00,#00ARI
+	DB  #ff,#ff,#ff,#ff,#ff,#ff,#ff,#ffABI
+	DB  #00,#00,#00,#00,#00,#00,#00,#00ARD
+	DB  #ff,#ff,#ff,#ff,#ff,#ff,#ff,#ffABD
 
 sprite_zombi1_2:
 	DB  #00,#F8,#09,#08,#18,#30,#20,#20
