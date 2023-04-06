@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.04.05 - 12:46:57]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.04.06 - 12:48:53]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -385,8 +385,8 @@ Errors: 0
      134.  00:C000                      
      135.  00:C000                      ;;ETIQUETAS/CONSTANTES ZOMBI
      136.  00:C000  (00:0008)           TIPOZOMBI				equ		8
-     137.  00:C000  (00:000F)           ZOMBI_COLOR_A			equ		15		;15 - BLANCO
-     138.  00:C000  (00:000F)           ZOMBI_COLOR_B			equ		15		;15 - BLANCO
+     137.  00:C000  (00:0008)           ZOMBI_COLOR_A			equ		8
+     138.  00:C000  (00:0002)           ZOMBI_COLOR_B			equ		2
      139.  00:C000  (00:0080)           ZOMBI_SPRITE1A			equ		128
      140.  00:C000  (00:0084)           ZOMBI_SPRITE2A			equ		132
      141.  00:C000  (00:0088)           ZOMBI_SPRITE3A			equ		136
@@ -1481,8 +1481,8 @@ Errors: 0
 00:00000005 X ESQUELETO_DANO
 00:00000041 X ESQUELETO_ENERGIA
 00:00000008 X TIPOZOMBI
-00:0000000F X ZOMBI_COLOR_A
-00:0000000F X ZOMBI_COLOR_B
+00:00000008 X ZOMBI_COLOR_A
+00:00000002 X ZOMBI_COLOR_B
 00:00000080 X ZOMBI_SPRITE1A
 00:00000084 X ZOMBI_SPRITE2A
 00:00000088 X ZOMBI_SPRITE3A

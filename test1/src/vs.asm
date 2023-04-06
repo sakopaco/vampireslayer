@@ -141,10 +141,10 @@ inicializa_variables_prota:
 		LD		 A, 1;PROTANIVEL
 		LD		(prota_nivel), A
 
-		LD		 A, 0;5;PROTAPOSMAPY
+		LD		 A, 5;PROTAPOSMAPY
 		LD		(prota_pos_mapy), A	
 
-		LD		 A, PROTAPOSMAPX	
+		LD		 A, 5;PROTAPOSMAPX	
 		LD		(prota_pos_mapx), A
 fin_inicializa_variables_prota:
 		RET

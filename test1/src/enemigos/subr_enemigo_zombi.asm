@@ -61,10 +61,6 @@ fin_actualiza_valores_zombi:
 ; salida: 	-
 ; toca:		-
 mover_zombi:
-
-
-
-
 		CALL		calcula_zombi_incrementoy
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
 		LD			(IY), A
@@ -93,47 +89,47 @@ fin_mover_zombi:
 ;;CALCULA_ZOMBI_ESCENA
 ;;=====================================================	
 calcula_zombi_escena:
-
-		RET
-
 		LD			 A, (heartbeat_zombi)
-		AND			ZOMBI_VELESCENA
+		AND			LOBO_VELESCENA
 		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
-			;reseteo el cambio de escena del zombi
+			;reseteo el cambio de escena del zobi
 			XOR			 A
-			LD			(heartbeat_zombi), A
+			LD			(heartbeat_lobo), A
 			
 			;hace daño
 			LD			 B, (IX + ESTRUCTURA_ENEMIGO.dano)
 			CALL		enemigo_hace_dano
-
+			
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
+			OR			 A
+			JP			 Z, .direccion_derecha
 .direccion_izquierda:
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
-		XOR			00000001b
-		LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+			XOR			00000001b
+			LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
 			
-		OR			 A
-		JP			 Z, .escena_izquierda2
+			OR			 A
+			JP			 Z, .escena_izquierda2
 .escena_izquierda1:
-			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), ZOMBI_SPRITE1B
-			RET
+				LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), ZOMBI_SPRITE3B;1B
+				RET
 .escena_izquierda2:
-			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), ZOMBI_SPRITE3B
-			RET
-
-.direccion_derecha:
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
-		XOR			00000001b
-		LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
+				LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), ZOMBI_SPRITE1B;3B
+				RET
 			
-		OR			 A
-		JP			 Z, .escena_derecha2
+.direccion_derecha:
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+			XOR			00000001b
+			LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
+			
+			OR			 A
+			JP			 Z, .escena_derecha2
 .escena_derecha1:
-			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), ZOMBI_SPRITE1A
-			RET
+				LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), ZOMBI_SPRITE1A
+				RET
 .escena_derecha2:
-			LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), ZOMBI_SPRITE3A
-			RET
+				LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), ZOMBI_SPRITE3A
+				RET
 fin_calcula_zombi_escena:
 
 
