@@ -138,13 +138,13 @@ inicializa_variables_prota:
 		;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
 		;será igual la posición inicial en todos los niveles
 	
-		LD		 A, 1;PROTANIVEL
+		LD		 A, 3;PROTANIVEL
 		LD		(prota_nivel), A
 
-		LD		 A, 5;PROTAPOSMAPY
+		LD		 A, PROTAPOSMAPY
 		LD		(prota_pos_mapy), A	
 
-		LD		 A, 5;PROTAPOSMAPX	
+		LD		 A, PROTAPOSMAPX	
 		LD		(prota_pos_mapx), A
 fin_inicializa_variables_prota:
 		RET
