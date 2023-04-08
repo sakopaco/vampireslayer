@@ -131,7 +131,7 @@ fin_retardo8bits:
 ;;=====================================================	
 ; función: espera un tiempo aceptable para leer un texto
 espera_estandar:
-		LD			 B, 9
+		LD			 B, 7
 .loop_espera:
 		PUSH		BC
 		LD			BC, 60000

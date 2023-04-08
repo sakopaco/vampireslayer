@@ -4,11 +4,9 @@ EN REALIZACION:
 BUGS
 - cuando coges una ayuda el sonido no acaba
 - apagar música cuando matas a un jefe
-
 - el disparo y la explosión parecen el mismo sonido
 - algo pasa con las ayudas que pitan aunque no estén definidas 
   parte inf derecha (ahora mismo está desactivado)
-
 
 TODO A
 - repasar lo de queda poca vida a cada jefe
@@ -17,7 +15,19 @@ TODO A
 - poner nombres de jefes enemigos
 
 TODO B
-- revisar todos los sprites (incluidos los del punto de mira)
+* revisar todos los sprites (incluidos los del punto de mira) faltan:
+. fuego
+. magia
+. fantasma
+. jefe murciélago
+. jefe fantasma
+. jefe zombi
+. jefe caballero
+. jefe beholder
+. dracula
+. mano izq
+. mano der
+. punto de mira
 - revisar letras
 
 TUNNING

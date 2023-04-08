@@ -16,11 +16,11 @@ datos_fuego:
 			DB		0						;(radio) radio para movimientos circulares
 			DW		mover_fuego				;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 			DB		FUEGO_SPRITE1A			;izq arriba
-			DB		FUEGO_SPRITE1A			;izq abajo
-			DB		FUEGO_SPRITE1A			;der_arriba
-			DB		FUEGO_SPRITE1A			;der_abajo
+			DB		FUEGO_SPRITE2A			;izq abajo
+			DB		FUEGO_SPRITE1B			;der_arriba
+			DB		FUEGO_SPRITE2B			;der_abajo
 			DB		FUEGO_DANO 				;dano
-			DW		check_colision_enemigo16x16		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
+			DW		check_colision_enemigo16x32		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 
 
 ;;=====================================================
@@ -79,6 +79,14 @@ mover_fuego:
 		LD			(IY + 6), A
 		
 		;colorea fuego
+.parte_superior:
+		LD			 A, R
+		AND			00000001b
+		JP			 Z, .color_b
+		LD			(IY + 3), FUEGO_COLOR2
+		LD			(IY + 7), FUEGO_COLOR1
+		RET
+.color_b:
 		LD			(IY + 3), FUEGO_COLOR1
 		LD			(IY + 7), FUEGO_COLOR2
 fin_mover_fuego:
@@ -92,27 +100,29 @@ calcula_fuego_escena:
 		LD			 A, (heartbeat_fuego)
 		AND			FUEGO_VELESCENA
 		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
-			;reseteo el cambio de escena del fuego
+			;reseteo el cambio de escena del esqueleto
 			XOR			 A
 			LD			(heartbeat_fuego), A
 			
 			;hace daño
 			LD			 B, (IX + ESTRUCTURA_ENEMIGO.dano)
 			CALL		enemigo_hace_dano
+
+.direccion_derecha:
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+		XOR			00000001b
+		LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
 			
-			; cambio de escena
-			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
-			XOR			00000001b
-			LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
-			
-			JP			 Z, .enemigo1_poner_escena2			; IF ESCENA 1 THEN
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), FUEGO_SPRITE1A
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), FUEGO_SPRITE1B
-				RET
-.enemigo1_poner_escena2:									; ELSE
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), FUEGO_SPRITE2A
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), FUEGO_SPRITE2B
-				RET
+		OR			 A
+		JP			 Z, .escena_derecha2
+.escena_derecha1:
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), FUEGO_SPRITE1A
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_b), FUEGO_SPRITE2A
+			RET
+.escena_derecha2:
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), FUEGO_SPRITE1B
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_b), FUEGO_SPRITE2B
+			RET
 fin_calcula_fuego_escena:
 
 
