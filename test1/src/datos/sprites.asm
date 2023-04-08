@@ -277,30 +277,29 @@ fin_sprite_zombi:
 ;; FANTASMA 5: 2 en horizotal con 2 escenas
 sprite_fantasma:
 sprite_fantasma_1:
-	DB  #00,#F1,#83,#80,#80,#80,#80,#F0
-	DB  #F0,#80,#80,#80,#80,#80,#81,#00
-	DB  #00,#8F,#89,#89,#89,#89,#89,#8F
-	DB  #8F,#89,#89,#89,#89,#89,#C9,#00
+	DB  #00,#00,#20,#F8,#7E,#3F,#3F,#1F
+	DB	#3F,#3F,#3F,#1B,#11,#00,#00,#00
+	DB  #03,#0F,#0F,#19,#3C,#FF,#FF,#FC
+	DB	#FB,#FF,#FF,#FF,#FF,#FF,#3F,#07
 
 sprite_fantasma_2:
-	DB  #00,#F1,#83,#80,#80,#80,#80,#F0
-	DB  #F0,#80,#80,#80,#80,#80,#81,#00
-	DB  #00,#8E,#8B,#89,#89,#89,#89,#8F
-	DB  #8F,#89,#89,#89,#89,#8B,#CE,#00
+	DB  #C0,#F0,#F0,#C8,#9C,#FF,#FF,#1F
+	DB	#EF,#FF,#FF,#FF,#FD,#F0,#F8,#FF
+	DB  #00,#01,#26,#7C,#7E,#FC,#FC,#F8
+	DB	#FC,#FC,#C8,#90,#08,#00,#C0,#00
 
 sprite_fantasma_3:
-	DB  #00,#F3,#87,#84,#80,#80,#80,#F0
-	DB  #F0,#80,#81,#83,#86,#84,#87,#00
-	DB  #00,#CF,#C9,#49,#49,#49,#C9,#8F
-	DB  #8F,#89,#89,#09,#09,#09,#C9,#00
+	DB  #00,#80,#64,#3E,#7E,#3F,#1F,#1F
+	DB	#3F,#3F,#13,#09,#10,#00,#03,#00
+	DB  #03,#0F,#0F,#13,#39,#FF,#FF,#F8
+	DB	#F7,#FF,#FF,#FF,#BF,#0F,#1F,#FF
 
 sprite_fantasma_4:
-	DB  #00,#F3,#87,#84,#80,#80,#80,#F0
-	DB  #F0,#80,#81,#83,#86,#84,#87,#00
-	DB  #00,#CE,#CB,#49,#49,#49,#C9,#8F
-	DB  #8F,#89,#89,#09,#09,#0B,#CE,#00
+	DB  #C0,#F0,#F0,#98,#3C,#FF,#FF,#3F
+	DB	#DF,#FF,#FF,#FF,#FF,#FF,#FC,#E0
+	DB  #00,#00,#04,#1F,#7E,#FC,#FC,#F8
+	DB	#FC,#FC,#FC,#D8,#88,#00,#00,#00
 fin_sprite_fantasma:
-
 
 ;; CABALLERO 4 + 4: es el mismo sprite... cambia el color
 sprite_caballero:

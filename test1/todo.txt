@@ -11,14 +11,8 @@ BUGS
 TODO A
 - repasar lo de queda poca vida a cada jefe
 - posicionar ayudas
-- poner tiles al matar a drácula
-- poner nombres de jefes enemigos
-
-TODO B
 * revisar todos los sprites (incluidos los del punto de mira) faltan:
-. fuego
 . magia
-. fantasma
 . jefe murciélago
 . jefe fantasma
 . jefe zombi
@@ -28,7 +22,11 @@ TODO B
 . mano izq
 . mano der
 . punto de mira
+
+TODO B
 - revisar letras
+- poner tiles al matar a drácula
+- poner nombres de jefes enemigos
 
 TUNNING
 - mirar lo de la pila y tal con Fernando
