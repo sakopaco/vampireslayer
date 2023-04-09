@@ -97,8 +97,10 @@ mover_magia:
 		LD			(IY + 6), A
 		
 		;colorea magia
-		LD			(IY + 3), MAGIA_COLOR
-		LD			(IY + 7), MAGIA_COLOR
+		LD			 A, R
+		AND			00001111b
+		LD			(IY + 3), A
+		LD			(IY + 7), A
 fin_mover_magia:
 		RET
 
@@ -110,27 +112,29 @@ calcula_magia_escena:
 		LD			 A, (heartbeat_magia)
 		AND			MAGIA_VELESCENA
 		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
-			;reseteo el cambio de escena de la magia
+			;reseteo el cambio de escena del esqueleto
 			XOR			 A
 			LD			(heartbeat_magia), A
 			
 			;hace daño
 			LD			 B, (IX + ESTRUCTURA_ENEMIGO.dano)
 			CALL		enemigo_hace_dano
+
+.direccion_derecha:
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+		XOR			00000001b
+		LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
 			
-			;THEN cambia escena
-			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
-			XOR			00000001b
-			LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
-			
-			OR			 A
-			JP			 Z, .escena2
-.escena1:
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), MAGIA_SPRITE1A
-				RET
-.escena2:
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), MAGIA_SPRITE1B
-				RET	
+		OR			 A
+		JP			 Z, .escena_derecha2
+.escena_derecha1:
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), MAGIA_SPRITE1A
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_b), MAGIA_SPRITE1B
+			RET
+.escena_derecha2:
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_a), MAGIA_SPRITE2A
+			LD			 (IX + ESTRUCTURA_ENEMIGO.sprite_b), MAGIA_SPRITE2B
+			RET
 fin_calcula_magia_escena:
 		
 

@@ -12,7 +12,6 @@ TODO A
 - repasar lo de queda poca vida a cada jefe
 - posicionar ayudas
 * revisar todos los sprites (incluidos los del punto de mira) faltan:
-. magia
 . jefe murciélago
 . jefe fantasma
 . jefe zombi
