@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.04.10 - 20:49:54]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.04.13 - 20:21:37]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/vs.asm
 Errors: 0
@@ -342,7 +342,7 @@ Errors: 0
      334.  00:4000  (00:0005)           FANTASMA_DANO: equ 00000005h
      335.  00:4000  (00:004B)           FANTASMA_ENERGIA: equ 0000004Bh
      336.  00:4000  (00:0010)           TIPOJEFEFANTASMA: equ 00000010h
-     337.  00:4000  (00:0001)           JEFEFANTASMA_COLOR: equ 00000001h
+     337.  00:4000  (00:000E)           JEFEFANTASMA_COLOR: equ 0000000Eh
      338.  00:4000  (00:00E0)           JEFEFANTASMA_SPRITE1A: equ 000000E0h
      339.  00:4000  (00:00E4)           JEFEFANTASMA_SPRITE2A: equ 000000E4h
      340.  00:4000  (00:00E8)           JEFEFANTASMA_SPRITE3A: equ 000000E8h
@@ -874,7 +874,7 @@ Errors: 0
      138   00:4095                      		;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
      139   00:4095                      		;será igual la posición inicial en todos los niveles
      140   00:4095                      	
-     141   00:4095  3E 01               		LD		 A, 1;PROTANIVEL
+     141   00:4095  3E 02               		LD		 A, 2;PROTANIVEL
      142   00:4097  32 00 C0            		LD		(prota_nivel), A
      143   00:409A                      
      144   00:409A  3E 06               		LD		 A, 6;PROTAPOSMAPY
@@ -7284,10 +7284,10 @@ Errors: 0
      108:  00:5E62  FD 36 0F 08         				LD			(IY + 15), COLROJO
      109:  00:5E66  C9                  				RET
      110:  00:5E67                      .nointercambiacolor:
-     111:  00:5E67  FD 36 03 01         		LD			(IY + 3),  JEFEFANTASMA_COLOR
-     112:  00:5E6B  FD 36 07 01         		LD			(IY + 7),  JEFEFANTASMA_COLOR
-     113:  00:5E6F  FD 36 0B 01         		LD			(IY + 11), JEFEFANTASMA_COLOR
-     114:  00:5E73  FD 36 0F 01         		LD			(IY + 15), JEFEFANTASMA_COLOR
+     111:  00:5E67  FD 36 03 0E         		LD			(IY + 3),  JEFEFANTASMA_COLOR
+     112:  00:5E6B  FD 36 07 0E         		LD			(IY + 7),  JEFEFANTASMA_COLOR
+     113:  00:5E6F  FD 36 0B 0E         		LD			(IY + 11), JEFEFANTASMA_COLOR
+     114:  00:5E73  FD 36 0F 0E         		LD			(IY + 15), JEFEFANTASMA_COLOR
      115:  00:5E77                      fin_mover_jefefantasma:
      116:  00:5E77  C9                  		RET
      117:  00:5E78                      
@@ -14138,84 +14138,84 @@ Errors: 0
      561.  00:AE48                      ;; JEFE FANTASMA (4 sprites 2 escenas)
      562.  00:AE48                      sprite_jefefantasma:
      563.  00:AE48                      sprite_jefefantasma_1:
-     564.  00:AE48                      	DB  #70,#11,#13,#10,#10,#10,#90,#90
-     564.  00:AE48  70 11 13 10 10 10 90 90 
-     565.  00:AE50                      	DB  #70,#00,#F0,#80,#E0,#80,#81,#80
-     565.  00:AE50  70 00 F0 80 E0 80 81 80 
-     566.  00:AE58                      	DB  #00,#8F,#89,#89,#89,#89,#89,#8F
-     566.  00:AE58  00 8F 89 89 89 89 89 8F 
-     567.  00:AE60                      	DB  #8F,#89,#89,#89,#89,#89,#C9,#00
-     567.  00:AE60  8F 89 89 89 89 89 C9 00 
+     564.  00:AE48                      	DB  #0A,#05,#25,#1F,#07,#07,#03,#06
+     564.  00:AE48  0A 05 25 1F 07 07 03 06 
+     565.  00:AE50                      	DB  #0C,#1C,#38,#3F,#3F,#07,#01,#01
+     565.  00:AE50  0C 1C 38 3F 3F 07 01 01 
+     566.  00:AE58                      	DB  #80,#40,#40,#C0,#C0,#83,#1F,#3F
+     566.  00:AE58  80 40 40 C0 C0 83 1F 3F 
+     567.  00:AE60                      	DB  #3F,#7F,#FF,#FF,#FF,#FF,#7F,#0F
+     567.  00:AE60  3F 7F FF FF FF FF 7F 0F 
      568.  00:AE68                      	
      569.  00:AE68                      sprite_jefefantasma_2:
-     570.  00:AE68                      	DB  #70,#11,#13,#10,#10,#10,#90,#90
-     570.  00:AE68  70 11 13 10 10 10 90 90 
-     571.  00:AE70                      	DB  #70,#00,#F0,#80,#E0,#80,#81,#80
-     571.  00:AE70  70 00 F0 80 E0 80 81 80 
-     572.  00:AE78                      	DB  #00,#8E,#8B,#89,#89,#89,#89,#8F
-     572.  00:AE78  00 8E 8B 89 89 89 89 8F 
-     573.  00:AE80                      	DB  #8F,#89,#89,#89,#89,#8B,#CE,#00
-     573.  00:AE80  8F 89 89 89 89 8B CE 00 
+     570.  00:AE68                      	DB  #01,#03,#03,#03,#03,#03,#03,#03
+     570.  00:AE68  01 03 03 03 03 03 03 03 
+     571.  00:AE70                      	DB  #03,#01,#00,#00,#00,#00,#00,#00
+     571.  00:AE70  03 01 00 00 00 00 00 00 
+     572.  00:AE78                      	DB  #97,#E7,#FF,#DF,#CA,#E0,#F5,#FF
+     572.  00:AE78  97 E7 FF DF CA E0 F5 FF 
+     573.  00:AE80                      	DB  #FF,#FF,#FF,#FF,#7F,#3F,#1F,#07
+     573.  00:AE80  FF FF FF FF 7F 3F 1F 07 
      574.  00:AE88                      	
      575.  00:AE88                      sprite_jefefantasma_3:
-     576.  00:AE88                      	DB  #70,#11,#13,#10,#10,#10,#90,#90
-     576.  00:AE88  70 11 13 10 10 10 90 90 
-     577.  00:AE90                      	DB  #70,#00,#F0,#80,#E0,#80,#81,#80
-     577.  00:AE90  70 00 F0 80 E0 80 81 80 
-     578.  00:AE98                      	DB  #00,#8E,#89,#88,#88,#88,#88,#88
-     578.  00:AE98  00 8E 89 88 88 88 88 88 
-     579.  00:AEA0                      	DB  #88,#88,#88,#88,#88,#89,#CE,#00
-     579.  00:AEA0  88 88 88 88 88 89 CE 00 
+     576.  00:AE88                      	DB  #01,#02,#02,#03,#03,#C1,#F8,#FC
+     576.  00:AE88  01 02 02 03 03 C1 F8 FC 
+     577.  00:AE90                      	DB  #FC,#FE,#FF,#FF,#FF,#FF,#FE,#F0
+     577.  00:AE90  FC FE FF FF FF FF FE F0 
+     578.  00:AE98                      	DB  #50,#A0,#A4,#F8,#E0,#E0,#C0,#60
+     578.  00:AE98  50 A0 A4 F8 E0 E0 C0 60 
+     579.  00:AEA0                      	DB  #30,#38,#1C,#FC,#FC,#E0,#80,#80
+     579.  00:AEA0  30 38 1C FC FC E0 80 80 
      580.  00:AEA8                      
      581.  00:AEA8                      sprite_jefefantasma_4:
-     582.  00:AEA8                      	DB  #70,#11,#13,#10,#10,#10,#90,#90
-     582.  00:AEA8  70 11 13 10 10 10 90 90 
-     583.  00:AEB0                      	DB  #70,#00,#F0,#80,#E0,#80,#81,#80
-     583.  00:AEB0  70 00 F0 80 E0 80 81 80 
-     584.  00:AEB8                      	DB  #00,#8E,#8B,#89,#89,#89,#89,#89
-     584.  00:AEB8  00 8E 8B 89 89 89 89 89 
-     585.  00:AEC0                      	DB  #89,#89,#89,#89,#89,#8B,#CE,#00
-     585.  00:AEC0  89 89 89 89 89 8B CE 00 
+     582.  00:AEA8                      	DB  #E9,#E7,#FF,#FB,#53,#07,#AF,#FF
+     582.  00:AEA8  E9 E7 FF FB 53 07 AF FF 
+     583.  00:AEB0                      	DB  #FF,#FF,#FF,#FF,#FE,#FC,#FF,#FF
+     583.  00:AEB0  FF FF FF FF FE FC FF FF 
+     584.  00:AEB8                      	DB  #C0,#C0,#C0,#C0,#E0,#E0,#C0,#C0
+     584.  00:AEB8  C0 C0 C0 C0 E0 E0 C0 C0 
+     585.  00:AEC0                      	DB  #E0,#C0,#00,#04,#08,#18,#F0,#E0
+     585.  00:AEC0  E0 C0 00 04 08 18 F0 E0 
      586.  00:AEC8                      	
      587.  00:AEC8                      sprite_jefefantasma_5:
-     588.  00:AEC8                      	DB  #00,#F1,#91,#91,#91,#91,#91,#F1
-     588.  00:AEC8  00 F1 91 91 91 91 91 F1 
-     589.  00:AED0                      	DB  #F1,#91,#91,#91,#91,#91,#93,#00
-     589.  00:AED0  F1 91 91 91 91 91 93 00 
-     590.  00:AED8                      	DB  #0E,#88,#C8,#08,#08,#08,#09,#09
-     590.  00:AED8  0E 88 C8 08 08 08 09 09 
-     591.  00:AEE0                      	DB  #0E,#00,#0F,#01,#07,#01,#81,#01
-     591.  00:AEE0  0E 00 0F 01 07 01 81 01 
+     588.  00:AEC8                      	DB  #00,#00,#00,#00,#00,#00,#00,#00
+     588.  00:AEC8  00 00 00 00 00 00 00 00 
+     589.  00:AED0                      	DB  #00,#00,#00,#1F,#3F,#77,#61,#61
+     589.  00:AED0  00 00 00 1F 3F 77 61 61 
+     590.  00:AED8                      	DB  #00,#00,#00,#00,#00,#03,#1F,#3F
+     590.  00:AED8  00 00 00 00 00 03 1F 3F 
+     591.  00:AEE0                      	DB  #3F,#7F,#FF,#FF,#FF,#7F,#0F,#97
+     591.  00:AEE0  3F 7F FF FF FF 7F 0F 97 
      592.  00:AEE8                      	
      593.  00:AEE8                      sprite_jefefantasma_6:
-     594.  00:AEE8                      	DB  #00,#71,#D1,#91,#91,#91,#91,#F1
-     594.  00:AEE8  00 71 D1 91 91 91 91 F1 
-     595.  00:AEF0                      	DB  #F1,#91,#91,#91,#91,#D1,#73,#00
-     595.  00:AEF0  F1 91 91 91 91 D1 73 00 
-     596.  00:AEF8                      	DB  #0E,#88,#C8,#08,#08,#08,#09,#09
-     596.  00:AEF8  0E 88 C8 08 08 08 09 09 
-     597.  00:AF00                      	DB  #0E,#00,#0F,#01,#07,#01,#81,#01
-     597.  00:AF00  0E 00 0F 01 07 01 81 01 
+     594.  00:AEE8                      	DB  #69,#F3,#E3,#53,#2B,#03,#03,#03
+     594.  00:AEE8  69 F3 E3 53 2B 03 03 03 
+     595.  00:AEF0                      	DB  #03,#01,#00,#00,#00,#00,#00,#00
+     595.  00:AEF0  03 01 00 00 00 00 00 00 
+     596.  00:AEF8                      	DB  #E7,#FF,#FF,#FF,#CA,#E0,#F5,#FF
+     596.  00:AEF8  E7 FF FF FF CA E0 F5 FF 
+     597.  00:AF00                      	DB  #FF,#FF,#FF,#FF,#7F,#3F,#1F,#07
+     597.  00:AF00  FF FF FF FF 7F 3F 1F 07 
      598.  00:AF08                      	
      599.  00:AF08                      sprite_jefefantasma_7:
-     600.  00:AF08                      	DB  #00,#71,#91,#11,#11,#11,#11,#11
-     600.  00:AF08  00 71 91 11 11 11 11 11 
-     601.  00:AF10                      	DB  #11,#11,#11,#11,#11,#91,#73,#00
-     601.  00:AF10  11 11 11 11 11 91 73 00 
-     602.  00:AF18                      	DB  #0E,#88,#C8,#08,#08,#08,#09,#09
-     602.  00:AF18  0E 88 C8 08 08 08 09 09 
-     603.  00:AF20                      	DB  #0E,#00,#0F,#01,#07,#01,#81,#01
-     603.  00:AF20  0E 00 0F 01 07 01 81 01 
+     600.  00:AF08                      	DB  #00,#00,#00,#00,#00,#C0,#F8,#FC
+     600.  00:AF08  00 00 00 00 00 C0 F8 FC 
+     601.  00:AF10                      	DB  #FC,#FE,#FF,#FF,#FF,#FE,#F0,#E9
+     601.  00:AF10  FC FE FF FF FF FE F0 E9 
+     602.  00:AF18                      	DB  #00,#00,#00,#00,#00,#00,#00,#00
+     602.  00:AF18  00 00 00 00 00 00 00 00 
+     603.  00:AF20                      	DB  #00,#00,#00,#F8,#FC,#EE,#86,#86
+     603.  00:AF20  00 00 00 F8 FC EE 86 86 
      604.  00:AF28                      	
      605.  00:AF28                      sprite_jefefantasma_8:
-     606.  00:AF28                      	DB  #00,#71,#D1,#91,#91,#91,#91,#91
-     606.  00:AF28  00 71 D1 91 91 91 91 91 
-     607.  00:AF30                      	DB  #91,#91,#91,#91,#91,#D1,#73,#00
-     607.  00:AF30  91 91 91 91 91 D1 73 00 
-     608.  00:AF38                      	DB  #0E,#88,#C8,#08,#08,#08,#09,#09
-     608.  00:AF38  0E 88 C8 08 08 08 09 09 
-     609.  00:AF40                      	DB  #0E,#00,#0F,#01,#07,#01,#81,#01
-     609.  00:AF40  0E 00 0F 01 07 01 81 01 
+     606.  00:AF28                      	DB  #E7,#FF,#FF,#FF,#53,#07,#AF,#FF
+     606.  00:AF28  E7 FF FF FF 53 07 AF FF 
+     607.  00:AF30                      	DB  #FF,#FF,#FF,#FF,#FE,#FC,#FF,#FF
+     607.  00:AF30  FF FF FF FF FE FC FF FF 
+     608.  00:AF38                      	DB  #D6,#CF,#C7,#CA,#D4,#C0,#C0,#C0
+     608.  00:AF38  D6 CF C7 CA D4 C0 C0 C0 
+     609.  00:AF40                      	DB  #C0,#80,#00,#00,#06,#1C,#F8,#E0
+     609.  00:AF40  C0 80 00 00 06 1C F8 E0 
      610.  00:AF48                      fin_sprite_jefefantasma:
      611.  00:AF48                      	
      612.  00:AF48                      ;; JEFE ZOMBI (4 sprites 2 escenas 2 direcciones)
@@ -15384,7 +15384,7 @@ Errors: 0
 00:00000005   FANTASMA_DANO
 00:0000004B   FANTASMA_ENERGIA
 00:00000010   TIPOJEFEFANTASMA
-00:00000001   JEFEFANTASMA_COLOR
+00:0000000E   JEFEFANTASMA_COLOR
 00:000000E0   JEFEFANTASMA_SPRITE1A
 00:000000E4   JEFEFANTASMA_SPRITE2A
 00:000000E8   JEFEFANTASMA_SPRITE3A
