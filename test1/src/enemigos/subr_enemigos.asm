@@ -1251,7 +1251,6 @@ inicializa_enemigos_fase6_nivel0:
 		JP			actualiza_valores_jefelobo_BR
 fin_inicializa_enemigos_fase6_nivel0:
 
-
 inicializa_enemigos_fase6_nivel1:
 		LD			 A, (habitacion_terminada)
 		OR			 A

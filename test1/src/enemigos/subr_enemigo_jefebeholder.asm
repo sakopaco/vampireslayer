@@ -138,7 +138,7 @@ calcula_jefebeholder_escena:
 		LD			 A, (heartbeat_general)
 		AND			JEFEBEHOLDER_VELESCENA
 		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
-			;reseteo el cambio de escena del jefebeholder
+			;reseteo el cambio de escena del jefefantasma
 			XOR			 A
 			LD			(heartbeat_general), A
 			
@@ -155,16 +155,16 @@ calcula_jefebeholder_escena:
 			JP			 Z, .escena2
 .escena1:
 				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFEBEHOLDER_SPRITE1A
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFEBEHOLDER_SPRITE2A
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFEBEHOLDER_SPRITE3A
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFEBEHOLDER_SPRITE4A
+				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), JEFEBEHOLDER_SPRITE2A
+				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_c), JEFEBEHOLDER_SPRITE3A
+				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_d), JEFEBEHOLDER_SPRITE4A
 				RET
 .escena2:
 				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFEBEHOLDER_SPRITE1B
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFEBEHOLDER_SPRITE2B
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFEBEHOLDER_SPRITE3B
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFEBEHOLDER_SPRITE4B
-				RET	
+				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), JEFEBEHOLDER_SPRITE2B
+				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_c), JEFEBEHOLDER_SPRITE3B
+				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_d), JEFEBEHOLDER_SPRITE4B
+				RET		
 fin_calcula_jefebeholder_escena:
 		RET
 		

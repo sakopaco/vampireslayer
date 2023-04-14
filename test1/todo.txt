@@ -14,7 +14,6 @@ TODO A
 * revisar todos los sprites (incluidos los del punto de mira) faltan:
 . jefe zombi
 . jefe caballero
-. jefe beholder
 . dracula
 . mano izq
 . mano der

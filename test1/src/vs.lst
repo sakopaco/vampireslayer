@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.04.13 - 20:21:37]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.04.14 - 19:23:33]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/vs.asm
 Errors: 0
@@ -477,7 +477,7 @@ Errors: 0
      469.  00:4000  (00:0005)           MAGIA_DANO: equ 00000005h
      470.  00:4000  (00:005A)           MAGIA_ENERGIA: equ 0000005Ah
      471.  00:4000  (00:0013)           TIPOJEFEBEHOLDER: equ 00000013h
-     472.  00:4000  (00:0001)           JEFEBEHOLDER_COLOR: equ 00000001h
+     472.  00:4000  (00:0002)           JEFEBEHOLDER_COLOR: equ 00000002h
      473.  00:4000  (00:00E0)           JEFEBEHOLDER_SPRITE1A: equ 000000E0h
      474.  00:4000  (00:00E4)           JEFEBEHOLDER_SPRITE2A: equ 000000E4h
      475.  00:4000  (00:00E8)           JEFEBEHOLDER_SPRITE3A: equ 000000E8h
@@ -874,7 +874,7 @@ Errors: 0
      138   00:4095                      		;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
      139   00:4095                      		;será igual la posición inicial en todos los niveles
      140   00:4095                      	
-     141   00:4095  3E 02               		LD		 A, 2;PROTANIVEL
+     141   00:4095  3E 05               		LD		 A, 5;PROTANIVEL
      142   00:4097  32 00 C0            		LD		(prota_nivel), A
      143   00:409A                      
      144   00:409A  3E 06               		LD		 A, 6;PROTAPOSMAPY
@@ -8521,10 +8521,10 @@ Errors: 0
      123:  00:65FD  FD 36 0F 08         				LD			(IY + 15), COLROJO
      124:  00:6601  C9                  				RET
      125:  00:6602                      .nointercambiacolor:	
-     126:  00:6602  FD 36 03 01         		LD			(IY + 3), JEFEBEHOLDER_COLOR
-     127:  00:6606  FD 36 07 01         		LD			(IY + 7), JEFEBEHOLDER_COLOR
-     128:  00:660A  FD 36 0B 01         		LD			(IY + 11),JEFEBEHOLDER_COLOR
-     129:  00:660E  FD 36 0F 01         		LD			(IY + 15),JEFEBEHOLDER_COLOR
+     126:  00:6602  FD 36 03 02         		LD			(IY + 3), JEFEBEHOLDER_COLOR
+     127:  00:6606  FD 36 07 02         		LD			(IY + 7), JEFEBEHOLDER_COLOR
+     128:  00:660A  FD 36 0B 02         		LD			(IY + 11),JEFEBEHOLDER_COLOR
+     129:  00:660E  FD 36 0F 02         		LD			(IY + 15),JEFEBEHOLDER_COLOR
      130:  00:6612                      fin_mover_jefebeholder:
      131:  00:6612  C9                  		RET
      132:  00:6613                      
@@ -8536,7 +8536,7 @@ Errors: 0
      138:  00:6613  3A 3F C0            		LD			 A, (heartbeat_general)
      139:  00:6616  E6 10               		AND			JEFEBEHOLDER_VELESCENA
      140:  00:6618  C8                  		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
-     141:  00:6619                      			;reseteo el cambio de escena del jefebeholder
+     141:  00:6619                      			;reseteo el cambio de escena del jefefantasma
      142:  00:6619  AF                  			XOR			 A
      143:  00:661A  32 3F C0            			LD			(heartbeat_general), A
      144:  00:661D                      			
@@ -8553,16 +8553,16 @@ Errors: 0
      155:  00:662C  CA 40 66            			JP			 Z, .escena2
      156:  00:662F                      .escena1:
      157:  00:662F  DD 36 0E E0         				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFEBEHOLDER_SPRITE1A
-     158:  00:6633  DD 36 0E E4         				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFEBEHOLDER_SPRITE2A
-     159:  00:6637  DD 36 0E E8         				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFEBEHOLDER_SPRITE3A
-     160:  00:663B  DD 36 0E EC         				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFEBEHOLDER_SPRITE4A
+     158:  00:6633  DD 36 0F E4         				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), JEFEBEHOLDER_SPRITE2A
+     159:  00:6637  DD 36 10 E8         				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_c), JEFEBEHOLDER_SPRITE3A
+     160:  00:663B  DD 36 11 EC         				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_d), JEFEBEHOLDER_SPRITE4A
      161:  00:663F  C9                  				RET
      162:  00:6640                      .escena2:
      163:  00:6640  DD 36 0E F0         				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFEBEHOLDER_SPRITE1B
-     164:  00:6644  DD 36 0E F4         				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFEBEHOLDER_SPRITE2B
-     165:  00:6648  DD 36 0E F8         				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFEBEHOLDER_SPRITE3B
-     166:  00:664C  DD 36 0E FC         				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), JEFEBEHOLDER_SPRITE4B
-     167:  00:6650  C9                  				RET	
+     164:  00:6644  DD 36 0F F4         				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), JEFEBEHOLDER_SPRITE2B
+     165:  00:6648  DD 36 10 F8         				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_c), JEFEBEHOLDER_SPRITE3B
+     166:  00:664C  DD 36 11 FC         				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_d), JEFEBEHOLDER_SPRITE4B
+     167:  00:6650  C9                  				RET		
      168:  00:6651                      fin_calcula_jefebeholder_escena:
      169:  00:6651  C9                  		RET
      170:  00:6652                      		
@@ -10380,1293 +10380,1292 @@ Errors: 0
     1251.  00:7102  C3 1E 59            		JP			actualiza_valores_jefelobo_BR
     1252.  00:7105                      fin_inicializa_enemigos_fase6_nivel0:
     1253.  00:7105                      
-    1254.  00:7105                      
-    1255.  00:7105                      inicializa_enemigos_fase6_nivel1:
-    1256.  00:7105  3A 0F C2            		LD			 A, (habitacion_terminada)
-    1257.  00:7108  B7                  		OR			 A
-    1258.  00:7109  C0                  		RET			NZ
-    1259.  00:710A                      		
-    1260.  00:710A  CD 74 51            		CALL		carga_patrones_sprites_nivel6_nivel1
-    1261.  00:710D                      		
-    1262.  00:710D  3E 01               		LD			 A, 1
-    1263.  00:710F  32 14 C2            		LD			(enemiesleft), A
-    1264.  00:7112                      		
-    1265.  00:7112  11 40 C0            		LD			DE, enemigo1
-    1266.  00:7115  CD 00 5C            		CALL		anade_enemigo_jefemurcielago
-    1267.  00:7118  DD 21 40 C0         		LD			IX, enemigo1
-    1268.  00:711C  C3 09 5C            		JP			actualiza_valores_jefemurcielago
-    1269.  00:711F                      fin_inicializa_enemigos_fase6_nivel1:
-    1270.  00:711F                      
-    1271.  00:711F                      inicializa_enemigos_fase6_nivel2:
-    1272.  00:711F  3A 0F C2            		LD			 A, (habitacion_terminada)
-    1273.  00:7122  B7                  		OR			 A
-    1274.  00:7123  C0                  		RET			NZ
-    1275.  00:7124                      		
-    1276.  00:7124  CD 77 51            		CALL		carga_patrones_sprites_nivel6_nivel2
-    1277.  00:7127                      		
-    1278.  00:7127  3E 01               		LD			 A, 1
-    1279.  00:7129  32 14 C2            		LD			(enemiesleft), A
-    1280.  00:712C                      		
-    1281.  00:712C  11 40 C0            		LD			DE, enemigo1
-    1282.  00:712F  CD F2 5D            		CALL		anade_enemigo_jefefantasma
-    1283.  00:7132  DD 21 40 C0         		LD			IX, enemigo1
-    1284.  00:7136  C3 FB 5D            		JP			actualiza_valores_jefefantasma_BR
-    1285.  00:7139                      fin_inicializa_enemigos_fase6_nivel2:
-    1286.  00:7139                      
-    1287.  00:7139                      inicializa_enemigos_fase6_nivel3:
-    1288.  00:7139  3A 0F C2            		LD			 A, (habitacion_terminada)
-    1289.  00:713C  B7                  		OR			 A
-    1290.  00:713D  C0                  		RET			NZ
-    1291.  00:713E                      		
-    1292.  00:713E  CD 7A 51            		CALL		carga_patrones_sprites_nivel6_nivel3
-    1293.  00:7141                      		
-    1294.  00:7141  3E 01               		LD			 A, 1
-    1295.  00:7143  32 14 C2            		LD			(enemiesleft), A
-    1296.  00:7146                      		
-    1297.  00:7146  11 40 C0            		LD			DE, enemigo1
-    1298.  00:7149  CD FD 5F            		CALL		anade_enemigo_jefezombi
-    1299.  00:714C  DD 21 40 C0         		LD			IX, enemigo1
-    1300.  00:7150  C3 06 60            		JP			actualiza_valores_jefezombi_BR
-    1301.  00:7153                      fin_inicializa_enemigos_fase6_nivel3:
-    1302.  00:7153                      
-    1303.  00:7153                      inicializa_enemigos_fase6_nivel4:
-    1304.  00:7153  3A 0F C2            		LD			 A, (habitacion_terminada)
-    1305.  00:7156  B7                  		OR			 A
-    1306.  00:7157  C0                  		RET			NZ
-    1307.  00:7158                      		
-    1308.  00:7158  CD 7D 51            		CALL		carga_patrones_sprites_nivel6_nivel4
-    1309.  00:715B                      		
-    1310.  00:715B  3E 01               		LD			 A, 1
-    1311.  00:715D  32 14 C2            		LD			(enemiesleft), A
-    1312.  00:7160                      		
-    1313.  00:7160  11 40 C0            		LD			DE, enemigo1
-    1314.  00:7163  CD F2 61            		CALL		anade_enemigo_jefecaballero
-    1315.  00:7166  DD 21 40 C0         		LD			IX, enemigo1
-    1316.  00:716A  C3 FB 61            		JP			actualiza_valores_jefecaballero
-    1317.  00:716D                      fin_inicializa_enemigos_fase6_nivel4:
-    1318.  00:716D                      
-    1319.  00:716D                      inicializa_enemigos_fase6_nivel5: 
-    1320.  00:716D  3A 0F C2            		LD			 A, (habitacion_terminada)
-    1321.  00:7170  B7                  		OR			 A
-    1322.  00:7171  C0                  		RET			NZ
-    1323.  00:7172                      								
-    1324.  00:7172  CD 80 51            		CALL		carga_patrones_sprites_nivel6_nivel5
-    1325.  00:7175                      		
-    1326.  00:7175  3E 01               		LD			 A, 1
-    1327.  00:7177  32 14 C2            		LD			(enemiesleft), A
-    1328.  00:717A                      		
-    1329.  00:717A  11 40 C0            		LD			DE, enemigo1
-    1330.  00:717D  CD 88 65            		CALL		anade_enemigo_jefebeholder
-    1331.  00:7180  DD 21 40 C0         		LD			IX, enemigo1
-    1332.  00:7184  C3 91 65            		JP			actualiza_valores_jefebeholder_BR
-    1333.  00:7187                      fin_inicializa_enemigos_fase6_nivel5:
-    1334.  00:7187                      
-    1335.  00:7187                      inicializa_enemigos_fase6_nivel6:
-    1336.  00:7187  3A 0F C2            		LD			 A, (habitacion_terminada)
-    1337.  00:718A  B7                  		OR			 A
-    1338.  00:718B  C0                  		RET			NZ
-    1339.  00:718C                      		
-    1340.  00:718C  3E 03               		LD			 A, 3
-    1341.  00:718E  32 14 C2            		LD			(enemiesleft), A
-    1342.  00:7191                      
-    1343.  00:7191                      		;está muerto drácula
-    1344.  00:7191  3A 1C C2            		LD			 A, (dracula_muerto)
-    1345.  00:7194  B7                  		OR			 A
-    1346.  00:7195  C0                  			RET			NZ	;SI
-    1347.  00:7196                      
-    1348.  00:7196                      dracula_NO_esta_muerto:	
-    1349.  00:7196  CD 83 51            			CALL		carga_patrones_sprites_nivel6_nivel6
-    1350.  00:7199                      			
-    1351.  00:7199  3E 03               			LD			 A, 3
-    1352.  00:719B  32 14 C2            			LD			(enemiesleft), A
-    1353.  00:719E                      		
-    1354.  00:719E  11 40 C0            			LD			DE, enemigo1
-    1355.  00:71A1  CD BB 66            			CALL		anade_enemigo_dracula
-    1356.  00:71A4                      		
-    1357.  00:71A4  11 55 C0            			LD			DE, enemigo2
-    1358.  00:71A7  CD 2E 69            			CALL		anade_enemigo_manoi
-    1359.  00:71AA                      		
-    1360.  00:71AA  11 6A C0            			LD			DE, enemigo3
-    1361.  00:71AD  C3 D0 67            			JP			anade_enemigo_manod
-    1362.  00:71B0                      fin_inicializa_enemigos_fase6_nivel6:
+    1254.  00:7105                      inicializa_enemigos_fase6_nivel1:
+    1255.  00:7105  3A 0F C2            		LD			 A, (habitacion_terminada)
+    1256.  00:7108  B7                  		OR			 A
+    1257.  00:7109  C0                  		RET			NZ
+    1258.  00:710A                      		
+    1259.  00:710A  CD 74 51            		CALL		carga_patrones_sprites_nivel6_nivel1
+    1260.  00:710D                      		
+    1261.  00:710D  3E 01               		LD			 A, 1
+    1262.  00:710F  32 14 C2            		LD			(enemiesleft), A
+    1263.  00:7112                      		
+    1264.  00:7112  11 40 C0            		LD			DE, enemigo1
+    1265.  00:7115  CD 00 5C            		CALL		anade_enemigo_jefemurcielago
+    1266.  00:7118  DD 21 40 C0         		LD			IX, enemigo1
+    1267.  00:711C  C3 09 5C            		JP			actualiza_valores_jefemurcielago
+    1268.  00:711F                      fin_inicializa_enemigos_fase6_nivel1:
+    1269.  00:711F                      
+    1270.  00:711F                      inicializa_enemigos_fase6_nivel2:
+    1271.  00:711F  3A 0F C2            		LD			 A, (habitacion_terminada)
+    1272.  00:7122  B7                  		OR			 A
+    1273.  00:7123  C0                  		RET			NZ
+    1274.  00:7124                      		
+    1275.  00:7124  CD 77 51            		CALL		carga_patrones_sprites_nivel6_nivel2
+    1276.  00:7127                      		
+    1277.  00:7127  3E 01               		LD			 A, 1
+    1278.  00:7129  32 14 C2            		LD			(enemiesleft), A
+    1279.  00:712C                      		
+    1280.  00:712C  11 40 C0            		LD			DE, enemigo1
+    1281.  00:712F  CD F2 5D            		CALL		anade_enemigo_jefefantasma
+    1282.  00:7132  DD 21 40 C0         		LD			IX, enemigo1
+    1283.  00:7136  C3 FB 5D            		JP			actualiza_valores_jefefantasma_BR
+    1284.  00:7139                      fin_inicializa_enemigos_fase6_nivel2:
+    1285.  00:7139                      
+    1286.  00:7139                      inicializa_enemigos_fase6_nivel3:
+    1287.  00:7139  3A 0F C2            		LD			 A, (habitacion_terminada)
+    1288.  00:713C  B7                  		OR			 A
+    1289.  00:713D  C0                  		RET			NZ
+    1290.  00:713E                      		
+    1291.  00:713E  CD 7A 51            		CALL		carga_patrones_sprites_nivel6_nivel3
+    1292.  00:7141                      		
+    1293.  00:7141  3E 01               		LD			 A, 1
+    1294.  00:7143  32 14 C2            		LD			(enemiesleft), A
+    1295.  00:7146                      		
+    1296.  00:7146  11 40 C0            		LD			DE, enemigo1
+    1297.  00:7149  CD FD 5F            		CALL		anade_enemigo_jefezombi
+    1298.  00:714C  DD 21 40 C0         		LD			IX, enemigo1
+    1299.  00:7150  C3 06 60            		JP			actualiza_valores_jefezombi_BR
+    1300.  00:7153                      fin_inicializa_enemigos_fase6_nivel3:
+    1301.  00:7153                      
+    1302.  00:7153                      inicializa_enemigos_fase6_nivel4:
+    1303.  00:7153  3A 0F C2            		LD			 A, (habitacion_terminada)
+    1304.  00:7156  B7                  		OR			 A
+    1305.  00:7157  C0                  		RET			NZ
+    1306.  00:7158                      		
+    1307.  00:7158  CD 7D 51            		CALL		carga_patrones_sprites_nivel6_nivel4
+    1308.  00:715B                      		
+    1309.  00:715B  3E 01               		LD			 A, 1
+    1310.  00:715D  32 14 C2            		LD			(enemiesleft), A
+    1311.  00:7160                      		
+    1312.  00:7160  11 40 C0            		LD			DE, enemigo1
+    1313.  00:7163  CD F2 61            		CALL		anade_enemigo_jefecaballero
+    1314.  00:7166  DD 21 40 C0         		LD			IX, enemigo1
+    1315.  00:716A  C3 FB 61            		JP			actualiza_valores_jefecaballero
+    1316.  00:716D                      fin_inicializa_enemigos_fase6_nivel4:
+    1317.  00:716D                      
+    1318.  00:716D                      inicializa_enemigos_fase6_nivel5: 
+    1319.  00:716D  3A 0F C2            		LD			 A, (habitacion_terminada)
+    1320.  00:7170  B7                  		OR			 A
+    1321.  00:7171  C0                  		RET			NZ
+    1322.  00:7172                      								
+    1323.  00:7172  CD 80 51            		CALL		carga_patrones_sprites_nivel6_nivel5
+    1324.  00:7175                      		
+    1325.  00:7175  3E 01               		LD			 A, 1
+    1326.  00:7177  32 14 C2            		LD			(enemiesleft), A
+    1327.  00:717A                      		
+    1328.  00:717A  11 40 C0            		LD			DE, enemigo1
+    1329.  00:717D  CD 88 65            		CALL		anade_enemigo_jefebeholder
+    1330.  00:7180  DD 21 40 C0         		LD			IX, enemigo1
+    1331.  00:7184  C3 91 65            		JP			actualiza_valores_jefebeholder_BR
+    1332.  00:7187                      fin_inicializa_enemigos_fase6_nivel5:
+    1333.  00:7187                      
+    1334.  00:7187                      inicializa_enemigos_fase6_nivel6:
+    1335.  00:7187  3A 0F C2            		LD			 A, (habitacion_terminada)
+    1336.  00:718A  B7                  		OR			 A
+    1337.  00:718B  C0                  		RET			NZ
+    1338.  00:718C                      		
+    1339.  00:718C  3E 03               		LD			 A, 3
+    1340.  00:718E  32 14 C2            		LD			(enemiesleft), A
+    1341.  00:7191                      
+    1342.  00:7191                      		;está muerto drácula
+    1343.  00:7191  3A 1C C2            		LD			 A, (dracula_muerto)
+    1344.  00:7194  B7                  		OR			 A
+    1345.  00:7195  C0                  			RET			NZ	;SI
+    1346.  00:7196                      
+    1347.  00:7196                      dracula_NO_esta_muerto:	
+    1348.  00:7196  CD 83 51            			CALL		carga_patrones_sprites_nivel6_nivel6
+    1349.  00:7199                      			
+    1350.  00:7199  3E 03               			LD			 A, 3
+    1351.  00:719B  32 14 C2            			LD			(enemiesleft), A
+    1352.  00:719E                      		
+    1353.  00:719E  11 40 C0            			LD			DE, enemigo1
+    1354.  00:71A1  CD BB 66            			CALL		anade_enemigo_dracula
+    1355.  00:71A4                      		
+    1356.  00:71A4  11 55 C0            			LD			DE, enemigo2
+    1357.  00:71A7  CD 2E 69            			CALL		anade_enemigo_manoi
+    1358.  00:71AA                      		
+    1359.  00:71AA  11 6A C0            			LD			DE, enemigo3
+    1360.  00:71AD  C3 D0 67            			JP			anade_enemigo_manod
+    1361.  00:71B0                      fin_inicializa_enemigos_fase6_nivel6:
+    1362.  00:71B0                      
     1363.  00:71B0                      
-    1364.  00:71B0                      
-    1365.  00:71B0                      ;;=====================================================
-    1366.  00:71B0                      ;;CHECK_ENEMIGOS
-    1367.  00:71B0                      ;;=====================================================	
-    1368.  00:71B0                      check_enemigos:
-    1369.  00:71B0  3A 00 C0            		LD			 A, (prota_nivel)
-    1370.  00:71B3                      .mira_nivel0		
-    1371.  00:71B3  B7                  		OR			 A
-    1372.  00:71B4  C2 BB 71            		JP			NZ, .mira_nivel1
-    1373.  00:71B7  CD E6 71            		CALL		check_enemigos_fase0
-    1374.  00:71BA  C9                  		RET
-    1375.  00:71BB                      .mira_nivel1:
-    1376.  00:71BB  3D                  		DEC			 A
-    1377.  00:71BC  C2 C3 71            		JP			NZ, .mira_nivel2
-    1378.  00:71BF  CD 51 72            		CALL		check_enemigos_fase1
-    1379.  00:71C2  C9                  		RET		
-    1380.  00:71C3                      .mira_nivel2:
-    1381.  00:71C3  3D                  		DEC			 A
-    1382.  00:71C4  C2 CB 71            		JP			NZ, .mira_nivel3
-    1383.  00:71C7  CD CE 72            		CALL		check_enemigos_fase2
-    1384.  00:71CA  C9                  		RET	
-    1385.  00:71CB                      .mira_nivel3:
-    1386.  00:71CB  3D                  		DEC			 A
-    1387.  00:71CC  C2 D3 71            		JP			NZ, .mira_nivel4
-    1388.  00:71CF  CD 4B 73            		CALL		check_enemigos_fase3
-    1389.  00:71D2  C9                  		RET	
-    1390.  00:71D3                      .mira_nivel4:
-    1391.  00:71D3  3D                  		DEC			 A
-    1392.  00:71D4  C2 DB 71            		JP			NZ, .mira_nivel5
-    1393.  00:71D7  CD C8 73            		CALL		check_enemigos_fase4
-    1394.  00:71DA  C9                  		RET	
-    1395.  00:71DB                      .mira_nivel5:
-    1396.  00:71DB  3D                  		DEC			 A
-    1397.  00:71DC  C2 E3 71            		JP			NZ, .mira_nivel6
-    1398.  00:71DF  CD 45 74            		CALL		check_enemigos_fase5
-    1399.  00:71E2  C9                  		RET	
-    1400.  00:71E3                      .mira_nivel6:
-    1401.  00:71E3  C3 C2 74            		JP		check_enemigos_fase6
-    1402.  00:71E6                      fin_check_enemigos:
+    1364.  00:71B0                      ;;=====================================================
+    1365.  00:71B0                      ;;CHECK_ENEMIGOS
+    1366.  00:71B0                      ;;=====================================================	
+    1367.  00:71B0                      check_enemigos:
+    1368.  00:71B0  3A 00 C0            		LD			 A, (prota_nivel)
+    1369.  00:71B3                      .mira_nivel0		
+    1370.  00:71B3  B7                  		OR			 A
+    1371.  00:71B4  C2 BB 71            		JP			NZ, .mira_nivel1
+    1372.  00:71B7  CD E6 71            		CALL		check_enemigos_fase0
+    1373.  00:71BA  C9                  		RET
+    1374.  00:71BB                      .mira_nivel1:
+    1375.  00:71BB  3D                  		DEC			 A
+    1376.  00:71BC  C2 C3 71            		JP			NZ, .mira_nivel2
+    1377.  00:71BF  CD 51 72            		CALL		check_enemigos_fase1
+    1378.  00:71C2  C9                  		RET		
+    1379.  00:71C3                      .mira_nivel2:
+    1380.  00:71C3  3D                  		DEC			 A
+    1381.  00:71C4  C2 CB 71            		JP			NZ, .mira_nivel3
+    1382.  00:71C7  CD CE 72            		CALL		check_enemigos_fase2
+    1383.  00:71CA  C9                  		RET	
+    1384.  00:71CB                      .mira_nivel3:
+    1385.  00:71CB  3D                  		DEC			 A
+    1386.  00:71CC  C2 D3 71            		JP			NZ, .mira_nivel4
+    1387.  00:71CF  CD 4B 73            		CALL		check_enemigos_fase3
+    1388.  00:71D2  C9                  		RET	
+    1389.  00:71D3                      .mira_nivel4:
+    1390.  00:71D3  3D                  		DEC			 A
+    1391.  00:71D4  C2 DB 71            		JP			NZ, .mira_nivel5
+    1392.  00:71D7  CD C8 73            		CALL		check_enemigos_fase4
+    1393.  00:71DA  C9                  		RET	
+    1394.  00:71DB                      .mira_nivel5:
+    1395.  00:71DB  3D                  		DEC			 A
+    1396.  00:71DC  C2 E3 71            		JP			NZ, .mira_nivel6
+    1397.  00:71DF  CD 45 74            		CALL		check_enemigos_fase5
+    1398.  00:71E2  C9                  		RET	
+    1399.  00:71E3                      .mira_nivel6:
+    1400.  00:71E3  C3 C2 74            		JP		check_enemigos_fase6
+    1401.  00:71E6                      fin_check_enemigos:
+    1402.  00:71E6                      
     1403.  00:71E6                      
-    1404.  00:71E6                      
-    1405.  00:71E6                      ;;=====================================================
-    1406.  00:71E6                      ;;CHECK_ENEMIGOS_FASE0
-    1407.  00:71E6                      ;;=====================================================	
-    1408.  00:71E6                      check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
-    1409.  00:71E6                      .check_enemigo1:
-    1410.  00:71E6  DD 21 40 C0         		LD			IX, enemigo1
-    1411.  00:71EA  DD 7E 00            		LD			 A, (IX)
-    1412.  00:71ED  B7                  		OR			 A
-    1413.  00:71EE  CA F8 71            		JP			 Z, .check_enemigo2
-    1414.  00:71F1                      		
-    1415.  00:71F1  FD 21 DB C0         		LD			IY, array_sprites_enem
-    1416.  00:71F5                      		
-    1417.  00:71F5  CD F7 74            		CALL 		mueve_enemigo
-    1418.  00:71F8                      		;acciones enemigos
-    1419.  00:71F8                      .check_enemigo2:
-    1420.  00:71F8  DD 21 55 C0         		LD			IX, enemigo2
-    1421.  00:71FC  DD 7E 00            		LD			 A, (IX)
-    1422.  00:71FF  B7                  		OR			 A
-    1423.  00:7200  CA 0A 72            		JP			 Z, .check_enemigo3
-    1424.  00:7203                      		
-    1425.  00:7203  FD 21 DF C0         		LD			IY, array_sprites_enem + 4
-    1426.  00:7207                      		
-    1427.  00:7207  CD F7 74            		CALL 		mueve_enemigo
-    1428.  00:720A                      		;acciones enemigos
-    1429.  00:720A                      .check_enemigo3:
-    1430.  00:720A  DD 21 6A C0         		LD			IX, enemigo3
-    1431.  00:720E  DD 7E 00            		LD			 A, (IX)
-    1432.  00:7211  B7                  		OR			 A
-    1433.  00:7212  CA 1C 72            		JP			 Z, .check_enemigo4
-    1434.  00:7215                      		
-    1435.  00:7215  FD 21 E3 C0         		LD			IY, array_sprites_enem + 8
-    1436.  00:7219                      		
-    1437.  00:7219  CD F7 74            		CALL 		mueve_enemigo
-    1438.  00:721C                      		;acciones enemigos
-    1439.  00:721C                      .check_enemigo4:
-    1440.  00:721C  DD 21 7F C0         		LD			IX, enemigo4
-    1441.  00:7220  DD 7E 00            		LD			 A, (IX)
-    1442.  00:7223  B7                  		OR			 A
-    1443.  00:7224  CA 2E 72            		JP			 Z, .check_enemigo5
-    1444.  00:7227                      		
-    1445.  00:7227  FD 21 EB C0         		LD			IY, array_sprites_enem + 16
-    1446.  00:722B                      
-    1447.  00:722B  CD F7 74            		CALL 		mueve_enemigo
-    1448.  00:722E                      		;acciones enemigos
-    1449.  00:722E                      .check_enemigo5:
-    1450.  00:722E  DD 21 94 C0         		LD			IX, enemigo5
-    1451.  00:7232  DD 7E 00            		LD			 A, (IX)
-    1452.  00:7235  B7                  		OR			 A
-    1453.  00:7236  CA 40 72            		JP			 Z, .check_enemigo6
-    1454.  00:7239                      		
-    1455.  00:7239  FD 21 EF C0         		LD			IY, array_sprites_enem + 20
-    1456.  00:723D                      
-    1457.  00:723D  CD F7 74            		CALL 		mueve_enemigo
-    1458.  00:7240                      		;acciones enemigos
-    1459.  00:7240                      .check_enemigo6:
-    1460.  00:7240  DD 21 A9 C0         		LD			IX, enemigo6
-    1461.  00:7244  DD 7E 00            		LD			 A, (IX)
-    1462.  00:7247  B7                  		OR			 A
-    1463.  00:7248  C8                  		RET			 Z
-    1464.  00:7249                      		
-    1465.  00:7249  FD 21 F3 C0         		LD			IY, array_sprites_enem + 24
-    1466.  00:724D                      		
-    1467.  00:724D  CD F7 74            		CALL 		mueve_enemigo
-    1468.  00:7250                      		;acciones enemigos
-    1469.  00:7250                      fin_check_enemigos_fase0:
-    1470.  00:7250  C9                  		RET			
+    1404.  00:71E6                      ;;=====================================================
+    1405.  00:71E6                      ;;CHECK_ENEMIGOS_FASE0
+    1406.  00:71E6                      ;;=====================================================	
+    1407.  00:71E6                      check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
+    1408.  00:71E6                      .check_enemigo1:
+    1409.  00:71E6  DD 21 40 C0         		LD			IX, enemigo1
+    1410.  00:71EA  DD 7E 00            		LD			 A, (IX)
+    1411.  00:71ED  B7                  		OR			 A
+    1412.  00:71EE  CA F8 71            		JP			 Z, .check_enemigo2
+    1413.  00:71F1                      		
+    1414.  00:71F1  FD 21 DB C0         		LD			IY, array_sprites_enem
+    1415.  00:71F5                      		
+    1416.  00:71F5  CD F7 74            		CALL 		mueve_enemigo
+    1417.  00:71F8                      		;acciones enemigos
+    1418.  00:71F8                      .check_enemigo2:
+    1419.  00:71F8  DD 21 55 C0         		LD			IX, enemigo2
+    1420.  00:71FC  DD 7E 00            		LD			 A, (IX)
+    1421.  00:71FF  B7                  		OR			 A
+    1422.  00:7200  CA 0A 72            		JP			 Z, .check_enemigo3
+    1423.  00:7203                      		
+    1424.  00:7203  FD 21 DF C0         		LD			IY, array_sprites_enem + 4
+    1425.  00:7207                      		
+    1426.  00:7207  CD F7 74            		CALL 		mueve_enemigo
+    1427.  00:720A                      		;acciones enemigos
+    1428.  00:720A                      .check_enemigo3:
+    1429.  00:720A  DD 21 6A C0         		LD			IX, enemigo3
+    1430.  00:720E  DD 7E 00            		LD			 A, (IX)
+    1431.  00:7211  B7                  		OR			 A
+    1432.  00:7212  CA 1C 72            		JP			 Z, .check_enemigo4
+    1433.  00:7215                      		
+    1434.  00:7215  FD 21 E3 C0         		LD			IY, array_sprites_enem + 8
+    1435.  00:7219                      		
+    1436.  00:7219  CD F7 74            		CALL 		mueve_enemigo
+    1437.  00:721C                      		;acciones enemigos
+    1438.  00:721C                      .check_enemigo4:
+    1439.  00:721C  DD 21 7F C0         		LD			IX, enemigo4
+    1440.  00:7220  DD 7E 00            		LD			 A, (IX)
+    1441.  00:7223  B7                  		OR			 A
+    1442.  00:7224  CA 2E 72            		JP			 Z, .check_enemigo5
+    1443.  00:7227                      		
+    1444.  00:7227  FD 21 EB C0         		LD			IY, array_sprites_enem + 16
+    1445.  00:722B                      
+    1446.  00:722B  CD F7 74            		CALL 		mueve_enemigo
+    1447.  00:722E                      		;acciones enemigos
+    1448.  00:722E                      .check_enemigo5:
+    1449.  00:722E  DD 21 94 C0         		LD			IX, enemigo5
+    1450.  00:7232  DD 7E 00            		LD			 A, (IX)
+    1451.  00:7235  B7                  		OR			 A
+    1452.  00:7236  CA 40 72            		JP			 Z, .check_enemigo6
+    1453.  00:7239                      		
+    1454.  00:7239  FD 21 EF C0         		LD			IY, array_sprites_enem + 20
+    1455.  00:723D                      
+    1456.  00:723D  CD F7 74            		CALL 		mueve_enemigo
+    1457.  00:7240                      		;acciones enemigos
+    1458.  00:7240                      .check_enemigo6:
+    1459.  00:7240  DD 21 A9 C0         		LD			IX, enemigo6
+    1460.  00:7244  DD 7E 00            		LD			 A, (IX)
+    1461.  00:7247  B7                  		OR			 A
+    1462.  00:7248  C8                  		RET			 Z
+    1463.  00:7249                      		
+    1464.  00:7249  FD 21 F3 C0         		LD			IY, array_sprites_enem + 24
+    1465.  00:724D                      		
+    1466.  00:724D  CD F7 74            		CALL 		mueve_enemigo
+    1467.  00:7250                      		;acciones enemigos
+    1468.  00:7250                      fin_check_enemigos_fase0:
+    1469.  00:7250  C9                  		RET			
+    1470.  00:7251                      
     1471.  00:7251                      
-    1472.  00:7251                      
-    1473.  00:7251                      ;;=====================================================
-    1474.  00:7251                      ;;CHECK_ENEMIGOS_FASE1
-    1475.  00:7251                      ;;=====================================================	
-    1476.  00:7251                      check_enemigos_fase1: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
-    1477.  00:7251                      .check_enemigo1:
-    1478.  00:7251  DD 21 40 C0         		LD			IX, enemigo1
-    1479.  00:7255  DD 7E 00            		LD			 A, (IX)
-    1480.  00:7258  B7                  		OR			 A
-    1481.  00:7259  CA 63 72            		JP			 Z, .check_enemigo2
-    1482.  00:725C                      		
-    1483.  00:725C  FD 21 DB C0         		LD			IY, array_sprites_enem
-    1484.  00:7260                      		
-    1485.  00:7260  CD F7 74            		CALL 		mueve_enemigo
-    1486.  00:7263                      		;acciones enemigos
-    1487.  00:7263                      .check_enemigo2:
-    1488.  00:7263  DD 21 55 C0         		LD			IX, enemigo2
-    1489.  00:7267  DD 7E 00            		LD			 A, (IX)
-    1490.  00:726A  B7                  		OR			 A
-    1491.  00:726B  CA 75 72            		JP			 Z, .check_enemigo3
-    1492.  00:726E                      		
-    1493.  00:726E  FD 21 DF C0         		LD			IY, array_sprites_enem + 4
-    1494.  00:7272                      		
-    1495.  00:7272  CD F7 74            		CALL 		mueve_enemigo
-    1496.  00:7275                      		;acciones enemigos
-    1497.  00:7275                      .check_enemigo3:
-    1498.  00:7275  DD 21 6A C0         		LD			IX, enemigo3
-    1499.  00:7279  DD 7E 00            		LD			 A, (IX)
-    1500.  00:727C  B7                  		OR			 A
-    1501.  00:727D  CA 87 72            		JP			 Z, .check_enemigo4
-    1502.  00:7280                      		
-    1503.  00:7280  FD 21 E3 C0         		LD			IY, array_sprites_enem + 8
-    1504.  00:7284                      		
-    1505.  00:7284  CD F7 74            		CALL 		mueve_enemigo
-    1506.  00:7287                      		;acciones enemigos
-    1507.  00:7287                      .check_enemigo4:
-    1508.  00:7287  DD 21 7F C0         		LD			IX, enemigo4
-    1509.  00:728B  DD 7E 00            		LD			 A, (IX)
-    1510.  00:728E  B7                  		OR			 A
-    1511.  00:728F  CA 99 72            		JP			 Z, .check_enemigo5
-    1512.  00:7292                      		
-    1513.  00:7292  FD 21 EB C0         		LD			IY, array_sprites_enem + 16
-    1514.  00:7296                      		
-    1515.  00:7296  CD F7 74            		CALL 		mueve_enemigo
-    1516.  00:7299                      		;acciones enemigos
-    1517.  00:7299                      .check_enemigo5:
-    1518.  00:7299  DD 21 94 C0         		LD			IX, enemigo5
-    1519.  00:729D  DD 7E 00            		LD			 A, (IX)
-    1520.  00:72A0  B7                  		OR			 A
-    1521.  00:72A1  CA AB 72            		JP			 Z, .check_enemigo6
-    1522.  00:72A4                      		
-    1523.  00:72A4  FD 21 F3 C0         		LD			IY, array_sprites_enem + 24
-    1524.  00:72A8                      		
-    1525.  00:72A8  CD F7 74            		CALL 		mueve_enemigo
-    1526.  00:72AB                      		;acciones enemigos
-    1527.  00:72AB                      .check_enemigo6:
-    1528.  00:72AB  DD 21 A9 C0         		LD			IX, enemigo6   														
-    1529.  00:72AF  DD 7E 00            		LD			 A, (IX)
-    1530.  00:72B2  B7                  		OR			 A
-    1531.  00:72B3  CA BD 72            		JP			 Z, .check_enemigo7
-    1532.  00:72B6                      		
-    1533.  00:72B6  FD 21 FB C0         		LD			IY, array_sprites_enem + 32
-    1534.  00:72BA                      		
-    1535.  00:72BA  CD F7 74            		CALL 		mueve_enemigo
-    1536.  00:72BD                      		;acciones enemigos
-    1537.  00:72BD                      .check_enemigo7:
-    1538.  00:72BD  DD 21 BE C0         		LD			IX, enemigo7
-    1539.  00:72C1  DD 7E 00            		LD			 A, (IX)
-    1540.  00:72C4  B7                  		OR			 A
-    1541.  00:72C5  C8                  		RET			 Z
-    1542.  00:72C6                      		
-    1543.  00:72C6  FD 21 DF C0         		LD			IY, array_sprites_enem + 4
-    1544.  00:72CA                      		
-    1545.  00:72CA  CD F7 74            		CALL 		mueve_enemigo
-    1546.  00:72CD                      		;acciones enemigos
-    1547.  00:72CD                      fin_check_enemigos_fase1:
-    1548.  00:72CD  C9                  		RET	
+    1472.  00:7251                      ;;=====================================================
+    1473.  00:7251                      ;;CHECK_ENEMIGOS_FASE1
+    1474.  00:7251                      ;;=====================================================	
+    1475.  00:7251                      check_enemigos_fase1: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
+    1476.  00:7251                      .check_enemigo1:
+    1477.  00:7251  DD 21 40 C0         		LD			IX, enemigo1
+    1478.  00:7255  DD 7E 00            		LD			 A, (IX)
+    1479.  00:7258  B7                  		OR			 A
+    1480.  00:7259  CA 63 72            		JP			 Z, .check_enemigo2
+    1481.  00:725C                      		
+    1482.  00:725C  FD 21 DB C0         		LD			IY, array_sprites_enem
+    1483.  00:7260                      		
+    1484.  00:7260  CD F7 74            		CALL 		mueve_enemigo
+    1485.  00:7263                      		;acciones enemigos
+    1486.  00:7263                      .check_enemigo2:
+    1487.  00:7263  DD 21 55 C0         		LD			IX, enemigo2
+    1488.  00:7267  DD 7E 00            		LD			 A, (IX)
+    1489.  00:726A  B7                  		OR			 A
+    1490.  00:726B  CA 75 72            		JP			 Z, .check_enemigo3
+    1491.  00:726E                      		
+    1492.  00:726E  FD 21 DF C0         		LD			IY, array_sprites_enem + 4
+    1493.  00:7272                      		
+    1494.  00:7272  CD F7 74            		CALL 		mueve_enemigo
+    1495.  00:7275                      		;acciones enemigos
+    1496.  00:7275                      .check_enemigo3:
+    1497.  00:7275  DD 21 6A C0         		LD			IX, enemigo3
+    1498.  00:7279  DD 7E 00            		LD			 A, (IX)
+    1499.  00:727C  B7                  		OR			 A
+    1500.  00:727D  CA 87 72            		JP			 Z, .check_enemigo4
+    1501.  00:7280                      		
+    1502.  00:7280  FD 21 E3 C0         		LD			IY, array_sprites_enem + 8
+    1503.  00:7284                      		
+    1504.  00:7284  CD F7 74            		CALL 		mueve_enemigo
+    1505.  00:7287                      		;acciones enemigos
+    1506.  00:7287                      .check_enemigo4:
+    1507.  00:7287  DD 21 7F C0         		LD			IX, enemigo4
+    1508.  00:728B  DD 7E 00            		LD			 A, (IX)
+    1509.  00:728E  B7                  		OR			 A
+    1510.  00:728F  CA 99 72            		JP			 Z, .check_enemigo5
+    1511.  00:7292                      		
+    1512.  00:7292  FD 21 EB C0         		LD			IY, array_sprites_enem + 16
+    1513.  00:7296                      		
+    1514.  00:7296  CD F7 74            		CALL 		mueve_enemigo
+    1515.  00:7299                      		;acciones enemigos
+    1516.  00:7299                      .check_enemigo5:
+    1517.  00:7299  DD 21 94 C0         		LD			IX, enemigo5
+    1518.  00:729D  DD 7E 00            		LD			 A, (IX)
+    1519.  00:72A0  B7                  		OR			 A
+    1520.  00:72A1  CA AB 72            		JP			 Z, .check_enemigo6
+    1521.  00:72A4                      		
+    1522.  00:72A4  FD 21 F3 C0         		LD			IY, array_sprites_enem + 24
+    1523.  00:72A8                      		
+    1524.  00:72A8  CD F7 74            		CALL 		mueve_enemigo
+    1525.  00:72AB                      		;acciones enemigos
+    1526.  00:72AB                      .check_enemigo6:
+    1527.  00:72AB  DD 21 A9 C0         		LD			IX, enemigo6   														
+    1528.  00:72AF  DD 7E 00            		LD			 A, (IX)
+    1529.  00:72B2  B7                  		OR			 A
+    1530.  00:72B3  CA BD 72            		JP			 Z, .check_enemigo7
+    1531.  00:72B6                      		
+    1532.  00:72B6  FD 21 FB C0         		LD			IY, array_sprites_enem + 32
+    1533.  00:72BA                      		
+    1534.  00:72BA  CD F7 74            		CALL 		mueve_enemigo
+    1535.  00:72BD                      		;acciones enemigos
+    1536.  00:72BD                      .check_enemigo7:
+    1537.  00:72BD  DD 21 BE C0         		LD			IX, enemigo7
+    1538.  00:72C1  DD 7E 00            		LD			 A, (IX)
+    1539.  00:72C4  B7                  		OR			 A
+    1540.  00:72C5  C8                  		RET			 Z
+    1541.  00:72C6                      		
+    1542.  00:72C6  FD 21 DF C0         		LD			IY, array_sprites_enem + 4
+    1543.  00:72CA                      		
+    1544.  00:72CA  CD F7 74            		CALL 		mueve_enemigo
+    1545.  00:72CD                      		;acciones enemigos
+    1546.  00:72CD                      fin_check_enemigos_fase1:
+    1547.  00:72CD  C9                  		RET	
+    1548.  00:72CE                      
     1549.  00:72CE                      
-    1550.  00:72CE                      
-    1551.  00:72CE                      ;;=====================================================
-    1552.  00:72CE                      ;;CHECK_ENEMIGOS_FASE2
-    1553.  00:72CE                      ;;=====================================================	
-    1554.  00:72CE                      check_enemigos_fase2: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
-    1555.  00:72CE                      .check_enemigo1:;SERPIENTE
-    1556.  00:72CE  DD 21 40 C0         		LD			IX, enemigo1
-    1557.  00:72D2  DD 7E 00            		LD			 A, (IX)
-    1558.  00:72D5  B7                  		OR			 A
-    1559.  00:72D6  CA E0 72            		JP			 Z, .check_enemigo2
-    1560.  00:72D9                      		
-    1561.  00:72D9  FD 21 DB C0         		LD			IY, array_sprites_enem
-    1562.  00:72DD                      		
-    1563.  00:72DD  CD F7 74            		CALL 		mueve_enemigo
-    1564.  00:72E0                      		;acciones enemigos
-    1565.  00:72E0                      .check_enemigo2:;ARAÑA
-    1566.  00:72E0  DD 21 55 C0         		LD			IX, enemigo2
-    1567.  00:72E4  DD 7E 00            		LD			 A, (IX)
-    1568.  00:72E7  B7                  		OR			 A
-    1569.  00:72E8  CA F2 72            		JP			 Z, .check_enemigo3
-    1570.  00:72EB                      		
-    1571.  00:72EB  FD 21 DF C0         		LD			IY, array_sprites_enem + 4
-    1572.  00:72EF                      		
-    1573.  00:72EF  CD F7 74            		CALL 		mueve_enemigo
-    1574.  00:72F2                      		;acciones enemigos
-    1575.  00:72F2                      .check_enemigo3:;CABALLERO
-    1576.  00:72F2  DD 21 6A C0         		LD			IX, enemigo3
-    1577.  00:72F6  DD 7E 00            		LD			 A, (IX)
-    1578.  00:72F9  B7                  		OR			 A
-    1579.  00:72FA  CA 04 73            		JP			 Z, .check_enemigo4
-    1580.  00:72FD                      		
-    1581.  00:72FD  FD 21 E7 C0         		LD			IY, array_sprites_enem + 12
-    1582.  00:7301                      		
-    1583.  00:7301  CD F7 74            		CALL 		mueve_enemigo
-    1584.  00:7304                      		;acciones enemigos
-    1585.  00:7304                      .check_enemigo4:
-    1586.  00:7304  DD 21 7F C0         		LD			IX, enemigo4
-    1587.  00:7308  DD 7E 00            		LD			 A, (IX)
-    1588.  00:730B  B7                  		OR			 A
-    1589.  00:730C  CA 16 73            		JP			 Z, .check_enemigo5
-    1590.  00:730F                      		
-    1591.  00:730F  FD 21 EF C0         		LD			IY, array_sprites_enem + 20
-    1592.  00:7313                      		
-    1593.  00:7313  CD F7 74            		CALL 		mueve_enemigo
-    1594.  00:7316                      		;acciones enemigos
-    1595.  00:7316                      .check_enemigo5:
-    1596.  00:7316  DD 21 94 C0         		LD			IX, enemigo5
-    1597.  00:731A  DD 7E 00            		LD			 A, (IX)
-    1598.  00:731D  B7                  		OR			 A
-    1599.  00:731E  CA 28 73            		JP			 Z, .check_enemigo6
-    1600.  00:7321                      		
-    1601.  00:7321  FD 21 FF C0         		LD			IY, array_sprites_enem + 36
-    1602.  00:7325                      		
-    1603.  00:7325  CD F7 74            		CALL 		mueve_enemigo
-    1604.  00:7328                      		;acciones enemigos
-    1605.  00:7328                      .check_enemigo6:
-    1606.  00:7328  DD 21 A9 C0         		LD			IX, enemigo6   														
-    1607.  00:732C  DD 7E 00            		LD			 A, (IX)
-    1608.  00:732F  B7                  		OR			 A
-    1609.  00:7330  CA 3A 73            		JP			 Z, .check_enemigo7
-    1610.  00:7333                      		
-    1611.  00:7333  FD 21 0F C1         		LD			IY, array_sprites_enem + 52
-    1612.  00:7337                      		
-    1613.  00:7337  CD F7 74            		CALL 		mueve_enemigo
-    1614.  00:733A                      		;acciones enemigos	
-    1615.  00:733A                      .check_enemigo7:
-    1616.  00:733A  DD 21 BE C0         		LD			IX, enemigo7
-    1617.  00:733E  DD 7E 00            		LD			 A, (IX)
-    1618.  00:7341  B7                  		OR			 A
-    1619.  00:7342  C8                  		RET			 Z
-    1620.  00:7343                      		
-    1621.  00:7343  FD 21 DF C0         		LD			IY, array_sprites_enem + 4
-    1622.  00:7347                      		
-    1623.  00:7347  CD F7 74            		CALL 		mueve_enemigo
-    1624.  00:734A                      		;acciones enemigos
-    1625.  00:734A                      fin_check_enemigos_fase2:
-    1626.  00:734A  C9                  		RET	
+    1550.  00:72CE                      ;;=====================================================
+    1551.  00:72CE                      ;;CHECK_ENEMIGOS_FASE2
+    1552.  00:72CE                      ;;=====================================================	
+    1553.  00:72CE                      check_enemigos_fase2: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
+    1554.  00:72CE                      .check_enemigo1:;SERPIENTE
+    1555.  00:72CE  DD 21 40 C0         		LD			IX, enemigo1
+    1556.  00:72D2  DD 7E 00            		LD			 A, (IX)
+    1557.  00:72D5  B7                  		OR			 A
+    1558.  00:72D6  CA E0 72            		JP			 Z, .check_enemigo2
+    1559.  00:72D9                      		
+    1560.  00:72D9  FD 21 DB C0         		LD			IY, array_sprites_enem
+    1561.  00:72DD                      		
+    1562.  00:72DD  CD F7 74            		CALL 		mueve_enemigo
+    1563.  00:72E0                      		;acciones enemigos
+    1564.  00:72E0                      .check_enemigo2:;ARAÑA
+    1565.  00:72E0  DD 21 55 C0         		LD			IX, enemigo2
+    1566.  00:72E4  DD 7E 00            		LD			 A, (IX)
+    1567.  00:72E7  B7                  		OR			 A
+    1568.  00:72E8  CA F2 72            		JP			 Z, .check_enemigo3
+    1569.  00:72EB                      		
+    1570.  00:72EB  FD 21 DF C0         		LD			IY, array_sprites_enem + 4
+    1571.  00:72EF                      		
+    1572.  00:72EF  CD F7 74            		CALL 		mueve_enemigo
+    1573.  00:72F2                      		;acciones enemigos
+    1574.  00:72F2                      .check_enemigo3:;CABALLERO
+    1575.  00:72F2  DD 21 6A C0         		LD			IX, enemigo3
+    1576.  00:72F6  DD 7E 00            		LD			 A, (IX)
+    1577.  00:72F9  B7                  		OR			 A
+    1578.  00:72FA  CA 04 73            		JP			 Z, .check_enemigo4
+    1579.  00:72FD                      		
+    1580.  00:72FD  FD 21 E7 C0         		LD			IY, array_sprites_enem + 12
+    1581.  00:7301                      		
+    1582.  00:7301  CD F7 74            		CALL 		mueve_enemigo
+    1583.  00:7304                      		;acciones enemigos
+    1584.  00:7304                      .check_enemigo4:
+    1585.  00:7304  DD 21 7F C0         		LD			IX, enemigo4
+    1586.  00:7308  DD 7E 00            		LD			 A, (IX)
+    1587.  00:730B  B7                  		OR			 A
+    1588.  00:730C  CA 16 73            		JP			 Z, .check_enemigo5
+    1589.  00:730F                      		
+    1590.  00:730F  FD 21 EF C0         		LD			IY, array_sprites_enem + 20
+    1591.  00:7313                      		
+    1592.  00:7313  CD F7 74            		CALL 		mueve_enemigo
+    1593.  00:7316                      		;acciones enemigos
+    1594.  00:7316                      .check_enemigo5:
+    1595.  00:7316  DD 21 94 C0         		LD			IX, enemigo5
+    1596.  00:731A  DD 7E 00            		LD			 A, (IX)
+    1597.  00:731D  B7                  		OR			 A
+    1598.  00:731E  CA 28 73            		JP			 Z, .check_enemigo6
+    1599.  00:7321                      		
+    1600.  00:7321  FD 21 FF C0         		LD			IY, array_sprites_enem + 36
+    1601.  00:7325                      		
+    1602.  00:7325  CD F7 74            		CALL 		mueve_enemigo
+    1603.  00:7328                      		;acciones enemigos
+    1604.  00:7328                      .check_enemigo6:
+    1605.  00:7328  DD 21 A9 C0         		LD			IX, enemigo6   														
+    1606.  00:732C  DD 7E 00            		LD			 A, (IX)
+    1607.  00:732F  B7                  		OR			 A
+    1608.  00:7330  CA 3A 73            		JP			 Z, .check_enemigo7
+    1609.  00:7333                      		
+    1610.  00:7333  FD 21 0F C1         		LD			IY, array_sprites_enem + 52
+    1611.  00:7337                      		
+    1612.  00:7337  CD F7 74            		CALL 		mueve_enemigo
+    1613.  00:733A                      		;acciones enemigos	
+    1614.  00:733A                      .check_enemigo7:
+    1615.  00:733A  DD 21 BE C0         		LD			IX, enemigo7
+    1616.  00:733E  DD 7E 00            		LD			 A, (IX)
+    1617.  00:7341  B7                  		OR			 A
+    1618.  00:7342  C8                  		RET			 Z
+    1619.  00:7343                      		
+    1620.  00:7343  FD 21 DF C0         		LD			IY, array_sprites_enem + 4
+    1621.  00:7347                      		
+    1622.  00:7347  CD F7 74            		CALL 		mueve_enemigo
+    1623.  00:734A                      		;acciones enemigos
+    1624.  00:734A                      fin_check_enemigos_fase2:
+    1625.  00:734A  C9                  		RET	
+    1626.  00:734B                      
     1627.  00:734B                      
-    1628.  00:734B                      
-    1629.  00:734B                      ;;=====================================================
-    1630.  00:734B                      ;;CHECK_ENEMIGOS_FASE3
-    1631.  00:734B                      ;;=====================================================	
-    1632.  00:734B                      check_enemigos_fase3: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
-    1633.  00:734B                      .check_enemigo1:
-    1634.  00:734B  DD 21 40 C0         		LD			IX, enemigo1
-    1635.  00:734F  DD 7E 00            		LD			 A, (IX)
-    1636.  00:7352  B7                  		OR			 A
-    1637.  00:7353  CA 5D 73            		JP			 Z, .check_enemigo2
-    1638.  00:7356                      		
-    1639.  00:7356  FD 21 DB C0         		LD			IY, array_sprites_enem
-    1640.  00:735A                      		
-    1641.  00:735A  CD F7 74            		CALL 		mueve_enemigo
-    1642.  00:735D                      		;acciones enemigos
-    1643.  00:735D                      .check_enemigo2:
-    1644.  00:735D  DD 21 55 C0         		LD			IX, enemigo2
-    1645.  00:7361  DD 7E 00            		LD			 A, (IX)
-    1646.  00:7364  B7                  		OR			 A
-    1647.  00:7365  CA 6F 73            		JP			 Z, .check_enemigo3
-    1648.  00:7368                      		
-    1649.  00:7368  FD 21 DF C0         		LD			IY, array_sprites_enem + 4
-    1650.  00:736C                      		
-    1651.  00:736C  CD F7 74            		CALL 		mueve_enemigo
-    1652.  00:736F                      		;acciones enemigos
-    1653.  00:736F                      .check_enemigo3:
-    1654.  00:736F  DD 21 6A C0         		LD			IX, enemigo3
-    1655.  00:7373  DD 7E 00            		LD			 A, (IX)
-    1656.  00:7376  B7                  		OR			 A
-    1657.  00:7377  CA 81 73            		JP			 Z, .check_enemigo4
-    1658.  00:737A                      		
-    1659.  00:737A  FD 21 E7 C0         		LD			IY, array_sprites_enem + 12
-    1660.  00:737E                      		
-    1661.  00:737E  CD F7 74            		CALL 		mueve_enemigo
-    1662.  00:7381                      		;acciones enemigos
-    1663.  00:7381                      .check_enemigo4:
-    1664.  00:7381  DD 21 7F C0         		LD			IX, enemigo4
-    1665.  00:7385  DD 7E 00            		LD			 A, (IX)
-    1666.  00:7388  B7                  		OR			 A
-    1667.  00:7389  CA 93 73            		JP			 Z, .check_enemigo5
-    1668.  00:738C                      		
-    1669.  00:738C  FD 21 EF C0         		LD			IY, array_sprites_enem + 20
-    1670.  00:7390                      		
-    1671.  00:7390  CD F7 74            		CALL 		mueve_enemigo
-    1672.  00:7393                      		;acciones enemigos
-    1673.  00:7393                      .check_enemigo5:
-    1674.  00:7393  DD 21 94 C0         		LD			IX, enemigo5
-    1675.  00:7397  DD 7E 00            		LD			 A, (IX)
-    1676.  00:739A  B7                  		OR			 A
-    1677.  00:739B  CA A5 73            		JP			 Z, .check_enemigo6
-    1678.  00:739E                      		
-    1679.  00:739E  FD 21 FF C0         		LD			IY, array_sprites_enem + 36
-    1680.  00:73A2                      		
-    1681.  00:73A2  CD F7 74            		CALL 		mueve_enemigo
-    1682.  00:73A5                      		;acciones enemigos
-    1683.  00:73A5                      .check_enemigo6:
-    1684.  00:73A5  DD 21 A9 C0         		LD			IX, enemigo6   														
-    1685.  00:73A9  DD 7E 00            		LD			 A, (IX)
-    1686.  00:73AC  B7                  		OR			 A
-    1687.  00:73AD  CA B7 73            		JP			 Z, .check_enemigo7
-    1688.  00:73B0                      		
-    1689.  00:73B0  FD 21 0F C1         		LD			IY, array_sprites_enem + 52
-    1690.  00:73B4                      		
-    1691.  00:73B4  CD F7 74            		CALL 		mueve_enemigo
-    1692.  00:73B7                      		;acciones enemigos	
-    1693.  00:73B7                      .check_enemigo7:
-    1694.  00:73B7  DD 21 BE C0         		LD			IX, enemigo7
-    1695.  00:73BB  DD 7E 00            		LD			 A, (IX)
-    1696.  00:73BE  B7                  		OR			 A
-    1697.  00:73BF  C8                  		RET			 Z
-    1698.  00:73C0                      		
-    1699.  00:73C0  FD 21 DF C0         		LD			IY, array_sprites_enem + 4
-    1700.  00:73C4                      		
-    1701.  00:73C4  CD F7 74            		CALL 		mueve_enemigo
-    1702.  00:73C7                      		;acciones enemigos
-    1703.  00:73C7                      fin_check_enemigos_fase3:
-    1704.  00:73C7  C9                  		RET	
+    1628.  00:734B                      ;;=====================================================
+    1629.  00:734B                      ;;CHECK_ENEMIGOS_FASE3
+    1630.  00:734B                      ;;=====================================================	
+    1631.  00:734B                      check_enemigos_fase3: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
+    1632.  00:734B                      .check_enemigo1:
+    1633.  00:734B  DD 21 40 C0         		LD			IX, enemigo1
+    1634.  00:734F  DD 7E 00            		LD			 A, (IX)
+    1635.  00:7352  B7                  		OR			 A
+    1636.  00:7353  CA 5D 73            		JP			 Z, .check_enemigo2
+    1637.  00:7356                      		
+    1638.  00:7356  FD 21 DB C0         		LD			IY, array_sprites_enem
+    1639.  00:735A                      		
+    1640.  00:735A  CD F7 74            		CALL 		mueve_enemigo
+    1641.  00:735D                      		;acciones enemigos
+    1642.  00:735D                      .check_enemigo2:
+    1643.  00:735D  DD 21 55 C0         		LD			IX, enemigo2
+    1644.  00:7361  DD 7E 00            		LD			 A, (IX)
+    1645.  00:7364  B7                  		OR			 A
+    1646.  00:7365  CA 6F 73            		JP			 Z, .check_enemigo3
+    1647.  00:7368                      		
+    1648.  00:7368  FD 21 DF C0         		LD			IY, array_sprites_enem + 4
+    1649.  00:736C                      		
+    1650.  00:736C  CD F7 74            		CALL 		mueve_enemigo
+    1651.  00:736F                      		;acciones enemigos
+    1652.  00:736F                      .check_enemigo3:
+    1653.  00:736F  DD 21 6A C0         		LD			IX, enemigo3
+    1654.  00:7373  DD 7E 00            		LD			 A, (IX)
+    1655.  00:7376  B7                  		OR			 A
+    1656.  00:7377  CA 81 73            		JP			 Z, .check_enemigo4
+    1657.  00:737A                      		
+    1658.  00:737A  FD 21 E7 C0         		LD			IY, array_sprites_enem + 12
+    1659.  00:737E                      		
+    1660.  00:737E  CD F7 74            		CALL 		mueve_enemigo
+    1661.  00:7381                      		;acciones enemigos
+    1662.  00:7381                      .check_enemigo4:
+    1663.  00:7381  DD 21 7F C0         		LD			IX, enemigo4
+    1664.  00:7385  DD 7E 00            		LD			 A, (IX)
+    1665.  00:7388  B7                  		OR			 A
+    1666.  00:7389  CA 93 73            		JP			 Z, .check_enemigo5
+    1667.  00:738C                      		
+    1668.  00:738C  FD 21 EF C0         		LD			IY, array_sprites_enem + 20
+    1669.  00:7390                      		
+    1670.  00:7390  CD F7 74            		CALL 		mueve_enemigo
+    1671.  00:7393                      		;acciones enemigos
+    1672.  00:7393                      .check_enemigo5:
+    1673.  00:7393  DD 21 94 C0         		LD			IX, enemigo5
+    1674.  00:7397  DD 7E 00            		LD			 A, (IX)
+    1675.  00:739A  B7                  		OR			 A
+    1676.  00:739B  CA A5 73            		JP			 Z, .check_enemigo6
+    1677.  00:739E                      		
+    1678.  00:739E  FD 21 FF C0         		LD			IY, array_sprites_enem + 36
+    1679.  00:73A2                      		
+    1680.  00:73A2  CD F7 74            		CALL 		mueve_enemigo
+    1681.  00:73A5                      		;acciones enemigos
+    1682.  00:73A5                      .check_enemigo6:
+    1683.  00:73A5  DD 21 A9 C0         		LD			IX, enemigo6   														
+    1684.  00:73A9  DD 7E 00            		LD			 A, (IX)
+    1685.  00:73AC  B7                  		OR			 A
+    1686.  00:73AD  CA B7 73            		JP			 Z, .check_enemigo7
+    1687.  00:73B0                      		
+    1688.  00:73B0  FD 21 0F C1         		LD			IY, array_sprites_enem + 52
+    1689.  00:73B4                      		
+    1690.  00:73B4  CD F7 74            		CALL 		mueve_enemigo
+    1691.  00:73B7                      		;acciones enemigos	
+    1692.  00:73B7                      .check_enemigo7:
+    1693.  00:73B7  DD 21 BE C0         		LD			IX, enemigo7
+    1694.  00:73BB  DD 7E 00            		LD			 A, (IX)
+    1695.  00:73BE  B7                  		OR			 A
+    1696.  00:73BF  C8                  		RET			 Z
+    1697.  00:73C0                      		
+    1698.  00:73C0  FD 21 DF C0         		LD			IY, array_sprites_enem + 4
+    1699.  00:73C4                      		
+    1700.  00:73C4  CD F7 74            		CALL 		mueve_enemigo
+    1701.  00:73C7                      		;acciones enemigos
+    1702.  00:73C7                      fin_check_enemigos_fase3:
+    1703.  00:73C7  C9                  		RET	
+    1704.  00:73C8                      
     1705.  00:73C8                      
-    1706.  00:73C8                      
-    1707.  00:73C8                      ;;=====================================================
-    1708.  00:73C8                      ;;CHECK_ENEMIGOS_FASE4
-    1709.  00:73C8                      ;;=====================================================	
-    1710.  00:73C8                      check_enemigos_fase4: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
-    1711.  00:73C8                      .check_enemigo1:	;MURCIELAGO
-    1712.  00:73C8  DD 21 40 C0         		LD			IX, enemigo1
-    1713.  00:73CC  DD 7E 00            		LD			 A, (IX)
-    1714.  00:73CF  B7                  		OR			 A
-    1715.  00:73D0  CA DA 73            		JP			 Z, .check_enemigo2
-    1716.  00:73D3                      		
-    1717.  00:73D3  FD 21 DB C0         		LD			IY, array_sprites_enem
-    1718.  00:73D7                      		
-    1719.  00:73D7  CD F7 74            		CALL 		mueve_enemigo
-    1720.  00:73DA                      		;acciones enemigos
-    1721.  00:73DA                      .check_enemigo2:	;CABALLERO
-    1722.  00:73DA  DD 21 55 C0         		LD			IX, enemigo2
-    1723.  00:73DE  DD 7E 00            		LD			 A, (IX)
-    1724.  00:73E1  B7                  		OR			 A
-    1725.  00:73E2  CA EC 73            		JP			 Z, .check_enemigo3
-    1726.  00:73E5                      		
-    1727.  00:73E5  FD 21 DF C0         		LD			IY, array_sprites_enem + 4
-    1728.  00:73E9                      		
-    1729.  00:73E9  CD F7 74            		CALL 		mueve_enemigo
-    1730.  00:73EC                      		;acciones enemigos
-    1731.  00:73EC                      .check_enemigo3:	;ESQUELETO
-    1732.  00:73EC  DD 21 6A C0         		LD			IX, enemigo3
-    1733.  00:73F0  DD 7E 00            		LD			 A, (IX)
-    1734.  00:73F3  B7                  		OR			 A
-    1735.  00:73F4  CA FE 73            		JP			 Z, .check_enemigo4
-    1736.  00:73F7                      		
-    1737.  00:73F7  FD 21 E7 C0         		LD			IY, array_sprites_enem + 12
-    1738.  00:73FB                      		
-    1739.  00:73FB  CD F7 74            		CALL 		mueve_enemigo
-    1740.  00:73FE                      		;acciones enemigos
-    1741.  00:73FE                      .check_enemigo4:	;ZOMBI
-    1742.  00:73FE  DD 21 7F C0         		LD			IX, enemigo4
-    1743.  00:7402  DD 7E 00            		LD			 A, (IX)
-    1744.  00:7405  B7                  		OR			 A
-    1745.  00:7406  CA 10 74            		JP			 Z, .check_enemigo5
-    1746.  00:7409                      		
-    1747.  00:7409  FD 21 EF C0         		LD			IY, array_sprites_enem + 20
-    1748.  00:740D                      		
-    1749.  00:740D  CD F7 74            		CALL 		mueve_enemigo
-    1750.  00:7410                      		;acciones enemigos
-    1751.  00:7410                      .check_enemigo5:	;FANTASMA
-    1752.  00:7410  DD 21 94 C0         		LD			IX, enemigo5
-    1753.  00:7414  DD 7E 00            		LD			 A, (IX)
-    1754.  00:7417  B7                  		OR			 A
-    1755.  00:7418  CA 22 74            		JP			 Z, .check_enemigo6
-    1756.  00:741B                      		
-    1757.  00:741B  FD 21 F7 C0         		LD			IY, array_sprites_enem + 28
-    1758.  00:741F                      		
-    1759.  00:741F  CD F7 74            		CALL 		mueve_enemigo
-    1760.  00:7422                      		;acciones enemigos
-    1761.  00:7422                      .check_enemigo6:	;FUEGO
-    1762.  00:7422  DD 21 A9 C0         		LD			IX, enemigo6   														
-    1763.  00:7426  DD 7E 00            		LD			 A, (IX)
-    1764.  00:7429  B7                  		OR			 A
-    1765.  00:742A  CA 34 74            		JP			 Z, .check_enemigo7
-    1766.  00:742D                      		
-    1767.  00:742D  FD 21 FF C0         		LD			IY, array_sprites_enem + 36
-    1768.  00:7431                      		
-    1769.  00:7431  CD F7 74            		CALL 		mueve_enemigo
-    1770.  00:7434                      		;acciones enemigos	
-    1771.  00:7434                      .check_enemigo7:	;JEFECABALLERO
-    1772.  00:7434  DD 21 BE C0         		LD			IX, enemigo7
-    1773.  00:7438  DD 7E 00            		LD			 A, (IX)
-    1774.  00:743B  B7                  		OR			 A
-    1775.  00:743C  C8                  		RET			 Z
-    1776.  00:743D                      		
-    1777.  00:743D  FD 21 DF C0         		LD			IY, array_sprites_enem + 4
-    1778.  00:7441                      		
-    1779.  00:7441  CD F7 74            		CALL 		mueve_enemigo
-    1780.  00:7444                      		;acciones enemigos
-    1781.  00:7444                      fin_check_enemigos_fase4:
-    1782.  00:7444  C9                  		RET	
-    1783.  00:7445                      		
-    1784.  00:7445                      
-    1785.  00:7445                      ;;=====================================================
-    1786.  00:7445                      ;;CHECK_ENEMIGOS_FASE5
-    1787.  00:7445                      ;;=====================================================	
-    1788.  00:7445                      check_enemigos_fase5: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
-    1789.  00:7445                      .check_enemigo1:	;MAGIA
-    1790.  00:7445  DD 21 40 C0         		LD			IX, enemigo1
-    1791.  00:7449  DD 7E 00            		LD			 A, (IX)
-    1792.  00:744C  B7                  		OR			 A
-    1793.  00:744D  CA 57 74            		JP			 Z, .check_enemigo2
-    1794.  00:7450                      		
-    1795.  00:7450  FD 21 DB C0         		LD			IY, array_sprites_enem
-    1796.  00:7454                      		
-    1797.  00:7454  CD F7 74            		CALL 		mueve_enemigo
-    1798.  00:7457                      		;acciones enemigos
-    1799.  00:7457                      .check_enemigo2:	;CABALLERO
-    1800.  00:7457  DD 21 55 C0         		LD			IX, enemigo2
-    1801.  00:745B  DD 7E 00            		LD			 A, (IX)
-    1802.  00:745E  B7                  		OR			 A
-    1803.  00:745F  CA 69 74            		JP			 Z, .check_enemigo3
-    1804.  00:7462                      		
-    1805.  00:7462  FD 21 E3 C0         		LD			IY, array_sprites_enem + 8
-    1806.  00:7466                      		
-    1807.  00:7466  CD F7 74            		CALL 		mueve_enemigo
-    1808.  00:7469                      		;acciones enemigos
-    1809.  00:7469                      .check_enemigo3:	;ESQUELETO
-    1810.  00:7469  DD 21 6A C0         		LD			IX, enemigo3
-    1811.  00:746D  DD 7E 00            		LD			 A, (IX)
-    1812.  00:7470  B7                  		OR			 A
-    1813.  00:7471  CA 7B 74            		JP			 Z, .check_enemigo4
-    1814.  00:7474                      		
-    1815.  00:7474  FD 21 EB C0         		LD			IY, array_sprites_enem + 16
-    1816.  00:7478                      		
-    1817.  00:7478  CD F7 74            		CALL 		mueve_enemigo
-    1818.  00:747B                      		;acciones enemigos
-    1819.  00:747B                      .check_enemigo4:	;ZOMBI
-    1820.  00:747B  DD 21 7F C0         		LD			IX, enemigo4
-    1821.  00:747F  DD 7E 00            		LD			 A, (IX)
-    1822.  00:7482  B7                  		OR			 A
-    1823.  00:7483  CA 8D 74            		JP			 Z, .check_enemigo5
-    1824.  00:7486                      		
-    1825.  00:7486  FD 21 F3 C0         		LD			IY, array_sprites_enem + 24
-    1826.  00:748A                      		
-    1827.  00:748A  CD F7 74            		CALL 		mueve_enemigo
-    1828.  00:748D                      		;acciones enemigos
-    1829.  00:748D                      .check_enemigo5:	;FANTASMA
-    1830.  00:748D  DD 21 94 C0         		LD			IX, enemigo5
-    1831.  00:7491  DD 7E 00            		LD			 A, (IX)
-    1832.  00:7494  B7                  		OR			 A
-    1833.  00:7495  CA 9F 74            		JP			 Z, .check_enemigo6
-    1834.  00:7498                      		
-    1835.  00:7498  FD 21 FB C0         		LD			IY, array_sprites_enem + 32
-    1836.  00:749C                      		
-    1837.  00:749C  CD F7 74            		CALL 		mueve_enemigo
-    1838.  00:749F                      		
-    1839.  00:749F                      		;acciones enemigos
-    1840.  00:749F                      .check_enemigo6:	;FUEGO
-    1841.  00:749F  DD 21 A9 C0         		LD			IX, enemigo6   														
-    1842.  00:74A3  DD 7E 00            		LD			 A, (IX)
-    1843.  00:74A6  B7                  		OR			 A
-    1844.  00:74A7  CA B1 74            		JP			 Z, .check_enemigo7
-    1845.  00:74AA                      		
-    1846.  00:74AA  FD 21 03 C1         		LD			IY, array_sprites_enem + 40
-    1847.  00:74AE                      		
-    1848.  00:74AE  CD F7 74            		CALL 		mueve_enemigo		
-    1849.  00:74B1                      		;acciones enemigos	
-    1850.  00:74B1                      .check_enemigo7:	;JEFEBEHOLDER
-    1851.  00:74B1  DD 21 BE C0         		LD			IX, enemigo7
-    1852.  00:74B5  DD 7E 00            		LD			 A, (IX)
-    1853.  00:74B8  B7                  		OR			 A
-    1854.  00:74B9  C8                  		RET			 Z
-    1855.  00:74BA                      		
-    1856.  00:74BA  FD 21 DF C0         		LD			IY, array_sprites_enem + 4
-    1857.  00:74BE                      		
-    1858.  00:74BE  CD F7 74            		CALL 		mueve_enemigo
-    1859.  00:74C1                      		;acciones enemigos
-    1860.  00:74C1                      fin_check_enemigos_fase5:
-    1861.  00:74C1  C9                  		RET	
-    1862.  00:74C2                      		
-    1863.  00:74C2                      
-    1864.  00:74C2                      ;;=====================================================
-    1865.  00:74C2                      ;;CHECK_ENEMIGOS_FASE6
-    1866.  00:74C2                      ;;=====================================================	
-    1867.  00:74C2                      check_enemigos_fase6: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
-    1868.  00:74C2                      .check_enemigo1:	;DRACULA
-    1869.  00:74C2  DD 21 40 C0         		LD			IX, enemigo1
-    1870.  00:74C6  DD 7E 00            		LD			 A, (IX)
-    1871.  00:74C9  B7                  		OR			 A
-    1872.  00:74CA  CA D4 74            		JP			 Z, .check_enemigo2
-    1873.  00:74CD                      		
-    1874.  00:74CD  FD 21 DB C0         		LD			IY, array_sprites_enem
-    1875.  00:74D1                      		
-    1876.  00:74D1  CD F7 74            		CALL 		mueve_enemigo
-    1877.  00:74D4                      		;acciones enemigos
-    1878.  00:74D4                      .check_enemigo2:	
-    1879.  00:74D4  DD 21 55 C0         		LD			IX, enemigo2
-    1880.  00:74D8  DD 7E 00            		LD			 A, (IX)
-    1881.  00:74DB  B7                  		OR			 A
-    1882.  00:74DC  CA E6 74            		JP			 Z, .check_enemigo3
-    1883.  00:74DF                      		
-    1884.  00:74DF  FD 21 E3 C0         		LD			IY, array_sprites_enem + 8
-    1885.  00:74E3                      		
-    1886.  00:74E3  CD F7 74            		CALL 		mueve_enemigo
-    1887.  00:74E6                      		;acciones enemigos
-    1888.  00:74E6                      .check_enemigo3:	
-    1889.  00:74E6  DD 21 6A C0         		LD			IX, enemigo3
-    1890.  00:74EA  DD 7E 00            		LD			 A, (IX)
-    1891.  00:74ED  B7                  		OR			 A
-    1892.  00:74EE  C8                  		RET			 Z
-    1893.  00:74EF                      		
-    1894.  00:74EF  FD 21 EB C0         		LD			IY, array_sprites_enem + 16
-    1895.  00:74F3                      		
-    1896.  00:74F3  CD F7 74            		CALL 		mueve_enemigo
-    1897.  00:74F6                      		;acciones enemigos
-    1898.  00:74F6                      fin_check_enemigos_fase6:
-    1899.  00:74F6  C9                  		RET	
+    1706.  00:73C8                      ;;=====================================================
+    1707.  00:73C8                      ;;CHECK_ENEMIGOS_FASE4
+    1708.  00:73C8                      ;;=====================================================	
+    1709.  00:73C8                      check_enemigos_fase4: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
+    1710.  00:73C8                      .check_enemigo1:	;MURCIELAGO
+    1711.  00:73C8  DD 21 40 C0         		LD			IX, enemigo1
+    1712.  00:73CC  DD 7E 00            		LD			 A, (IX)
+    1713.  00:73CF  B7                  		OR			 A
+    1714.  00:73D0  CA DA 73            		JP			 Z, .check_enemigo2
+    1715.  00:73D3                      		
+    1716.  00:73D3  FD 21 DB C0         		LD			IY, array_sprites_enem
+    1717.  00:73D7                      		
+    1718.  00:73D7  CD F7 74            		CALL 		mueve_enemigo
+    1719.  00:73DA                      		;acciones enemigos
+    1720.  00:73DA                      .check_enemigo2:	;CABALLERO
+    1721.  00:73DA  DD 21 55 C0         		LD			IX, enemigo2
+    1722.  00:73DE  DD 7E 00            		LD			 A, (IX)
+    1723.  00:73E1  B7                  		OR			 A
+    1724.  00:73E2  CA EC 73            		JP			 Z, .check_enemigo3
+    1725.  00:73E5                      		
+    1726.  00:73E5  FD 21 DF C0         		LD			IY, array_sprites_enem + 4
+    1727.  00:73E9                      		
+    1728.  00:73E9  CD F7 74            		CALL 		mueve_enemigo
+    1729.  00:73EC                      		;acciones enemigos
+    1730.  00:73EC                      .check_enemigo3:	;ESQUELETO
+    1731.  00:73EC  DD 21 6A C0         		LD			IX, enemigo3
+    1732.  00:73F0  DD 7E 00            		LD			 A, (IX)
+    1733.  00:73F3  B7                  		OR			 A
+    1734.  00:73F4  CA FE 73            		JP			 Z, .check_enemigo4
+    1735.  00:73F7                      		
+    1736.  00:73F7  FD 21 E7 C0         		LD			IY, array_sprites_enem + 12
+    1737.  00:73FB                      		
+    1738.  00:73FB  CD F7 74            		CALL 		mueve_enemigo
+    1739.  00:73FE                      		;acciones enemigos
+    1740.  00:73FE                      .check_enemigo4:	;ZOMBI
+    1741.  00:73FE  DD 21 7F C0         		LD			IX, enemigo4
+    1742.  00:7402  DD 7E 00            		LD			 A, (IX)
+    1743.  00:7405  B7                  		OR			 A
+    1744.  00:7406  CA 10 74            		JP			 Z, .check_enemigo5
+    1745.  00:7409                      		
+    1746.  00:7409  FD 21 EF C0         		LD			IY, array_sprites_enem + 20
+    1747.  00:740D                      		
+    1748.  00:740D  CD F7 74            		CALL 		mueve_enemigo
+    1749.  00:7410                      		;acciones enemigos
+    1750.  00:7410                      .check_enemigo5:	;FANTASMA
+    1751.  00:7410  DD 21 94 C0         		LD			IX, enemigo5
+    1752.  00:7414  DD 7E 00            		LD			 A, (IX)
+    1753.  00:7417  B7                  		OR			 A
+    1754.  00:7418  CA 22 74            		JP			 Z, .check_enemigo6
+    1755.  00:741B                      		
+    1756.  00:741B  FD 21 F7 C0         		LD			IY, array_sprites_enem + 28
+    1757.  00:741F                      		
+    1758.  00:741F  CD F7 74            		CALL 		mueve_enemigo
+    1759.  00:7422                      		;acciones enemigos
+    1760.  00:7422                      .check_enemigo6:	;FUEGO
+    1761.  00:7422  DD 21 A9 C0         		LD			IX, enemigo6   														
+    1762.  00:7426  DD 7E 00            		LD			 A, (IX)
+    1763.  00:7429  B7                  		OR			 A
+    1764.  00:742A  CA 34 74            		JP			 Z, .check_enemigo7
+    1765.  00:742D                      		
+    1766.  00:742D  FD 21 FF C0         		LD			IY, array_sprites_enem + 36
+    1767.  00:7431                      		
+    1768.  00:7431  CD F7 74            		CALL 		mueve_enemigo
+    1769.  00:7434                      		;acciones enemigos	
+    1770.  00:7434                      .check_enemigo7:	;JEFECABALLERO
+    1771.  00:7434  DD 21 BE C0         		LD			IX, enemigo7
+    1772.  00:7438  DD 7E 00            		LD			 A, (IX)
+    1773.  00:743B  B7                  		OR			 A
+    1774.  00:743C  C8                  		RET			 Z
+    1775.  00:743D                      		
+    1776.  00:743D  FD 21 DF C0         		LD			IY, array_sprites_enem + 4
+    1777.  00:7441                      		
+    1778.  00:7441  CD F7 74            		CALL 		mueve_enemigo
+    1779.  00:7444                      		;acciones enemigos
+    1780.  00:7444                      fin_check_enemigos_fase4:
+    1781.  00:7444  C9                  		RET	
+    1782.  00:7445                      		
+    1783.  00:7445                      
+    1784.  00:7445                      ;;=====================================================
+    1785.  00:7445                      ;;CHECK_ENEMIGOS_FASE5
+    1786.  00:7445                      ;;=====================================================	
+    1787.  00:7445                      check_enemigos_fase5: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
+    1788.  00:7445                      .check_enemigo1:	;MAGIA
+    1789.  00:7445  DD 21 40 C0         		LD			IX, enemigo1
+    1790.  00:7449  DD 7E 00            		LD			 A, (IX)
+    1791.  00:744C  B7                  		OR			 A
+    1792.  00:744D  CA 57 74            		JP			 Z, .check_enemigo2
+    1793.  00:7450                      		
+    1794.  00:7450  FD 21 DB C0         		LD			IY, array_sprites_enem
+    1795.  00:7454                      		
+    1796.  00:7454  CD F7 74            		CALL 		mueve_enemigo
+    1797.  00:7457                      		;acciones enemigos
+    1798.  00:7457                      .check_enemigo2:	;CABALLERO
+    1799.  00:7457  DD 21 55 C0         		LD			IX, enemigo2
+    1800.  00:745B  DD 7E 00            		LD			 A, (IX)
+    1801.  00:745E  B7                  		OR			 A
+    1802.  00:745F  CA 69 74            		JP			 Z, .check_enemigo3
+    1803.  00:7462                      		
+    1804.  00:7462  FD 21 E3 C0         		LD			IY, array_sprites_enem + 8
+    1805.  00:7466                      		
+    1806.  00:7466  CD F7 74            		CALL 		mueve_enemigo
+    1807.  00:7469                      		;acciones enemigos
+    1808.  00:7469                      .check_enemigo3:	;ESQUELETO
+    1809.  00:7469  DD 21 6A C0         		LD			IX, enemigo3
+    1810.  00:746D  DD 7E 00            		LD			 A, (IX)
+    1811.  00:7470  B7                  		OR			 A
+    1812.  00:7471  CA 7B 74            		JP			 Z, .check_enemigo4
+    1813.  00:7474                      		
+    1814.  00:7474  FD 21 EB C0         		LD			IY, array_sprites_enem + 16
+    1815.  00:7478                      		
+    1816.  00:7478  CD F7 74            		CALL 		mueve_enemigo
+    1817.  00:747B                      		;acciones enemigos
+    1818.  00:747B                      .check_enemigo4:	;ZOMBI
+    1819.  00:747B  DD 21 7F C0         		LD			IX, enemigo4
+    1820.  00:747F  DD 7E 00            		LD			 A, (IX)
+    1821.  00:7482  B7                  		OR			 A
+    1822.  00:7483  CA 8D 74            		JP			 Z, .check_enemigo5
+    1823.  00:7486                      		
+    1824.  00:7486  FD 21 F3 C0         		LD			IY, array_sprites_enem + 24
+    1825.  00:748A                      		
+    1826.  00:748A  CD F7 74            		CALL 		mueve_enemigo
+    1827.  00:748D                      		;acciones enemigos
+    1828.  00:748D                      .check_enemigo5:	;FANTASMA
+    1829.  00:748D  DD 21 94 C0         		LD			IX, enemigo5
+    1830.  00:7491  DD 7E 00            		LD			 A, (IX)
+    1831.  00:7494  B7                  		OR			 A
+    1832.  00:7495  CA 9F 74            		JP			 Z, .check_enemigo6
+    1833.  00:7498                      		
+    1834.  00:7498  FD 21 FB C0         		LD			IY, array_sprites_enem + 32
+    1835.  00:749C                      		
+    1836.  00:749C  CD F7 74            		CALL 		mueve_enemigo
+    1837.  00:749F                      		
+    1838.  00:749F                      		;acciones enemigos
+    1839.  00:749F                      .check_enemigo6:	;FUEGO
+    1840.  00:749F  DD 21 A9 C0         		LD			IX, enemigo6   														
+    1841.  00:74A3  DD 7E 00            		LD			 A, (IX)
+    1842.  00:74A6  B7                  		OR			 A
+    1843.  00:74A7  CA B1 74            		JP			 Z, .check_enemigo7
+    1844.  00:74AA                      		
+    1845.  00:74AA  FD 21 03 C1         		LD			IY, array_sprites_enem + 40
+    1846.  00:74AE                      		
+    1847.  00:74AE  CD F7 74            		CALL 		mueve_enemigo		
+    1848.  00:74B1                      		;acciones enemigos	
+    1849.  00:74B1                      .check_enemigo7:	;JEFEBEHOLDER
+    1850.  00:74B1  DD 21 BE C0         		LD			IX, enemigo7
+    1851.  00:74B5  DD 7E 00            		LD			 A, (IX)
+    1852.  00:74B8  B7                  		OR			 A
+    1853.  00:74B9  C8                  		RET			 Z
+    1854.  00:74BA                      		
+    1855.  00:74BA  FD 21 DF C0         		LD			IY, array_sprites_enem + 4
+    1856.  00:74BE                      		
+    1857.  00:74BE  CD F7 74            		CALL 		mueve_enemigo
+    1858.  00:74C1                      		;acciones enemigos
+    1859.  00:74C1                      fin_check_enemigos_fase5:
+    1860.  00:74C1  C9                  		RET	
+    1861.  00:74C2                      		
+    1862.  00:74C2                      
+    1863.  00:74C2                      ;;=====================================================
+    1864.  00:74C2                      ;;CHECK_ENEMIGOS_FASE6
+    1865.  00:74C2                      ;;=====================================================	
+    1866.  00:74C2                      check_enemigos_fase6: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
+    1867.  00:74C2                      .check_enemigo1:	;DRACULA
+    1868.  00:74C2  DD 21 40 C0         		LD			IX, enemigo1
+    1869.  00:74C6  DD 7E 00            		LD			 A, (IX)
+    1870.  00:74C9  B7                  		OR			 A
+    1871.  00:74CA  CA D4 74            		JP			 Z, .check_enemigo2
+    1872.  00:74CD                      		
+    1873.  00:74CD  FD 21 DB C0         		LD			IY, array_sprites_enem
+    1874.  00:74D1                      		
+    1875.  00:74D1  CD F7 74            		CALL 		mueve_enemigo
+    1876.  00:74D4                      		;acciones enemigos
+    1877.  00:74D4                      .check_enemigo2:	
+    1878.  00:74D4  DD 21 55 C0         		LD			IX, enemigo2
+    1879.  00:74D8  DD 7E 00            		LD			 A, (IX)
+    1880.  00:74DB  B7                  		OR			 A
+    1881.  00:74DC  CA E6 74            		JP			 Z, .check_enemigo3
+    1882.  00:74DF                      		
+    1883.  00:74DF  FD 21 E3 C0         		LD			IY, array_sprites_enem + 8
+    1884.  00:74E3                      		
+    1885.  00:74E3  CD F7 74            		CALL 		mueve_enemigo
+    1886.  00:74E6                      		;acciones enemigos
+    1887.  00:74E6                      .check_enemigo3:	
+    1888.  00:74E6  DD 21 6A C0         		LD			IX, enemigo3
+    1889.  00:74EA  DD 7E 00            		LD			 A, (IX)
+    1890.  00:74ED  B7                  		OR			 A
+    1891.  00:74EE  C8                  		RET			 Z
+    1892.  00:74EF                      		
+    1893.  00:74EF  FD 21 EB C0         		LD			IY, array_sprites_enem + 16
+    1894.  00:74F3                      		
+    1895.  00:74F3  CD F7 74            		CALL 		mueve_enemigo
+    1896.  00:74F6                      		;acciones enemigos
+    1897.  00:74F6                      fin_check_enemigos_fase6:
+    1898.  00:74F6  C9                  		RET	
+    1899.  00:74F7                      
     1900.  00:74F7                      
-    1901.  00:74F7                      
-    1902.  00:74F7                      ;;=====================================================
-    1903.  00:74F7                      ;;MUEVE_ENEMIGO
-    1904.  00:74F7                      ;;=====================================================	
-    1905.  00:74F7                      mueve_enemigo:
-    1906.  00:74F7  DD 6E 0C            		LD			 L, (IX + ESTRUCTURA_ENEMIGO.ptr_mover)
-    1907.  00:74FA  DD 66 0D            		LD			 H, (IX + ESTRUCTURA_ENEMIGO.ptr_mover + 1)
-    1908.  00:74FD  E9                  		JP		    (HL)
-    1909.  00:74FE                      fin_mueve_enemigo:
-    1910.  00:74FE  C9                  		RET
+    1901.  00:74F7                      ;;=====================================================
+    1902.  00:74F7                      ;;MUEVE_ENEMIGO
+    1903.  00:74F7                      ;;=====================================================	
+    1904.  00:74F7                      mueve_enemigo:
+    1905.  00:74F7  DD 6E 0C            		LD			 L, (IX + ESTRUCTURA_ENEMIGO.ptr_mover)
+    1906.  00:74FA  DD 66 0D            		LD			 H, (IX + ESTRUCTURA_ENEMIGO.ptr_mover + 1)
+    1907.  00:74FD  E9                  		JP		    (HL)
+    1908.  00:74FE                      fin_mueve_enemigo:
+    1909.  00:74FE  C9                  		RET
+    1910.  00:74FF                      
     1911.  00:74FF                      
-    1912.  00:74FF                      
-    1913.  00:74FF                      ;;=====================================================
-    1914.  00:74FF                      ;;ENEMIGO_HACE_DANO
-    1915.  00:74FF                      ;;=====================================================	
-    1916.  00:74FF                      ; función: resta al prota el daño que tega configurado que haga el enemigo
-    1917.  00:74FF                      ; recibe: B - daño de un enemigo a restar a la energía del prota
-    1918.  00:74FF                      enemigo_hace_dano:
-    1919.  00:74FF  3A 06 C0            		LD			 A, (prota_energia_bytebajo)
-    1920.  00:7502  80                  		ADD			 B
-    1921.  00:7503  32 06 C0            		LD			(prota_energia_bytebajo), A
-    1922.  00:7506  D0                  		RET			NC
-    1923.  00:7507  AF                  		XOR			 A
-    1924.  00:7508  32 06 C0            		LD			(prota_energia_bytebajo), A
-    1925.  00:750B  3A 05 C0            		LD			 A, (prota_energia)
-    1926.  00:750E  D6 14               		SUB			DANOESTANDARENEMIGOS
-    1927.  00:7510  32 05 C0            		LD			(prota_energia), A
-    1928.  00:7513                      		
-    1929.  00:7513                      		;vida menos?
-    1930.  00:7513                      		;	NO -> SALIR
-    1931.  00:7513  D0                  				RET			NC			;IF VIDA MUERTA
-    1932.  00:7514                      		;	SI
-    1933.  00:7514  3A 01 C0            				LD			 A, (prota_vidas)
-    1934.  00:7517  3D                  				DEC			 A
-    1935.  00:7518                      				;restovidas
-    1936.  00:7518  32 01 C0            				LD			(prota_vidas), A
-    1937.  00:751B                      				;pinto mensaje de una vida menos
-    1938.  00:751B  CD 50 49            				CALL		una_vida_menos
-    1939.  00:751E                      				;pinto_vidas_actuales
-    1940.  00:751E  CD 19 45            				CALL		pinta_vidas
-    1941.  00:7521                      				;pongo energía al máximo
-    1942.  00:7521  3E F8               				LD			 A, MAXENERGIA
-    1943.  00:7523  32 05 C0            				LD			(prota_energia), A
-    1944.  00:7526                      				;SALIR
-    1945.  00:7526  C9                  				RET
-    1946.  00:7527                      		;	FINSI
-    1947.  00:7527                      fin_enemigo_hace_dano:
+    1912.  00:74FF                      ;;=====================================================
+    1913.  00:74FF                      ;;ENEMIGO_HACE_DANO
+    1914.  00:74FF                      ;;=====================================================	
+    1915.  00:74FF                      ; función: resta al prota el daño que tega configurado que haga el enemigo
+    1916.  00:74FF                      ; recibe: B - daño de un enemigo a restar a la energía del prota
+    1917.  00:74FF                      enemigo_hace_dano:
+    1918.  00:74FF  3A 06 C0            		LD			 A, (prota_energia_bytebajo)
+    1919.  00:7502  80                  		ADD			 B
+    1920.  00:7503  32 06 C0            		LD			(prota_energia_bytebajo), A
+    1921.  00:7506  D0                  		RET			NC
+    1922.  00:7507  AF                  		XOR			 A
+    1923.  00:7508  32 06 C0            		LD			(prota_energia_bytebajo), A
+    1924.  00:750B  3A 05 C0            		LD			 A, (prota_energia)
+    1925.  00:750E  D6 14               		SUB			DANOESTANDARENEMIGOS
+    1926.  00:7510  32 05 C0            		LD			(prota_energia), A
+    1927.  00:7513                      		
+    1928.  00:7513                      		;vida menos?
+    1929.  00:7513                      		;	NO -> SALIR
+    1930.  00:7513  D0                  				RET			NC			;IF VIDA MUERTA
+    1931.  00:7514                      		;	SI
+    1932.  00:7514  3A 01 C0            				LD			 A, (prota_vidas)
+    1933.  00:7517  3D                  				DEC			 A
+    1934.  00:7518                      				;restovidas
+    1935.  00:7518  32 01 C0            				LD			(prota_vidas), A
+    1936.  00:751B                      				;pinto mensaje de una vida menos
+    1937.  00:751B  CD 50 49            				CALL		una_vida_menos
+    1938.  00:751E                      				;pinto_vidas_actuales
+    1939.  00:751E  CD 19 45            				CALL		pinta_vidas
+    1940.  00:7521                      				;pongo energía al máximo
+    1941.  00:7521  3E F8               				LD			 A, MAXENERGIA
+    1942.  00:7523  32 05 C0            				LD			(prota_energia), A
+    1943.  00:7526                      				;SALIR
+    1944.  00:7526  C9                  				RET
+    1945.  00:7527                      		;	FINSI
+    1946.  00:7527                      fin_enemigo_hace_dano:
+    1947.  00:7527                      
     1948.  00:7527                      
-    1949.  00:7527                      
-    1950.  00:7527                      ;;=====================================================
-    1951.  00:7527                      ;;CHECK_COLISION_ENEMIGO_16x16
-    1952.  00:7527                      ;;=====================================================	
-    1953.  00:7527                      ; función: 	revisa la distancia con enemigo activo para ver si se disparó y se le dió. 
-    1954.  00:7527                      ;			revisa la colisión con sprites de 16x16
-    1955.  00:7527                      ; entrada: 	IX con el puntero al enemigo que se examina
-    1956.  00:7527                      ; salida: 	A (0 no hay colisión con enemigo / 1 sí la hay)
-    1957.  00:7527                      ; toca:		HL,BC, DE
-    1958.  00:7527                      check_colision_enemigo16x16:
-    1959.  00:7527                      .deteccioncolision_paso1:
-    1960.  00:7527                      	;busco el centro X del sprite objetivo
-    1961.  00:7527  DD 7E 04            	LD		 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-    1962.  00:752A  C6 08               	ADD		 8
-    1963.  00:752C  47                  	LD 		 B, A
-    1964.  00:752D                      
-    1965.  00:752D                      	;busco el centro X del punto de mira
-    1966.  00:752D  FD 21 15 C2         	LD		IY, puntomira	;IY punto de mira / IX puerta
-    1967.  00:7531  FD 7E 00            	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posx)
-    1968.  00:7534  C6 08               	ADD		 8			;8-es fijo, offset del punto de mira ya que se mueve según la esquina superior izquierda y el centro del punto de mira está en el centro del sprite
-    1969.  00:7536                      	
-    1970.  00:7536                      	;calculo la distancia
-    1971.  00:7536                      				
-    1972.  00:7536  90                  	SUB		 B	;le resto el punto x del enemigo
-    1973.  00:7537                      	
-    1974.  00:7537  D2 3C 75            	JP		NC, .deteccioncolision_paso2	;si no es negativo comparo con el radio
-    1975.  00:753A                      
-    1976.  00:753A  ED 44               	NEG										;si es negativo lo niego (valor absoluto)
-    1977.  00:753C                      	
-    1978.  00:753C                      .deteccioncolision_paso2:
-    1979.  00:753C  FE 08               	CP		8								;comparo con el radio X de la puerta
-    1980.  00:753E                      	
-    1981.  00:753E  DA 43 75            	JP		 C, .deteccioncolision_paso3	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
-    1982.  00:7541                      	
-    1983.  00:7541  AF                  	XOR		 A								;el resultado es falso y se guarda en A y ya no hay que seguir coprobando
-    1984.  00:7542  C9                  	RET
-    1985.  00:7543                      	
-    1986.  00:7543                      .deteccioncolision_paso3:					;la distancia X es válida, comprobamos la distancia Y
-    1987.  00:7543  DD 7E 05            	LD		 A, (IX + ESTRUCTURA_ENEMIGO.posy)
-    1988.  00:7546  C6 08               	ADD		 8
-    1989.  00:7548  47                  	LD 		 B, A
+    1949.  00:7527                      ;;=====================================================
+    1950.  00:7527                      ;;CHECK_COLISION_ENEMIGO_16x16
+    1951.  00:7527                      ;;=====================================================	
+    1952.  00:7527                      ; función: 	revisa la distancia con enemigo activo para ver si se disparó y se le dió. 
+    1953.  00:7527                      ;			revisa la colisión con sprites de 16x16
+    1954.  00:7527                      ; entrada: 	IX con el puntero al enemigo que se examina
+    1955.  00:7527                      ; salida: 	A (0 no hay colisión con enemigo / 1 sí la hay)
+    1956.  00:7527                      ; toca:		HL,BC, DE
+    1957.  00:7527                      check_colision_enemigo16x16:
+    1958.  00:7527                      .deteccioncolision_paso1:
+    1959.  00:7527                      	;busco el centro X del sprite objetivo
+    1960.  00:7527  DD 7E 04            	LD		 A, (IX + ESTRUCTURA_ENEMIGO.posx)
+    1961.  00:752A  C6 08               	ADD		 8
+    1962.  00:752C  47                  	LD 		 B, A
+    1963.  00:752D                      
+    1964.  00:752D                      	;busco el centro X del punto de mira
+    1965.  00:752D  FD 21 15 C2         	LD		IY, puntomira	;IY punto de mira / IX puerta
+    1966.  00:7531  FD 7E 00            	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posx)
+    1967.  00:7534  C6 08               	ADD		 8			;8-es fijo, offset del punto de mira ya que se mueve según la esquina superior izquierda y el centro del punto de mira está en el centro del sprite
+    1968.  00:7536                      	
+    1969.  00:7536                      	;calculo la distancia
+    1970.  00:7536                      				
+    1971.  00:7536  90                  	SUB		 B	;le resto el punto x del enemigo
+    1972.  00:7537                      	
+    1973.  00:7537  D2 3C 75            	JP		NC, .deteccioncolision_paso2	;si no es negativo comparo con el radio
+    1974.  00:753A                      
+    1975.  00:753A  ED 44               	NEG										;si es negativo lo niego (valor absoluto)
+    1976.  00:753C                      	
+    1977.  00:753C                      .deteccioncolision_paso2:
+    1978.  00:753C  FE 08               	CP		8								;comparo con el radio X de la puerta
+    1979.  00:753E                      	
+    1980.  00:753E  DA 43 75            	JP		 C, .deteccioncolision_paso3	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
+    1981.  00:7541                      	
+    1982.  00:7541  AF                  	XOR		 A								;el resultado es falso y se guarda en A y ya no hay que seguir coprobando
+    1983.  00:7542  C9                  	RET
+    1984.  00:7543                      	
+    1985.  00:7543                      .deteccioncolision_paso3:					;la distancia X es válida, comprobamos la distancia Y
+    1986.  00:7543  DD 7E 05            	LD		 A, (IX + ESTRUCTURA_ENEMIGO.posy)
+    1987.  00:7546  C6 08               	ADD		 8
+    1988.  00:7548  47                  	LD 		 B, A
+    1989.  00:7549                      
     1990.  00:7549                      
-    1991.  00:7549                      
-    1992.  00:7549  FD 7E 01            	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posy)
-    1993.  00:754C  C6 08               	ADD		 8								;le sumo el offset del punto de mira (8 es fijo)
-    1994.  00:754E                      
-    1995.  00:754E                      	;ya tengo en A la coordenada Y del centro del punto de mira					
-    1996.  00:754E  90                  	SUB		B								;le resto el punto y en la puerta
-    1997.  00:754F                      	
-    1998.  00:754F  D2 54 75            	JP		NC, .deteccioncolision_paso4	;si no es negativo comparo con el radio
-    1999.  00:7552                      
-    2000.  00:7552  ED 44               	NEG										;si es negativo lo niego (valor absoluto)
-    2001.  00:7554                      
-    2002.  00:7554                      .deteccioncolision_paso4:
-    2003.  00:7554  FE 08               	CP		8								;comparo con el radio Y de la puerta
-    2004.  00:7556                      
-    2005.  00:7556  DA 5B 75            	JP		 C, .deteccioncolision_paso5	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
-    2006.  00:7559                      	
-    2007.  00:7559  AF                  	XOR		 A								;el resultado es falso y se guarda en A un 0 y al ser la 2º comprobación salimos
-    2008.  00:755A  C9                  	RET
-    2009.  00:755B                      
-    2010.  00:755B                      .deteccioncolision_paso5:
-    2011.  00:755B  3E 01               	LD		 A, SI
-    2012.  00:755D                      fin_check_colision_enemigo16x16:
-    2013.  00:755D  C9                  	RET
+    1991.  00:7549  FD 7E 01            	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posy)
+    1992.  00:754C  C6 08               	ADD		 8								;le sumo el offset del punto de mira (8 es fijo)
+    1993.  00:754E                      
+    1994.  00:754E                      	;ya tengo en A la coordenada Y del centro del punto de mira					
+    1995.  00:754E  90                  	SUB		B								;le resto el punto y en la puerta
+    1996.  00:754F                      	
+    1997.  00:754F  D2 54 75            	JP		NC, .deteccioncolision_paso4	;si no es negativo comparo con el radio
+    1998.  00:7552                      
+    1999.  00:7552  ED 44               	NEG										;si es negativo lo niego (valor absoluto)
+    2000.  00:7554                      
+    2001.  00:7554                      .deteccioncolision_paso4:
+    2002.  00:7554  FE 08               	CP		8								;comparo con el radio Y de la puerta
+    2003.  00:7556                      
+    2004.  00:7556  DA 5B 75            	JP		 C, .deteccioncolision_paso5	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
+    2005.  00:7559                      	
+    2006.  00:7559  AF                  	XOR		 A								;el resultado es falso y se guarda en A un 0 y al ser la 2º comprobación salimos
+    2007.  00:755A  C9                  	RET
+    2008.  00:755B                      
+    2009.  00:755B                      .deteccioncolision_paso5:
+    2010.  00:755B  3E 01               	LD		 A, SI
+    2011.  00:755D                      fin_check_colision_enemigo16x16:
+    2012.  00:755D  C9                  	RET
+    2013.  00:755E                      	
     2014.  00:755E                      	
-    2015.  00:755E                      	
-    2016.  00:755E                      ;;=====================================================
-    2017.  00:755E                      ;;CHECK_COLISION_ENEMIGO_16x32
-    2018.  00:755E                      ;;=====================================================	
-    2019.  00:755E                      ; función: 	revisa la distancia con enemigo activo para ver si se disparó y se le dió. 
-    2020.  00:755E                      ;			revisa la colisión con sprites de 16x32 uno encima del otro
-    2021.  00:755E                      ; entrada: 	IX con el puntero al enemigo que se examina
-    2022.  00:755E                      ; salida: 	A (0 no hay colisión con enemigo / 1 sí la hay)
-    2023.  00:755E                      ; toca:		HL,BC, DE
-    2024.  00:755E                      check_colision_enemigo16x32:
-    2025.  00:755E                      .deteccioncolision_paso1:
-    2026.  00:755E                      	;busco el centro X del sprite objetivo
-    2027.  00:755E  DD 7E 04            	LD		 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-    2028.  00:7561  C6 08               	ADD		 8
-    2029.  00:7563  47                  	LD 		 B, A
-    2030.  00:7564                      
-    2031.  00:7564                      	;busco el centro X del punto de mira
-    2032.  00:7564  FD 21 15 C2         	LD		IY, puntomira	;IY punto de mira / IX puerta
-    2033.  00:7568  FD 7E 00            	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posx)
-    2034.  00:756B  C6 08               	ADD		 8			;8-es fijo, offset del punto de mira ya que se mueve según la esquina superior izquierda y el centro del punto de mira está en el centro del sprite
-    2035.  00:756D                      	
-    2036.  00:756D                      	;calculo la distancia
-    2037.  00:756D  90                  	SUB		 B	;le resto el punto x del enemigo
-    2038.  00:756E                      	
-    2039.  00:756E  D2 73 75            	JP		NC, .deteccioncolision_paso2	;si no es negativo comparo con el radio
-    2040.  00:7571                      
-    2041.  00:7571  ED 44               	NEG										;si es negativo lo niego (valor absoluto)
-    2042.  00:7573                      	
-    2043.  00:7573                      .deteccioncolision_paso2:
-    2044.  00:7573  FE 08               	CP		 8								;comparo con el radio X del sprite del enemigo
-    2045.  00:7575                      	
-    2046.  00:7575  DA 7A 75            	JP		 C, .deteccioncolision_paso3	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
-    2047.  00:7578                      	
-    2048.  00:7578  AF                  	XOR		 A								;el resultado es falso y se guarda en A y ya no hay que seguir coprobando
-    2049.  00:7579  C9                  	RET
-    2050.  00:757A                      	
-    2051.  00:757A                      .deteccioncolision_paso3:					;la distancia X es válida, comprobamos la distancia Y
-    2052.  00:757A  DD 7E 05            	LD		 A, (IX + ESTRUCTURA_ENEMIGO.posy)
-    2053.  00:757D  C6 10               	ADD		16
-    2054.  00:757F  47                  	LD 		 B, A
+    2015.  00:755E                      ;;=====================================================
+    2016.  00:755E                      ;;CHECK_COLISION_ENEMIGO_16x32
+    2017.  00:755E                      ;;=====================================================	
+    2018.  00:755E                      ; función: 	revisa la distancia con enemigo activo para ver si se disparó y se le dió. 
+    2019.  00:755E                      ;			revisa la colisión con sprites de 16x32 uno encima del otro
+    2020.  00:755E                      ; entrada: 	IX con el puntero al enemigo que se examina
+    2021.  00:755E                      ; salida: 	A (0 no hay colisión con enemigo / 1 sí la hay)
+    2022.  00:755E                      ; toca:		HL,BC, DE
+    2023.  00:755E                      check_colision_enemigo16x32:
+    2024.  00:755E                      .deteccioncolision_paso1:
+    2025.  00:755E                      	;busco el centro X del sprite objetivo
+    2026.  00:755E  DD 7E 04            	LD		 A, (IX + ESTRUCTURA_ENEMIGO.posx)
+    2027.  00:7561  C6 08               	ADD		 8
+    2028.  00:7563  47                  	LD 		 B, A
+    2029.  00:7564                      
+    2030.  00:7564                      	;busco el centro X del punto de mira
+    2031.  00:7564  FD 21 15 C2         	LD		IY, puntomira	;IY punto de mira / IX puerta
+    2032.  00:7568  FD 7E 00            	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posx)
+    2033.  00:756B  C6 08               	ADD		 8			;8-es fijo, offset del punto de mira ya que se mueve según la esquina superior izquierda y el centro del punto de mira está en el centro del sprite
+    2034.  00:756D                      	
+    2035.  00:756D                      	;calculo la distancia
+    2036.  00:756D  90                  	SUB		 B	;le resto el punto x del enemigo
+    2037.  00:756E                      	
+    2038.  00:756E  D2 73 75            	JP		NC, .deteccioncolision_paso2	;si no es negativo comparo con el radio
+    2039.  00:7571                      
+    2040.  00:7571  ED 44               	NEG										;si es negativo lo niego (valor absoluto)
+    2041.  00:7573                      	
+    2042.  00:7573                      .deteccioncolision_paso2:
+    2043.  00:7573  FE 08               	CP		 8								;comparo con el radio X del sprite del enemigo
+    2044.  00:7575                      	
+    2045.  00:7575  DA 7A 75            	JP		 C, .deteccioncolision_paso3	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
+    2046.  00:7578                      	
+    2047.  00:7578  AF                  	XOR		 A								;el resultado es falso y se guarda en A y ya no hay que seguir coprobando
+    2048.  00:7579  C9                  	RET
+    2049.  00:757A                      	
+    2050.  00:757A                      .deteccioncolision_paso3:					;la distancia X es válida, comprobamos la distancia Y
+    2051.  00:757A  DD 7E 05            	LD		 A, (IX + ESTRUCTURA_ENEMIGO.posy)
+    2052.  00:757D  C6 10               	ADD		16
+    2053.  00:757F  47                  	LD 		 B, A
+    2054.  00:7580                      
     2055.  00:7580                      
-    2056.  00:7580                      
-    2057.  00:7580  FD 7E 01            	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posy)
-    2058.  00:7583  C6 08               	ADD		 8								;le sumo el offset del punto de mira (8 es fijo)
-    2059.  00:7585                      
-    2060.  00:7585                      	;ya tengo en A la coordenada Y del centro del punto de mira					
-    2061.  00:7585  90                  	SUB		 B								;le resto el punto y 
-    2062.  00:7586                      	
-    2063.  00:7586  D2 8B 75            	JP		NC, .deteccioncolision_paso4	;si no es negativo comparo con el radio
-    2064.  00:7589                      
-    2065.  00:7589  ED 44               	NEG										;si es negativo lo niego (valor absoluto)
-    2066.  00:758B                      
-    2067.  00:758B                      .deteccioncolision_paso4:
-    2068.  00:758B  FE 10               	CP		16								;comparo con el radio Y del sprite del enemigo
-    2069.  00:758D                      
-    2070.  00:758D  DA 92 75            	JP		 C, .deteccioncolision_paso5	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
-    2071.  00:7590                      	
-    2072.  00:7590  AF                  	XOR		 A								;el resultado es falso y se guarda en A un 0 y al ser la 2º comprobación salimos
-    2073.  00:7591  C9                  	RET
-    2074.  00:7592                      
-    2075.  00:7592                      .deteccioncolision_paso5:
-    2076.  00:7592  3E 01               	LD		 A, SI
-    2077.  00:7594                      fin_check_colision_enemigo16x32:
-    2078.  00:7594  C9                  	RET
+    2056.  00:7580  FD 7E 01            	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posy)
+    2057.  00:7583  C6 08               	ADD		 8								;le sumo el offset del punto de mira (8 es fijo)
+    2058.  00:7585                      
+    2059.  00:7585                      	;ya tengo en A la coordenada Y del centro del punto de mira					
+    2060.  00:7585  90                  	SUB		 B								;le resto el punto y 
+    2061.  00:7586                      	
+    2062.  00:7586  D2 8B 75            	JP		NC, .deteccioncolision_paso4	;si no es negativo comparo con el radio
+    2063.  00:7589                      
+    2064.  00:7589  ED 44               	NEG										;si es negativo lo niego (valor absoluto)
+    2065.  00:758B                      
+    2066.  00:758B                      .deteccioncolision_paso4:
+    2067.  00:758B  FE 10               	CP		16								;comparo con el radio Y del sprite del enemigo
+    2068.  00:758D                      
+    2069.  00:758D  DA 92 75            	JP		 C, .deteccioncolision_paso5	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
+    2070.  00:7590                      	
+    2071.  00:7590  AF                  	XOR		 A								;el resultado es falso y se guarda en A un 0 y al ser la 2º comprobación salimos
+    2072.  00:7591  C9                  	RET
+    2073.  00:7592                      
+    2074.  00:7592                      .deteccioncolision_paso5:
+    2075.  00:7592  3E 01               	LD		 A, SI
+    2076.  00:7594                      fin_check_colision_enemigo16x32:
+    2077.  00:7594  C9                  	RET
+    2078.  00:7595                      	
     2079.  00:7595                      	
-    2080.  00:7595                      	
-    2081.  00:7595                      ;;=====================================================
-    2082.  00:7595                      ;;CHECK_COLISION_ENEMIGO_32x16
-    2083.  00:7595                      ;;=====================================================	
-    2084.  00:7595                      ; función: 	revisa la distancia con enemigo activo para ver si se disparó y se le dió. 
-    2085.  00:7595                      ;			revisa la colisión con sprites de 16x16 uno al lado del otro
-    2086.  00:7595                      ; entrada: 	IX con el puntero al enemigo que se examina
-    2087.  00:7595                      ; salida: 	A (0 no hay colisión con enemigo / 1 sí la hay)
-    2088.  00:7595                      ; toca:		HL,BC, DE
-    2089.  00:7595                      check_colision_enemigo32x16:
-    2090.  00:7595                      .deteccioncolision_paso1:
-    2091.  00:7595                      	;busco el centro X del sprite objetivo
-    2092.  00:7595  DD 7E 04            	LD		 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-    2093.  00:7598  C6 10               	ADD		 16
-    2094.  00:759A  47                  	LD 		 B, A
-    2095.  00:759B                      
-    2096.  00:759B                      	;busco el centro X del punto de mira
-    2097.  00:759B  FD 21 15 C2         	LD		IY, puntomira	;IY punto de mira / IX puerta
-    2098.  00:759F  FD 7E 00            	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posx)
-    2099.  00:75A2  C6 08               	ADD		 8			;8-es fijo, offset del punto de mira ya que se mueve según la esquina superior izquierda y el centro del punto de mira está en el centro del sprite
-    2100.  00:75A4                      	
-    2101.  00:75A4                      	;calculo la distancia
-    2102.  00:75A4  90                  	SUB		 B	;le resto el punto x del enemigo
-    2103.  00:75A5                      	
-    2104.  00:75A5  D2 AA 75            	JP		NC, .deteccioncolision_paso2	;si no es negativo comparo con el radio
-    2105.  00:75A8                      
-    2106.  00:75A8  ED 44               	NEG										;si es negativo lo niego (valor absoluto)
-    2107.  00:75AA                      	
-    2108.  00:75AA                      .deteccioncolision_paso2:
-    2109.  00:75AA  FE 10               	CP		16								;comparo con el radio X del sprite del enemigo
-    2110.  00:75AC                      	
-    2111.  00:75AC  DA B1 75            	JP		 C, .deteccioncolision_paso3	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
-    2112.  00:75AF                      	
-    2113.  00:75AF  AF                  	XOR		 A								;el resultado es falso y se guarda en A y ya no hay que seguir coprobando
-    2114.  00:75B0  C9                  	RET
-    2115.  00:75B1                      	
-    2116.  00:75B1                      .deteccioncolision_paso3:					;la distancia X es válida, comprobamos la distancia Y
-    2117.  00:75B1  DD 7E 05            	LD		 A, (IX + ESTRUCTURA_ENEMIGO.posy)
-    2118.  00:75B4  C6 08               	ADD		 8
-    2119.  00:75B6  47                  	LD 		 B, A
+    2080.  00:7595                      ;;=====================================================
+    2081.  00:7595                      ;;CHECK_COLISION_ENEMIGO_32x16
+    2082.  00:7595                      ;;=====================================================	
+    2083.  00:7595                      ; función: 	revisa la distancia con enemigo activo para ver si se disparó y se le dió. 
+    2084.  00:7595                      ;			revisa la colisión con sprites de 16x16 uno al lado del otro
+    2085.  00:7595                      ; entrada: 	IX con el puntero al enemigo que se examina
+    2086.  00:7595                      ; salida: 	A (0 no hay colisión con enemigo / 1 sí la hay)
+    2087.  00:7595                      ; toca:		HL,BC, DE
+    2088.  00:7595                      check_colision_enemigo32x16:
+    2089.  00:7595                      .deteccioncolision_paso1:
+    2090.  00:7595                      	;busco el centro X del sprite objetivo
+    2091.  00:7595  DD 7E 04            	LD		 A, (IX + ESTRUCTURA_ENEMIGO.posx)
+    2092.  00:7598  C6 10               	ADD		 16
+    2093.  00:759A  47                  	LD 		 B, A
+    2094.  00:759B                      
+    2095.  00:759B                      	;busco el centro X del punto de mira
+    2096.  00:759B  FD 21 15 C2         	LD		IY, puntomira	;IY punto de mira / IX puerta
+    2097.  00:759F  FD 7E 00            	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posx)
+    2098.  00:75A2  C6 08               	ADD		 8			;8-es fijo, offset del punto de mira ya que se mueve según la esquina superior izquierda y el centro del punto de mira está en el centro del sprite
+    2099.  00:75A4                      	
+    2100.  00:75A4                      	;calculo la distancia
+    2101.  00:75A4  90                  	SUB		 B	;le resto el punto x del enemigo
+    2102.  00:75A5                      	
+    2103.  00:75A5  D2 AA 75            	JP		NC, .deteccioncolision_paso2	;si no es negativo comparo con el radio
+    2104.  00:75A8                      
+    2105.  00:75A8  ED 44               	NEG										;si es negativo lo niego (valor absoluto)
+    2106.  00:75AA                      	
+    2107.  00:75AA                      .deteccioncolision_paso2:
+    2108.  00:75AA  FE 10               	CP		16								;comparo con el radio X del sprite del enemigo
+    2109.  00:75AC                      	
+    2110.  00:75AC  DA B1 75            	JP		 C, .deteccioncolision_paso3	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
+    2111.  00:75AF                      	
+    2112.  00:75AF  AF                  	XOR		 A								;el resultado es falso y se guarda en A y ya no hay que seguir coprobando
+    2113.  00:75B0  C9                  	RET
+    2114.  00:75B1                      	
+    2115.  00:75B1                      .deteccioncolision_paso3:					;la distancia X es válida, comprobamos la distancia Y
+    2116.  00:75B1  DD 7E 05            	LD		 A, (IX + ESTRUCTURA_ENEMIGO.posy)
+    2117.  00:75B4  C6 08               	ADD		 8
+    2118.  00:75B6  47                  	LD 		 B, A
+    2119.  00:75B7                      
     2120.  00:75B7                      
-    2121.  00:75B7                      
-    2122.  00:75B7  FD 7E 01            	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posy)
-    2123.  00:75BA  C6 08               	ADD		 8								;le sumo el offset del punto de mira (8 es fijo)
-    2124.  00:75BC                      
-    2125.  00:75BC                      	;ya tengo en A la coordenada Y del centro del punto de mira					
-    2126.  00:75BC  90                  	SUB		B								;le resto el punto y 
-    2127.  00:75BD                      	
-    2128.  00:75BD  D2 C2 75            	JP		NC, .deteccioncolision_paso4	;si no es negativo comparo con el radio
-    2129.  00:75C0                      
-    2130.  00:75C0  ED 44               	NEG										;si es negativo lo niego (valor absoluto)
-    2131.  00:75C2                      
-    2132.  00:75C2                      .deteccioncolision_paso4:
-    2133.  00:75C2  FE 08               	CP		8								;comparo con el radio Y del sprite del enemigo
-    2134.  00:75C4                      
-    2135.  00:75C4  DA C9 75            	JP		 C, .deteccioncolision_paso5	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
-    2136.  00:75C7                      	
-    2137.  00:75C7  AF                  	XOR		 A								;el resultado es falso y se guarda en A un 0 y al ser la 2º comprobación salimos
-    2138.  00:75C8  C9                  	RET
-    2139.  00:75C9                      
-    2140.  00:75C9                      .deteccioncolision_paso5:
-    2141.  00:75C9  3E 01               	LD		 A, SI
-    2142.  00:75CB                      fin_check_colision_enemigo32x16:
-    2143.  00:75CB  C9                  	RET
+    2121.  00:75B7  FD 7E 01            	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posy)
+    2122.  00:75BA  C6 08               	ADD		 8								;le sumo el offset del punto de mira (8 es fijo)
+    2123.  00:75BC                      
+    2124.  00:75BC                      	;ya tengo en A la coordenada Y del centro del punto de mira					
+    2125.  00:75BC  90                  	SUB		B								;le resto el punto y 
+    2126.  00:75BD                      	
+    2127.  00:75BD  D2 C2 75            	JP		NC, .deteccioncolision_paso4	;si no es negativo comparo con el radio
+    2128.  00:75C0                      
+    2129.  00:75C0  ED 44               	NEG										;si es negativo lo niego (valor absoluto)
+    2130.  00:75C2                      
+    2131.  00:75C2                      .deteccioncolision_paso4:
+    2132.  00:75C2  FE 08               	CP		8								;comparo con el radio Y del sprite del enemigo
+    2133.  00:75C4                      
+    2134.  00:75C4  DA C9 75            	JP		 C, .deteccioncolision_paso5	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
+    2135.  00:75C7                      	
+    2136.  00:75C7  AF                  	XOR		 A								;el resultado es falso y se guarda en A un 0 y al ser la 2º comprobación salimos
+    2137.  00:75C8  C9                  	RET
+    2138.  00:75C9                      
+    2139.  00:75C9                      .deteccioncolision_paso5:
+    2140.  00:75C9  3E 01               	LD		 A, SI
+    2141.  00:75CB                      fin_check_colision_enemigo32x16:
+    2142.  00:75CB  C9                  	RET
+    2143.  00:75CC                      
     2144.  00:75CC                      
-    2145.  00:75CC                      
-    2146.  00:75CC                      ;;=====================================================
-    2147.  00:75CC                      ;;CHECK_COLISION_ENEMIGO_32x32
-    2148.  00:75CC                      ;;=====================================================	
-    2149.  00:75CC                      ; función: 	revisa la distancia con enemigo activo para ver si se disparó y se le dió. 
-    2150.  00:75CC                      ;			revisa la colisión con 4 sprites de 32x32 en cuadrado
-    2151.  00:75CC                      ; entrada: 	IX con el puntero al enemigo que se examina
-    2152.  00:75CC                      ; salida: 	A (0 no hay colisión con enemigo / 1 sí la hay)
-    2153.  00:75CC                      ; toca:		HL,BC, DE
-    2154.  00:75CC                      check_colision_enemigo32x32:
-    2155.  00:75CC                      .deteccioncolision_paso1:
-    2156.  00:75CC                      	;busco el centro X del sprite objetivo
-    2157.  00:75CC  DD 7E 04            	LD		 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-    2158.  00:75CF  C6 10               	ADD		 16
-    2159.  00:75D1  47                  	LD 		 B, A
-    2160.  00:75D2                      
-    2161.  00:75D2                      	;busco el centro X del punto de mira
-    2162.  00:75D2  FD 21 15 C2         	LD		IY, puntomira	;IY punto de mira / IX puerta
-    2163.  00:75D6  FD 7E 00            	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posx)
-    2164.  00:75D9  C6 08               	ADD		 8			;8-es fijo, offset del punto de mira ya que se mueve según la esquina superior izquierda y el centro del punto de mira está en el centro del sprite
-    2165.  00:75DB                      	
-    2166.  00:75DB                      	;calculo la distancia
-    2167.  00:75DB  90                  	SUB		 B	;le resto el punto x del enemigo
-    2168.  00:75DC                      	
-    2169.  00:75DC  D2 E1 75            	JP		NC, .deteccioncolision_paso2	;si no es negativo comparo con el radio
-    2170.  00:75DF                      
-    2171.  00:75DF  ED 44               	NEG										;si es negativo lo niego (valor absoluto)
-    2172.  00:75E1                      	
-    2173.  00:75E1                      .deteccioncolision_paso2:
-    2174.  00:75E1  FE 10               	CP		16								;comparo con el radio X del sprite del enemigo
-    2175.  00:75E3                      	
-    2176.  00:75E3  DA E8 75            	JP		 C, .deteccioncolision_paso3	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
-    2177.  00:75E6                      	
-    2178.  00:75E6  AF                  	XOR		 A								;el resultado es falso y se guarda en A y ya no hay que seguir coprobando
-    2179.  00:75E7  C9                  	RET
-    2180.  00:75E8                      	
-    2181.  00:75E8                      .deteccioncolision_paso3:					;la distancia X es válida, comprobamos la distancia Y
-    2182.  00:75E8  DD 7E 05            	LD		 A, (IX + ESTRUCTURA_ENEMIGO.posy)
-    2183.  00:75EB  C6 10               	ADD		 16
-    2184.  00:75ED  47                  	LD 		 B, A
+    2145.  00:75CC                      ;;=====================================================
+    2146.  00:75CC                      ;;CHECK_COLISION_ENEMIGO_32x32
+    2147.  00:75CC                      ;;=====================================================	
+    2148.  00:75CC                      ; función: 	revisa la distancia con enemigo activo para ver si se disparó y se le dió. 
+    2149.  00:75CC                      ;			revisa la colisión con 4 sprites de 32x32 en cuadrado
+    2150.  00:75CC                      ; entrada: 	IX con el puntero al enemigo que se examina
+    2151.  00:75CC                      ; salida: 	A (0 no hay colisión con enemigo / 1 sí la hay)
+    2152.  00:75CC                      ; toca:		HL,BC, DE
+    2153.  00:75CC                      check_colision_enemigo32x32:
+    2154.  00:75CC                      .deteccioncolision_paso1:
+    2155.  00:75CC                      	;busco el centro X del sprite objetivo
+    2156.  00:75CC  DD 7E 04            	LD		 A, (IX + ESTRUCTURA_ENEMIGO.posx)
+    2157.  00:75CF  C6 10               	ADD		 16
+    2158.  00:75D1  47                  	LD 		 B, A
+    2159.  00:75D2                      
+    2160.  00:75D2                      	;busco el centro X del punto de mira
+    2161.  00:75D2  FD 21 15 C2         	LD		IY, puntomira	;IY punto de mira / IX puerta
+    2162.  00:75D6  FD 7E 00            	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posx)
+    2163.  00:75D9  C6 08               	ADD		 8			;8-es fijo, offset del punto de mira ya que se mueve según la esquina superior izquierda y el centro del punto de mira está en el centro del sprite
+    2164.  00:75DB                      	
+    2165.  00:75DB                      	;calculo la distancia
+    2166.  00:75DB  90                  	SUB		 B	;le resto el punto x del enemigo
+    2167.  00:75DC                      	
+    2168.  00:75DC  D2 E1 75            	JP		NC, .deteccioncolision_paso2	;si no es negativo comparo con el radio
+    2169.  00:75DF                      
+    2170.  00:75DF  ED 44               	NEG										;si es negativo lo niego (valor absoluto)
+    2171.  00:75E1                      	
+    2172.  00:75E1                      .deteccioncolision_paso2:
+    2173.  00:75E1  FE 10               	CP		16								;comparo con el radio X del sprite del enemigo
+    2174.  00:75E3                      	
+    2175.  00:75E3  DA E8 75            	JP		 C, .deteccioncolision_paso3	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
+    2176.  00:75E6                      	
+    2177.  00:75E6  AF                  	XOR		 A								;el resultado es falso y se guarda en A y ya no hay que seguir coprobando
+    2178.  00:75E7  C9                  	RET
+    2179.  00:75E8                      	
+    2180.  00:75E8                      .deteccioncolision_paso3:					;la distancia X es válida, comprobamos la distancia Y
+    2181.  00:75E8  DD 7E 05            	LD		 A, (IX + ESTRUCTURA_ENEMIGO.posy)
+    2182.  00:75EB  C6 10               	ADD		 16
+    2183.  00:75ED  47                  	LD 		 B, A
+    2184.  00:75EE                      
     2185.  00:75EE                      
-    2186.  00:75EE                      
-    2187.  00:75EE  FD 7E 01            	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posy)
-    2188.  00:75F1  C6 08               	ADD		 8								;le sumo el offset del punto de mira (8 es fijo)
-    2189.  00:75F3                      
-    2190.  00:75F3                      	;ya tengo en A la coordenada Y del centro del punto de mira					
-    2191.  00:75F3  90                  	SUB		B								;le resto el punto y 
-    2192.  00:75F4                      	
-    2193.  00:75F4  D2 F9 75            	JP		NC, .deteccioncolision_paso4	;si no es negativo comparo con el radio
-    2194.  00:75F7                      
-    2195.  00:75F7  ED 44               	NEG										;si es negativo lo niego (valor absoluto)
-    2196.  00:75F9                      
-    2197.  00:75F9                      .deteccioncolision_paso4:
-    2198.  00:75F9  FE 10               	CP		16								;comparo con el radio Y del sprite del enemigo
-    2199.  00:75FB                      
-    2200.  00:75FB  DA 00 76            	JP		 C, .deteccioncolision_paso5	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
-    2201.  00:75FE                      	
-    2202.  00:75FE  AF                  	XOR		 A								;el resultado es falso y se guarda en A un 0 y al ser la 2º comprobación salimos
-    2203.  00:75FF  C9                  	RET
-    2204.  00:7600                      
-    2205.  00:7600                      .deteccioncolision_paso5:
-    2206.  00:7600  3E 01               	LD		 A, SI
-    2207.  00:7602                      fin_check_colision_enemigo32x32:
-    2208.  00:7602  C9                  	RET
+    2186.  00:75EE  FD 7E 01            	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posy)
+    2187.  00:75F1  C6 08               	ADD		 8								;le sumo el offset del punto de mira (8 es fijo)
+    2188.  00:75F3                      
+    2189.  00:75F3                      	;ya tengo en A la coordenada Y del centro del punto de mira					
+    2190.  00:75F3  90                  	SUB		B								;le resto el punto y 
+    2191.  00:75F4                      	
+    2192.  00:75F4  D2 F9 75            	JP		NC, .deteccioncolision_paso4	;si no es negativo comparo con el radio
+    2193.  00:75F7                      
+    2194.  00:75F7  ED 44               	NEG										;si es negativo lo niego (valor absoluto)
+    2195.  00:75F9                      
+    2196.  00:75F9                      .deteccioncolision_paso4:
+    2197.  00:75F9  FE 10               	CP		16								;comparo con el radio Y del sprite del enemigo
+    2198.  00:75FB                      
+    2199.  00:75FB  DA 00 76            	JP		 C, .deteccioncolision_paso5	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
+    2200.  00:75FE                      	
+    2201.  00:75FE  AF                  	XOR		 A								;el resultado es falso y se guarda en A un 0 y al ser la 2º comprobación salimos
+    2202.  00:75FF  C9                  	RET
+    2203.  00:7600                      
+    2204.  00:7600                      .deteccioncolision_paso5:
+    2205.  00:7600  3E 01               	LD		 A, SI
+    2206.  00:7602                      fin_check_colision_enemigo32x32:
+    2207.  00:7602  C9                  	RET
+    2208.  00:7603                      
     2209.  00:7603                      
-    2210.  00:7603                      
-    2211.  00:7603                      ;;=====================================================
-    2212.  00:7603                      ;;CHECK_COLISIONES_ENEMIGOS
-    2213.  00:7603                      ;;=====================================================	
-    2214.  00:7603                      ; función: 	revisa enemigo por enemigo y si existe y no está muriendo mira si se le ha dado
-    2215.  00:7603                      check_colisiones_enemigos:
-    2216.  00:7603                      examina_enemigo1:
-    2217.  00:7603  DD 21 40 C0         		LD			IX, enemigo1
-    2218.  00:7607  DD 7E 00            		LD			 A, (IX)
-    2219.  00:760A  E6 FE               		AND			11111110b				; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
-    2220.  00:760C  CA 41 76            		JP			 Z, examina_enemigo2
-    2221.  00:760F                      		
-    2222.  00:760F  CD 22 77            		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z (realmente devuelve Z)
-    2223.  00:7612  CA 41 76            		JP			 Z, examina_enemigo2	; IF hubo colisión
-    2224.  00:7615  3A 07 C0            			LD			 A, (prota_dano_actual)
-    2225.  00:7618  47                  			LD			 B, A
-    2226.  00:7619  DD 7E 03            			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
-    2227.  00:761C  90                  			SUB			 B
-    2228.  00:761D  D2 26 76            			JP			NC, .restaenergia1			
-    2229.  00:7620  CD 2B 77            				CALL		mata_enemigo
-    2230.  00:7623  C3 41 76            				JP			examina_enemigo2
-    2231.  00:7626                      .restaenergia1:	
-    2232.  00:7626                      			;hay una excepción... hay que matar las manos del conde drácula antes de matar a drácula
-    2233.  00:7626  47                  			LD			 B, A	;copia daño (si es que al final se hace)
-    2234.  00:7627                      			
-    2235.  00:7627                      			;primer filtro que el nivel no sea el último
-    2236.  00:7627  3A 00 C0            			LD			 A, (prota_nivel)
-    2237.  00:762A  FE 06               			CP			 6
-    2238.  00:762C  C2 3D 76            			JP			NZ, .resta_energia_no_excepcion
-    2239.  00:762F                      			
-    2240.  00:762F                      			;nota: aquí debería haber otro filtro (ya que drácula está en la últia fila)
-    2241.  00:762F                      			;pero no es necesario comprobar ya que en todo el nivel 6 excepto drácula sólo hay un enemigo por habitación
-    2242.  00:762F                      			
-    2243.  00:762F                      			;filtro de mano derecha
-    2244.  00:762F  3A 55 C0            			LD			 A, (enemigo2)
-    2245.  00:7632  B7                  			OR			 A
-    2246.  00:7633  C2 41 76            			JP			NZ, examina_enemigo2
-    2247.  00:7636                      			
-    2248.  00:7636                      			;filtro de mano derecha
-    2249.  00:7636  3A 6A C0            			LD			 A, (enemigo3)
-    2250.  00:7639  B7                  			OR			 A
-    2251.  00:763A  C2 41 76            			JP			NZ, examina_enemigo2
-    2252.  00:763D                      			
-    2253.  00:763D                      .resta_energia_no_excepcion:
-    2254.  00:763D                      			;esta es la resta de energía normal pero no se aplica si: drácula y siguen vivas sus manos
-    2255.  00:763D  78                  			LD			 A, B
-    2256.  00:763E  DD 77 03            			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
-    2257.  00:7641                      				
-    2258.  00:7641                      examina_enemigo2:
-    2259.  00:7641  DD 21 55 C0         		LD			IX, enemigo2
-    2260.  00:7645  DD 7E 00            		LD			 A, (IX)
-    2261.  00:7648  E6 FE               		AND			11111110b				; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
-    2262.  00:764A  CA 67 76            		JP			 Z, examina_enemigo3
-    2263.  00:764D                      		
-    2264.  00:764D  CD 22 77            		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z (realmente devuelve Z)
-    2265.  00:7650  CA 67 76            		JP			 Z, examina_enemigo3	; IF hubo colisión
-    2266.  00:7653  3A 07 C0            			LD			 A, (prota_dano_actual)
-    2267.  00:7656  47                  			LD			 B, A
-    2268.  00:7657  DD 7E 03            			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
-    2269.  00:765A  90                  			SUB			 B
-    2270.  00:765B  D2 64 76            			JP			NC, .asignaenergia2
-    2271.  00:765E  CD 2B 77            				CALL		mata_enemigo
-    2272.  00:7661  C3 67 76            				JP			examina_enemigo3
-    2273.  00:7664                      .asignaenergia2:
-    2274.  00:7664  DD 77 03            			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se asigna la energía tras la resta
-    2275.  00:7667                      			
-    2276.  00:7667                      examina_enemigo3:		
-    2277.  00:7667  DD 21 6A C0         		LD			IX, enemigo3
-    2278.  00:766B  DD 7E 00            		LD			 A, (IX)
-    2279.  00:766E  E6 FE               		AND			11111110b				; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
-    2280.  00:7670  CA 8D 76            		JP			 Z, examina_enemigo4
-    2281.  00:7673                      		
-    2282.  00:7673  CD 22 77            		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z (realmente devuelve Z)
-    2283.  00:7676  CA 8D 76            		JP			 Z, examina_enemigo4	; IF hubo colisión
-    2284.  00:7679  3A 07 C0            			LD			 A, (prota_dano_actual)
-    2285.  00:767C  47                  			LD			 B, A
-    2286.  00:767D  DD 7E 03            			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
-    2287.  00:7680  90                  			SUB			 B
-    2288.  00:7681  D2 8A 76            			JP			NC, .asignaenergia3
-    2289.  00:7684  CD 2B 77            				CALL		mata_enemigo
-    2290.  00:7687  C3 8D 76            				JP			examina_enemigo4
-    2291.  00:768A                      .asignaenergia3:	
-    2292.  00:768A  DD 77 03            			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se asigna la energía tras la resta
-    2293.  00:768D                      		
-    2294.  00:768D                      examina_enemigo4:	
-    2295.  00:768D  DD 21 7F C0         		LD			IX, enemigo4
-    2296.  00:7691  DD 7E 00            		LD			 A, (IX)
-    2297.  00:7694  E6 FE               		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
-    2298.  00:7696  CA B3 76            		JP			 Z, examina_enemigo5
-    2299.  00:7699                      		
-    2300.  00:7699  CD 22 77            		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z (realmente devuelve Z)
-    2301.  00:769C  CA B3 76            		JP			 Z, examina_enemigo5	; IF hubo colisión
-    2302.  00:769F  3A 07 C0            			LD			 A, (prota_dano_actual)
-    2303.  00:76A2  47                  			LD			 B, A
-    2304.  00:76A3  DD 7E 03            			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
-    2305.  00:76A6  90                  			SUB			 B
-    2306.  00:76A7  D2 B0 76            			JP			NC, .asignaenergia4
-    2307.  00:76AA  CD 2B 77            				CALL		mata_enemigo
-    2308.  00:76AD  C3 B3 76            				JP			examina_enemigo5
-    2309.  00:76B0                      .asignaenergia4:
-    2310.  00:76B0  DD 77 03            			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se asigna la energía tras la resta
-    2311.  00:76B3                      		
-    2312.  00:76B3                      examina_enemigo5:	
-    2313.  00:76B3  DD 21 94 C0         		LD			IX, enemigo5
-    2314.  00:76B7  DD 7E 00            		LD			 A, (IX)
-    2315.  00:76BA  E6 FE               		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
-    2316.  00:76BC  CA D9 76            		JP			 Z, examina_enemigo6
-    2317.  00:76BF                      		
-    2318.  00:76BF  CD 22 77            		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z (realmente devuelve Z)
-    2319.  00:76C2  CA D9 76            		JP			 Z, examina_enemigo6	; IF hubo colisión
-    2320.  00:76C5  3A 07 C0            			LD			 A, (prota_dano_actual)
-    2321.  00:76C8  47                  			LD			 B, A
-    2322.  00:76C9  DD 7E 03            			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
-    2323.  00:76CC  90                  			SUB			 B
-    2324.  00:76CD  D2 D6 76            			JP			NC, .asignaenergia5
-    2325.  00:76D0  CD 2B 77            				CALL		mata_enemigo
-    2326.  00:76D3  C3 D9 76            				JP			examina_enemigo6
-    2327.  00:76D6                      .asignaenergia5:
-    2328.  00:76D6  DD 77 03            			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se asigna la energía tras la resta
-    2329.  00:76D9                      			
-    2330.  00:76D9                      examina_enemigo6:			
-    2331.  00:76D9  DD 21 A9 C0         		LD			IX, enemigo6
-    2332.  00:76DD  DD 7E 00            		LD			 A, (IX)
-    2333.  00:76E0  E6 FE               		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
-    2334.  00:76E2  CA FF 76            		JP			 Z, examina_enemigo7
-    2335.  00:76E5                      		
-    2336.  00:76E5  CD 22 77            		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z (realmente devuelve Z)
-    2337.  00:76E8  CA FF 76            		JP			 Z, examina_enemigo7	; IF hubo colisión
-    2338.  00:76EB  3A 07 C0            			LD			 A, (prota_dano_actual)
-    2339.  00:76EE  47                  			LD			 B, A
-    2340.  00:76EF  DD 7E 03            			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
-    2341.  00:76F2  90                  			SUB			 B
-    2342.  00:76F3  D2 FC 76            			JP			NC, .asignaenergia6
-    2343.  00:76F6  CD 2B 77            				CALL		mata_enemigo
-    2344.  00:76F9  C3 FF 76            				JP			examina_enemigo7
-    2345.  00:76FC                      .asignaenergia6:
-    2346.  00:76FC  DD 77 03            			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se asigna la energía tras la resta
-    2347.  00:76FF                      
-    2348.  00:76FF                      examina_enemigo7:	
-    2349.  00:76FF  DD 21 BE C0         		LD			IX, enemigo7
-    2350.  00:7703  DD 7E 00            		LD			 A, (IX)
-    2351.  00:7706  E6 FE               		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
-    2352.  00:7708  C8                  		RET			 Z
-    2353.  00:7709                      		
-    2354.  00:7709  CD 22 77            		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z (realmente devuelve Z)
-    2355.  00:770C  CA FF 76            		JP			 Z, examina_enemigo7	; IF hubo colisión
-    2356.  00:770F  3A 07 C0            			LD			 A, (prota_dano_actual)
-    2357.  00:7712  47                  			LD			 B, A
-    2358.  00:7713  DD 7E 03            			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
-    2359.  00:7716  90                  			SUB			 B
-    2360.  00:7717  D2 1E 77            			JP			NC, .asignaenergia7
-    2361.  00:771A  CD 2B 77            				CALL		mata_enemigo
-    2362.  00:771D  C9                  				RET
-    2363.  00:771E                      .asignaenergia7:
-    2364.  00:771E  DD 77 03            			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se asigna la energía tras la resta
-    2365.  00:7721                      fin_check_colisiones_enemigos:
-    2366.  00:7721  C9                  		RET
-    2367.  00:7722                      
-    2368.  00:7722                      ;;=====================================================
-    2369.  00:7722                      ;;CHECK_COLISION_ENEMIGO
-    2370.  00:7722                      ;;=====================================================	
-    2371.  00:7722                      ; función:  llama a la función personalizada de verificación de colisión según el tipo de enemigo
-    2372.  00:7722                      ;			que devuelve A y lo devuelvo para que lo que devuelva esta función sea Z
-    2373.  00:7722                      check_colision_enemigo:
-    2374.  00:7722  DD 6E 13            		LD			 L, (IX + ESTRUCTURA_ENEMIGO.ptr_colision)
-    2375.  00:7725  DD 66 14            		LD			 H, (IX + ESTRUCTURA_ENEMIGO.ptr_colision + 1)
-    2376.  00:7728  E9                  		JP		    (HL)
-    2377.  00:7729                      		
-    2378.  00:7729  B7                  		OR 			A	
-    2379.  00:772A                      fin_check_colision_enemigo:
-    2380.  00:772A  C9                  		RET
+    2210.  00:7603                      ;;=====================================================
+    2211.  00:7603                      ;;CHECK_COLISIONES_ENEMIGOS
+    2212.  00:7603                      ;;=====================================================	
+    2213.  00:7603                      ; función: 	revisa enemigo por enemigo y si existe y no está muriendo mira si se le ha dado
+    2214.  00:7603                      check_colisiones_enemigos:
+    2215.  00:7603                      examina_enemigo1:
+    2216.  00:7603  DD 21 40 C0         		LD			IX, enemigo1
+    2217.  00:7607  DD 7E 00            		LD			 A, (IX)
+    2218.  00:760A  E6 FE               		AND			11111110b				; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
+    2219.  00:760C  CA 41 76            		JP			 Z, examina_enemigo2
+    2220.  00:760F                      		
+    2221.  00:760F  CD 22 77            		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z (realmente devuelve Z)
+    2222.  00:7612  CA 41 76            		JP			 Z, examina_enemigo2	; IF hubo colisión
+    2223.  00:7615  3A 07 C0            			LD			 A, (prota_dano_actual)
+    2224.  00:7618  47                  			LD			 B, A
+    2225.  00:7619  DD 7E 03            			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+    2226.  00:761C  90                  			SUB			 B
+    2227.  00:761D  D2 26 76            			JP			NC, .restaenergia1			
+    2228.  00:7620  CD 2B 77            				CALL		mata_enemigo
+    2229.  00:7623  C3 41 76            				JP			examina_enemigo2
+    2230.  00:7626                      .restaenergia1:	
+    2231.  00:7626                      			;hay una excepción... hay que matar las manos del conde drácula antes de matar a drácula
+    2232.  00:7626  47                  			LD			 B, A	;copia daño (si es que al final se hace)
+    2233.  00:7627                      			
+    2234.  00:7627                      			;primer filtro que el nivel no sea el último
+    2235.  00:7627  3A 00 C0            			LD			 A, (prota_nivel)
+    2236.  00:762A  FE 06               			CP			 6
+    2237.  00:762C  C2 3D 76            			JP			NZ, .resta_energia_no_excepcion
+    2238.  00:762F                      			
+    2239.  00:762F                      			;nota: aquí debería haber otro filtro (ya que drácula está en la últia fila)
+    2240.  00:762F                      			;pero no es necesario comprobar ya que en todo el nivel 6 excepto drácula sólo hay un enemigo por habitación
+    2241.  00:762F                      			
+    2242.  00:762F                      			;filtro de mano derecha
+    2243.  00:762F  3A 55 C0            			LD			 A, (enemigo2)
+    2244.  00:7632  B7                  			OR			 A
+    2245.  00:7633  C2 41 76            			JP			NZ, examina_enemigo2
+    2246.  00:7636                      			
+    2247.  00:7636                      			;filtro de mano derecha
+    2248.  00:7636  3A 6A C0            			LD			 A, (enemigo3)
+    2249.  00:7639  B7                  			OR			 A
+    2250.  00:763A  C2 41 76            			JP			NZ, examina_enemigo2
+    2251.  00:763D                      			
+    2252.  00:763D                      .resta_energia_no_excepcion:
+    2253.  00:763D                      			;esta es la resta de energía normal pero no se aplica si: drácula y siguen vivas sus manos
+    2254.  00:763D  78                  			LD			 A, B
+    2255.  00:763E  DD 77 03            			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
+    2256.  00:7641                      				
+    2257.  00:7641                      examina_enemigo2:
+    2258.  00:7641  DD 21 55 C0         		LD			IX, enemigo2
+    2259.  00:7645  DD 7E 00            		LD			 A, (IX)
+    2260.  00:7648  E6 FE               		AND			11111110b				; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
+    2261.  00:764A  CA 67 76            		JP			 Z, examina_enemigo3
+    2262.  00:764D                      		
+    2263.  00:764D  CD 22 77            		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z (realmente devuelve Z)
+    2264.  00:7650  CA 67 76            		JP			 Z, examina_enemigo3	; IF hubo colisión
+    2265.  00:7653  3A 07 C0            			LD			 A, (prota_dano_actual)
+    2266.  00:7656  47                  			LD			 B, A
+    2267.  00:7657  DD 7E 03            			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+    2268.  00:765A  90                  			SUB			 B
+    2269.  00:765B  D2 64 76            			JP			NC, .asignaenergia2
+    2270.  00:765E  CD 2B 77            				CALL		mata_enemigo
+    2271.  00:7661  C3 67 76            				JP			examina_enemigo3
+    2272.  00:7664                      .asignaenergia2:
+    2273.  00:7664  DD 77 03            			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se asigna la energía tras la resta
+    2274.  00:7667                      			
+    2275.  00:7667                      examina_enemigo3:		
+    2276.  00:7667  DD 21 6A C0         		LD			IX, enemigo3
+    2277.  00:766B  DD 7E 00            		LD			 A, (IX)
+    2278.  00:766E  E6 FE               		AND			11111110b				; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
+    2279.  00:7670  CA 8D 76            		JP			 Z, examina_enemigo4
+    2280.  00:7673                      		
+    2281.  00:7673  CD 22 77            		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z (realmente devuelve Z)
+    2282.  00:7676  CA 8D 76            		JP			 Z, examina_enemigo4	; IF hubo colisión
+    2283.  00:7679  3A 07 C0            			LD			 A, (prota_dano_actual)
+    2284.  00:767C  47                  			LD			 B, A
+    2285.  00:767D  DD 7E 03            			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+    2286.  00:7680  90                  			SUB			 B
+    2287.  00:7681  D2 8A 76            			JP			NC, .asignaenergia3
+    2288.  00:7684  CD 2B 77            				CALL		mata_enemigo
+    2289.  00:7687  C3 8D 76            				JP			examina_enemigo4
+    2290.  00:768A                      .asignaenergia3:	
+    2291.  00:768A  DD 77 03            			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se asigna la energía tras la resta
+    2292.  00:768D                      		
+    2293.  00:768D                      examina_enemigo4:	
+    2294.  00:768D  DD 21 7F C0         		LD			IX, enemigo4
+    2295.  00:7691  DD 7E 00            		LD			 A, (IX)
+    2296.  00:7694  E6 FE               		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
+    2297.  00:7696  CA B3 76            		JP			 Z, examina_enemigo5
+    2298.  00:7699                      		
+    2299.  00:7699  CD 22 77            		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z (realmente devuelve Z)
+    2300.  00:769C  CA B3 76            		JP			 Z, examina_enemigo5	; IF hubo colisión
+    2301.  00:769F  3A 07 C0            			LD			 A, (prota_dano_actual)
+    2302.  00:76A2  47                  			LD			 B, A
+    2303.  00:76A3  DD 7E 03            			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+    2304.  00:76A6  90                  			SUB			 B
+    2305.  00:76A7  D2 B0 76            			JP			NC, .asignaenergia4
+    2306.  00:76AA  CD 2B 77            				CALL		mata_enemigo
+    2307.  00:76AD  C3 B3 76            				JP			examina_enemigo5
+    2308.  00:76B0                      .asignaenergia4:
+    2309.  00:76B0  DD 77 03            			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se asigna la energía tras la resta
+    2310.  00:76B3                      		
+    2311.  00:76B3                      examina_enemigo5:	
+    2312.  00:76B3  DD 21 94 C0         		LD			IX, enemigo5
+    2313.  00:76B7  DD 7E 00            		LD			 A, (IX)
+    2314.  00:76BA  E6 FE               		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
+    2315.  00:76BC  CA D9 76            		JP			 Z, examina_enemigo6
+    2316.  00:76BF                      		
+    2317.  00:76BF  CD 22 77            		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z (realmente devuelve Z)
+    2318.  00:76C2  CA D9 76            		JP			 Z, examina_enemigo6	; IF hubo colisión
+    2319.  00:76C5  3A 07 C0            			LD			 A, (prota_dano_actual)
+    2320.  00:76C8  47                  			LD			 B, A
+    2321.  00:76C9  DD 7E 03            			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+    2322.  00:76CC  90                  			SUB			 B
+    2323.  00:76CD  D2 D6 76            			JP			NC, .asignaenergia5
+    2324.  00:76D0  CD 2B 77            				CALL		mata_enemigo
+    2325.  00:76D3  C3 D9 76            				JP			examina_enemigo6
+    2326.  00:76D6                      .asignaenergia5:
+    2327.  00:76D6  DD 77 03            			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se asigna la energía tras la resta
+    2328.  00:76D9                      			
+    2329.  00:76D9                      examina_enemigo6:			
+    2330.  00:76D9  DD 21 A9 C0         		LD			IX, enemigo6
+    2331.  00:76DD  DD 7E 00            		LD			 A, (IX)
+    2332.  00:76E0  E6 FE               		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
+    2333.  00:76E2  CA FF 76            		JP			 Z, examina_enemigo7
+    2334.  00:76E5                      		
+    2335.  00:76E5  CD 22 77            		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z (realmente devuelve Z)
+    2336.  00:76E8  CA FF 76            		JP			 Z, examina_enemigo7	; IF hubo colisión
+    2337.  00:76EB  3A 07 C0            			LD			 A, (prota_dano_actual)
+    2338.  00:76EE  47                  			LD			 B, A
+    2339.  00:76EF  DD 7E 03            			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+    2340.  00:76F2  90                  			SUB			 B
+    2341.  00:76F3  D2 FC 76            			JP			NC, .asignaenergia6
+    2342.  00:76F6  CD 2B 77            				CALL		mata_enemigo
+    2343.  00:76F9  C3 FF 76            				JP			examina_enemigo7
+    2344.  00:76FC                      .asignaenergia6:
+    2345.  00:76FC  DD 77 03            			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se asigna la energía tras la resta
+    2346.  00:76FF                      
+    2347.  00:76FF                      examina_enemigo7:	
+    2348.  00:76FF  DD 21 BE C0         		LD			IX, enemigo7
+    2349.  00:7703  DD 7E 00            		LD			 A, (IX)
+    2350.  00:7706  E6 FE               		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
+    2351.  00:7708  C8                  		RET			 Z
+    2352.  00:7709                      		
+    2353.  00:7709  CD 22 77            		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z (realmente devuelve Z)
+    2354.  00:770C  CA FF 76            		JP			 Z, examina_enemigo7	; IF hubo colisión
+    2355.  00:770F  3A 07 C0            			LD			 A, (prota_dano_actual)
+    2356.  00:7712  47                  			LD			 B, A
+    2357.  00:7713  DD 7E 03            			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+    2358.  00:7716  90                  			SUB			 B
+    2359.  00:7717  D2 1E 77            			JP			NC, .asignaenergia7
+    2360.  00:771A  CD 2B 77            				CALL		mata_enemigo
+    2361.  00:771D  C9                  				RET
+    2362.  00:771E                      .asignaenergia7:
+    2363.  00:771E  DD 77 03            			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se asigna la energía tras la resta
+    2364.  00:7721                      fin_check_colisiones_enemigos:
+    2365.  00:7721  C9                  		RET
+    2366.  00:7722                      
+    2367.  00:7722                      ;;=====================================================
+    2368.  00:7722                      ;;CHECK_COLISION_ENEMIGO
+    2369.  00:7722                      ;;=====================================================	
+    2370.  00:7722                      ; función:  llama a la función personalizada de verificación de colisión según el tipo de enemigo
+    2371.  00:7722                      ;			que devuelve A y lo devuelvo para que lo que devuelva esta función sea Z
+    2372.  00:7722                      check_colision_enemigo:
+    2373.  00:7722  DD 6E 13            		LD			 L, (IX + ESTRUCTURA_ENEMIGO.ptr_colision)
+    2374.  00:7725  DD 66 14            		LD			 H, (IX + ESTRUCTURA_ENEMIGO.ptr_colision + 1)
+    2375.  00:7728  E9                  		JP		    (HL)
+    2376.  00:7729                      		
+    2377.  00:7729  B7                  		OR 			A	
+    2378.  00:772A                      fin_check_colision_enemigo:
+    2379.  00:772A  C9                  		RET
+    2380.  00:772B                      
     2381.  00:772B                      
-    2382.  00:772B                      
-    2383.  00:772B                      ;;=====================================================
-    2384.  00:772B                      ;;MATA_ENEMIGO
-    2385.  00:772B                      ;;=====================================================	
-    2386.  00:772B                      ; función:  modifica la variable para que el tipo y los sprites sean de enemigo muerto
-    2387.  00:772B                      ;			también sustituye la subrutina de acción por la de muerte
-    2388.  00:772B                      ;			usa TIEMPO_ESPERA_VISCERA/escena como contador hacia atrás para que desaparezcan las visceras del enemigo
-    2389.  00:772B                      mata_enemigo:
-    2390.  00:772B                      		;examino si se mató al dracula que activaría el final de juego (finales: muerto, derrumbe de castillo o final bueno)
-    2391.  00:772B  DD 7E 00            		LD			 A, (IX)
-    2392.  00:772E  FE 16               		CP			TIPODRACULA
-    2393.  00:7730  CA 7B 77            		JP			 Z, .accion_solo_si_dracula
-    2394.  00:7733                      		
-    2395.  00:7733  DD 7E 00            		LD			 A, (IX);guardo el tipo que me hará falta más tarde
-    2396.  00:7736  DD 36 00 01         		LD			(IX), 1													;se pone tipo a enemigo muerto
-    2397.  00:773A  DD 36 01 64         		LD			(IX + ESTRUCTURA_ENEMIGO.escena), TIEMPO_ESPERA_VISCERA	;contador para que desaparezcan las vísceras del enemigo
-    2398.  00:773E  DD 36 0E 10         		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), SPRI_ENEM_MUERTE1A	;se setean los sprites de las visceras
-    2399.  00:7742                      		
-    2400.  00:7742                      		;esto es necesario para enemigos de más de un sprite
-    2401.  00:7742  DD 36 0F 14         		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), SPRI_BLANCO	;se setean los sprites de las visceras
-    2402.  00:7746  DD 36 10 14         		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_c), SPRI_BLANCO	;se setean los sprites de las visceras
-    2403.  00:774A  DD 36 11 14         		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_d), SPRI_BLANCO	;se setean los sprites de las visceras
-    2404.  00:774E                      
-    2405.  00:774E                      		;sustituyo la función de mover enemigo
-    2406.  00:774E  21 B7 55            		LD			HL, spritesxenemigo
-    2407.  00:7751  CD E7 43            		CALL		suma_A_HL			;aquí es donde hace falta el tipo que se le suma al puntero hl para obtener del array el nº de sprites => función a asignar
-    2408.  00:7754                      		;comienzo con los if
-    2409.  00:7754  7E                  		LD			 A, (HL)
-    2410.  00:7755  B7                  		OR			 A
-    2411.  00:7756  CA 64 77            		JP			 Z, .enemigomuerto2
-    2412.  00:7759  E6 01               		AND			00000001b
-    2413.  00:775B  C2 6A 77            		JP			NZ, .enemigomuerto1
-    2414.  00:775E                      .enemigomuerto4: ;(a=2)
-    2415.  00:775E  21 C6 77            		LD			HL, accion_enemigo_muerto4
-    2416.  00:7761  C3 6D 77            		JP			.fin_if_accion_enemigo_muerto
-    2417.  00:7764                      .enemigomuerto2:		
-    2418.  00:7764  21 9C 77            		LD			HL, accion_enemigo_muerto2
-    2419.  00:7767  C3 6D 77            		JP			.fin_if_accion_enemigo_muerto
-    2420.  00:776A                      .enemigomuerto1:
-    2421.  00:776A  21 7E 77            		LD			HL, accion_enemigo_muerto1
-    2422.  00:776D                      .fin_if_accion_enemigo_muerto:
-    2423.  00:776D  DD 75 0C            		LD			(IX + ESTRUCTURA_ENEMIGO.ptr_mover), L
-    2424.  00:7770  DD 74 0D            		LD			(IX + ESTRUCTURA_ENEMIGO.ptr_mover + 1), H
-    2425.  00:7773                      		
-    2426.  00:7773                      		;sonido muerte enemigo
-    2427.  00:7773  3E 02               		LD			 A, 2
-    2428.  00:7775  0E 01               		LD			 C, 1
-    2429.  00:7777  CD 8A 7E            		CALL		ayFX_INIT
-    2430.  00:777A                      		
-    2431.  00:777A  C9                  		RET
-    2432.  00:777B                      		
-    2433.  00:777B                      .accion_solo_si_dracula:
-    2434.  00:777B  C3 54 42            		JP		accion_mata_dracula
-    2435.  00:777E                      fin_mata_enemigo:
-    2436.  00:777E                      		
-    2437.  00:777E                      
-    2438.  00:777E                      accion_enemigo_muerto1:
-    2439.  00:777E  DD 7E 01            		LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
-    2440.  00:7781  B7                  		OR			 A
-    2441.  00:7782  CA 91 77            		JP			 Z, .desaparece_enemigo
-    2442.  00:7785                      			;pone sprite de viscera para mostrar
-    2443.  00:7785  FD 36 02 10         			LD			(IY + 2), 	SPRI_ENEM_MUERTE1A
-    2444.  00:7789                      			;colorea viscera
-    2445.  00:7789  FD 36 03 08         			LD			(IY + 3), 	COLROJO
-    2446.  00:778D                      			;decreento contador para que desaparezca con el tiempo las visceras
-    2447.  00:778D  DD 35 01            			DEC			(IX + ESTRUCTURA_ENEMIGO.escena)
-    2448.  00:7790  C9                  		RET
-    2449.  00:7791                      		
-    2450.  00:7791                      .desaparece_enemigo:
-    2451.  00:7791                      			;situo las visceras fuera de pantalla
-    2452.  00:7791  FD 36 00 D1         			LD			(IY), 	 	BORRASPRITE
-    2453.  00:7795                      			
-    2454.  00:7795                      .elimino_enemigo:
-    2455.  00:7795                      			;marco enemigo como muerto para saltarlo incluso al examinar
-    2456.  00:7795  DD 36 00 00         			LD			(IX), 0
-    2457.  00:7799                      			
-    2458.  00:7799  C3 0D 78            			JP			decrementa_contador_enemigos
-    2459.  00:779C                      fin_accion_enemigo_muerto1:
-    2460.  00:779C                      
-    2461.  00:779C                      accion_enemigo_muerto2:
-    2462.  00:779C  DD 7E 01            		LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
-    2463.  00:779F  B7                  		OR			 A
-    2464.  00:77A0  CA B7 77            		JP			 Z, .desaparece_enemigo
-    2465.  00:77A3                      			;pone sprite de viscera para mostrar
-    2466.  00:77A3  FD 36 02 10         			LD			(IY + 2), 	SPRI_ENEM_MUERTE1A
-    2467.  00:77A7  FD 36 06 10         			LD			(IY + 6), 	SPRI_ENEM_MUERTE1A
-    2468.  00:77AB                      			;colorea viscera
-    2469.  00:77AB  FD 36 03 08         			LD			(IY + 3), 	COLROJO
-    2470.  00:77AF  FD 36 07 08         			LD			(IY + 7), 	COLROJO
-    2471.  00:77B3                      			;decreento contador para que desaparezca con el tiempo las visceras
-    2472.  00:77B3  DD 35 01            			DEC			(IX + ESTRUCTURA_ENEMIGO.escena)
-    2473.  00:77B6  C9                  		RET
-    2474.  00:77B7                      		
-    2475.  00:77B7                      .desaparece_enemigo:
-    2476.  00:77B7                      			;situo las visceras fuera de pantalla
-    2477.  00:77B7  FD 36 00 D1         			LD			(IY), 	 	BORRASPRITE
-    2478.  00:77BB  FD 36 04 D1         			LD			(IY + 4),  	BORRASPRITE
-    2479.  00:77BF                      			
-    2480.  00:77BF                      .elimino_enemigo:
-    2481.  00:77BF                      			;marco enemigo como muerto para saltarlo incluso al examinar
-    2482.  00:77BF  DD 36 00 00         			LD			(IX), 0
-    2483.  00:77C3                      			
-    2484.  00:77C3  C3 0D 78            			JP			decrementa_contador_enemigos
-    2485.  00:77C6                      fin_accion_enemigo_muerto2:
-    2486.  00:77C6                      
-    2487.  00:77C6                      accion_enemigo_muerto4:
-    2488.  00:77C6  DD 7E 01            		LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
-    2489.  00:77C9  B7                  		OR			 A
-    2490.  00:77CA  CA F1 77            		JP			 Z, .desaparece_enemigo
-    2491.  00:77CD                      			;pone sprite de viscera para mostrar
-    2492.  00:77CD  FD 36 02 10         			LD			(IY + 2), 	SPRI_ENEM_MUERTE1A
-    2493.  00:77D1  FD 36 06 10         			LD			(IY + 6), 	SPRI_ENEM_MUERTE1A
-    2494.  00:77D5  FD 36 0A 10         			LD			(IY + 10), 	SPRI_ENEM_MUERTE1A
-    2495.  00:77D9  FD 36 0E 10         			LD			(IY + 14), 	SPRI_ENEM_MUERTE1A
-    2496.  00:77DD                      			;colorea viscera
-    2497.  00:77DD  FD 36 03 08         			LD			(IY + 3), 	COLROJO
-    2498.  00:77E1  FD 36 07 08         			LD			(IY + 7), 	COLROJO
-    2499.  00:77E5  FD 36 0B 08         			LD			(IY + 11), 	COLROJO
-    2500.  00:77E9  FD 36 0F 08         			LD			(IY + 15), 	COLROJO
-    2501.  00:77ED                      			;decreento contador para que desaparezca con el tiempo las visceras
-    2502.  00:77ED  DD 35 01            			DEC			(IX + ESTRUCTURA_ENEMIGO.escena)
-    2503.  00:77F0  C9                  		RET
-    2504.  00:77F1                      		
-    2505.  00:77F1                      .desaparece_enemigo:
-    2506.  00:77F1                      			;situo las visceras fuera de pantalla
-    2507.  00:77F1  FD 36 00 D1         			LD			(IY), 	 	BORRASPRITE
-    2508.  00:77F5  FD 36 04 D1         			LD			(IY + 4),  	BORRASPRITE
-    2509.  00:77F9  FD 36 08 D1         			LD			(IY + 8),  	BORRASPRITE
-    2510.  00:77FD  FD 36 0C D1         			LD			(IY + 12), 	BORRASPRITE
-    2511.  00:7801                      
-    2512.  00:7801                      .elimino_enemigo:
-    2513.  00:7801                      			;apago la música ya que sólo los jefes tienen 4 sprites
-    2514.  00:7801  3E 00               			LD			 A, 0
-    2515.  00:7803  CD 47 78            			CALL		play_musica
+    2382.  00:772B                      ;;=====================================================
+    2383.  00:772B                      ;;MATA_ENEMIGO
+    2384.  00:772B                      ;;=====================================================	
+    2385.  00:772B                      ; función:  modifica la variable para que el tipo y los sprites sean de enemigo muerto
+    2386.  00:772B                      ;			también sustituye la subrutina de acción por la de muerte
+    2387.  00:772B                      ;			usa TIEMPO_ESPERA_VISCERA/escena como contador hacia atrás para que desaparezcan las visceras del enemigo
+    2388.  00:772B                      mata_enemigo:
+    2389.  00:772B                      		;examino si se mató al dracula que activaría el final de juego (finales: muerto, derrumbe de castillo o final bueno)
+    2390.  00:772B  DD 7E 00            		LD			 A, (IX)
+    2391.  00:772E  FE 16               		CP			TIPODRACULA
+    2392.  00:7730  CA 7B 77            		JP			 Z, .accion_solo_si_dracula
+    2393.  00:7733                      		
+    2394.  00:7733  DD 7E 00            		LD			 A, (IX);guardo el tipo que me hará falta más tarde
+    2395.  00:7736  DD 36 00 01         		LD			(IX), 1													;se pone tipo a enemigo muerto
+    2396.  00:773A  DD 36 01 64         		LD			(IX + ESTRUCTURA_ENEMIGO.escena), TIEMPO_ESPERA_VISCERA	;contador para que desaparezcan las vísceras del enemigo
+    2397.  00:773E  DD 36 0E 10         		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), SPRI_ENEM_MUERTE1A	;se setean los sprites de las visceras
+    2398.  00:7742                      		
+    2399.  00:7742                      		;esto es necesario para enemigos de más de un sprite
+    2400.  00:7742  DD 36 0F 14         		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), SPRI_BLANCO	;se setean los sprites de las visceras
+    2401.  00:7746  DD 36 10 14         		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_c), SPRI_BLANCO	;se setean los sprites de las visceras
+    2402.  00:774A  DD 36 11 14         		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_d), SPRI_BLANCO	;se setean los sprites de las visceras
+    2403.  00:774E                      
+    2404.  00:774E                      		;sustituyo la función de mover enemigo
+    2405.  00:774E  21 B7 55            		LD			HL, spritesxenemigo
+    2406.  00:7751  CD E7 43            		CALL		suma_A_HL			;aquí es donde hace falta el tipo que se le suma al puntero hl para obtener del array el nº de sprites => función a asignar
+    2407.  00:7754                      		;comienzo con los if
+    2408.  00:7754  7E                  		LD			 A, (HL)
+    2409.  00:7755  B7                  		OR			 A
+    2410.  00:7756  CA 64 77            		JP			 Z, .enemigomuerto2
+    2411.  00:7759  E6 01               		AND			00000001b
+    2412.  00:775B  C2 6A 77            		JP			NZ, .enemigomuerto1
+    2413.  00:775E                      .enemigomuerto4: ;(a=2)
+    2414.  00:775E  21 C6 77            		LD			HL, accion_enemigo_muerto4
+    2415.  00:7761  C3 6D 77            		JP			.fin_if_accion_enemigo_muerto
+    2416.  00:7764                      .enemigomuerto2:		
+    2417.  00:7764  21 9C 77            		LD			HL, accion_enemigo_muerto2
+    2418.  00:7767  C3 6D 77            		JP			.fin_if_accion_enemigo_muerto
+    2419.  00:776A                      .enemigomuerto1:
+    2420.  00:776A  21 7E 77            		LD			HL, accion_enemigo_muerto1
+    2421.  00:776D                      .fin_if_accion_enemigo_muerto:
+    2422.  00:776D  DD 75 0C            		LD			(IX + ESTRUCTURA_ENEMIGO.ptr_mover), L
+    2423.  00:7770  DD 74 0D            		LD			(IX + ESTRUCTURA_ENEMIGO.ptr_mover + 1), H
+    2424.  00:7773                      		
+    2425.  00:7773                      		;sonido muerte enemigo
+    2426.  00:7773  3E 02               		LD			 A, 2
+    2427.  00:7775  0E 01               		LD			 C, 1
+    2428.  00:7777  CD 8A 7E            		CALL		ayFX_INIT
+    2429.  00:777A                      		
+    2430.  00:777A  C9                  		RET
+    2431.  00:777B                      		
+    2432.  00:777B                      .accion_solo_si_dracula:
+    2433.  00:777B  C3 54 42            		JP		accion_mata_dracula
+    2434.  00:777E                      fin_mata_enemigo:
+    2435.  00:777E                      		
+    2436.  00:777E                      
+    2437.  00:777E                      accion_enemigo_muerto1:
+    2438.  00:777E  DD 7E 01            		LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+    2439.  00:7781  B7                  		OR			 A
+    2440.  00:7782  CA 91 77            		JP			 Z, .desaparece_enemigo
+    2441.  00:7785                      			;pone sprite de viscera para mostrar
+    2442.  00:7785  FD 36 02 10         			LD			(IY + 2), 	SPRI_ENEM_MUERTE1A
+    2443.  00:7789                      			;colorea viscera
+    2444.  00:7789  FD 36 03 08         			LD			(IY + 3), 	COLROJO
+    2445.  00:778D                      			;decreento contador para que desaparezca con el tiempo las visceras
+    2446.  00:778D  DD 35 01            			DEC			(IX + ESTRUCTURA_ENEMIGO.escena)
+    2447.  00:7790  C9                  		RET
+    2448.  00:7791                      		
+    2449.  00:7791                      .desaparece_enemigo:
+    2450.  00:7791                      			;situo las visceras fuera de pantalla
+    2451.  00:7791  FD 36 00 D1         			LD			(IY), 	 	BORRASPRITE
+    2452.  00:7795                      			
+    2453.  00:7795                      .elimino_enemigo:
+    2454.  00:7795                      			;marco enemigo como muerto para saltarlo incluso al examinar
+    2455.  00:7795  DD 36 00 00         			LD			(IX), 0
+    2456.  00:7799                      			
+    2457.  00:7799  C3 0D 78            			JP			decrementa_contador_enemigos
+    2458.  00:779C                      fin_accion_enemigo_muerto1:
+    2459.  00:779C                      
+    2460.  00:779C                      accion_enemigo_muerto2:
+    2461.  00:779C  DD 7E 01            		LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+    2462.  00:779F  B7                  		OR			 A
+    2463.  00:77A0  CA B7 77            		JP			 Z, .desaparece_enemigo
+    2464.  00:77A3                      			;pone sprite de viscera para mostrar
+    2465.  00:77A3  FD 36 02 10         			LD			(IY + 2), 	SPRI_ENEM_MUERTE1A
+    2466.  00:77A7  FD 36 06 10         			LD			(IY + 6), 	SPRI_ENEM_MUERTE1A
+    2467.  00:77AB                      			;colorea viscera
+    2468.  00:77AB  FD 36 03 08         			LD			(IY + 3), 	COLROJO
+    2469.  00:77AF  FD 36 07 08         			LD			(IY + 7), 	COLROJO
+    2470.  00:77B3                      			;decreento contador para que desaparezca con el tiempo las visceras
+    2471.  00:77B3  DD 35 01            			DEC			(IX + ESTRUCTURA_ENEMIGO.escena)
+    2472.  00:77B6  C9                  		RET
+    2473.  00:77B7                      		
+    2474.  00:77B7                      .desaparece_enemigo:
+    2475.  00:77B7                      			;situo las visceras fuera de pantalla
+    2476.  00:77B7  FD 36 00 D1         			LD			(IY), 	 	BORRASPRITE
+    2477.  00:77BB  FD 36 04 D1         			LD			(IY + 4),  	BORRASPRITE
+    2478.  00:77BF                      			
+    2479.  00:77BF                      .elimino_enemigo:
+    2480.  00:77BF                      			;marco enemigo como muerto para saltarlo incluso al examinar
+    2481.  00:77BF  DD 36 00 00         			LD			(IX), 0
+    2482.  00:77C3                      			
+    2483.  00:77C3  C3 0D 78            			JP			decrementa_contador_enemigos
+    2484.  00:77C6                      fin_accion_enemigo_muerto2:
+    2485.  00:77C6                      
+    2486.  00:77C6                      accion_enemigo_muerto4:
+    2487.  00:77C6  DD 7E 01            		LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
+    2488.  00:77C9  B7                  		OR			 A
+    2489.  00:77CA  CA F1 77            		JP			 Z, .desaparece_enemigo
+    2490.  00:77CD                      			;pone sprite de viscera para mostrar
+    2491.  00:77CD  FD 36 02 10         			LD			(IY + 2), 	SPRI_ENEM_MUERTE1A
+    2492.  00:77D1  FD 36 06 10         			LD			(IY + 6), 	SPRI_ENEM_MUERTE1A
+    2493.  00:77D5  FD 36 0A 10         			LD			(IY + 10), 	SPRI_ENEM_MUERTE1A
+    2494.  00:77D9  FD 36 0E 10         			LD			(IY + 14), 	SPRI_ENEM_MUERTE1A
+    2495.  00:77DD                      			;colorea viscera
+    2496.  00:77DD  FD 36 03 08         			LD			(IY + 3), 	COLROJO
+    2497.  00:77E1  FD 36 07 08         			LD			(IY + 7), 	COLROJO
+    2498.  00:77E5  FD 36 0B 08         			LD			(IY + 11), 	COLROJO
+    2499.  00:77E9  FD 36 0F 08         			LD			(IY + 15), 	COLROJO
+    2500.  00:77ED                      			;decreento contador para que desaparezca con el tiempo las visceras
+    2501.  00:77ED  DD 35 01            			DEC			(IX + ESTRUCTURA_ENEMIGO.escena)
+    2502.  00:77F0  C9                  		RET
+    2503.  00:77F1                      		
+    2504.  00:77F1                      .desaparece_enemigo:
+    2505.  00:77F1                      			;situo las visceras fuera de pantalla
+    2506.  00:77F1  FD 36 00 D1         			LD			(IY), 	 	BORRASPRITE
+    2507.  00:77F5  FD 36 04 D1         			LD			(IY + 4),  	BORRASPRITE
+    2508.  00:77F9  FD 36 08 D1         			LD			(IY + 8),  	BORRASPRITE
+    2509.  00:77FD  FD 36 0C D1         			LD			(IY + 12), 	BORRASPRITE
+    2510.  00:7801                      
+    2511.  00:7801                      .elimino_enemigo:
+    2512.  00:7801                      			;apago la música ya que sólo los jefes tienen 4 sprites
+    2513.  00:7801  3E 00               			LD			 A, 0
+    2514.  00:7803  CD 47 78            			CALL		play_musica
+    2515.  00:7806                      			
     2516.  00:7806                      			
     2517.  00:7806                      			
-    2518.  00:7806                      			
-    2519.  00:7806                      
-    2520.  00:7806                      			;marco enemigo como muerto para saltarlo incluso al examinar
-    2521.  00:7806  DD 36 00 00         			LD			(IX), 0
-    2522.  00:780A                      			
-    2523.  00:780A  C3 0D 78            			JP			decrementa_contador_enemigos
-    2524.  00:780D                      fin_accion_enemigo_muerto4:
+    2518.  00:7806                      
+    2519.  00:7806                      			;marco enemigo como muerto para saltarlo incluso al examinar
+    2520.  00:7806  DD 36 00 00         			LD			(IX), 0
+    2521.  00:780A                      			
+    2522.  00:780A  C3 0D 78            			JP			decrementa_contador_enemigos
+    2523.  00:780D                      fin_accion_enemigo_muerto4:
+    2524.  00:780D                      
     2525.  00:780D                      
-    2526.  00:780D                      
-    2527.  00:780D                      ;;=====================================================
-    2528.  00:780D                      ;;DECREMENTA_CONTADOR_ENEMIGOS
-    2529.  00:780D                      ;;=====================================================	
-    2530.  00:780D                      ; función:  decrementa el contador de eemigos muertos. Hasta que no es 0 no se activan las puertas
-    2531.  00:780D                      decrementa_contador_enemigos:
-    2532.  00:780D                      			;decrementa enemigos en pantalla
-    2533.  00:780D  3A 14 C2            			LD			 A, (enemiesleft)
-    2534.  00:7810  3D                  			DEC			 A
-    2535.  00:7811  32 14 C2            			LD			(enemiesleft), A
-    2536.  00:7814  C0                  			RET			NZ
-    2537.  00:7815                      			
-    2538.  00:7815                      			;si no quedan enemigos marco la pantalla como superada
-    2539.  00:7815  C3 B8 41            			JP			terminada_habitacion_recorrida
-    2540.  00:7818                      fin_decrementa_contador_enemigos:
+    2526.  00:780D                      ;;=====================================================
+    2527.  00:780D                      ;;DECREMENTA_CONTADOR_ENEMIGOS
+    2528.  00:780D                      ;;=====================================================	
+    2529.  00:780D                      ; función:  decrementa el contador de eemigos muertos. Hasta que no es 0 no se activan las puertas
+    2530.  00:780D                      decrementa_contador_enemigos:
+    2531.  00:780D                      			;decrementa enemigos en pantalla
+    2532.  00:780D  3A 14 C2            			LD			 A, (enemiesleft)
+    2533.  00:7810  3D                  			DEC			 A
+    2534.  00:7811  32 14 C2            			LD			(enemiesleft), A
+    2535.  00:7814  C0                  			RET			NZ
+    2536.  00:7815                      			
+    2537.  00:7815                      			;si no quedan enemigos marco la pantalla como superada
+    2538.  00:7815  C3 B8 41            			JP			terminada_habitacion_recorrida
+    2539.  00:7818                      fin_decrementa_contador_enemigos:
      195   00:7818                      	
      196   00:7818                      	include "sonido/subr_sonido.asm"
        1.  00:7818                      
@@ -14547,84 +14546,84 @@ Errors: 0
      810.  00:B348                      ;; JEFE BEHOLDER (4 sprites 2 escenas)
      811.  00:B348                      sprite_jefebeholder:
      812.  00:B348                      sprite_jefebeholder_1:
-     813.  00:B348                      	DB  #70,#11,#13,#10,#10,#10,#90,#60
-     813.  00:B348  70 11 13 10 10 10 90 60 
-     814.  00:B350                      	DB  #00,#F0,#88,#88,#F8,#88,#89,#F0
-     814.  00:B350  00 F0 88 88 F8 88 89 F0 
-     815.  00:B358                      	DB  #00,#8F,#89,#89,#89,#89,#89,#8F
-     815.  00:B358  00 8F 89 89 89 89 89 8F 
-     816.  00:B360                      	DB  #8F,#89,#89,#89,#89,#89,#C9,#00
-     816.  00:B360  8F 89 89 89 89 89 C9 00 
+     813.  00:B348                      	DB  #00,#00,#38,#28,#38,#07,#01,#00
+     813.  00:B348  00 00 38 28 38 07 01 00 
+     814.  00:B350                      	DB  #00,#1C,#14,#1D,#02,#01,#03,#07
+     814.  00:B350  00 1C 14 1D 02 01 03 07 
+     815.  00:B358                      	DB  #03,#02,#03,#01,#01,#39,#29,#BD
+     815.  00:B358  03 02 03 01 01 39 29 BD 
+     816.  00:B360                      	DB  #85,#C9,#5F,#7F,#FF,#FF,#F3,#F0
+     816.  00:B360  85 C9 5F 7F FF FF F3 F0 
      817.  00:B368                      	
      818.  00:B368                      sprite_jefebeholder_2:
-     819.  00:B368                      	DB  #70,#11,#13,#10,#10,#10,#90,#60
-     819.  00:B368  70 11 13 10 10 10 90 60 
-     820.  00:B370                      	DB  #00,#F0,#88,#88,#F8,#88,#89,#F0
-     820.  00:B370  00 F0 88 88 F8 88 89 F0 
-     821.  00:B378                      	DB  #00,#8E,#8B,#89,#89,#89,#89,#8F
-     821.  00:B378  00 8E 8B 89 89 89 89 8F 
-     822.  00:B380                      	DB  #8F,#89,#89,#89,#89,#8B,#CE,#00
-     822.  00:B380  8F 89 89 89 89 8B CE 00 
+     819.  00:B368                      	DB  #18,#BF,#EF,#0F,#0F,#0F,#1F,#27
+     819.  00:B368  18 BF EF 0F 0F 0F 1F 27 
+     820.  00:B370                      	DB  #4F,#1B,#31,#23,#64,#8C,#11,#00
+     820.  00:B370  4F 1B 31 23 64 8C 11 00 
+     821.  00:B378                      	DB  #E2,#E3,#F1,#FE,#FF,#FF,#F2,#D2
+     821.  00:B378  E2 E3 F1 FE FF FF F2 D2 
+     822.  00:B380                      	DB  #90,#80,#EA,#FA,#FF,#FF,#3F,#A7
+     822.  00:B380  90 80 EA FA FF FF 3F A7 
      823.  00:B388                      	
      824.  00:B388                      sprite_jefebeholder_3:
-     825.  00:B388                      	DB  #70,#11,#13,#10,#10,#10,#90,#60
-     825.  00:B388  70 11 13 10 10 10 90 60 
-     826.  00:B390                      	DB  #00,#F0,#88,#88,#F8,#88,#89,#F0
-     826.  00:B390  00 F0 88 88 F8 88 89 F0 
-     827.  00:B398                      	DB  #00,#8F,#89,#89,#88,#88,#88,#88
-     827.  00:B398  00 8F 89 89 88 88 88 88 
-     828.  00:B3A0                      	DB  #88,#88,#88,#88,#89,#89,#CF,#00
-     828.  00:B3A0  88 88 88 88 89 89 CF 00 
+     825.  00:B388                      	DB  #C0,#40,#C0,#80,#80,#9C,#94,#BD
+     825.  00:B388  C0 40 C0 80 80 9C 94 BD 
+     826.  00:B390                      	DB  #A1,#93,#FA,#FE,#FF,#FF,#CF,#0F
+     826.  00:B390  A1 93 FA FE FF FF CF 0F 
+     827.  00:B398                      	DB  #00,#00,#1C,#14,#1C,#E0,#80,#00
+     827.  00:B398  00 00 1C 14 1C E0 80 00 
+     828.  00:B3A0                      	DB  #00,#38,#28,#B8,#40,#80,#C0,#E0
+     828.  00:B3A0  00 38 28 B8 40 80 C0 E0 
      829.  00:B3A8                      	
      830.  00:B3A8                      sprite_jefebeholder_4:
-     831.  00:B3A8                      	DB  #70,#11,#13,#10,#10,#10,#90,#60
-     831.  00:B3A8  70 11 13 10 10 10 90 60 
-     832.  00:B3B0                      	DB  #00,#F0,#88,#88,#F8,#88,#89,#F0
-     832.  00:B3B0  00 F0 88 88 F8 88 89 F0 
-     833.  00:B3B8                      	DB  #00,#8E,#8B,#89,#89,#89,#89,#89
-     833.  00:B3B8  00 8E 8B 89 89 89 89 89 
-     834.  00:B3C0                      	DB  #89,#89,#89,#89,#89,#8B,#CE,#00
-     834.  00:B3C0  89 89 89 89 89 8B CE 00 
+     831.  00:B3A8                      	DB  #47,#C7,#8F,#7F,#FF,#FF,#4F,#4B
+     831.  00:B3A8  47 C7 8F 7F FF FF 4F 4B 
+     832.  00:B3B0                      	DB  #09,#01,#57,#5F,#FF,#FF,#FC,#E5
+     832.  00:B3B0  09 01 57 5F FF FF FC E5 
+     833.  00:B3B8                      	DB  #E7,#FD,#F7,#F0,#F0,#F0,#F8,#E4
+     833.  00:B3B8  E7 FD F7 F0 F0 F0 F8 E4 
+     834.  00:B3C0                      	DB  #F2,#D8,#8C,#C4,#26,#31,#88,#00
+     834.  00:B3C0  F2 D8 8C C4 26 31 88 00 
      835.  00:B3C8                      	
      836.  00:B3C8                      sprite_jefebeholder_5:
-     837.  00:B3C8                      	DB  #00,#F1,#91,#91,#91,#91,#91,#F1
-     837.  00:B3C8  00 F1 91 91 91 91 91 F1 
-     838.  00:B3D0                      	DB  #F1,#91,#91,#91,#91,#91,#93,#00
-     838.  00:B3D0  F1 91 91 91 91 91 93 00 
-     839.  00:B3D8                      	DB  #0E,#88,#C8,#08,#08,#08,#09,#06
-     839.  00:B3D8  0E 88 C8 08 08 08 09 06 
-     840.  00:B3E0                      	DB  #00,#0F,#11,#11,#1F,#11,#91,#0F
-     840.  00:B3E0  00 0F 11 11 1F 11 91 0F 
+     837.  00:B3C8                      	DB  #00,#00,#70,#50,#78,#07,#01,#00
+     837.  00:B3C8  00 00 70 50 78 07 01 00 
+     838.  00:B3D0                      	DB  #1C,#14,#1E,#01,#00,#01,#03,#E7
+     838.  00:B3D0  1C 14 1E 01 00 01 03 E7 
+     839.  00:B3D8                      	DB  #00,#03,#02,#03,#01,#39,#29,#BD
+     839.  00:B3D8  00 03 02 03 01 39 29 BD 
+     840.  00:B3E0                      	DB  #85,#C9,#5F,#7F,#FF,#FF,#0C,#F0
+     840.  00:B3E0  85 C9 5F 7F FF FF 0C F0 
      841.  00:B3E8                      	
      842.  00:B3E8                      sprite_jefebeholder_6:
-     843.  00:B3E8                      	DB  #00,#71,#D1,#91,#91,#91,#91,#F1
-     843.  00:B3E8  00 71 D1 91 91 91 91 F1 
-     844.  00:B3F0                      	DB  #F1,#91,#91,#91,#91,#D1,#73,#00
-     844.  00:B3F0  F1 91 91 91 91 D1 73 00 
-     845.  00:B3F8                      	DB  #0E,#88,#C8,#08,#08,#08,#09,#06
-     845.  00:B3F8  0E 88 C8 08 08 08 09 06 
-     846.  00:B400                      	DB  #00,#0F,#11,#11,#1F,#11,#91,#0F
-     846.  00:B400  00 0F 11 11 1F 11 91 0F 
+     843.  00:B3E8                      	DB  #B7,#EF,#0F,#0F,#0F,#0F,#9F,#67
+     843.  00:B3E8  B7 EF 0F 0F 0F 0F 9F 67 
+     844.  00:B3F0                      	DB  #0F,#1B,#31,#23,#44,#48,#11,#0A
+     844.  00:B3F0  0F 1B 31 23 44 48 11 0A 
+     845.  00:B3F8                      	DB  #E2,#E3,#F1,#FE,#FF,#FF,#F2,#D2
+     845.  00:B3F8  E2 E3 F1 FE FF FF F2 D2 
+     846.  00:B400                      	DB  #90,#80,#EA,#FA,#FF,#FF,#3F,#47
+     846.  00:B400  90 80 EA FA FF FF 3F 47 
      847.  00:B408                      	
      848.  00:B408                      sprite_jefebeholder_7:
-     849.  00:B408                      	DB  #00,#F1,#91,#91,#11,#11,#11,#11
-     849.  00:B408  00 F1 91 91 11 11 11 11 
-     850.  00:B410                      	DB  #11,#11,#11,#11,#91,#91,#F3,#00
-     850.  00:B410  11 11 11 11 91 91 F3 00 
-     851.  00:B418                      	DB  #0E,#88,#C8,#08,#08,#08,#09,#06
-     851.  00:B418  0E 88 C8 08 08 08 09 06 
-     852.  00:B420                      	DB  #00,#0F,#11,#11,#1F,#11,#91,#0F
-     852.  00:B420  00 0F 11 11 1F 11 91 0F 
+     849.  00:B408                      	DB  #00,#C0,#40,#C0,#9C,#94,#9C,#91
+     849.  00:B408  00 C0 40 C0 9C 94 9C 91 
+     850.  00:B410                      	DB  #A1,#93,#FA,#FE,#FF,#FF,#CF,#0F
+     850.  00:B410  A1 93 FA FE FF FF CF 0F 
+     851.  00:B418                      	DB  #00,#00,#00,#1C,#14,#FC,#80,#00
+     851.  00:B418  00 00 00 1C 14 FC 80 00 
+     852.  00:B420                      	DB  #00,#00,#38,#A8,#78,#80,#C0,#E0
+     852.  00:B420  00 00 38 A8 78 80 C0 E0 
      853.  00:B428                      	
      854.  00:B428                      sprite_jefebeholder_8:
-     855.  00:B428                      	DB  #00,#71,#D1,#91,#91,#91,#91,#91
-     855.  00:B428  00 71 D1 91 91 91 91 91 
-     856.  00:B430                      	DB  #91,#91,#91,#91,#91,#D1,#73,#00
-     856.  00:B430  91 91 91 91 91 D1 73 00 
-     857.  00:B438                      	DB  #0E,#88,#C8,#08,#08,#08,#09,#06
-     857.  00:B438  0E 88 C8 08 08 08 09 06 
-     858.  00:B440                      	DB  #00,#0F,#11,#11,#1F,#11,#91,#0F	
-     858.  00:B440  00 0F 11 11 1F 11 91 0F 
+     855.  00:B428                      	DB  #47,#C7,#8F,#7F,#FF,#FF,#4F,#4B
+     855.  00:B428  47 C7 8F 7F FF FF 4F 4B 
+     856.  00:B430                      	DB  #09,#01,#57,#5F,#FF,#FF,#FC,#E5
+     856.  00:B430  09 01 57 5F FF FF FC E5 
+     857.  00:B438                      	DB  #E0,#F7,#FD,#F7,#F0,#F0,#F8,#E4
+     857.  00:B438  E0 F7 FD F7 F0 F0 F8 E4 
+     858.  00:B440                      	DB  #F3,#D8,#88,#C4,#22,#22,#98,#00
+     858.  00:B440  F3 D8 88 C4 22 22 98 00 
      859.  00:B448                      fin_sprite_jefebeholder:
      860.  00:B448                      
      861.  00:B448                      ;; MANOIZQ 2 (2 escenas 1 sprite)
@@ -15519,7 +15518,7 @@ Errors: 0
 00:00000005   MAGIA_DANO
 00:0000005A   MAGIA_ENERGIA
 00:00000013   TIPOJEFEBEHOLDER
-00:00000001   JEFEBEHOLDER_COLOR
+00:00000002   JEFEBEHOLDER_COLOR
 00:000000E0   JEFEBEHOLDER_SPRITE1A
 00:000000E4   JEFEBEHOLDER_SPRITE2A
 00:000000E8   JEFEBEHOLDER_SPRITE3A

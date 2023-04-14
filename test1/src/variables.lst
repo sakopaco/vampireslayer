@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.04.13 - 20:21:37]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.04.14 - 19:23:33]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -591,7 +591,7 @@ Errors: 0
      340.  00:C000                      
      341.  00:C000                      ;;ETIQUETAS/CONSTANTES JEFEBEHOLDER
      342.  00:C000  (00:0013)           TIPOJEFEBEHOLDER		equ		19
-     343.  00:C000  (00:0001)           JEFEBEHOLDER_COLOR		equ		1		;15 - BLANCO
+     343.  00:C000  (00:0002)           JEFEBEHOLDER_COLOR		equ		2		;15 - BLANCO
      344.  00:C000  (00:00E0)           JEFEBEHOLDER_SPRITE1A	equ		224
      345.  00:C000  (00:00E4)           JEFEBEHOLDER_SPRITE2A	equ		228
      346.  00:C000  (00:00E8)           JEFEBEHOLDER_SPRITE3A	equ		232
@@ -1669,7 +1669,7 @@ Errors: 0
 00:00000005 X MAGIA_DANO
 00:0000005A X MAGIA_ENERGIA
 00:00000013 X TIPOJEFEBEHOLDER
-00:00000001 X JEFEBEHOLDER_COLOR
+00:00000002 X JEFEBEHOLDER_COLOR
 00:000000E0 X JEFEBEHOLDER_SPRITE1A
 00:000000E4 X JEFEBEHOLDER_SPRITE2A
 00:000000E8 X JEFEBEHOLDER_SPRITE3A
