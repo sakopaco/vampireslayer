@@ -1351,13 +1351,13 @@ dracula_NO_esta_muerto:
 			LD			(enemiesleft), A
 		
 			LD			DE, enemigo1
-			CALL		anade_enemigo_dracula
+			CALL		anade_enemigo_manod
 		
 			LD			DE, enemigo2
 			CALL		anade_enemigo_manoi
 		
 			LD			DE, enemigo3
-			JP			anade_enemigo_manod
+			JP			anade_enemigo_dracula
 fin_inicializa_enemigos_fase6_nivel6:
 
 
@@ -2228,32 +2228,8 @@ examina_enemigo1:
 				CALL		mata_enemigo
 				JP			examina_enemigo2
 .restaenergia1:	
-			;hay una excepción... hay que matar las manos del conde drácula antes de matar a drácula
-			LD			 B, A	;copia daño (si es que al final se hace)
+			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se asigna la energía tras la resta
 			
-			;primer filtro que el nivel no sea el último
-			LD			 A, (prota_nivel)
-			CP			 6
-			JP			NZ, .resta_energia_no_excepcion
-			
-			;nota: aquí debería haber otro filtro (ya que drácula está en la últia fila)
-			;pero no es necesario comprobar ya que en todo el nivel 6 excepto drácula sólo hay un enemigo por habitación
-			
-			;filtro de mano derecha
-			LD			 A, (enemigo2)
-			OR			 A
-			JP			NZ, examina_enemigo2
-			
-			;filtro de mano derecha
-			LD			 A, (enemigo3)
-			OR			 A
-			JP			NZ, examina_enemigo2
-			
-.resta_energia_no_excepcion:
-			;esta es la resta de energía normal pero no se aplica si: drácula y siguen vivas sus manos
-			LD			 A, B
-			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
-				
 examina_enemigo2:
 		LD			IX, enemigo2
 		LD			 A, (IX)
@@ -2284,12 +2260,39 @@ examina_enemigo3:
 			LD			 B, A
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
 			SUB			 B
-			JP			NC, .asignaenergia3
+			JP			NC, .restaenergia3
 				CALL		mata_enemigo
 				JP			examina_enemigo4
-.asignaenergia3:	
-			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se asigna la energía tras la resta
-		
+.restaenergia3:	
+			;hay una excepción... hay que matar las manos del conde drácula antes de matar a drácula
+			LD			 B, A	;copia daño (si es que al final se hace)
+			
+			;primer filtro que el nivel no sea el último
+			LD			 A, (prota_nivel)
+			CP			 6
+			JP			NZ, .resta_energia_no_excepcion
+			
+			;nota: aquí debería haber otro filtro (ya que drácula está en la últia fila)
+			;pero no es necesario comprobar ya que en todo el nivel 6 excepto drácula sólo hay un enemigo por habitación
+			
+			;filtro de mano derecha
+			LD			 A, (enemigo1)
+			OR			 A
+			JP			NZ, examina_enemigo4
+			
+			;filtro de mano derecha
+			LD			 A, (enemigo2)
+			OR			 A
+			JP			NZ, examina_enemigo4
+			
+.resta_energia_no_excepcion:
+			;esta es la resta de energía normal pero no se aplica si: drácula y siguen vivas sus manos
+			LD			 A, B
+			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
+
+
+
+
 examina_enemigo4:	
 		LD			IX, enemigo4
 		LD			 A, (IX)

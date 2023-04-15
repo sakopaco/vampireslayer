@@ -360,7 +360,9 @@ JEFEBEHOLDER_POCAVIDA	equ		33
 
 ;;ETIQUETAS/CONSTANTES DRACULA
 TIPODRACULA				equ		22
-DRACULA_COLOR  	 		equ		1		; negro
+DRACULA_COLOR1 	 		equ		1		; negro (fondo)
+DRACULA_COLOR2 	 		equ		15		; blanco (parte de arriba)
+DRACULA_COLOR3 	 		equ		6		; rojo oscuro (parte de abajo)
 DRACULA_PASOS			equ		100
 DRACULA_Y				equ		64
 DRACULA_X1				equ		47

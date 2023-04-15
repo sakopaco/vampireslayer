@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.04.14 - 19:23:33]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.04.15 - 13:46:55]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -611,48 +611,50 @@ Errors: 0
      360.  00:C000                      
      361.  00:C000                      ;;ETIQUETAS/CONSTANTES DRACULA
      362.  00:C000  (00:0016)           TIPODRACULA				equ		22
-     363.  00:C000  (00:0001)           DRACULA_COLOR  	 		equ		1		; negro
-     364.  00:C000  (00:0064)           DRACULA_PASOS			equ		100
-     365.  00:C000  (00:0040)           DRACULA_Y				equ		64
-     366.  00:C000  (00:002F)           DRACULA_X1				equ		47
-     367.  00:C000  (00:005F)           DRACULA_X2				equ		95
-     368.  00:C000  (00:008F)           DRACULA_X3				equ		143
-     369.  00:C000  (00:00BF)           DRACULA_X4				equ		191
-     370.  00:C000  (00:00F0)           DRACULA_SPRITE1A		equ		240
-     371.  00:C000  (00:00F4)           DRACULA_SPRITE1B		equ		244
-     372.  00:C000  (00:00F8)           DRACULA_SPRITE2A		equ		248
-     373.  00:C000  (00:00FC)           DRACULA_SPRITE2B		equ		252
-     374.  00:C000  (00:0010)           DRACULA_VELESCENA		equ		00010000b
-     375.  00:C000  (00:000A)           DRACULA_DANO			equ		10
-     376.  00:C000  (00:0064)           DRACULA_ENERGIA			equ		100
-     377.  00:C000  (00:0021)           DRACULA_POCAVIDA		equ		33
-     378.  00:C000                      
-     379.  00:C000                      ;;ETIQUETAS/CONSTANTES MANOIZQIERDA
-     380.  00:C000  (00:0015)           TIPOMANOIZQUIERDA		equ		21
-     381.  00:C000  (00:0001)           MANOI_COLOR   			equ		1		; negro
-     382.  00:C000  (00:00E0)           MANOI_SPRITE1A			equ		224
-     383.  00:C000  (00:00E4)           MANOI_SPRITE1B			equ		228
-     384.  00:C000  (00:0023)           MANOI_PASOS				equ		35
-     385.  00:C000  (00:0040)           MANOI_POSY				equ		64
-     386.  00:C000  (00:002F)           MANOI_POSX				equ		47
-     387.  00:C000  (00:0005)           MANOI_INCREMENTO		equ		5
-     388.  00:C000  (00:0010)           MANOI_VELESCENA			equ		00010000b
-     389.  00:C000  (00:0005)           MANOI_DANO				equ		5
-     390.  00:C000  (00:0064)           MANOI_ENERGIA			equ		100
-     391.  00:C000                      
-     392.  00:C000                      ;;ETIQUETAS/CONSTANTES MANODERECHA
-     393.  00:C000  (00:0014)           TIPOMANODERECHA			equ		20
-     394.  00:C000  (00:0001)           MANOD_COLOR   			equ		1		; negro
-     395.  00:C000  (00:00E8)           MANOD_SPRITE1A			equ		232
-     396.  00:C000  (00:00EC)           MANOD_SPRITE1B			equ		236
-     397.  00:C000  (00:0023)           MANOD_PASOS				equ		35
-     398.  00:C000  (00:0040)           MANOD_POSY				equ		64
-     399.  00:C000  (00:002F)           MANOD_POSX				equ		47
-     400.  00:C000  (00:0005)           MANOD_INCREMENTO		equ		5
-     401.  00:C000  (00:0010)           MANOD_VELESCENA			equ		00010000b
-     402.  00:C000  (00:0005)           MANOD_DANO				equ		5
-     403.  00:C000  (00:0064)           MANOD_ENERGIA			equ		100
-     404.  00:C000                      
+     363.  00:C000  (00:0001)           DRACULA_COLOR1 	 		equ		1		; negro (fondo)
+     364.  00:C000  (00:000F)           DRACULA_COLOR2 	 		equ		15		; blanco (parte de arriba)
+     365.  00:C000  (00:0006)           DRACULA_COLOR3 	 		equ		6		; rojo oscuro (parte de abajo)
+     366.  00:C000  (00:0064)           DRACULA_PASOS			equ		100
+     367.  00:C000  (00:0040)           DRACULA_Y				equ		64
+     368.  00:C000  (00:002F)           DRACULA_X1				equ		47
+     369.  00:C000  (00:005F)           DRACULA_X2				equ		95
+     370.  00:C000  (00:008F)           DRACULA_X3				equ		143
+     371.  00:C000  (00:00BF)           DRACULA_X4				equ		191
+     372.  00:C000  (00:00F0)           DRACULA_SPRITE1A		equ		240
+     373.  00:C000  (00:00F4)           DRACULA_SPRITE1B		equ		244
+     374.  00:C000  (00:00F8)           DRACULA_SPRITE2A		equ		248
+     375.  00:C000  (00:00FC)           DRACULA_SPRITE2B		equ		252
+     376.  00:C000  (00:0010)           DRACULA_VELESCENA		equ		00010000b
+     377.  00:C000  (00:000A)           DRACULA_DANO			equ		10
+     378.  00:C000  (00:0064)           DRACULA_ENERGIA			equ		100
+     379.  00:C000  (00:0021)           DRACULA_POCAVIDA		equ		33
+     380.  00:C000                      
+     381.  00:C000                      ;;ETIQUETAS/CONSTANTES MANOIZQIERDA
+     382.  00:C000  (00:0015)           TIPOMANOIZQUIERDA		equ		21
+     383.  00:C000  (00:0001)           MANOI_COLOR   			equ		1		; negro
+     384.  00:C000  (00:00E0)           MANOI_SPRITE1A			equ		224
+     385.  00:C000  (00:00E4)           MANOI_SPRITE1B			equ		228
+     386.  00:C000  (00:0023)           MANOI_PASOS				equ		35
+     387.  00:C000  (00:0040)           MANOI_POSY				equ		64
+     388.  00:C000  (00:002F)           MANOI_POSX				equ		47
+     389.  00:C000  (00:0005)           MANOI_INCREMENTO		equ		5
+     390.  00:C000  (00:0010)           MANOI_VELESCENA			equ		00010000b
+     391.  00:C000  (00:0005)           MANOI_DANO				equ		5
+     392.  00:C000  (00:0064)           MANOI_ENERGIA			equ		100
+     393.  00:C000                      
+     394.  00:C000                      ;;ETIQUETAS/CONSTANTES MANODERECHA
+     395.  00:C000  (00:0014)           TIPOMANODERECHA			equ		20
+     396.  00:C000  (00:0001)           MANOD_COLOR   			equ		1		; negro
+     397.  00:C000  (00:00E8)           MANOD_SPRITE1A			equ		232
+     398.  00:C000  (00:00EC)           MANOD_SPRITE1B			equ		236
+     399.  00:C000  (00:0023)           MANOD_PASOS				equ		35
+     400.  00:C000  (00:0040)           MANOD_POSY				equ		64
+     401.  00:C000  (00:002F)           MANOD_POSX				equ		47
+     402.  00:C000  (00:0005)           MANOD_INCREMENTO		equ		5
+     403.  00:C000  (00:0010)           MANOD_VELESCENA			equ		00010000b
+     404.  00:C000  (00:0005)           MANOD_DANO				equ		5
+     405.  00:C000  (00:0064)           MANOD_ENERGIA			equ		100
+     406.  00:C000                      
       12   00:C000                      include "constantesyvariables/estructuras.asm"
        1.  00:C000                      ;;=====================================================
        2.  00:C000                      ;;DEFINICIÓN DE ESTRUCTURAS
@@ -1687,7 +1689,9 @@ Errors: 0
 00:00000064 X JEFEBEHOLDER_ENERGIA
 00:00000021 X JEFEBEHOLDER_POCAVIDA
 00:00000016 X TIPODRACULA
-00:00000001 X DRACULA_COLOR
+00:00000001 X DRACULA_COLOR1
+00:0000000F X DRACULA_COLOR2
+00:00000006 X DRACULA_COLOR3
 00:00000064 X DRACULA_PASOS
 00:00000040 X DRACULA_Y
 00:0000002F X DRACULA_X1

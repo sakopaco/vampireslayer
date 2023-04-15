@@ -1,56 +1,159 @@
 		LD			 A, 1
 		CALL		play_musica
 		
-
-
 ;;=====================================================
-;;CHECK_COLISION_ENEMIGO
+;;CHECK_COLISIONES_ENEMIGOS
 ;;=====================================================	
-; función: 	revisa la distancia con enemigo activo para ver si se disparó y se le dió
-; entrada: 	IX con el puntero al enemigo que se examina
-; salida: 	A (0 no hay colisión con enemigo / 1 sí la hay)
-; toca:		HL,BC, DE
-check_colision_enemigo:
-.deteccioncolision_paso1:
-	LD		IY, puntomira	;IY punto de mira / IX puerta
-	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posx)
-	ADD		 8			;8-es fijo, offset del punto de mira ya que se mueve según la esquina superior izquierda y el centro del punto de mira está en el centro del sprite
-	
-	;ya tengo en A la coordenada X del centro del punto de mira					
-	SUB		(IX + ESTRUCTURA_ENEMIGO.posx)	;le resto el punto x del enemigo
-	
-	JP		NC, .deteccioncolision_paso2	;si no es negativo comparo con el radio
+; función: 	revisa enemigo por enemigo y si existe y no está muriendo mira si se le ha dado
+check_colisiones_enemigos:
+examina_enemigo1:
+		LD			IX, enemigo1
+		LD			 A, (IX)
+		AND			11111110b				; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
+		JP			 Z, examina_enemigo2
+		
+		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z (realmente devuelve Z)
+		JP			 Z, examina_enemigo2	; IF hubo colisión
+			LD			 A, (prota_dano_actual)
+			LD			 B, A
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+			SUB			 B
+			JP			NC, .restaenergia1			
+				CALL		mata_enemigo
+				JP			examina_enemigo2
+.restaenergia1:	
+			;hay una excepción... hay que matar las manos del conde drácula antes de matar a drácula
+			LD			 B, A	;copia daño (si es que al final se hace)
+			
+			;primer filtro que el nivel no sea el último
+			LD			 A, (prota_nivel)
+			CP			 6
+			JP			NZ, .resta_energia_no_excepcion
+			
+			;nota: aquí debería haber otro filtro (ya que drácula está en la últia fila)
+			;pero no es necesario comprobar ya que en todo el nivel 6 excepto drácula sólo hay un enemigo por habitación
+			
+			;filtro de mano derecha
+			LD			 A, (enemigo2)
+			OR			 A
+			JP			NZ, examina_enemigo2
+			
+			;filtro de mano derecha
+			LD			 A, (enemigo3)
+			OR			 A
+			JP			NZ, examina_enemigo2
+			
+.resta_energia_no_excepcion:
+			;esta es la resta de energía normal pero no se aplica si: drácula y siguen vivas sus manos
+			LD			 A, B
+			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
+				
+examina_enemigo2:
+		LD			IX, enemigo2
+		LD			 A, (IX)
+		AND			11111110b				; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
+		JP			 Z, examina_enemigo3
+		
+		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z (realmente devuelve Z)
+		JP			 Z, examina_enemigo3	; IF hubo colisión
+			LD			 A, (prota_dano_actual)
+			LD			 B, A
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+			SUB			 B
+			JP			NC, .asignaenergia2
+				CALL		mata_enemigo
+				JP			examina_enemigo3
+.asignaenergia2:
+			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se asigna la energía tras la resta
+			
+examina_enemigo3:		
+		LD			IX, enemigo3
+		LD			 A, (IX)
+		AND			11111110b				; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
+		JP			 Z, examina_enemigo4
+		
+		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z (realmente devuelve Z)
+		JP			 Z, examina_enemigo4	; IF hubo colisión
+			LD			 A, (prota_dano_actual)
+			LD			 B, A
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+			SUB			 B
+			JP			NC, .asignaenergia3
+				CALL		mata_enemigo
+				JP			examina_enemigo4
+.asignaenergia3:	
+			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se asigna la energía tras la resta
+		
+examina_enemigo4:	
+		LD			IX, enemigo4
+		LD			 A, (IX)
+		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
+		JP			 Z, examina_enemigo5
+		
+		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z (realmente devuelve Z)
+		JP			 Z, examina_enemigo5	; IF hubo colisión
+			LD			 A, (prota_dano_actual)
+			LD			 B, A
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+			SUB			 B
+			JP			NC, .asignaenergia4
+				CALL		mata_enemigo
+				JP			examina_enemigo5
+.asignaenergia4:
+			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se asigna la energía tras la resta
+		
+examina_enemigo5:	
+		LD			IX, enemigo5
+		LD			 A, (IX)
+		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
+		JP			 Z, examina_enemigo6
+		
+		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z (realmente devuelve Z)
+		JP			 Z, examina_enemigo6	; IF hubo colisión
+			LD			 A, (prota_dano_actual)
+			LD			 B, A
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+			SUB			 B
+			JP			NC, .asignaenergia5
+				CALL		mata_enemigo
+				JP			examina_enemigo6
+.asignaenergia5:
+			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se asigna la energía tras la resta
+			
+examina_enemigo6:			
+		LD			IX, enemigo6
+		LD			 A, (IX)
+		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
+		JP			 Z, examina_enemigo7
+		
+		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z (realmente devuelve Z)
+		JP			 Z, examina_enemigo7	; IF hubo colisión
+			LD			 A, (prota_dano_actual)
+			LD			 B, A
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+			SUB			 B
+			JP			NC, .asignaenergia6
+				CALL		mata_enemigo
+				JP			examina_enemigo7
+.asignaenergia6:
+			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se asigna la energía tras la resta
 
-	NEG										;si es negativo lo niego (valor absoluto)
-	
-.deteccioncolision_paso2:
-	CP		(IX + ESTRUCTURA_ENEMIGO.radiox)	;comparo con el radio X de la puerta
-	
-	JP		 C, .deteccioncolision_paso3	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
-	
-	XOR		 A								;el resultado es falso y se guarda en A y ya no hay que seguir coprobando
-	RET
-	
-.deteccioncolision_paso3:					;la distancia X es válida, comprobamos la distancia Y
-	LD		 A, (IY + ESTRUCTURA_PUNTOMIRA.posy)
-	ADD		 8								;le sumo el offset del punto de mira (8 es fijo)
-
-	;ya tengo en A la coordenada Y del centro del punto de mira					
-	SUB		(IX + ESTRUCTURA_ENEMIGO.posy)	;le resto el punto y en la puerta
-	
-	JP		NC, .deteccioncolision_paso4	;si no es negativo comparo con el radio
-
-	NEG										;si es negativo lo niego (valor absoluto)
-
-.deteccioncolision_paso4:
-	CP		(IX + ESTRUCTURA_ENEMIGO.radioy)	;comparo con el radio Y de la puerta
-
-	JP		 C, .deteccioncolision_paso5	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
-	
-	XOR		 A								;el resultado es falso y se guarda en A un 0 y al ser la 2º comprobación salimos
-	RET
-
-.deteccioncolision_paso5:
-	LD		 A, SI
-fin_check_colision_enemigo:
-	RET
+examina_enemigo7:	
+		LD			IX, enemigo7
+		LD			 A, (IX)
+		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
+		RET			 Z
+		
+		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z (realmente devuelve Z)
+		JP			 Z, examina_enemigo7	; IF hubo colisión
+			LD			 A, (prota_dano_actual)
+			LD			 B, A
+			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+			SUB			 B
+			JP			NC, .asignaenergia7
+				CALL		mata_enemigo
+				RET
+.asignaenergia7:
+			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se asigna la energía tras la resta
+fin_check_colisiones_enemigos:
+		RET

@@ -63,19 +63,27 @@ fin_actualiza_valores_dracula:
 mover_dracula:
 		CALL		calcula_dracula_incrementoxy
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
-		LD			(IY), A
+		LD			(IY), 		A
+		LD			(IY + 8), 	A
 		ADD			16
-		LD			(IY + 4), A
+		LD			(IY + 4),  	A
+		LD			(IY + 12), 	A
 		
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posx)
-		LD			(IY + 1), A
-		LD			(IY + 5), A
+		LD			(IY + 1),  A
+		LD			(IY + 5),  A
+		LD			(IY + 9),  A
+		LD			(IY + 13), A
 		
-		CALL		calcula_dracula_escena		
+		;CALL		calcula_dracula_escena		;no es necesario
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_a)
 		LD			(IY + 2), A
 		ADD			 4
 		LD			(IY + 6), A
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_c)
+		LD			(IY + 10), A
+		ADD			 4
+		LD			(IY + 14), A
 		
 		;colorea dracula
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
@@ -88,8 +96,10 @@ mover_dracula:
 				LD			(IY + 7),  COLROJO
 				RET
 .nointercambiacolor:
-		LD			(IY + 3), DRACULA_COLOR
-		LD			(IY + 7), DRACULA_COLOR
+		LD			(IY + 3), DRACULA_COLOR1
+		LD			(IY + 7), DRACULA_COLOR1
+		LD			(IY + 11), DRACULA_COLOR2
+		LD			(IY + 15), DRACULA_COLOR3
 fin_mover_dracula:
 		RET
 
@@ -98,30 +108,6 @@ fin_mover_dracula:
 ;;CALCULA_DRACULA_ESCENA
 ;;=====================================================	
 calcula_dracula_escena:
-		LD			 A, (heartbeat_general)
-		AND			DRACULA_VELESCENA
-		RET			 Z   	; IF TENGO QUE CAMBIAR DE ESCENA THEN
-			;reseteo el cambio de escena de dracula
-			XOR			 A
-			LD			(heartbeat_general), A
-			
-			;hace daño
-			LD			 B, (IX + ESTRUCTURA_ENEMIGO.dano)
-			CALL		enemigo_hace_dano
-			
-			; cambio de escena
-			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
-			XOR			00000001b
-			LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
-			
-			JP			 Z, .enemigo1_poner_escena2			; IF ESCENA 1 THEN
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), DRACULA_SPRITE1A
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), DRACULA_SPRITE1B
-				RET
-.enemigo1_poner_escena2:									; ELSE
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), DRACULA_SPRITE2A
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_b), DRACULA_SPRITE2B
-				RET
 fin_calcula_dracula_escena:
 
 
