@@ -861,31 +861,32 @@ fin_sprite_jefebeholder:
 ;; MANOIZQ 2 (2 escenas 1 sprite)
 sprite_manoizquierda:
 sprite_manoizquierda_1:
-	DB  #00,#D9,#FB,#A8,#88,#88,#88,#88
-	DB  #88,#88,#A8,#A8,#A8,#A8,#AD,#00
-	DB  #00,#8F,#89,#89,#89,#89,#89,#8F
-	DB  #8F,#89,#89,#89,#89,#89,#C9,#00
+	DB  #81,#41,#30,#1C,#0E,#07,#03,#03
+	DB  #FF,#7F,#03,#1F,#3D,#31,#20,#20
+	DB  #00,#C1,#E1,#71,#71,#33,#3B,#FB
+	DB  #FB,#DF,#BF,#7F,#FF,#FF,#FE,#7C
 	
 sprite_manoizquierda_2:
-	DB  #00,#D9,#FB,#A8,#88,#88,#88,#88
-	DB  #88,#88,#A8,#A8,#A8,#A8,#AD,#00
-	DB  #00,#8E,#8B,#89,#89,#89,#89,#8F
-	DB  #8F,#89,#89,#89,#89,#8B,#CE,#00
+	DB  #00,#00,#00,#00,#00,#07,#07,#07
+	DB  #1F,#3F,#3B,#1F,#1F,#0D,#0E,#00
+	DB  #00,#00,#00,#00,#00,#30,#3B,#FF
+	DB  #FB,#DF,#FF,#7F,#FF,#FF,#FE,#7C
+
 fin_sprite_manoizquierda:
 	
 ;; MANODER 2 (2 escenas 1 sprite)
 sprite_manoderecha:
 sprite_manoderecha_1:
-	DB  #00,#F1,#91,#91,#91,#91,#91,#F1
-	DB  #F1,#91,#91,#91,#91,#91,#93,#00
-	DB  #00,#9B,#DF,#15,#11,#11,#11,#11
-	DB  #11,#11,#15,#15,#15,#15,#B5,#00
+	DB  #00,#83,#87,#8E,#8E,#CC,#DC,#DF
+	DB  #DF,#FB,#FD,#FE,#FF,#FF,#7F,#3E
+	DB  #81,#82,#0C,#38,#70,#E0,#C0,#C0
+	DB  #FF,#FE,#C0,#F8,#BC,#8C,#04,#04
 	
 sprite_manoderecha_2:
-	DB  #00,#71,#D1,#91,#91,#91,#91,#F1
-	DB  #F1,#91,#91,#91,#91,#D1,#73,#00
-	DB  #00,#9B,#DF,#15,#11,#11,#11,#11
-	DB  #11,#11,#15,#15,#15,#15,#B5,#00
+	DB  #00,#00,#00,#00,#00,#0C,#DC,#FF
+	DB  #DF,#FB,#FF,#FE,#FF,#FF,#7F,#3E
+	DB  #00,#00,#00,#00,#00,#E0,#E0,#E0
+	DB  #F8,#FC,#DC,#F8,#F8,#B0,#70,#00
 fin_sprite_manoderecha:
 	
 ;; CONDE 4 (2 escenas 2 sprites vert)

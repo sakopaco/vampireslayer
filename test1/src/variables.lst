@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.04.15 - 13:46:55]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.04.15 - 21:16:59]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -631,7 +631,7 @@ Errors: 0
      380.  00:C000                      
      381.  00:C000                      ;;ETIQUETAS/CONSTANTES MANOIZQIERDA
      382.  00:C000  (00:0015)           TIPOMANOIZQUIERDA		equ		21
-     383.  00:C000  (00:0001)           MANOI_COLOR   			equ		1		; negro
+     383.  00:C000  (00:000F)           MANOI_COLOR   			equ		15		; blanca
      384.  00:C000  (00:00E0)           MANOI_SPRITE1A			equ		224
      385.  00:C000  (00:00E4)           MANOI_SPRITE1B			equ		228
      386.  00:C000  (00:0023)           MANOI_PASOS				equ		35
@@ -644,7 +644,7 @@ Errors: 0
      393.  00:C000                      
      394.  00:C000                      ;;ETIQUETAS/CONSTANTES MANODERECHA
      395.  00:C000  (00:0014)           TIPOMANODERECHA			equ		20
-     396.  00:C000  (00:0001)           MANOD_COLOR   			equ		1		; negro
+     396.  00:C000  (00:000F)           MANOD_COLOR   			equ		15		; blanca
      397.  00:C000  (00:00E8)           MANOD_SPRITE1A			equ		232
      398.  00:C000  (00:00EC)           MANOD_SPRITE1B			equ		236
      399.  00:C000  (00:0023)           MANOD_PASOS				equ		35
@@ -1707,7 +1707,7 @@ Errors: 0
 00:00000064 X DRACULA_ENERGIA
 00:00000021 X DRACULA_POCAVIDA
 00:00000015 X TIPOMANOIZQUIERDA
-00:00000001 X MANOI_COLOR
+00:0000000F X MANOI_COLOR
 00:000000E0 X MANOI_SPRITE1A
 00:000000E4 X MANOI_SPRITE1B
 00:00000023 X MANOI_PASOS
@@ -1718,7 +1718,7 @@ Errors: 0
 00:00000005 X MANOI_DANO
 00:00000064 X MANOI_ENERGIA
 00:00000014 X TIPOMANODERECHA
-00:00000001 X MANOD_COLOR
+00:0000000F X MANOD_COLOR
 00:000000E8 X MANOD_SPRITE1A
 00:000000EC X MANOD_SPRITE1B
 00:00000023 X MANOD_PASOS

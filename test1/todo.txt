@@ -9,13 +9,11 @@ BUGS
   parte inf derecha (ahora mismo está desactivado)
 
 TODO A
-- repasar lo de queda poca vida a cada jefe
+- repasar lo de queda poca vida a cada jefe... especialmente a drácula
 - posicionar ayudas
 * revisar todos los sprites (incluidos los del punto de mira) faltan:
 . jefe zombi
 . jefe caballero
-. mano izq
-. mano der
 . punto de mira
 
 TODO B

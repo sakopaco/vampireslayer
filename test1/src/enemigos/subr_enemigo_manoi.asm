@@ -30,8 +30,8 @@ datos_manoi:
 			DW		mover_manoi			;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 			DB		MANOI_SPRITE1A		;izq arriba
 			DB		MANOI_SPRITE1B		;der_arriba
-			DB		MANOI_SPRITE1A		;izq abajo
-			DB		MANOI_SPRITE1B		;der_abajo
+			DB		0					;izq abajo
+			DB		0					;der_abajo
 			DB		MANOI_DANO 			;dano
 			DW		check_colision_enemigo16x16		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 			
@@ -127,10 +127,10 @@ calcula_manoi_escena:
 			LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
 			
 			JP			 Z, .poner_escena2				; IF ESCENA 1 THEN
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), MANOD_SPRITE1A
+				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), MANOI_SPRITE1A
 				RET
 .poner_escena2:											; ELSE
-				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), MANOD_SPRITE1B
+				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), MANOI_SPRITE1B
 				RET
 fin_calcula_manoi_escena:
 		

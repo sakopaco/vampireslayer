@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.04.15 - 13:46:55]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.04.15 - 21:16:59]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/vs.asm
 Errors: 0
@@ -513,7 +513,7 @@ Errors: 0
      505.  00:4000  (00:0064)           DRACULA_ENERGIA: equ 00000064h
      506.  00:4000  (00:0021)           DRACULA_POCAVIDA: equ 00000021h
      507.  00:4000  (00:0015)           TIPOMANOIZQUIERDA: equ 00000015h
-     508.  00:4000  (00:0001)           MANOI_COLOR: equ 00000001h
+     508.  00:4000  (00:000F)           MANOI_COLOR: equ 0000000Fh
      509.  00:4000  (00:00E0)           MANOI_SPRITE1A: equ 000000E0h
      510.  00:4000  (00:00E4)           MANOI_SPRITE1B: equ 000000E4h
      511.  00:4000  (00:0023)           MANOI_PASOS: equ 00000023h
@@ -524,7 +524,7 @@ Errors: 0
      516.  00:4000  (00:0005)           MANOI_DANO: equ 00000005h
      517.  00:4000  (00:0064)           MANOI_ENERGIA: equ 00000064h
      518.  00:4000  (00:0014)           TIPOMANODERECHA: equ 00000014h
-     519.  00:4000  (00:0001)           MANOD_COLOR: equ 00000001h
+     519.  00:4000  (00:000F)           MANOD_COLOR: equ 0000000Fh
      520.  00:4000  (00:00E8)           MANOD_SPRITE1A: equ 000000E8h
      521.  00:4000  (00:00EC)           MANOD_SPRITE1B: equ 000000ECh
      522.  00:4000  (00:0023)           MANOD_PASOS: equ 00000023h
@@ -876,10 +876,10 @@ Errors: 0
      138   00:4095                      		;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
      139   00:4095                      		;será igual la posición inicial en todos los niveles
      140   00:4095                      	
-     141   00:4095  3E 03               		LD		 A, 3;PROTANIVEL
+     141   00:4095  3E 06               		LD		 A, 6;PROTANIVEL
      142   00:4097  32 00 C0            		LD		(prota_nivel), A
      143   00:409A                      
-     144   00:409A  3E 00               		LD		 A, PROTAPOSMAPY
+     144   00:409A  3E 06               		LD		 A, 6;PROTAPOSMAPY
      145   00:409C  32 04 C0            		LD		(prota_pos_mapy), A	
      146   00:409F                      
      147   00:409F  3E 03               		LD		 A, PROTAPOSMAPX	
@@ -8808,10 +8808,10 @@ Errors: 0
       28:  00:67B4  23                  			DB		MANOD_PASOS		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
       29:  00:67B5  01                  			DB		1				;pocavida 0 y 1 para indicar cuando le queda poca vida al enemigo
       30:  00:67B6  C8 67               			DW		mover_manod		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
-      31:  00:67B8  F8                  			DB		248;MANOD_SPRITE1A	;izq arriba
-      32:  00:67B9  FC                  			DB		252;MANOD_SPRITE1B	;der_arriba
-      33:  00:67BA  F8                  			DB		248;MANOD_SPRITE1A	;izq abajo
-      34:  00:67BB  FC                  			DB		252;MANOD_SPRITE1B	;der_abajo
+      31:  00:67B8  E8                  			DB		MANOD_SPRITE1A	;izq arriba
+      32:  00:67B9  EC                  			DB		MANOD_SPRITE1B	;der_arriba
+      33:  00:67BA  00                  			DB		0				;izq abajo
+      34:  00:67BB  00                  			DB		0				;der_abajo
       35:  00:67BC  05                  			DB		MANOD_DANO 		;dano
       36:  00:67BD  16 75               			DW		check_colision_enemigo16x16		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
       37:  00:67BF                      			
@@ -8881,7 +8881,7 @@ Errors: 0
      101:  00:67F6  FD 36 03 08         				LD			(IY + 3),  COLROJO
      102:  00:67FA  C9                  				RET
      103:  00:67FB                      .nointercambiacolor:
-     104:  00:67FB  FD 36 03 01         		LD			(IY + 3), MANOD_COLOR
+     104:  00:67FB  FD 36 03 0F         		LD			(IY + 3), MANOD_COLOR
      105:  00:67FF                      fin_mover_manod:
      106:  00:67FF  C9                  		RET
      107:  00:6800                      
@@ -9004,8 +9004,8 @@ Errors: 0
       30:  00:6914  26 69               			DW		mover_manoi			;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
       31:  00:6916  E0                  			DB		MANOI_SPRITE1A		;izq arriba
       32:  00:6917  E4                  			DB		MANOI_SPRITE1B		;der_arriba
-      33:  00:6918  E0                  			DB		MANOI_SPRITE1A		;izq abajo
-      34:  00:6919  E4                  			DB		MANOI_SPRITE1B		;der_abajo
+      33:  00:6918  00                  			DB		0					;izq abajo
+      34:  00:6919  00                  			DB		0					;der_abajo
       35:  00:691A  05                  			DB		MANOI_DANO 			;dano
       36:  00:691B  16 75               			DW		check_colision_enemigo16x16		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
       37:  00:691D                      			
@@ -9075,7 +9075,7 @@ Errors: 0
      101:  00:6954  FD 36 03 08         				LD			(IY + 3),  COLROJO
      102:  00:6958  C9                  				RET
      103:  00:6959                      .nointercambiacolor:
-     104:  00:6959  FD 36 03 01         		LD			(IY + 3), MANOI_COLOR
+     104:  00:6959  FD 36 03 0F         		LD			(IY + 3), MANOI_COLOR
      105:  00:695D                      fin_mover_manoi:
      106:  00:695D  C9                  		RET
      107:  00:695E                      
@@ -9101,10 +9101,10 @@ Errors: 0
      127:  00:6973  DD 77 01            			LD			(IX + ESTRUCTURA_ENEMIGO.escena), A
      128:  00:6976                      			
      129:  00:6976  CA 7E 69            			JP			 Z, .poner_escena2				; IF ESCENA 1 THEN
-     130:  00:6979  DD 36 0E E8         				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), MANOD_SPRITE1A
+     130:  00:6979  DD 36 0E E0         				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), MANOI_SPRITE1A
      131:  00:697D  C9                  				RET
      132:  00:697E                      .poner_escena2:											; ELSE
-     133:  00:697E  DD 36 0E EC         				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), MANOD_SPRITE1B
+     133:  00:697E  DD 36 0E E4         				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), MANOI_SPRITE1B
      134:  00:6982  C9                  				RET
      135:  00:6983                      fin_calcula_manoi_escena:
      136:  00:6983                      		
@@ -14620,92 +14620,93 @@ Errors: 0
      861.  00:B437                      ;; MANOIZQ 2 (2 escenas 1 sprite)
      862.  00:B437                      sprite_manoizquierda:
      863.  00:B437                      sprite_manoizquierda_1:
-     864.  00:B437                      	DB  #00,#D9,#FB,#A8,#88,#88,#88,#88
-     864.  00:B437  00 D9 FB A8 88 88 88 88 
-     865.  00:B43F                      	DB  #88,#88,#A8,#A8,#A8,#A8,#AD,#00
-     865.  00:B43F  88 88 A8 A8 A8 A8 AD 00 
-     866.  00:B447                      	DB  #00,#8F,#89,#89,#89,#89,#89,#8F
-     866.  00:B447  00 8F 89 89 89 89 89 8F 
-     867.  00:B44F                      	DB  #8F,#89,#89,#89,#89,#89,#C9,#00
-     867.  00:B44F  8F 89 89 89 89 89 C9 00 
+     864.  00:B437                      	DB  #81,#41,#30,#1C,#0E,#07,#03,#03
+     864.  00:B437  81 41 30 1C 0E 07 03 03 
+     865.  00:B43F                      	DB  #FF,#7F,#03,#1F,#3D,#31,#20,#20
+     865.  00:B43F  FF 7F 03 1F 3D 31 20 20 
+     866.  00:B447                      	DB  #00,#C1,#E1,#71,#71,#33,#3B,#FB
+     866.  00:B447  00 C1 E1 71 71 33 3B FB 
+     867.  00:B44F                      	DB  #FB,#DF,#BF,#7F,#FF,#FF,#FE,#7C
+     867.  00:B44F  FB DF BF 7F FF FF FE 7C 
      868.  00:B457                      	
      869.  00:B457                      sprite_manoizquierda_2:
-     870.  00:B457                      	DB  #00,#D9,#FB,#A8,#88,#88,#88,#88
-     870.  00:B457  00 D9 FB A8 88 88 88 88 
-     871.  00:B45F                      	DB  #88,#88,#A8,#A8,#A8,#A8,#AD,#00
-     871.  00:B45F  88 88 A8 A8 A8 A8 AD 00 
-     872.  00:B467                      	DB  #00,#8E,#8B,#89,#89,#89,#89,#8F
-     872.  00:B467  00 8E 8B 89 89 89 89 8F 
-     873.  00:B46F                      	DB  #8F,#89,#89,#89,#89,#8B,#CE,#00
-     873.  00:B46F  8F 89 89 89 89 8B CE 00 
-     874.  00:B477                      fin_sprite_manoizquierda:
-     875.  00:B477                      	
-     876.  00:B477                      ;; MANODER 2 (2 escenas 1 sprite)
-     877.  00:B477                      sprite_manoderecha:
-     878.  00:B477                      sprite_manoderecha_1:
-     879.  00:B477                      	DB  #00,#F1,#91,#91,#91,#91,#91,#F1
-     879.  00:B477  00 F1 91 91 91 91 91 F1 
-     880.  00:B47F                      	DB  #F1,#91,#91,#91,#91,#91,#93,#00
-     880.  00:B47F  F1 91 91 91 91 91 93 00 
-     881.  00:B487                      	DB  #00,#9B,#DF,#15,#11,#11,#11,#11
-     881.  00:B487  00 9B DF 15 11 11 11 11 
-     882.  00:B48F                      	DB  #11,#11,#15,#15,#15,#15,#B5,#00
-     882.  00:B48F  11 11 15 15 15 15 B5 00 
-     883.  00:B497                      	
-     884.  00:B497                      sprite_manoderecha_2:
-     885.  00:B497                      	DB  #00,#71,#D1,#91,#91,#91,#91,#F1
-     885.  00:B497  00 71 D1 91 91 91 91 F1 
-     886.  00:B49F                      	DB  #F1,#91,#91,#91,#91,#D1,#73,#00
-     886.  00:B49F  F1 91 91 91 91 D1 73 00 
-     887.  00:B4A7                      	DB  #00,#9B,#DF,#15,#11,#11,#11,#11
-     887.  00:B4A7  00 9B DF 15 11 11 11 11 
-     888.  00:B4AF                      	DB  #11,#11,#15,#15,#15,#15,#B5,#00
-     888.  00:B4AF  11 11 15 15 15 15 B5 00 
-     889.  00:B4B7                      fin_sprite_manoderecha:
-     890.  00:B4B7                      	
-     891.  00:B4B7                      ;; CONDE 4 (2 escenas 2 sprites vert)
-     892.  00:B4B7                      sprite_conde:
-     893.  00:B4B7                      sprite_conde_1:
-     894.  00:B4B7                      	DB  #03,#0F,#09,#00,#00,#62,#F0,#71
-     894.  00:B4B7  03 0F 09 00 00 62 F0 71 
-     895.  00:B4BF                      	DB  #3A,#1C,#0E,#03,#07,#0F,#0F,#0F
-     895.  00:B4BF  3A 1C 0E 03 07 0F 0F 0F 
-     896.  00:B4C7                      	DB  #C0,#F0,#90,#00,#00,#46,#0F,#8E
-     896.  00:B4C7  C0 F0 90 00 00 46 0F 8E 
-     897.  00:B4CF                      	DB  #5C,#38,#70,#C0,#E0,#F0,#F0,#F0
-     897.  00:B4CF  5C 38 70 C0 E0 F0 F0 F0 
-     898.  00:B4D7                      	
-     899.  00:B4D7                      sprite_conde_2:
-     900.  00:B4D7                      	DB  #0F,#1B,#1F,#1F,#1F,#37,#3F,#3D
-     900.  00:B4D7  0F 1B 1F 1F 1F 37 3F 3D 
-     901.  00:B4DF                      	DB  #3F,#7B,#6F,#7E,#DB,#6F,#36,#03
-     901.  00:B4DF  3F 7B 6F 7E DB 6F 36 03 
-     902.  00:B4E7                      	DB  #F0,#D8,#F8,#F8,#F0,#EC,#FC,#BC
-     902.  00:B4E7  F0 D8 F8 F8 F0 EC FC BC 
-     903.  00:B4EF                      	DB  #FC,#DE,#F6,#7E,#DB,#F6,#6C,#C0
-     903.  00:B4EF  FC DE F6 7E DB F6 6C C0 
-     904.  00:B4F7                      	
-     905.  00:B4F7                      sprite_conde_3:
-     906.  00:B4F7                      	DB  #00,#00,#06,#0F,#0F,#1D,#0F,#8E
-     906.  00:B4F7  00 00 06 0F 0F 1D 0F 8E 
-     907.  00:B4FF                      	DB  #45,#23,#11,#04,#08,#10,#10,#10
-     907.  00:B4FF  45 23 11 04 08 10 10 10 
-     908.  00:B507                      	DB  #00,#00,#60,#F0,#F0,#B8,#F0,#71
-     908.  00:B507  00 00 60 F0 F0 B8 F0 71 
-     909.  00:B50F                      	DB  #A2,#C4,#88,#20,#10,#08,#08,#08
-     909.  00:B50F  A2 C4 88 20 10 08 08 08 
-     910.  00:B517                      	
-     911.  00:B517                      sprite_conde_4:
-     912.  00:B517                      	DB  #10,#24,#20,#20,#20,#48,#40,#42
-     912.  00:B517  10 24 20 20 20 48 40 42 
-     913.  00:B51F                      	DB  #40,#84,#90,#81,#24,#90,#49,#3C
-     913.  00:B51F  40 84 90 81 24 90 49 3C 
-     914.  00:B527                      	DB  #08,#24,#04,#04,#04,#12,#02,#42
-     914.  00:B527  08 24 04 04 04 12 02 42 
-     915.  00:B52F                      	DB  #02,#21,#09,#81,#24,#09,#92,#3C
-     915.  00:B52F  02 21 09 81 24 09 92 3C 
-     916.  00:B537                      fin_sprite_conde:
-     917.  00:B537                      
+     870.  00:B457                      	DB  #00,#00,#00,#00,#00,#07,#07,#07
+     870.  00:B457  00 00 00 00 00 07 07 07 
+     871.  00:B45F                      	DB  #1F,#3F,#3B,#1F,#1F,#0D,#0E,#00
+     871.  00:B45F  1F 3F 3B 1F 1F 0D 0E 00 
+     872.  00:B467                      	DB  #00,#00,#00,#00,#00,#30,#3B,#FF
+     872.  00:B467  00 00 00 00 00 30 3B FF 
+     873.  00:B46F                      	DB  #FB,#DF,#FF,#7F,#FF,#FF,#FE,#7C
+     873.  00:B46F  FB DF FF 7F FF FF FE 7C 
+     874.  00:B477                      
+     875.  00:B477                      fin_sprite_manoizquierda:
+     876.  00:B477                      	
+     877.  00:B477                      ;; MANODER 2 (2 escenas 1 sprite)
+     878.  00:B477                      sprite_manoderecha:
+     879.  00:B477                      sprite_manoderecha_1:
+     880.  00:B477                      	DB  #00,#83,#87,#8E,#8E,#CC,#DC,#DF
+     880.  00:B477  00 83 87 8E 8E CC DC DF 
+     881.  00:B47F                      	DB  #DF,#FB,#FD,#FE,#FF,#FF,#7F,#3E
+     881.  00:B47F  DF FB FD FE FF FF 7F 3E 
+     882.  00:B487                      	DB  #81,#82,#0C,#38,#70,#E0,#C0,#C0
+     882.  00:B487  81 82 0C 38 70 E0 C0 C0 
+     883.  00:B48F                      	DB  #FF,#FE,#C0,#F8,#BC,#8C,#04,#04
+     883.  00:B48F  FF FE C0 F8 BC 8C 04 04 
+     884.  00:B497                      	
+     885.  00:B497                      sprite_manoderecha_2:
+     886.  00:B497                      	DB  #00,#00,#00,#00,#00,#0C,#DC,#FF
+     886.  00:B497  00 00 00 00 00 0C DC FF 
+     887.  00:B49F                      	DB  #DF,#FB,#FF,#FE,#FF,#FF,#7F,#3E
+     887.  00:B49F  DF FB FF FE FF FF 7F 3E 
+     888.  00:B4A7                      	DB  #00,#00,#00,#00,#00,#E0,#E0,#E0
+     888.  00:B4A7  00 00 00 00 00 E0 E0 E0 
+     889.  00:B4AF                      	DB  #F8,#FC,#DC,#F8,#F8,#B0,#70,#00
+     889.  00:B4AF  F8 FC DC F8 F8 B0 70 00 
+     890.  00:B4B7                      fin_sprite_manoderecha:
+     891.  00:B4B7                      	
+     892.  00:B4B7                      ;; CONDE 4 (2 escenas 2 sprites vert)
+     893.  00:B4B7                      sprite_conde:
+     894.  00:B4B7                      sprite_conde_1:
+     895.  00:B4B7                      	DB  #03,#0F,#09,#00,#00,#62,#F0,#71
+     895.  00:B4B7  03 0F 09 00 00 62 F0 71 
+     896.  00:B4BF                      	DB  #3A,#1C,#0E,#03,#07,#0F,#0F,#0F
+     896.  00:B4BF  3A 1C 0E 03 07 0F 0F 0F 
+     897.  00:B4C7                      	DB  #C0,#F0,#90,#00,#00,#46,#0F,#8E
+     897.  00:B4C7  C0 F0 90 00 00 46 0F 8E 
+     898.  00:B4CF                      	DB  #5C,#38,#70,#C0,#E0,#F0,#F0,#F0
+     898.  00:B4CF  5C 38 70 C0 E0 F0 F0 F0 
+     899.  00:B4D7                      	
+     900.  00:B4D7                      sprite_conde_2:
+     901.  00:B4D7                      	DB  #0F,#1B,#1F,#1F,#1F,#37,#3F,#3D
+     901.  00:B4D7  0F 1B 1F 1F 1F 37 3F 3D 
+     902.  00:B4DF                      	DB  #3F,#7B,#6F,#7E,#DB,#6F,#36,#03
+     902.  00:B4DF  3F 7B 6F 7E DB 6F 36 03 
+     903.  00:B4E7                      	DB  #F0,#D8,#F8,#F8,#F0,#EC,#FC,#BC
+     903.  00:B4E7  F0 D8 F8 F8 F0 EC FC BC 
+     904.  00:B4EF                      	DB  #FC,#DE,#F6,#7E,#DB,#F6,#6C,#C0
+     904.  00:B4EF  FC DE F6 7E DB F6 6C C0 
+     905.  00:B4F7                      	
+     906.  00:B4F7                      sprite_conde_3:
+     907.  00:B4F7                      	DB  #00,#00,#06,#0F,#0F,#1D,#0F,#8E
+     907.  00:B4F7  00 00 06 0F 0F 1D 0F 8E 
+     908.  00:B4FF                      	DB  #45,#23,#11,#04,#08,#10,#10,#10
+     908.  00:B4FF  45 23 11 04 08 10 10 10 
+     909.  00:B507                      	DB  #00,#00,#60,#F0,#F0,#B8,#F0,#71
+     909.  00:B507  00 00 60 F0 F0 B8 F0 71 
+     910.  00:B50F                      	DB  #A2,#C4,#88,#20,#10,#08,#08,#08
+     910.  00:B50F  A2 C4 88 20 10 08 08 08 
+     911.  00:B517                      	
+     912.  00:B517                      sprite_conde_4:
+     913.  00:B517                      	DB  #10,#24,#20,#20,#20,#48,#40,#42
+     913.  00:B517  10 24 20 20 20 48 40 42 
+     914.  00:B51F                      	DB  #40,#84,#90,#81,#24,#90,#49,#3C
+     914.  00:B51F  40 84 90 81 24 90 49 3C 
+     915.  00:B527                      	DB  #08,#24,#04,#04,#04,#12,#02,#42
+     915.  00:B527  08 24 04 04 04 12 02 42 
+     916.  00:B52F                      	DB  #02,#21,#09,#81,#24,#09,#92,#3C
+     916.  00:B52F  02 21 09 81 24 09 92 3C 
+     917.  00:B537                      fin_sprite_conde:
+     918.  00:B537                      
      219   00:B537                      
      220   00:B537                      
      221   00:B537                      ;;=====================================================
@@ -15189,7 +15190,7 @@ Errors: 0
 00:00000003   PROTAVIDAS
 00:00000003 X PROTARELIQUIAS
 00:00000003   PROTAPOSMAPX
-00:00000000   PROTAPOSMAPY
+00:00000000 X PROTAPOSMAPY
 00:000000F8   PROTAENERGIA
 00:00000000   PROTAENERGIABYTEBAJO
 00:00000003   PROTADANO1
@@ -15545,7 +15546,7 @@ Errors: 0
 00:00000064   DRACULA_ENERGIA
 00:00000021   DRACULA_POCAVIDA
 00:00000015   TIPOMANOIZQUIERDA
-00:00000001   MANOI_COLOR
+00:0000000F   MANOI_COLOR
 00:000000E0   MANOI_SPRITE1A
 00:000000E4   MANOI_SPRITE1B
 00:00000023   MANOI_PASOS
@@ -15556,7 +15557,7 @@ Errors: 0
 00:00000005   MANOI_DANO
 00:00000064   MANOI_ENERGIA
 00:00000014   TIPOMANODERECHA
-00:00000001   MANOD_COLOR
+00:0000000F   MANOD_COLOR
 00:000000E8   MANOD_SPRITE1A
 00:000000EC   MANOD_SPRITE1B
 00:00000023   MANOD_PASOS

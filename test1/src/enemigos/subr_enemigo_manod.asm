@@ -28,10 +28,10 @@ datos_manod:
 			DB		MANOD_PASOS		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
 			DB		1				;pocavida 0 y 1 para indicar cuando le queda poca vida al enemigo
 			DW		mover_manod		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
-			DB		248;MANOD_SPRITE1A	;izq arriba
-			DB		252;MANOD_SPRITE1B	;der_arriba
-			DB		248;MANOD_SPRITE1A	;izq abajo
-			DB		252;MANOD_SPRITE1B	;der_abajo
+			DB		MANOD_SPRITE1A	;izq arriba
+			DB		MANOD_SPRITE1B	;der_arriba
+			DB		0				;izq abajo
+			DB		0				;der_abajo
 			DB		MANOD_DANO 		;dano
 			DW		check_colision_enemigo16x16		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 			
