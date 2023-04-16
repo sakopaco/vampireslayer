@@ -77,17 +77,11 @@ actualiza_valores_jefecaballero:
 		;resetea pasos del movimiento
 		LD			(IX + ESTRUCTURA_ENEMIGO.pasos), JCABALLERO_PASOS
 		
-		;ññññññññññññññññññññññññññ
-;-------------------------------------		
-		;quitar cuando se cree el daño a los jefes
-		LD			 (IX + ESTRUCTURA_ENEMIGO.pocavida), 1
-
-		
+		;en el nivel 6 los jafes tienen menos vida
 		LD			 A, (prota_nivel)
 		BIT			 1, A
 		RET			 Z
-		LD			 (IX + ESTRUCTURA_ENEMIGO.energia), 64
-		
+		LD			 (IX + ESTRUCTURA_ENEMIGO.energia), CABALLERO_ENERGIA2
 fin_actualiza_valores_jefecaballero:
 		RET
 
