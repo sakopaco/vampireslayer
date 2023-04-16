@@ -3,23 +3,23 @@ EN REALIZACION:
 
 BUGS
 - cuando coges una ayuda el sonido no acaba
-- apagar música cuando matas a un jefe
+- apagar música cuando matas a un jefe (cuando se mate a un pstrite de 2x2)
 - el disparo y la explosión parecen el mismo sonido
 - algo pasa con las ayudas que pitan aunque no estén definidas 
   parte inf derecha (ahora mismo está desactivado)
 
 TODO A
+- poner nombres de jefes enemigos
 - repasar lo de queda poca vida a cada jefe... especialmente a drácula
+- repasar vida de jefes en boss rush de nivel 6
 - posicionar ayudas
 * revisar todos los sprites (incluidos los del punto de mira) faltan:
-. jefe zombi
-. jefe caballero
 . punto de mira
 
 TODO B
 - revisar letras
 - poner tiles al matar a drácula
-- poner nombres de jefes enemigos
+- poner pantalla extra de texto en final
 
 TUNNING
 - mirar lo de la pila y tal con Fernando
