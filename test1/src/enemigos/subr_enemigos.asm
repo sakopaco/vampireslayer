@@ -66,8 +66,6 @@ resetea_enemigos:
 		LD			(IX), A
 		LD			IX, enemigo6
 		LD			(IX), A
-		LD			IX, enemigo7
-		LD			(IX), A
 
 ;ocultar sprites		
 		LD			 B, 127
@@ -1527,24 +1525,12 @@ check_enemigos_fase1: ;; aquí se ponen los valores de enemigos (si están activ
 		LD			IX, enemigo6   														
 		LD			 A, (IX)
 		OR			 A
-		JP			 Z, .check_enemigo7
+		RET			 Z
 		
 		LD			IY, array_sprites_enem + 32
 		
-		CALL 		mueve_enemigo
-		;acciones enemigos
-.check_enemigo7:
-		LD			IX, enemigo7
-		LD			 A, (IX)
-		OR			 A
-		RET			 Z
-		
-		LD			IY, array_sprites_enem + 4
-		
-		CALL 		mueve_enemigo
-		;acciones enemigos
+		JP	 		mueve_enemigo
 fin_check_enemigos_fase1:
-		RET	
 
 
 ;;=====================================================
@@ -1605,24 +1591,12 @@ check_enemigos_fase2: ;; aquí se ponen los valores de enemigos (si están activ
 		LD			IX, enemigo6   														
 		LD			 A, (IX)
 		OR			 A
-		JP			 Z, .check_enemigo7
+		RET			 Z
 		
 		LD			IY, array_sprites_enem + 52
 		
-		CALL 		mueve_enemigo
-		;acciones enemigos	
-.check_enemigo7:
-		LD			IX, enemigo7
-		LD			 A, (IX)
-		OR			 A
-		RET			 Z
-		
-		LD			IY, array_sprites_enem + 4
-		
-		CALL 		mueve_enemigo
-		;acciones enemigos
+		JP	 		mueve_enemigo
 fin_check_enemigos_fase2:
-		RET	
 
 
 ;;=====================================================
@@ -1683,24 +1657,12 @@ check_enemigos_fase3: ;; aquí se ponen los valores de enemigos (si están activ
 		LD			IX, enemigo6   														
 		LD			 A, (IX)
 		OR			 A
-		JP			 Z, .check_enemigo7
+		RET			 Z
 		
 		LD			IY, array_sprites_enem + 52
 		
-		CALL 		mueve_enemigo
-		;acciones enemigos	
-.check_enemigo7:
-		LD			IX, enemigo7
-		LD			 A, (IX)
-		OR			 A
-		RET			 Z
-		
-		LD			IY, array_sprites_enem + 4
-		
-		CALL 		mueve_enemigo
-		;acciones enemigos
+		JP	 		mueve_enemigo
 fin_check_enemigos_fase3:
-		RET	
 
 
 ;;=====================================================
@@ -1761,24 +1723,12 @@ check_enemigos_fase4: ;; aquí se ponen los valores de enemigos (si están activ
 		LD			IX, enemigo6   														
 		LD			 A, (IX)
 		OR			 A
-		JP			 Z, .check_enemigo7
+		RET			 Z
 		
 		LD			IY, array_sprites_enem + 36
 		
-		CALL 		mueve_enemigo
-		;acciones enemigos	
-.check_enemigo7:	;JEFECABALLERO
-		LD			IX, enemigo7
-		LD			 A, (IX)
-		OR			 A
-		RET			 Z
-		
-		LD			IY, array_sprites_enem + 4
-		
-		CALL 		mueve_enemigo
-		;acciones enemigos
+		JP	 		mueve_enemigo
 fin_check_enemigos_fase4:
-		RET	
 		
 
 ;;=====================================================
@@ -1840,24 +1790,12 @@ check_enemigos_fase5: ;; aquí se ponen los valores de enemigos (si están activ
 		LD			IX, enemigo6   														
 		LD			 A, (IX)
 		OR			 A
-		JP			 Z, .check_enemigo7
+		RET			 Z
 		
 		LD			IY, array_sprites_enem + 40
 		
-		CALL 		mueve_enemigo		
-		;acciones enemigos	
-.check_enemigo7:	;JEFEBEHOLDER
-		LD			IX, enemigo7
-		LD			 A, (IX)
-		OR			 A
-		RET			 Z
-		
-		LD			IY, array_sprites_enem + 4
-		
-		CALL 		mueve_enemigo
-		;acciones enemigos
+		JP	 		mueve_enemigo		
 fin_check_enemigos_fase5:
-		RET	
 		
 
 ;;=====================================================
@@ -2333,36 +2271,18 @@ examina_enemigo6:
 		LD			IX, enemigo6
 		LD			 A, (IX)
 		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
-		JP			 Z, examina_enemigo7
+		RET			 Z
 		
 		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z (realmente devuelve Z)
-		JP			 Z, examina_enemigo7	; IF hubo colisión
+		RET			 Z	; IF hubo colisión
 			LD			 A, (prota_dano_actual)
 			LD			 B, A
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
 			SUB			 B
 			JP			NC, .asignaenergia6
 				CALL		mata_enemigo
-				JP			examina_enemigo7
-.asignaenergia6:
-			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se asigna la energía tras la resta
-
-examina_enemigo7:	
-		LD			IX, enemigo7
-		LD			 A, (IX)
-		AND			11111110b		; si es 0 o 1 lo ignoro ya que está muerto o en descomposición
-		RET			 Z
-		
-		CALL		check_colision_enemigo 	; devuelve A y ya afecta a Z (realmente devuelve Z)
-		JP			 Z, examina_enemigo7	; IF hubo colisión
-			LD			 A, (prota_dano_actual)
-			LD			 B, A
-			LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
-			SUB			 B
-			JP			NC, .asignaenergia7
-				CALL		mata_enemigo
 				RET
-.asignaenergia7:
+.asignaenergia6:
 			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se asigna la energía tras la resta
 fin_check_colisiones_enemigos:
 		RET

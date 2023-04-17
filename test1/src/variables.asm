@@ -74,7 +74,6 @@ enemigo3:					DS		ESTRUCTURA_ENEMIGO
 enemigo4:					DS		ESTRUCTURA_ENEMIGO
 enemigo5:					DS		ESTRUCTURA_ENEMIGO
 enemigo6:					DS		ESTRUCTURA_ENEMIGO
-enemigo7:					DS		ESTRUCTURA_ENEMIGO
 
 ;;SPRITES GENERAL (PROTA +  ENEMIGOS)
 ;array de 4 bytes x 32 sprites posibles en pantalla que sobreescribirá la tabla de sprites actualizando VRAM
