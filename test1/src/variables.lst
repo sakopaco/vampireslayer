@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.04.16 - 20:23:56]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.04.17 - 21:42:32]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -836,129 +836,128 @@ Errors: 0
       36   00:C020  00 00 00 00 00 00 00 
       37   00:C027  00                  elemento_pintar_mapa:		DB		0			;TILEPROTAM = 19, ;TILEGRISM = 9
       38   00:C028                      
-      39   00:C028                      
-      40   00:C028                      ;;TILES PANTALLA
-      41   00:C028                      tile_auxiliar:				DB		#FF,#00,#FF,#FF,#FF,#FF,#00,#FF
-      41   00:C028  FF 00 FF FF FF FF 00 FF 
+      39   00:C028                      ;;TILES PANTALLA
+      40   00:C028                      tile_auxiliar:				DB		#FF,#FF,#FF,#FF,#FF,#FF,#FF,#FF
+      40   00:C028  FF FF FF FF FF FF FF FF 
+      41   00:C030                      
       42   00:C030                      
-      43   00:C030                      
-      44   00:C030                      ;;=====================================================
-      45   00:C030                      ;;DECORACION PAREDES
-      46   00:C030                      ;;=====================================================
-      47   00:C030  00                  hay_antorchas:				DB		0
-      48   00:C031  00                  hay_esqueletos:				DB		0
+      43   00:C030                      ;;=====================================================
+      44   00:C030                      ;;DECORACION PAREDES
+      45   00:C030                      ;;=====================================================
+      46   00:C030  00                  hay_antorchas:				DB		0
+      47   00:C031  00                  hay_esqueletos:				DB		0
+      48   00:C032                      
       49   00:C032                      
-      50   00:C032                      
-      51   00:C032                      ;;=====================================================
-      52   00:C032                      ;;VARIABLES ENEMIGOS
-      53   00:C032                      ;;=====================================================
-      54   00:C032                      ;para movimiento de enemigos (las escenas)
-      55   00:C032                      heartbeat_enemigos:
-      56   00:C032  00                  heartbeat_cienpies:			DB		0;			;reloj central que moverá los enemigos (cienpies)
-      57   00:C033  00                  heartbeat_serpiente:		DB		0;			;reloj central que moverá los enemigos (serpiente)
-      58   00:C034  00                  heartbeat_arana:			DB		0;			;reloj central que moverá los enemigos (arana)
-      59   00:C035  00                  heartbeat_murcielago:		DB		0;			;reloj central que moverá los enemigos (murcielago)
-      60   00:C036  00                  heartbeat_lobo:				DB		0;			;reloj central que moverá los enemigos (lobo)
-      61   00:C037  00                  heartbeat_esqueleto:		DB		0;			;reloj central que moverá los enemigos (esqueleto)
-      62   00:C038  00                  heartbeat_zombi:			DB		0;			;reloj central que moverá los enemigos (zombi)
-      63   00:C039  00                  heartbeat_fantasma:			DB		0;			;reloj central que moverá los enemigos (fantasma)
-      64   00:C03A  00                  heartbeat_caballero:		DB		0;			;reloj central que moverá los enemigos (caballero)
-      65   00:C03B  00                  heartbeat_fuego:			DB		0;			;reloj central que moverá los enemigos (fuego)
-      66   00:C03C  00                  heartbeat_magia:			DB		0;			;reloj central que moverá los enemigos (magia)
-      67   00:C03D  00                  heartbeat_manoi:			DB		0;			;reloj central que moverá los enemigos (magia)
-      68   00:C03E  00                  heartbeat_manod:			DB		0;			;reloj central que moverá los enemigos (magia)
-      69   00:C03F  00                  heartbeat_general:			DB		0;			;reloj central que moverá los enemigos (dracula, mano derecha, mano izquierda y jefes y elementos de fondo)
-      70   00:C040                      
-      71   00:C040                      enemigos:
-      72   00:C040  00 (21)             enemigo1:					DS		ESTRUCTURA_ENEMIGO
-      73   00:C055  00 (21)             enemigo2:					DS		ESTRUCTURA_ENEMIGO
-      74   00:C06A  00 (21)             enemigo3:					DS		ESTRUCTURA_ENEMIGO
-      75   00:C07F  00 (21)             enemigo4:					DS		ESTRUCTURA_ENEMIGO
-      76   00:C094  00 (21)             enemigo5:					DS		ESTRUCTURA_ENEMIGO
-      77   00:C0A9  00 (21)             enemigo6:					DS		ESTRUCTURA_ENEMIGO
-      78   00:C0BE  00 (21)             enemigo7:					DS		ESTRUCTURA_ENEMIGO
-      79   00:C0D3                      
-      80   00:C0D3                      ;;SPRITES GENERAL (PROTA +  ENEMIGOS)
-      81   00:C0D3                      ;array de 4 bytes x 32 sprites posibles en pantalla que sobreescribirá la tabla de sprites actualizando VRAM
-      82   00:C0D3                      array_sprites:
-      83   00:C0D3  00 (8)              array_sprites_pm:			DS		 2 * 4		;el punto de mira siempre tiene 2 sprites
-      84   00:C0DB  00 (120)            array_sprites_enem:			DS		30 * 4		;resto de sprites
+      50   00:C032                      ;;=====================================================
+      51   00:C032                      ;;VARIABLES ENEMIGOS
+      52   00:C032                      ;;=====================================================
+      53   00:C032                      ;para movimiento de enemigos (las escenas)
+      54   00:C032                      heartbeat_enemigos:
+      55   00:C032  00                  heartbeat_cienpies:			DB		0;			;reloj central que moverá los enemigos (cienpies)
+      56   00:C033  00                  heartbeat_serpiente:		DB		0;			;reloj central que moverá los enemigos (serpiente)
+      57   00:C034  00                  heartbeat_arana:			DB		0;			;reloj central que moverá los enemigos (arana)
+      58   00:C035  00                  heartbeat_murcielago:		DB		0;			;reloj central que moverá los enemigos (murcielago)
+      59   00:C036  00                  heartbeat_lobo:				DB		0;			;reloj central que moverá los enemigos (lobo)
+      60   00:C037  00                  heartbeat_esqueleto:		DB		0;			;reloj central que moverá los enemigos (esqueleto)
+      61   00:C038  00                  heartbeat_zombi:			DB		0;			;reloj central que moverá los enemigos (zombi)
+      62   00:C039  00                  heartbeat_fantasma:			DB		0;			;reloj central que moverá los enemigos (fantasma)
+      63   00:C03A  00                  heartbeat_caballero:		DB		0;			;reloj central que moverá los enemigos (caballero)
+      64   00:C03B  00                  heartbeat_fuego:			DB		0;			;reloj central que moverá los enemigos (fuego)
+      65   00:C03C  00                  heartbeat_magia:			DB		0;			;reloj central que moverá los enemigos (magia)
+      66   00:C03D  00                  heartbeat_manoi:			DB		0;			;reloj central que moverá los enemigos (magia)
+      67   00:C03E  00                  heartbeat_manod:			DB		0;			;reloj central que moverá los enemigos (magia)
+      68   00:C03F  00                  heartbeat_general:			DB		0;			;reloj central que moverá los enemigos (dracula, mano derecha, mano izquierda y jefes y elementos de fondo)
+      69   00:C040                      
+      70   00:C040                      enemigos:
+      71   00:C040  00 (21)             enemigo1:					DS		ESTRUCTURA_ENEMIGO
+      72   00:C055  00 (21)             enemigo2:					DS		ESTRUCTURA_ENEMIGO
+      73   00:C06A  00 (21)             enemigo3:					DS		ESTRUCTURA_ENEMIGO
+      74   00:C07F  00 (21)             enemigo4:					DS		ESTRUCTURA_ENEMIGO
+      75   00:C094  00 (21)             enemigo5:					DS		ESTRUCTURA_ENEMIGO
+      76   00:C0A9  00 (21)             enemigo6:					DS		ESTRUCTURA_ENEMIGO
+      77   00:C0BE  00 (21)             enemigo7:					DS		ESTRUCTURA_ENEMIGO
+      78   00:C0D3                      
+      79   00:C0D3                      ;;SPRITES GENERAL (PROTA +  ENEMIGOS)
+      80   00:C0D3                      ;array de 4 bytes x 32 sprites posibles en pantalla que sobreescribirá la tabla de sprites actualizando VRAM
+      81   00:C0D3                      array_sprites:
+      82   00:C0D3  00 (8)              array_sprites_pm:			DS		 2 * 4		;el punto de mira siempre tiene 2 sprites
+      83   00:C0DB  00 (120)            array_sprites_enem:			DS		30 * 4		;resto de sprites
+      84   00:C153                      
       85   00:C153                      
-      86   00:C153                      
-      87   00:C153                      ;;=====================================================
-      88   00:C153                      ;;VARIABLES AYUDAS
-      89   00:C153                      ;;=====================================================
-      90   00:C153  00                  hay_ayudas_en_pantalla:		DB		0	;1 => hay / 0 => no hay; variable que se actualiza cuando cambiemos de habitación para no mirar el bit de habitación cada vez
-      91   00:C154  00 00               puntero_ayuda_actual:		DW		0	;puntero a ayuda que se muestra en pantalla (sólo se muestra una a la vez)
-      92   00:C156  00                  contador_ayuda_ballesta     DB  	0	;contador hacia atrás de pantallas que durará la ballesta
-      93   00:C157                      
-      94   00:C157                      lista_ayudas:
-      95   00:C157  00 (15)             ayuda_oracion:				DS		ESTRUCTURA_AYUDA		
-      96   00:C166  00 (15)             ayuda_cruz:					DS		ESTRUCTURA_AYUDA
-      97   00:C175  00 (15)             ayuda_aguabendita:			DS		ESTRUCTURA_AYUDA
-      98   00:C184  00 (15)             ayuda_armadura:				DS		ESTRUCTURA_AYUDA
-      99   00:C193  00 (15)             ayuda_planta:				DS		ESTRUCTURA_AYUDA
-     100   00:C1A2  00 (15)             ayuda_vidaextra				DS		ESTRUCTURA_AYUDA
-     101   00:C1B1  00 (15)             ayuda_ballesta:				DS		ESTRUCTURA_AYUDA
+      86   00:C153                      ;;=====================================================
+      87   00:C153                      ;;VARIABLES AYUDAS
+      88   00:C153                      ;;=====================================================
+      89   00:C153  00                  hay_ayudas_en_pantalla:		DB		0	;1 => hay / 0 => no hay; variable que se actualiza cuando cambiemos de habitación para no mirar el bit de habitación cada vez
+      90   00:C154  00 00               puntero_ayuda_actual:		DW		0	;puntero a ayuda que se muestra en pantalla (sólo se muestra una a la vez)
+      91   00:C156  00                  contador_ayuda_ballesta     DB  	0	;contador hacia atrás de pantallas que durará la ballesta
+      92   00:C157                      
+      93   00:C157                      lista_ayudas:
+      94   00:C157  00 (15)             ayuda_oracion:				DS		ESTRUCTURA_AYUDA		
+      95   00:C166  00 (15)             ayuda_cruz:					DS		ESTRUCTURA_AYUDA
+      96   00:C175  00 (15)             ayuda_aguabendita:			DS		ESTRUCTURA_AYUDA
+      97   00:C184  00 (15)             ayuda_armadura:				DS		ESTRUCTURA_AYUDA
+      98   00:C193  00 (15)             ayuda_planta:				DS		ESTRUCTURA_AYUDA
+      99   00:C1A2  00 (15)             ayuda_vidaextra				DS		ESTRUCTURA_AYUDA
+     100   00:C1B1  00 (15)             ayuda_ballesta:				DS		ESTRUCTURA_AYUDA
+     101   00:C1C0                      
      102   00:C1C0                      
-     103   00:C1C0                      
-     104   00:C1C0                      ;;=====================================================
-     105   00:C1C0                      ;;VARIABLES PINTA PANTALLAS + PUERTAS
-     106   00:C1C0                      ;;=====================================================
-     107   00:C1C0                      ;pinta_parte_superior_pantalla
-     108   00:C1C0  00 00               tiles_patrones:				DW		0
-     109   00:C1C2  00 00               tiles_colores:				DW		0
-     110   00:C1C4  00 00               tiles_mapa:					DW		0
-     111   00:C1C6                      
-     112   00:C1C6                      ;pinta_array
-     113   00:C1C6  00 00               wordaux1:					DW		0		;almacena la posición en el tilemap 0 al 675
-     114   00:C1C8  00 00               wordaux2:					DW		0		;almacena puntero a array de tiles (posiciones en realidad) a pintar (posiciones repetidas en los 2 primeros bancos)
-     115   00:C1CA  00                  byteaux1:					DB		0		;nº filas Registro D
-     116   00:C1CB  00                  byteaux2:					DB		0		;nº columnas Registro E
-     117   00:C1CC                      
-     118   00:C1CC                      lista_puertas:
-     119   00:C1CC  00 (13)             puerta_arriba:				DS		ESTRUCTURA_PUERTA
-     120   00:C1D9  00 (13)             puerta_derecha:				DS		ESTRUCTURA_PUERTA
-     121   00:C1E6  00 (13)             puerta_abajo:				DS		ESTRUCTURA_PUERTA
-     122   00:C1F3  00 (13)             puerta_izquierda:			DS		ESTRUCTURA_PUERTA
-     123   00:C200  00 (13)             puerta_escalera:			DS		ESTRUCTURA_PUERTA
-     124   00:C20D                      
-     125   00:C20D  00                  habitacion_actual:			DB		0		;habitación donde se encuentre el prota. Se mete en una varible par traer todos los datos de golpe y no buscarlos varias veces
-     126   00:C20E  00                  habitacion_extras:			DB		0		;donde van las ayudas de una habitación
-     127   00:C20F  00                  habitacion_terminada:		DB		0		;variable para consultar más rápido si se ha pasado (<>0 si se ha pasado y 0 no se ha pasado o no terminada)
-     128   00:C210                      
-     129   00:C210  00 00               puntero_extras_habitacion_actual:	DW	0	;puntero a los extras de la habitación actual para poder modificarlo (para que no salgan extras)
-     130   00:C212  00 00               puntero_habitacion_actual:	DW		0		;puntero a la habitación actual para poder modificarlo 
-     131   00:C214                      
-     132   00:C214  00                  enemiesleft:				DB		0		;enemigos que quedan por matar en una pantalla. No se podrá acceder a las puertas hasta que no queden enemigos vivos. Si se ha pasado por una pantalla no quedan enemigos vivos (no se respawnean).
+     103   00:C1C0                      ;;=====================================================
+     104   00:C1C0                      ;;VARIABLES PINTA PANTALLAS + PUERTAS
+     105   00:C1C0                      ;;=====================================================
+     106   00:C1C0                      ;pinta_parte_superior_pantalla
+     107   00:C1C0  00 00               tiles_patrones:				DW		0
+     108   00:C1C2  00 00               tiles_colores:				DW		0
+     109   00:C1C4  00 00               tiles_mapa:					DW		0
+     110   00:C1C6                      
+     111   00:C1C6                      ;pinta_array
+     112   00:C1C6  00 00               wordaux1:					DW		0		;almacena la posición en el tilemap 0 al 675
+     113   00:C1C8  00 00               wordaux2:					DW		0		;almacena puntero a array de tiles (posiciones en realidad) a pintar (posiciones repetidas en los 2 primeros bancos)
+     114   00:C1CA  00                  byteaux1:					DB		0		;nº filas Registro D
+     115   00:C1CB  00                  byteaux2:					DB		0		;nº columnas Registro E
+     116   00:C1CC                      
+     117   00:C1CC                      lista_puertas:
+     118   00:C1CC  00 (13)             puerta_arriba:				DS		ESTRUCTURA_PUERTA
+     119   00:C1D9  00 (13)             puerta_derecha:				DS		ESTRUCTURA_PUERTA
+     120   00:C1E6  00 (13)             puerta_abajo:				DS		ESTRUCTURA_PUERTA
+     121   00:C1F3  00 (13)             puerta_izquierda:			DS		ESTRUCTURA_PUERTA
+     122   00:C200  00 (13)             puerta_escalera:			DS		ESTRUCTURA_PUERTA
+     123   00:C20D                      
+     124   00:C20D  00                  habitacion_actual:			DB		0		;habitación donde se encuentre el prota. Se mete en una varible par traer todos los datos de golpe y no buscarlos varias veces
+     125   00:C20E  00                  habitacion_extras:			DB		0		;donde van las ayudas de una habitación
+     126   00:C20F  00                  habitacion_terminada:		DB		0		;variable para consultar más rápido si se ha pasado (<>0 si se ha pasado y 0 no se ha pasado o no terminada)
+     127   00:C210                      
+     128   00:C210  00 00               puntero_extras_habitacion_actual:	DW	0	;puntero a los extras de la habitación actual para poder modificarlo (para que no salgan extras)
+     129   00:C212  00 00               puntero_habitacion_actual:	DW		0		;puntero a la habitación actual para poder modificarlo 
+     130   00:C214                      
+     131   00:C214  00                  enemiesleft:				DB		0		;enemigos que quedan por matar en una pantalla. No se podrá acceder a las puertas hasta que no queden enemigos vivos. Si se ha pasado por una pantalla no quedan enemigos vivos (no se respawnean).
+     132   00:C215                      
      133   00:C215                      
-     134   00:C215                      
-     135   00:C215                      ;;=====================================================
-     136   00:C215                      ;;VARIABLES PUNTO MIRA
-     137   00:C215                      ;;=====================================================
-     138   00:C215  00 (7)              puntomira:					DS		ESTRUCTURA_PUNTOMIRA
+     134   00:C215                      ;;=====================================================
+     135   00:C215                      ;;VARIABLES PUNTO MIRA
+     136   00:C215                      ;;=====================================================
+     137   00:C215  00 (7)              puntomira:					DS		ESTRUCTURA_PUNTOMIRA
+     138   00:C21C                      
      139   00:C21C                      
-     140   00:C21C                      
-     141   00:C21C                      ;;=====================================================
-     142   00:C21C                      ;;VARIABLES GLOBALES
-     143   00:C21C                      ;;=====================================================
-     144   00:C21C  00                  dracula_muerto:				DB		NO					;equ 0
-     145   00:C21D  00                  tipo_gameover:				DB		0
+     140   00:C21C                      ;;=====================================================
+     141   00:C21C                      ;;VARIABLES GLOBALES
+     142   00:C21C                      ;;=====================================================
+     143   00:C21C  00                  dracula_muerto:				DB		NO					;equ 0
+     144   00:C21D  00                  tipo_gameover:				DB		0
+     145   00:C21E                      
      146   00:C21E                      
-     147   00:C21E                      
-     148   00:C21E                      ;;=====================================================
-     149   00:C21E                      ;;VARIABLES TIEMPO
-     150   00:C21E                      ;;=====================================================
-     151   00:C21E                      tiempo:
-     152   00:C21E  00                  minutos:					DB		0
-     153   00:C21F  00                  segundos:					DB		0
-     154   00:C220  00                  contador:					DB		0
+     147   00:C21E                      ;;=====================================================
+     148   00:C21E                      ;;VARIABLES TIEMPO
+     149   00:C21E                      ;;=====================================================
+     150   00:C21E                      tiempo:
+     151   00:C21E  00                  minutos:					DB		0
+     152   00:C21F  00                  segundos:					DB		0
+     153   00:C220  00                  contador:					DB		0
+     154   00:C221                      
      155   00:C221                      
-     156   00:C221                      
-     157   00:C221                      ;;=====================================================
-     158   00:C221                      ;;VARIABLES HABITACIONES
-     159   00:C221                      ;;=====================================================
-     160   00:C221                      	include "datos/habitaciones.asm"
+     156   00:C221                      ;;=====================================================
+     157   00:C221                      ;;VARIABLES HABITACIONES
+     158   00:C221                      ;;=====================================================
+     159   00:C221                      	include "datos/habitaciones.asm"
        1.  00:C221                      ;;=====================================================
        2.  00:C221                      ;;DEFINICIÓN DE HABITACIONES x NIVEL
        3.  00:C221                      ;;=====================================================	
@@ -1115,13 +1114,13 @@ Errors: 0
      106.  00:C521                      	db 00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00000010b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,#00,#00 ;nivel 0 fila 7
      106.  00:C521  00 00 00 00 00 00 02 00 00 00 00 00 00 00 00 00 
      107.  00:C531                      
+     160   00:C531                      
      161   00:C531                      
-     162   00:C531                      
-     163   00:C531                      ;;=====================================================
-     164   00:C531                      ;;VARIABLES PARA SONIDO 
-     165   00:C531                      ;;=====================================================
-     166   00:C531  00                  musica_activa				DB 		0
-     167   00:C532                      	include "datos/var_pt3_ayfx.asm"
+     162   00:C531                      ;;=====================================================
+     163   00:C531                      ;;VARIABLES PARA SONIDO 
+     164   00:C531                      ;;=====================================================
+     165   00:C531  00                  musica_activa				DB 		0
+     166   00:C532                      	include "datos/var_pt3_ayfx.asm"
        1.  00:C532                      ;;=====================================================
        2.  00:C532                      ;;VARIABLES PARA SONIDO 
        3.  00:C532                      ;;=====================================================
@@ -1197,7 +1196,7 @@ Errors: 0
       73.  00:C532                      ;ayFX_VT:	ds	2			; ayFX relative volume table pointer
       74.  00:C532                      	;ENDIF
       75.  00:C532                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ayFX REPLAYER END
-     168   00:C532                      
+     167   00:C532                      
 
     LABELS
 -------------------------------------------------

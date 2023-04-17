@@ -13,8 +13,6 @@ TODO A
 - repasar lo de queda poca vida a cada jefe... especialmente a drácula
 - repasar vida de jefes en boss rush de nivel 6
 - posicionar ayudas
-* revisar todos los sprites (incluidos los del punto de mira) faltan:
-. punto de mira
 
 TODO B
 - revisar letras
