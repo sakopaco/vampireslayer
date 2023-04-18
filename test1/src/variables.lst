@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.04.17 - 21:50:37]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.04.18 - 18:44:33]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -875,89 +875,88 @@ Errors: 0
       74   00:C07F  00 (21)             enemigo4:					DS		ESTRUCTURA_ENEMIGO
       75   00:C094  00 (21)             enemigo5:					DS		ESTRUCTURA_ENEMIGO
       76   00:C0A9  00 (21)             enemigo6:					DS		ESTRUCTURA_ENEMIGO
-      77   00:C0BE                      ;enemigo7:					DS		ESTRUCTURA_ENEMIGO
-      78   00:C0BE                      
-      79   00:C0BE                      ;;SPRITES GENERAL (PROTA +  ENEMIGOS)
-      80   00:C0BE                      ;array de 4 bytes x 32 sprites posibles en pantalla que sobreescribirá la tabla de sprites actualizando VRAM
-      81   00:C0BE                      array_sprites:
-      82   00:C0BE  00 (8)              array_sprites_pm:			DS		 2 * 4		;el punto de mira siempre tiene 2 sprites
-      83   00:C0C6  00 (120)            array_sprites_enem:			DS		30 * 4		;resto de sprites
+      77   00:C0BE                      
+      78   00:C0BE                      ;;SPRITES GENERAL (PROTA +  ENEMIGOS)
+      79   00:C0BE                      ;array de 4 bytes x 32 sprites posibles en pantalla que sobreescribirá la tabla de sprites actualizando VRAM
+      80   00:C0BE                      array_sprites:
+      81   00:C0BE  00 (8)              array_sprites_pm:			DS		 2 * 4		;el punto de mira siempre tiene 2 sprites
+      82   00:C0C6  00 (120)            array_sprites_enem:			DS		30 * 4		;resto de sprites
+      83   00:C13E                      
       84   00:C13E                      
-      85   00:C13E                      
-      86   00:C13E                      ;;=====================================================
-      87   00:C13E                      ;;VARIABLES AYUDAS
-      88   00:C13E                      ;;=====================================================
-      89   00:C13E  00                  hay_ayudas_en_pantalla:		DB		0	;1 => hay / 0 => no hay; variable que se actualiza cuando cambiemos de habitación para no mirar el bit de habitación cada vez
-      90   00:C13F  00 00               puntero_ayuda_actual:		DW		0	;puntero a ayuda que se muestra en pantalla (sólo se muestra una a la vez)
-      91   00:C141  00                  contador_ayuda_ballesta     DB  	0	;contador hacia atrás de pantallas que durará la ballesta
-      92   00:C142                      
-      93   00:C142                      lista_ayudas:
-      94   00:C142  00 (15)             ayuda_oracion:				DS		ESTRUCTURA_AYUDA		
-      95   00:C151  00 (15)             ayuda_cruz:					DS		ESTRUCTURA_AYUDA
-      96   00:C160  00 (15)             ayuda_aguabendita:			DS		ESTRUCTURA_AYUDA
-      97   00:C16F  00 (15)             ayuda_armadura:				DS		ESTRUCTURA_AYUDA
-      98   00:C17E  00 (15)             ayuda_planta:				DS		ESTRUCTURA_AYUDA
-      99   00:C18D  00 (15)             ayuda_vidaextra				DS		ESTRUCTURA_AYUDA
-     100   00:C19C  00 (15)             ayuda_ballesta:				DS		ESTRUCTURA_AYUDA
+      85   00:C13E                      ;;=====================================================
+      86   00:C13E                      ;;VARIABLES AYUDAS
+      87   00:C13E                      ;;=====================================================
+      88   00:C13E  00                  hay_ayudas_en_pantalla:		DB		0	;1 => hay / 0 => no hay; variable que se actualiza cuando cambiemos de habitación para no mirar el bit de habitación cada vez
+      89   00:C13F  00 00               puntero_ayuda_actual:		DW		0	;puntero a ayuda que se muestra en pantalla (sólo se muestra una a la vez)
+      90   00:C141  00                  contador_ayuda_ballesta     DB  	0	;contador hacia atrás de pantallas que durará la ballesta
+      91   00:C142                      
+      92   00:C142                      lista_ayudas:
+      93   00:C142  00 (15)             ayuda_oracion:				DS		ESTRUCTURA_AYUDA		
+      94   00:C151  00 (15)             ayuda_cruz:					DS		ESTRUCTURA_AYUDA
+      95   00:C160  00 (15)             ayuda_aguabendita:			DS		ESTRUCTURA_AYUDA
+      96   00:C16F  00 (15)             ayuda_armadura:				DS		ESTRUCTURA_AYUDA
+      97   00:C17E  00 (15)             ayuda_planta:				DS		ESTRUCTURA_AYUDA
+      98   00:C18D  00 (15)             ayuda_vidaextra				DS		ESTRUCTURA_AYUDA
+      99   00:C19C  00 (15)             ayuda_ballesta:				DS		ESTRUCTURA_AYUDA
+     100   00:C1AB                      
      101   00:C1AB                      
-     102   00:C1AB                      
-     103   00:C1AB                      ;;=====================================================
-     104   00:C1AB                      ;;VARIABLES PINTA PANTALLAS + PUERTAS
-     105   00:C1AB                      ;;=====================================================
-     106   00:C1AB                      ;pinta_parte_superior_pantalla
-     107   00:C1AB  00 00               tiles_patrones:				DW		0
-     108   00:C1AD  00 00               tiles_colores:				DW		0
-     109   00:C1AF  00 00               tiles_mapa:					DW		0
-     110   00:C1B1                      
-     111   00:C1B1                      ;pinta_array
-     112   00:C1B1  00 00               wordaux1:					DW		0		;almacena la posición en el tilemap 0 al 675
-     113   00:C1B3  00 00               wordaux2:					DW		0		;almacena puntero a array de tiles (posiciones en realidad) a pintar (posiciones repetidas en los 2 primeros bancos)
-     114   00:C1B5  00                  byteaux1:					DB		0		;nº filas Registro D
-     115   00:C1B6  00                  byteaux2:					DB		0		;nº columnas Registro E
-     116   00:C1B7                      
-     117   00:C1B7                      lista_puertas:
-     118   00:C1B7  00 (13)             puerta_arriba:				DS		ESTRUCTURA_PUERTA
-     119   00:C1C4  00 (13)             puerta_derecha:				DS		ESTRUCTURA_PUERTA
-     120   00:C1D1  00 (13)             puerta_abajo:				DS		ESTRUCTURA_PUERTA
-     121   00:C1DE  00 (13)             puerta_izquierda:			DS		ESTRUCTURA_PUERTA
-     122   00:C1EB  00 (13)             puerta_escalera:			DS		ESTRUCTURA_PUERTA
-     123   00:C1F8                      
-     124   00:C1F8  00                  habitacion_actual:			DB		0		;habitación donde se encuentre el prota. Se mete en una varible par traer todos los datos de golpe y no buscarlos varias veces
-     125   00:C1F9  00                  habitacion_extras:			DB		0		;donde van las ayudas de una habitación
-     126   00:C1FA  00                  habitacion_terminada:		DB		0		;variable para consultar más rápido si se ha pasado (<>0 si se ha pasado y 0 no se ha pasado o no terminada)
-     127   00:C1FB                      
-     128   00:C1FB  00 00               puntero_extras_habitacion_actual:	DW	0	;puntero a los extras de la habitación actual para poder modificarlo (para que no salgan extras)
-     129   00:C1FD  00 00               puntero_habitacion_actual:	DW		0		;puntero a la habitación actual para poder modificarlo 
-     130   00:C1FF                      
-     131   00:C1FF  00                  enemiesleft:				DB		0		;enemigos que quedan por matar en una pantalla. No se podrá acceder a las puertas hasta que no queden enemigos vivos. Si se ha pasado por una pantalla no quedan enemigos vivos (no se respawnean).
+     102   00:C1AB                      ;;=====================================================
+     103   00:C1AB                      ;;VARIABLES PINTA PANTALLAS + PUERTAS
+     104   00:C1AB                      ;;=====================================================
+     105   00:C1AB                      ;pinta_parte_superior_pantalla
+     106   00:C1AB  00 00               tiles_patrones:				DW		0
+     107   00:C1AD  00 00               tiles_colores:				DW		0
+     108   00:C1AF  00 00               tiles_mapa:					DW		0
+     109   00:C1B1                      
+     110   00:C1B1                      ;pinta_array
+     111   00:C1B1  00 00               wordaux1:					DW		0		;almacena la posición en el tilemap 0 al 675
+     112   00:C1B3  00 00               wordaux2:					DW		0		;almacena puntero a array de tiles (posiciones en realidad) a pintar (posiciones repetidas en los 2 primeros bancos)
+     113   00:C1B5  00                  byteaux1:					DB		0		;nº filas Registro D
+     114   00:C1B6  00                  byteaux2:					DB		0		;nº columnas Registro E
+     115   00:C1B7                      
+     116   00:C1B7                      lista_puertas:
+     117   00:C1B7  00 (13)             puerta_arriba:				DS		ESTRUCTURA_PUERTA
+     118   00:C1C4  00 (13)             puerta_derecha:				DS		ESTRUCTURA_PUERTA
+     119   00:C1D1  00 (13)             puerta_abajo:				DS		ESTRUCTURA_PUERTA
+     120   00:C1DE  00 (13)             puerta_izquierda:			DS		ESTRUCTURA_PUERTA
+     121   00:C1EB  00 (13)             puerta_escalera:			DS		ESTRUCTURA_PUERTA
+     122   00:C1F8                      
+     123   00:C1F8  00                  habitacion_actual:			DB		0		;habitación donde se encuentre el prota. Se mete en una varible par traer todos los datos de golpe y no buscarlos varias veces
+     124   00:C1F9  00                  habitacion_extras:			DB		0		;donde van las ayudas de una habitación
+     125   00:C1FA  00                  habitacion_terminada:		DB		0		;variable para consultar más rápido si se ha pasado (<>0 si se ha pasado y 0 no se ha pasado o no terminada)
+     126   00:C1FB                      
+     127   00:C1FB  00 00               puntero_extras_habitacion_actual:	DW	0	;puntero a los extras de la habitación actual para poder modificarlo (para que no salgan extras)
+     128   00:C1FD  00 00               puntero_habitacion_actual:	DW		0		;puntero a la habitación actual para poder modificarlo 
+     129   00:C1FF                      
+     130   00:C1FF  00                  enemiesleft:				DB		0		;enemigos que quedan por matar en una pantalla. No se podrá acceder a las puertas hasta que no queden enemigos vivos. Si se ha pasado por una pantalla no quedan enemigos vivos (no se respawnean).
+     131   00:C200                      
      132   00:C200                      
-     133   00:C200                      
-     134   00:C200                      ;;=====================================================
-     135   00:C200                      ;;VARIABLES PUNTO MIRA
-     136   00:C200                      ;;=====================================================
-     137   00:C200  00 (7)              puntomira:					DS		ESTRUCTURA_PUNTOMIRA
+     133   00:C200                      ;;=====================================================
+     134   00:C200                      ;;VARIABLES PUNTO MIRA
+     135   00:C200                      ;;=====================================================
+     136   00:C200  00 (7)              puntomira:					DS		ESTRUCTURA_PUNTOMIRA
+     137   00:C207                      
      138   00:C207                      
-     139   00:C207                      
-     140   00:C207                      ;;=====================================================
-     141   00:C207                      ;;VARIABLES GLOBALES
-     142   00:C207                      ;;=====================================================
-     143   00:C207  00                  dracula_muerto:				DB		NO					;equ 0
-     144   00:C208  00                  tipo_gameover:				DB		0
+     139   00:C207                      ;;=====================================================
+     140   00:C207                      ;;VARIABLES GLOBALES
+     141   00:C207                      ;;=====================================================
+     142   00:C207  00                  dracula_muerto:				DB		NO					;equ 0
+     143   00:C208  00                  tipo_gameover:				DB		0
+     144   00:C209                      
      145   00:C209                      
-     146   00:C209                      
-     147   00:C209                      ;;=====================================================
-     148   00:C209                      ;;VARIABLES TIEMPO
-     149   00:C209                      ;;=====================================================
-     150   00:C209                      tiempo:
-     151   00:C209  00                  minutos:					DB		0
-     152   00:C20A  00                  segundos:					DB		0
-     153   00:C20B  00                  contador:					DB		0
+     146   00:C209                      ;;=====================================================
+     147   00:C209                      ;;VARIABLES TIEMPO
+     148   00:C209                      ;;=====================================================
+     149   00:C209                      tiempo:
+     150   00:C209  00                  minutos:					DB		0
+     151   00:C20A  00                  segundos:					DB		0
+     152   00:C20B  00                  contador:					DB		0
+     153   00:C20C                      
      154   00:C20C                      
-     155   00:C20C                      
-     156   00:C20C                      ;;=====================================================
-     157   00:C20C                      ;;VARIABLES HABITACIONES
-     158   00:C20C                      ;;=====================================================
-     159   00:C20C                      	include "datos/habitaciones.asm"
+     155   00:C20C                      ;;=====================================================
+     156   00:C20C                      ;;VARIABLES HABITACIONES
+     157   00:C20C                      ;;=====================================================
+     158   00:C20C                      	include "datos/habitaciones.asm"
        1.  00:C20C                      ;;=====================================================
        2.  00:C20C                      ;;DEFINICIÓN DE HABITACIONES x NIVEL
        3.  00:C20C                      ;;=====================================================	
@@ -1114,13 +1113,13 @@ Errors: 0
      106.  00:C50C                      	db 00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00000010b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,00000000b,#00,#00 ;nivel 0 fila 7
      106.  00:C50C  00 00 00 00 00 00 02 00 00 00 00 00 00 00 00 00 
      107.  00:C51C                      
+     159   00:C51C                      
      160   00:C51C                      
-     161   00:C51C                      
-     162   00:C51C                      ;;=====================================================
-     163   00:C51C                      ;;VARIABLES PARA SONIDO 
-     164   00:C51C                      ;;=====================================================
-     165   00:C51C  00                  musica_activa				DB 		0
-     166   00:C51D                      	include "datos/var_pt3_ayfx.asm"
+     161   00:C51C                      ;;=====================================================
+     162   00:C51C                      ;;VARIABLES PARA SONIDO 
+     163   00:C51C                      ;;=====================================================
+     164   00:C51C  00                  musica_activa				DB 		0
+     165   00:C51D                      	include "datos/var_pt3_ayfx.asm"
        1.  00:C51D                      ;;=====================================================
        2.  00:C51D                      ;;VARIABLES PARA SONIDO 
        3.  00:C51D                      ;;=====================================================
@@ -1196,7 +1195,7 @@ Errors: 0
       73.  00:C51D                      ;ayFX_VT:	ds	2			; ayFX relative volume table pointer
       74.  00:C51D                      	;ENDIF
       75.  00:C51D                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ayFX REPLAYER END
-     167   00:C51D                      
+     166   00:C51D                      
 
     LABELS
 -------------------------------------------------

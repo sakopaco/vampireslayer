@@ -339,13 +339,6 @@ fin_pinta_ayudas_habitacion:
 ; salida: 	-
 ; toca:		todo
 check_colision_ayudas:
-
-
-;ññññññ
-		RET
-
-
-
 	LD		IX, (puntero_ayuda_actual)
 	LD		 A, (IX)
 	OR		 A							;está activa la ayuda de pantalla?

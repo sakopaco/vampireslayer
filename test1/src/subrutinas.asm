@@ -397,7 +397,11 @@ check_colisiones_objetos:
 		;recorre puertas y sale
 		CALL		check_colisiones_puertas
 
+		LD			 A, (hay_ayudas_en_pantalla)
+		OR			 A
+		JP			 Z, .no_hay_ayudas
 		CALL		check_colision_ayudas	; si hay ayudas que examinar
+.no_hay_ayudas:
 
 		;pantalla limpia?
 		LD			 A, (habitacion_terminada)
