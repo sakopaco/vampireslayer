@@ -13,7 +13,7 @@ datos_jefefantasma:
 			DB		1							;(direccionx) 00000001b / 00000010b / 00000100b / 00001000b (las 4 posiciones posibles)
 			DB		0							;(direcciony) no se usa
 			DB		JEFEFANTASMA_LIM_PASOS		;(pasos) TIEMPO QUE ESPERA PARA PASAR DE UNA ESCAA A OTRA
-			DB		0							;pocavida 0 y 1 para indicar cuando le queda poca vida al enemigo
+			DB		JEFEFANTASMA_POCAVIDA		;pocavida 0 y 1 para indicar cuando le queda poca vida al enemigo
 			DW		mover_jefefantasma			;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 			DB		JEFEFANTASMA_SPRITE1A		;izq arriba
 			DB		JEFEFANTASMA_SPRITE2A		;der_arriba
@@ -51,10 +51,7 @@ fin_anade_enemigo_jefefantasma:
 ; salida: 	-
 ; toca:		-
 actualiza_valores_jefefantasma_BR:
-		LD			(IX + ESTRUCTURA_ENEMIGO.energia), 64
-		
-		;quitar cuando se cree el daño a los jefes
-		LD			 (IX + ESTRUCTURA_ENEMIGO.pocavida), 1
+		LD			(IX + ESTRUCTURA_ENEMIGO.energia), JEFEFANTASMA_ENERGIA2
 fin_actualiza_valores_jefefantasma_BR:
 		RET
 		

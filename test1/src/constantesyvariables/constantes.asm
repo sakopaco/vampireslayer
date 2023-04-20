@@ -146,11 +146,11 @@ POSYPM				equ		96
 ISHABTERMIN			equ		1 	;0 sería no terminada
 
 ;;ETIQUETAS PARA PUNTO DE MIRA
-LIMCADENCIA 		equ		4	;nº de veces que se ejecutará el disparo antes de ejecutar un disparo real (porque cuando se pulsa la tecl dispara 3 ó 4 veces de rápido que va)
+LIMCADENCIA 		equ		6	;nº de veces que se ejecutará el disparo antes de ejecutar un disparo real (porque cuando se pulsa la tecl dispara 3 ó 4 veces de rápido que va)
 SPRI_DANO1A 		equ		0	;posiciones de los sprites en memoria (va de 4 en 4 al tratarse de sprites de 16 x 16)
 SPRI_DANO1B 		equ		4
-SPRI_DANO2A 		equ		8
-SPRI_DANO2B 		equ		12
+SPRI_DANO2A 		equ		6
+SPRI_DANO2B 		equ		15
 
 ;;POSICIONES DE LAS ANTORCHAS
 POSANTOR1			equ		136

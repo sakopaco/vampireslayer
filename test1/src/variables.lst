@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.04.18 - 18:44:33]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.04.20 - 21:22:36]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -161,11 +161,11 @@ Errors: 0
      146.  00:C000  (00:0001)           ISHABTERMIN			equ		1 	;0 sería no terminada
      147.  00:C000                      
      148.  00:C000                      ;;ETIQUETAS PARA PUNTO DE MIRA
-     149.  00:C000  (00:0004)           LIMCADENCIA 		equ		4	;nº de veces que se ejecutará el disparo antes de ejecutar un disparo real (porque cuando se pulsa la tecl dispara 3 ó 4 veces de rápido que va)
+     149.  00:C000  (00:0006)           LIMCADENCIA 		equ		6	;nº de veces que se ejecutará el disparo antes de ejecutar un disparo real (porque cuando se pulsa la tecl dispara 3 ó 4 veces de rápido que va)
      150.  00:C000  (00:0000)           SPRI_DANO1A 		equ		0	;posiciones de los sprites en memoria (va de 4 en 4 al tratarse de sprites de 16 x 16)
      151.  00:C000  (00:0004)           SPRI_DANO1B 		equ		4
-     152.  00:C000  (00:0008)           SPRI_DANO2A 		equ		8
-     153.  00:C000  (00:000C)           SPRI_DANO2B 		equ		12
+     152.  00:C000  (00:0006)           SPRI_DANO2A 		equ		6
+     153.  00:C000  (00:000F)           SPRI_DANO2B 		equ		15
      154.  00:C000                      
      155.  00:C000                      ;;POSICIONES DE LAS ANTORCHAS
      156.  00:C000  (00:0088)           POSANTOR1			equ		136
@@ -471,28 +471,28 @@ Errors: 0
      220.  00:C000  (00:0040)           JEFEFANTASMA_X8			equ		64
      221.  00:C000  (00:0058)           JEFEFANTASMA_Y8			equ		88
      222.  00:C000  (00:0010)           JEFEFANTASMA_VELESCENA	equ		00010000b
-     223.  00:C000  (00:0005)           JEFEFANTASMA_DANO		equ		5
-     224.  00:C000  (00:0064)           JEFEFANTASMA_ENERGIA	equ		100
-     225.  00:C000  (00:0021)           JEFEFANTASMA_POCAVIDA	equ		33
-     226.  00:C000                      
-     227.  00:C000                      ;;ETIQUETAS/CONSTANTES CABALLEROG
-     228.  00:C000  (00:000A)           TIPOCABALLEROGRIS		equ		10
-     229.  00:C000  (00:0001)           CABALLERO_COLOR			equ		1		;15 - BLANCO
-     230.  00:C000  (00:0040)           CABALLERO_SPRITE1A		equ		64
-     231.  00:C000  (00:0044)           CABALLERO_SPRITE2A		equ		68
-     232.  00:C000  (00:0048)           CABALLERO_SPRITE3A		equ		72
-     233.  00:C000  (00:004C)           CABALLERO_SPRITE4A		equ		76
-     234.  00:C000  (00:0050)           CABALLERO_SPRITE1B		equ		80
-     235.  00:C000  (00:0054)           CABALLERO_SPRITE2B		equ		84
-     236.  00:C000  (00:0058)           CABALLERO_SPRITE3B		equ		88
-     237.  00:C000  (00:005C)           CABALLERO_SPRITE4B		equ		92
-     238.  00:C000  (00:0030)           CABALLERO_POSYINI		equ		48
-     239.  00:C000  (00:00C0)           CABALLERO_POSXINI		equ		192
-     240.  00:C000  (00:0090)           CABALLERO_PASOS  		equ		144
-     241.  00:C000  (00:0010)           CABALLERO_VELESCENA		equ		00010000b
-     242.  00:C000  (00:0005)           CABALLERO_DANO			equ		5
-     243.  00:C000  (00:0050)           CABALLERO_ENERGIA		equ		80
-     244.  00:C000  (00:0050)           CABALLERO_ENERGIA2		equ		80
+     223.  00:C000  (00:0014)           JEFEFANTASMA_DANO		equ		20
+     224.  00:C000  (00:00E1)           JEFEFANTASMA_ENERGIA	equ		225
+     225.  00:C000  (00:0096)           JEFEFANTASMA_ENERGIA2	equ		150
+     226.  00:C000  (00:0064)           JEFEFANTASMA_POCAVIDA	equ		100
+     227.  00:C000                      
+     228.  00:C000                      ;;ETIQUETAS/CONSTANTES CABALLEROG
+     229.  00:C000  (00:000A)           TIPOCABALLEROGRIS		equ		10
+     230.  00:C000  (00:0001)           CABALLERO_COLOR			equ		1		;15 - BLANCO
+     231.  00:C000  (00:0040)           CABALLERO_SPRITE1A		equ		64
+     232.  00:C000  (00:0044)           CABALLERO_SPRITE2A		equ		68
+     233.  00:C000  (00:0048)           CABALLERO_SPRITE3A		equ		72
+     234.  00:C000  (00:004C)           CABALLERO_SPRITE4A		equ		76
+     235.  00:C000  (00:0050)           CABALLERO_SPRITE1B		equ		80
+     236.  00:C000  (00:0054)           CABALLERO_SPRITE2B		equ		84
+     237.  00:C000  (00:0058)           CABALLERO_SPRITE3B		equ		88
+     238.  00:C000  (00:005C)           CABALLERO_SPRITE4B		equ		92
+     239.  00:C000  (00:0030)           CABALLERO_POSYINI		equ		48
+     240.  00:C000  (00:00C0)           CABALLERO_POSXINI		equ		192
+     241.  00:C000  (00:0090)           CABALLERO_PASOS  		equ		144
+     242.  00:C000  (00:0010)           CABALLERO_VELESCENA		equ		00010000b
+     243.  00:C000  (00:0005)           CABALLERO_DANO			equ		5
+     244.  00:C000  (00:0050)           CABALLERO_ENERGIA		equ		80
      245.  00:C000                      
      246.  00:C000                      ;;ETIQUETAS/CONSTANTES ZOMBI
      247.  00:C000  (00:0011)           TIPOJEFEZOMBI			equ		17
@@ -522,140 +522,145 @@ Errors: 0
      271.  00:C000  (00:0040)           JEFEZOMBI_POSY			equ		64
      272.  00:C000  (00:0096)           JEFEZOMBI_PASOS			equ		150
      273.  00:C000  (00:0010)           JEFEZOMBI_VELESCENA		equ		00010000b
-     274.  00:C000  (00:0005)           JEFEZOMBI_DANO			equ		5
-     275.  00:C000  (00:0064)           JEFEZOMBI_ENERGIA		equ		100
-     276.  00:C000  (00:0021)           JEFEZOMBI_POCAVIDA		equ		33
-     277.  00:C000                      
-     278.  00:C000                      ;;ETIQUETAS/CONSTANTES FUEGO
-     279.  00:C000  (00:000C)           TIPOFUEGO				equ		12
-     280.  00:C000  (00:0009)           FUEGO_COLOR1			equ		9		;15 - BLANCO
-     281.  00:C000  (00:000B)           FUEGO_COLOR2			equ		11		;15 - BLANCO
-     282.  00:C000  (00:00D0)           FUEGO_PASOSX			equ		208
-     283.  00:C000  (00:0040)           FUEGO_PASOSY			equ		64
-     284.  00:C000  (00:00B0)           FUEGO_SPRITE1A			equ		176
-     285.  00:C000  (00:00B4)           FUEGO_SPRITE2A			equ		180
-     286.  00:C000  (00:00B8)           FUEGO_SPRITE1B			equ		184
-     287.  00:C000  (00:00BC)           FUEGO_SPRITE2B			equ		188
-     288.  00:C000  (00:000F)           FUEGO_POS1X				equ		15
-     289.  00:C000  (00:000F)           FUEGO_POS1Y				equ		15
-     290.  00:C000  (00:00DF)           FUEGO_POS2X				equ		223
-     291.  00:C000  (00:000F)           FUEGO_POS2Y				equ		15
-     292.  00:C000  (00:00DF)           FUEGO_POS3X				equ		223
-     293.  00:C000  (00:004F)           FUEGO_POS3Y				equ		79
-     294.  00:C000  (00:000F)           FUEGO_POS4X				equ		15
-     295.  00:C000  (00:004F)           FUEGO_POS4Y				equ		79
-     296.  00:C000  (00:0020)           FUEGO_VELESCENA			equ		000100000b
-     297.  00:C000  (00:0005)           FUEGO_DANO				equ		5
-     298.  00:C000  (00:0055)           FUEGO_ENERGIA			equ		85
-     299.  00:C000                      
-     300.  00:C000                      ;;ETIQUETAS/CONSTANTES JEFECABALLERO
-     301.  00:C000  (00:0012)           TIPOJEFECABALLERO		equ		18
-     302.  00:C000  (00:0001)           JCABALLERO_COLOR		equ		1		;15 - BLANCO
-     303.  00:C000  (00:00C0)           JCABALLERO_SPRITE1A		equ		192
-     304.  00:C000  (00:00C4)           JCABALLERO_SPRITE2A		equ		196
-     305.  00:C000  (00:00C8)           JCABALLERO_SPRITE3A		equ		200
-     306.  00:C000  (00:00CC)           JCABALLERO_SPRITE4A		equ		204
-     307.  00:C000  (00:00D0)           JCABALLERO_SPRITE1B		equ		208
-     308.  00:C000  (00:00D4)           JCABALLERO_SPRITE2B		equ		212
-     309.  00:C000  (00:00D8)           JCABALLERO_SPRITE3B		equ		216
-     310.  00:C000  (00:00DC)           JCABALLERO_SPRITE4B		equ		220
-     311.  00:C000  (00:00E0)           JCABALLERO_SPRITE1C		equ		224
-     312.  00:C000  (00:00E4)           JCABALLERO_SPRITE2C		equ		228
-     313.  00:C000  (00:00E8)           JCABALLERO_SPRITE3C		equ		232
-     314.  00:C000  (00:00EC)           JCABALLERO_SPRITE4C		equ		236
-     315.  00:C000  (00:00F0)           JCABALLERO_SPRITE1D		equ		240
-     316.  00:C000  (00:00F4)           JCABALLERO_SPRITE2D		equ		244
-     317.  00:C000  (00:00F8)           JCABALLERO_SPRITE3D		equ		248
-     318.  00:C000  (00:00FC)           JCABALLERO_SPRITE4D		equ		252
-     319.  00:C000  (00:0030)           JCABALLERO_POSYINI		equ		48
-     320.  00:C000  (00:00C0)           JCABALLERO_POSXINI		equ		192
-     321.  00:C000  (00:00B6)           JCABALLERO_PASOS  		equ		182
-     322.  00:C000  (00:0010)           JCABALLERO_VELESCENA 	equ		00010000b
-     323.  00:C000  (00:0005)           JCABALLERO_DANO			equ		5
-     324.  00:C000  (00:0064)           JCABALLERO_ENERGIA		equ		100
-     325.  00:C000  (00:0021)           JCABALLERO_POCAVIDA		equ		33
-     326.  00:C000                      
-     327.  00:C000                      ;;ETIQUETAS/CONSTANTES MAGIA
-     328.  00:C000  (00:000D)           TIPOMAGIA				equ		13
-     329.  00:C000  (00:0001)           MAGIA_COLOR				equ		1		;15 - BLANCO
-     330.  00:C000  (00:0020)           MAGIA_SPRITE1A			equ		32
-     331.  00:C000  (00:0024)           MAGIA_SPRITE1B			equ		36
-     332.  00:C000  (00:0028)           MAGIA_SPRITE2A			equ		40
-     333.  00:C000  (00:002C)           MAGIA_SPRITE2B			equ		44
-     334.  00:C000  (00:0023)           MAGIA_PASOS				equ		35
-     335.  00:C000  (00:0040)           MAGIA_POSX				equ		64
-     336.  00:C000  (00:0037)           MAGIA_POSY				equ		55
-     337.  00:C000  (00:0005)           MAGIA_INCREMENTO		equ		5
-     338.  00:C000  (00:0010)           MAGIA_VELESCENA			equ		00010000b
-     339.  00:C000  (00:0005)           MAGIA_DANO				equ		5
-     340.  00:C000  (00:005A)           MAGIA_ENERGIA			equ		90
-     341.  00:C000                      
-     342.  00:C000                      ;;ETIQUETAS/CONSTANTES JEFEBEHOLDER
-     343.  00:C000  (00:0013)           TIPOJEFEBEHOLDER		equ		19
-     344.  00:C000  (00:0002)           JEFEBEHOLDER_COLOR		equ		2		;15 - BLANCO
-     345.  00:C000  (00:00E0)           JEFEBEHOLDER_SPRITE1A	equ		224
-     346.  00:C000  (00:00E4)           JEFEBEHOLDER_SPRITE2A	equ		228
-     347.  00:C000  (00:00E8)           JEFEBEHOLDER_SPRITE3A	equ		232
-     348.  00:C000  (00:00EC)           JEFEBEHOLDER_SPRITE4A	equ		236
-     349.  00:C000  (00:00F0)           JEFEBEHOLDER_SPRITE1B	equ		240
-     350.  00:C000  (00:00F4)           JEFEBEHOLDER_SPRITE2B	equ		244
-     351.  00:C000  (00:00F8)           JEFEBEHOLDER_SPRITE3B	equ		248
-     352.  00:C000  (00:00FC)           JEFEBEHOLDER_SPRITE4B	equ		252
-     353.  00:C000  (00:0037)           JEFEBEHOLDER_PASOS		equ		55 ; PROBAR CON 56
-     354.  00:C000  (00:0040)           JEFEBEHOLDER_POSX		equ		64
-     355.  00:C000  (00:0037)           JEFEBEHOLDER_POSY		equ		55
-     356.  00:C000  (00:0003)           JEFEBEHOLDER_INCREMENTO	equ		3
-     357.  00:C000  (00:0010)           JEFEBEHOLDER_VELESCENA	equ		00010000b
-     358.  00:C000  (00:0005)           JEFEBEHOLDER_DANO		equ		5
-     359.  00:C000  (00:0064)           JEFEBEHOLDER_ENERGIA	equ		100
-     360.  00:C000  (00:0021)           JEFEBEHOLDER_POCAVIDA	equ		33
-     361.  00:C000                      
-     362.  00:C000                      ;;ETIQUETAS/CONSTANTES DRACULA
-     363.  00:C000  (00:0016)           TIPODRACULA				equ		22
-     364.  00:C000  (00:0001)           DRACULA_COLOR1 	 		equ		1		; negro (fondo)
-     365.  00:C000  (00:000F)           DRACULA_COLOR2 	 		equ		15		; blanco (parte de arriba)
-     366.  00:C000  (00:0006)           DRACULA_COLOR3 	 		equ		6		; rojo oscuro (parte de abajo)
-     367.  00:C000  (00:0064)           DRACULA_PASOS			equ		100
-     368.  00:C000  (00:0040)           DRACULA_Y				equ		64
-     369.  00:C000  (00:002F)           DRACULA_X1				equ		47
-     370.  00:C000  (00:005F)           DRACULA_X2				equ		95
-     371.  00:C000  (00:008F)           DRACULA_X3				equ		143
-     372.  00:C000  (00:00BF)           DRACULA_X4				equ		191
-     373.  00:C000  (00:00F0)           DRACULA_SPRITE1A		equ		240
-     374.  00:C000  (00:00F4)           DRACULA_SPRITE1B		equ		244
-     375.  00:C000  (00:00F8)           DRACULA_SPRITE2A		equ		248
-     376.  00:C000  (00:00FC)           DRACULA_SPRITE2B		equ		252
-     377.  00:C000  (00:0010)           DRACULA_VELESCENA		equ		00010000b
-     378.  00:C000  (00:000A)           DRACULA_DANO			equ		10
-     379.  00:C000  (00:0064)           DRACULA_ENERGIA			equ		100
-     380.  00:C000  (00:0021)           DRACULA_POCAVIDA		equ		33
-     381.  00:C000                      
-     382.  00:C000                      ;;ETIQUETAS/CONSTANTES MANOIZQIERDA
-     383.  00:C000  (00:0015)           TIPOMANOIZQUIERDA		equ		21
-     384.  00:C000  (00:000F)           MANOI_COLOR   			equ		15		; blanca
-     385.  00:C000  (00:00E0)           MANOI_SPRITE1A			equ		224
-     386.  00:C000  (00:00E4)           MANOI_SPRITE1B			equ		228
-     387.  00:C000  (00:0023)           MANOI_PASOS				equ		35
-     388.  00:C000  (00:0040)           MANOI_POSY				equ		64
-     389.  00:C000  (00:002F)           MANOI_POSX				equ		47
-     390.  00:C000  (00:0005)           MANOI_INCREMENTO		equ		5
-     391.  00:C000  (00:0010)           MANOI_VELESCENA			equ		00010000b
-     392.  00:C000  (00:0005)           MANOI_DANO				equ		5
-     393.  00:C000  (00:0064)           MANOI_ENERGIA			equ		100
-     394.  00:C000                      
-     395.  00:C000                      ;;ETIQUETAS/CONSTANTES MANODERECHA
-     396.  00:C000  (00:0014)           TIPOMANODERECHA			equ		20
-     397.  00:C000  (00:000F)           MANOD_COLOR   			equ		15		; blanca
-     398.  00:C000  (00:00E8)           MANOD_SPRITE1A			equ		232
-     399.  00:C000  (00:00EC)           MANOD_SPRITE1B			equ		236
-     400.  00:C000  (00:0023)           MANOD_PASOS				equ		35
-     401.  00:C000  (00:0040)           MANOD_POSY				equ		64
-     402.  00:C000  (00:002F)           MANOD_POSX				equ		47
-     403.  00:C000  (00:0005)           MANOD_INCREMENTO		equ		5
-     404.  00:C000  (00:0010)           MANOD_VELESCENA			equ		00010000b
-     405.  00:C000  (00:0005)           MANOD_DANO				equ		5
-     406.  00:C000  (00:0064)           MANOD_ENERGIA			equ		100
-     407.  00:C000                      
+     274.  00:C000  (00:0019)           JEFEZOMBI_DANO			equ		25
+     275.  00:C000  (00:00FA)           JEFEZOMBI_ENERGIA		equ		250
+     276.  00:C000  (00:00AF)           JEFEZOMBI_ENERGIA2		equ		175
+     277.  00:C000  (00:0064)           JEFEZOMBI_POCAVIDA		equ		100
+     278.  00:C000                      
+     279.  00:C000                      ;;ETIQUETAS/CONSTANTES FUEGO
+     280.  00:C000  (00:000C)           TIPOFUEGO				equ		12
+     281.  00:C000  (00:0009)           FUEGO_COLOR1			equ		9		;15 - BLANCO
+     282.  00:C000  (00:000B)           FUEGO_COLOR2			equ		11		;15 - BLANCO
+     283.  00:C000  (00:00D0)           FUEGO_PASOSX			equ		208
+     284.  00:C000  (00:0040)           FUEGO_PASOSY			equ		64
+     285.  00:C000  (00:00B0)           FUEGO_SPRITE1A			equ		176
+     286.  00:C000  (00:00B4)           FUEGO_SPRITE2A			equ		180
+     287.  00:C000  (00:00B8)           FUEGO_SPRITE1B			equ		184
+     288.  00:C000  (00:00BC)           FUEGO_SPRITE2B			equ		188
+     289.  00:C000  (00:000F)           FUEGO_POS1X				equ		15
+     290.  00:C000  (00:000F)           FUEGO_POS1Y				equ		15
+     291.  00:C000  (00:00DF)           FUEGO_POS2X				equ		223
+     292.  00:C000  (00:000F)           FUEGO_POS2Y				equ		15
+     293.  00:C000  (00:00DF)           FUEGO_POS3X				equ		223
+     294.  00:C000  (00:004F)           FUEGO_POS3Y				equ		79
+     295.  00:C000  (00:000F)           FUEGO_POS4X				equ		15
+     296.  00:C000  (00:004F)           FUEGO_POS4Y				equ		79
+     297.  00:C000  (00:0020)           FUEGO_VELESCENA			equ		000100000b
+     298.  00:C000  (00:0005)           FUEGO_DANO				equ		5
+     299.  00:C000  (00:0055)           FUEGO_ENERGIA			equ		85
+     300.  00:C000                      
+     301.  00:C000                      ;;ETIQUETAS/CONSTANTES JEFECABALLERO
+     302.  00:C000  (00:0012)           TIPOJEFECABALLERO		equ		18
+     303.  00:C000  (00:0001)           JCABALLERO_COLOR		equ		1		;15 - BLANCO
+     304.  00:C000  (00:00C0)           JCABALLERO_SPRITE1A		equ		192
+     305.  00:C000  (00:00C4)           JCABALLERO_SPRITE2A		equ		196
+     306.  00:C000  (00:00C8)           JCABALLERO_SPRITE3A		equ		200
+     307.  00:C000  (00:00CC)           JCABALLERO_SPRITE4A		equ		204
+     308.  00:C000  (00:00D0)           JCABALLERO_SPRITE1B		equ		208
+     309.  00:C000  (00:00D4)           JCABALLERO_SPRITE2B		equ		212
+     310.  00:C000  (00:00D8)           JCABALLERO_SPRITE3B		equ		216
+     311.  00:C000  (00:00DC)           JCABALLERO_SPRITE4B		equ		220
+     312.  00:C000  (00:00E0)           JCABALLERO_SPRITE1C		equ		224
+     313.  00:C000  (00:00E4)           JCABALLERO_SPRITE2C		equ		228
+     314.  00:C000  (00:00E8)           JCABALLERO_SPRITE3C		equ		232
+     315.  00:C000  (00:00EC)           JCABALLERO_SPRITE4C		equ		236
+     316.  00:C000  (00:00F0)           JCABALLERO_SPRITE1D		equ		240
+     317.  00:C000  (00:00F4)           JCABALLERO_SPRITE2D		equ		244
+     318.  00:C000  (00:00F8)           JCABALLERO_SPRITE3D		equ		248
+     319.  00:C000  (00:00FC)           JCABALLERO_SPRITE4D		equ		252
+     320.  00:C000  (00:0030)           JCABALLERO_POSYINI		equ		48
+     321.  00:C000  (00:00C0)           JCABALLERO_POSXINI		equ		192
+     322.  00:C000  (00:00B6)           JCABALLERO_PASOS  		equ		182
+     323.  00:C000  (00:0010)           JCABALLERO_VELESCENA 	equ		00010000b
+     324.  00:C000  (00:0014)           JCABALLERO_DANO			equ		20
+     325.  00:C000  (00:00FA)           JCABALLERO_ENERGIA		equ		250
+     326.  00:C000  (00:00AF)           JCABALLERO_ENERGIA2		equ		175
+     327.  00:C000  (00:0064)           JCABALLERO_POCAVIDA		equ		100
+     328.  00:C000                      
+     329.  00:C000                      ;;ETIQUETAS/CONSTANTES MAGIA
+     330.  00:C000  (00:000D)           TIPOMAGIA				equ		13
+     331.  00:C000  (00:0001)           MAGIA_COLOR				equ		1		;15 - BLANCO
+     332.  00:C000  (00:0020)           MAGIA_SPRITE1A			equ		32
+     333.  00:C000  (00:0024)           MAGIA_SPRITE1B			equ		36
+     334.  00:C000  (00:0028)           MAGIA_SPRITE2A			equ		40
+     335.  00:C000  (00:002C)           MAGIA_SPRITE2B			equ		44
+     336.  00:C000  (00:0023)           MAGIA_PASOS				equ		35
+     337.  00:C000  (00:0040)           MAGIA_POSX				equ		64
+     338.  00:C000  (00:0037)           MAGIA_POSY				equ		55
+     339.  00:C000  (00:0005)           MAGIA_INCREMENTO		equ		5
+     340.  00:C000  (00:0010)           MAGIA_VELESCENA			equ		00010000b
+     341.  00:C000  (00:0005)           MAGIA_DANO				equ		5
+     342.  00:C000  (00:005A)           MAGIA_ENERGIA			equ		90
+     343.  00:C000                      
+     344.  00:C000                      ;;ETIQUETAS/CONSTANTES JEFEBEHOLDER
+     345.  00:C000  (00:0013)           TIPOJEFEBEHOLDER		equ		19
+     346.  00:C000  (00:0002)           JEFEBEHOLDER_COLOR		equ		2		;15 - BLANCO
+     347.  00:C000  (00:00E0)           JEFEBEHOLDER_SPRITE1A	equ		224
+     348.  00:C000  (00:00E4)           JEFEBEHOLDER_SPRITE2A	equ		228
+     349.  00:C000  (00:00E8)           JEFEBEHOLDER_SPRITE3A	equ		232
+     350.  00:C000  (00:00EC)           JEFEBEHOLDER_SPRITE4A	equ		236
+     351.  00:C000  (00:00F0)           JEFEBEHOLDER_SPRITE1B	equ		240
+     352.  00:C000  (00:00F4)           JEFEBEHOLDER_SPRITE2B	equ		244
+     353.  00:C000  (00:00F8)           JEFEBEHOLDER_SPRITE3B	equ		248
+     354.  00:C000  (00:00FC)           JEFEBEHOLDER_SPRITE4B	equ		252
+     355.  00:C000  (00:0037)           JEFEBEHOLDER_PASOS		equ		55 ; PROBAR CON 56
+     356.  00:C000  (00:0040)           JEFEBEHOLDER_POSX		equ		64
+     357.  00:C000  (00:0037)           JEFEBEHOLDER_POSY		equ		55
+     358.  00:C000  (00:0003)           JEFEBEHOLDER_INCREMENTO	equ		3
+     359.  00:C000  (00:0010)           JEFEBEHOLDER_VELESCENA	equ		00010000b
+     360.  00:C000  (00:0019)           JEFEBEHOLDER_DANO		equ		25
+     361.  00:C000  (00:00FA)           JEFEBEHOLDER_ENERGIA	equ		250
+     362.  00:C000  (00:00AF)           JEFEBEHOLDER_ENERGIA2	equ		175
+     363.  00:C000  (00:0064)           JEFEBEHOLDER_POCAVIDA	equ		100
+     364.  00:C000                      
+     365.  00:C000                      ;;ETIQUETAS/CONSTANTES DRACULA
+     366.  00:C000  (00:0016)           TIPODRACULA				equ		22
+     367.  00:C000  (00:0001)           DRACULA_COLOR1 	 		equ		1		; negro (fondo)
+     368.  00:C000  (00:000F)           DRACULA_COLOR2 	 		equ		15		; blanco (parte de arriba)
+     369.  00:C000  (00:0006)           DRACULA_COLOR3 	 		equ		6		; rojo oscuro (parte de abajo)
+     370.  00:C000  (00:0041)           DRACULA_PASOS			equ		65
+     371.  00:C000  (00:0040)           DRACULA_Y				equ		64
+     372.  00:C000  (00:002F)           DRACULA_X1				equ		47
+     373.  00:C000  (00:005F)           DRACULA_X2				equ		95
+     374.  00:C000  (00:008F)           DRACULA_X3				equ		143
+     375.  00:C000  (00:00BF)           DRACULA_X4				equ		191
+     376.  00:C000  (00:00F0)           DRACULA_SPRITE1A		equ		240
+     377.  00:C000  (00:00F4)           DRACULA_SPRITE1B		equ		244
+     378.  00:C000  (00:00F8)           DRACULA_SPRITE2A		equ		248
+     379.  00:C000  (00:00FC)           DRACULA_SPRITE2B		equ		252
+     380.  00:C000  (00:0010)           DRACULA_VELESCENA		equ		00010000b
+     381.  00:C000  (00:0014)           DRACULA_DANO			equ		20
+     382.  00:C000  (00:00FA)           DRACULA_ENERGIA			equ		250
+     383.  00:C000  (00:0064)           DRACULA_POCAVIDA		equ		100
+     384.  00:C000                      
+     385.  00:C000                      ;;ETIQUETAS/CONSTANTES MANOIZQIERDA
+     386.  00:C000  (00:0015)           TIPOMANOIZQUIERDA		equ		21
+     387.  00:C000  (00:000F)           MANOI_COLOR   			equ		15		; blanca
+     388.  00:C000  (00:00E0)           MANOI_SPRITE1A			equ		224
+     389.  00:C000  (00:00E4)           MANOI_SPRITE1B			equ		228
+     390.  00:C000  (00:0023)           MANOI_PASOS				equ		35
+     391.  00:C000  (00:0040)           MANOI_POSY				equ		64
+     392.  00:C000  (00:002F)           MANOI_POSX				equ		47
+     393.  00:C000  (00:0005)           MANOI_INCREMENTO		equ		5
+     394.  00:C000  (00:0010)           MANOI_VELESCENA			equ		00010000b
+     395.  00:C000  (00:000F)           MANOI_DANO				equ		15
+     396.  00:C000  (00:00C8)           MANOI_ENERGIA			equ		200
+     397.  00:C000  (00:0050)           MANOI_POCAVIDA			equ		80
+     398.  00:C000                      
+     399.  00:C000                      ;;ETIQUETAS/CONSTANTES MANODERECHA
+     400.  00:C000  (00:0014)           TIPOMANODERECHA			equ		20
+     401.  00:C000  (00:000F)           MANOD_COLOR   			equ		15		; blanca
+     402.  00:C000  (00:00E8)           MANOD_SPRITE1A			equ		232
+     403.  00:C000  (00:00EC)           MANOD_SPRITE1B			equ		236
+     404.  00:C000  (00:0023)           MANOD_PASOS				equ		35
+     405.  00:C000  (00:0040)           MANOD_POSY				equ		64
+     406.  00:C000  (00:002F)           MANOD_POSX				equ		47
+     407.  00:C000  (00:0005)           MANOD_INCREMENTO		equ		5
+     408.  00:C000  (00:0010)           MANOD_VELESCENA			equ		00010000b
+     409.  00:C000  (00:000F)           MANOD_DANO				equ		15
+     410.  00:C000  (00:00C8)           MANOD_ENERGIA			equ		200
+     411.  00:C000  (00:0050)           MANOD_POCAVIDA			equ		80
+     412.  00:C000                      
       12   00:C000                      include "constantesyvariables/estructuras.asm"
        1.  00:C000                      ;;=====================================================
        2.  00:C000                      ;;DEFINICIÓN DE ESTRUCTURAS
@@ -1306,11 +1311,11 @@ Errors: 0
 00:00000074 X POSXPM
 00:00000060 X POSYPM
 00:00000001 X ISHABTERMIN
-00:00000004 X LIMCADENCIA
+00:00000006 X LIMCADENCIA
 00:00000000 X SPRI_DANO1A
 00:00000004 X SPRI_DANO1B
-00:00000008 X SPRI_DANO2A
-00:0000000C X SPRI_DANO2B
+00:00000006 X SPRI_DANO2A
+00:0000000F X SPRI_DANO2B
 00:00000088 X POSANTOR1
 00:00000097 X POSANTOR2
 00:000000C4 X MAPLLAMA1
@@ -1562,9 +1567,10 @@ Errors: 0
 00:00000040 X JEFEFANTASMA_X8
 00:00000058 X JEFEFANTASMA_Y8
 00:00000010 X JEFEFANTASMA_VELESCENA
-00:00000005 X JEFEFANTASMA_DANO
-00:00000064 X JEFEFANTASMA_ENERGIA
-00:00000021 X JEFEFANTASMA_POCAVIDA
+00:00000014 X JEFEFANTASMA_DANO
+00:000000E1 X JEFEFANTASMA_ENERGIA
+00:00000096 X JEFEFANTASMA_ENERGIA2
+00:00000064 X JEFEFANTASMA_POCAVIDA
 00:0000000A X TIPOCABALLEROGRIS
 00:00000001 X CABALLERO_COLOR
 00:00000040 X CABALLERO_SPRITE1A
@@ -1581,7 +1587,6 @@ Errors: 0
 00:00000010 X CABALLERO_VELESCENA
 00:00000005 X CABALLERO_DANO
 00:00000050 X CABALLERO_ENERGIA
-00:00000050 X CABALLERO_ENERGIA2
 00:00000011 X TIPOJEFEZOMBI
 00:00000006 X JEFEZOMBI_COLOR_A
 00:0000000C X JEFEZOMBI_COLOR_B
@@ -1609,9 +1614,10 @@ Errors: 0
 00:00000040 X JEFEZOMBI_POSY
 00:00000096 X JEFEZOMBI_PASOS
 00:00000010 X JEFEZOMBI_VELESCENA
-00:00000005 X JEFEZOMBI_DANO
-00:00000064 X JEFEZOMBI_ENERGIA
-00:00000021 X JEFEZOMBI_POCAVIDA
+00:00000019 X JEFEZOMBI_DANO
+00:000000FA X JEFEZOMBI_ENERGIA
+00:000000AF X JEFEZOMBI_ENERGIA2
+00:00000064 X JEFEZOMBI_POCAVIDA
 00:0000000C X TIPOFUEGO
 00:00000009 X FUEGO_COLOR1
 00:0000000B X FUEGO_COLOR2
@@ -1654,9 +1660,10 @@ Errors: 0
 00:000000C0 X JCABALLERO_POSXINI
 00:000000B6 X JCABALLERO_PASOS
 00:00000010 X JCABALLERO_VELESCENA
-00:00000005 X JCABALLERO_DANO
-00:00000064 X JCABALLERO_ENERGIA
-00:00000021 X JCABALLERO_POCAVIDA
+00:00000014 X JCABALLERO_DANO
+00:000000FA X JCABALLERO_ENERGIA
+00:000000AF X JCABALLERO_ENERGIA2
+00:00000064 X JCABALLERO_POCAVIDA
 00:0000000D X TIPOMAGIA
 00:00000001 X MAGIA_COLOR
 00:00000020 X MAGIA_SPRITE1A
@@ -1685,14 +1692,15 @@ Errors: 0
 00:00000037 X JEFEBEHOLDER_POSY
 00:00000003 X JEFEBEHOLDER_INCREMENTO
 00:00000010 X JEFEBEHOLDER_VELESCENA
-00:00000005 X JEFEBEHOLDER_DANO
-00:00000064 X JEFEBEHOLDER_ENERGIA
-00:00000021 X JEFEBEHOLDER_POCAVIDA
+00:00000019 X JEFEBEHOLDER_DANO
+00:000000FA X JEFEBEHOLDER_ENERGIA
+00:000000AF X JEFEBEHOLDER_ENERGIA2
+00:00000064 X JEFEBEHOLDER_POCAVIDA
 00:00000016 X TIPODRACULA
 00:00000001 X DRACULA_COLOR1
 00:0000000F X DRACULA_COLOR2
 00:00000006 X DRACULA_COLOR3
-00:00000064 X DRACULA_PASOS
+00:00000041 X DRACULA_PASOS
 00:00000040 X DRACULA_Y
 00:0000002F X DRACULA_X1
 00:0000005F X DRACULA_X2
@@ -1703,9 +1711,9 @@ Errors: 0
 00:000000F8 X DRACULA_SPRITE2A
 00:000000FC X DRACULA_SPRITE2B
 00:00000010 X DRACULA_VELESCENA
-00:0000000A X DRACULA_DANO
-00:00000064 X DRACULA_ENERGIA
-00:00000021 X DRACULA_POCAVIDA
+00:00000014 X DRACULA_DANO
+00:000000FA X DRACULA_ENERGIA
+00:00000064 X DRACULA_POCAVIDA
 00:00000015 X TIPOMANOIZQUIERDA
 00:0000000F X MANOI_COLOR
 00:000000E0 X MANOI_SPRITE1A
@@ -1715,8 +1723,9 @@ Errors: 0
 00:0000002F X MANOI_POSX
 00:00000005 X MANOI_INCREMENTO
 00:00000010 X MANOI_VELESCENA
-00:00000005 X MANOI_DANO
-00:00000064 X MANOI_ENERGIA
+00:0000000F X MANOI_DANO
+00:000000C8 X MANOI_ENERGIA
+00:00000050 X MANOI_POCAVIDA
 00:00000014 X TIPOMANODERECHA
 00:0000000F X MANOD_COLOR
 00:000000E8 X MANOD_SPRITE1A
@@ -1726,8 +1735,9 @@ Errors: 0
 00:0000002F X MANOD_POSX
 00:00000005 X MANOD_INCREMENTO
 00:00000010 X MANOD_VELESCENA
-00:00000005 X MANOD_DANO
-00:00000064 X MANOD_ENERGIA
+00:0000000F X MANOD_DANO
+00:000000C8 X MANOD_ENERGIA
+00:00000050 X MANOD_POCAVIDA
 00:00000000 X ESTRUCTURA_PUNTOMIRA.posx
 00:00000001 X ESTRUCTURA_PUNTOMIRA.posy
 00:00000002 X ESTRUCTURA_PUNTOMIRA.escena

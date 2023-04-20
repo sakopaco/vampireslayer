@@ -26,7 +26,7 @@ datos_manod:
 			DB		DIRIZQUIERDA	;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		0				;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		MANOD_PASOS		;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
-			DB		1				;pocavida 0 y 1 para indicar cuando le queda poca vida al enemigo
+			DB		MANOD_POCAVIDA	;pocavida 0 y 1 para indicar cuando le queda poca vida al enemigo
 			DW		mover_manod		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 			DB		MANOD_SPRITE1A	;izq arriba
 			DB		MANOD_SPRITE1B	;der_arriba
@@ -91,17 +91,17 @@ mover_manod:
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_a)
 		LD			(IY + 2), A
 		
-		;colorea mano DERECHA
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.pocavida)
-		OR			 A
-		JP			 Z, .nointercambiacolor
+		;colorea mano derecha
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+		SUB			MANOD_POCAVIDA;(IX + ESTRUCTURA_ENEMIGO.pocavida)
+		JP			 NC, .nointercambiacolor
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
 			OR			 A
 			JP			 Z, .nointercambiacolor	
 				LD			(IY + 3),  COLROJO
 				RET
-.nointercambiacolor:
-		LD			(IY + 3), MANOD_COLOR
+.nointercambiacolor:		
+		LD			(IY + 3),  MANOD_COLOR
 fin_mover_manod:
 		RET
 

@@ -50,10 +50,7 @@ fin_anade_enemigo_jefezombi:
 ; entrada:	IX que equivaldrá a qué nº de enemigo estamos inicializando (por ejemplo enemigo1)
 ; toca:		-
 actualiza_valores_jefezombi_BR:
-		LD			(IX + ESTRUCTURA_ENEMIGO.energia), 64
-		
-		;quitar cuando se cree el daño a los jefes
-		LD			 (IX + ESTRUCTURA_ENEMIGO.pocavida), 1
+		LD			(IX + ESTRUCTURA_ENEMIGO.energia), JEFEZOMBI_ENERGIA2
 fin_actualiza_valores_jefezombi_BR:
 		RET
 		

@@ -13,7 +13,7 @@ datos_jefecaballero:
 			DB		DIRIZQUIERDA				;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		0							;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		JCABALLERO_PASOS			;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
-			DB		0							;pocavida 0 y 1 para indicar cuando le queda poca vida al enemigo
+			DB		JCABALLERO_POCAVIDA			;pocavida 0 y 1 para indicar cuando le queda poca vida al enemigo
 			DW		mover_jefecaballero			;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 			DB		JCABALLERO_SPRITE1A			;izq arriba
 			DB		JCABALLERO_SPRITE2A			;der_arriba
@@ -79,9 +79,9 @@ actualiza_valores_jefecaballero:
 		
 		;en el nivel 6 los jafes tienen menos vida
 		LD			 A, (prota_nivel)
-		BIT			 1, A
+		CP			 6
 		RET			 Z
-		LD			 (IX + ESTRUCTURA_ENEMIGO.energia), CABALLERO_ENERGIA2
+		LD			 (IX + ESTRUCTURA_ENEMIGO.energia), JCABALLERO_ENERGIA2
 fin_actualiza_valores_jefecaballero:
 		RET
 

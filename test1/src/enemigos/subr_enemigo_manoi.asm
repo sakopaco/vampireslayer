@@ -26,7 +26,7 @@ datos_manoi:
 			DB		DIRDERECHA			;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		0					;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		MANOI_PASOS			;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
-			DB		1					;pocavida 0 y 1 para indicar cuando le queda poca vida al enemigo
+			DB		MANOI_POCAVIDA		;pocavida 0 y 1 para indicar cuando le queda poca vida al enemigo
 			DW		mover_manoi			;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 			DB		MANOI_SPRITE1A		;izq arriba
 			DB		MANOI_SPRITE1B		;der_arriba
@@ -91,17 +91,17 @@ mover_manoi:
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.sprite_a)
 		LD			(IY + 2), A
 		
-		;colorea mano izquierda
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.pocavida)
-		OR			 A
-		JP			 Z, .nointercambiacolor
+		;colorea mano derecha
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
+		SUB			MANOI_POCAVIDA;(IX + ESTRUCTURA_ENEMIGO.pocavida)
+		JP			 NC, .nointercambiacolor
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
 			OR			 A
 			JP			 Z, .nointercambiacolor	
 				LD			(IY + 3),  COLROJO
 				RET
-.nointercambiacolor:
-		LD			(IY + 3), MANOI_COLOR
+.nointercambiacolor:		
+		LD			(IY + 3),  MANOI_COLOR
 fin_mover_manoi:
 		RET
 

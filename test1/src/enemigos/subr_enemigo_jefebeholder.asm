@@ -26,7 +26,7 @@ datos_jefebeholder:
 			DB		DIRDERECHA					;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		0							;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		JEFEBEHOLDER_PASOS			;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
-			DB		0							;pocavida 0 y 1 para indicar cuando le queda poca vida al enemigo
+			DB		JEFEBEHOLDER_POCAVIDA		;pocavida 0 y 1 para indicar cuando le queda poca vida al enemigo
 			DW		mover_jefebeholder			;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 			DB		JEFEBEHOLDER_SPRITE1A		;izq arriba
 			DB		JEFEBEHOLDER_SPRITE2A		;der_arriba
@@ -64,10 +64,7 @@ fin_anade_enemigo_jefebeholder:
 ; salida: 	posicion_anterior_arana
 ; toca:		-
 actualiza_valores_jefebeholder_BR:
-		LD			(IX + ESTRUCTURA_ENEMIGO.energia), 64
-		
-		;quitar cuando se cree el daño a los jefes
-		LD			 (IX + ESTRUCTURA_ENEMIGO.pocavida), 1
+		LD			(IX + ESTRUCTURA_ENEMIGO.energia), JEFEBEHOLDER_ENERGIA2
 fin_actualiza_valores_jefebeholder_BR:
 		RET
 		
@@ -112,7 +109,7 @@ mover_jefebeholder:
 		
 		;colorea jefebeholder
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
-		SUB			JEFEBEHOLDER_POCAVIDA;(IX + ESTRUCTURA_ENEMIGO.pocavida)
+		SUB			JEFEBEHOLDER_POCAVIDA
 		JP			 NC, .nointercambiacolor
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
 			OR			 A

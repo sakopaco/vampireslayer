@@ -13,7 +13,7 @@ datos_dracula:
 			DB		DIRIZQUIERDA				;(direccionx) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		0							;(direcciony) 0 derecha <> 0 izquierda // 0 abajo <> 0 arriba
 			DB		DRACULA_PASOS				;(pasos) pasos para no comprobar los límites de pentalla, sólo si pasos ha llegado a 0
-			DB		1							;pocavida 0 y 1 para indicar cuando le queda poca vida al enemigo
+			DB		DRACULA_POCAVIDA			;pocavida 0 y 1 para indicar cuando le queda poca vida al enemigo
 			DW		mover_dracula				;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
 			DB		DRACULA_SPRITE1A			;izq arriba
 			DB		DRACULA_SPRITE1B			;der_arriba
@@ -89,17 +89,19 @@ mover_dracula:
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
 		SUB			DRACULA_POCAVIDA;(IX + ESTRUCTURA_ENEMIGO.pocavida)
 		JP			 NC, .nointercambiacolor
-			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
-			OR			 A
+			LD			 A, R
+			AND			00000001b
 			JP			 Z, .nointercambiacolor	
-				LD			(IY + 3),  COLROJO
-				LD			(IY + 7),  COLROJO
+				LD			(IY + 3), COLROJO
+				LD			(IY + 7), COLROJO
+				LD			(IY + 11), DRACULA_COLOR2
+				LD			(IY + 15), DRACULA_COLOR3
 				RET
-.nointercambiacolor:
-		LD			(IY + 3), DRACULA_COLOR1
-		LD			(IY + 7), DRACULA_COLOR1
-		LD			(IY + 11), DRACULA_COLOR2
-		LD			(IY + 15), DRACULA_COLOR3
+.nointercambiacolor:		
+		LD			(IY + 3),   DRACULA_COLOR1
+		LD			(IY + 7),   DRACULA_COLOR1
+		LD			(IY + 11),  DRACULA_COLOR2
+		LD			(IY + 15),  DRACULA_COLOR3
 fin_mover_dracula:
 		RET
 

@@ -123,7 +123,7 @@ inicializa_variables_prota:
 		LD		 A, PROTAVIDAS
 		LD		(prota_vidas),A
 
-		LD		 A, 8;PROTARELIQUIAS
+		LD		 A, PROTARELIQUIAS
 		LD		(prota_reliquias), A
 
 		LD		 A, PROTAENERGIA			
@@ -138,7 +138,7 @@ inicializa_variables_prota:
 		;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
 		;será igual la posición inicial en todos los niveles
 	
-		LD		 A, PROTANIVEL
+		LD		 A, 6;PROTANIVEL
 		LD		(prota_nivel), A
 
 		LD		 A, PROTAPOSMAPY
