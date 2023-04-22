@@ -114,6 +114,17 @@ texto_deaddracula8:	DB	'                                ';32 caracteres
 
 ENDIF
 
+;NOMBRE DE ENEMIGOS
+nombre_jefes:
+nombre_jefe_lobo:		DB	'VERFARKAS'
+nombre_jefe_murcielago:	DB	' DENEVER '
+nombre_jefe_fantasma:	DB	' SZELLEM '
+nombre_jefe_zombi:		DB	'ELOHALOTT'
+nombre_jefe_caballero:	DB	'URIEMBER '
+nombre_jefe_beholder:	DB	'SZEMLELO '
+nombre_jefe_dracula:	DB	'TANITVANY'
+
+
 texto_autoria:		DB	'SEAMSOFT  2022' ; 14 caracteres
 texto_iniciar_blanco:	DB	'                              '
 

@@ -93,6 +93,7 @@ pinta_parte_superior_pantalla:
 		CALL		play_musica
 
 		;si es fila 0 o 6 carga todos los tiles, si no sólo actualiza el mapa
+		;y se aprovecha para poner el nombre del enemigo
 .siposyes0:
 		LD			 A, (prota_pos_mapy)
 		OR			 A
@@ -110,13 +111,13 @@ pinta_parte_superior_pantalla:
 		JP			NZ, .finsi
 			LD			 A, 2
 			CALL		play_musica
-		
 .finsi:
 		;aquí se actualizan las particularidades de cada nivel
 		CALL		actualiza_tiles_nivel
 		;pinta puerta si es necesario
 		CALL		pinta_puertas
-		
+		;pinta nombre enemigo si corresponde
+		CALL		pinta_nombre_enemigo
 		;pinta extras en el fondo si tiene
 		CALL		pinta_extra_fondo
 		

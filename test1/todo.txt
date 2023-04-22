@@ -2,6 +2,9 @@
 EN REALIZACION:
 
 BUGS
+* el jefe caballero no muere ... si cuando no es jefe final
+... si yaaaa funcionabaaaa aarrggghhh
+
 - cuando coges una ayuda el sonido no acaba
 - apagar música cuando matas a un jefe (cuando se mate a un pstrite de 2x2)
 - el disparo y la explosión parecen el mismo sonido
@@ -11,7 +14,6 @@ TODO A
 - repasar fondos de pantalla y color de enemigos
 
 TODO B (deseable)
-- poner nombres de jefes enemigos
 - revisar letras
 - poner tiles al matar a drácula
 - poner pantalla extra de texto en final
