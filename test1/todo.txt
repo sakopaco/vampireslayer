@@ -15,7 +15,9 @@ TODO A
 . manod OK
 . jefe fantasma OK
 . jefe zombi OK
+. jefe murciélago OK 
 - posicionar ayudas
+- repasar fondos de pantalla y color de enemigos
 
 TODO B (deseable)
 - poner nombres de jefes enemigos

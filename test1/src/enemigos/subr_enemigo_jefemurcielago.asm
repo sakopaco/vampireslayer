@@ -68,11 +68,7 @@ actualiza_valores_jefemurcielago:
 		LD			 A, (prota_nivel)
 		BIT			 0, A
 		RET			NZ
-		LD			(IX + ESTRUCTURA_ENEMIGO.energia), 64
-		
-		
-		;quitar cuando proceda
-		LD			(IX + ESTRUCTURA_ENEMIGO.pocavida), 1
+			LD			(IX + ESTRUCTURA_ENEMIGO.energia), JEFEMURCIELAGO_ENERGIA2
 fin_actualiza_valores_jefemurcielago:
 		RET
 		
@@ -190,7 +186,7 @@ calcula_jefemurcielago_incrementoy:
 		
 .baja_jefemurcielago:
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.posy)
-		ADD			 2
+		ADD			 4
 		LD			(IX + ESTRUCTURA_ENEMIGO.posy), A
 		
 		CP			JEFEMURCIELAGO_LIMIABA
