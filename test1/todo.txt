@@ -7,15 +7,6 @@ BUGS
 - el disparo y la explosión parecen el mismo sonido
 
 TODO A
-- repasar lo de queda poca vida a cada jefe... especialmente a drácula
-. jefe caballero OK
-. jefe beholder OK
-. dracula OK
-. manoi OK
-. manod OK
-. jefe fantasma OK
-. jefe zombi OK
-. jefe murciélago OK 
 - posicionar ayudas
 - repasar fondos de pantalla y color de enemigos
 

@@ -4,8 +4,8 @@
 datos_jefelobo:
 			DB		TIPOJEFELOBO				;(activo_tipo) si inactivo = 0 si <> 0 es el tipo de enemigo
 			DB		0							;(escena) sprite a mostrar 1/2
-			DB		01000000b;00010000b			;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
-			DB		JEFELOBO_ENERGIANORMAL		;(energia) energía del enemigo antes de morir
+			DB		01000000b					;(cont_sig_escena) retardo_explosion ;contador para ver cuando cambiar de sprite (y retardo_explosión irá hasta cero antes de que desaparezca la explosión)
+			DB		JEFELOBO_ENERGIA			;(energia) energía del enemigo antes de morir
 			DB		JEFELOBO_X					;(posx) pos x para mover y punto central del sprite para revisar disparo
 			DB		JEFELOBO_Y					;(posy) pos y para mover y punto central del sprite para revisar disparo
 			DB		0							;(incx) incremento x para mover
@@ -51,10 +51,10 @@ fin_anade_enemigo_jefelobo:
 ; salida: 	-
 ; toca:		-
 actualiza_valores_jefelobo_BR:
-		LD			(IX + ESTRUCTURA_ENEMIGO.energia), JEFELOBO_ENERGIAFASE7
+		LD			(IX + ESTRUCTURA_ENEMIGO.energia), JEFELOBO_ENERGIA2
 		
 		;quitar cuando se cree el daño a los jefes
-		LD			 (IX + ESTRUCTURA_ENEMIGO.pocavida), JEFELOBO_POCAVIDA
+		LD			(IX + ESTRUCTURA_ENEMIGO.pocavida), JEFELOBO_POCAVIDA
 fin_actualiza_valores_jefelobo_BR:
 		RET
 
@@ -185,7 +185,7 @@ calcula_jefelobo_posyx:
 		LD			 A, B
 		AND			00000001b
 		JR			 Z, .mira_posicion1
-		INC			(IX + ESTRUCTURA_ENEMIGO.posx)
+[2]		INC			(IX + ESTRUCTURA_ENEMIGO.posx)
 		RET
 		
 .mira_posicion1:
@@ -193,7 +193,7 @@ calcula_jefelobo_posyx:
 		AND			00000010b
 		JR			 Z, .mira_posicion2
 		DEC			(IX + ESTRUCTURA_ENEMIGO.posx)
-		DEC			(IX + ESTRUCTURA_ENEMIGO.posy)
+[2]		DEC			(IX + ESTRUCTURA_ENEMIGO.posy)
 		RET
 		
 .mira_posicion2:
@@ -208,7 +208,7 @@ calcula_jefelobo_posyx:
 		AND			00001000b
 		JR			 Z, .resetea_posicion
 		DEC			(IX + ESTRUCTURA_ENEMIGO.posx)
-		INC			(IX + ESTRUCTURA_ENEMIGO.posy)
+[2]		INC			(IX + ESTRUCTURA_ENEMIGO.posy)
 		RET
 		
 .resetea_posicion:
