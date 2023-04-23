@@ -76,13 +76,19 @@ actualiza_valores_jefecaballero:
 
 		;resetea pasos del movimiento
 		LD			(IX + ESTRUCTURA_ENEMIGO.pasos), JCABALLERO_PASOS
-		
-		;en el nivel 6 los jafes tienen menos vida
-		LD			 A, (prota_nivel)
-		CP			 6
-		RET			 Z
-		LD			 (IX + ESTRUCTURA_ENEMIGO.energia), JCABALLERO_ENERGIA2
 fin_actualiza_valores_jefecaballero:
+		RET
+
+
+;;=====================================================
+;;ACTUALIZA_VALORES_JEFECABALLERO_BR
+;;=====================================================	
+; función: 	inicializa valor de vida a un valor distinto en el bossrush en el que tiene menos vida
+; entrada:	IX que equivaldrá a qué nº de enemigo estamos inicializando (por ejemplo enemigo1)
+actualiza_valores_jefecaballero_RB:
+		;en el nivel 6 los jafes tienen menos vida
+		LD			 (IX + ESTRUCTURA_ENEMIGO.energia), JCABALLERO_ENERGIA2
+fin_actualiza_valores_jefecaballero_RB:
 		RET
 
 		

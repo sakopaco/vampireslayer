@@ -1310,7 +1310,8 @@ inicializa_enemigos_fase6_nivel4:
 		LD			DE, enemigo1
 		CALL		anade_enemigo_jefecaballero
 		LD			IX, enemigo1
-		JP			actualiza_valores_jefecaballero
+		CALL		actualiza_valores_jefecaballero
+		JP			actualiza_valores_jefecaballero_RB
 fin_inicializa_enemigos_fase6_nivel4:
 
 inicializa_enemigos_fase6_nivel5: 
