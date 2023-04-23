@@ -77,9 +77,9 @@ accion_boton2:
 			LD			 A, SONIDOBOMBA		;2
 			CALL		ayFX_INIT
 	
-			CALL 		efecto_imagen_tira_reliquia
-		
 			CALL		efecto_enemigos_tira_reliquia
+			
+			CALL 		efecto_imagen_tira_reliquia
 	
 			JP			pinta_reliquias
 fin_accion_boton2:
@@ -104,8 +104,8 @@ efecto_enemigos_tira_reliquia:
 ;tira bomba a enemigo NO JEFE
 enemigo_nojefe:
 		LD		IX, enemigos
-		LD		 B, 7
-		LD		 C, 2
+		LD		 B, 6 ; numero posible de enemigos
+		LD		 C, 2 ; tipo 2 enemigo
 		
 .loop:	
 .examina_enemigo:

@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.04.23 - 20:24:27]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.04.23 - 20:45:22]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -281,7 +281,7 @@ Errors: 0
       30.  00:C000                      
       31.  00:C000                      ;;ETIQUETAS/CONSTANTES ARANA
       32.  00:C000  (00:0004)           TIPOARANA				equ		4
-      33.  00:C000  (00:000E)           ARANA_COLOR				equ		#0E		;gris
+      33.  00:C000  (00:000D)           ARANA_COLOR				equ		13;#0E		;gris
       34.  00:C000  (00:0030)           ARANA_SPRITE1A			equ		#0030	;48
       35.  00:C000  (00:0034)           ARANA_SPRITE2A			equ		#0034	;52
       36.  00:C000  (00:0010)           ARANA_VELESCENA			equ		00010000b
@@ -1396,7 +1396,7 @@ Errors: 0
 00:00000005 X CIENPIES_DANO
 00:00000028 X CIENPIES_ENERGIA
 00:00000004 X TIPOARANA
-00:0000000E X ARANA_COLOR
+00:0000000D X ARANA_COLOR
 00:00000030 X ARANA_SPRITE1A
 00:00000034 X ARANA_SPRITE2A
 00:00000010 X ARANA_VELESCENA

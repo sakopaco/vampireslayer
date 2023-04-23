@@ -44,3 +44,51 @@ avanza_minutos:
 			INC				(IX)	; incremento minutos
 			RET
 fin_incrementa_reloj:
+
+
+;;=====================================================
+;;RETARDO16BITS
+;;=====================================================	
+; función: 	crea un retardo según lo que se le pase en BC
+; entrada: 	BC
+; salida: 	
+; toca:		BC
+retardo16bits:		
+.loop:
+		DEC			BC
+		LD			 A, B
+		OR			 C
+		JP			NZ, .loop
+fin_retardo16bits:
+		RET
+
+
+;;=====================================================
+;;RETARDO8BITS
+;;=====================================================	
+; función: 	crea un retardo según lo que se le pase en B
+; entrada: 	B
+; salida: 	
+; toca:		B
+retardo8bits:		
+.loop:
+		NOP
+		DJNZ		.loop
+fin_retardo8bits:
+		RET
+
+
+;;=====================================================
+;;ESPERA_ESTANDAR
+;;=====================================================	
+; función: espera un tiempo aceptable para leer un texto
+espera_estandar:
+		LD			 B, 6
+.loop_espera:
+		PUSH		BC
+		LD			BC, 60000
+		CALL		retardo16bits
+		POP			BC
+		DJNZ		.loop_espera
+fin_espera_estandar:
+		RET

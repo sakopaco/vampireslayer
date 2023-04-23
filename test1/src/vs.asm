@@ -138,10 +138,10 @@ inicializa_variables_prota:
 		;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
 		;será igual la posición inicial en todos los niveles
 	
-		LD		 A, 6;PROTANIVEL
+		LD		 A, PROTANIVEL
 		LD		(prota_nivel), A
 
-		LD		 A, PROTAPOSMAPY
+		LD		 A, 5;PROTAPOSMAPY
 		LD		(prota_pos_mapy), A	
 
 		LD		 A, PROTAPOSMAPX	
@@ -162,38 +162,6 @@ fin_inicializa_variables_juego:
 
 ;;************************************************************************
 
-;;=====================================================
-;;PINTA_NOMBRE_ENEMIGO
-;;=====================================================
-; funcion: pinta el nombre del enemigo en la parte superior
-pinta_nombre_enemigo:
-			;si el subnivel no es 6 no es un jefe por lo que podemos salir
-			LD			 A, (prota_pos_mapy)
-			CP			 6
-			RET			NZ
-			
-			;si drácula está muerto no es necesario pintar ya que los jefes estarán muertos
-			LD			 A, (dracula_muerto)
-			OR			 A
-			RET			NZ
-			
-			;hay que poner nombre según nivel
-			;los nombre son consecutivos con saltos de 9 posiciones
-			LD			 A, (prota_nivel)
-			OR			 A
-			JP			 Z, .fin_localiza_nombre
-			
-			LD			 B, A
-			LD			HL, nombre_jefes
-.busca_nombre:
-[9]			INC			HL
-			djnz		.busca_nombre
-
-.fin_localiza_nombre:			
-			LD			BC, 9				;nº posiciones a pintar
-			LD			DE, TILMAP + 11		;destino en vram
-			JP			LDIRVM
-fin_pinta_nombre_enemigo:
 
 
 

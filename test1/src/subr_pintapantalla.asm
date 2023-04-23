@@ -501,21 +501,13 @@ fin_posiciona_en_mapa:
 ; salida: 	-
 ; toca: 	todo
 efecto_imagen_tira_reliquia:
-.parpadea_fondo:
-	PUSH	BC
-	LD		HL, color_bomba1
-	CALL	color_pantalla
+		LD			HL, color_bomba1   ;color_bomba2
+		CALL		color_pantalla
 	
-	LD		BC, RETARDOREL
-	CALL	retardo16bits
-
-	LD		HL, color_bomba2
-	CALL	color_pantalla
-	POP		BC
-	DJNZ	.parpadea_fondo
+		CALL		espera_estandar
 	
-	LD		HL, color_base
-	JP		color_pantalla
+		LD			HL, color_base
+		JP			color_pantalla
 fin_efecto_imagen_tira_reliquia:
 
 
@@ -1540,3 +1532,35 @@ nivel0_pinta_luna:
 fin_nivel0_pinta_luna:
 
 
+;;=====================================================
+;;PINTA_NOMBRE_ENEMIGO
+;;=====================================================
+; funcion: pinta el nombre del enemigo en la parte superior
+pinta_nombre_enemigo:
+			;si el subnivel no es 6 no es un jefe por lo que podemos salir
+			LD			 A, (prota_pos_mapy)
+			CP			 6
+			RET			NZ
+			
+			;si drácula está muerto no es necesario pintar ya que los jefes estarán muertos
+			LD			 A, (dracula_muerto)
+			OR			 A
+			RET			NZ
+			
+			;hay que poner nombre según nivel
+			;los nombre son consecutivos con saltos de 9 posiciones
+			LD			 A, (prota_nivel)
+			OR			 A
+			JP			 Z, .fin_localiza_nombre
+			
+			LD			 B, A
+			LD			HL, nombre_jefes
+.busca_nombre:
+[9]			INC			HL
+			djnz		.busca_nombre
+
+.fin_localiza_nombre:			
+			LD			BC, 9				;nº posiciones a pintar
+			LD			DE, TILMAP + 11		;destino en vram
+			JP			LDIRVM
+fin_pinta_nombre_enemigo:
