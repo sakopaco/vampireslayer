@@ -201,15 +201,6 @@ fin_carga_datos_ayuda:
 ; salida: 	-
 ; toca:		AF, HL, BC, DE
 pinta_obj_ayuda:
-
-
-;ññññññ
-		RET
-
-
-
-
-
 	;se recibe objeto desde fuera, por ejmplo LD IX, ayuda_oracion
 
 	;si A=1 dibujo on (si 0 off)

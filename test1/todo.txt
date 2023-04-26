@@ -3,18 +3,12 @@ BUGS:
 - apagar música cuando matas a un jefe (cuando se mate a un pstrite de 2x2)
 - el disparo y la explosión parecen el mismo sonido
 
+* nivel 5 pos y 4 pos x 6  ... no sale por la puerta tras matar enemigos ¿?¿?¿¿??¿
+  y estropea las uertas ¿?¿?¿?¿?¿?¿?
+* si te matan en una hab con una ayuda la ayuda "reaparece"
+
+
 TODO A:
-- posicionar ayudas
-Nivel:
-* 0
-* 1
-* 2
-* 3
-* 4
-* 5
-* 6
-
-
 - repasar fondos de pantalla y color de enemigos
 
 TODO B (deseable):
