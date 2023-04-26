@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.04.23 - 20:45:23]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.04.26 - 09:12:32]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/vs.asm
 Errors: 0
@@ -885,7 +885,7 @@ Errors: 0
      141   00:4095  3E 00               		LD		 A, PROTANIVEL
      142   00:4097  32 00 C0            		LD		(prota_nivel), A
      143   00:409A                      
-     144   00:409A  3E 05               		LD		 A, 5;PROTAPOSMAPY
+     144   00:409A  3E 00               		LD		 A, PROTAPOSMAPY
      145   00:409C  32 04 C0            		LD		(prota_pos_mapy), A	
      146   00:409F                      
      147   00:409F  3E 03               		LD		 A, PROTAPOSMAPX	
@@ -904,18 +904,11 @@ Errors: 0
      160   00:40A9                      fin_inicializa_variables_juego:
      161   00:40A9  C9                  		RET
      162   00:40AA                      
-     163   00:40AA                      ;;************************************************************************
-     164   00:40AA                      
-     165   00:40AA                      
-     166   00:40AA                      
-     167   00:40AA                      
-     168   00:40AA                      ;;************************************************************************		
-     169   00:40AA                      
-     170   00:40AA                      
-     171   00:40AA                      ;;=====================================================
-     172   00:40AA                      ;;DEFINICIÓN DE SUBRUTINAS
-     173   00:40AA                      ;;=====================================================
-     174   00:40AA                      	include "subrutinas.asm"
+     163   00:40AA                      
+     164   00:40AA                      ;;=====================================================
+     165   00:40AA                      ;;DEFINICIÓN DE SUBRUTINAS
+     166   00:40AA                      ;;=====================================================
+     167   00:40AA                      	include "subrutinas.asm"
        1.  00:40AA                      ;;=====================================================
        2.  00:40AA                      ;;DEFINICIÓN DE SUBRUTINAS
        3.  00:40AA                      ;;=====================================================	
@@ -1600,8 +1593,8 @@ Errors: 0
      681.  00:43E2                      
      682.  00:43E2                      
      683.  00:43E2                      		
-     175   00:43E2                      	
-     176   00:43E2                      	include "subr_general.asm"
+     168   00:43E2                      	
+     169   00:43E2                      	include "subr_general.asm"
        1.  00:43E2                      ;;=====================================================
        2.  00:43E2                      ;;DEFINICIÓN DE SUBRUTINAS GENERALES USABLES PARA CUALQUIER PROYECTO
        3.  00:43E2                      ;;=====================================================	
@@ -1700,8 +1693,8 @@ Errors: 0
       96.  00:4414                      
       97.  00:4414                      
       98.  00:4414                      
-     177   00:4414                      	
-     178   00:4414                      	include "subr_pintapantalla.asm"
+     170   00:4414                      	
+     171   00:4414                      	include "subr_pintapantalla.asm"
        1.  00:4414                      ;;=====================================================
        2.  00:4414                      ;;CONTANTES PANTALLAS
        3.  00:4414                      ;;=====================================================
@@ -3269,8 +3262,8 @@ Errors: 0
     1564.  00:4C27  11 0B 18            			LD			DE, TILMAP + 11		;destino en vram
     1565.  00:4C2A  C3 5C 00            			JP			LDIRVM
     1566.  00:4C2D                      fin_pinta_nombre_enemigo:
-     179   00:4C2D                      	
-     180   00:4C2D                      	include "subr_puntomira.asm"
+     172   00:4C2D                      	
+     173   00:4C2D                      	include "subr_puntomira.asm"
        1.  00:4C2D                      ;;=====================================================
        2.  00:4C2D                      ;;CONTANTES PUNTOMIRA
        3.  00:4C2D                      ;;=====================================================
@@ -3429,8 +3422,8 @@ Errors: 0
      153.  00:4CE9                      fin_pasa_siguiente_enemigo:
      154.  00:4CE9  C9                  		RET
      155.  00:4CEA                      
-     181   00:4CEA                      	
-     182   00:4CEA                      	include "subr_puertas.asm"
+     174   00:4CEA                      	
+     175   00:4CEA                      	include "subr_puertas.asm"
        1.  00:4CEA                      ;;=====================================================
        2.  00:4CEA                      ;;CONTANTES PUERTAS
        3.  00:4CEA                      ;;=====================================================
@@ -4008,8 +4001,8 @@ Errors: 0
      568.  00:4FB0  DD 36 00 00         		LD			(IX), INACTIVA
      569.  00:4FB4                      fin_desactiva_todas_puertas:
      570.  00:4FB4  C9                  		RET
-     183   00:4FB5                      	
-     184   00:4FB5                      	include "subr_sprites.asm"
+     176   00:4FB5                      	
+     177   00:4FB5                      	include "subr_sprites.asm"
        1.  00:4FB5                      ;;=====================================================
        2.  00:4FB5                      ;;SUBRUTINAS ENCARGADAS DE MANEJAR LOS SPRITES
        3.  00:4FB5                      ;;=====================================================	
@@ -4425,8 +4418,8 @@ Errors: 0
      413.  00:5212                      fin_check_player:
      414.  00:5212                      
      415.  00:5212                      
-     185   00:5212                      	
-     186   00:5212                      	include "subr_ayudas.asm"
+     178   00:5212                      	
+     179   00:5212                      	include "subr_ayudas.asm"
        1.  00:5212                      ;;=====================================================
        2.  00:5212                      ;;SUBRUTINAS MANEJO DE OBJETOS AYUDA
        3.  00:5212                      ;;=====================================================	
@@ -5042,8 +5035,8 @@ Errors: 0
      613.  00:54CC  32 07 C0            		LD		(prota_dano_actual), A
      614.  00:54CF                      fin_resetea_ballesta:
      615.  00:54CF  C9                  		RET
-     187   00:54D0                      	
-     188   00:54D0                      	include "subr_tiempo.asm"
+     180   00:54D0                      	
+     181   00:54D0                      	include "subr_tiempo.asm"
        1.  00:54D0                      ;;=====================================================
        2.  00:54D0                      ;;DEFINICIÓN DE SUBRUTINAS
        3.  00:54D0                      ;;=====================================================	
@@ -5138,8 +5131,8 @@ Errors: 0
       92.  00:5519  10 F6               		DJNZ		.loop_espera
       93.  00:551B                      fin_espera_estandar:
       94.  00:551B  C9                  		RET
-     189   00:551C                      	
-     190   00:551C                      	include "subr_teclado_joy.asm"
+     182   00:551C                      	
+     183   00:551C                      	include "subr_teclado_joy.asm"
        1.  00:551C                      ;;=====================================================
        2.  00:551C                      ;;SUBRUTINAS QUE CAPTURAN EL JOYSTICK Y TECLADO Y MUEVEN PUNTO DE MIRA
        3.  00:551C                      ;;=====================================================
@@ -5384,8 +5377,8 @@ Errors: 0
      241.  00:55DD                      
      242.  00:55DD                      ;--------------------------------------------
      243.  00:55DD                      
-     191   00:55DD                      	
-     192   00:55DD                      	include "enemigos/subr_enemigos.asm"
+     184   00:55DD                      	
+     185   00:55DD                      	include "enemigos/subr_enemigos.asm"
        1.  00:55DD                      ;;=====================================================
        2.  00:55DD                      ;;ARRAY COMÚN DE ENEMIGOS
        3.  00:55DD                      ;;=====================================================	
@@ -11596,8 +11589,8 @@ Errors: 0
     2461.  00:7799                      			;si no quedan enemigos marco la pantalla como superada
     2462.  00:7799  C3 B8 41            			JP			terminada_habitacion_recorrida
     2463.  00:779C                      fin_decrementa_contador_enemigos:
-     193   00:779C                      	
-     194   00:779C                      	include "sonido/subr_sonido.asm"
+     186   00:779C                      	
+     187   00:779C                      	include "sonido/subr_sonido.asm"
        1.  00:779C                      
        2.  00:779C                      ;;=====================================================
        3.  00:779C                      ;;SUBRUTINAS PARA SONIDOS
@@ -12921,16 +12914,16 @@ Errors: 0
      118.  00:89D6                      	
      119.  00:89D6                      musica_boss:
      120.  00:89D6  (0210)              	incbin "boss.99"
-     195   00:8BE6                      	
-     196   00:8BE6                      
-     197   00:8BE6                      ;;=====================================================
-     198   00:8BE6                      ;;DEFINICIÓN DE SUBRUTINAS DE FERNANDO PARA COMPRESIÓN Y SONIDO
-     199   00:8BE6                      ;;=====================================================
-     200   00:8BE6                      ;Este include lleva la rutina de descompresión de ROM/RAM a VRAM de pletter
-     201   00:8BE6                      ;Está adaptada de la original a sjasm
-     202   00:8BE6                      ;	HL = RAM/ROM source	; DE = VRAM destination
-     203   00:8BE6                      depack_VRAM:
-     204   00:8BE6                      	include "pletter/PL_VRAM_Depack_SJASM.asm"
+     188   00:8BE6                      	
+     189   00:8BE6                      
+     190   00:8BE6                      ;;=====================================================
+     191   00:8BE6                      ;;DEFINICIÓN DE SUBRUTINAS DE FERNANDO PARA COMPRESIÓN Y SONIDO
+     192   00:8BE6                      ;;=====================================================
+     193   00:8BE6                      ;Este include lleva la rutina de descompresión de ROM/RAM a VRAM de pletter
+     194   00:8BE6                      ;Está adaptada de la original a sjasm
+     195   00:8BE6                      ;	HL = RAM/ROM source	; DE = VRAM destination
+     196   00:8BE6                      depack_VRAM:
+     197   00:8BE6                      	include "pletter/PL_VRAM_Depack_SJASM.asm"
        1.  00:8BE6                      ;-----------------------------------------------------------
        2.  00:8BE6                      ; Pletter v0.5b VRAM Depacker v1.1 - 16Kb version
        3.  00:8BE6                      ; HL = RAM/ROM source ; DE = VRAM destination
@@ -13114,12 +13107,12 @@ Errors: 0
      181.  00:8CD0  63 8C               	dw	mode5
      182.  00:8CD2  5D 8C               	dw	mode6
      183.  00:8CD4  57 8C               	dw	mode7
-     205   00:8CD6                      
-     206   00:8CD6                      
-     207   00:8CD6                      ;;=====================================================
-     208   00:8CD6                      ;;DEFINICIÓN DE PANTALLAS / CONTANTES DATOS PANTALLAS
-     209   00:8CD6                      ;;=====================================================		
-     210   00:8CD6                      	include "datos/pantallas.asm"
+     198   00:8CD6                      
+     199   00:8CD6                      
+     200   00:8CD6                      ;;=====================================================
+     201   00:8CD6                      ;;DEFINICIÓN DE PANTALLAS / CONTANTES DATOS PANTALLAS
+     202   00:8CD6                      ;;=====================================================		
+     203   00:8CD6                      	include "datos/pantallas.asm"
        1.  00:8CD6                      ;;=====================================================
        2.  00:8CD6                      ;;DEFINICIÓN DE PANTALLAS
        3.  00:8CD6                      ;;=====================================================		
@@ -13162,12 +13155,12 @@ Errors: 0
       40.  00:A339  (000A)              tiles_color_vacio:				incbin "pantallas/vacio.clr.plet5"
       41.  00:A343  (0009)              tiles_mapa_vacio:				incbin "pantallas/vacio.map.plet5"
       42.  00:A34C                      
-     211   00:A34C                      
-     212   00:A34C                      
-     213   00:A34C                      ;;=====================================================
-     214   00:A34C                      ;;CONTANTES DATOS SPRITES
-     215   00:A34C                      ;;=====================================================
-     216   00:A34C                      	include "datos/sprites.asm"
+     204   00:A34C                      
+     205   00:A34C                      
+     206   00:A34C                      ;;=====================================================
+     207   00:A34C                      ;;CONTANTES DATOS SPRITES
+     208   00:A34C                      ;;=====================================================
+     209   00:A34C                      	include "datos/sprites.asm"
        1.  00:A34C                      ;;=====================================================
        2.  00:A34C                      ;;DEFINICIÓN DE SPRITES
        3.  00:A34C                      ;;=====================================================	
@@ -14630,12 +14623,12 @@ Errors: 0
      908.  00:B4C4  02 21 09 81 24 09 92 3C 
      909.  00:B4CC                      fin_sprite_conde:
      910.  00:B4CC                      
-     217   00:B4CC                      
-     218   00:B4CC                      
-     219   00:B4CC                      ;;=====================================================
-     220   00:B4CC                      ;;CONTANTES DATOS TEXTOS
-     221   00:B4CC                      ;;=====================================================
-     222   00:B4CC                      	include "datos/textos.asm"
+     210   00:B4CC                      
+     211   00:B4CC                      
+     212   00:B4CC                      ;;=====================================================
+     213   00:B4CC                      ;;CONTANTES DATOS TEXTOS
+     214   00:B4CC                      ;;=====================================================
+     215   00:B4CC                      	include "datos/textos.asm"
        1.  00:B4CC                      ;;=====================================================
        2.  00:B4CC                      ;;CONTANTES TEXTOS
        3.  00:B4CC                      ;;=====================================================
@@ -14956,27 +14949,27 @@ Errors: 0
      242.  00:B9D7                      
      243.  00:B9D7                      
      244.  00:B9D7                      
-     223   00:B9D7                      	
-     224   00:B9D7                      	
-     225   00:B9D7                      ;;=====================================================
-     226   00:B9D7                      ;;DEFINICIÓN DE VARIABLES
-     227   00:B9D7                      ;;=====================================================		
-     228   00:B9D7                      inicializacion_variables:
-     229   00:B9D7  (051D)              	incbin	"variables.dat"
-     230   00:BEF4                      fin_inicializacion_variables:
+     216   00:B9D7                      	
+     217   00:B9D7                      	
+     218   00:B9D7                      ;;=====================================================
+     219   00:B9D7                      ;;DEFINICIÓN DE VARIABLES
+     220   00:B9D7                      ;;=====================================================		
+     221   00:B9D7                      inicializacion_variables:
+     222   00:B9D7  (051D)              	incbin	"variables.dat"
+     223   00:BEF4                      fin_inicializacion_variables:
+     224   00:BEF4                      
+     225   00:BEF4                      
+     226   00:BEF4                      
+     227   00:BEF4                      ;nota: el powerup de armadura dura n habitaciones
+     228   00:BEF4                      ;nota: el powerup de disparo dura n habitaciones
+     229   00:BEF4                      ;IMPORTANTE... BUG EN HABITACIÓN FINALIZADA... SIGUEN SALIENDO ENEMIGOS
+     230   00:BEF4                      
      231   00:BEF4                      
-     232   00:BEF4                      
+     232   00:BEF4                      ;END: (FIN CÓDIGO)
      233   00:BEF4                      
-     234   00:BEF4                      ;nota: el powerup de armadura dura n habitaciones
-     235   00:BEF4                      ;nota: el powerup de disparo dura n habitaciones
-     236   00:BEF4                      ;IMPORTANTE... BUG EN HABITACIÓN FINALIZADA... SIGUEN SALIENDO ENEMIGOS
-     237   00:BEF4                      
-     238   00:BEF4                      
-     239   00:BEF4                      ;END: (FIN CÓDIGO)
-     240   00:BEF4                      
-     241   00:BEF4                      
-     242   00:BEF4                      ;INICIO ZONA DATOS (BANCO DE MEMORIA 3)
-     243   00:BEF4  00 (268)            		DS	#C000 - $
+     234   00:BEF4                      
+     235   00:BEF4                      ;INICIO ZONA DATOS (BANCO DE MEMORIA 3)
+     236   00:BEF4  00 (268)            		DS	#C000 - $
 
     LABELS
 -------------------------------------------------
@@ -15131,7 +15124,7 @@ Errors: 0
 00:00000003   PROTAVIDAS
 00:00000003 X PROTARELIQUIAS
 00:00000003   PROTAPOSMAPX
-00:00000000 X PROTAPOSMAPY
+00:00000000   PROTAPOSMAPY
 00:000000F8   PROTAENERGIA
 00:00000000   PROTAENERGIABYTEBAJO
 00:00000003   PROTADANO1

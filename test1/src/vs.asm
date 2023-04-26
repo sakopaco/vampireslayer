@@ -141,7 +141,7 @@ inicializa_variables_prota:
 		LD		 A, PROTANIVEL
 		LD		(prota_nivel), A
 
-		LD		 A, 5;PROTAPOSMAPY
+		LD		 A, PROTAPOSMAPY
 		LD		(prota_pos_mapy), A	
 
 		LD		 A, PROTAPOSMAPX	
@@ -159,13 +159,6 @@ inicializa_variables_juego:
 		LD			(dracula_muerto), A		
 fin_inicializa_variables_juego:
 		RET
-
-;;************************************************************************
-
-
-
-
-;;************************************************************************		
 
 
 ;;=====================================================
