@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.04.26 - 22:32:42]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.04.27 - 21:03:41]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/vs.asm
 Errors: 0
@@ -882,10 +882,10 @@ Errors: 0
      138   00:4095                      		;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
      139   00:4095                      		;será igual la posición inicial en todos los niveles
      140   00:4095                      	
-     141   00:4095  3E 00               		LD		 A, 0;5;PROTANIVEL
+     141   00:4095  3E 06               		LD		 A, 6;PROTANIVEL
      142   00:4097  32 00 C0            		LD		(prota_nivel), A
      143   00:409A                      
-     144   00:409A  3E 06               		LD		 A, 6;0;PROTAPOSMAPY
+     144   00:409A  3E 00               		LD		 A, 0;PROTAPOSMAPY
      145   00:409C  32 04 C0            		LD		(prota_pos_mapy), A	
      146   00:409F                      
      147   00:409F  3E 03               		LD		 A, PROTAPOSMAPX	
@@ -3246,10 +3246,10 @@ Errors: 0
     1549.  00:4C0E                      			
     1550.  00:4C0E                      			;hay que poner nombre según nivel
     1551.  00:4C0E                      			;los nombre son consecutivos con saltos de 9 posiciones
-    1552.  00:4C0E  47                  			LD			 B, A
-    1553.  00:4C0F  21 E7 B8            			LD			HL, nombre_jefes
-    1554.  00:4C12                      			
-    1555.  00:4C12  3A 00 C0            			LD			 A, (prota_nivel)
+    1552.  00:4C0E  21 E7 B8            			LD			HL, nombre_jefes
+    1553.  00:4C11                      			
+    1554.  00:4C11  3A 00 C0            			LD			 A, (prota_nivel)
+    1555.  00:4C14  47                  			LD			 B, A
     1556.  00:4C15  B7                  			OR			 A
     1557.  00:4C16  CA 24 4C            			JP			 Z, .fin_localiza_nombre	;en el nivel 0 no es necesario hacer cálculos
     1558.  00:4C19                      			

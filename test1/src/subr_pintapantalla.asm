@@ -1549,10 +1549,10 @@ pinta_nombre_enemigo:
 			
 			;hay que poner nombre según nivel
 			;los nombre son consecutivos con saltos de 9 posiciones
-			LD			 B, A
 			LD			HL, nombre_jefes
 			
 			LD			 A, (prota_nivel)
+			LD			 B, A
 			OR			 A
 			JP			 Z, .fin_localiza_nombre	;en el nivel 0 no es necesario hacer cálculos
 			
