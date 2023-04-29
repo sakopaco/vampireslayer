@@ -226,19 +226,6 @@ localiza_info_habitacion:
 	LD		(IX), H
 	LD		(IX + 1), L
 	
-	;actualizo la variable hay_ayudas
-	LD		 A, (habitacion_actual)
-	BIT		 6, A							;pintar ayuda
-	JP		 Z, .no_mostrar_ayuda_activa	;0 no hay o ya se han cogido ayudas // 1 mostrar ayuda activa
-.si_mostrar_ayuda_activa:							
-	LD		 A, 1
-	LD		(hay_ayudas_en_pantalla), A	
-	JP		.fin_mostrar_ayuda_activa
-.no_mostrar_ayuda_activa:
-	XOR		 A
-	LD		(hay_ayudas_en_pantalla), A
-.fin_mostrar_ayuda_activa:					;no restauro B en A porque ya no lo necesito
-	
 	;actualizo la variable habitacion_extras
 	INC		HL				;el byte de los extras está antes de donde se especifican las puertas
 	LD		(puntero_extras_habitacion_actual), HL
@@ -679,5 +666,3 @@ actualiza_cronometro_salida:
 		JP			game_over
 fin_actualiza_cronometro_salida:	
 
-
-		

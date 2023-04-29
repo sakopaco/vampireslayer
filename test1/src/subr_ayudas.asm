@@ -304,22 +304,21 @@ pinta_ayudas_habitacion:
 .examina_ballesta:
 		LD		 A, (habitacion_extras)
 		BIT		 1, A						;bit 2 planta
-		JP		 Z, fin_pinta_ayudas_habitacion
+		RET		 Z
 		
 		LD		IX, ayuda_ballesta
 .fin_examina_ballesta:
 
 .pintar_ayuda:
+		LD			 A, 1
+		LD			(hay_ayudas_en_pantalla), A
+		
 		;puntero_ayuda_actual
 		LD			(puntero_ayuda_actual), IX
 		LD		 	 A, ACTIVA
 		LD			(IX), A					;si lo pinta activo pone el bit a 1 por si el último lo puso a 0
-		CALL		pinta_obj_ayuda
-		
-		LD			 A, 1
-		LD			(hay_ayudas_en_pantalla), A
+		JP			pinta_obj_ayuda
 fin_pinta_ayudas_habitacion:
-		RET
 
 
 ;;=====================================================
@@ -505,10 +504,10 @@ accion_armadura:
 	CALL	pinta_obj_ayuda			;se le pasa A = 0 para que pinte desactivado
 	
 	LD		 A, (prota_energia)
-	CP		179
+	CP		150
 	JR		NC, .max_energia
 .suma_energia
-	ADD		75						;suma 75 al marcador de energía
+	ADD		100						;suma 100 al marcador de energía
 	JP		.fin_suma_energia
 .max_energia
 	LD		 A, 255					;aplica el máx. de energía 255
