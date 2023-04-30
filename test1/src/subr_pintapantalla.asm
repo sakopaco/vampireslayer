@@ -1011,6 +1011,21 @@ limpia_pantalla_superior:
 		JP			FILVRM
 fin_limpia_pantalla_superior:
 
+;;=====================================================
+;;LIMPIA_PANTALLA_INFERIOR
+;;=====================================================	
+; función: limpia toda la pantlla poniendo el tile vacio en todas las posiciones (el tile vacio está definido en los 3 bancos)
+limpia_pantalla_inferior:
+		;limpia todo y evita que se vea cuando se cargan los nuevos tiles por pantalla
+		XOR		 	 A
+		LD			HL, TILMAP + 512
+		LD			BC, 256
+		JP			FILVRM
+		
+		
+		;ññññññññ
+fin_limpia_pantalla_inferior:
+
 
 ;;=====================================================
 ;;LIMPIA_PANTALLA_COMPLETA

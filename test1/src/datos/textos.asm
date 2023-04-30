@@ -57,6 +57,8 @@ texto_deaddracula6:	DB	'DE QUE DERRUMBE SOBRE VUESTRAS  ';32 caracteres
 texto_deaddracula7:	DB	'CABEZAS. ESTO AUN NO HA ACABADO.';32 caracteres
 texto_deaddracula8:	DB	'                                ';32 caracteres
 
+texto_graciasporjugar:	DB	'GRACIAS POR JUGAR '
+
 ELSE		
 ;textos en inglés
 texto_vidas:		DB	'LIVES'
@@ -111,6 +113,8 @@ texto_deaddracula5:	DB	'CASTLE. YOU MUST ESCAPE BEFORE  ';32 caracteres
 texto_deaddracula6:	DB	'IT COLLAPSES ON YOU HEADS       ';32 caracteres
 texto_deaddracula7:	DB	'THIS IS NOT OVER YET.           ';32 caracteres
 texto_deaddracula8:	DB	'                                ';32 caracteres
+
+texto_graciasporjugar:	DB	'THANKS FOR PLAYING'
 
 ENDIF
 

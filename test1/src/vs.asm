@@ -120,7 +120,7 @@ fin_programa_principal:
 ;;=====================================================
 ; funcion: inicializa las variables que afectan al prota y dónde empieza la partida
 inicializa_variables_prota:
-		LD		 A, 1;PROTAVIDAS
+		LD		 A, PROTAVIDAS
 		LD		(prota_vidas),A
 
 		LD		 A, PROTARELIQUIAS
@@ -141,7 +141,7 @@ inicializa_variables_prota:
 		LD		 A, PROTANIVEL
 		LD		(prota_nivel), A
 
-		LD		 A, 5;PROTAPOSMAPY
+		LD		 A, PROTAPOSMAPY
 		LD		(prota_pos_mapy), A	
 
 		LD		 A, PROTAPOSMAPX	

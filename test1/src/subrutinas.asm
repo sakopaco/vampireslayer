@@ -282,11 +282,11 @@ entra_habitacion:
 ;ahora nos ocupamos de los enemigos
 		CALL		resetea_enemigos
 		
-		;~ ;ñññññ   para que no salgan enemigos y el conde esté muerto
-		;~ LD			 A, 1
-		;~ LD			(dracula_muerto), A
-		;~ CALL		resetea_tiempo
-		;~ RET
+		;ñññññ   para que no salgan enemigos y el conde esté muerto
+		LD			 A, 1
+		LD			(dracula_muerto), A
+		CALL		resetea_tiempo
+		RET
 		
 
 .mira_nivel0:
@@ -521,7 +521,21 @@ game_over:
 				LD			DE, TILMAP + 512	;destino en vram (pos tiles + 256 (banco 0 + 256 banco )
 				LD			HL, texto_finalbueno
 				LD			BC, 32 * 8
-				CALL		LDIRVM	
+				CALL		LDIRVM
+				
+				
+				
+				CALL		ENASCR
+
+[5]				CALL		espera_estandar
+
+				CALL		limpia_pantalla_inferior
+				
+				LD			DE, TILMAP + 512 + 103	;destino en vram (pos tiles + 256 (banco 0 + 256 banco )
+				LD			HL, texto_graciasporjugar
+				LD			BC, 18
+				CALL		LDIRVM
+				
 
 			JP			.fin_examina_final
 			
