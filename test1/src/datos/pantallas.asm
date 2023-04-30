@@ -26,9 +26,10 @@ tiles_color_marcador:			incbin "pantallas/marcador.til.bin.clr.plet5"
 tiles_mapa_marcador:			incbin "pantallas/marcador.map.bin.plet5"
 
 ;pantalla de game over 1
-tiles_patrones_gameover1_bank1:	incbin "pantallas/gameover1.bank1.til.chr.plet5"
-tiles_color_gameover1_bank1:	incbin "pantallas/gameover1.bank1.til.clr.plet5"
-tiles_mapa_gameover1_bank01:	incbin "pantallas/gameover1.map.plet5"
+tiles_patrones_gameover1_bank1:	incbin "pantallas/gameover1.banco1.chr.plet5"
+tiles_color_gameover1_bank1:	incbin "pantallas/gameover1.banco1.clr.plet5"
+tiles_mapa_gameover1_bank01:	incbin "pantallas/gameover1.banco0y1.map.plet5"
+
 
 ;pantalla de final bueno y malo (al malo se le borra el prota y ya podemos reutilizarlo)
 tiles_patrones_finalbueno_bank1:incbin "pantallas/finbueno.bank1.chr.plet5"
