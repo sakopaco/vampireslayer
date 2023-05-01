@@ -138,7 +138,16 @@ mover_jefecaballero:
 				LD			(IY + 11), COLROJO
 				LD			(IY + 15), COLROJO
 				RET
-.nointercambiacolor:		
+.nointercambiacolor:
+		LD			 A, (prota_nivel)
+		CP			 6
+		JP			 Z, .colorjefecaballeronivel6
+			LD			(IY + 3),  JCABALLERO_COLOR
+			LD			(IY + 7),  JCABALLERO_COLOR
+			LD			(IY + 11), JCABALLERO_COLOR
+			LD			(IY + 15), JCABALLERO_COLOR
+			RET
+.colorjefecaballeronivel6:
 		LD			(IY + 3),  JCABALLERO_COLOR
 		LD			(IY + 7),  JCABALLERO_COLOR
 		LD			(IY + 11), JCABALLERO_COLOR

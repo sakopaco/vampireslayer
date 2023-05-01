@@ -1538,7 +1538,7 @@ fin_check_enemigos_fase1:
 ;;CHECK_ENEMIGOS_FASE2
 ;;=====================================================	
 check_enemigos_fase2: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
-.check_enemigo1:;SERPIENTE
+.check_enemigo1:;
 		LD			IX, enemigo1
 		LD			 A, (IX)
 		OR			 A
@@ -1548,7 +1548,7 @@ check_enemigos_fase2: ;; aquí se ponen los valores de enemigos (si están activ
 		
 		CALL 		mueve_enemigo
 		;acciones enemigos
-.check_enemigo2:;ARAÑA
+.check_enemigo2:
 		LD			IX, enemigo2
 		LD			 A, (IX)
 		OR			 A
@@ -1558,7 +1558,7 @@ check_enemigos_fase2: ;; aquí se ponen los valores de enemigos (si están activ
 		
 		CALL 		mueve_enemigo
 		;acciones enemigos
-.check_enemigo3:;CABALLERO
+.check_enemigo3:
 		LD			IX, enemigo3
 		LD			 A, (IX)
 		OR			 A
@@ -1844,8 +1844,8 @@ mueve_enemigo:
 		LD			 L, (IX + ESTRUCTURA_ENEMIGO.ptr_mover)
 		LD			 H, (IX + ESTRUCTURA_ENEMIGO.ptr_mover + 1)
 		JP		    (HL)
-fin_mueve_enemigo:
-		RET
+
+		
 
 
 ;;=====================================================

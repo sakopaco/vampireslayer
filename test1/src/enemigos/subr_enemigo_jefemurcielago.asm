@@ -119,11 +119,20 @@ mover_jefemurcielago:
 				LD			(IY + 11), COLROJO
 				LD			(IY + 15), COLROJO
 				RET
-.nointercambiacolor:		
-		LD			(IY + 3),  JEFEMURCIELAGO_COLOR
-		LD			(IY + 7),  JEFEMURCIELAGO_COLOR
-		LD			(IY + 11), JEFEMURCIELAGO_COLOR
-		LD			(IY + 15), JEFEMURCIELAGO_COLOR
+.nointercambiacolor:
+		LD			 A, (prota_nivel)
+		CP			 6
+		JP			 Z, .colorjefemurcielagonivel6
+			LD			(IY + 3),  JEFEMURCIELAGO_COLOR
+			LD			(IY + 7),  JEFEMURCIELAGO_COLOR
+			LD			(IY + 11), JEFEMURCIELAGO_COLOR
+			LD			(IY + 15), JEFEMURCIELAGO_COLOR
+			RET
+.colorjefemurcielagonivel6:
+		LD			(IY + 3),  JEFEMURCIELAGO_COLOR6
+		LD			(IY + 7),  JEFEMURCIELAGO_COLOR6
+		LD			(IY + 11), JEFEMURCIELAGO_COLOR6
+		LD			(IY + 15), JEFEMURCIELAGO_COLOR6
 fin_mover_jefemurcielaro:
 		RET
 

@@ -98,7 +98,10 @@ calcula_zombi_escena:
 			
 			;hace daño
 			LD			 B, (IX + ESTRUCTURA_ENEMIGO.dano)
+			
+			push		IX
 			CALL		enemigo_hace_dano
+			pop			IX
 			
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.direccionx)
 			OR			 A

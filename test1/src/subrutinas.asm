@@ -279,16 +279,15 @@ entra_habitacion:
 		;apago pantalla
 		CALL		ENASCR
 
-;ahora nos ocupamos de los enemigos
+		;ahora nos ocupamos de los enemigos
 		CALL		resetea_enemigos
 		
-		;ñññññ   para que no salgan enemigos y el conde esté muerto
-		LD			 A, 1
-		LD			(dracula_muerto), A
-		CALL		resetea_tiempo
-		RET
+		;~ ;ñññññ   para que no salgan enemigos y el conde esté muerto
+		;~ LD			 A, 1
+		;~ LD			(dracula_muerto), A
+		;~ CALL		resetea_tiempo
+		;~ RET
 		
-
 .mira_nivel0:
 		LD			 A, (prota_nivel)
 		OR			 A
