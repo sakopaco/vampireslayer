@@ -969,7 +969,8 @@ muestra_pantalla_inicial:
 		JP			 Z, .mientras_nopulsado	;si A=0 no se pulsó ni disparo ni botón
 		
 		;se ha pulsado
-		CALL		musica_off
+		XOR			 A
+		CALL		play_musica
 		
 		;ejecuto sonido
 		LD			 A, SONIDOINICIO	;4

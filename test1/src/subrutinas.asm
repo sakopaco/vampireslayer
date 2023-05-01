@@ -410,8 +410,9 @@ accion_mata_dracula:
 		;Ocultamos todos los sprites
 		CALL		oculta_todos_sprites
 
-		;paro música		
-		CALL		musica_off
+		;paro música
+		XOR			 A
+		CALL		play_musica
 
 		CALL		borra_mapa
 

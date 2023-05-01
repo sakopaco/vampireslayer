@@ -70,7 +70,8 @@ fin_subrutina_isr:
 play_musica:		
 		LD			(musica_activa), A
 		OR			 A
-		RET			 Z
+		JP			NZ, .mira_musica_inicio
+		JP			PT3_MUTE
 
 .mira_musica_inicio:
 		CP			 1
@@ -88,12 +89,6 @@ play_musica:
 .fin_mira_posibles_musicas:
 		JP			inicializa_replayer_efectos_interrupciones
 fin_play_musica:
-
-
-musica_off:
-		XOR			 A
-		JP			play_musica	
-fin_musica_off:
 
 
 ;;=====================================================

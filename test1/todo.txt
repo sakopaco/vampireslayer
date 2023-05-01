@@ -1,6 +1,5 @@
 BUGS:
 - cuando coges una ayuda el sonido no acaba
-- apagar música cuando matas a un jefe (cuando se mate a un pstrite de 2x2)
 - el disparo y la explosión parecen el mismo sonido
 
 * descubierto bug... la pos x e y de las habitaciones se va a la porra ejemplo: tratar de recorrer todas
