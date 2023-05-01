@@ -523,8 +523,6 @@ game_over:
 				LD			BC, 32 * 8
 				CALL		LDIRVM
 				
-				
-				
 				CALL		ENASCR
 
 [5]				CALL		espera_estandar

@@ -6,15 +6,12 @@ BUGS:
 * descubierto bug... la pos x e y de las habitaciones se va a la porra ejemplo: tratar de recorrer todas
   las habitaciones del nivel 6 (no ocurre siempre ¿?¿?¿?¿? )
 
-
 TODO A:
 - repasar fondos de pantalla y color de enemigos
-- nuevo fondo cuando te matan
 
 TODO B (deseable):
 - revisar letras
 - poner tiles al matar a drácula
-- poner pantalla extra de texto en final
 
 TUNNING:
 - mirar lo de la pila y tal con Fernando
