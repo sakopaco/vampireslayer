@@ -343,7 +343,7 @@ check_colision_ayudas:
 		;sonido dispara ayuda
 		LD		 A, SONIDORELIQUIA		;5
 		CALL	ayFX_INIT	
-		LD		BC, 20000
+		LD		BC, 8000
 		CALL 	retardo16bits
 		
 		;EJECUTA ACCIÓN Y SALE DE LA RUTINA	
@@ -354,7 +354,7 @@ check_colision_ayudas:
 		JP		(HL)
 	;FINSI
 fin_check_colision_ayudas:
-	RET
+		RET
 	
 
 ;;=====================================================

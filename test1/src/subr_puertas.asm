@@ -489,7 +489,6 @@ check_colisiones_puertas:
 .ejecuta_accion_y_sale
 		LD		HL, fin_check_colisiones_puertas ;se guarda dónde volver
 		PUSH	HL
-	
 		LD		 L, (IX + ESTRUCTURA_PUERTA.accion)
 		LD		 H, (IX + ESTRUCTURA_PUERTA.accion + 1)
 		JP		(HL)

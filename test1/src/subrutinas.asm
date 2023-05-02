@@ -323,6 +323,13 @@ entra_habitacion:
 		CALL		inicializa_enemigos_fase6
 .fin_mira_nivel:
 
+;reposiciona el punto de mira
+		PUSH 		IX
+		LD			IX,  puntomira
+		LD			(IX), POSXPM
+		LD			(IX + 1),POSYPM
+		POP  		IX
+
 ;examinamos lo que le queda si es que tiene ballesta mejorada
 		LD			 A, (contador_ayuda_ballesta)
 		OR			 A

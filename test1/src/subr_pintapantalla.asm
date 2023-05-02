@@ -115,6 +115,10 @@ pinta_parte_superior_pantalla:
 		;aquí se actualizan las particularidades de cada nivel
 		CALL		actualiza_tiles_nivel
 		;pinta puerta si es necesario
+		CALL		inicializa_puertas
+		
+		;ñññññ
+		
 		CALL		pinta_puertas
 		;pinta nombre enemigo si corresponde
 		CALL		pinta_nombre_enemigo
@@ -1022,9 +1026,6 @@ limpia_pantalla_inferior:
 		LD			HL, TILMAP + 512
 		LD			BC, 256
 		JP			FILVRM
-		
-		
-		;ññññññññ
 fin_limpia_pantalla_inferior:
 
 

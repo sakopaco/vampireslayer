@@ -2437,9 +2437,6 @@ accion_enemigo_muerto4:
 			LD			 A, 0
 			CALL		play_musica
 			
-			
-			
-
 			;marco enemigo como muerto para saltarlo incluso al examinar
 			LD			(IX), 0
 			
