@@ -627,6 +627,11 @@ game_over:
 			CALL		ENASCR
 
 [4]			CALL		espera_estandar
+
+			;quita música
+			LD			 A, 3
+			CALL		play_musica
+
 			JP			inicio_juego
 fin_game_over:
 
