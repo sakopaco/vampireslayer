@@ -271,10 +271,12 @@ entra_habitacion:
 		;apago pantalla
 		CALL		DISSCR
 		
-;nos ocupaos de pintar la habitación
+		;nos ocupaos de pintar la habitación
 		CALL		pinta_heroe_mapa
 		
+		PUSH		IX
 		CALL		pinta_parte_superior_pantalla
+		POP			IX
 		
 		;apago pantalla
 		CALL		ENASCR

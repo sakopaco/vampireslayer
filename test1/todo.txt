@@ -2,10 +2,12 @@ BUGS:
 - cuando coges una ayuda el sonido no acaba
 - el disparo y la explosión parecen el mismo sonido
 
-* descubierto bug... la pos x e y de las habitaciones se va a la porra ejemplo: tratar de recorrer todas
-  las habitaciones del nivel 6 (no ocurre siempre ¿?¿?¿?¿? )
+* ver lo de las bombas con los jefes
+* ver lo del ret en la función mueve_enemigo
+
 
 TODO A:
+- que algunos enemigos quiten menos vidas
 - repasar fondos de pantalla y color de enemigos
 
 TODO B (deseable):

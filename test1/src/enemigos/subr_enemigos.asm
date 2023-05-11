@@ -1404,67 +1404,87 @@ fin_check_enemigos:
 ;;CHECK_ENEMIGOS_FASE0
 ;;=====================================================	
 check_enemigos_fase0: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
+		PUSH		IX
 .check_enemigo1:
 		LD			IX, enemigo1
 		LD			 A, (IX)
 		OR			 A
 		JP			 Z, .check_enemigo2
 		
+		PUSH		IX
+		LD			IX, enemigo1
 		LD			IY, array_sprites_enem
-		
+		PUSH		HL
 		CALL 		mueve_enemigo
-		;acciones enemigos
+		POP			HL
+		POP			IX
 .check_enemigo2:
 		LD			IX, enemigo2
 		LD			 A, (IX)
 		OR			 A
 		JP			 Z, .check_enemigo3
-		
+
+		PUSH		IX
+		LD			IX, enemigo2	
 		LD			IY, array_sprites_enem + 4
-		
+		PUSH		HL
 		CALL 		mueve_enemigo
-		;acciones enemigos
+		POP			HL
+		POP			IX
 .check_enemigo3:
 		LD			IX, enemigo3
 		LD			 A, (IX)
 		OR			 A
 		JP			 Z, .check_enemigo4
 		
+		PUSH		IX
+		LD			IX, enemigo3
 		LD			IY, array_sprites_enem + 8
-		
+		PUSH		HL
 		CALL 		mueve_enemigo
-		;acciones enemigos
+		POP			HL
+		POP			IX
 .check_enemigo4:
 		LD			IX, enemigo4
 		LD			 A, (IX)
 		OR			 A
 		JP			 Z, .check_enemigo5
 		
+		PUSH		IX
+		LD			IX, enemigo4
 		LD			IY, array_sprites_enem + 16
-
+		PUSH		HL
 		CALL 		mueve_enemigo
-		;acciones enemigos
+		POP			HL
+		POP			IX
 .check_enemigo5:
 		LD			IX, enemigo5
 		LD			 A, (IX)
 		OR			 A
 		JP			 Z, .check_enemigo6
-		
-		LD			IY, array_sprites_enem + 20
 
+		PUSH		IX
+		LD			IX, enemigo5		
+		LD			IY, array_sprites_enem + 20
+		PUSH		HL
 		CALL 		mueve_enemigo
-		;acciones enemigos
+		POP			HL
+		POP			IX
 .check_enemigo6:
 		LD			IX, enemigo6
 		LD			 A, (IX)
 		OR			 A
-		RET			 Z
-		
+		JP			 Z, fin_check_enemigos_fase0
+
+		PUSH		IX
+		LD			IX, enemigo5			
 		LD			IY, array_sprites_enem + 24
-		
+		PUSH		HL
 		CALL 		mueve_enemigo
-		;acciones enemigos
+		POP			HL
+		POP			IX
 fin_check_enemigos_fase0:
+		POP			IX
 		RET			
 
 
@@ -1472,369 +1492,489 @@ fin_check_enemigos_fase0:
 ;;CHECK_ENEMIGOS_FASE1
 ;;=====================================================	
 check_enemigos_fase1: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
+		PUSH		IX
 .check_enemigo1:
 		LD			IX, enemigo1
 		LD			 A, (IX)
 		OR			 A
 		JP			 Z, .check_enemigo2
 		
+		PUSH		IX
+		LD			IX, enemigo1
 		LD			IY, array_sprites_enem
-		
+		PUSH		HL
 		CALL 		mueve_enemigo
-		;acciones enemigos
+		POP			HL
+		POP			IX
 .check_enemigo2:
 		LD			IX, enemigo2
 		LD			 A, (IX)
 		OR			 A
 		JP			 Z, .check_enemigo3
 		
+		PUSH		IX
+		LD			IX, enemigo2
 		LD			IY, array_sprites_enem + 4
-		
+		PUSH		HL
 		CALL 		mueve_enemigo
-		;acciones enemigos
+		POP			HL
+		POP			IX
 .check_enemigo3:
 		LD			IX, enemigo3
 		LD			 A, (IX)
 		OR			 A
 		JP			 Z, .check_enemigo4
-		
+
+		PUSH		IX
+		LD			IX, enemigo3
 		LD			IY, array_sprites_enem + 8
-		
+		PUSH		HL
 		CALL 		mueve_enemigo
-		;acciones enemigos
+		POP			HL
+		POP			IX
 .check_enemigo4:
 		LD			IX, enemigo4
 		LD			 A, (IX)
 		OR			 A
 		JP			 Z, .check_enemigo5
-		
+
+		PUSH		IX
+		LD			IX, enemigo4
 		LD			IY, array_sprites_enem + 16
-		
+		PUSH		HL
 		CALL 		mueve_enemigo
-		;acciones enemigos
+		POP			HL
+		POP			IX
 .check_enemigo5:
 		LD			IX, enemigo5
 		LD			 A, (IX)
 		OR			 A
 		JP			 Z, .check_enemigo6
 		
+		PUSH		IX
+		LD			IX, enemigo5
 		LD			IY, array_sprites_enem + 24
-		
+		PUSH		HL
 		CALL 		mueve_enemigo
-		;acciones enemigos
+		POP			HL
+		POP			IX
 .check_enemigo6:
 		LD			IX, enemigo6   														
 		LD			 A, (IX)
 		OR			 A
-		RET			 Z
-		
+		JP			 Z, fin_check_enemigos_fase1
+
+		PUSH		IX
+		LD			IX, enemigo6	
 		LD			IY, array_sprites_enem + 32
-		
-		JP	 		mueve_enemigo
+		PUSH		HL
+		CALL 		mueve_enemigo
+		POP			HL
+		POP			IX
 fin_check_enemigos_fase1:
+		POP			IX
+		RET			
 
 
 ;;=====================================================
 ;;CHECK_ENEMIGOS_FASE2
 ;;=====================================================	
 check_enemigos_fase2: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
+		PUSH		IX
 .check_enemigo1:;
 		LD			IX, enemigo1
 		LD			 A, (IX)
 		OR			 A
 		JP			 Z, .check_enemigo2
 		
+		PUSH		IX
+		LD			IX, enemigo1
 		LD			IY, array_sprites_enem
-		
+		PUSH		HL
 		CALL 		mueve_enemigo
-		;acciones enemigos
+		POP			HL
+		POP			IX
 .check_enemigo2:
 		LD			IX, enemigo2
 		LD			 A, (IX)
 		OR			 A
 		JP			 Z, .check_enemigo3
 		
+		PUSH		IX
+		LD			IX, enemigo2
 		LD			IY, array_sprites_enem + 4
-		
+		PUSH		HL
 		CALL 		mueve_enemigo
-		;acciones enemigos
+		POP			HL
+		POP			IX
 .check_enemigo3:
 		LD			IX, enemigo3
 		LD			 A, (IX)
 		OR			 A
 		JP			 Z, .check_enemigo4
 		
+		PUSH		IX
+		LD			IX, enemigo3
 		LD			IY, array_sprites_enem + 12
-		
+		PUSH		HL
 		CALL 		mueve_enemigo
-		;acciones enemigos
+		POP			HL
+		POP			IX
 .check_enemigo4:
 		LD			IX, enemigo4
 		LD			 A, (IX)
 		OR			 A
 		JP			 Z, .check_enemigo5
 		
+		PUSH		IX
+		LD			IX, enemigo4
 		LD			IY, array_sprites_enem + 20
-		
+		PUSH		HL
 		CALL 		mueve_enemigo
-		;acciones enemigos
+		POP			HL
+		POP			IX
 .check_enemigo5:
 		LD			IX, enemigo5
 		LD			 A, (IX)
 		OR			 A
 		JP			 Z, .check_enemigo6
 		
+		PUSH		IX
+		LD			IX, enemigo5
 		LD			IY, array_sprites_enem + 36
-		
+		PUSH		HL
 		CALL 		mueve_enemigo
-		;acciones enemigos
+		POP			HL
+		POP			IX
 .check_enemigo6:
 		LD			IX, enemigo6   														
 		LD			 A, (IX)
 		OR			 A
-		RET			 Z
+		JP			 Z, fin_check_enemigos_fase2
 		
+		PUSH		IX
+		LD			IX, enemigo6
 		LD			IY, array_sprites_enem + 52
-		
-		JP	 		mueve_enemigo
+		PUSH		HL
+		CALL 		mueve_enemigo
+		POP			HL
+		POP			IX
 fin_check_enemigos_fase2:
+		POP			IX
+		RET			
 
 
 ;;=====================================================
 ;;CHECK_ENEMIGOS_FASE3
 ;;=====================================================	
 check_enemigos_fase3: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
+		PUSH		IX
 .check_enemigo1:
 		LD			IX, enemigo1
 		LD			 A, (IX)
 		OR			 A
 		JP			 Z, .check_enemigo2
 		
+		PUSH		IX
+		LD			IX, enemigo1
 		LD			IY, array_sprites_enem
-		
+		PUSH		HL
 		CALL 		mueve_enemigo
-		;acciones enemigos
+		POP			HL
+		POP			IX
 .check_enemigo2:
 		LD			IX, enemigo2
 		LD			 A, (IX)
 		OR			 A
 		JP			 Z, .check_enemigo3
-		
+
+		PUSH		IX
+		LD			IX, enemigo2
 		LD			IY, array_sprites_enem + 4
-		
+		PUSH		HL
 		CALL 		mueve_enemigo
-		;acciones enemigos
+		POP			HL
+		POP			IX
 .check_enemigo3:
 		LD			IX, enemigo3
 		LD			 A, (IX)
 		OR			 A
 		JP			 Z, .check_enemigo4
 		
+		PUSH		IX
+		LD			IX, enemigo3
 		LD			IY, array_sprites_enem + 12
-		
+		PUSH		HL
 		CALL 		mueve_enemigo
-		;acciones enemigos
+		POP			HL
+		POP			IX
 .check_enemigo4:
 		LD			IX, enemigo4
 		LD			 A, (IX)
 		OR			 A
 		JP			 Z, .check_enemigo5
 		
+		PUSH		IX
+		LD			IX, enemigo4
 		LD			IY, array_sprites_enem + 20
-		
+		PUSH		HL
 		CALL 		mueve_enemigo
-		;acciones enemigos
+		POP			HL
+		POP			IX
 .check_enemigo5:
 		LD			IX, enemigo5
 		LD			 A, (IX)
 		OR			 A
 		JP			 Z, .check_enemigo6
 		
+		PUSH		IX
+		LD			IX, enemigo5
 		LD			IY, array_sprites_enem + 36
-		
+		PUSH		HL
 		CALL 		mueve_enemigo
-		;acciones enemigos
+		POP			HL
+		POP			IX
 .check_enemigo6:
 		LD			IX, enemigo6   														
 		LD			 A, (IX)
 		OR			 A
-		RET			 Z
-		
+		JP			 Z, fin_check_enemigos_fase3
+
+		PUSH		IX
+		LD			IX, enemigo6	
 		LD			IY, array_sprites_enem + 52
-		
-		JP	 		mueve_enemigo
+		PUSH		HL
+		CALL 		mueve_enemigo
+		POP			HL
+		POP			IX
 fin_check_enemigos_fase3:
+		POP			IX
+		RET			
 
 
 ;;=====================================================
 ;;CHECK_ENEMIGOS_FASE4
 ;;=====================================================	
 check_enemigos_fase4: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
-.check_enemigo1:	;MURCIELAGO
+		PUSH		IX
+.check_enemigo1:
 		LD			IX, enemigo1
 		LD			 A, (IX)
 		OR			 A
 		JP			 Z, .check_enemigo2
-		
+
+		PUSH		IX
+		LD			IX, enemigo1
 		LD			IY, array_sprites_enem
-		
+		PUSH		HL
 		CALL 		mueve_enemigo
-		;acciones enemigos
+		POP			HL
+		POP			IX
 .check_enemigo2:	;CABALLERO
 		LD			IX, enemigo2
 		LD			 A, (IX)
 		OR			 A
 		JP			 Z, .check_enemigo3
 		
+		PUSH		IX
+		LD			IX, enemigo2
 		LD			IY, array_sprites_enem + 4
-		
+		PUSH		HL
 		CALL 		mueve_enemigo
-		;acciones enemigos
+		POP			HL
+		POP			IX
 .check_enemigo3:	;ESQUELETO
 		LD			IX, enemigo3
 		LD			 A, (IX)
 		OR			 A
 		JP			 Z, .check_enemigo4
 		
+		PUSH		IX
+		LD			IX, enemigo3
 		LD			IY, array_sprites_enem + 12
-		
+		PUSH		HL
 		CALL 		mueve_enemigo
-		;acciones enemigos
+		POP			HL
+		POP			IX
 .check_enemigo4:	;ZOMBI
 		LD			IX, enemigo4
 		LD			 A, (IX)
 		OR			 A
 		JP			 Z, .check_enemigo5
-		
+
+		PUSH		IX
+		LD			IX, enemigo4
 		LD			IY, array_sprites_enem + 20
-		
+		PUSH		HL
 		CALL 		mueve_enemigo
-		;acciones enemigos
+		POP			HL
+		POP			IX
 .check_enemigo5:	;FANTASMA
 		LD			IX, enemigo5
 		LD			 A, (IX)
 		OR			 A
 		JP			 Z, .check_enemigo6
 		
+		PUSH		IX
+		LD			IX, enemigo5
 		LD			IY, array_sprites_enem + 28
-		
+		PUSH		HL
 		CALL 		mueve_enemigo
-		;acciones enemigos
+		POP			HL
+		POP			IX
 .check_enemigo6:	;FUEGO
 		LD			IX, enemigo6   														
 		LD			 A, (IX)
 		OR			 A
-		RET			 Z
+		JP			 Z, fin_check_enemigos_fase4
 		
+		PUSH		IX
+		LD			IX, enemigo6
 		LD			IY, array_sprites_enem + 36
-		
-		JP	 		mueve_enemigo
+		PUSH		HL
+		CALL 		mueve_enemigo
+		POP			HL
+		POP			IX
 fin_check_enemigos_fase4:
+		POP			IX
+		RET			
 		
 
 ;;=====================================================
 ;;CHECK_ENEMIGOS_FASE5
 ;;=====================================================	
 check_enemigos_fase5: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
+		PUSH		IX
 .check_enemigo1:	;MAGIA
 		LD			IX, enemigo1
 		LD			 A, (IX)
 		OR			 A
 		JP			 Z, .check_enemigo2
-		
+
+		PUSH		IX
+		LD			IX, enemigo1
 		LD			IY, array_sprites_enem
-		
+		PUSH		HL
 		CALL 		mueve_enemigo
-		;acciones enemigos
+		POP			HL
+		POP			IX
 .check_enemigo2:	;CABALLERO
 		LD			IX, enemigo2
 		LD			 A, (IX)
 		OR			 A
 		JP			 Z, .check_enemigo3
 		
+		PUSH		IX
+		LD			IX, enemigo2
 		LD			IY, array_sprites_enem + 8
-		
+		PUSH		HL
 		CALL 		mueve_enemigo
-		;acciones enemigos
+		POP			HL
+		POP			IX
 .check_enemigo3:	;ESQUELETO
 		LD			IX, enemigo3
 		LD			 A, (IX)
 		OR			 A
 		JP			 Z, .check_enemigo4
 		
+		PUSH		IX
+		LD			IX, enemigo3
 		LD			IY, array_sprites_enem + 16
-		
+		PUSH		HL
 		CALL 		mueve_enemigo
-		;acciones enemigos
+		POP			HL
+		POP			IX
 .check_enemigo4:	;ZOMBI
 		LD			IX, enemigo4
 		LD			 A, (IX)
 		OR			 A
 		JP			 Z, .check_enemigo5
 		
+		PUSH		IX
+		LD			IX, enemigo4
 		LD			IY, array_sprites_enem + 24
-		
+		PUSH		HL
 		CALL 		mueve_enemigo
-		;acciones enemigos
+		POP			HL
+		POP			IX
 .check_enemigo5:	;FANTASMA
 		LD			IX, enemigo5
 		LD			 A, (IX)
 		OR			 A
 		JP			 Z, .check_enemigo6
 		
+		PUSH		IX
+		LD			IX, enemigo5
 		LD			IY, array_sprites_enem + 32
-		
+		PUSH		HL
 		CALL 		mueve_enemigo
-		
-		;acciones enemigos
+		POP			HL
+		POP			IX
 .check_enemigo6:	;FUEGO
 		LD			IX, enemigo6   														
 		LD			 A, (IX)
 		OR			 A
-		RET			 Z
+		JP			 Z, fin_check_enemigos_fase5
 		
+		PUSH		IX
+		LD			IX, enemigo6
 		LD			IY, array_sprites_enem + 40
-		
-		JP	 		mueve_enemigo		
+		PUSH		HL
+		CALL 		mueve_enemigo
+		POP			HL
+		POP			IX
 fin_check_enemigos_fase5:
+		POP			IX
+		RET
 		
 
 ;;=====================================================
 ;;CHECK_ENEMIGOS_FASE6
 ;;=====================================================	
 check_enemigos_fase6: ;; aquí se ponen los valores de enemigos (si están activos) en el array de sprites para renderizar
+		PUSH		IX
 .check_enemigo1:	;DRACULA
 		LD			IX, enemigo1
 		LD			 A, (IX)
 		OR			 A
 		JP			 Z, .check_enemigo2
 		
+		PUSH		IX
+		LD			IX, enemigo1
 		LD			IY, array_sprites_enem
-		
+		PUSH		HL
 		CALL 		mueve_enemigo
-		;acciones enemigos
+		POP			HL
+		POP			IX
 .check_enemigo2:	
 		LD			IX, enemigo2
 		LD			 A, (IX)
 		OR			 A
 		JP			 Z, .check_enemigo3
-		
+
+		PUSH		IX
+		LD			IX, enemigo2
 		LD			IY, array_sprites_enem + 8
-		
+		PUSH		HL
 		CALL 		mueve_enemigo
-		;acciones enemigos
+		POP			HL
+		POP			IX
 .check_enemigo3:	
 		LD			IX, enemigo3
 		LD			 A, (IX)
 		OR			 A
-		RET			 Z
-		
+		JP			 Z, fin_check_enemigos_fase6
+
+		PUSH		IX
+		LD			IX, enemigo3		
 		LD			IY, array_sprites_enem + 16
-		
+		PUSH		HL
 		CALL 		mueve_enemigo
-		;acciones enemigos
+		POP			HL
+		POP			IX
 fin_check_enemigos_fase6:
-		RET	
+		POP			IX
+		RET
 
 
 ;;=====================================================
@@ -1845,8 +1985,10 @@ mueve_enemigo:
 		LD			 H, (IX + ESTRUCTURA_ENEMIGO.ptr_mover + 1)
 		JP		    (HL)
 
-		
+;ñññññññññññññññññññ
 
+
+;¿?¿?¿?¿?¿?¿?¿?¿ ññññññññññññññññññññ
 
 ;;=====================================================
 ;;ENEMIGO_HACE_DANO
