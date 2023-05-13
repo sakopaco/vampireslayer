@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.05.13 - 19:58:02]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.05.13 - 20:39:06]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -144,7 +144,7 @@ Errors: 0
      129.  00:C000  (00:0002)           ANCHOAYUDA			equ		#02;2
      130.  00:C000                      
      131.  00:C000                      ;; RETARDO TIEMPO QUE PARA EL JUEGO POR TIRAR UNA RELIQUIA
-     132.  00:C000  (00:07D0)           RETARDOREL			equ		2000
+     132.  00:C000  (00:EA60)           RETARDOREL			equ		60000
      133.  00:C000                      
      134.  00:C000                      ;;DURACION AYUDA BALLESTA MEJORADA (pantallas que dura)
      135.  00:C000  (00:0007)           DURACIONBALLEJ      equ		#07;7
@@ -1307,7 +1307,7 @@ Errors: 0
 00:00000058 X POSBALLESTAY
 00:00000002 X ALTOAYUDA
 00:00000002 X ANCHOAYUDA
-00:000007D0 X RETARDOREL
+00:0000EA60 X RETARDOREL
 00:00000007 X DURACIONBALLEJ
 00:00000008 X RADIOAYUDAX
 00:00000008 X RADIOAYUDAY
