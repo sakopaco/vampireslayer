@@ -96,16 +96,24 @@ mover_jefezombi:
 			LD			 A, (IX + ESTRUCTURA_ENEMIGO.escena)
 			OR			 A
 			JP			 Z, .nointercambiacolor	
-				LD			(IY + 3),  COLROJO
-				LD			(IY + 7),  COLROJO
-				LD			(IY + 11), COLROJO
-				LD			(IY + 15), COLROJO
+				LD			 A, COLROJO
+				LD			(IY + 3),  A
+				LD			(IY + 7),  A
+				LD			(IY + 11), A
+				LD			(IY + 15), A
 				RET
-.nointercambiacolor:		
-		LD			(IY + 3),  JEFEZOMBI_COLOR_A
+.nointercambiacolor:
 		LD			(IY + 7),  JEFEZOMBI_COLOR_B
-		LD			(IY + 11), JEFEZOMBI_COLOR_C
 		LD			(IY + 15), JEFEZOMBI_COLOR_D
+		LD			 A, (prota_nivel)
+		CP			 6
+		JP			 Z, .colorjefezombinivel6
+			LD			(IY + 3),  JEFEZOMBI_COLOR_A
+			LD			(IY + 11), JEFEZOMBI_COLOR_C
+			RET
+.colorjefezombinivel6:
+			LD			(IY + 3),  JEFEZOMBI_COLOR_A6
+			LD			(IY + 11), JEFEZOMBI_COLOR_C6
 fin_mover_jefezombi:
 		RET
 

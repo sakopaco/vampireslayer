@@ -8,7 +8,8 @@ BUGS:
 
 TODO A:
 Texto antes empezar
-Color caballero negro
+-Color caballero negro
+-Color zombie fase 6
 Twee
 Que las bombas afecten a los enemigos de fin de fase
 

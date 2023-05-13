@@ -148,10 +148,10 @@ mover_jefecaballero:
 			LD			(IY + 15), JCABALLERO_COLOR
 			RET
 .colorjefecaballeronivel6:
-		LD			(IY + 3),  JCABALLERO_COLOR
-		LD			(IY + 7),  JCABALLERO_COLOR
-		LD			(IY + 11), JCABALLERO_COLOR
-		LD			(IY + 15), JCABALLERO_COLOR
+		LD			(IY + 3),  JCABALLERO_COLOR6
+		LD			(IY + 7),  JCABALLERO_COLOR6
+		LD			(IY + 11), JCABALLERO_COLOR6
+		LD			(IY + 15), JCABALLERO_COLOR6
 fin_mover_jefecaballero:
 		RET
 
