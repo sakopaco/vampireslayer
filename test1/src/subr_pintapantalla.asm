@@ -508,7 +508,8 @@ efecto_imagen_tira_reliquia:
 		LD			HL, color_bomba1   ;color_bomba2
 		CALL		color_pantalla
 	
-		CALL		espera_estandar
+		LD			BC, 60000
+		CALL		retardo16bits
 	
 		LD			HL, color_base
 		JP			color_pantalla
@@ -1212,16 +1213,16 @@ actualiza_tiles_nivel:
 		CP			 3
 		JP			NZ, .examina_si_nivel4
 		
-		LD			 A, 11
+		LD			 A, 9;11
 		CALL		nivelX_pinta_suelo
 		
-		LD			 A, 19				
+		LD			 A, 17;19				
 		CALL		nivelX_pinta_pared
 		
-		LD			 A, 99
+		LD			 A, 97;99
 		CALL		nivelX_pinta_marco
 		
-		LD			 A, 26
+		LD			 A, 24;26
 		CALL		nivelX_pinta_puerta
 		RET
 .examina_si_nivel4:
