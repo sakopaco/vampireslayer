@@ -7,6 +7,13 @@ BUGS:
 
 
 TODO A:
+Tiempo texto y bomba
+Texto antes empezar
+Color caballero negro
+Fondo fase 3
+Twee
+Que las bombas afecten a los enemigos de fin de fase
+
 - que algunos enemigos quiten menos vidas
 - repasar fondos de pantalla y color de enemigos
 
