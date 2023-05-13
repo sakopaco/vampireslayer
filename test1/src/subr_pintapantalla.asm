@@ -832,7 +832,17 @@ fin_flip_calavera_esqueletos:
 cambio_nivel_entrefases:
 			LD			 A, 0		;para música
 			CALL		play_musica
-
+			
+			;si no se ha matado aun a drácula cuando se cambia de fase se restablece energía
+			LD			 A, (dracula_muerto)
+			OR			 A
+			JR			NZ, .draculaestamuerto
+			;si drácula no estña muerto cuando cambia de fase (cambio_nivel_entrefases)
+			; se lrecupero la energia inicial
+			LD			 A, PROTAENERGIA			
+			LD			(prota_energia), A
+.draculaestamuerto:
+			
 			CALL		borra_mapa
 
 			;Ocultamos todos los sprites

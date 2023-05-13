@@ -1984,11 +1984,8 @@ mueve_enemigo:
 		LD			 L, (IX + ESTRUCTURA_ENEMIGO.ptr_mover)
 		LD			 H, (IX + ESTRUCTURA_ENEMIGO.ptr_mover + 1)
 		JP		    (HL)
+RET
 
-;ñññññññññññññññññññ
-
-
-;¿?¿?¿?¿?¿?¿?¿?¿ ññññññññññññññññññññ
 
 ;;=====================================================
 ;;ENEMIGO_HACE_DANO
