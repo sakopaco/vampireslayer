@@ -121,21 +121,35 @@ enemigo_nojefe:
 		DJNZ	.loop
 		RET
 		
-;tira bomba a enemigo JEFE --- nota: se mantiene el bucle porque el últio enemigo (drácula) es equivalente a 3 enemigos
+;tira bomba a enemigo JEFE --- nota: se mantiene el bucle porque el últio enemigo 
+;(drácula) es equivalente a 3 enemigos
 enemigo_jefe:
-		LD		IX, enemigos
-		LD		 B, 5
-		LD		 C, 2
+		PUSH		IX
+		LD			IX, enemigos 	;situo el puntero en el prier enemigo (normalmente es uno pero puede haber 3 si es drácula)
+		LD		 	B, 6
 		
 .loopjefe:	
 .examina_enemigojefe:
-		LD			 A, (IX)
-		CP			 C
-		JP			 C, .fin_examina_enemigojefe
+		;~ LD			 A, (IX)
+		;~ CP			 2 ; enemigo muerto
+		;~ JR			 Z, .fin_examina_enemigojefe		
 		
-		LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia)
-		SUB			PROTADANORELIQUIA
-		JP			NC, .fin_examina_enemigojefe
+		;~ LD			 A, (IX)
+		;~ CP			 1 ; enemigo muerto
+		;~ JR			 Z, .fin_examina_enemigojefe	
+		
+		;~ LD			 A, (IX)
+		;~ CP			 0 ; enemigo muerto
+		;~ JR			 Z, .fin_examina_enemigojefe	
+		
+		LD			 A, (IX)
+		SUB			 2
+		JR			 C, .fin_examina_enemigojefe	
+		
+		LD			 A, (IX + ESTRUCTURA_ENEMIGO.energia) 	;miro si al restar PROTADANORELJEFE puntos de vida a jefe lo mato
+		SUB			PROTADANORELJEFE
+		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía PROTADANORELJEFE al jefe 
+		JR			NC, .fin_examina_enemigojefe 			;salto si no mato al jefe
 		
 		PUSH		BC
 		CALL		mata_enemigo
@@ -143,13 +157,14 @@ enemigo_jefe:
 .fin_examina_enemigojefe:
 		LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
 		CALL		pasa_siguiente_enemigo
-		DJNZ	.loopjefe
+		DJNZ		.loopjefe
+		POP			IX
+;fin_efecto_enemigos_tira_reliquia:
 		RET
-fin_efecto_enemigos_tira_reliquia:
 
 
 pasa_siguiente_enemigo:
 [ESTRUCTURA_ENEMIGO]	INC			IX
-fin_pasa_siguiente_enemigo:
+;fin_pasa_siguiente_enemigo:
 		RET
 

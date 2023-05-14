@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.05.14 - 13:24:21]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.05.14 - 21:27:32]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -223,8 +223,8 @@ Errors: 0
      208.  00:C000  (00:00F8)           PROTAENERGIA		equ		248			;MAXENERGIA;valor real de la energía
      209.  00:C000  (00:0000)           PROTAENERGIABYTEBAJO equ	0			;cuando se llene este es cuando se pierde prota_energí
      210.  00:C000  (00:0003)           PROTADANO1			equ		3			;daño del punto de mira
-     211.  00:C000  (00:0006)           PROTADANO2			equ		6			;daño del punto de mira cuando se tiene la ayuda
-     212.  00:C000  (00:0019)           PROTADANORELIQUIA	equ		25			;daño del punto de mira cuando se tiene la ayuda
+     211.  00:C000  (00:0007)           PROTADANO2			equ		7			;daño del punto de mira cuando se tiene la ayuda
+     212.  00:C000  (00:0041)           PROTADANORELJEFE	equ		65			;daño del punto de mira cuando se tiene la ayuda
      213.  00:C000                      
      214.  00:C000                      ;; TIPOS DE GAMEOVER
      215.  00:C000  (00:0000)           NOQUEDANVIDAS		equ		0
@@ -649,7 +649,7 @@ Errors: 0
      398.  00:C000  (00:0005)           MANOI_INCREMENTO		equ		5
      399.  00:C000  (00:0010)           MANOI_VELESCENA			equ		00010000b
      400.  00:C000  (00:000F)           MANOI_DANO				equ		15
-     401.  00:C000  (00:00C8)           MANOI_ENERGIA			equ		200
+     401.  00:C000  (00:00BE)           MANOI_ENERGIA			equ		190
      402.  00:C000  (00:0050)           MANOI_POCAVIDA			equ		80
      403.  00:C000                      
      404.  00:C000                      ;;ETIQUETAS/CONSTANTES MANODERECHA
@@ -663,7 +663,7 @@ Errors: 0
      412.  00:C000  (00:0005)           MANOD_INCREMENTO		equ		5
      413.  00:C000  (00:0010)           MANOD_VELESCENA			equ		00010000b
      414.  00:C000  (00:000F)           MANOD_DANO				equ		15
-     415.  00:C000  (00:00C8)           MANOD_ENERGIA			equ		200
+     415.  00:C000  (00:00BE)           MANOD_ENERGIA			equ		190
      416.  00:C000  (00:0050)           MANOD_POCAVIDA			equ		80
      417.  00:C000                      
       12   00:C000                      include "constantesyvariables/estructuras.asm"
@@ -1364,8 +1364,8 @@ Errors: 0
 00:000000F8 X PROTAENERGIA
 00:00000000 X PROTAENERGIABYTEBAJO
 00:00000003   PROTADANO1
-00:00000006 X PROTADANO2
-00:00000019 X PROTADANORELIQUIA
+00:00000007 X PROTADANO2
+00:00000041 X PROTADANORELJEFE
 00:00000000 X NOQUEDANVIDAS
 00:00000001 X FINBUENO
 00:00000005 X SONIDORELIQUIA
@@ -1734,7 +1734,7 @@ Errors: 0
 00:00000005 X MANOI_INCREMENTO
 00:00000010 X MANOI_VELESCENA
 00:0000000F X MANOI_DANO
-00:000000C8 X MANOI_ENERGIA
+00:000000BE X MANOI_ENERGIA
 00:00000050 X MANOI_POCAVIDA
 00:00000014 X TIPOMANODERECHA
 00:0000000F X MANOD_COLOR
@@ -1746,7 +1746,7 @@ Errors: 0
 00:00000005 X MANOD_INCREMENTO
 00:00000010 X MANOD_VELESCENA
 00:0000000F X MANOD_DANO
-00:000000C8 X MANOD_ENERGIA
+00:000000BE X MANOD_ENERGIA
 00:00000050 X MANOD_POCAVIDA
 00:00000000 X ESTRUCTURA_PUNTOMIRA.posx
 00:00000001 X ESTRUCTURA_PUNTOMIRA.posy

@@ -2,14 +2,12 @@ BUGS:
 - cuando coges una ayuda el sonido no acaba
 - el disparo y la explosión parecen el mismo sonido
 
-* ver lo de las bombas con los jefes
 * ver lo del ret en la función mueve_enemigo
 
+* ver si puedo centrar el punto de mira con las ayudas
 
 TODO A:
 Texto antes empezar
-Twee
-Que las bombas afecten a los enemigos de fin de fase
 
 - que algunos enemigos quiten menos vidas
 
