@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.05.13 - 21:07:55]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.05.14 - 10:08:23]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/vs.asm
 Errors: 0
@@ -871,7 +871,7 @@ Errors: 0
      123   00:407C  3E 04               		LD		 A, PROTAVIDAS
      124   00:407E  32 01 C0            		LD		(prota_vidas),A
      125   00:4081                      
-     126   00:4081  3E 08               		LD		 A, 8;PROTARELIQUIAS
+     126   00:4081  3E 05               		LD		 A, PROTARELIQUIAS
      127   00:4083  32 02 C0            		LD		(prota_reliquias), A
      128   00:4086                      
      129   00:4086  3E F8               		LD		 A, PROTAENERGIA			
@@ -886,7 +886,7 @@ Errors: 0
      138   00:4095                      		;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
      139   00:4095                      		;será igual la posición inicial en todos los niveles
      140   00:4095                      	
-     141   00:4095  3E 06               		LD		 A, 6;PROTANIVEL
+     141   00:4095  3E 00               		LD		 A, PROTANIVEL
      142   00:4097  32 00 C0            		LD		(prota_nivel), A
      143   00:409A                      
      144   00:409A  3E 00               		LD		 A, PROTAPOSMAPY
@@ -15322,9 +15322,9 @@ Errors: 0
 00:00000080   LIMPANTABA
 00:00000006 X BASEMAPY
 00:00000003 X BASEMAPX
-00:00000000 X PROTANIVEL
+00:00000000   PROTANIVEL
 00:00000004   PROTAVIDAS
-00:00000005 X PROTARELIQUIAS
+00:00000005   PROTARELIQUIAS
 00:00000003   PROTAPOSMAPX
 00:00000000   PROTAPOSMAPY
 00:000000F8   PROTAENERGIA
