@@ -1,15 +1,13 @@
 BUGS:
-- cuando coges una ayuda el sonido no acaba
-- el disparo y la explosión parecen el mismo sonido
-
-* ver lo del ret en la función mueve_enemigo
-
-* ver si puedo centrar el punto de mira con las ayudas
 
 TODO A:
-Texto antes empezar
-- que algunos enemigos quiten menos vidas
+- Texto antes empezar
+- poner página extra con cuenta en itchio y github
+- poner mapas con la docuentación
+- que algunos enemigos quiten menos vida
 
 TODO B (deseable):
-- Repasar fondos (0, 1, 3 ok)
+- poner puertas abiertas
 - poner tiles al matar a drácula
+- cuando coges una ayuda el sonido no acaba (ver con Manuel)
+- el disparo y la explosión parecen el mismo sonido (ver con Manuel)

@@ -343,8 +343,11 @@ check_colision_ayudas:
 		;sonido dispara ayuda
 		LD		 A, SONIDORELIQUIA		;5
 		CALL	ayFX_INIT	
-		LD		BC, 8000
+		LD		BC, 12000
 		CALL 	retardo16bits
+		LD		 A, SONIDOBOMBA
+		CALL	ayFX_INIT	
+		
 		
 		;EJECUTA ACCIÓN Y SALE DE LA RUTINA	
 		LD		HL, fin_check_colision_ayudas ;se guarda dónde volver
