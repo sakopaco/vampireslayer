@@ -205,7 +205,7 @@ pinta_obj_ayuda:
 
 	;si A=1 dibujo on (si 0 off)
 	OR		 A
-	JP		 NZ,.dibujooff
+	JR		 NZ,.dibujooff
 .dibujoon:	
 		LD		 L, (IX + ESTRUCTURA_AYUDA.tiles_ayudaoff)
 		LD		 H, (IX + ESTRUCTURA_AYUDA.tiles_ayudaoff + 1)
@@ -376,14 +376,14 @@ check_colision_ayuda:
 	;ya tengo en A la coordenada X del centro del punto de mira					
 	SUB		(IX + ESTRUCTURA_AYUDA.posx)	;le resto el punto x en la puerta
 	
-	JP		NC, .deteccioncolision_paso2	;si no es negativo comparo con el radio
+	JR		NC, .deteccioncolision_paso2	;si no es negativo comparo con el radio
 
 	NEG										;si es negativo lo niego (valor absoluto)
 	
 .deteccioncolision_paso2:
 	CP		(IX + ESTRUCTURA_AYUDA.radiox)	;comparo con el radio X de la puerta
 	
-	JP		 C, .deteccioncolision_paso3	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
+	JR		 C, .deteccioncolision_paso3	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
 	
 	XOR		 A								;el resultado es falso y se guarda en A y ya no hay que seguir coprobando
 	RET
@@ -395,14 +395,14 @@ check_colision_ayuda:
 	;ya tengo en A la coordenada Y del centro del punto de mira					
 	SUB		(IX + ESTRUCTURA_AYUDA.posy)	;le resto el punto y en la puerta
 	
-	JP		NC, .deteccioncolision_paso4	;si no es negativo comparo con el radio
+	JR		NC, .deteccioncolision_paso4	;si no es negativo comparo con el radio
 
 	NEG										;si es negativo lo niego (valor absoluto)
 
 .deteccioncolision_paso4:
 	CP		(IX + ESTRUCTURA_AYUDA.radioy)	;comparo con el radio Y de la puerta
 
-	JP		 C, .deteccioncolision_paso5	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
+	JR		 C, .deteccioncolision_paso5	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
 	
 	XOR		 A								;el resultado es falso y se guarda en A un 0 y al ser la 2º comprobación salimos
 	RET
@@ -455,7 +455,7 @@ accion_cruz:
 	JR		NC, .max_reliquias
 .suma_reliquias
 	ADD		 2						;suma 2 reliquias
-	JP		.fin_suma_reliquias
+	JR		.fin_suma_reliquias
 .max_reliquias
 	LD		 A, 8					;aplica el máx. de reliquias 8
 .fin_suma_reliquias
@@ -483,7 +483,7 @@ accion_aguabendita:
 	JR		NC, .max_reliquias
 .suma_reliquias
 	ADD		 3						;suma 3 reliquias
-	JP		.fin_suma_reliquias
+	JR		.fin_suma_reliquias
 .max_reliquias
 	LD		 A, 8					;aplica el máx. de reliquias 8
 .fin_suma_reliquias
@@ -511,7 +511,7 @@ accion_armadura:
 	JR		NC, .max_energia
 .suma_energia
 	ADD		100						;suma 100 al marcador de energía
-	JP		.fin_suma_energia
+	JR		.fin_suma_energia
 .max_energia
 	LD		 A, 255					;aplica el máx. de energía 255
 .fin_suma_energia

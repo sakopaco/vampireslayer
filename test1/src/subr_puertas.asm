@@ -111,6 +111,46 @@ array_escalera:
 		DB	5,0,6,6,6,6,6,5
 		DB	5,6,6,6,6,6,6,5
 		DB	5,4,4,4,4,4,4,5
+		
+array_puerta_arriba_abierta:
+		DB	3,1,1,3
+		DB	1,0,0,1
+		DB	1,0,0,1
+		DB	1,0,0,1
+		DB	1,0,0,1
+		DB	1,0,0,1
+
+array_puerta_derecha_abierta:
+		DB	1,3,3
+		DB	1,1,3
+		DB	1,0,1
+		DB	1,0,1
+		DB	1,0,1
+		DB	1,0,1
+		DB	4,0,1
+		DB	4,4,1
+	
+array_puerta_abajo_abierta:			
+		DB	1,0,0,1
+
+array_puerta_izquierda_abierta:
+		DB	3,3,1
+		DB	3,1,1
+		DB	1,0,1
+		DB	1,0,1
+		DB	1,0,1
+		DB	1,0,1
+		DB	1,0,4
+		DB	1,4,4
+
+array_escalera_abierta:
+		DB	5,5,5,5,5,5,5,5
+		DB	5,0,0,0,0,0,0,5
+		DB	5,0,0,0,0,0,0,5
+		DB	5,0,0,6,6,6,6,5
+		DB	5,0,6,6,6,6,6,5
+		DB	5,6,6,6,6,6,6,5
+		DB	5,4,4,4,4,4,4,5
 
 
 ;;=====================================================
@@ -442,42 +482,42 @@ check_colisiones_puertas:
 		CALL	check_colision_puerta		;aquí ya es cosa de ver colisiones prota/puerta_izquierda
 		;recibe valor A
 		OR		 0							;hubo colisión?
-		JP		 Z, .examina_puerta_derecha	;no hubo colisión por lo que examina puerta siguiente
+		JR		 Z, .examina_puerta_derecha	;no hubo colisión por lo que examina puerta siguiente
 		;hubo colisión
 		;EJECUTA ACCIÓN Y SALE DE LA RUTINA	
-		JP		.ejecuta_accion_y_sale
+		JR		.ejecuta_accion_y_sale
 	
 .examina_puerta_derecha:
 		LD		IX, puerta_derecha
 		LD		 A, (IX)
 		OR		 A							;está activa esta puerta?
-		JP		 Z, .examina_puerta_abajo
+		JR		 Z, .examina_puerta_abajo
 		CALL	check_colision_puerta		;aquí ya es cosa de ver colisiones prota/puerta_derecha
 		;recibe valor
 		OR		 0							;hubo colisión?
-		JP		 Z, .examina_puerta_abajo	;no hubo colisión por lo que examina puerta siguiente
+		JR		 Z, .examina_puerta_abajo	;no hubo colisión por lo que examina puerta siguiente
 		;hubo colisión
 		;EJECUTA ACCIÓN Y SALE DE LA RUTINA
-		JP		.ejecuta_accion_y_sale
+		JR		.ejecuta_accion_y_sale
 	
 .examina_puerta_abajo:
 		LD		IX, puerta_abajo
 		LD		 A, (IX)
 		OR		 A							;está activa esta puerta?
-		JP		 Z, .examina_puerta_izquierda
+		JR		 Z, .examina_puerta_izquierda
 		CALL	check_colision_puerta		;aquí ya es cosa de ver colisiones prota/puerta_izquierda
 	
 		OR		 0							;hubo colisión?
-		JP		 Z, .examina_puerta_izquierda;no hubo colisión por lo que examina puerta siguiente
+		JR		 Z, .examina_puerta_izquierda;no hubo colisión por lo que examina puerta siguiente
 		;hubo colisión
 		;EJECUTA ACCIÓN Y SALE DE LA RUTINA
-		JP		.ejecuta_accion_y_sale
+		JR		.ejecuta_accion_y_sale
 	
 .examina_puerta_izquierda:
 		LD		IX, puerta_izquierda
 		LD		 A, (IX)
 		OR		 A							;está activa esta puerta?
-		JP		 Z, fin_check_colisiones_puertas
+		JR		 Z, fin_check_colisiones_puertas
 		CALL	check_colision_puerta		;aquí ya es cosa de ver colisiones prota/puerta_izquierda
 	
 		OR		 0							;hubo colisión?
@@ -512,14 +552,14 @@ check_colision_puerta:
 		;ya tengo en A la coordenada X del centro del punto de mira					
 		SUB		(IX + ESTRUCTURA_PUERTA.posx)	;le resto el punto x en la puerta
 	
-		JP		NC, .deteccioncolision_paso2	;si no es negativo comparo con el radio
+		JR		NC, .deteccioncolision_paso2	;si no es negativo comparo con el radio
 
 		NEG										;si es negativo lo niego (valor absoluto)
 	
 .deteccioncolision_paso2:
 		CP		(IX + ESTRUCTURA_PUERTA.radiox)	;comparo con el radio X de la puerta
 	
-		JP		 C, .deteccioncolision_paso3	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
+		JR		 C, .deteccioncolision_paso3	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
 	
 		XOR		 A								;el resultado es falso y se guarda en A y ya no hay que seguir coprobando
 		RET
@@ -531,14 +571,14 @@ check_colision_puerta:
 		;ya tengo en A la coordenada Y del centro del punto de mira					
 		SUB		(IX + ESTRUCTURA_PUERTA.posy)	;le resto el punto y en la puerta
 	
-		JP		NC, .deteccioncolision_paso4	;si no es negativo comparo con el radio
+		JR		NC, .deteccioncolision_paso4	;si no es negativo comparo con el radio
 
 		NEG										;si es negativo lo niego (valor absoluto)
 
 .deteccioncolision_paso4:
 		CP		(IX + ESTRUCTURA_PUERTA.radioy)	;comparo con el radio Y de la puerta
 
-		JP		 C, .deteccioncolision_paso5	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
+		JR		 C, .deteccioncolision_paso5	;SI NC la distancia es >= por lo que sale y no es necesario verificar nada más
 	
 		XOR		 A								;el resultado es falso y se guarda en A un 0 y al ser la 2º comprobación salimos
 		RET

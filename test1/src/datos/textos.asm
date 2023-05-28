@@ -2,7 +2,7 @@
 ;;CONTANTES TEXTOS
 ;;=====================================================
 
-IF	1=0	; 1=1 versión en español y 1=0 verión en inglés
+IF	1=1	; 1=1 versión en español y 1=0 verión en inglés
 ;textos en español
 texto_vidas:		DB	'VIDAS'
 

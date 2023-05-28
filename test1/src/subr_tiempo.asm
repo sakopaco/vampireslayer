@@ -25,7 +25,7 @@ incrementa_reloj:
 			LD				 A, (IX + 2)
 			INC				 A
 			CP				50
-			JP				 Z, avanza_segundos
+			JR				 Z, avanza_segundos
 			LD				(IX + 2), A
 			RET
 avanza_segundos:
@@ -35,7 +35,7 @@ avanza_segundos:
 			LD				 A, (IX + 1)
 			INC				 A
 			CP				60
-			JP				 Z, avanza_minutos
+			JR				 Z, avanza_minutos
 			LD				(IX + 1), A
 			RET
 avanza_minutos:
@@ -59,7 +59,7 @@ retardo16bits:
 		DEC			BC
 		LD			 A, B
 		OR			 C
-		JP			NZ, .loop
+		JR			NZ, .loop
 fin_retardo16bits:
 		RET
 
