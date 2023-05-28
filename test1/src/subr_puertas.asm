@@ -143,15 +143,6 @@ array_puerta_izquierda_abierta:
 		DB	1,0,4
 		DB	1,4,4
 
-array_escalera_abierta:
-		DB	5,5,5,5,5,5,5,5
-		DB	5,0,0,0,0,0,0,5
-		DB	5,0,0,0,0,0,0,5
-		DB	5,0,0,6,6,6,6,5
-		DB	5,0,6,6,6,6,6,5
-		DB	5,6,6,6,6,6,6,5
-		DB	5,4,4,4,4,4,4,5
-
 
 ;;=====================================================
 ;;SUBRUTINAS
@@ -378,10 +369,23 @@ fin_pinta_puertas:
 pinta_puerta_aba:
 		;si no se ha matado a drácula no podrá descender entre niveles
 		LD			IX, puerta_abajo
-		CALL		actualiza_variables_pinta_array
+		LD			HL, array_puerta_abajo
 		
+		LD			 A, (habitacion_terminada)
+		LD			 B, A
+		LD			 A, (dracula_muerto)
+		OR			 B
+		JR			 Z, .fin_if
+.if_pinta_puerta_abierta:
+		LD			HL, array_puerta_abajo_abierta
+.fin_if:
+
+		LD			(IX + ESTRUCTURA_PUERTA.tiles_puerta), L
+		LD			(IX + ESTRUCTURA_PUERTA.tiles_puerta+1), H
+		CALL		actualiza_variables_pinta_array
+	
 		JP			pinta_array
-fin_pinta_puerta_aba:
+;fin_pinta_puerta_aba:
 
 
 ;;=====================================================
@@ -397,13 +401,30 @@ pinta_puerta_arr:
 		JP			NZ, .pinta_puerta_normal
 .pinta_puerta_escalera
 			LD			IX, puerta_escalera
-			JP			.fin_si
+			CALL		actualiza_variables_pinta_array
+			CALL		pinta_array
+			JP			fin_pinta_puerta_arr
 .pinta_puerta_normal
-			LD			IX, puerta_arriba	
+			LD			IX, puerta_arriba
+			LD			HL, array_puerta_arriba
 .fin_si
+
+		LD			 A, (habitacion_terminada)
+		LD			 B, A
+		LD			 A, (dracula_muerto)
+		OR			 B
+		JR			 Z, .fin_if
+.if_pinta_puerta_abierta:
+		LD			HL, array_puerta_arriba_abierta
+.fin_if:
+
+		LD			(IX + ESTRUCTURA_PUERTA.tiles_puerta), L
+		LD			(IX + ESTRUCTURA_PUERTA.tiles_puerta+1), H
 		CALL		actualiza_variables_pinta_array
-		JP			pinta_array
+	
+		CALL		pinta_array
 fin_pinta_puerta_arr:
+		RET
 
 
 ;;=====================================================
@@ -415,10 +436,23 @@ fin_pinta_puerta_arr:
 ; toca:		HL,BC, DE
 pinta_puerta_der:
 		LD			IX, puerta_derecha
+		LD			HL, array_puerta_derecha
+		
+		LD			 A, (habitacion_terminada)
+		LD			 B, A
+		LD			 A, (dracula_muerto)
+		OR			 B
+		JR			 Z, .fin_if
+.if_pinta_puerta_abierta:
+		LD			HL, array_puerta_derecha_abierta
+.fin_if:
+
+		LD			(IX + ESTRUCTURA_PUERTA.tiles_puerta), L
+		LD			(IX + ESTRUCTURA_PUERTA.tiles_puerta+1), H
 		CALL		actualiza_variables_pinta_array
 	
 		JP			pinta_array
-fin_pinta_puerta_der:
+;fin_pinta_puerta_der:
 
 	
 ;;=====================================================
@@ -430,10 +464,23 @@ fin_pinta_puerta_der:
 ; toca:		HL,BC, DE
 pinta_puerta_izq:
 		LD			IX, puerta_izquierda
+		LD			HL, array_puerta_izquierda
+		
+		LD			 A, (habitacion_terminada)
+		LD			 B, A
+		LD			 A, (dracula_muerto)
+		OR			 B
+		JR			 Z, .fin_if
+.if_pinta_puerta_abierta:
+		LD			HL, array_puerta_izquierda_abierta
+.fin_if:
+
+		LD			(IX + ESTRUCTURA_PUERTA.tiles_puerta), L
+		LD			(IX + ESTRUCTURA_PUERTA.tiles_puerta+1), H
 		CALL		actualiza_variables_pinta_array
 	
 		JP			pinta_array
-fin_pinta_puerta_izq:
+;fin_pinta_puerta_izq:
 
 
 ;;=====================================================
@@ -471,7 +518,7 @@ fin_actualiza_variables_pinta_array:
 check_colisiones_puertas:
 		LD		 A, (enemiesleft) 			;si quedan enemigos vivos (no no se mató ninguno) no verifica nada (no puede salir habitación disparando puerta)
 		OR		 A
-		RET		NZ		
+		RET		NZ
 		
 .examina_puerta_arriba:
 		LD		IX, puerta_arriba

@@ -1,4 +1,7 @@
 BUGS:
+- si jefe muerto no tiene que sonar la música de jefe
+
+
 
 TODO A:
 - Texto antes empezar
@@ -11,3 +14,5 @@ TODO B (deseable):
 - poner tiles al matar a drácula
 - cuando coges una ayuda el sonido no acaba (ver con Manuel)
 - el disparo y la explosión parecen el mismo sonido (ver con Manuel)
+
+

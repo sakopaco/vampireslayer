@@ -97,9 +97,9 @@ pinta_parte_superior_pantalla:
 .siposyes0:
 		LD			 A, (prota_pos_mapy)
 		OR			 A
-		JP			NZ, .siposyes6
+		JR			NZ, .siposyes6
 		CALL		carga_tiles_bancos	;cargando los tiles en los bancos 0 y 1 que son iguales y se sacan de la misma variable
-		JP			.finsi
+		JR			.finsi
 .siposyes6:
 		LD			 A, (prota_pos_mapy)
 		CP			 6
@@ -108,7 +108,7 @@ pinta_parte_superior_pantalla:
 		
 		LD			 A, (dracula_muerto) ;si dracula está muerto no hace falta música
 		OR			 A
-		JP			NZ, .finsi
+		JR			NZ, .finsi
 			LD			 A, 2
 			CALL		play_musica
 .finsi:
@@ -116,8 +116,6 @@ pinta_parte_superior_pantalla:
 		CALL		actualiza_tiles_nivel
 		;pinta puerta si es necesario
 		CALL		inicializa_puertas
-		
-		;ñññññ
 		
 		CALL		pinta_puertas
 		;pinta nombre enemigo si corresponde
@@ -449,27 +447,27 @@ posiciona_en_mapa:
 .fila_0:
 	LD		DE, 192
 	ADD		HL, DE			;nota: se que repito el ADD pero la otra opción es inicializar DE y ya tarda mucho la funicón (es por velicidad)
-	JP		.sumar_columna
+	JR		.sumar_columna
 .fila_1:
 	LD		DE, 160
 	ADD		HL, DE
-	JP		.sumar_columna
+	JR		.sumar_columna
 .fila_2:
 	LD		DE, 128
 	ADD		HL, DE
-	JP		.sumar_columna
+	JR		.sumar_columna
 .fila_3:
 	LD		DE, 96
 	ADD		HL, DE
-	JP		.sumar_columna
+	JR		.sumar_columna
 .fila_4:
 	LD		DE, 64
 	ADD		HL, DE
-	JP		.sumar_columna
+	JR		.sumar_columna
 .fila_5:
 	LD		DE, 32
 	ADD		HL, DE
-	JP		.sumar_columna
+	JR		.sumar_columna
 .fila_6:
 	;pongo fila_6 por poner ya que si es la fila 6 equiv. a primera fila del mapa y por tanto no suma fila
 	
@@ -486,13 +484,13 @@ posiciona_en_mapa:
 	;terminado de fijar la coordenada recuperamos a para ver el tipo
 	LD		 A, (elemento_pintar_mapa)
 	CP		 TILEGRISM
-	JP		 Z, pinta_pos_mapa_vacio
+	JR		 Z, .pinta_pos_mapa_vacio
 	LD		 D, TILEPROTAM
-	JP		fin_pinta_pos_mapa
-pinta_pos_mapa_vacio:
+	JR		.fin_pinta_pos_mapa
+.pinta_pos_mapa_vacio:
 	LD		 D, TILEGRISM	
 
-fin_pinta_pos_mapa:
+.fin_pinta_pos_mapa:
 	JP		pinta_tile_suelto
 fin_posiciona_en_mapa:
 
