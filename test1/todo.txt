@@ -1,6 +1,5 @@
 BUGS:
-- si jefe muerto no tiene que sonar la música de jefe
-
+- si jefe muerto no tiene que aparecer el nombre del jefe (ver función mira_si_poner_musica_jefe)
 
 
 TODO A:

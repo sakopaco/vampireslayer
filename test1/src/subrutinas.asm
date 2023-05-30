@@ -631,7 +631,7 @@ game_over:
 [4]			CALL		espera_estandar
 
 			;quita música
-			LD			 A, 3
+			LD			 A, MUSICAGAMEOVER
 			CALL		play_musica
 
 			JP			inicio_juego

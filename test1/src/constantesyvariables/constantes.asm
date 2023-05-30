@@ -221,9 +221,9 @@ SONIDOINICIO		equ		4
 SONIDOBOMBA			equ		2
 SONIDODISPARO		equ		1
 
-MUSICANORMAL		equ		0
-MUSICAJEFE			equ		1
-MUSICAGAMEOVER		equ		2
+SINMUSICA			equ		0
+MUSICAJEFE			equ		2
+MUSICAGAMEOVER		equ		3
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; CONSTANTES PARA INTERRUPCIONES

@@ -120,6 +120,7 @@ inicializa_enemigos_fase0:	;; para no poner más complejo se hace uno por fase q
 		CALL		inicializa_enemigos_fase0_nivel5
 		RET
 .nivel6:
+		CALL		mira_si_poner_musica_jefe
 		JP			inicializa_enemigos_fase0_niveljefe
 fin_inicializa_enemigos_fase0:
 
@@ -164,6 +165,7 @@ inicializa_enemigos_fase1:	;; para no poner más complejo se hace uno por fase q
 		CALL		inicializa_enemigos_fase1_nivel5
 		RET
 .nivel6:
+		CALL		mira_si_poner_musica_jefe
 		JP			inicializa_enemigos_fase1_niveljefe
 fin_inicializa_enemigos_fase1:
 		
@@ -208,6 +210,7 @@ inicializa_enemigos_fase2:	;; para no poner más complejo se hace uno por fase q
 		CALL		inicializa_enemigos_fase2_nivel5
 		RET
 .nivel6:
+		CALL		mira_si_poner_musica_jefe
 		JP			inicializa_enemigos_fase2_niveljefe
 fin_inicializa_enemigos_fase2:
 
@@ -252,6 +255,7 @@ inicializa_enemigos_fase3:	;; para no poner más complejo se hace uno por fase q
 		CALL		inicializa_enemigos_fase3_nivel5
 		RET
 .nivel6:
+		CALL		mira_si_poner_musica_jefe
 		JP			inicializa_enemigos_fase3_niveljefe
 fin_inicializa_enemigos_fase3:
 
@@ -296,6 +300,7 @@ inicializa_enemigos_fase4:	;; para no poner más complejo se hace uno por fase q
 		CALL		inicializa_enemigos_fase4_nivel5
 		RET
 .nivel6:
+		CALL		mira_si_poner_musica_jefe
 		JP			inicializa_enemigos_fase4_niveljefe
 fin_inicializa_enemigos_fase4:
 
@@ -340,6 +345,7 @@ inicializa_enemigos_fase5:	;; para no poner más complejo se hace uno por fase q
 		CALL		inicializa_enemigos_fase5_nivel5
 		RET
 .nivel6:
+		CALL		mira_si_poner_musica_jefe
 		JP			inicializa_enemigos_fase5_niveljefe
 fin_inicializa_enemigos_fase5:
 
@@ -389,8 +395,31 @@ inicializa_enemigos_fase6:	;; para no poner más complejo se hace uno por fase q
 		CALL		inicializa_enemigos_fase6_nivel5
 		RET
 .nivel6:
+		CALL		mira_si_poner_musica_jefe
 		JP			inicializa_enemigos_fase6_nivel6
 fin_inicializa_enemigos_fase6:
+
+
+;;=====================================================
+;;MIRA_SI_PONER_MUSICA_JEFE
+;;=====================================================	
+; función: 	hace que sólo suene la música del jefe si la habiación no está terminada y el drácula no está muerto (que vendría a ser equivalente)
+mira_si_poner_musica_jefe:
+		;si dracula está muerto no hace falta música
+		LD			 A, (dracula_muerto) 
+		OR			 A
+		RET			NZ
+		
+		;OR
+		
+		;si habitación vacia no hace falta música
+		LD			 A, (habitacion_terminada) 
+		OR			 A
+		RET			 NZ
+			
+		LD			 A, MUSICAJEFE
+		JP		play_musica
+;fin_mira_si_poner_musica_jefe
 
 
 ;;=====================================================
@@ -533,6 +562,11 @@ inicializa_enemigos_fase0_nivel5:
 fin_inicializa_enemigos_fase0_nivel5:
 
 inicializa_enemigos_fase0_niveljefe:
+
+
+;ñññññññññññññññ
+
+
 		LD			 A, (habitacion_terminada)
 		OR			 A
 		RET			NZ
@@ -2573,7 +2607,7 @@ accion_enemigo_muerto4:
 
 .elimino_enemigo:
 			;apago la música ya que sólo los jefes tienen 4 sprites
-			LD			 A, 0
+			XOR			 A ; SINMUSICA
 			CALL		play_musica
 			
 			;marco enemigo como muerto para saltarlo incluso al examinar

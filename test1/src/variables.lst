@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.05.28 - 20:30:43]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.05.30 - 22:38:02]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -236,9 +236,9 @@ Errors: 0
      221.  00:C000  (00:0002)           SONIDOBOMBA			equ		2
      222.  00:C000  (00:0001)           SONIDODISPARO		equ		1
      223.  00:C000                      
-     224.  00:C000  (00:0000)           MUSICANORMAL		equ		0
-     225.  00:C000  (00:0001)           MUSICAJEFE			equ		1
-     226.  00:C000  (00:0002)           MUSICAGAMEOVER		equ		2
+     224.  00:C000  (00:0000)           SINMUSICA			equ		0
+     225.  00:C000  (00:0002)           MUSICAJEFE			equ		2
+     226.  00:C000  (00:0003)           MUSICAGAMEOVER		equ		3
      227.  00:C000                      
      228.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
      229.  00:C000                      ;; CONSTANTES PARA INTERRUPCIONES
@@ -1372,9 +1372,9 @@ Errors: 0
 00:00000004 X SONIDOINICIO
 00:00000002 X SONIDOBOMBA
 00:00000001 X SONIDODISPARO
-00:00000000 X MUSICANORMAL
-00:00000001 X MUSICAJEFE
-00:00000002 X MUSICAGAMEOVER
+00:00000000 X SINMUSICA
+00:00000002 X MUSICAJEFE
+00:00000003 X MUSICAGAMEOVER
 00:0000FD9A X H.KEYI
 00:0000FD9F X H.TIMI
 00:00000000 X INACTIVA
