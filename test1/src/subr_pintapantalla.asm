@@ -174,16 +174,19 @@ pinta_parte_superior_pantalla:
 		
 		;ññññññññññññññññññññññ
 		
-		;~ EXX
-		
-		;~ LD			 A, MUSICAJEFE
-		;~ CALL		play_musica
-		
-		;~ LD			 A, 2
-		;~ LD			 C, 1
-		;~ CALL		ayFX_INIT
-		
-		;~ EXX
+			;si vida enemigo > 0 y nively = 6 entonces musica enemigo on
+			LD			IX, enemigo1
+			LD			 A, (IX)
+			OR			 A
+			RET			 Z
+			
+			LD			IX, enemigo1
+			LD			 A, (IX)
+			CP			 1
+			RET			 Z
+			
+			LD			 A, MUSICAJEFE
+			CALL		play_musica
 
 		
 
