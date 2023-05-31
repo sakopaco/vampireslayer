@@ -1,13 +1,13 @@
-
 ;;=====================================================
 ;;SUBRUTINAS PARA SONIDOS
 ;;=====================================================	
+
 
 ;;=====================================================
 ;;INICIALIZA_REPLAYER_EFECTOS_INTERRUPCIONES
 ;;=====================================================	
 ; función: 	inicializa: replayer de música, player de efectos e interrupciones
-; entrada: 	-
+; entrada: 	HL  se le pasa cuando se llama a esta función y equivale a la melodía
 ; salida: 	-
 ; toca: 	HL, A
 inicializa_replayer_efectos_interrupciones:
@@ -36,7 +36,7 @@ inicializa_replayer_efectos_interrupciones:
 				;ei						;primero ei
 				;ld		[H.TIMI+1],hl	;luego este ld
 										;PENSAR (y consultar ) PORQUE!!!!
-fin_inicializa_replayer_efectos_interrupciones:
+;fin_inicializa_replayer_efectos_interrupciones:
 	RET
 
 
@@ -56,7 +56,8 @@ subrutina_isr:
 			CALL	PT3_PLAY		;calcula el siguiente 'trocito' de musica que sera enviado al proxima vez
 .efectos_sonido:
 		JP		ayFX_PLAY			;calcula el siguiente 'trocito' de efecto especial de sonido que sera enviado la proxima vez
-fin_subrutina_isr:
+;fin_subrutina_isr:
+	
 	
 ;;=====================================================
 ;;PLAY_MUSICA
@@ -88,7 +89,7 @@ play_musica:
 		LD			HL, musica_gameover-99			; hl <- initial address of module - 99
 .fin_mira_posibles_musicas:
 		JP			inicializa_replayer_efectos_interrupciones
-fin_play_musica:
+;fin_play_musica:
 
 
 ;;=====================================================

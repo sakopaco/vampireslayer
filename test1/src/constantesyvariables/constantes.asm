@@ -22,6 +22,7 @@ FORCLR				equ		#F3E9	;zona memoria color foreground
 BAKCLR  			equ		#F3EA	;zona memoria color background
 BDRCLR 				equ		#F3EB	;zona memoria bordercolor
 CLS					equ		#00C3	;limpia pantalla (necesita A=0)
+CLRSPR				equ		#0069	;inicializa todos los sprites
 
 BORRASPRITE    		equ		#00D1	;si se pone en la Y de un sprite hace que desaparezca de pantalla
 BORRASPRITESIG 		equ		#00D0	;si se pone en la Y de un sprite hace que desaparezca de pantalla y los de los planos siguientes
@@ -222,6 +223,7 @@ SONIDOBOMBA			equ		2
 SONIDODISPARO		equ		1
 
 SINMUSICA			equ		0
+MUSICATITULO		equ		1
 MUSICAJEFE			equ		2
 MUSICAGAMEOVER		equ		3
 

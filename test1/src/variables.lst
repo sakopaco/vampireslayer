@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.05.30 - 22:41:17]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.05.31 - 20:16:47]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -37,217 +37,219 @@ Errors: 0
       22.  00:C000  (00:F3EA)           BAKCLR  			equ		#F3EA	;zona memoria color background
       23.  00:C000  (00:F3EB)           BDRCLR 				equ		#F3EB	;zona memoria bordercolor
       24.  00:C000  (00:00C3)           CLS					equ		#00C3	;limpia pantalla (necesita A=0)
-      25.  00:C000                      
-      26.  00:C000  (00:00D1)           BORRASPRITE    		equ		#00D1	;si se pone en la Y de un sprite hace que desaparezca de pantalla
-      27.  00:C000  (00:00D0)           BORRASPRITESIG 		equ		#00D0	;si se pone en la Y de un sprite hace que desaparezca de pantalla y los de los planos siguientes
-      28.  00:C000                      
-      29.  00:C000                      ;;ETIQUETAS/CONSTANTES REGISTROS VDP
-      30.  00:C000  (00:F3DF)           RG0SAV				equ		#F3DF	;Mirror of VDP register 0 (Basic: VDP(0))
-      31.  00:C000  (00:F3E0)           RG1SAV				equ		#F3E0	;Mirror of VDP register 1 (Basic: VDP(1))
-      32.  00:C000  (00:F3E1)           RG2SAV				equ		#F3E1	;Mirror of VDP register 2 (Basic: VDP(2))
-      33.  00:C000  (00:F3E2)           RG3SAV				equ		#F3E2	;Mirror of VDP register 3 (Basic: VDP(3))
-      34.  00:C000  (00:F3E3)           RG4SAV				equ		#F3E3	;Mirror of VDP register 4 (Basic: VDP(4))
-      35.  00:C000  (00:F3E4)           RG5SAV				equ		#F3E4	;Mirror of VDP register 5 (Basic: VDP(5))
-      36.  00:C000  (00:F3E5)           RG6SAV				equ		#F3E5	;Mirror of VDP register 6 (Basic: VDP(6))
-      37.  00:C000  (00:F3E6)           RG7SAV				equ		#F3E6	;Mirror of VDP register 7 (Basic: VDP(7))
-      38.  00:C000  (00:F3E7)           STATFL				equ		#F3E7	;Mirror of VDP(8) status register (S#0)
-      39.  00:C000                      
-      40.  00:C000  (00:0099)           REGEST				equ		#0099	;registro de estado para escribir directamente en VRAM
-      41.  00:C000  (00:0098)           REGESCVDP			equ		#0098	;registro donde escribir valor para VRAM
-      42.  00:C000                      
-      43.  00:C000                      ;;ETIQUETAS/CONSTANTES REGISTROS PSG (PARA JOYSTICK)
-      44.  00:C000  (00:00A0)           PSG_A  				equ  	0a0h  ;reg address
-      45.  00:C000  (00:00A1)           PSG_W  				equ  	0a1h  ;reg data WR
-      46.  00:C000  (00:00A2)           PSG_R  				equ  	0a2h  ;reg data
-      47.  00:C000                      
-      48.  00:C000                      ;;ETIQUETAS DE ZONAS DE MEMORIA DE LA VPD (MSX1)
-      49.  00:C000  (00:0000)           CHRTBL				equ		#0000
-      50.  00:C000  (00:0800)           CHRTBLBANCO1		equ		#0800
-      51.  00:C000  (00:1800)           TILMAP				equ		#1800
-      52.  00:C000  (00:1B00)           SPRART				equ		#1B00
-      53.  00:C000  (00:2000)           CLRTBL				equ		#2000
-      54.  00:C000  (00:2800)           CLRTBLBANCO1		equ		#2800
-      55.  00:C000  (00:3800)           SPRTBL				equ		#3800
-      56.  00:C000                      
-      57.  00:C000                      ;;ETIQUETAS ESTANDAR PARA DAR MÁS CLARIDAD AL CODIGO
-      58.  00:C000  (00:0001)           SI					equ		1
-      59.  00:C000  (00:0000)           NO					equ		0
-      60.  00:C000                      
-      61.  00:C000                      ;;PALETA DE COLORES DEL MSX
-      62.  00:C000  (00:0000)           COLTRASP			equ		0
-      63.  00:C000  (00:0001)           COLNEGRO			equ		1
-      64.  00:C000  (00:0002)           COLVERDE			equ		2
-      65.  00:C000  (00:0003)           COLVERCLA			equ		3
-      66.  00:C000  (00:0004)           COLAZULOSC			equ		4
-      67.  00:C000  (00:0005)           COLAZULLA			equ		5
-      68.  00:C000  (00:0006)           COLROJOOSC			equ		6
-      69.  00:C000  (00:0007)           COLCYAN				equ		7
-      70.  00:C000  (00:0008)           COLROJO				equ		8
-      71.  00:C000  (00:0009)           COLROJOCLA			equ		9
-      72.  00:C000  (00:000A)           COLAMAROSC			equ		10
-      73.  00:C000  (00:000B)           COLAMARCLA			equ		11
-      74.  00:C000  (00:000C)           COLVERDOSC			equ		12
-      75.  00:C000  (00:000D)           COLMAGENTA			equ		13
-      76.  00:C000  (00:000E)           COLGRIS				equ		14
-      77.  00:C000  (00:000F)           COLBLANCO			equ		15
-      78.  00:C000                      
-      79.  00:C000                      ;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (relacionadas con posiciones en mapa vdp)
-      80.  00:C000  (00:02F8)           POSMAPLIN1  		equ		#02F8
-      81.  00:C000  (00:02D8)           POSMAPLIN2  		equ		#02D8
-      82.  00:C000  (00:02B8)           POSMAPLIN3  		equ		#02B8
-      83.  00:C000  (00:0298)           POSMAPLIN4  		equ		#0298
-      84.  00:C000  (00:0278)           POSMAPLIN5  		equ		#0278
-      85.  00:C000  (00:0258)           POSMAPLIN6  		equ		#0258
-      86.  00:C000  (00:0238)           POSMAPLIN7  		equ		#0238
-      87.  00:C000                      
-      88.  00:C000  (00:000D)           POSCARAMAP			equ		#000D
-      89.  00:C000  (00:0248)           POSVIDAS			equ		#0248
-      90.  00:C000  (00:0011)           POSRELIMAP			equ		#0011
-      91.  00:C000  (00:02C8)           POSRELIQ			equ		#02C8
-      92.  00:C000  (00:0288)           POSENERG			equ		#0288
-      93.  00:C000  (00:02B4)           POSNIVEL			equ		#02B4
-      94.  00:C000  (00:0238)           POSMAPA				equ 	#0238
-      95.  00:C000                      
-      96.  00:C000  (00:01EE)           POSPUERABAJ 		equ		#01EE
-      97.  00:C000  (00:008E)           POSPUERARRI 		equ		#008E
-      98.  00:C000  (00:00FC)           POSPUERDERE 		equ		#00FC
-      99.  00:C000  (00:00E1)           POSPUERIZQU 		equ		#00E1
-     100.  00:C000  (00:006C)           POSESCALERA 		equ		#006C	;32 x 3 + columna
-     101.  00:C000                      
-     102.  00:C000                      ;;POSICIONES DE LAS AYUDAS EN PANTALLA BANCO 1
-     103.  00:C000  (00:0146)           POSORACION	 		equ		#0146;326	;256 + 70
-     104.  00:C000  (00:01A3)           POSCRUZ		 		equ		#01A3;419	;256 + 93
-     105.  00:C000  (00:016A)           POSAGUA		 		equ		#016A;362
-     106.  00:C000  (00:01AB)           POSARMADURA	 		equ		#01AB;427
-     107.  00:C000  (00:0172)           POSPLANTA	 		equ		#0172;370
-     108.  00:C000  (00:01B6)           POSVIDAEXT	 		equ		#01B6;438 
-     109.  00:C000  (00:0158)           POSBALLESTA	 		equ		#0158;344
-     110.  00:C000                      
-     111.  00:C000                      ;;POSICIONES X E Y PARA DETERMINAR IMPACTOS
-     112.  00:C000  (00:0038)           POSORACIONX	 		equ		#38;56
-     113.  00:C000  (00:0058)           POSORACIONY	 		equ		#58;88
-     114.  00:C000  (00:0020)           POSCRUZX	 		equ		#20;32
-     115.  00:C000  (00:0070)           POSCRUZY	 		equ		#70;112
-     116.  00:C000  (00:0058)           POSAGUAX	 		equ		#58;88
-     117.  00:C000  (00:0060)           POSAGUAY	 		equ		#60;96
-     118.  00:C000  (00:0060)           POSARMADURAX 		equ		#60;96
-     119.  00:C000  (00:0070)           POSARMADURAY 		equ		#70;112
-     120.  00:C000  (00:0090)           POSPLANTAX	 		equ		#90;144
-     121.  00:C000  (00:0060)           POSPLANTAY	 		equ		#60;96
-     122.  00:C000  (00:00B8)           POSVIDAEXTX	 		equ		#B8;184
-     123.  00:C000  (00:0070)           POSVIDAEXTY	 		equ		#70;112
-     124.  00:C000  (00:00C8)           POSBALLESTAX 		equ		#C8;200
-     125.  00:C000  (00:0058)           POSBALLESTAY 		equ		#58;88
-     126.  00:C000                      
-     127.  00:C000                      ;; TAMAÑO AYUDAS
-     128.  00:C000  (00:0002)           ALTOAYUDA			equ		#02;2
-     129.  00:C000  (00:0002)           ANCHOAYUDA			equ		#02;2
-     130.  00:C000                      
-     131.  00:C000                      ;; RETARDO TIEMPO QUE PARA EL JUEGO POR TIRAR UNA RELIQUIA
-     132.  00:C000  (00:EA60)           RETARDOREL			equ		60000
-     133.  00:C000                      
-     134.  00:C000                      ;;DURACION AYUDA BALLESTA MEJORADA (pantallas que dura)
-     135.  00:C000  (00:0007)           DURACIONBALLEJ      equ		#07;7
-     136.  00:C000                      
-     137.  00:C000                      ;; RADIOS DE DISPARO
-     138.  00:C000  (00:0008)           RADIOAYUDAX 		equ		#08;8
-     139.  00:C000  (00:0008)           RADIOAYUDAY 		equ		#08;8
-     140.  00:C000                      
-     141.  00:C000                      ;;POSICIÓN INICIAL DEL SPRITE DEL PUNTO DE MIRA
-     142.  00:C000  (00:0074)           POSXPM				equ		116
-     143.  00:C000  (00:0060)           POSYPM				equ		96
-     144.  00:C000                      
-     145.  00:C000                      ;;ESTADO HABITACION
-     146.  00:C000  (00:0001)           ISHABTERMIN			equ		1 	;0 sería no terminada
-     147.  00:C000                      
-     148.  00:C000                      ;;ETIQUETAS PARA PUNTO DE MIRA
-     149.  00:C000  (00:0006)           LIMCADENCIA 		equ		6	;nº de veces que se ejecutará el disparo antes de ejecutar un disparo real (porque cuando se pulsa la tecl dispara 3 ó 4 veces de rápido que va)
-     150.  00:C000  (00:0000)           SPRI_DANO1A 		equ		0	;posiciones de los sprites en memoria (va de 4 en 4 al tratarse de sprites de 16 x 16)
-     151.  00:C000  (00:0004)           SPRI_DANO1B 		equ		4
-     152.  00:C000  (00:0006)           SPRI_DANO2A 		equ		6
-     153.  00:C000  (00:000F)           SPRI_DANO2B 		equ		15
-     154.  00:C000                      
-     155.  00:C000                      ;;POSICIONES DE LAS ANTORCHAS
-     156.  00:C000  (00:0088)           POSANTOR1			equ		136
-     157.  00:C000  (00:0097)           POSANTOR2			equ		151
-     158.  00:C000  (00:00C4)           MAPLLAMA1			equ		196
-     159.  00:C000  (00:00C5)           MAPLLAMA2			equ		197
-     160.  00:C000  (00:00FF)           RESETLLAMA			equ		255
-     161.  00:C000                      
-     162.  00:C000                      ;;POSICIONES DE LOS ESQUELETOS
-     163.  00:C000  (00:0088)           POSESQUEL1			equ		136
-     164.  00:C000  (00:0095)           POSESQUEL2			equ		149
-     165.  00:C000  (00:00A9)           POSCALAVE1			equ		169
-     166.  00:C000  (00:00B6)           POSCALAVE2			equ		182
-     167.  00:C000  (00:0019)           RESETESQUEL			equ		25
-     168.  00:C000  (00:0004)           RESETESCENAESQUEL 	equ		4	;hay 4 caras con las que el esqueleto cambia (se ha metido el 0 para facilitar código)
-     169.  00:C000                      
-     170.  00:C000                      ;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (relacionadas con posiciones en en el banco de memoria)
-     171.  00:C000  (00:0013)           TILEPROTAM  		equ		19		;tile del prota para pintar en mapa
-     172.  00:C000  (00:0009)           TILEGRISM			equ		9		;tile gris que representa vacio (por donde el prota va pasando)
-     173.  00:C000  (00:0010)           TILEMAPROJO 		equ		16
-     174.  00:C000  (00:000F)           TILEMAPAMAR 		equ		15
-     175.  00:C000  (00:000E)           TILEMAPVERD 		equ		14
-     176.  00:C000                      
-     177.  00:C000                      ;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (generales)
-     178.  00:C000  (00:0008)           NMAXVIDREL			equ		8		;el número máximo de vidas y de reliquias es de 8
-     179.  00:C000  (00:0007)           NHABNIVEL			equ		7
-     180.  00:C000  (00:00F8)           MAXENERGIA  		equ		248
-     181.  00:C000  (00:00D9)           TILEENERG8  		equ		217
-     182.  00:C000  (00:00BA)           TILEENERG7  		equ		186
-     183.  00:C000  (00:009B)           TILEENERG6  		equ		155
-     184.  00:C000  (00:007C)           TILEENERG5  		equ		124
-     185.  00:C000  (00:005D)           TILEENERG4  		equ		93
-     186.  00:C000  (00:003E)           TILEENERG3  		equ		62
-     187.  00:C000  (00:001F)           TILEENERG2  		equ		31
-     188.  00:C000  (00:0288)           TILEENERG1			equ 	648
-     189.  00:C000  (00:0000)           TILENEGRO			equ		0
-     190.  00:C000  (00:0248)           TILEVIDA1			equ 	584
-     191.  00:C000                      
-     192.  00:C000                      ;limites
-     193.  00:C000  (00:0000)           LIMPANTIZQ  		equ		0
-     194.  00:C000  (00:00FF)           LIMPANTDER 			equ		255
-     195.  00:C000  (00:0000)           LIMPANTARR 			equ		0
-     196.  00:C000  (00:0080)           LIMPANTABA  		equ		128
-     197.  00:C000                      
-     198.  00:C000                      ;matriz de 7x7 empieza en 0, y fila y x col, cuento desde esquina sup izq
-     199.  00:C000  (00:0006)           BASEMAPY			equ		6
-     200.  00:C000  (00:0003)           BASEMAPX			equ		3
-     201.  00:C000                      
-     202.  00:C000                      ;; CONSTANTES DE INICIO PARA EL PROTA
-     203.  00:C000  (00:0000)           PROTANIVEL			equ		0			;nivel del castillo donde está 0-6 - los niveles (matrices) son 7 del 0 al 6
-     204.  00:C000  (00:0004)           PROTAVIDAS			equ		4
-     205.  00:C000  (00:0005)           PROTARELIQUIAS		equ		5
-     206.  00:C000  (00:0003)           PROTAPOSMAPX		equ		3			;pos columna 7 columnas 7: del 0 al 6 ;pos X dentro del nivel (se empieza en 0)
-     207.  00:C000  (00:0000)           PROTAPOSMAPY		equ		0			;pos fila los subniveles (filas) son 7 del 0 al 6 ;pos Y dentro del nivel (se empieza en 0)
-     208.  00:C000  (00:00F8)           PROTAENERGIA		equ		248			;MAXENERGIA;valor real de la energía
-     209.  00:C000  (00:0000)           PROTAENERGIABYTEBAJO equ	0			;cuando se llene este es cuando se pierde prota_energí
-     210.  00:C000  (00:0003)           PROTADANO1			equ		3			;daño del punto de mira
-     211.  00:C000  (00:0007)           PROTADANO2			equ		7			;daño del punto de mira cuando se tiene la ayuda
-     212.  00:C000  (00:0041)           PROTADANORELJEFE	equ		65			;daño del punto de mira cuando se tiene la ayuda
-     213.  00:C000                      
-     214.  00:C000                      ;; TIPOS DE GAMEOVER
-     215.  00:C000  (00:0000)           NOQUEDANVIDAS		equ		0
-     216.  00:C000  (00:0001)           FINBUENO			equ		1
-     217.  00:C000                      
-     218.  00:C000                      ;;CONTANTES PARA SONIDO
-     219.  00:C000  (00:0005)           SONIDORELIQUIA		equ		5
-     220.  00:C000  (00:0004)           SONIDOINICIO		equ		4
-     221.  00:C000  (00:0002)           SONIDOBOMBA			equ		2
-     222.  00:C000  (00:0001)           SONIDODISPARO		equ		1
-     223.  00:C000                      
-     224.  00:C000  (00:0000)           SINMUSICA			equ		0
-     225.  00:C000  (00:0002)           MUSICAJEFE			equ		2
-     226.  00:C000  (00:0003)           MUSICAGAMEOVER		equ		3
-     227.  00:C000                      
-     228.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-     229.  00:C000                      ;; CONSTANTES PARA INTERRUPCIONES
+      25.  00:C000  (00:0069)           CLRSPR				equ		#0069	;inicializa todos los sprites
+      26.  00:C000                      
+      27.  00:C000  (00:00D1)           BORRASPRITE    		equ		#00D1	;si se pone en la Y de un sprite hace que desaparezca de pantalla
+      28.  00:C000  (00:00D0)           BORRASPRITESIG 		equ		#00D0	;si se pone en la Y de un sprite hace que desaparezca de pantalla y los de los planos siguientes
+      29.  00:C000                      
+      30.  00:C000                      ;;ETIQUETAS/CONSTANTES REGISTROS VDP
+      31.  00:C000  (00:F3DF)           RG0SAV				equ		#F3DF	;Mirror of VDP register 0 (Basic: VDP(0))
+      32.  00:C000  (00:F3E0)           RG1SAV				equ		#F3E0	;Mirror of VDP register 1 (Basic: VDP(1))
+      33.  00:C000  (00:F3E1)           RG2SAV				equ		#F3E1	;Mirror of VDP register 2 (Basic: VDP(2))
+      34.  00:C000  (00:F3E2)           RG3SAV				equ		#F3E2	;Mirror of VDP register 3 (Basic: VDP(3))
+      35.  00:C000  (00:F3E3)           RG4SAV				equ		#F3E3	;Mirror of VDP register 4 (Basic: VDP(4))
+      36.  00:C000  (00:F3E4)           RG5SAV				equ		#F3E4	;Mirror of VDP register 5 (Basic: VDP(5))
+      37.  00:C000  (00:F3E5)           RG6SAV				equ		#F3E5	;Mirror of VDP register 6 (Basic: VDP(6))
+      38.  00:C000  (00:F3E6)           RG7SAV				equ		#F3E6	;Mirror of VDP register 7 (Basic: VDP(7))
+      39.  00:C000  (00:F3E7)           STATFL				equ		#F3E7	;Mirror of VDP(8) status register (S#0)
+      40.  00:C000                      
+      41.  00:C000  (00:0099)           REGEST				equ		#0099	;registro de estado para escribir directamente en VRAM
+      42.  00:C000  (00:0098)           REGESCVDP			equ		#0098	;registro donde escribir valor para VRAM
+      43.  00:C000                      
+      44.  00:C000                      ;;ETIQUETAS/CONSTANTES REGISTROS PSG (PARA JOYSTICK)
+      45.  00:C000  (00:00A0)           PSG_A  				equ  	0a0h  ;reg address
+      46.  00:C000  (00:00A1)           PSG_W  				equ  	0a1h  ;reg data WR
+      47.  00:C000  (00:00A2)           PSG_R  				equ  	0a2h  ;reg data
+      48.  00:C000                      
+      49.  00:C000                      ;;ETIQUETAS DE ZONAS DE MEMORIA DE LA VPD (MSX1)
+      50.  00:C000  (00:0000)           CHRTBL				equ		#0000
+      51.  00:C000  (00:0800)           CHRTBLBANCO1		equ		#0800
+      52.  00:C000  (00:1800)           TILMAP				equ		#1800
+      53.  00:C000  (00:1B00)           SPRART				equ		#1B00
+      54.  00:C000  (00:2000)           CLRTBL				equ		#2000
+      55.  00:C000  (00:2800)           CLRTBLBANCO1		equ		#2800
+      56.  00:C000  (00:3800)           SPRTBL				equ		#3800
+      57.  00:C000                      
+      58.  00:C000                      ;;ETIQUETAS ESTANDAR PARA DAR MÁS CLARIDAD AL CODIGO
+      59.  00:C000  (00:0001)           SI					equ		1
+      60.  00:C000  (00:0000)           NO					equ		0
+      61.  00:C000                      
+      62.  00:C000                      ;;PALETA DE COLORES DEL MSX
+      63.  00:C000  (00:0000)           COLTRASP			equ		0
+      64.  00:C000  (00:0001)           COLNEGRO			equ		1
+      65.  00:C000  (00:0002)           COLVERDE			equ		2
+      66.  00:C000  (00:0003)           COLVERCLA			equ		3
+      67.  00:C000  (00:0004)           COLAZULOSC			equ		4
+      68.  00:C000  (00:0005)           COLAZULLA			equ		5
+      69.  00:C000  (00:0006)           COLROJOOSC			equ		6
+      70.  00:C000  (00:0007)           COLCYAN				equ		7
+      71.  00:C000  (00:0008)           COLROJO				equ		8
+      72.  00:C000  (00:0009)           COLROJOCLA			equ		9
+      73.  00:C000  (00:000A)           COLAMAROSC			equ		10
+      74.  00:C000  (00:000B)           COLAMARCLA			equ		11
+      75.  00:C000  (00:000C)           COLVERDOSC			equ		12
+      76.  00:C000  (00:000D)           COLMAGENTA			equ		13
+      77.  00:C000  (00:000E)           COLGRIS				equ		14
+      78.  00:C000  (00:000F)           COLBLANCO			equ		15
+      79.  00:C000                      
+      80.  00:C000                      ;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (relacionadas con posiciones en mapa vdp)
+      81.  00:C000  (00:02F8)           POSMAPLIN1  		equ		#02F8
+      82.  00:C000  (00:02D8)           POSMAPLIN2  		equ		#02D8
+      83.  00:C000  (00:02B8)           POSMAPLIN3  		equ		#02B8
+      84.  00:C000  (00:0298)           POSMAPLIN4  		equ		#0298
+      85.  00:C000  (00:0278)           POSMAPLIN5  		equ		#0278
+      86.  00:C000  (00:0258)           POSMAPLIN6  		equ		#0258
+      87.  00:C000  (00:0238)           POSMAPLIN7  		equ		#0238
+      88.  00:C000                      
+      89.  00:C000  (00:000D)           POSCARAMAP			equ		#000D
+      90.  00:C000  (00:0248)           POSVIDAS			equ		#0248
+      91.  00:C000  (00:0011)           POSRELIMAP			equ		#0011
+      92.  00:C000  (00:02C8)           POSRELIQ			equ		#02C8
+      93.  00:C000  (00:0288)           POSENERG			equ		#0288
+      94.  00:C000  (00:02B4)           POSNIVEL			equ		#02B4
+      95.  00:C000  (00:0238)           POSMAPA				equ 	#0238
+      96.  00:C000                      
+      97.  00:C000  (00:01EE)           POSPUERABAJ 		equ		#01EE
+      98.  00:C000  (00:008E)           POSPUERARRI 		equ		#008E
+      99.  00:C000  (00:00FC)           POSPUERDERE 		equ		#00FC
+     100.  00:C000  (00:00E1)           POSPUERIZQU 		equ		#00E1
+     101.  00:C000  (00:006C)           POSESCALERA 		equ		#006C	;32 x 3 + columna
+     102.  00:C000                      
+     103.  00:C000                      ;;POSICIONES DE LAS AYUDAS EN PANTALLA BANCO 1
+     104.  00:C000  (00:0146)           POSORACION	 		equ		#0146;326	;256 + 70
+     105.  00:C000  (00:01A3)           POSCRUZ		 		equ		#01A3;419	;256 + 93
+     106.  00:C000  (00:016A)           POSAGUA		 		equ		#016A;362
+     107.  00:C000  (00:01AB)           POSARMADURA	 		equ		#01AB;427
+     108.  00:C000  (00:0172)           POSPLANTA	 		equ		#0172;370
+     109.  00:C000  (00:01B6)           POSVIDAEXT	 		equ		#01B6;438 
+     110.  00:C000  (00:0158)           POSBALLESTA	 		equ		#0158;344
+     111.  00:C000                      
+     112.  00:C000                      ;;POSICIONES X E Y PARA DETERMINAR IMPACTOS
+     113.  00:C000  (00:0038)           POSORACIONX	 		equ		#38;56
+     114.  00:C000  (00:0058)           POSORACIONY	 		equ		#58;88
+     115.  00:C000  (00:0020)           POSCRUZX	 		equ		#20;32
+     116.  00:C000  (00:0070)           POSCRUZY	 		equ		#70;112
+     117.  00:C000  (00:0058)           POSAGUAX	 		equ		#58;88
+     118.  00:C000  (00:0060)           POSAGUAY	 		equ		#60;96
+     119.  00:C000  (00:0060)           POSARMADURAX 		equ		#60;96
+     120.  00:C000  (00:0070)           POSARMADURAY 		equ		#70;112
+     121.  00:C000  (00:0090)           POSPLANTAX	 		equ		#90;144
+     122.  00:C000  (00:0060)           POSPLANTAY	 		equ		#60;96
+     123.  00:C000  (00:00B8)           POSVIDAEXTX	 		equ		#B8;184
+     124.  00:C000  (00:0070)           POSVIDAEXTY	 		equ		#70;112
+     125.  00:C000  (00:00C8)           POSBALLESTAX 		equ		#C8;200
+     126.  00:C000  (00:0058)           POSBALLESTAY 		equ		#58;88
+     127.  00:C000                      
+     128.  00:C000                      ;; TAMAÑO AYUDAS
+     129.  00:C000  (00:0002)           ALTOAYUDA			equ		#02;2
+     130.  00:C000  (00:0002)           ANCHOAYUDA			equ		#02;2
+     131.  00:C000                      
+     132.  00:C000                      ;; RETARDO TIEMPO QUE PARA EL JUEGO POR TIRAR UNA RELIQUIA
+     133.  00:C000  (00:EA60)           RETARDOREL			equ		60000
+     134.  00:C000                      
+     135.  00:C000                      ;;DURACION AYUDA BALLESTA MEJORADA (pantallas que dura)
+     136.  00:C000  (00:0007)           DURACIONBALLEJ      equ		#07;7
+     137.  00:C000                      
+     138.  00:C000                      ;; RADIOS DE DISPARO
+     139.  00:C000  (00:0008)           RADIOAYUDAX 		equ		#08;8
+     140.  00:C000  (00:0008)           RADIOAYUDAY 		equ		#08;8
+     141.  00:C000                      
+     142.  00:C000                      ;;POSICIÓN INICIAL DEL SPRITE DEL PUNTO DE MIRA
+     143.  00:C000  (00:0074)           POSXPM				equ		116
+     144.  00:C000  (00:0060)           POSYPM				equ		96
+     145.  00:C000                      
+     146.  00:C000                      ;;ESTADO HABITACION
+     147.  00:C000  (00:0001)           ISHABTERMIN			equ		1 	;0 sería no terminada
+     148.  00:C000                      
+     149.  00:C000                      ;;ETIQUETAS PARA PUNTO DE MIRA
+     150.  00:C000  (00:0006)           LIMCADENCIA 		equ		6	;nº de veces que se ejecutará el disparo antes de ejecutar un disparo real (porque cuando se pulsa la tecl dispara 3 ó 4 veces de rápido que va)
+     151.  00:C000  (00:0000)           SPRI_DANO1A 		equ		0	;posiciones de los sprites en memoria (va de 4 en 4 al tratarse de sprites de 16 x 16)
+     152.  00:C000  (00:0004)           SPRI_DANO1B 		equ		4
+     153.  00:C000  (00:0006)           SPRI_DANO2A 		equ		6
+     154.  00:C000  (00:000F)           SPRI_DANO2B 		equ		15
+     155.  00:C000                      
+     156.  00:C000                      ;;POSICIONES DE LAS ANTORCHAS
+     157.  00:C000  (00:0088)           POSANTOR1			equ		136
+     158.  00:C000  (00:0097)           POSANTOR2			equ		151
+     159.  00:C000  (00:00C4)           MAPLLAMA1			equ		196
+     160.  00:C000  (00:00C5)           MAPLLAMA2			equ		197
+     161.  00:C000  (00:00FF)           RESETLLAMA			equ		255
+     162.  00:C000                      
+     163.  00:C000                      ;;POSICIONES DE LOS ESQUELETOS
+     164.  00:C000  (00:0088)           POSESQUEL1			equ		136
+     165.  00:C000  (00:0095)           POSESQUEL2			equ		149
+     166.  00:C000  (00:00A9)           POSCALAVE1			equ		169
+     167.  00:C000  (00:00B6)           POSCALAVE2			equ		182
+     168.  00:C000  (00:0019)           RESETESQUEL			equ		25
+     169.  00:C000  (00:0004)           RESETESCENAESQUEL 	equ		4	;hay 4 caras con las que el esqueleto cambia (se ha metido el 0 para facilitar código)
+     170.  00:C000                      
+     171.  00:C000                      ;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (relacionadas con posiciones en en el banco de memoria)
+     172.  00:C000  (00:0013)           TILEPROTAM  		equ		19		;tile del prota para pintar en mapa
+     173.  00:C000  (00:0009)           TILEGRISM			equ		9		;tile gris que representa vacio (por donde el prota va pasando)
+     174.  00:C000  (00:0010)           TILEMAPROJO 		equ		16
+     175.  00:C000  (00:000F)           TILEMAPAMAR 		equ		15
+     176.  00:C000  (00:000E)           TILEMAPVERD 		equ		14
+     177.  00:C000                      
+     178.  00:C000                      ;;ETIQUETAS ESPECIFICAS PARA DAR MÁS CLARIDAD AL CODIGO (generales)
+     179.  00:C000  (00:0008)           NMAXVIDREL			equ		8		;el número máximo de vidas y de reliquias es de 8
+     180.  00:C000  (00:0007)           NHABNIVEL			equ		7
+     181.  00:C000  (00:00F8)           MAXENERGIA  		equ		248
+     182.  00:C000  (00:00D9)           TILEENERG8  		equ		217
+     183.  00:C000  (00:00BA)           TILEENERG7  		equ		186
+     184.  00:C000  (00:009B)           TILEENERG6  		equ		155
+     185.  00:C000  (00:007C)           TILEENERG5  		equ		124
+     186.  00:C000  (00:005D)           TILEENERG4  		equ		93
+     187.  00:C000  (00:003E)           TILEENERG3  		equ		62
+     188.  00:C000  (00:001F)           TILEENERG2  		equ		31
+     189.  00:C000  (00:0288)           TILEENERG1			equ 	648
+     190.  00:C000  (00:0000)           TILENEGRO			equ		0
+     191.  00:C000  (00:0248)           TILEVIDA1			equ 	584
+     192.  00:C000                      
+     193.  00:C000                      ;limites
+     194.  00:C000  (00:0000)           LIMPANTIZQ  		equ		0
+     195.  00:C000  (00:00FF)           LIMPANTDER 			equ		255
+     196.  00:C000  (00:0000)           LIMPANTARR 			equ		0
+     197.  00:C000  (00:0080)           LIMPANTABA  		equ		128
+     198.  00:C000                      
+     199.  00:C000                      ;matriz de 7x7 empieza en 0, y fila y x col, cuento desde esquina sup izq
+     200.  00:C000  (00:0006)           BASEMAPY			equ		6
+     201.  00:C000  (00:0003)           BASEMAPX			equ		3
+     202.  00:C000                      
+     203.  00:C000                      ;; CONSTANTES DE INICIO PARA EL PROTA
+     204.  00:C000  (00:0000)           PROTANIVEL			equ		0			;nivel del castillo donde está 0-6 - los niveles (matrices) son 7 del 0 al 6
+     205.  00:C000  (00:0004)           PROTAVIDAS			equ		4
+     206.  00:C000  (00:0005)           PROTARELIQUIAS		equ		5
+     207.  00:C000  (00:0003)           PROTAPOSMAPX		equ		3			;pos columna 7 columnas 7: del 0 al 6 ;pos X dentro del nivel (se empieza en 0)
+     208.  00:C000  (00:0000)           PROTAPOSMAPY		equ		0			;pos fila los subniveles (filas) son 7 del 0 al 6 ;pos Y dentro del nivel (se empieza en 0)
+     209.  00:C000  (00:00F8)           PROTAENERGIA		equ		248			;MAXENERGIA;valor real de la energía
+     210.  00:C000  (00:0000)           PROTAENERGIABYTEBAJO equ	0			;cuando se llene este es cuando se pierde prota_energí
+     211.  00:C000  (00:0003)           PROTADANO1			equ		3			;daño del punto de mira
+     212.  00:C000  (00:0007)           PROTADANO2			equ		7			;daño del punto de mira cuando se tiene la ayuda
+     213.  00:C000  (00:0041)           PROTADANORELJEFE	equ		65			;daño del punto de mira cuando se tiene la ayuda
+     214.  00:C000                      
+     215.  00:C000                      ;; TIPOS DE GAMEOVER
+     216.  00:C000  (00:0000)           NOQUEDANVIDAS		equ		0
+     217.  00:C000  (00:0001)           FINBUENO			equ		1
+     218.  00:C000                      
+     219.  00:C000                      ;;CONTANTES PARA SONIDO
+     220.  00:C000  (00:0005)           SONIDORELIQUIA		equ		5
+     221.  00:C000  (00:0004)           SONIDOINICIO		equ		4
+     222.  00:C000  (00:0002)           SONIDOBOMBA			equ		2
+     223.  00:C000  (00:0001)           SONIDODISPARO		equ		1
+     224.  00:C000                      
+     225.  00:C000  (00:0000)           SINMUSICA			equ		0
+     226.  00:C000  (00:0001)           MUSICATITULO		equ		1
+     227.  00:C000  (00:0002)           MUSICAJEFE			equ		2
+     228.  00:C000  (00:0003)           MUSICAGAMEOVER		equ		3
+     229.  00:C000                      
      230.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-     231.  00:C000  (00:FD9A)           H.KEYI				equ     	#FD9A
-     232.  00:C000  (00:FD9F)           H.TIMI	 			equ     	#FD9F
-     233.  00:C000                      
-     234.  00:C000                      
+     231.  00:C000                      ;; CONSTANTES PARA INTERRUPCIONES
+     232.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     233.  00:C000  (00:FD9A)           H.KEYI				equ     	#FD9A
+     234.  00:C000  (00:FD9F)           H.TIMI	 			equ     	#FD9F
      235.  00:C000                      
+     236.  00:C000                      
+     237.  00:C000                      
       11   00:C000                      include "constantesyvariables/constantesenemigos.asm"
        1.  00:C000                      ;;=====================================================
        2.  00:C000                      ;; FICHERO constantesenemigos.asm
@@ -1226,6 +1228,7 @@ Errors: 0
 00:0000F3EA X BAKCLR
 00:0000F3EB X BDRCLR
 00:000000C3 X CLS
+00:00000069 X CLRSPR
 00:000000D1 X BORRASPRITE
 00:000000D0 X BORRASPRITESIG
 00:0000F3DF X RG0SAV
@@ -1373,6 +1376,7 @@ Errors: 0
 00:00000002 X SONIDOBOMBA
 00:00000001 X SONIDODISPARO
 00:00000000 X SINMUSICA
+00:00000001 X MUSICATITULO
 00:00000002 X MUSICAJEFE
 00:00000003 X MUSICAGAMEOVER
 00:0000FD9A X H.KEYI

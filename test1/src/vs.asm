@@ -53,6 +53,7 @@ START:
 ;;
 ;;FIN INTRODUCCIÓN DE CÓDIGO PARA PODER USAR 32K
 ;;		
+
 		;inicializa variables
 		CALL		carga_valores_iniciales_variables
 

@@ -45,7 +45,7 @@ color_pantalla:
 	LD		 A, (HL)
 	LD 		(BDRCLR),A			;BDRCLR
 	JP		CHGCLR 
-fin_color_pantalla:
+;fin_color_pantalla:
 
 
 ;;=====================================================
@@ -80,18 +80,69 @@ sub_preparapantalla:
 	LD		 B, A
 	LD		 C, 1
 	JP		WRTVDP			;opción alternativa de escribir las tres lineas siguientes
-fin_sub_preparapantalla:
+;fin_sub_preparapantalla:
 	
+
+;;=====================================================
+;;MUESTRA_INSTRUCCIONES
+;;=====================================================	
+; función:  explica al jugador que para atavesar las puertas primero debe matar todos los 
+;			enemigos que haya en pantalla (no me gusta pero por si hay jugadores que
+;			no lo tienen claro)
+muestra_instrucciones:
+			CALL		DISSCR
+			
+			;cargando banco 0
+			;cargamos los patrones
+			LD			HL, tiles_patrones_nivel0
+			LD			DE, CHRTBL
+			CALL		depack_VRAM
+			;cargamos los colores de los patrones
+			LD			HL, tiles_color_nivel0
+			LD			DE, CLRTBL
+			CALL		depack_VRAM
+		
+			;cargando banco 1
+			;cargamos los patrones
+			LD			HL, tiles_patrones_nivel0
+			LD			DE, CHRTBL + #0800
+			CALL		depack_VRAM	
+			;cargamos los colores de los patrones
+			LD			HL, tiles_color_nivel0
+			LD			DE, CLRTBL + #0800
+			CALL		depack_VRAM
+
+		
+			CALL		limpia_pantalla
+			
+			LD			HL, texto_instruc1;guardo puntero al array a pintar (como psar por referencia)
+			LD			BC, 32				;nº posiciones a pintar
+			LD			DE, TILMAP + 256	;destino en vram
+			CALL		LDIRVM
+			
+			LD			HL, texto_instruc2;guardo puntero al array a pintar (como psar por referencia)
+			LD			BC, 32				;nº posiciones a pintar
+			LD			DE, TILMAP + 320	;destino en vram
+			CALL		LDIRVM
+		
+			LD			HL, texto_instruc3;guardo puntero al array a pintar (como psar por referencia)
+			LD			BC, 32				;nº posiciones a pintar
+			LD			DE, TILMAP + 384	;destino en vram
+			CALL		LDIRVM
+			
+			CALL		ENASCR
+			
+[2]			CALL		espera_estandar
+
+			RET
+;fin_muestra_instrucciones:
+
 
 ;;=====================================================
 ;;PINTA_PARTE_SUPERIOR_PANTALLA
 ;;=====================================================	
 ; función: pinta el escenario, los dos bancos superiores
 pinta_parte_superior_pantalla:
-		;se quita la música siempre y sólo se pone si es jefe y drácula no muerto
-		XOR			 A ; SINMUSICA
-		CALL		play_musica
-
 		;si es fila 0 o 6 carga todos los tiles, si no sólo actualiza el mapa
 		;y se aprovecha para poner el nombre del enemigo
 .siposyes0:
@@ -117,9 +168,38 @@ pinta_parte_superior_pantalla:
 		CALL		pinta_nombre_enemigo
 		;pinta extras en el fondo si tiene
 		CALL		pinta_extra_fondo
+		;pinta ayudas en el fondo si tiene
+		CALL		pinta_ayudas_habitacion
 		
-		JP			pinta_ayudas_habitacion
-fin_pinta_parte_superior_pantalla:
+		
+		;ññññññññññññññññññññññ
+		
+		;~ EXX
+		
+		;~ LD			 A, MUSICAJEFE
+		;~ CALL		play_musica
+		
+		;~ LD			 A, 2
+		;~ LD			 C, 1
+		;~ CALL		ayFX_INIT
+		
+		;~ EXX
+
+		
+
+		;ññññññññññññññññññññññ
+		
+		
+		
+		
+		
+		
+;fin_pinta_parte_superior_pantalla:
+		RET
+
+
+
+
 
 
 ;;=====================================================
@@ -824,9 +904,6 @@ fin_flip_calavera_esqueletos:
 ;;=====================================================	
 ; función: 	pone un texto cada vex que se sube o baja de nivel en el castillo
 cambio_nivel_entrefases:
-			LD			 A, 0		;para música
-			CALL		play_musica
-			
 			;si no se ha matado aun a drácula cuando se cambia de fase se restablece energía
 			LD			 A, (dracula_muerto)
 			OR			 A
@@ -835,8 +912,8 @@ cambio_nivel_entrefases:
 			; se lrecupero la energia inicial
 			LD			 A, PROTAENERGIA			
 			LD			(prota_energia), A
-.draculaestamuerto:
-			
+
+.draculaestamuerto:			
 			CALL		borra_mapa
 
 			;Ocultamos todos los sprites
@@ -863,9 +940,9 @@ cambio_nivel_entrefases:
 			CALL		depack_VRAM
 			
 			CALL		pinta_texto_entrefases
-
+			
 			JP			espera_estandar
-fin_cabio_nivel_entrefases:
+;fin_cabio_nivel_entrefases:
 
 
 ;;=====================================================
@@ -881,7 +958,7 @@ oculta_todos_sprites:
 			LD			BC, #1B00
 			LD			 D, BORRASPRITESIG
 			JP			pinta_tile_suelto
-fin_oculta_todos_sprites:
+;fin_oculta_todos_sprites:
 
 
 ;;=====================================================
@@ -912,7 +989,7 @@ borra_pantalla_inicio:
 			JP			NZ, .loop
 			
 			JP			limpia_pantalla_completa
-fin_borra_pantalla_inicio:
+;fin_borra_pantalla_inicio:
 
 
 ;;=====================================================
@@ -957,7 +1034,7 @@ muestra_pantalla_inicial:
 		
 		CALL		ENASCR 
 		
-		LD			 A, 1
+		LD			 A, MUSICATITULO
 		CALL		play_musica
 
 .mientras_nopulsado:
@@ -972,15 +1049,16 @@ muestra_pantalla_inicial:
 		CALL		#00D8
 		POP 		BC
 		
+		;veo si se ha pulsado espacio o botón 1 de joystick
 		OR			 B		;uno el resultado del espacio + el resultado del botón de disparo
 		
 		JP			 Z, .mientras_nopulsado	;si A=0 no se pulsó ni disparo ni botón
 		
-		;se ha pulsado
-		XOR			 A
+		;se ha pulsado => apago la música de inicio
+		XOR			 A	; sin musica = 0 
 		CALL		play_musica
 		
-		;ejecuto sonido
+		;ejecuto sonido de comienzo de juego
 		LD			 A, SONIDOINICIO	;4
 		LD			 C, 1
 		CALL		ayFX_INIT
@@ -1005,7 +1083,10 @@ muestra_pantalla_inicial:
 		
 		;borra pantalla bonito
 		CALL		borra_pantalla_inicio
-fin_muestra_pantalla_inicial:
+		
+		;muestra instrucciones
+		JP			muestra_instrucciones
+;fin_muestra_pantalla_inicial:
 
 
 ;;=====================================================
@@ -1018,7 +1099,8 @@ limpia_pantalla_superior:
 		LD			HL, TILMAP
 		LD			BC, 512
 		JP			FILVRM
-fin_limpia_pantalla_superior:
+;fin_limpia_pantalla_superior:
+
 
 ;;=====================================================
 ;;LIMPIA_PANTALLA_INFERIOR
@@ -1030,7 +1112,7 @@ limpia_pantalla_inferior:
 		LD			HL, TILMAP + 512
 		LD			BC, 256
 		JP			FILVRM
-fin_limpia_pantalla_inferior:
+;fin_limpia_pantalla_inferior:
 
 
 ;;=====================================================
@@ -1042,7 +1124,7 @@ limpia_pantalla_completa:
 		CALL		oculta_todos_sprites
 		;limpia los tiles
 		JP			limpia_pantalla
-fin_limpia_pantalla_completa:
+;fin_limpia_pantalla_completa:
 
 
 ;;=====================================================
@@ -1065,7 +1147,7 @@ limpia_pantalla:
 			LD			HL, TILMAP
 			LD			BC, 768
 			JP			FILVRM
-fin_limpia_pantalla:
+;fin_limpia_pantalla:
 
 
 ;;=====================================================
@@ -1076,7 +1158,7 @@ oculta_tile_energia_minima:
 		LD			 A, TILENEGRO
 		LD			HL, TILMAP + TILEENERG1
 		JP			WRTVRM
-fin_oculta_tile_energia_minima:
+;fin_oculta_tile_energia_minima:
 		
 
 ;;=====================================================
@@ -1087,7 +1169,7 @@ oculta_tile_vida0:
 		LD			 A, TILENEGRO
 		LD			HL, TILMAP + TILEVIDA1
 		JP			WRTVRM
-fin_oculta_tile_vida0:
+;fin_oculta_tile_vida0:
 
 
 ;;=====================================================
@@ -1095,7 +1177,7 @@ fin_oculta_tile_vida0:
 ;;=====================================================
 ; funcion: muestra mensaje cuando te matan una vida
 una_vida_menos;
-		LD			 A, 0
+		XOR			 A ; SINMUSICA = 0
 		CALL		play_musica
 
 		CALL		DISSCR
@@ -1129,7 +1211,7 @@ quedan_vidas:
 			CALL		espera_estandar
 			
 			JP			pinta_parte_superior_pantalla
-fin_una_vida_menos:
+;fin_una_vida_menos:
 
 
 ;;=====================================================
@@ -1141,7 +1223,7 @@ borra_elementos_anteriores:
 			LD			HL, tiles_mapa_nivel0;(tiles_mapa)
 			LD			DE, TILMAP
 			JP			depack_VRAM
-fin_borra_elementos_anteriores:
+;fin_borra_elementos_anteriores:
 
 
 ;;=====================================================
@@ -1259,10 +1341,10 @@ actualiza_tiles_nivel:
 		
 		LD			 A, 102
 		CALL		nivelX_pinta_marco
-		
+				
 		LD			 A, 29
 		JP			nivelX_pinta_puerta
-fin_actualiza_tiles_nivel:
+;fin_actualiza_tiles_nivel:
 
 
 ;;=====================================================
@@ -1292,7 +1374,8 @@ nivelX_pinta_suelo:
 		CALL		suma_A_HL
 		CALL		poner_tile_variable_tile_auxiliar
 		JP			poner_tile_aux_en_suelo_color
-fin_nivelX_pinta_suelo:
+;fin_nivelX_pinta_suelo:
+
 
 ;;=====================================================
 ;;NIVELX_PINTA_PARED
@@ -1321,7 +1404,8 @@ nivelX_pinta_pared:
 		CALL		suma_A_HL
 		CALL		poner_tile_variable_tile_auxiliar
 		JP			poner_tile_aux_en_paredes_color
-fin_nivelX_pinta_pared:
+;fin_nivelX_pinta_pared:
+
 
 ;;=====================================================
 ;;NIVELX_PINTA_MARCO
@@ -1352,7 +1436,8 @@ nivelX_pinta_marco:
 		ADD			HL, DE
 		CALL		poner_tile_variable_tile_auxiliar
 		JP			poner_tile_aux_en_marco_color
-fin_nivelX_pinta_marco:
+;fin_nivelX_pinta_marco:
+
 
 ;;=====================================================
 ;;NIVELX_PINTA_PUERTA
@@ -1389,7 +1474,7 @@ poner_tile_variable_tile_auxiliar:
 		LD			BC, 8
 		LD			DE, tile_auxiliar
 		JP			LDIRMV
-fin_poner_tile_suelo_variable_tile_auxiliar:
+;fin_poner_tile_suelo_variable_tile_auxiliar:
 
 poner_tile_aux_en_suelo_patron:
 		;poniendo patron en memoria VRAM
@@ -1397,7 +1482,7 @@ poner_tile_aux_en_suelo_patron:
 		LD			DE, CHRTBLBANCO1 + (8  * 4)
 		LD			HL, tile_auxiliar
 		JP			LDIRVM
-fin_poner_tile_aux_en_suelo_patron:
+;fin_poner_tile_aux_en_suelo_patron:
 
 poner_tile_aux_en_suelo_color:
 		;poniendo patron en memoria VRAM
@@ -1405,7 +1490,7 @@ poner_tile_aux_en_suelo_color:
 		LD			DE, CLRTBLBANCO1 + (8  * 4)
 		LD			HL, tile_auxiliar
 		JP			LDIRVM
-fin_poner_tile_aux_en_suelo_color:
+;fin_poner_tile_aux_en_suelo_color:
 
 poner_tile_aux_en_paredes_patron:
 		;poniendo patron en memoria VRAM
@@ -1418,7 +1503,7 @@ poner_tile_aux_en_paredes_patron:
 		LD			DE, CHRTBLBANCO1 + (8  * 3)
 		LD			HL, tile_auxiliar
 		JP			LDIRVM
-fin_poner_tile_aux_en_paredes_patron:
+;fin_poner_tile_aux_en_paredes_patron:
 
 poner_tile_aux_en_paredes_color:
 		;poniendo patron en memoria VRAM
@@ -1431,7 +1516,7 @@ poner_tile_aux_en_paredes_color:
 		LD			DE, CLRTBLBANCO1 + (8  * 3)
 		LD			HL, tile_auxiliar
 		JP			LDIRVM
-fin_poner_tile_aux_en_paredes_color:
+;fin_poner_tile_aux_en_paredes_color:
 
 poner_tile_aux_en_marco_patron:
 		;poniendo patron en memoria VRAM
@@ -1444,7 +1529,7 @@ poner_tile_aux_en_marco_patron:
 		LD			DE, CHRTBLBANCO1 + (8  * 2)
 		LD			HL, tile_auxiliar
 		JP			LDIRVM
-fin_poner_tile_aux_en_marco_patron:
+;fin_poner_tile_aux_en_marco_patron:
 
 poner_tile_aux_en_marco_color:
 		;poniendo patron en memoria VRAM
@@ -1457,7 +1542,7 @@ poner_tile_aux_en_marco_color:
 		LD			DE, CLRTBLBANCO1 + (8  * 2)
 		LD			HL, tile_auxiliar
 		JP			LDIRVM
-fin_poner_tile_aux_en_marco_color:
+;fin_poner_tile_aux_en_marco_color:
 
 poner_tile_aux_en_puerta_patron:
 		;poniendo patron en memoria VRAM
@@ -1470,7 +1555,7 @@ poner_tile_aux_en_puerta_patron:
 		LD			DE, CHRTBLBANCO1 + (8  * 1)
 		LD			HL, tile_auxiliar
 		JP			LDIRVM
-fin_poner_tile_aux_en_puerta_patron:
+;fin_poner_tile_aux_en_puerta_patron:
 
 poner_tile_aux_en_puerta_color:
 		;poniendo patron en memoria VRAM
@@ -1483,7 +1568,7 @@ poner_tile_aux_en_puerta_color:
 		LD			DE, CLRTBLBANCO1 + (8  * 1)
 		LD			HL, tile_auxiliar
 		JP			LDIRVM
-fin_poner_tile_aux_en_puerta_color:
+;fin_poner_tile_aux_en_puerta_color:
 
 
 nivel0_pinta_estrellas:
@@ -1535,7 +1620,7 @@ nivel0_pinta_estrellas:
 		LD			BC, TILMAP + (32 * 7) + 13
 		LD			 D, 30
 		JP			pinta_tile_suelto
-fin_nivel0_pinta_estrellas:
+;fin_nivel0_pinta_estrellas:
 		
 nivel0_pinta_luna:
 		LD			BC, TILMAP + (32 * 0) + 26
@@ -1550,7 +1635,7 @@ nivel0_pinta_luna:
 		LD			BC, TILMAP + (32 * 1) + 27
 		LD			 D, 36
 		JP			pinta_tile_suelto
-fin_nivel0_pinta_luna:
+;fin_nivel0_pinta_luna:
 
 
 ;;=====================================================
@@ -1590,4 +1675,4 @@ pinta_nombre_enemigo:
 			LD			BC, 9				;nº posiciones a pintar
 			LD			DE, TILMAP + 11		;destino en vram
 			JP			LDIRVM
-fin_pinta_nombre_enemigo:
+;fin_pinta_nombre_enemigo:

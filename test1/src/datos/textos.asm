@@ -12,6 +12,11 @@ texto_reliquias:	DB	'RELIQ.'
 
 texto_nivel:		DB	'NIVEL'
 
+texto_instruc:		
+texto_instruc1:		DB	'MATA A TODOS LOS ENEMIGOS PARA  '
+texto_instruc2:		DB	'ATRAVESAR LAS PUERTAS ELLOS DAN '
+texto_instruc3:		DB	'SU VIDA PARA DEFENDER A SU AMO  '
+
 texto_entrefases:
 texto_entrefases1:	DB	'  ESPERAS UN MOMENTO EN LAS   '	; 30 caracteres
 texto_entrefases2:	DB  'ESCALERAS MIENTRAS TUS OJOS   '	; 30 caracteres
@@ -68,6 +73,11 @@ texto_energia:		DB	'ENERGY'
 texto_reliquias:	DB	'RELICS'
 
 texto_nivel:		DB	'LEVEL'
+
+texto_instruc:		
+texto_instruc1:		DB	'KILL ALL THE ENEMIES TO PASS    '
+texto_instruc2:		DB	'THROUGH THE GATES THEYLL GIVE   '
+texto_instruc3:		DB	'THEIR LIFE TO DEFEND THEIR MASTR'
 
 texto_entrefases:
 texto_entrefases1:	DB	'  YOU WAIT FOR A MOMENT ON THE'	; 30 caracteres

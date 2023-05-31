@@ -48,9 +48,9 @@ accion_boton1:
 		LD			 A, LIMCADENCIA				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 		LD			(IX + ESTRUCTURA_PUNTOMIRA.cadencia), A		;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 		
-		;ejecuto sonido						;; ajustar cadencia y que cuando el disparo sea efectivo se reseteen los colores
+		;ejecuto sonido	;; ajustar cadencia y que cuando el disparo sea efectivo se reseteen los colores
 		LD			 A, SONIDODISPARO	;1
-		LD			 C, 1
+		LD			 C, 1				;CANAL 1
 		CALL		ayFX_INIT
 			
 		;examino si el disparo le dió a algo activo
@@ -82,7 +82,7 @@ accion_boton2:
 			CALL 		efecto_imagen_tira_reliquia
 	
 			JP			pinta_reliquias
-fin_accion_boton2:
+;fin_accion_boton2:
 
 
 ;;=====================================================
@@ -161,7 +161,6 @@ enemigo_jefe:
 		POP			IX
 ;fin_efecto_enemigos_tira_reliquia:
 		RET
-
 
 pasa_siguiente_enemigo:
 [ESTRUCTURA_ENEMIGO]	INC			IX

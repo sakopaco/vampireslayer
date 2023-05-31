@@ -562,11 +562,6 @@ inicializa_enemigos_fase0_nivel5:
 fin_inicializa_enemigos_fase0_nivel5:
 
 inicializa_enemigos_fase0_niveljefe:
-
-
-;ñññññññññññññññ
-
-
 		LD			 A, (habitacion_terminada)
 		OR			 A
 		RET			NZ
@@ -2018,7 +2013,8 @@ mueve_enemigo:
 		LD			 L, (IX + ESTRUCTURA_ENEMIGO.ptr_mover)
 		LD			 H, (IX + ESTRUCTURA_ENEMIGO.ptr_mover + 1)
 		JP		    (HL)
-RET
+;fin_mueve_enemigo:
+		RET
 
 
 ;;=====================================================
@@ -2055,7 +2051,7 @@ enemigo_hace_dano:
 				;SALIR
 				RET
 		;	FINSI
-fin_enemigo_hace_dano:
+;fin_enemigo_hace_dano:
 
 
 ;;=====================================================
@@ -2401,9 +2397,6 @@ examina_enemigo3:
 			;esta es la resta de energía normal pero no se aplica si: drácula y siguen vivas sus manos
 			LD			 A, B
 			LD			(IX + ESTRUCTURA_ENEMIGO.energia), A	;se resta la energía que 
-
-
-
 
 examina_enemigo4:	
 		LD			IX, enemigo4

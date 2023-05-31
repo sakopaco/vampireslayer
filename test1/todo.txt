@@ -1,17 +1,61 @@
 BUGS:
-- si jefe muerto no tiene que aparecer el nombre del jefe (ver función mira_si_poner_musica_jefe)
-
+- cuando el jefe esté muerto no debe sonar la música en su pantalla Ok
+- si te mata el jefe la música de jefe debe seguir sonando... el jefe no está muerto aun!
 
 TODO A:
-- Texto antes empezar
 - poner página extra con cuenta en itchio y github
-- poner mapas con la docuentación
+- poner mapas con la documentación
 - que algunos enemigos quiten menos vida
 
 TODO B (deseable):
-- poner puertas abiertas
+- poner puertas abiertas al matar a todos los enemigos de forma autoática
 - poner tiles al matar a drácula
 - cuando coges una ayuda el sonido no acaba (ver con Manuel)
 - el disparo y la explosión parecen el mismo sonido (ver con Manuel)
 
 
+
+;sonido muerte enemigo
+		LD			 A, 2
+		LD			 C, 1
+		CALL		ayFX_INIT
+		
+		
+			;si vida enemigo > 0 y nively = 6 entonces musica enemigo on
+			LD			IX, enemigo1
+			LD			 A, (IX)
+			OR			 A
+			RET			 Z
+			
+			LD			IX, enemigo1
+			LD			 A, (IX)
+			CP			 1
+			RET			 Z
+			
+			LD			 A, MUSICAJEFE
+			CALL		play_musica
+
+
+;ÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑ
+			;~ ;si vida enemigo > 0 y nively = 6 entonces musica enemigo on
+			;~ LD			IX, enemigo1
+			;~ LD			 A, (IX)
+			;~ OR			 A
+			;~ RET			 Z
+			
+			;~ LD			IX, enemigo1
+			;~ LD			 A, (IX)
+			;~ CP			 1
+			;~ RET			 Z
+			
+			
+			CALL		ayFX_INIT
+			LD			 A, MUSICAJEFE
+			CALL		play_musica
+			
+			
+			
+			;~ LD			 A, 2
+			;~ LD			 C, 1
+			;~ CALL		ayFX_INIT
+;ññññññññññññññññññññññññññññññññ
