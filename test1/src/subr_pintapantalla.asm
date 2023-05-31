@@ -175,15 +175,18 @@ pinta_parte_superior_pantalla:
 		;ññññññññññññññññññññññ
 		
 			;si vida enemigo > 0 y nively = 6 entonces musica enemigo on
-			LD			IX, enemigo1
+			LD			 A, (habitacion_terminada) ;está terminada la habitación => no suena música de jefe
+			OR			 A
+			RET			 NZ
+			
+			LD			IX, enemigo1 ;el enemigo está muerto => no suena música de jefe
 			LD			 A, (IX)
 			OR			 A
 			RET			 Z
 			
-			LD			IX, enemigo1
-			LD			 A, (IX)
-			CP			 1
-			RET			 Z
+			LD			 A, (prota_pos_mapy) ;si no es habitación de jefe => no suena música de jefe
+			CP			 6
+			RET			 NZ
 			
 			LD			 A, MUSICAJEFE
 			CALL		play_musica
