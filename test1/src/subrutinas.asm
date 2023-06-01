@@ -414,14 +414,14 @@ fin_check_colisiones_objetos:
 ;;=====================================================	
 ; función: 	pone un texto cuando matas a drácula y preparo variables para que cuente el tiempo y dracula muerto
 accion_mata_dracula:
+		;paro la musica que se estuviera reproduciendo
+		XOR			 A
+		CALL		play_musica
+			
 		CALL		decrementa_contador_enemigos
 		
 		;Ocultamos todos los sprites
 		CALL		oculta_todos_sprites
-
-		;paro música
-		XOR			 A
-		CALL		play_musica
 
 		CALL		borra_mapa
 
@@ -487,14 +487,14 @@ fin_mira_si_esta_juego_terminado:
 ;;=====================================================	
 ; función: muestra la página de fin de juego según parámetro de entrada
 ; entrada: PROTAMUERTO	0  FINBUENO	1  FINMALO 2
-game_over:			
+game_over:		
+			;paro la musica que se estuviera reproduciendo
+			XOR			 A
+			CALL		play_musica
+				
 			;apago pantalla
 			CALL		DISSCR
 			
-			;pone música
-			LD			 A, 3
-			CALL		play_musica
-
 			;limpia la pantalla
 			CALL		limpia_pantalla_completa
 
@@ -543,7 +543,6 @@ game_over:
 				LD			BC, 18
 				CALL		LDIRVM
 				
-
 			JP			.fin_examina_final
 			
 .fin_protamuerto:
@@ -630,7 +629,6 @@ game_over:
 
 [4]			CALL		espera_estandar
 
-			;quita música
 			LD			 A, MUSICAGAMEOVER
 			CALL		play_musica
 

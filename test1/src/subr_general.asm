@@ -93,6 +93,34 @@ carga_valores_iniciales_variables:
 fin_carga_valores_iniciales_variables:
 		RET
 
-
-
+;ya no se usa esta función pero la guardo por si acaso y para futuros proyectos
+;~ ;;=====================================================
+;~ ;;BORRA_PANTALLA_INICIO
+;~ ;;=====================================================	
+;~ ; función: 	borra la pantalla de inicio de una forma chula caracter a caracter
+;~ ; entrada: 	-
+;~ ; salida: 	-
+;~ ; toca:		AF, BC
+;~ borra_pantalla_inicio:
+			;~ LD			 BC, 256	;tiles por pantalla en screen2 - 1 (768 total)
+			;~ LD			 DE, 0		;posición tile "vacio"
+;~ .loop:
+			;~ PUSH		BC
+				;~ LD			BC, TILMAP + 256
+				;~ LD			 A, E
+				;~ CALL	suma_A_BC
+			
+				;~ CALL		pinta_tile_suelto
+				;~ INC			 E
+		
+				;~ LD			 BC, 850
+				;~ CALL		retardo16bits
+			;~ POP			BC
+			;~ DEC			BC
+			;~ LD			 A, B
+			;~ OR			 C
+			;~ JP			NZ, .loop
+			
+			;~ JP			limpia_pantalla_completa
+;~ ;fin_borra_pantalla_inicio:
 

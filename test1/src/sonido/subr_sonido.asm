@@ -55,6 +55,7 @@ subrutina_isr:
 		JP		 Z, .efectos_sonido
 			CALL	PT3_PLAY		;calcula el siguiente 'trocito' de musica que sera enviado al proxima vez
 .efectos_sonido:
+		;
 		JP		ayFX_PLAY			;calcula el siguiente 'trocito' de efecto especial de sonido que sera enviado la proxima vez
 ;fin_subrutina_isr:
 	
@@ -63,30 +64,32 @@ subrutina_isr:
 ;;PLAY_MUSICA
 ;;=====================================================	
 ; función: 	toca la música que se le idique
-; entrada: 	A : 0
+; entrada: 	A
 			;A=0 musica off
-			;A=1 musica inicio
 			;A=2 musica jefe
 			;A=3 musica gameover
-play_musica:		
+play_musica:
 		LD			(musica_activa), A
 		OR			 A
-		JP			NZ, .mira_musica_inicio
-		JP			PT3_MUTE
+		JP			NZ, .mira_musica_normal
+		CALL		PT3_MUTE
+		RET
 
-.mira_musica_inicio:
-		CP			 1
+.mira_musica_normal:
+		CP			MUSICANORMAL
 		JP			NZ, .mira_musica_jefe
 		LD			HL, musica_normal-99			; hl <- initial address of module - 99
 		JP			.fin_mira_posibles_musicas
-		
+
 .mira_musica_jefe:
-		CP			2
+		CP			MUSICAJEFE
 		JP			NZ, .mira_musica_gameover
 		LD			HL, musica_boss-99			; hl <- initial address of module - 99
 		JP			.fin_mira_posibles_musicas
-.mira_musica_gameover:	;si no es usica normal ni jefe es gameover
+		
+.mira_musica_gameover:	;si no es usica normal ni jefe es gameover MUSICAGAMEOVER = 3
 		LD			HL, musica_gameover-99			; hl <- initial address of module - 99
+		
 .fin_mira_posibles_musicas:
 		JP			inicializa_replayer_efectos_interrupciones
 ;fin_play_musica:

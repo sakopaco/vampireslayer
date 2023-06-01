@@ -161,6 +161,6 @@ contador:					DB		0
 ;;=====================================================
 ;;VARIABLES PARA SONIDO 
 ;;=====================================================
-musica_activa				DB 		0
+musica_activa:				DB		0
 	include "datos/var_pt3_ayfx.asm"
 

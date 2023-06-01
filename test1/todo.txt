@@ -15,6 +15,12 @@ TODO B (deseable):
 
 
 
+			;paro la musica que se estuviera reproduciendo
+			XOR			 A
+			CALL		play_musica
+
+
+
 ;sonido muerte enemigo
 		LD			 A, 2
 		LD			 C, 1

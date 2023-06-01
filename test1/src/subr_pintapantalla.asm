@@ -90,6 +90,10 @@ sub_preparapantalla:
 ;			enemigos que haya en pantalla (no me gusta pero por si hay jugadores que
 ;			no lo tienen claro)
 muestra_instrucciones:
+			;paro la musica que se estuviera reproduciendo
+			XOR			 A
+			CALL		play_musica
+			
 			CALL		DISSCR
 			
 			;cargando banco 0
@@ -150,12 +154,17 @@ pinta_parte_superior_pantalla:
 		OR			 A
 		JR			NZ, .siposyes6
 		CALL		carga_tiles_bancos	;cargando los tiles en los bancos 0 y 1 que son iguales y se sacan de la misma variable
+		;inicia música según corresponda
+		CALL		toca_musica_segun_corresponda
 		JR			.finsi
+
 .siposyes6:
 		LD			 A, (prota_pos_mapy)
 		CP			 6
 		JP			NZ, .finsi
 		CALL		carga_tiles_bancos	;cargando los tiles en los bancos 0 y 1 que son iguales y se sacan de la misma variable
+		;inicia música según corresponda
+		CALL		toca_musica_segun_corresponda
 		
 .finsi:
 		;aquí se actualizan las particularidades de cada nivel
@@ -170,43 +179,29 @@ pinta_parte_superior_pantalla:
 		CALL		pinta_extra_fondo
 		;pinta ayudas en el fondo si tiene
 		CALL		pinta_ayudas_habitacion
-		
-		
-		;ññññññññññññññññññññññ
-		
-			;si vida enemigo > 0 y nively = 6 entonces musica enemigo on
-			LD			 A, (habitacion_terminada) ;está terminada la habitación => no suena música de jefe
-			OR			 A
-			RET			 NZ
-			
-			LD			IX, enemigo1 ;el enemigo está muerto => no suena música de jefe
-			LD			 A, (IX)
-			OR			 A
-			RET			 Z
-			
+;fin_pinta_parte_superior_pantalla:
+			RET
+
+
+;;=====================================================
+;;TOCA_MUSICA_SEGUN_CORRESPONDA
+;;=====================================================	
+; función: mira qué música debe tocar durate el juego normal/enemigo (no la de gameover)
+toca_musica_segun_corresponda:
 			LD			 A, (prota_pos_mapy) ;si no es habitación de jefe => no suena música de jefe
 			CP			 6
-			RET			 NZ
+			JR			 Z, .pantalla_jefe_fin_fase
+.pantalla_normal:						
+			LD			 A, MUSICANORMAL
+			CALL		play_musica
+			RET
 			
+.pantalla_jefe_fin_fase:			
 			LD			 A, MUSICAJEFE
 			CALL		play_musica
-
+			RET
+;fin_toca_musica_segun_corresponda:
 		
-
-		;ññññññññññññññññññññññ
-		
-		
-		
-		
-		
-		
-;fin_pinta_parte_superior_pantalla:
-		RET
-
-
-
-
-
 
 ;;=====================================================
 ;;CARGA_TILES_BANCOS
@@ -910,6 +905,12 @@ fin_flip_calavera_esqueletos:
 ;;=====================================================	
 ; función: 	pone un texto cada vex que se sube o baja de nivel en el castillo
 cambio_nivel_entrefases:
+			;paro la musica que se estuviera reproduciendo
+			XOR			 A
+			CALL		play_musica
+			
+			CALL		DISSCR
+			
 			;si no se ha matado aun a drácula cuando se cambia de fase se restablece energía
 			LD			 A, (dracula_muerto)
 			OR			 A
@@ -947,6 +948,8 @@ cambio_nivel_entrefases:
 			
 			CALL		pinta_texto_entrefases
 			
+			CALL		DISSCR
+			
 			JP			espera_estandar
 ;fin_cabio_nivel_entrefases:
 
@@ -968,37 +971,6 @@ oculta_todos_sprites:
 
 
 ;;=====================================================
-;;BORRA_PANTALLA_INICIO
-;;=====================================================	
-; función: 	borra la pantalla de inicio de una forma chula caracter a caracter
-; entrada: 	-
-; salida: 	-
-; toca:		AF, BC
-borra_pantalla_inicio:
-			LD			 BC, 256	;tiles por pantalla en screen2 - 1 (768 total)
-			LD			 DE, 0		;posición tile "vacio"
-.loop:
-			PUSH		BC
-				LD			BC, TILMAP + 256
-				LD			 A, E
-				CALL	suma_A_BC
-			
-				CALL		pinta_tile_suelto
-				INC			 E
-		
-				LD			 BC, 850
-				CALL		retardo16bits
-			POP			BC
-			DEC			BC
-			LD			 A, B
-			OR			 C
-			JP			NZ, .loop
-			
-			JP			limpia_pantalla_completa
-;fin_borra_pantalla_inicio:
-
-
-;;=====================================================
 ;;MUESTRA_PANTALLA_INICIAL
 ;;=====================================================	
 ; función: 	muestra la pantalla de inicio del juego y queda ahí hasta que se pulse disparo (joystick o espacio)
@@ -1006,10 +978,12 @@ borra_pantalla_inicio:
 ; salida: 	
 ; toca:		TODOS.... muy importante DE
 muestra_pantalla_inicial:
+		;apago la música que hubiera
+		XOR			 A	; sin musica = 0 
+		CALL		play_musica
+		
 		CALL		DISSCR
-		
-		CALL		limpia_pantalla
-		
+
 		;cargamos mapa de pantalla completa
 		LD			HL, tiles_mapa_inicio
 		LD			DE, TILMAP
@@ -1040,9 +1014,6 @@ muestra_pantalla_inicial:
 		
 		CALL		ENASCR 
 		
-		LD			 A, MUSICATITULO
-		CALL		play_musica
-
 .mientras_nopulsado:
 		;compruebo espacio
 		XOR			 A
@@ -1059,10 +1030,6 @@ muestra_pantalla_inicial:
 		OR			 B		;uno el resultado del espacio + el resultado del botón de disparo
 		
 		JP			 Z, .mientras_nopulsado	;si A=0 no se pulsó ni disparo ni botón
-		
-		;se ha pulsado => apago la música de inicio
-		XOR			 A	; sin musica = 0 
-		CALL		play_musica
 		
 		;ejecuto sonido de comienzo de juego
 		LD			 A, SONIDOINICIO	;4
@@ -1086,9 +1053,6 @@ muestra_pantalla_inicial:
 		
 		POP			BC
 		DJNZ 		.parpadeo
-		
-		;borra pantalla bonito
-		CALL		borra_pantalla_inicio
 		
 		;muestra instrucciones
 		JP			muestra_instrucciones
@@ -1183,14 +1147,15 @@ oculta_tile_vida0:
 ;;=====================================================
 ; funcion: muestra mensaje cuando te matan una vida
 una_vida_menos;
-		XOR			 A ; SINMUSICA = 0
-		CALL		play_musica
+			;paro la musica que se estuviera reproduciendo
+			XOR			 A
+			CALL		play_musica
+			
+			CALL		DISSCR
 
-		CALL		DISSCR
-
-		LD			 A, (prota_vidas)
-		OR			 A
-		JP			NZ, quedan_vidas
+			LD			 A, (prota_vidas)
+			OR			 A
+			JP			NZ, quedan_vidas
 no_quedan_vidas:
 			;gameover normal (tipo 1)
 			XOR			 A
@@ -1215,6 +1180,10 @@ quedan_vidas:
 			CALL		ENASCR
 
 			CALL		espera_estandar
+			
+			;este es redundante pero se pone para cuando no te matan en un nivel que
+			;no sea 0 o 6
+			CALL		toca_musica_segun_corresponda
 			
 			JP			pinta_parte_superior_pantalla
 ;fin_una_vida_menos:

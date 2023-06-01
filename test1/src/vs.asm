@@ -60,6 +60,8 @@ START:
 		;inicializa pantalla y entonrno
 		CALL		sub_preparapantalla			;screen 2,2 sin click al pulsar tecla y color 16,1,1
 
+		;prepara sonidos en interrupciones
+		CALL		inicializa_replayer_efectos_interrupciones
 inicio_juego:
 		;pantalla_inicial
 		CALL		muestra_pantalla_inicial

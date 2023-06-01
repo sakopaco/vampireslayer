@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.05.31 - 22:30:18]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.06.01 - 20:33:06]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -237,8 +237,8 @@ Errors: 0
      222.  00:C000  (00:0002)           SONIDOBOMBA			equ		2
      223.  00:C000  (00:0001)           SONIDODISPARO		equ		1
      224.  00:C000                      
-     225.  00:C000  (00:0000)           SINMUSICA			equ		0
-     226.  00:C000  (00:0001)           MUSICATITULO		equ		1
+     225.  00:C000                      ;SINMUSICA			equ		0			;mejor uso un XOR A que es igual y mas rápido
+     226.  00:C000  (00:0001)           MUSICANORMAL		equ		1
      227.  00:C000  (00:0002)           MUSICAJEFE			equ		2
      228.  00:C000  (00:0003)           MUSICAGAMEOVER		equ		3
      229.  00:C000                      
@@ -248,8 +248,6 @@ Errors: 0
      233.  00:C000  (00:FD9A)           H.KEYI				equ     	#FD9A
      234.  00:C000  (00:FD9F)           H.TIMI	 			equ     	#FD9F
      235.  00:C000                      
-     236.  00:C000                      
-     237.  00:C000                      
       11   00:C000                      include "constantesyvariables/constantesenemigos.asm"
        1.  00:C000                      ;;=====================================================
        2.  00:C000                      ;; FICHERO constantesenemigos.asm
@@ -1130,7 +1128,7 @@ Errors: 0
      161   00:C51C                      ;;=====================================================
      162   00:C51C                      ;;VARIABLES PARA SONIDO 
      163   00:C51C                      ;;=====================================================
-     164   00:C51C  00                  musica_activa				DB 		0
+     164   00:C51C  00                  musica_activa:				DB		0
      165   00:C51D                      	include "datos/var_pt3_ayfx.asm"
        1.  00:C51D                      ;;=====================================================
        2.  00:C51D                      ;;VARIABLES PARA SONIDO 
@@ -1375,8 +1373,7 @@ Errors: 0
 00:00000004 X SONIDOINICIO
 00:00000002 X SONIDOBOMBA
 00:00000001 X SONIDODISPARO
-00:00000000 X SINMUSICA
-00:00000001 X MUSICATITULO
+00:00000001 X MUSICANORMAL
 00:00000002 X MUSICAJEFE
 00:00000003 X MUSICAGAMEOVER
 00:0000FD9A X H.KEYI

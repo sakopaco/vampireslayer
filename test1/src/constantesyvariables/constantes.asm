@@ -222,8 +222,8 @@ SONIDOINICIO		equ		4
 SONIDOBOMBA			equ		2
 SONIDODISPARO		equ		1
 
-SINMUSICA			equ		0
-MUSICATITULO		equ		1
+;SINMUSICA			equ		0			;mejor uso un XOR A que es igual y mas rápido
+MUSICANORMAL		equ		1
 MUSICAJEFE			equ		2
 MUSICAGAMEOVER		equ		3
 
@@ -232,6 +232,4 @@ MUSICAGAMEOVER		equ		3
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 H.KEYI				equ     	#FD9A
 H.TIMI	 			equ     	#FD9F
-
-
 
