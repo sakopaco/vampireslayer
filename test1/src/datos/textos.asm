@@ -76,7 +76,7 @@ texto_nivel:		DB	'LEVEL'
 
 texto_instruc:		
 texto_instruc1:		DB	'KILL ALL THE ENEMIES TO PASS    '
-texto_instruc2:		DB	'THROUGH THE GATES THEYLL GIVE   '
+texto_instruc2:		DB	'THROUGH THE GATES THEY WILL GIVE'
 texto_instruc3:		DB	'THEIR LIFE TO DEFEND THEIR MASTR'
 
 texto_entrefases:

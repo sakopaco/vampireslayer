@@ -146,41 +146,44 @@ muestra_instrucciones:
 ;;PINTA_PARTE_SUPERIOR_PANTALLA
 ;;=====================================================	
 ; función: pinta el escenario, los dos bancos superiores
-pinta_parte_superior_pantalla:
+pinta_parte_superior_pantalla:		
+		;si están todos lod enemigos muertos no se redibuja pantalla para que no toque el sonido
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		JR			NZ, .finsi
+		
 		;si es fila 0 o 6 carga todos los tiles, si no sólo actualiza el mapa
 		;y se aprovecha para poner el nombre del enemigo
 .siposyes0:
 		LD			 A, (prota_pos_mapy)
 		OR			 A
 		JR			NZ, .siposyes6
-		CALL		carga_tiles_bancos	;cargando los tiles en los bancos 0 y 1 que son iguales y se sacan de la misma variable
 		;inicia música según corresponda
 		CALL		toca_musica_segun_corresponda
+		CALL		carga_tiles_bancos	;cargando los tiles en los bancos 0 y 1 que son iguales y se sacan de la misma variable
 		JR			.finsi
 
 .siposyes6:
 		LD			 A, (prota_pos_mapy)
 		CP			 6
 		JP			NZ, .finsi
-		CALL		carga_tiles_bancos	;cargando los tiles en los bancos 0 y 1 que son iguales y se sacan de la misma variable
 		;inicia música según corresponda
 		CALL		toca_musica_segun_corresponda
+		CALL		carga_tiles_bancos	;cargando los tiles en los bancos 0 y 1 que son iguales y se sacan de la misma variable
 		
 .finsi:
-		;aquí se actualizan las particularidades de cada nivel
-		CALL		actualiza_tiles_nivel
-		;pinta puerta si es necesario
-		CALL		inicializa_puertas
-		
-		CALL		pinta_puertas
-		;pinta nombre enemigo si corresponde
-		CALL		pinta_nombre_enemigo
-		;pinta extras en el fondo si tiene
-		CALL		pinta_extra_fondo
-		;pinta ayudas en el fondo si tiene
-		CALL		pinta_ayudas_habitacion
+			;aquí se actualizan las particularidades de cada nivel
+			CALL		actualiza_tiles_nivel
+			;pinta puerta si es necesario
+			CALL		inicializa_puertas
+			CALL		pinta_puertas
+			;pinta nombre enemigo si corresponde
+			CALL		pinta_nombre_enemigo
+			;pinta extras en el fondo si tiene
+			CALL		pinta_extra_fondo
+			;pinta ayudas en el fondo si tiene
+			JP			pinta_ayudas_habitacion
 ;fin_pinta_parte_superior_pantalla:
-			RET
 
 
 ;;=====================================================
@@ -208,6 +211,9 @@ toca_musica_segun_corresponda:
 ;;=====================================================	
 ; función: carga en memoria los bancos 0 y 1
 carga_tiles_bancos:
+		;deshabilito pantalla para que no se vea la carga de tiles
+		CALL		DISSCR
+		
 		;cargando banco 0
 		;cargamos los patrones
 		LD			HL, tiles_patrones_nivel0
@@ -231,8 +237,12 @@ carga_tiles_bancos:
 		;cargamos mapa de pantalla banco 0 y 1
 		LD			HL, tiles_mapa_nivel0;(tiles_mapa)
 		LD			DE, TILMAP
-		JP			depack_VRAM 
-fin_carga_tiles_bancos:
+		CALL		depack_VRAM 
+		
+		;habilito pantalla para mostrar resultado tras la carga de tiles
+		CALL		ENASCR
+;fin_carga_tiles_bancos:
+		RET
 
 
 ;;=====================================================

@@ -244,15 +244,16 @@ fin_localiza_info_habitacion:
 ; salida: 	habitacion_recorrida (byte 14 de la fila de habitaciones) actualizada con OR A (en A la habitacion)
 ; toca:		IX, HL, AF
 terminada_habitacion_recorrida:
-		LD			IX, puntero_habitacion_actual
-		LD			 H, (IX)
-		LD			 L, (IX+1)
-		SET			 4, (HL)	
+			LD			IX, puntero_habitacion_actual
+			LD			 H, (IX)
+			LD			 L, (IX+1)
+			SET			 4, (HL)	
 		
-		LD			 A, ISHABTERMIN			;1 => cierto habitación terminada
-		LD			(habitacion_terminada), A
+			LD			 A, ISHABTERMIN			;1 => cierto habitación terminada
+			LD			(habitacion_terminada), A
+		
+			JP			pinta_parte_superior_pantalla
 fin_terminada_habitacion_recorrida:
-		RET
 
 
 ;;=====================================================

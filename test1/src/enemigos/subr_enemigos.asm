@@ -2570,7 +2570,8 @@ accion_enemigo_muerto4:
 			LD			(IY + 12), 	BORRASPRITE
 
 .elimino_enemigo:
-			CALL		toca_musica_segun_corresponda
+			XOR			 A
+			CALL		play_musica
 			
 			;marco enemigo como muerto para saltarlo incluso al examinar
 			LD			(IX), 0
@@ -2592,4 +2593,5 @@ decrementa_contador_enemigos:
 			
 			;si no quedan enemigos marco la pantalla como superada
 			JP			terminada_habitacion_recorrida
-fin_decrementa_contador_enemigos:
+;fin_decrementa_contador_enemigos:
+
