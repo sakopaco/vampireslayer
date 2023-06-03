@@ -147,10 +147,10 @@ muestra_instrucciones:
 ;;=====================================================	
 ; función: pinta el escenario, los dos bancos superiores
 pinta_parte_superior_pantalla:		
-		;si están todos lod enemigos muertos no se redibuja pantalla para que no toque el sonido
-		LD			 A, (habitacion_terminada)
-		OR			 A
-		JR			NZ, .finsi
+		;~ ;si están todos lod enemigos muertos no se redibuja pantalla para que no toque el sonido
+		;~ LD			 A, (habitacion_terminada)
+		;~ OR			 A
+		;~ JR			NZ, .finsi
 		
 		;si es fila 0 o 6 carga todos los tiles, si no sólo actualiza el mapa
 		;y se aprovecha para poner el nombre del enemigo
@@ -158,18 +158,22 @@ pinta_parte_superior_pantalla:
 		LD			 A, (prota_pos_mapy)
 		OR			 A
 		JR			NZ, .siposyes6
+
+		CALL		carga_tiles_bancos	;cargando los tiles en los bancos 0 y 1 que son iguales y se sacan de la misma variable
 		;inicia música según corresponda
 		CALL		toca_musica_segun_corresponda
-		CALL		carga_tiles_bancos	;cargando los tiles en los bancos 0 y 1 que son iguales y se sacan de la misma variable
+
 		JR			.finsi
 
 .siposyes6:
 		LD			 A, (prota_pos_mapy)
 		CP			 6
 		JP			NZ, .finsi
+
+		CALL		carga_tiles_bancos	;cargando los tiles en los bancos 0 y 1 que son iguales y se sacan de la misma variable
 		;inicia música según corresponda
 		CALL		toca_musica_segun_corresponda
-		CALL		carga_tiles_bancos	;cargando los tiles en los bancos 0 y 1 que son iguales y se sacan de la misma variable
+		
 		
 .finsi:
 			;aquí se actualizan las particularidades de cada nivel
@@ -184,26 +188,6 @@ pinta_parte_superior_pantalla:
 			;pinta ayudas en el fondo si tiene
 			JP			pinta_ayudas_habitacion
 ;fin_pinta_parte_superior_pantalla:
-
-
-;;=====================================================
-;;TOCA_MUSICA_SEGUN_CORRESPONDA
-;;=====================================================	
-; función: mira qué música debe tocar durate el juego normal/enemigo (no la de gameover)
-toca_musica_segun_corresponda:
-			LD			 A, (prota_pos_mapy) ;si no es habitación de jefe => no suena música de jefe
-			CP			 6
-			JR			 Z, .pantalla_jefe_fin_fase
-.pantalla_normal:						
-			LD			 A, MUSICANORMAL
-			CALL		play_musica
-			RET
-			
-.pantalla_jefe_fin_fase:			
-			LD			 A, MUSICAJEFE
-			CALL		play_musica
-			RET
-;fin_toca_musica_segun_corresponda:
 		
 
 ;;=====================================================
@@ -876,7 +860,6 @@ pinta_esqueletos:
 fin_pinta_esqueletos:
 
 
-
 ;;=====================================================
 ;;FLIP_CALAVERA_ESQUELETOS
 ;;=====================================================	
@@ -906,8 +889,9 @@ flip_calavera_esqueletos:
 
 		LD			BC, TILMAP + 170 + 11
 		LD			 D, 165
-		JP			pinta_tile_suelto
-fin_flip_calavera_esqueletos:
+		CALL		pinta_tile_suelto
+		RET
+;fin_flip_calavera_esqueletos
 
 
 ;;=====================================================

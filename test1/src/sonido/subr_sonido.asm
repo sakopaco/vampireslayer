@@ -96,6 +96,42 @@ play_musica:
 
 
 ;;=====================================================
+;;TOCA_MUSICA_SEGUN_CORRESPONDA
+;;=====================================================	
+; función: mira qué música debe tocar durate el juego normal/enemigo (no la de gameover)
+toca_musica_segun_corresponda:
+;si dracula_muerto
+			;si dracula está muerto siempre suena la canción de jefe
+			LD			 A, (dracula_muerto) 
+			OR			 A
+			JR			NZ, .musica_jefe
+			
+;otras_posibilidades
+			;si no es habitación de jefe (prota_pos_mapy = 6) => suena múscia normal
+			LD			 A, (prota_pos_mapy) 
+			CP			 6
+			JR			NZ, .musica_normal
+			
+			;lo que queda es que sea habitación de jefe
+			;pero si la habitación está terminada suene musica normal
+			CALL		localiza_info_habitacion
+			LD			 A, (habitacion_terminada)
+			OR			 A
+			JR			 Z, .musica_jefe
+			
+.musica_normal:
+			LD			 A, MUSICANORMAL
+			CALL		play_musica
+			RET
+			
+.musica_jefe:
+			LD			 A, MUSICAJEFE
+			CALL		play_musica
+			RET
+;fin_toca_musica_segun_corresponda:
+
+
+;;=====================================================
 ;;DEFINICIÓN DE SUBRUTINAS DE FERNANDO PARA COMPRESIÓN Y SONIDO
 ;;=====================================================
 subrutinas_sonido:

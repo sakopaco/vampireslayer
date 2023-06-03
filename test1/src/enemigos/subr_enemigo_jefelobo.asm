@@ -173,7 +173,8 @@ calcula_jefelobo_escena:
 				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_c), JEFELOBO_SPRITE3B
 				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_d), JEFELOBO_SPRITE4B
 				RET
-fin_calcula_jefelobo_escena:
+;fin_calcula_jefelobo_escena
+
 
 ;;=====================================================
 ;;CALCULA_JEFELOBO_POSYX
@@ -217,7 +218,7 @@ calcula_jefelobo_posyx:
 		LD			(IX + ESTRUCTURA_ENEMIGO.pasos), JEFELOBO_LIM_PASOS1
 		LD			(IX + ESTRUCTURA_ENEMIGO.posx), JEFELOBO_X
 		LD			(IX + ESTRUCTURA_ENEMIGO.posy), JEFELOBO_Y
-fin_calcula_jefelobo_posyx:
+;fin_calcula_jefelobo_posyx
 		RET
 
 
@@ -228,7 +229,7 @@ verifica_siguiente_posicion_jefelobo:
 		LD			 A, (IX + ESTRUCTURA_ENEMIGO.pasos)
 		OR			 A
 		JP			 Z, .modifica_posicion_jefelobo
-.no_modifica_posicion_fantasma:
+;no_modifica_posicion_jefelobo
 			DEC			(IX + ESTRUCTURA_ENEMIGO.pasos)
 			RET
 .modifica_posicion_jefelobo:		
@@ -252,7 +253,6 @@ verifica_siguiente_posicion_jefelobo:
 			RET
 .mira_posicion3:
 			LD			(IX + ESTRUCTURA_ENEMIGO.pasos), JEFELOBO_LIM_PASOS4
-fin_verifica_siguiente_posicion_jefelobo:
+;fin_verifica_siguiente_posicion_jefelobo
 			RET
-
 

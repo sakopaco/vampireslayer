@@ -252,8 +252,9 @@ terminada_habitacion_recorrida:
 			LD			 A, ISHABTERMIN			;1 => cierto habitación terminada
 			LD			(habitacion_terminada), A
 		
-			JP			pinta_parte_superior_pantalla
-fin_terminada_habitacion_recorrida:
+			CALL		pinta_parte_superior_pantalla
+;fin_terminada_habitacion_recorrida
+			RET
 
 
 ;;=====================================================
