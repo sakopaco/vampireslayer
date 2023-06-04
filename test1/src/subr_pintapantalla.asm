@@ -9,7 +9,7 @@ color_bomba1:				DB		COLROJO,COLROJO,COLROJO
 color_bomba2:				DB		COLROJOOSC,COLROJOOSC,COLROJOOSC
 
 ;fondo para borrar prota en pantalla final
-fondo_patalla_final:
+fondo_patalla_final:		DB	1,1,1,1,1,1
 							DB	1,1,1,1,1,1
 							DB	1,1,1,1,1,1
 							DB	1,1,1,1,1,1
@@ -17,7 +17,16 @@ fondo_patalla_final:
 							DB	1,1,1,1,1,1
 							DB	1,1,1,1,1,1
 							DB	1,1,1,1,1,1
-							DB	1,1,1,1,1,1
+							
+fondo_pantalla_dracula:		DB 	  0,  0,166,  0,167,  0,  0,  0,  0,  0,  0,  0,  0,166,  0,167,  0,  0
+							DB 	197,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,198
+							DB 	199,  0,  0,165,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,165,  0,  0,199
+							DB 	199,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,199
+							DB 	199,  0, 28, 27, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 27, 28,  0,199
+							DB 	199,  0,  0, 27, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 27,  0,  0,199
+							DB 	199,  0,  0, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27,  0,  0,199
+							DB 	200,  0,  0,  0, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24,  0,  0,  0,200
+							DB 	  0,  0,  0,  0,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  0,  0,  0,  0
 
 
 ;;=====================================================
@@ -678,26 +687,64 @@ fin_pinta_array:
 ; salida: 	
 ; toca:		HL
 pinta_extra_fondo:
-		XOR			 A
-		LD			(hay_antorchas), A
-		LD			(hay_esqueletos), A
-.examina_sihay_antorchas:
-		LD			 A, (habitacion_extras)
-		BIT			 0, A
-		JP			 Z, .examina_sihay_esqueletos	;si el bit 0 de extras es 0 no se pintan antorchas
-		LD			 A, 1
-		LD			(hay_antorchas), A
-		CALL		pinta_antorchas
-		RET
-	
+			XOR			 A
+			LD			(hay_antorchas), A
+			LD			(hay_esqueletos), A
+
+;examina_sihay_antorchas:
+			LD			 A, (habitacion_extras)
+			BIT			 0, A
+			JR			 Z, .examina_sihay_esqueletos	;si el bit 0 de extras es 0 no se pintan antorchas
+			LD			 A, 1
+			LD			(hay_antorchas), A
+			CALL		pinta_antorchas
+			RET
+		
 .examina_sihay_esqueletos:
-		LD			 A, (habitacion_actual)
-		AND			00100000b 	;el bit 5 del byte de posición dice si hay esqueletos
-		RET			 Z			;si el bit 0 de extras es 0 no se pintan los esqueletos
-		LD			 A, 1
-		LD			(hay_esqueletos), A
-		JP			pinta_esqueletos
-fin_pinta_extra_fondo:
+			LD			 A, (habitacion_actual)
+			AND			00100000b 	;el bit 5 del byte de posición dice si hay esqueletos
+			JR			 Z,	.examina_sies_habitaciondracula	;si el bit 0 de extras es 0 no se pintan los esqueletos
+			LD			 A, 1
+			LD			(hay_esqueletos), A
+			CALL		pinta_esqueletos
+			RET
+		
+.examina_sies_habitaciondracula:
+			;es nivel 6?
+			LD			 A, (prota_nivel)
+			CP			 6
+			RET			NZ
+			;es habitación drácula?
+			LD			 A, (prota_nivel)
+			CP			 6
+			RET			NZ
+		
+		
+			LD			HL,fondo_pantalla_dracula	;guardo puntero al array a pintar (como psar por referencia)
+			LD			(wordaux2),HL			;en la variable wordaux2
+
+			LD			HL,TILMAP + 64 + 7		;calcula posición en tilemap
+			LD			(wordaux1),HL			;guarda valor pos tilemap en wordaux1
+			LD			B,H						;coloca posición tilemap BC
+			LD			C,L
+
+			LD			 A, 9					;nº de filas
+			LD			(byteaux1), A			;nº de filas
+			LD			 A, 18					;nº de columnas
+			LD			(byteaux2), A			;nº de columnas
+			
+			CALL		pinta_array
+			RET
+			
+			
+			
+	;ñññññññññññññññññññññññññññññññññññññññññññ
+			
+			
+			
+			
+			
+;fin_pinta_extra_fondo
 
 
 ;;=====================================================
