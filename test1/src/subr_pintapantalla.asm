@@ -6,7 +6,9 @@ color_base:					DB		COLNEGRO,COLNEGRO,COLNEGRO
 
 ;colores de pantalla cuando se tira bomba
 color_bomba1:				DB		COLROJO,COLROJO,COLROJO
-color_bomba2:				DB		COLROJOOSC,COLROJOOSC,COLROJOOSC
+
+;colores de pantalla cuando se coge ayuda
+color_ayuda:				DB		COLVERDOSC,COLVERDOSC,COLVERDOSC
 
 ;fondo para borrar prota en pantalla final
 fondo_patalla_final:		DB	1,1,1,1,1,1
@@ -18,6 +20,7 @@ fondo_patalla_final:		DB	1,1,1,1,1,1
 							DB	1,1,1,1,1,1
 							DB	1,1,1,1,1,1
 							
+;fondo parra darle un toque personalizdo a la pantalla del jefe vampiro
 fondo_pantalla_dracula:		DB 	  0,  0,  5,  0,  5,  0,  5,  0,  5,  5,  0,  5,  0,  5,  0,  5,  0,  0
 							DB 	196,  0,  0,164,  0,164,  0,164,  0,  0,164,  0,164,  0,164,  0,  0,197
 							DB 	199,165,  0,  0,165,  0,  0,  0,  0,  0,  0,  0,  0,166,  0,  0,166,199
@@ -43,17 +46,16 @@ fondo_pantalla_dracula:		DB 	  0,  0,  5,  0,  5,  0,  5,  0,  5,  5,  0,  5,  0
 ; salida: 	-
 ; toca: 	todo
 color_pantalla:
-	LD		 A, (HL)			;FORCLR 
-	LD 		(FORCLR),A
+	LD		 A, (HL)			 
+	LD 		(FORCLR),A			;FORCLR
 	INC		HL
 	
-	LD		 A, (HL)			;BAKCLR
-	LD 		(BAKCLR),A
+	LD 		(BAKCLR),A			;BAKCLR
 	INC		HL
 	
-	LD		 A, (HL)
 	LD 		(BDRCLR),A			;BDRCLR
-	JP		CHGCLR 
+	CALL	CHGCLR 
+	RET
 ;fin_color_pantalla:
 
 
@@ -590,7 +592,26 @@ efecto_imagen_tira_reliquia:
 	
 		LD			HL, color_base
 		JP			color_pantalla
-fin_efecto_imagen_tira_reliquia:
+;fin_efecto_imagen_tira_reliquia:
+
+
+;;=====================================================
+;;EFECTO_IMAGEN_COGE_RELIQUIA
+;;=====================================================	
+; función: 	hace que el fondo de la pantalla parpadee
+; entrada: 	actualiza_reliquias_sn
+; salida: 	-
+; toca: 	todo
+efecto_imagen_coge_reliquia:
+		LD			HL, color_ayuda     ;color_ayuda
+		CALL		color_pantalla
+	
+		LD			BC, 4000
+		CALL		retardo16bits
+	
+		LD			HL, color_base
+		JP			color_pantalla
+;fin_efecto_imagen_coge_reliquia:
 
 
 ;;=====================================================

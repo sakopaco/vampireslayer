@@ -338,7 +338,9 @@ check_colision_ayudas:
 		;recibe valor A
 		OR		 0						;hubo colisión?
 		RET		 Z						;no hubo colisión por lo que sale
+		
 		;hubo colisión
+		CALL	efecto_imagen_coge_reliquia
 
 		;sonido dispara ayuda
 		LD		 A, SONIDORELIQUIA		;5
@@ -346,7 +348,9 @@ check_colision_ayudas:
 		LD		BC, 12000
 		CALL 	retardo16bits
 		LD		 A, SONIDOBOMBA
-		CALL	ayFX_INIT	
+		CALL	ayFX_INIT
+		
+		
 		
 		
 		;EJECUTA ACCIÓN Y SALE DE LA RUTINA	

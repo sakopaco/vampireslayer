@@ -126,6 +126,7 @@ fin_mira_disparo:
 
 ;;============================================================
 ;;Código de D. Fernando García (BitVision) (al que siempre le estaré agradecido)
+;;su difusión depende de su consentiiento o por lo menos de su mennción como autor
 ;check_8th_keyboard_row
 ;read_joy_0
 ;check_8th_keyboard_row
