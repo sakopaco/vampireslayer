@@ -18,15 +18,15 @@ fondo_patalla_final:		DB	1,1,1,1,1,1
 							DB	1,1,1,1,1,1
 							DB	1,1,1,1,1,1
 							
-fondo_pantalla_dracula:		DB 	  0,  0,166,  0,167,  0,  0,  0,  0,  0,  0,  0,  0,166,  0,167,  0,  0
-							DB 	197,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,198
-							DB 	199,  0,  0,165,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,165,  0,  0,199
+fondo_pantalla_dracula:		DB 	  0,  0,  5,  0,  5,  0,  5,  0,  5,  5,  0,  5,  0,  5,  0,  5,  0,  0
+							DB 	196,  0,  0,164,  0,164,  0,164,  0,  0,164,  0,164,  0,164,  0,  0,197
+							DB 	199,165,  0,  0,165,  0,  0,  0,  0,  0,  0,  0,  0,166,  0,  0,166,199
 							DB 	199,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,199
 							DB 	199,  0, 28, 27, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 27, 28,  0,199
 							DB 	199,  0,  0, 27, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 27,  0,  0,199
 							DB 	199,  0,  0, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27,  0,  0,199
-							DB 	200,  0,  0,  0, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24,  0,  0,  0,200
-							DB 	  0,  0,  0,  0,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  0,  0,  0,  0
+							DB 	198,  0,  0,  0, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24,  0,  0,  0,198
+							DB 	  4,  4,  4,  4,  5,  5,  5,  5,  5,  5,  5,  5,  5,  5,  4,  4,  4,  4
 
 
 ;;=====================================================
@@ -778,7 +778,7 @@ flip_llamas_antorchas:
 		;pos llamas: 136 / 151
 		LD			 A, (heartbeat_general)
 		AND			00000100b
-		JP			NZ, .pos2
+		JR			NZ, .pos2
 .pos1:
 		;tiles 196 / 197
 		LD			BC, TILMAP + 136
@@ -797,8 +797,9 @@ flip_llamas_antorchas:
 
 		LD			BC, TILMAP + 151
 		LD			 D, 196
-		JP			pinta_tile_suelto
-fin_flip_llamas_antorchas:
+		CALL		pinta_tile_suelto
+		RET
+;fin_flip_llamas_antorchas
 
 
 ;;=====================================================
@@ -806,6 +807,10 @@ fin_flip_llamas_antorchas:
 ;;=====================================================
 ; funcion: pinta las antorchas del fondo (luego sólo se mueve el fuecgo)
 pinta_antorchas:
+
+
+;antorchas ñññññññññ
+
 		;pinta antorcha izquierda
 		LD			BC, TILMAP + (32 * 5) + 8
 		LD			 D, (32 * 6) + 6
@@ -820,8 +825,9 @@ pinta_antorchas:
 		CALL		pinta_tile_suelto
 		LD			BC, TILMAP + (32 * 6) + 23
 		LD			 D, (32 * 6) + 7
-		JP			pinta_tile_suelto
-fin_pinta_antorchas:
+		CALL		pinta_tile_suelto
+		RET
+;fin_pinta_antorchas:
 
 
 ;;=====================================================
