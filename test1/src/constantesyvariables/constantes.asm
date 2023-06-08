@@ -203,7 +203,7 @@ BASEMAPX			equ		3
 ;; CONSTANTES DE INICIO PARA EL PROTA
 PROTANIVEL			equ		0			;nivel del castillo donde está 0-6 - los niveles (matrices) son 7 del 0 al 6
 PROTAVIDAS			equ		4
-PROTARELIQUIAS		equ		5
+PROTARELIQUIAS		equ		6
 PROTAPOSMAPX		equ		3			;pos columna 7 columnas 7: del 0 al 6 ;pos X dentro del nivel (se empieza en 0)
 PROTAPOSMAPY		equ		0			;pos fila los subniveles (filas) son 7 del 0 al 6 ;pos Y dentro del nivel (se empieza en 0)
 PROTAENERGIA		equ		248			;MAXENERGIA;valor real de la energía

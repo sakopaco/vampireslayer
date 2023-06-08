@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.06.05 - 20:38:20]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.06.08 - 13:58:25]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/vs.asm
 Errors: 0
@@ -156,7 +156,7 @@ Errors: 0
      148.  00:4000  (00:0003)           BASEMAPX: equ 00000003h
      149.  00:4000  (00:0000)           PROTANIVEL: equ 00000000h
      150.  00:4000  (00:0004)           PROTAVIDAS: equ 00000004h
-     151.  00:4000  (00:0005)           PROTARELIQUIAS: equ 00000005h
+     151.  00:4000  (00:0006)           PROTARELIQUIAS: equ 00000006h
      152.  00:4000  (00:0003)           PROTAPOSMAPX: equ 00000003h
      153.  00:4000  (00:0000)           PROTAPOSMAPY: equ 00000000h
      154.  00:4000  (00:00F8)           PROTAENERGIA: equ 000000F8h
@@ -872,10 +872,10 @@ Errors: 0
      123   00:407F                      ;;=====================================================
      124   00:407F                      ; funcion: inicializa las variables que afectan al prota y dónde empieza la partida
      125   00:407F                      inicializa_variables_prota:
-     126   00:407F  3E 06               		LD		 A, 6;PROTAVIDAS
+     126   00:407F  3E 04               		LD		 A, PROTAVIDAS
      127   00:4081  32 01 C0            		LD		(prota_vidas),A
      128   00:4084                      
-     129   00:4084  3E 05               		LD		 A, PROTARELIQUIAS
+     129   00:4084  3E 06               		LD		 A, PROTARELIQUIAS
      130   00:4086  32 02 C0            		LD		(prota_reliquias), A
      131   00:4089                      
      132   00:4089  3E F8               		LD		 A, PROTAENERGIA			
@@ -15663,8 +15663,8 @@ Errors: 0
 00:00000006 X BASEMAPY
 00:00000003 X BASEMAPX
 00:00000000   PROTANIVEL
-00:00000004 X PROTAVIDAS
-00:00000005   PROTARELIQUIAS
+00:00000004   PROTAVIDAS
+00:00000006   PROTARELIQUIAS
 00:00000003   PROTAPOSMAPX
 00:00000000   PROTAPOSMAPY
 00:000000F8   PROTAENERGIA
