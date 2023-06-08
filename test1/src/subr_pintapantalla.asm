@@ -331,7 +331,7 @@ pinta_tile_suelto:
 	IN		 	 A, (REGEST)	;leer registro de estado (recomendado)
 	LD		 	 A, C			;primero byte bajo	
 	OUT			(REGEST),A
-	LD		 	 A, B			;después byte alto  ********************** preguntar a Fernando cómo que byte bajo es B
+	LD		 	 A, B			;después byte alto 
 	OR			1000000b		;+64
 	OUT			(REGEST),A
 	
@@ -652,7 +652,7 @@ pinta_array:
 	;coloca puntero para pintar tile según BC
 	LD		 A,C			;primero byte bajo	
 	OUT		(REGEST),A
-	LD		 A,B			;después byte alto  ********************** preguntar a Fernando cómo que byte bajo es B
+	LD		 A,B			;después byte alto 
 	OR		1000000b		;+64
 	OUT		(REGEST),A
 

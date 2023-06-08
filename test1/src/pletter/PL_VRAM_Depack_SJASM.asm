@@ -1,3 +1,6 @@
+; nota importante: esta parte de código es adaptación del código de Saphyre
+;;por D. Fernando García (@BitVision) (al que siempre le estaré agradecido)
+;;su difusión depende de su consentimiento o por lo menos de su mención como autor
 ;-----------------------------------------------------------
 ; Pletter v0.5b VRAM Depacker v1.1 - 16Kb version
 ; HL = RAM/ROM source ; DE = VRAM destination

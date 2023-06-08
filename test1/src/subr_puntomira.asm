@@ -129,19 +129,7 @@ enemigo_jefe:
 		LD		 	B, 6
 		
 .loopjefe:	
-.examina_enemigojefe:
-		;~ LD			 A, (IX)
-		;~ CP			 2 ; enemigo muerto
-		;~ JR			 Z, .fin_examina_enemigojefe		
-		
-		;~ LD			 A, (IX)
-		;~ CP			 1 ; enemigo muerto
-		;~ JR			 Z, .fin_examina_enemigojefe	
-		
-		;~ LD			 A, (IX)
-		;~ CP			 0 ; enemigo muerto
-		;~ JR			 Z, .fin_examina_enemigojefe	
-		
+.examina_enemigojefe:		
 		LD			 A, (IX)
 		SUB			 2
 		JR			 C, .fin_examina_enemigojefe	

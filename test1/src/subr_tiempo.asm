@@ -19,6 +19,8 @@ fin_resetea_tiempo:
 ;;INCREMENTA_RELOJ
 ;;=====================================================	
 ; función: controla un contador 1/50 y segundos y minutos
+; nota importante: este código es una adaptación del del Fernando García en su
+; curso de ensamblador. Muchas gracias. Si se quiere reproducir cotacten con el (@bitvision) 
 incrementa_reloj:
 			LD				IX, tiempo
 

@@ -16,6 +16,9 @@
 	
 	
 START:
+; nota importante: esta parte de código es 
+;;Código de D. Fernando García (@BitVision) (al que siempre le estaré agradecido)
+;;su difusión depende de su consentimiento o por lo menos de su mención como autor
 ;;
 ;;INTRODUCCIÓN DE CÓDIGO PARA PODER USAR 32K
 ;;
@@ -141,10 +144,10 @@ inicializa_variables_prota:
 		;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
 		;será igual la posición inicial en todos los niveles
 	
-		LD		 A, PROTANIVEL
+		LD		 A, 4;PROTANIVEL
 		LD		(prota_nivel), A
 
-		LD		 A, PROTAPOSMAPY
+		LD		 A, 6;PROTAPOSMAPY
 		LD		(prota_pos_mapy), A	
 
 		LD		 A, PROTAPOSMAPX	

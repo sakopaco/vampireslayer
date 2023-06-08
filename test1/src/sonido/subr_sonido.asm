@@ -10,6 +10,10 @@
 ; entrada: 	HL  se le pasa cuando se llama a esta función y equivale a la melodía
 ; salida: 	-
 ; toca: 	HL, A
+; nota importante: esta parte de código es del curso de ensamblador
+;;por D. Fernando García (@BitVision) (al que siempre le estaré agradecido)
+;;su difusión depende de su consentimiento o por lo menos de su mención como autor
+;-----------------------------------------------------------
 inicializa_replayer_efectos_interrupciones:
 		DI
 		
@@ -47,6 +51,9 @@ inicializa_replayer_efectos_interrupciones:
 ; entrada: 	-
 ; salida: 	-
 ; toca: 	HL, A
+; nota importante: esta parte de código es del curso de ensamblador
+;;por D. Fernando García (@BitVision) (al que siempre le estaré agradecido)
+;;su difusión depende de su consentimiento o por lo menos de su mención como autor
 subrutina_isr:
 		CALL	PT3_ROUT			;envia los datos a los registros del PSG
 .musica:

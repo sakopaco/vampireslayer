@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.06.08 - 19:49:23]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.06.08 - 20:04:45]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -80,7 +80,7 @@ Errors: 0
       65.  00:C000  (00:0002)           COLVERDE			equ		2
       66.  00:C000  (00:0003)           COLVERCLA			equ		3
       67.  00:C000  (00:0004)           COLAZULOSC			equ		4
-      68.  00:C000  (00:0005)           COLAZULLA			equ		5
+      68.  00:C000  (00:0005)           COLAZUCLA			equ		5
       69.  00:C000  (00:0006)           COLROJOOSC			equ		6
       70.  00:C000  (00:0007)           COLCYAN				equ		7
       71.  00:C000  (00:0008)           COLROJO				equ		8
@@ -245,9 +245,13 @@ Errors: 0
      230.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
      231.  00:C000                      ;; CONSTANTES PARA INTERRUPCIONES
      232.  00:C000                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-     233.  00:C000  (00:FD9A)           H.KEYI				equ     	#FD9A
-     234.  00:C000  (00:FD9F)           H.TIMI	 			equ     	#FD9F
-     235.  00:C000                      
+     233.  00:C000                      ; nota importante: esta parte de código es adaptación del código 
+     234.  00:C000                      ;;por D. Fernando García (@BitVision) (al que siempre le estaré agradecido)
+     235.  00:C000                      ;;su difusión depende de su consentimiento o por lo menos de su mención como autor
+     236.  00:C000                      ;-----------------------------------------------------------
+     237.  00:C000  (00:FD9A)           H.KEYI				equ     	#FD9A
+     238.  00:C000  (00:FD9F)           H.TIMI	 			equ     	#FD9F
+     239.  00:C000                      
       11   00:C000                      include "constantesyvariables/constantesenemigos.asm"
        1.  00:C000                      ;;=====================================================
        2.  00:C000                      ;; FICHERO constantesenemigos.asm
@@ -555,7 +559,7 @@ Errors: 0
      304.  00:C000                      
      305.  00:C000                      ;;ETIQUETAS/CONSTANTES JEFECABALLERO
      306.  00:C000  (00:0012)           TIPOJEFECABALLERO		equ		18
-     307.  00:C000  (00:000D)           JCABALLERO_COLOR		equ		13		;15 - BLANCO
+     307.  00:C000  (00:0001)           JCABALLERO_COLOR		equ		1		;1 - NEGRO
      308.  00:C000  (00:000E)           JCABALLERO_COLOR6		equ		14		;15 - BLANCO
      309.  00:C000  (00:00C0)           JCABALLERO_SPRITE1A		equ		192
      310.  00:C000  (00:00C4)           JCABALLERO_SPRITE2A		equ		196
@@ -1257,7 +1261,7 @@ Errors: 0
 00:00000002 X COLVERDE
 00:00000003 X COLVERCLA
 00:00000004 X COLAZULOSC
-00:00000005 X COLAZULLA
+00:00000005 X COLAZUCLA
 00:00000006 X COLROJOOSC
 00:00000007 X COLCYAN
 00:00000008 X COLROJO
@@ -1649,7 +1653,7 @@ Errors: 0
 00:00000005 X FUEGO_DANO
 00:00000055 X FUEGO_ENERGIA
 00:00000012 X TIPOJEFECABALLERO
-00:0000000D X JCABALLERO_COLOR
+00:00000001 X JCABALLERO_COLOR
 00:0000000E X JCABALLERO_COLOR6
 00:000000C0 X JCABALLERO_SPRITE1A
 00:000000C4 X JCABALLERO_SPRITE2A

@@ -65,7 +65,7 @@ COLNEGRO			equ		1
 COLVERDE			equ		2
 COLVERCLA			equ		3
 COLAZULOSC			equ		4
-COLAZULLA			equ		5
+COLAZUCLA			equ		5
 COLROJOOSC			equ		6
 COLCYAN				equ		7
 COLROJO				equ		8
@@ -230,6 +230,10 @@ MUSICAGAMEOVER		equ		3
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; CONSTANTES PARA INTERRUPCIONES
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; nota importante: esta parte de código es adaptación del código 
+;;por D. Fernando García (@BitVision) (al que siempre le estaré agradecido)
+;;su difusión depende de su consentimiento o por lo menos de su mención como autor
+;-----------------------------------------------------------
 H.KEYI				equ     	#FD9A
 H.TIMI	 			equ     	#FD9F
 

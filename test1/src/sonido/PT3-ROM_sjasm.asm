@@ -17,6 +17,10 @@
 
 
 ;SJASM version by BTV 2016
+; nota importante: esta parte de código es adaptación 
+;;por D. Fernando García (@BitVision) (al que siempre le estaré agradecido)
+;;su difusión depende de su consentimiento o por lo menos de su mención como autor
+;-----------------------------------------------------------
 
 
 		; --- CONSTANT VALUES DEFINITION ---
