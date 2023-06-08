@@ -142,7 +142,11 @@ array_puerta_izquierda_abierta:
 		DB	1,0,1
 		DB	1,0,4
 		DB	1,4,4
-
+		
+array_puerta_escalera_abierta:
+		DB	0,0,0
+		DB	0,0,0
+				
 
 ;;=====================================================
 ;;SUBRUTINAS
@@ -402,13 +406,21 @@ pinta_puerta_arr:
 .pinta_puerta_escalera
 			LD			IX, puerta_escalera
 			CALL		actualiza_variables_pinta_array
-			CALL		pinta_array
-			JP			fin_pinta_puerta_arr
+			CALL		pinta_array	
+			
+			;debe pintarse la puerta de la escalera habierta
+			LD			 A, (habitacion_terminada)
+			LD			 B, A
+			LD			 A, (dracula_muerto)
+			OR			 B
+			CALL		NZ, pinta_puerta_escalera_abierta
+			RET
+			
 .pinta_puerta_normal
 			LD			IX, puerta_arriba
 			LD			HL, array_puerta_arriba
 .fin_si
-
+		
 		LD			 A, (habitacion_terminada)
 		LD			 B, A
 		LD			 A, (dracula_muerto)
@@ -423,8 +435,8 @@ pinta_puerta_arr:
 		CALL		actualiza_variables_pinta_array
 	
 		CALL		pinta_array
-fin_pinta_puerta_arr:
 		RET
+;fin_pinta_puerta_arr:
 
 
 ;;=====================================================

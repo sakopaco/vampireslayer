@@ -183,9 +183,7 @@ pinta_parte_superior_pantalla:
 
 		CALL		carga_tiles_bancos	;cargando los tiles en los bancos 0 y 1 que son iguales y se sacan de la misma variable
 		;inicia música según corresponda
-		CALL		toca_musica_segun_corresponda
-		
-		
+		CALL		toca_musica_segun_corresponda		
 .finsi:
 			;aquí se actualizan las particularidades de cada nivel
 			CALL		actualiza_tiles_nivel
@@ -701,6 +699,29 @@ fin_pinta_array:
 
 
 ;;=====================================================
+;;PINTA_PUERTA_ESCALERA_ABIERTA
+;;=====================================================	
+; función: 	pinta tiles vacios donde está la puerta de la escalera
+pinta_puerta_escalera_abierta:
+			LD			HL, array_puerta_escalera_abierta	;guardo puntero al array a pintar (como psar por referencia)
+			LD			(wordaux2),HL						;en la variable wordaux2
+	
+			LD			HL,TILMAP + (32 * 4)+ 16;calcula posición en tilemap
+			LD			(wordaux1),HL			;guarda valor pos tilemap en wordaux1
+			LD			B,H						;coloca posición tilemap BC
+			LD			C,L
+	
+			LD		 	 A, 2	;nº de filas
+			LD			(byteaux1), A
+		
+			LD		 	 A, 3	;nº de columnas
+			LD			(byteaux2), A
+		
+			JP			pinta_array
+;fin_pinta_puerta_escalera_abierta
+
+
+;;=====================================================
 ;;PINTA_EXTRA_FONDO (antorchas / esqueletos)
 ;;=====================================================	
 ; función: 	pinta las antorchas con valores base
@@ -757,13 +778,7 @@ pinta_extra_fondo:
 			CALL		pinta_array
 			RET
 			
-			
-			
-	;ñññññññññññññññññññññññññññññññññññññññññññ
-			
-			
-			
-			
+	
 			
 ;fin_pinta_extra_fondo
 
@@ -1696,7 +1711,7 @@ pinta_nombre_enemigo:
 			OR			 A
 			RET			NZ
 			
-			;si habitación vacia no hace falta música
+			;si habitación vacia no hace falta nombre
 			LD			 A, (habitacion_terminada) 
 			OR			 A
 			RET			 NZ
