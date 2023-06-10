@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.06.10 - 13:41:51]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.06.10 - 13:51:37]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -151,8 +151,8 @@ Errors: 0
      136.  00:C000  (00:0007)           DURACIONBALLEJ      equ		#07;7
      137.  00:C000                      
      138.  00:C000                      ;; RADIOS DE DISPARO
-     139.  00:C000  (00:0008)           RADIOAYUDAX 		equ		#08;8
-     140.  00:C000  (00:0008)           RADIOAYUDAY 		equ		#08;8
+     139.  00:C000  (00:000B)           RADIOAYUDAX 		equ		11
+     140.  00:C000  (00:000B)           RADIOAYUDAY 		equ		11
      141.  00:C000                      
      142.  00:C000                      ;;POSICIÓN INICIAL DEL SPRITE DEL PUNTO DE MIRA
      143.  00:C000  (00:0074)           POSXPM				equ		116
@@ -1316,8 +1316,8 @@ Errors: 0
 00:00000002 X ANCHOAYUDA
 00:0000EA60 X RETARDOREL
 00:00000007 X DURACIONBALLEJ
-00:00000008 X RADIOAYUDAX
-00:00000008 X RADIOAYUDAY
+00:0000000B X RADIOAYUDAX
+00:0000000B X RADIOAYUDAY
 00:00000074 X POSXPM
 00:00000060 X POSYPM
 00:00000001 X ISHABTERMIN
