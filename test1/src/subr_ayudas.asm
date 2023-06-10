@@ -329,6 +329,11 @@ fin_pinta_ayudas_habitacion:
 ; salida: 	-
 ; toca:		todo
 check_colision_ayudas:
+	;si ya se ha terminado la habitación no se muestran ayudas (como no se muestran enemigos)
+		LD			 A, (habitacion_terminada)
+		OR			 A
+		RET			NZ
+		
 	LD		IX, (puntero_ayuda_actual)
 	LD		 A, (IX)
 	OR		 A							;está activa la ayuda de pantalla?
@@ -343,15 +348,9 @@ check_colision_ayudas:
 		CALL	efecto_imagen_coge_reliquia
 
 		;sonido dispara ayuda
-		LD		 A, SONIDORELIQUIA		;5
-		CALL	ayFX_INIT	
-		LD		BC, 12000
-		CALL 	retardo16bits
-		LD		 A, SONIDOBOMBA
-		CALL	ayFX_INIT
-		
-		
-		
+		LD			 A, SONIDORELIQUIA
+		LD			 C, 1
+		CALL		ayFX_INIT
 		
 		;EJECUTA ACCIÓN Y SALE DE LA RUTINA	
 		LD		HL, fin_check_colision_ayudas ;se guarda dónde volver

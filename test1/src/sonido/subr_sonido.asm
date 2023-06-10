@@ -150,7 +150,7 @@ subrutinas_sonido:
 ;;DEFINICIÓN DE CANCIONES Y EFECTOS DE SONIDO
 ;;=====================================================		
 sfx_bank:
-	incbin "sfx.afb"
+	incbin "sfx2.afb"
 	
 musica_normal:
 	incbin "ingame7.99"

@@ -54,8 +54,7 @@ color_pantalla:
 	INC		HL
 	
 	LD 		(BDRCLR),A			;BDRCLR
-	CALL	CHGCLR 
-	RET
+	jp		CHGCLR 
 ;fin_color_pantalla:
 
 
@@ -233,9 +232,8 @@ carga_tiles_bancos:
 		CALL		depack_VRAM 
 		
 		;habilito pantalla para mostrar resultado tras la carga de tiles
-		CALL		ENASCR
+		JP			ENASCR
 ;fin_carga_tiles_bancos:
-		RET
 
 
 ;;=====================================================
@@ -281,7 +279,7 @@ pinta_vidas:
 	LD		DE, TILMAP + POSVIDAS 	;inicio posición en el mapa de tiles de las vidas
 	LD		BC, NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
 	JP		LDIRVM
-fin_pinta_vidas:
+;fin_pinta_vidas:
 	
 	
 ;;=====================================================
@@ -298,7 +296,7 @@ pinta_reliquias:
 	LD		DE, TILMAP + POSRELIQ 	;inicio posición en el mapa de tiles de las vidas
 	LD		BC, NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
 	JP		LDIRVM
-fin_pinta_reliquias:
+;fin_pinta_reliquias:
 	
 
 ;;=====================================================
@@ -337,7 +335,7 @@ pinta_tile_suelto:
 	
 	LD			 A, D			;nº de patrón de tile a pintar
 	OUT			(REGESCVDP),A	;escribe A en VRAM en la posición indicada por los dos OUT anteriores
-fin_pinta_tile_suelto:
+;fin_pinta_tile_suelto:
 	RET
 
 
@@ -422,7 +420,7 @@ pinta_ener_tile_2:
 		CP		 B
 		JR		C,pinta_ener_tile_2_negro
 		LD		(HL),TILEMAPROJO
-		JR		fin_mira_pinta_energia		;siempre estará pintado el cuadro mínimo
+		RET			;siempre estará pintado el cuadro mínimo
 pinta_ener_tile_2_negro:
 		LD		(HL),C
 fin_mira_pinta_energia:
@@ -442,7 +440,7 @@ pinta_energia:
 	LD		DE, TILMAP + POSENERG 	;inicio posición en el mapa de tiles de las vidas
 	LD		BC, NMAXVIDREL			;hay 8 posiciones para vidas/reliquias o espacios en negro si no tiene 8 vidas/reliquias
 	JP		LDIRVM
-fin_pinta_energia:
+;fin_pinta_energia:
 
 
 ;;=====================================================
@@ -485,7 +483,7 @@ borra_mapa:
 	LD		DE,TILMAP + POSMAPLIN7
 	LD		BC,NHABNIVEL
 	JP		LDIRVM
-fin_borra_mapa:
+;fin_borra_mapa:
 
 
 ;;=====================================================
@@ -571,7 +569,7 @@ posiciona_en_mapa:
 
 .fin_pinta_pos_mapa:
 	JP		pinta_tile_suelto
-fin_posiciona_en_mapa:
+;fin_posiciona_en_mapa:
 
 
 ;;=====================================================
@@ -633,7 +631,7 @@ efecto_imagen_coge_reliquia:
 			;~ LD			 A, 6					;nº de columnas
 			;~ LD			(byteaux2), A			;nº de columnas
 pinta_array:
-	EX		AF, AF'
+	;EX		AF, AF'
 	
 	LD		 A, (byteaux1)
 	LD		 D, A
@@ -688,8 +686,8 @@ pinta_array:
 	OR		 A
 	CALL	NZ,.pa_pinta_fila
 	
-	EX		AF, AF'
-fin_pinta_array:
+	;EX		AF, AF'
+;fin_pinta_array:
 	RET
 ;;variables asocidas a la función pinta_array
 ;wordaux1:		DW	0	;almacena la posición en el tilemap 0 al 675
@@ -777,9 +775,6 @@ pinta_extra_fondo:
 			
 			CALL		pinta_array
 			RET
-			
-	
-			
 ;fin_pinta_extra_fondo
 
 
@@ -800,7 +795,7 @@ actualiza_elementos_fondo:
 		OR			 A
 		RET			 Z
 		JP			flip_calavera_esqueletos
-fin_actualiza_elementos_fondo:
+;fin_actualiza_elementos_fondo:
 
 
 ;;=====================================================
@@ -843,10 +838,6 @@ flip_llamas_antorchas:
 ;;=====================================================
 ; funcion: pinta las antorchas del fondo (luego sólo se mueve el fuecgo)
 pinta_antorchas:
-
-
-;antorchas ñññññññññ
-
 		;pinta antorcha izquierda
 		LD			BC, TILMAP + (32 * 5) + 8
 		LD			 D, (32 * 6) + 6
@@ -861,8 +852,7 @@ pinta_antorchas:
 		CALL		pinta_tile_suelto
 		LD			BC, TILMAP + (32 * 6) + 23
 		LD			 D, (32 * 6) + 7
-		CALL		pinta_tile_suelto
-		RET
+		JP			pinta_tile_suelto
 ;fin_pinta_antorchas:
 
 
@@ -978,8 +968,7 @@ flip_calavera_esqueletos:
 
 		LD			BC, TILMAP + 170 + 11
 		LD			 D, 165
-		CALL		pinta_tile_suelto
-		RET
+		JP			pinta_tile_suelto
 ;fin_flip_calavera_esqueletos
 
 
