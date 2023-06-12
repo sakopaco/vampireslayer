@@ -1,13 +1,17 @@
 BUGS:
-- hay que testear más la música pero creo que ya está OK
+* el hacer una prueba buena la música de final muerte de prota no apareció...
+no sé si estaba demasiado baja pero es importante... mirar
 
 TODO A:
+- hay que poner más ayudas... con todo el mapeado no pude pasar de la 3º
+nivel 0 más plantas
+resto niveles ás armaduras
+más cruces
+más vidas
 - poner página extra con cuenta en itchio y github
 - poner mapas con la documentación
-- Actualizar carátula en inglés y español
+
 
 TODO B (deseable):
-- poner tiles al matar a drácula
-- cuando coges una ayuda el sonido no acaba (ver con Manuel)
-- el disparo y la explosión parecen el mismo sonido (ver con Manuel)
+
 
