@@ -1,6 +1,4 @@
 BUGS:
-* el hacer una prueba buena la música de final muerte de prota no apareció...
-no sé si estaba demasiado baja pero es importante... mirar
 
 TODO A:
 - hay que poner más ayudas... con todo el mapeado no pude pasar de la 3º
@@ -10,7 +8,6 @@ más cruces
 más vidas
 - poner página extra con cuenta en itchio y github
 - poner mapas con la documentación
-
 
 TODO B (deseable):
 

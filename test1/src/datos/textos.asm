@@ -2,7 +2,7 @@
 ;;CONTANTES TEXTOS
 ;;=====================================================
 
-IF	1=1	; 1=1 versión en español y 1=0 verión en inglés
+IF	1=1	; 1=1 versión en español y 2=2 verión en inglés y 3 = 3 versión portugues
 ;textos en español
 texto_vidas:		DB	'VIDAS'
 
@@ -64,7 +64,10 @@ texto_deaddracula8:	DB	'                                ';32 caracteres
 
 texto_graciasporjugar:	DB	'GRACIAS POR JUGAR '
 
-ELSE		
+ENDIF
+
+IF	2=0
+		
 ;textos en inglés
 texto_vidas:		DB	'LIVES'
 

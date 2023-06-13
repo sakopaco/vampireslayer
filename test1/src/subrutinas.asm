@@ -490,10 +490,6 @@ fin_mira_si_esta_juego_terminado:
 ; función: muestra la página de fin de juego según parámetro de entrada
 ; entrada: PROTAMUERTO	0  FINBUENO	1  FINMALO 2
 game_over:		
-			;paro la musica que se estuviera reproduciendo
-			XOR			 A
-			CALL		play_musica
-				
 			;apago pantalla
 			CALL		DISSCR
 			
@@ -628,11 +624,12 @@ game_over:
 .fin_examina_final:
 			;apago pantalla
 			CALL		ENASCR
-
-[4]			CALL		espera_estandar
-
+			
+			;pongo la música del gameover
 			LD			 A, MUSICAGAMEOVER
 			CALL		play_musica
+				
+[7]			CALL	espera_estandar
 
 			JP			inicio_juego
 fin_game_over:
