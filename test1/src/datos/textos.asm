@@ -2,8 +2,8 @@
 ;;CONTANTES TEXTOS
 ;;=====================================================
 
-IF	1=1	; 1=1 versión en español y 2=2 verión en inglés y 3 = 3 versión portugues
-;textos en español
+;1=1 versión en español y 2=2 verión en inglés y 3 = 3 versión portugues
+IF	1=0	;textos en español
 texto_vidas:		DB	'VIDAS'
 
 texto_energia:		DB	'ENERG.'
@@ -28,7 +28,7 @@ texto_iniciar:		DB	'   PULSA FUEGO PARA COMENZAR  '	;30 caracteres
 texto_vidamenos:	DB 	'VIGILA TUS VIDAS'	;16 caracteres
 
 texto_gameover:		DB	'HAS MUERTO'	;10 caracteres
-texto_gameover1A:	DB	'VIVIRAS PARA SIEMPRE COMO UN'	;29 caracteres
+texto_gameover1A:	DB	'VIVIRAS PARA SIEMPRE COMO UN '	;29 caracteres
 texto_gameover1B:	DB	'ZOMBI. SER ESCLAVO DE DRACULA'	;29 caracteres
 texto_gameover1C:	DB	'        SERA TU FIN.         ' ;29 caracteres
 
@@ -66,9 +66,7 @@ texto_graciasporjugar:	DB	'GRACIAS POR JUGAR '
 
 ENDIF
 
-IF	2=0
-		
-;textos en inglés
+IF	2=0 ;textos en inglés
 texto_vidas:		DB	'LIVES'
 
 texto_energia:		DB	'ENERGY'
@@ -130,6 +128,70 @@ texto_deaddracula8:	DB	'                                ';32 caracteres
 texto_graciasporjugar:	DB	'THANKS FOR PLAYING'
 
 ENDIF
+
+IF	3=3	;textos en portugues
+texto_vidas:        	DB    'VIDAS'
+
+texto_energia:        	DB    'ENERG.'
+
+texto_reliquias:    	DB    'RELIQ.'
+
+texto_nivel:        	DB    'NIVEL'
+
+texto_instruc:
+texto_instruc1:        	DB    'MATAM TODOS OS INIMIGOS PARA    '
+texto_instruc2:        	DB    'ATRAVESSAR OS PORTOES DAO A VIDA'
+texto_instruc3:        	DB    'PARA DEFENDER O SEU MESTRE      '
+
+texto_entrefases:
+texto_entrefases1:    	DB    'ESPERA UM MOMENTO NAS ESCADAS '  ; 30 caracteres 
+texto_entrefases2:    	DB    'ENQUANTO OS SEUS OLHOS SE     '    ; 30 caracteres
+texto_entrefases3:    	DB    'ADAPTAM A ESCURIDAO E AO      '    ; 30 caracteres
+texto_entrefases4:    	DB    'HORROR QUE O ESPERA.          '    ; 30 caracteres
+
+texto_iniciar:        	DB    '    PREMIR FOGO PARA INICIAR  ' ;30 caracteres+
+
+texto_vidamenos:    	DB    'UMA VIDA A MENOS'    ;16 caracteres +
+
+texto_gameover:        	DB    'MORRESTE. '    ;10 caracteres+
+texto_gameover1A:    	DB    ' VIVERAS PARA SEMPRE COMO UM '   ;29 caracteres+
+texto_gameover1B:    	DB    '   ZOMBIE. SER ESCRAVO DE    '   ;29 caracteres+
+texto_gameover1C:    	DB    '   DRACULA SERA O TEU FIM.   ' 	;29 caracteres+
+
+texto_finalbueno:
+texto_finalbueno1:    	DB    'DEPOIS DE ACABAR COM O VAMPIRO  ';32 caracteres
+texto_finalbueno2:    	DB    'CHEFE A ENERGIA QUE MANTINHA O  ';32 caracteres
+texto_finalbueno3:    	DB    'CASTELO E OS INIMIGOS JUNTOS DES';32 caracteres
+texto_finalbueno4:    	DB    'APARECE E ENTERRA-OS PARA SEMPRE';32 caracteres
+texto_finalbueno5:    	DB    'ESTAS EXAUSTO APOS A VITORIA  EN';32 caracteres
+texto_finalbueno6:    	DB    'TREGAS A RAPARIGA AO SEU PAI E  ';32 caracteres
+texto_finalbueno7:    	DB    'RECEBES A TUA MERECIDA RECOMPNSA';32 caracteres
+texto_finalbueno8:    	DB    'TORNASTE-TE UMA LENDA           ';32 caracteres
+
+texto_finalmalo
+texto_finalmalo1:    	DB    'NAO FOSTE SUFICIENTEMENTE       ';32 caracteres
+texto_finalmalo2:    	DB    'RAPIDO. DEPOIS DE ELIMINARES O  ';32 caracteres
+texto_finalmalo3:    	DB    'VAMPIRO CHEFE A ENERGIA QUE     ';32 caracteres
+texto_finalmalo4:    	DB    'MANTINHA O CASTELO E OS INIMIGOS';32 caracteres
+texto_finalmalo5:    	DB    'UNIDOS DESAPARECE. TU E A       ';32 caracteres
+texto_finalmalo6:    	DB    'MARITZA FICAM ENTERRADOS DEBAIXO';32 caracteres
+texto_finalmalo7:    	DB    'DOS ESCOMBROS.                  ';32 caracteres
+texto_finalmalo8:   	DB    '                                ';32 caracteres
+
+texto_deaddracula:
+texto_deaddracula1:    	DB    'PARABENS. DERROTARAM O DRACULA  ';32 caracteres
+texto_deaddracula2:    	DB    'E SALVARAM A RAPARIGA. MAS ISTO ';32 caracteres
+texto_deaddracula3:    	DB    'NAO E O FIM. O PODER DO VAMPIRO ';32 caracteres
+texto_deaddracula4:    	DB    'MANTEVE O CASTELO DE PE. TEM DE ';32 caracteres
+texto_deaddracula5:    	DB    'ESCAPAR ANTES QUE ELE CAIA SOBRE';32 caracteres
+texto_deaddracula6:    	DB    'AS VOSSAS CABECAS.              ';32 caracteres
+texto_deaddracula7:    	DB    '     ISTO AINDA NAO ACABOU.     ';32 caracteres
+texto_deaddracula8:    	DB    '                                ';32 caracteres
+
+texto_graciasporjugar:  DB    'OBRIGADO POR JOGAR'
+
+ENDIF
+
 
 ;NOMBRE DE ENEMIGOS
 nombre_jefes:

@@ -105,7 +105,7 @@ mover_cienpies:
 			LD			(IY + 3), CIENPIES_COLOR
 		
 			RET
-fin_mover_cienpies:
+;fin_mover_cienpies:
 
 
 ;;=====================================================
@@ -140,6 +140,6 @@ calcula_cienpies_escena:
 .fin_enemigo1_poner_escena2:								; END IF
 ;.fin_cambia_escena_enemigo1:							; END IF			
 		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), A
-fin_calcula_cienpies_escena:
+;fin_calcula_cienpies_escena:
 		RET
 		

@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.06.13 - 20:22:26]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.06.14 - 21:12:44]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/vs.asm
 Errors: 0
@@ -155,8 +155,8 @@ Errors: 0
      147.  00:4000  (00:0006)           BASEMAPY: equ 00000006h
      148.  00:4000  (00:0003)           BASEMAPX: equ 00000003h
      149.  00:4000  (00:0000)           PROTANIVEL: equ 00000000h
-     150.  00:4000  (00:0004)           PROTAVIDAS: equ 00000004h
-     151.  00:4000  (00:0006)           PROTARELIQUIAS: equ 00000006h
+     150.  00:4000  (00:0003)           PROTAVIDAS: equ 00000003h
+     151.  00:4000  (00:0004)           PROTARELIQUIAS: equ 00000004h
      152.  00:4000  (00:0003)           PROTAPOSMAPX: equ 00000003h
      153.  00:4000  (00:0000)           PROTAPOSMAPY: equ 00000000h
      154.  00:4000  (00:00F8)           PROTAENERGIA: equ 000000F8h
@@ -875,10 +875,10 @@ Errors: 0
      126   00:407F                      ;;=====================================================
      127   00:407F                      ; funcion: inicializa las variables que afectan al prota y dónde empieza la partida
      128   00:407F                      inicializa_variables_prota:
-     129   00:407F  3E 04               		LD		 A, PROTAVIDAS
+     129   00:407F  3E 03               		LD		 A, PROTAVIDAS
      130   00:4081  32 01 C0            		LD		(prota_vidas),A
      131   00:4084                      
-     132   00:4084  3E 06               		LD		 A, PROTARELIQUIAS
+     132   00:4084  3E 08               		LD		 A, 8;PROTARELIQUIAS
      133   00:4086  32 02 C0            		LD		(prota_reliquias), A
      134   00:4089                      
      135   00:4089  3E F8               		LD		 A, PROTAENERGIA			
@@ -893,7 +893,7 @@ Errors: 0
      144   00:4098                      		;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
      145   00:4098                      		;será igual la posición inicial en todos los niveles
      146   00:4098                      	
-     147   00:4098  3E 00               		LD		 A, PROTANIVEL
+     147   00:4098  3E 02               		LD		 A, 2;PROTANIVEL
      148   00:409A  32 00 C0            		LD		(prota_nivel), A
      149   00:409D                      
      150   00:409D  3E 00               		LD		 A, PROTAPOSMAPY
@@ -1366,7 +1366,7 @@ Errors: 0
      444.  00:4286                      		
      445.  00:4286                      		;pinto texto de matar a drácula
      446.  00:4286  11 00 19            		LD			DE, TILMAP + 256		;destino en vram (pos tiles + 256 (banco 0 + 256 banco )
-     447.  00:4289  21 68 B8            		LD			HL, texto_deaddracula	;guardo puntero al array a pintar (como psar por referencia)
+     447.  00:4289  21 69 B8            		LD			HL, texto_deaddracula	;guardo puntero al array a pintar (como psar por referencia)
      448.  00:428C  01 00 01            		LD			BC, 32 * 8
      449.  00:428F  CD 5C 00            		CALL		LDIRVM
      450.  00:4292                      		
@@ -1448,7 +1448,7 @@ Errors: 0
      526.  00:42F0  CD 2A 90            				CALL		depack_VRAM
      527.  00:42F3                      
      528.  00:42F3  11 00 1A            				LD			DE, TILMAP + 512	;destino en vram (pos tiles + 256 (banco 0 + 256 banco )
-     529.  00:42F6  21 68 B6            				LD			HL, texto_finalbueno
+     529.  00:42F6  21 69 B6            				LD			HL, texto_finalbueno
      530.  00:42F9  01 00 01            				LD			BC, 32 * 8
      531.  00:42FC  CD 5C 00            				CALL		LDIRVM
      532.  00:42FF                      				
@@ -1460,7 +1460,7 @@ Errors: 0
      537.  00:4311  CD 61 4A            				CALL		limpia_pantalla_inferior
      538.  00:4314                      				
      539.  00:4314  11 67 1A            				LD			DE, TILMAP + 512 + 103	;destino en vram (pos tiles + 256 (banco 0 + 256 banco )
-     540.  00:4317  21 68 B9            				LD			HL, texto_graciasporjugar
+     540.  00:4317  21 69 B9            				LD			HL, texto_graciasporjugar
      541.  00:431A  01 12 00            				LD			BC, 18
      542.  00:431D  CD 5C 00            				CALL		LDIRVM
      543.  00:4320                      				
@@ -1500,12 +1500,12 @@ Errors: 0
      577.  00:435D  11 41 1A            				LD			DE, TILMAP + 577	;destino en vram
      578.  00:4360  CD 5C 00            				CALL		LDIRVM
      579.  00:4363                      				
-     580.  00:4363  21 2E B6            				LD			HL, texto_gameover1B;guardo puntero al array a pintar (como psar por referencia)
+     580.  00:4363  21 2F B6            				LD			HL, texto_gameover1B;guardo puntero al array a pintar (como psar por referencia)
      581.  00:4366  01 1D 00            				LD			BC, 29				;nº posiciones a pintar
      582.  00:4369  11 61 1A            				LD			DE, TILMAP + 609	;destino en vram
      583.  00:436C  CD 5C 00            				CALL		LDIRVM
      584.  00:436F                      				
-     585.  00:436F  21 4B B6            				LD			HL, texto_gameover1C;guardo puntero al array a pintar (como psar por referencia)
+     585.  00:436F  21 4C B6            				LD			HL, texto_gameover1C;guardo puntero al array a pintar (como psar por referencia)
      586.  00:4372  01 1D 00            				LD			BC, 29				;nº posiciones a pintar
      587.  00:4375  11 81 1A            				LD			DE, TILMAP + 641	;destino en vram
      588.  00:4378  CD 5C 00            				CALL		LDIRVM
@@ -1541,7 +1541,7 @@ Errors: 0
      618.  00:43AB  CD 2A 90            				CALL		depack_VRAM
      619.  00:43AE                      
      620.  00:43AE  11 00 1A            				LD			DE, TILMAP + 512	;destino en vram (pos tiles + 256 (banco 0 + 256 banco )
-     621.  00:43B1  21 68 B7            				LD			HL, texto_finalmalo
+     621.  00:43B1  21 69 B7            				LD			HL, texto_finalmalo
      622.  00:43B4  01 00 01            				LD			BC, 32 * 8
      623.  00:43B7  CD 5C 00            				CALL		LDIRVM	
      624.  00:43BA                      .fin_examina_final:
@@ -1704,7 +1704,7 @@ Errors: 0
       86.  00:4439                      ; salida: 	
       87.  00:4439                      ; toca:		HL, A, C (y seguramente más)
       88.  00:4439                      carga_valores_iniciales_variables:
-      89.  00:4439  21 69 BA            		LD			HL, inicializacion_variables
+      89.  00:4439  21 6A BA            		LD			HL, inicializacion_variables
       90.  00:443C  11 00 C0            		LD			DE, #C000
       91.  00:443F  01 1D 05            		LD			BC, fin_inicializacion_variables - inicializacion_variables
       92.  00:4442  ED B0               		LDIR
@@ -2022,10 +2022,10 @@ Errors: 0
      258.  00:4622  11 00 30            		LD			DE,CLRTBL + #1000
      259.  00:4625  CD 2A 90            		CALL		depack_VRAM
      260.  00:4628                      		;cargamos los textos de la parte inferior en el icioma que correspondan
-     261.  00:4628  CD E5 B9            		CALL 		pinta_texto_vida
-     262.  00:462B  CD F1 B9            		CALL 		pinta_texto_energia
-     263.  00:462E  CD FD B9            		CALL		pinta_texto_reliquias
-     264.  00:4631  C3 09 BA            		JP 			pinta_texto_nivel
+     261.  00:4628  CD E6 B9            		CALL 		pinta_texto_vida
+     262.  00:462B  CD F2 B9            		CALL 		pinta_texto_energia
+     263.  00:462E  CD FE B9            		CALL		pinta_texto_reliquias
+     264.  00:4631  C3 0A BA            		JP 			pinta_texto_nivel
      265.  00:4634                      fin_pinta_parte_inferior_pantalla:
      266.  00:4634                      
      267.  00:4634                      
@@ -2782,7 +2782,7 @@ Errors: 0
     1018.  00:49D1  11 00 18            			LD			DE, TILMAP
     1019.  00:49D4  CD 2A 90            			CALL		depack_VRAM
     1020.  00:49D7                      			
-    1021.  00:49D7  CD 15 BA            			CALL		pinta_texto_entrefases
+    1021.  00:49D7  CD 16 BA            			CALL		pinta_texto_entrefases
     1022.  00:49DA                      			
     1023.  00:49DA  CD 41 00            			CALL		DISSCR
     1024.  00:49DD                      			
@@ -2845,8 +2845,8 @@ Errors: 0
     1081.  00:4A16  11 00 30            		LD			DE,CLRTBL + #1000
     1082.  00:4A19  CD 2A 90            		CALL		depack_VRAM
     1083.  00:4A1C                      	
-    1084.  00:4A1C  CD 45 BA            		CALL		pinta_textos_inicio_disparo
-    1085.  00:4A1F  CD 5D BA            		CALL		pinta_textos_inicio_autoria
+    1084.  00:4A1C  CD 46 BA            		CALL		pinta_textos_inicio_disparo
+    1085.  00:4A1F  CD 5E BA            		CALL		pinta_textos_inicio_autoria
     1086.  00:4A22                      		
     1087.  00:4A22  CD 44 00            		CALL		ENASCR 
     1088.  00:4A25                      		
@@ -2880,12 +2880,12 @@ Errors: 0
     1116.  00:4A3F  01 28 23            		LD 			BC, 9000
     1117.  00:4A42  CD 1A 57            		CALL		retardo16bits
     1118.  00:4A45                      		
-    1119.  00:4A45  CD 51 BA            		CALL		pinta_textos_inicio_disparo_blanco
+    1119.  00:4A45  CD 52 BA            		CALL		pinta_textos_inicio_disparo_blanco
     1120.  00:4A48                      		
     1121.  00:4A48  01 28 23            		LD 			BC, 9000
     1122.  00:4A4B  CD 1A 57            		CALL		retardo16bits
     1123.  00:4A4E                      		
-    1124.  00:4A4E  CD 45 BA            		CALL		pinta_textos_inicio_disparo
+    1124.  00:4A4E  CD 46 BA            		CALL		pinta_textos_inicio_disparo
     1125.  00:4A51                      		
     1126.  00:4A51  C1                  		POP			BC
     1127.  00:4A52  10 EA               		DJNZ 		.parpadeo
@@ -3471,7 +3471,7 @@ Errors: 0
     1707.  00:4D7D                      			
     1708.  00:4D7D                      			;hay que poner nombre según nivel
     1709.  00:4D7D                      			;los nombre son consecutivos con saltos de 9 posiciones
-    1710.  00:4D7D  21 7A B9            			LD			HL, nombre_jefes
+    1710.  00:4D7D  21 7B B9            			LD			HL, nombre_jefes
     1711.  00:4D80                      			
     1712.  00:4D80  3A 00 C0            			LD			 A, (prota_nivel)
     1713.  00:4D83  47                  			LD			 B, A
@@ -5835,7 +5835,7 @@ Errors: 0
      105:  00:5869  FD 36 03 0C         			LD			(IY + 3), CIENPIES_COLOR
      106:  00:586D                      		
      107:  00:586D  C9                  			RET
-     108:  00:586E                      fin_mover_cienpies:
+     108:  00:586E                      ;fin_mover_cienpies:
      109:  00:586E                      
      110:  00:586E                      
      111:  00:586E                      ;;=====================================================
@@ -5870,7 +5870,7 @@ Errors: 0
      140:  00:5890                      .fin_enemigo1_poner_escena2:								; END IF
      141:  00:5890                      ;.fin_cambia_escena_enemigo1:							; END IF			
      142:  00:5890  DD 77 0E            		LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), A
-     143:  00:5893                      fin_calcula_cienpies_escena:
+     143:  00:5893                      ;fin_calcula_cienpies_escena:
      144:  00:5893  C9                  		RET
      145:  00:5894                      		
       20.  00:5894                      include "subr_enemigo_arana.asm"
@@ -15172,368 +15172,430 @@ Errors: 0
        2.  00:B4EC                      ;;CONTANTES TEXTOS
        3.  00:B4EC                      ;;=====================================================
        4.  00:B4EC                      
-       5.  00:B4EC                      IF	1=1	; 1=1 versión en español y 2=2 verión en inglés y 3 = 3 versión portugues
-       6.  00:B4EC                      ;textos en español
-       7.  00:B4EC  56 49 44 41 53      texto_vidas:		DB	'VIDAS'
-       8.  00:B4F1                      
-       9.  00:B4F1  45 4E 45 52 47 2E   texto_energia:		DB	'ENERG.'
-      10.  00:B4F7                      
-      11.  00:B4F7  52 45 4C 49 51 2E   texto_reliquias:	DB	'RELIQ.'
-      12.  00:B4FD                      
-      13.  00:B4FD  4E 49 56 45 4C      texto_nivel:		DB	'NIVEL'
-      14.  00:B502                      
-      15.  00:B502                      texto_instruc:		
-      16.  00:B502                      texto_instruc1:		DB	'MATA A TODOS LOS ENEMIGOS PARA  '
-      16.  00:B502  4D 41 54 41 20 41 20 54 4F 44 4F 53 20 4C 4F 53 
-      16.  00:B512  20 45 4E 45 4D 49 47 4F 53 20 50 41 52 41 20 20 
-      17.  00:B522                      texto_instruc2:		DB	'ATRAVESAR LAS PUERTAS ELLOS DAN '
-      17.  00:B522  41 54 52 41 56 45 53 41 52 20 4C 41 53 20 50 55 
-      17.  00:B532  45 52 54 41 53 20 45 4C 4C 4F 53 20 44 41 4E 20 
-      18.  00:B542                      texto_instruc3:		DB	'SU VIDA PARA DEFENDER A SU AMO  '
-      18.  00:B542  53 55 20 56 49 44 41 20 50 41 52 41 20 44 45 46 
-      18.  00:B552  45 4E 44 45 52 20 41 20 53 55 20 41 4D 4F 20 20 
-      19.  00:B562                      
-      20.  00:B562                      texto_entrefases:
-      21.  00:B562                      texto_entrefases1:	DB	'  ESPERAS UN MOMENTO EN LAS   '	; 30 caracteres
-      21.  00:B562  20 20 45 53 50 45 52 41 53 20 55 4E 20 4D 4F 4D 
-      21.  00:B572  45 4E 54 4F 20 45 4E 20 4C 41 53 20 20 20 
-      22.  00:B580                      texto_entrefases2:	DB  'ESCALERAS MIENTRAS TUS OJOS   '	; 30 caracteres
-      22.  00:B580  45 53 43 41 4C 45 52 41 53 20 4D 49 45 4E 54 52 
-      22.  00:B590  41 53 20 54 55 53 20 4F 4A 4F 53 20 20 20 
-      23.  00:B59E                      texto_entrefases3:	DB  'SE ACOSTUMBRAN A LA OSCURIDAD '	; 30 caracteres
-      23.  00:B59E  53 45 20 41 43 4F 53 54 55 4D 42 52 41 4E 20 41 
-      23.  00:B5AE  20 4C 41 20 4F 53 43 55 52 49 44 41 44 20 
-      24.  00:B5BC                      texto_entrefases4:	DB  'Y EL HORROR QUE TE ESPERA.    '	; 30 caracteres
-      24.  00:B5BC  59 20 45 4C 20 48 4F 52 52 4F 52 20 51 55 45 20 
-      24.  00:B5CC  54 45 20 45 53 50 45 52 41 2E 20 20 20 20 
-      25.  00:B5DA                      
-      26.  00:B5DA                      texto_iniciar:		DB	'   PULSA FUEGO PARA COMENZAR  '	;30 caracteres
-      26.  00:B5DA  20 20 20 50 55 4C 53 41 20 46 55 45 47 4F 20 50 
-      26.  00:B5EA  41 52 41 20 43 4F 4D 45 4E 5A 41 52 20 20 
-      27.  00:B5F8                      
-      28.  00:B5F8                      texto_vidamenos:	DB 	'VIGILA TUS VIDAS'	;16 caracteres
-      28.  00:B5F8  56 49 47 49 4C 41 20 54 55 53 20 56 49 44 41 53 
-      29.  00:B608                      
-      30.  00:B608                      texto_gameover:		DB	'HAS MUERTO'	;10 caracteres
-      30.  00:B608  48 41 53 20 4D 55 45 52 54 4F 
-      31.  00:B612                      texto_gameover1A:	DB	'VIVIRAS PARA SIEMPRE COMO UN'	;29 caracteres
-      31.  00:B612  56 49 56 49 52 41 53 20 50 41 52 41 20 53 49 45 
-      31.  00:B622  4D 50 52 45 20 43 4F 4D 4F 20 55 4E 
-      32.  00:B62E                      texto_gameover1B:	DB	'ZOMBI. SER ESCLAVO DE DRACULA'	;29 caracteres
-      32.  00:B62E  5A 4F 4D 42 49 2E 20 53 45 52 20 45 53 43 4C 41 
-      32.  00:B63E  56 4F 20 44 45 20 44 52 41 43 55 4C 41 
-      33.  00:B64B                      texto_gameover1C:	DB	'        SERA TU FIN.         ' ;29 caracteres
-      33.  00:B64B  20 20 20 20 20 20 20 20 53 45 52 41 20 54 55 20 
-      33.  00:B65B  46 49 4E 2E 20 20 20 20 20 20 20 20 20 
-      34.  00:B668                      
-      35.  00:B668                      texto_finalbueno:
-      36.  00:B668                      texto_finalbueno1:	DB	'TRAS ACABAR CON EL VAMPIRO JEFE ';32 caracteres
-      36.  00:B668  54 52 41 53 20 41 43 41 42 41 52 20 43 4F 4E 20 
-      36.  00:B678  45 4C 20 56 41 4D 50 49 52 4F 20 4A 45 46 45 20 
-      37.  00:B688                      texto_finalbueno2:	DB	'LA ENERGIA QUE MANTENIA CASTILLO';32 caracteres
-      37.  00:B688  4C 41 20 45 4E 45 52 47 49 41 20 51 55 45 20 4D 
-      37.  00:B698  41 4E 54 45 4E 49 41 20 43 41 53 54 49 4C 4C 4F 
-      38.  00:B6A8                      texto_finalbueno3:	DB	'Y ENEMIGOS DESAPARECE Y LOS     ';32 caracteres
-      38.  00:B6A8  59 20 45 4E 45 4D 49 47 4F 53 20 44 45 53 41 50 
-      38.  00:B6B8  41 52 45 43 45 20 59 20 4C 4F 53 20 20 20 20 20 
-      39.  00:B6C8                      texto_finalbueno4:	DB	'SEPULTA PARA SIEMPRE. ESTAS     ';32 caracteres
-      39.  00:B6C8  53 45 50 55 4C 54 41 20 50 41 52 41 20 53 49 45 
-      39.  00:B6D8  4D 50 52 45 2E 20 45 53 54 41 53 20 20 20 20 20 
-      40.  00:B6E8                      texto_finalbueno5:	DB	'EXTENUADO TRAS LA VICTORIA. DAS ';32 caracteres
-      40.  00:B6E8  45 58 54 45 4E 55 41 44 4F 20 54 52 41 53 20 4C 
-      40.  00:B6F8  41 20 56 49 43 54 4F 52 49 41 2E 20 44 41 53 20 
-      41.  00:B708                      texto_finalbueno6:	DB	'LA CHICA A SU PADRE Y RECIBES TU';32 caracteres
-      41.  00:B708  4C 41 20 43 48 49 43 41 20 41 20 53 55 20 50 41 
-      41.  00:B718  44 52 45 20 59 20 52 45 43 49 42 45 53 20 54 55 
-      42.  00:B728                      texto_finalbueno7:	DB	'MERECIDA RECOMPENSA.            ';32 caracteres
-      42.  00:B728  4D 45 52 45 43 49 44 41 20 52 45 43 4F 4D 50 45 
-      42.  00:B738  4E 53 41 2E 20 20 20 20 20 20 20 20 20 20 20 20 
-      43.  00:B748                      texto_finalbueno8:	DB	'TE HAS CONVERTIDO EN UNA LEYENDA';32 caracteres
-      43.  00:B748  54 45 20 48 41 53 20 43 4F 4E 56 45 52 54 49 44 
-      43.  00:B758  4F 20 45 4E 20 55 4E 41 20 4C 45 59 45 4E 44 41 
-      44.  00:B768                      
-      45.  00:B768                      texto_finalmalo:
-      46.  00:B768                      texto_finalmalo1:	DB	'                                ';32 caracteres
-      46.  00:B768  20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 
-      46.  00:B778  20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 
-      47.  00:B788                      texto_finalmalo2:	DB	'NO FUISTE SUFICIENTEMENTE RAPIDO';32 caracteres
-      47.  00:B788  4E 4F 20 46 55 49 53 54 45 20 53 55 46 49 43 49 
-      47.  00:B798  45 4E 54 45 4D 45 4E 54 45 20 52 41 50 49 44 4F 
-      48.  00:B7A8                      texto_finalmalo3:	DB	'TRAS ACABAR CON EL VAMPIRO JEFE ';32 caracteres
-      48.  00:B7A8  54 52 41 53 20 41 43 41 42 41 52 20 43 4F 4E 20 
-      48.  00:B7B8  45 4C 20 56 41 4D 50 49 52 4F 20 4A 45 46 45 20 
-      49.  00:B7C8                      texto_finalmalo4:	DB	'LA ENERGIA QUE MANTENIA CASTILLO';32 caracteres
-      49.  00:B7C8  4C 41 20 45 4E 45 52 47 49 41 20 51 55 45 20 4D 
-      49.  00:B7D8  41 4E 54 45 4E 49 41 20 43 41 53 54 49 4C 4C 4F 
-      50.  00:B7E8                      texto_finalmalo5:	DB	'Y ENEMIGOS DESAPARECE. MARITZA Y';32 caracteres
-      50.  00:B7E8  59 20 45 4E 45 4D 49 47 4F 53 20 44 45 53 41 50 
-      50.  00:B7F8  41 52 45 43 45 2E 20 4D 41 52 49 54 5A 41 20 59 
-      51.  00:B808                      texto_finalmalo6:	DB	'TU CAEIS SEPULTADOS BAJO LOS    ';32 caracteres
-      51.  00:B808  54 55 20 43 41 45 49 53 20 53 45 50 55 4C 54 41 
-      51.  00:B818  44 4F 53 20 42 41 4A 4F 20 4C 4F 53 20 20 20 20 
-      52.  00:B828                      texto_finalmalo7:	DB	'ESCOMBROS.                      ';32 caracteres
-      52.  00:B828  45 53 43 4F 4D 42 52 4F 53 2E 20 20 20 20 20 20 
-      52.  00:B838  20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 
-      53.  00:B848                      texto_finalmalo8:	DB	'                                ';32 caracteres
-      53.  00:B848  20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 
-      53.  00:B858  20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 
-      54.  00:B868                      
-      55.  00:B868                      texto_deaddracula:
-      56.  00:B868                      texto_deaddracula1:	DB	'FELICIDADES. VENCISTE A DRACULA ';32 caracteres
-      56.  00:B868  46 45 4C 49 43 49 44 41 44 45 53 2E 20 56 45 4E 
-      56.  00:B878  43 49 53 54 45 20 41 20 44 52 41 43 55 4C 41 20 
-      57.  00:B888                      texto_deaddracula2:	DB	'Y RESCATASTE A LA CHICA. PERO   ';32 caracteres
-      57.  00:B888  59 20 52 45 53 43 41 54 41 53 54 45 20 41 20 4C 
-      57.  00:B898  41 20 43 48 49 43 41 2E 20 50 45 52 4F 20 20 20 
-      58.  00:B8A8                      texto_deaddracula3:	DB	'NO ES EL FINAL. EL PODER DEL    ';32 caracteres
-      58.  00:B8A8  4E 4F 20 45 53 20 45 4C 20 46 49 4E 41 4C 2E 20 
-      58.  00:B8B8  45 4C 20 50 4F 44 45 52 20 44 45 4C 20 20 20 20 
-      59.  00:B8C8                      texto_deaddracula4:	DB	'VAMPIRO MANTENIA EN PIE EL      ';32 caracteres
-      59.  00:B8C8  56 41 4D 50 49 52 4F 20 4D 41 4E 54 45 4E 49 41 
-      59.  00:B8D8  20 45 4E 20 50 49 45 20 45 4C 20 20 20 20 20 20 
-      60.  00:B8E8                      texto_deaddracula5:	DB	'CASTILLO. DEBES ESCAPAR ANTES   ';32 caracteres
-      60.  00:B8E8  43 41 53 54 49 4C 4C 4F 2E 20 44 45 42 45 53 20 
-      60.  00:B8F8  45 53 43 41 50 41 52 20 41 4E 54 45 53 20 20 20 
-      61.  00:B908                      texto_deaddracula6:	DB	'DE QUE DERRUMBE SOBRE VUESTRAS  ';32 caracteres
-      61.  00:B908  44 45 20 51 55 45 20 44 45 52 52 55 4D 42 45 20 
-      61.  00:B918  53 4F 42 52 45 20 56 55 45 53 54 52 41 53 20 20 
-      62.  00:B928                      texto_deaddracula7:	DB	'CABEZAS. ESTO AUN NO HA ACABADO.';32 caracteres
-      62.  00:B928  43 41 42 45 5A 41 53 2E 20 45 53 54 4F 20 41 55 
-      62.  00:B938  4E 20 4E 4F 20 48 41 20 41 43 41 42 41 44 4F 2E 
-      63.  00:B948                      texto_deaddracula8:	DB	'                                ';32 caracteres
-      63.  00:B948  20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 
-      63.  00:B958  20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 
-      64.  00:B968                      
-      65.  00:B968                      texto_graciasporjugar:	DB	'GRACIAS POR JUGAR '
-      65.  00:B968  47 52 41 43 49 41 53 20 50 4F 52 20 4A 55 47 41 
-      65.  00:B978  52 20 
-      66.  00:B97A                      
-      67.  00:B97A                      ENDIF
-      68.  00:B97A                      
-      69.  00:B97A                      IF	2=0
-      70.  00:B97A                    ~ 		
-      71.  00:B97A                    ~ ;textos en inglés
-      72.  00:B97A                    ~ texto_vidas:		DB	'LIVES'
-      73.  00:B97A                    ~ 
-      74.  00:B97A                    ~ texto_energia:		DB	'ENERGY'
-      75.  00:B97A                    ~ 
-      76.  00:B97A                    ~ texto_reliquias:	DB	'RELICS'
-      77.  00:B97A                    ~ 
-      78.  00:B97A                    ~ texto_nivel:		DB	'LEVEL'
-      79.  00:B97A                    ~ 
-      80.  00:B97A                    ~ texto_instruc:		
-      81.  00:B97A                    ~ texto_instruc1:		DB	'KILL ALL THE ENEMIES TO PASS    '
-      82.  00:B97A                    ~ texto_instruc2:		DB	'THROUGH THE GATES THEY WILL GIVE'
-      83.  00:B97A                    ~ texto_instruc3:		DB	'THEIR LIFE TO DEFEND THEIR MASTR'
-      84.  00:B97A                    ~ 
-      85.  00:B97A                    ~ texto_entrefases:
-      86.  00:B97A                    ~ texto_entrefases1:	DB	'  YOU WAIT FOR A MOMENT ON THE'	; 30 caracteres
-      87.  00:B97A                    ~ texto_entrefases2:	DB  'STAIRS WHILE YOUR EYES ADJUST '	; 30 caracteres
-      88.  00:B97A                    ~ texto_entrefases3:	DB  'TO THE DARKNESS AND THE HORROR'	; 30 caracteres
-      89.  00:B97A                    ~ texto_entrefases4:	DB  'THAT AWAITS YOU.              '	; 30 caracteres
-      90.  00:B97A                    ~ 
-      91.  00:B97A                    ~ texto_iniciar:		DB	' PUSH TRIGER TO START THE GAME'
-      92.  00:B97A                    ~ 
-      93.  00:B97A                    ~ texto_vidamenos:	DB 	'WATCH YOUR LIVES'	;16 caracteres
-      94.  00:B97A                    ~ 
-      95.  00:B97A                    ~ texto_gameover:		DB	'GAME OVER '	;10 caracteres
-      96.  00:B97A                    ~ texto_gameover1A:	DB	' YOU WILL LIVE FOREVER LIKE  '	;29 caracteres
-      97.  00:B97A                    ~ texto_gameover1B:	DB	'A ZOMBI. BEING DRACULAS SLAVE'	;29 caracteres
-      98.  00:B97A                    ~ texto_gameover1C:	DB	'        WILL BE YOUR END     ' ;29 caracteres
-      99.  00:B97A                    ~ 
-     100.  00:B97A                    ~ texto_finalbueno:
-     101.  00:B97A                    ~ texto_finalbueno1:	DB	'AFTER FINISHING THE VAMPIRE     ';32 caracteres
-     102.  00:B97A                    ~ texto_finalbueno2:	DB	'BOSS THE ENERGY THAT MAINTAINED ';32 caracteres
-     103.  00:B97A                    ~ texto_finalbueno3:	DB	'THE CASTLE AND ENEMIES          ';32 caracteres
-     104.  00:B97A                    ~ texto_finalbueno4:	DB	'DISAPPEARS AND BURIES THEM      ';32 caracteres
-     105.  00:B97A                    ~ texto_finalbueno5:	DB	'FOREVER YOU ARE EXHAUSTED AFTER ';32 caracteres
-     106.  00:B97A                    ~ texto_finalbueno6:	DB	'THE VICTORY. YOU GIVE THE GIRL  ';32 caracteres
-     107.  00:B97A                    ~ texto_finalbueno7:	DB	'TO HER FATHER AND RECEIVE YOUR  ';32 caracteres
-     108.  00:B97A                    ~ texto_finalbueno8:	DB	'DESERVED REWARD. YOU RE A LEGEND';32 caracteres
-     109.  00:B97A                    ~ 
-     110.  00:B97A                    ~ texto_finalmalo:
-     111.  00:B97A                    ~ texto_finalmalo1:	DB	'                                ';32 caracteres
-     112.  00:B97A                    ~ texto_finalmalo2:	DB	'YOU WERE NOT FAST ENOUGHT       ';32 caracteres
-     113.  00:B97A                    ~ texto_finalmalo3:	DB	'AFTER FINISHING THE BOSS VAMPIRE';32 caracteres
-     114.  00:B97A                    ~ texto_finalmalo4:	DB	'THE ENERGY THAT MAINTAINED THE  ';32 caracteres
-     115.  00:B97A                    ~ texto_finalmalo5:	DB	'CASTLE AND ENEMIES DISAPPEARED  ';32 caracteres
-     116.  00:B97A                    ~ texto_finalmalo6:	DB	'YOU AND MARITZA ARE BURIED DOWN ';32 caracteres
-     117.  00:B97A                    ~ texto_finalmalo7:	DB	'UNDER TONS OF RUBBLE            ';32 caracteres
-     118.  00:B97A                    ~ texto_finalmalo8:	DB	'                                ';32 caracteres
-     119.  00:B97A                    ~ 
-     120.  00:B97A                    ~ texto_deaddracula:
-     121.  00:B97A                    ~ texto_deaddracula1:	DB	'CONGRATULATIONS. YOU BEAT       ';32 caracteres
-     122.  00:B97A                    ~ texto_deaddracula2:	DB	'DRACULA AND YOU RESCUED THE     ';32 caracteres
-     123.  00:B97A                    ~ texto_deaddracula3:	DB	'GIRL. BUT IT IS NOT THE END.    ';32 caracteres
-     124.  00:B97A                    ~ texto_deaddracula4:	DB	'THE POWER OF VAMPIRE KEPT THE   ';32 caracteres
-     125.  00:B97A                    ~ texto_deaddracula5:	DB	'CASTLE. YOU MUST ESCAPE BEFORE  ';32 caracteres
-     126.  00:B97A                    ~ texto_deaddracula6:	DB	'IT COLLAPSES ON YOU HEADS       ';32 caracteres
-     127.  00:B97A                    ~ texto_deaddracula7:	DB	'THIS IS NOT OVER YET.           ';32 caracteres
-     128.  00:B97A                    ~ texto_deaddracula8:	DB	'                                ';32 caracteres
-     129.  00:B97A                    ~ 
-     130.  00:B97A                    ~ texto_graciasporjugar:	DB	'THANKS FOR PLAYING'
-     131.  00:B97A                    ~ 
-     132.  00:B97A                    ~ ENDIF
-     133.  00:B97A                      
-     134.  00:B97A                      ;NOMBRE DE ENEMIGOS
-     135.  00:B97A                      nombre_jefes:
-     136.  00:B97A                      nombre_jefe_lobo:		DB	'VERFARKAS'
-     136.  00:B97A  56 45 52 46 41 52 4B 41 53 
-     137.  00:B983                      nombre_jefe_murcielago:	DB	' DENEVER '
-     137.  00:B983  20 44 45 4E 45 56 45 52 20 
-     138.  00:B98C                      nombre_jefe_fantasma:	DB	' SZELLEM '
-     138.  00:B98C  20 53 5A 45 4C 4C 45 4D 20 
-     139.  00:B995                      nombre_jefe_zombi:		DB	'ELOHALOTT'
-     139.  00:B995  45 4C 4F 48 41 4C 4F 54 54 
-     140.  00:B99E                      nombre_jefe_caballero:	DB	'URIEMBER '
-     140.  00:B99E  55 52 49 45 4D 42 45 52 20 
-     141.  00:B9A7                      nombre_jefe_beholder:	DB	'SZEMLELO '
-     141.  00:B9A7  53 5A 45 4D 4C 45 4C 4F 20 
-     142.  00:B9B0                      nombre_jefe_dracula:	DB	'TANITVANY'
-     142.  00:B9B0  54 41 4E 49 54 56 41 4E 59 
-     143.  00:B9B9                      
-     144.  00:B9B9                      
-     145.  00:B9B9                      texto_autoria:		DB	'SEAMSOFT  2022' ; 14 caracteres
-     145.  00:B9B9  53 45 41 4D 53 4F 46 54 20 20 32 30 32 32 
-     146.  00:B9C7                      texto_iniciar_blanco:	DB	'                              '
-     146.  00:B9C7  20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 
-     146.  00:B9D7  20 20 20 20 20 20 20 20 20 20 20 20 20 20 
-     147.  00:B9E5                      
-     148.  00:B9E5                      
-     149.  00:B9E5                      ;;=====================================================
-     150.  00:B9E5                      ;;DEFINICIÓN DE SUBRUTINAS
-     151.  00:B9E5                      ;;=====================================================	
-     152.  00:B9E5                      
-     153.  00:B9E5                      
-     154.  00:B9E5                      ;;=====================================================
-     155.  00:B9E5                      ;;PINTA_PARTE_TEXTO_VIDA
-     156.  00:B9E5                      ;;=====================================================	
-     157.  00:B9E5                      ;~ BC - Block length
-     158.  00:B9E5                      ;~ DE - Start address of VRAM
-     159.  00:B9E5                      ;~ HL - Start address of memory
-     160.  00:B9E5                      ;~ LD			HL,texto_vidas		;guardo puntero al array a pintar (como psar por referencia)
-     161.  00:B9E5                      ;~ LD			BC, 5				;nº posiciones a pintar
-     162.  00:B9E5                      ;~ LD			DE, TILMAP + 577	;destino en vram (posición en pantalla 0 -> 768 -1
-     163.  00:B9E5                      pinta_texto_vida:
-     164.  00:B9E5  21 EC B4            		LD			HL, texto_vidas		;guardo puntero al array a pintar (como psar por referencia)
-     165.  00:B9E8  01 05 00            		LD			BC, 5				;nº posiciones a pintar
-     166.  00:B9EB  11 41 1A            		LD			DE, TILMAP + 577	;destino en vram
-     167.  00:B9EE  C3 5C 00            		JP			LDIRVM
-     168.  00:B9F1                      fin_pinta_texto_vida:
-     169.  00:B9F1                      
-     170.  00:B9F1                      
-     171.  00:B9F1                      pinta_texto_energia:
-     172.  00:B9F1  21 F1 B4            		LD			HL, texto_energia	;guardo puntero al array a pintar (como psar por referencia)
-     173.  00:B9F4  01 06 00            		LD			BC, 6				;nº posiciones a pintar
-     174.  00:B9F7  11 81 1A            		LD			DE, TILMAP + 641	;destino en vram
-     175.  00:B9FA  C3 5C 00            		JP			LDIRVM
-     176.  00:B9FD                      fin_pinta_texto_energia:
-     177.  00:B9FD                      
-     178.  00:B9FD                      
-     179.  00:B9FD                      pinta_texto_reliquias:
-     180.  00:B9FD  21 F7 B4            		LD			HL, texto_reliquias	;guardo puntero al array a pintar (como psar por referencia)
-     181.  00:BA00  01 06 00            		LD			BC, 6				;nº posiciones a pintar
-     182.  00:BA03  11 C1 1A            		LD			DE, TILMAP + 705	;destino en vram
-     183.  00:BA06  C3 5C 00            		JP			LDIRVM
-     184.  00:BA09                      fin_pinta_texto_reliquias:
-     185.  00:BA09                      
-     186.  00:BA09                      
-     187.  00:BA09                      pinta_texto_nivel:
-     188.  00:BA09  21 FD B4            		LD			HL, texto_nivel		;guardo puntero al array a pintar (como psar por referencia)
-     189.  00:BA0C  01 05 00            		LD			BC, 5				;nº posiciones a pintar
-     190.  00:BA0F  11 72 1A            		LD			DE, TILMAP + 626	;destino en vram
-     191.  00:BA12  C3 5C 00            		JP			LDIRVM
-     192.  00:BA15                      fin_pinta_texto_nivel:
-     193.  00:BA15                      
-     194.  00:BA15                      
-     195.  00:BA15                      pinta_texto_entrefases:
-     196.  00:BA15  21 62 B5            		LD			HL, texto_entrefases1;guardo puntero al array a pintar (como psar por referencia)
-     197.  00:BA18  01 1E 00            		LD			BC, 30				;nº posiciones a pintar
-     198.  00:BA1B  11 C0 18            		LD			DE, TILMAP + 192	;destino en vram
-     199.  00:BA1E  CD 5C 00            		CALL		LDIRVM
-     200.  00:BA21                      		
-     201.  00:BA21  21 80 B5            		LD			HL, texto_entrefases2;guardo puntero al array a pintar (como psar por referencia)
-     202.  00:BA24  01 1E 00            		LD			BC, 30				;nº posiciones a pintar
-     203.  00:BA27  11 00 19            		LD			DE, TILMAP + 256	;destino en vram
-     204.  00:BA2A  CD 5C 00            		CALL		LDIRVM
-     205.  00:BA2D                      		
-     206.  00:BA2D  21 9E B5            		LD			HL, texto_entrefases3;guardo puntero al array a pintar (como psar por referencia)
-     207.  00:BA30  01 1E 00            		LD			BC, 30				;nº posiciones a pintar
-     208.  00:BA33  11 40 19            		LD			DE, TILMAP + 320	;destino en vram
-     209.  00:BA36  CD 5C 00            		CALL		LDIRVM
-     210.  00:BA39                      		
-     211.  00:BA39  21 BC B5            		LD			HL, texto_entrefases4;guardo puntero al array a pintar (como psar por referencia)
-     212.  00:BA3C  01 1E 00            		LD			BC, 30				;nº posiciones a pintar
-     213.  00:BA3F  11 80 19            		LD			DE, TILMAP + 384	;destino en vram
-     214.  00:BA42  C3 5C 00            		JP			LDIRVM
-     215.  00:BA45                      fin_pinta_texto_entrefases:
-     216.  00:BA45                      
-     217.  00:BA45                      
-     218.  00:BA45                      pinta_textos_inicio_disparo:
-     219.  00:BA45                      		;pinta texto pulsa disparo
-     220.  00:BA45  21 DA B5            		LD			HL, texto_iniciar	;guardo puntero al array a pintar (como psar por referencia)
-     221.  00:BA48  01 1E 00            		LD			BC, 30				;nº posiciones a pintar
-     222.  00:BA4B  11 00 1A            		LD			DE, TILMAP + 32 * 16;destino en vram
-     223.  00:BA4E  C3 5C 00            		JP			LDIRVM
-     224.  00:BA51                      fin_pinta_textos_inicio_disparo:
-     225.  00:BA51                      
-     226.  00:BA51                      
-     227.  00:BA51                      pinta_textos_inicio_disparo_blanco:
-     228.  00:BA51                      		;pinta texto blanco
-     229.  00:BA51  21 C7 B9            		LD			HL, texto_iniciar_blanco	;guardo puntero al array a pintar (como psar por referencia)
-     230.  00:BA54  01 1E 00            		LD			BC, 30				;nº posiciones a pintar
-     231.  00:BA57  11 00 1A            		LD			DE, TILMAP + 32 * 16;destino en vram
-     232.  00:BA5A  C3 5C 00            		JP			LDIRVM
-     233.  00:BA5D                      fin_pinta_textos_inicio_disparo_blanco:
-     234.  00:BA5D                      
-     235.  00:BA5D                      		
-     236.  00:BA5D                      pinta_textos_inicio_autoria:	
-     237.  00:BA5D                      		;pinta autoría
-     238.  00:BA5D  21 B9 B9            		LD			HL, texto_autoria	;guardo puntero al array a pintar (como psar por referencia)
-     239.  00:BA60  01 0E 00            		LD			BC, 14				;nº posiciones a pintar
-     240.  00:BA63  11 E8 1A            		LD			DE, TILMAP + 32 * 23 + 8;destino en vram
-     241.  00:BA66  C3 5C 00            		JP			LDIRVM
-     242.  00:BA69                      fin_pinta_textos_inicio_autoria:
-     243.  00:BA69                      
-     244.  00:BA69                      
-     245.  00:BA69                      
-     246.  00:BA69                      
-     247.  00:BA69                      
-     248.  00:BA69                      
-     249.  00:BA69                      
-     250.  00:BA69                      
-     251.  00:BA69                      
-     252.  00:BA69                      
-     253.  00:BA69                      
-     254.  00:BA69                      
-     255.  00:BA69                      
-     256.  00:BA69                      
-     257.  00:BA69                      
-     258.  00:BA69                      
-     259.  00:BA69                      
-     260.  00:BA69                      
-     261.  00:BA69                      
-     222   00:BA69                      	
-     223   00:BA69                      	
-     224   00:BA69                      ;;=====================================================
-     225   00:BA69                      ;;DEFINICIÓN DE VARIABLES
-     226   00:BA69                      ;;=====================================================		
-     227   00:BA69                      inicializacion_variables:
-     228   00:BA69  (051D)              	incbin	"variables.dat"
-     229   00:BF86                      fin_inicializacion_variables:
-     230   00:BF86                      
-     231   00:BF86                      
-     232   00:BF86                      
-     233   00:BF86                      ;nota: el powerup de armadura dura n habitaciones
-     234   00:BF86                      ;nota: el powerup de disparo dura n habitaciones
-     235   00:BF86                      ;IMPORTANTE... BUG EN HABITACIÓN FINALIZADA... SIGUEN SALIENDO ENEMIGOS
-     236   00:BF86                      
-     237   00:BF86                      
-     238   00:BF86                      ;END: (FIN CÓDIGO)
-     239   00:BF86                      
-     240   00:BF86                      
-     241   00:BF86                      ;INICIO ZONA DATOS (BANCO DE MEMORIA 3)
-     242   00:BF86  00 (122)            		DS	#C000 - $
+       5.  00:B4EC                      ;1=1 versión en español y 2=2 verión en inglés y 3 = 3 versión portugues
+       6.  00:B4EC                      IF	1=0	;textos en español
+       7.  00:B4EC                    ~ texto_vidas:		DB	'VIDAS'
+       8.  00:B4EC                    ~ 
+       9.  00:B4EC                    ~ texto_energia:		DB	'ENERG.'
+      10.  00:B4EC                    ~ 
+      11.  00:B4EC                    ~ texto_reliquias:	DB	'RELIQ.'
+      12.  00:B4EC                    ~ 
+      13.  00:B4EC                    ~ texto_nivel:		DB	'NIVEL'
+      14.  00:B4EC                    ~ 
+      15.  00:B4EC                    ~ texto_instruc:		
+      16.  00:B4EC                    ~ texto_instruc1:		DB	'MATA A TODOS LOS ENEMIGOS PARA  '
+      17.  00:B4EC                    ~ texto_instruc2:		DB	'ATRAVESAR LAS PUERTAS ELLOS DAN '
+      18.  00:B4EC                    ~ texto_instruc3:		DB	'SU VIDA PARA DEFENDER A SU AMO  '
+      19.  00:B4EC                    ~ 
+      20.  00:B4EC                    ~ texto_entrefases:
+      21.  00:B4EC                    ~ texto_entrefases1:	DB	'  ESPERAS UN MOMENTO EN LAS   '	; 30 caracteres
+      22.  00:B4EC                    ~ texto_entrefases2:	DB  'ESCALERAS MIENTRAS TUS OJOS   '	; 30 caracteres
+      23.  00:B4EC                    ~ texto_entrefases3:	DB  'SE ACOSTUMBRAN A LA OSCURIDAD '	; 30 caracteres
+      24.  00:B4EC                    ~ texto_entrefases4:	DB  'Y EL HORROR QUE TE ESPERA.    '	; 30 caracteres
+      25.  00:B4EC                    ~ 
+      26.  00:B4EC                    ~ texto_iniciar:		DB	'   PULSA FUEGO PARA COMENZAR  '	;30 caracteres
+      27.  00:B4EC                    ~ 
+      28.  00:B4EC                    ~ texto_vidamenos:	DB 	'VIGILA TUS VIDAS'	;16 caracteres
+      29.  00:B4EC                    ~ 
+      30.  00:B4EC                    ~ texto_gameover:		DB	'HAS MUERTO'	;10 caracteres
+      31.  00:B4EC                    ~ texto_gameover1A:	DB	'VIVIRAS PARA SIEMPRE COMO UN '	;29 caracteres
+      32.  00:B4EC                    ~ texto_gameover1B:	DB	'ZOMBI. SER ESCLAVO DE DRACULA'	;29 caracteres
+      33.  00:B4EC                    ~ texto_gameover1C:	DB	'        SERA TU FIN.         ' ;29 caracteres
+      34.  00:B4EC                    ~ 
+      35.  00:B4EC                    ~ texto_finalbueno:
+      36.  00:B4EC                    ~ texto_finalbueno1:	DB	'TRAS ACABAR CON EL VAMPIRO JEFE ';32 caracteres
+      37.  00:B4EC                    ~ texto_finalbueno2:	DB	'LA ENERGIA QUE MANTENIA CASTILLO';32 caracteres
+      38.  00:B4EC                    ~ texto_finalbueno3:	DB	'Y ENEMIGOS DESAPARECE Y LOS     ';32 caracteres
+      39.  00:B4EC                    ~ texto_finalbueno4:	DB	'SEPULTA PARA SIEMPRE. ESTAS     ';32 caracteres
+      40.  00:B4EC                    ~ texto_finalbueno5:	DB	'EXTENUADO TRAS LA VICTORIA. DAS ';32 caracteres
+      41.  00:B4EC                    ~ texto_finalbueno6:	DB	'LA CHICA A SU PADRE Y RECIBES TU';32 caracteres
+      42.  00:B4EC                    ~ texto_finalbueno7:	DB	'MERECIDA RECOMPENSA.            ';32 caracteres
+      43.  00:B4EC                    ~ texto_finalbueno8:	DB	'TE HAS CONVERTIDO EN UNA LEYENDA';32 caracteres
+      44.  00:B4EC                    ~ 
+      45.  00:B4EC                    ~ texto_finalmalo:
+      46.  00:B4EC                    ~ texto_finalmalo1:	DB	'                                ';32 caracteres
+      47.  00:B4EC                    ~ texto_finalmalo2:	DB	'NO FUISTE SUFICIENTEMENTE RAPIDO';32 caracteres
+      48.  00:B4EC                    ~ texto_finalmalo3:	DB	'TRAS ACABAR CON EL VAMPIRO JEFE ';32 caracteres
+      49.  00:B4EC                    ~ texto_finalmalo4:	DB	'LA ENERGIA QUE MANTENIA CASTILLO';32 caracteres
+      50.  00:B4EC                    ~ texto_finalmalo5:	DB	'Y ENEMIGOS DESAPARECE. MARITZA Y';32 caracteres
+      51.  00:B4EC                    ~ texto_finalmalo6:	DB	'TU CAEIS SEPULTADOS BAJO LOS    ';32 caracteres
+      52.  00:B4EC                    ~ texto_finalmalo7:	DB	'ESCOMBROS.                      ';32 caracteres
+      53.  00:B4EC                    ~ texto_finalmalo8:	DB	'                                ';32 caracteres
+      54.  00:B4EC                    ~ 
+      55.  00:B4EC                    ~ texto_deaddracula:
+      56.  00:B4EC                    ~ texto_deaddracula1:	DB	'FELICIDADES. VENCISTE A DRACULA ';32 caracteres
+      57.  00:B4EC                    ~ texto_deaddracula2:	DB	'Y RESCATASTE A LA CHICA. PERO   ';32 caracteres
+      58.  00:B4EC                    ~ texto_deaddracula3:	DB	'NO ES EL FINAL. EL PODER DEL    ';32 caracteres
+      59.  00:B4EC                    ~ texto_deaddracula4:	DB	'VAMPIRO MANTENIA EN PIE EL      ';32 caracteres
+      60.  00:B4EC                    ~ texto_deaddracula5:	DB	'CASTILLO. DEBES ESCAPAR ANTES   ';32 caracteres
+      61.  00:B4EC                    ~ texto_deaddracula6:	DB	'DE QUE DERRUMBE SOBRE VUESTRAS  ';32 caracteres
+      62.  00:B4EC                    ~ texto_deaddracula7:	DB	'CABEZAS. ESTO AUN NO HA ACABADO.';32 caracteres
+      63.  00:B4EC                    ~ texto_deaddracula8:	DB	'                                ';32 caracteres
+      64.  00:B4EC                    ~ 
+      65.  00:B4EC                    ~ texto_graciasporjugar:	DB	'GRACIAS POR JUGAR '
+      66.  00:B4EC                    ~ 
+      67.  00:B4EC                    ~ ENDIF
+      68.  00:B4EC                      
+      69.  00:B4EC                      IF	2=0 ;textos en inglés
+      70.  00:B4EC                    ~ texto_vidas:		DB	'LIVES'
+      71.  00:B4EC                    ~ 
+      72.  00:B4EC                    ~ texto_energia:		DB	'ENERGY'
+      73.  00:B4EC                    ~ 
+      74.  00:B4EC                    ~ texto_reliquias:	DB	'RELICS'
+      75.  00:B4EC                    ~ 
+      76.  00:B4EC                    ~ texto_nivel:		DB	'LEVEL'
+      77.  00:B4EC                    ~ 
+      78.  00:B4EC                    ~ texto_instruc:		
+      79.  00:B4EC                    ~ texto_instruc1:		DB	'KILL ALL THE ENEMIES TO PASS    '
+      80.  00:B4EC                    ~ texto_instruc2:		DB	'THROUGH THE GATES THEY WILL GIVE'
+      81.  00:B4EC                    ~ texto_instruc3:		DB	'THEIR LIFE TO DEFEND THEIR MASTR'
+      82.  00:B4EC                    ~ 
+      83.  00:B4EC                    ~ texto_entrefases:
+      84.  00:B4EC                    ~ texto_entrefases1:	DB	'  YOU WAIT FOR A MOMENT ON THE'	; 30 caracteres
+      85.  00:B4EC                    ~ texto_entrefases2:	DB  'STAIRS WHILE YOUR EYES ADJUST '	; 30 caracteres
+      86.  00:B4EC                    ~ texto_entrefases3:	DB  'TO THE DARKNESS AND THE HORROR'	; 30 caracteres
+      87.  00:B4EC                    ~ texto_entrefases4:	DB  'THAT AWAITS YOU.              '	; 30 caracteres
+      88.  00:B4EC                    ~ 
+      89.  00:B4EC                    ~ texto_iniciar:		DB	' PUSH TRIGER TO START THE GAME'
+      90.  00:B4EC                    ~ 
+      91.  00:B4EC                    ~ texto_vidamenos:	DB 	'WATCH YOUR LIVES'	;16 caracteres
+      92.  00:B4EC                    ~ 
+      93.  00:B4EC                    ~ texto_gameover:		DB	'GAME OVER '	;10 caracteres
+      94.  00:B4EC                    ~ texto_gameover1A:	DB	' YOU WILL LIVE FOREVER LIKE  '	;29 caracteres
+      95.  00:B4EC                    ~ texto_gameover1B:	DB	'A ZOMBI. BEING DRACULAS SLAVE'	;29 caracteres
+      96.  00:B4EC                    ~ texto_gameover1C:	DB	'        WILL BE YOUR END     ' ;29 caracteres
+      97.  00:B4EC                    ~ 
+      98.  00:B4EC                    ~ texto_finalbueno:
+      99.  00:B4EC                    ~ texto_finalbueno1:	DB	'AFTER FINISHING THE VAMPIRE     ';32 caracteres
+     100.  00:B4EC                    ~ texto_finalbueno2:	DB	'BOSS THE ENERGY THAT MAINTAINED ';32 caracteres
+     101.  00:B4EC                    ~ texto_finalbueno3:	DB	'THE CASTLE AND ENEMIES          ';32 caracteres
+     102.  00:B4EC                    ~ texto_finalbueno4:	DB	'DISAPPEARS AND BURIES THEM      ';32 caracteres
+     103.  00:B4EC                    ~ texto_finalbueno5:	DB	'FOREVER YOU ARE EXHAUSTED AFTER ';32 caracteres
+     104.  00:B4EC                    ~ texto_finalbueno6:	DB	'THE VICTORY. YOU GIVE THE GIRL  ';32 caracteres
+     105.  00:B4EC                    ~ texto_finalbueno7:	DB	'TO HER FATHER AND RECEIVE YOUR  ';32 caracteres
+     106.  00:B4EC                    ~ texto_finalbueno8:	DB	'DESERVED REWARD. YOU RE A LEGEND';32 caracteres
+     107.  00:B4EC                    ~ 
+     108.  00:B4EC                    ~ texto_finalmalo:
+     109.  00:B4EC                    ~ texto_finalmalo1:	DB	'                                ';32 caracteres
+     110.  00:B4EC                    ~ texto_finalmalo2:	DB	'YOU WERE NOT FAST ENOUGHT       ';32 caracteres
+     111.  00:B4EC                    ~ texto_finalmalo3:	DB	'AFTER FINISHING THE BOSS VAMPIRE';32 caracteres
+     112.  00:B4EC                    ~ texto_finalmalo4:	DB	'THE ENERGY THAT MAINTAINED THE  ';32 caracteres
+     113.  00:B4EC                    ~ texto_finalmalo5:	DB	'CASTLE AND ENEMIES DISAPPEARED  ';32 caracteres
+     114.  00:B4EC                    ~ texto_finalmalo6:	DB	'YOU AND MARITZA ARE BURIED DOWN ';32 caracteres
+     115.  00:B4EC                    ~ texto_finalmalo7:	DB	'UNDER TONS OF RUBBLE            ';32 caracteres
+     116.  00:B4EC                    ~ texto_finalmalo8:	DB	'                                ';32 caracteres
+     117.  00:B4EC                    ~ 
+     118.  00:B4EC                    ~ texto_deaddracula:
+     119.  00:B4EC                    ~ texto_deaddracula1:	DB	'CONGRATULATIONS. YOU BEAT       ';32 caracteres
+     120.  00:B4EC                    ~ texto_deaddracula2:	DB	'DRACULA AND YOU RESCUED THE     ';32 caracteres
+     121.  00:B4EC                    ~ texto_deaddracula3:	DB	'GIRL. BUT IT IS NOT THE END.    ';32 caracteres
+     122.  00:B4EC                    ~ texto_deaddracula4:	DB	'THE POWER OF VAMPIRE KEPT THE   ';32 caracteres
+     123.  00:B4EC                    ~ texto_deaddracula5:	DB	'CASTLE. YOU MUST ESCAPE BEFORE  ';32 caracteres
+     124.  00:B4EC                    ~ texto_deaddracula6:	DB	'IT COLLAPSES ON YOU HEADS       ';32 caracteres
+     125.  00:B4EC                    ~ texto_deaddracula7:	DB	'THIS IS NOT OVER YET.           ';32 caracteres
+     126.  00:B4EC                    ~ texto_deaddracula8:	DB	'                                ';32 caracteres
+     127.  00:B4EC                    ~ 
+     128.  00:B4EC                    ~ texto_graciasporjugar:	DB	'THANKS FOR PLAYING'
+     129.  00:B4EC                    ~ 
+     130.  00:B4EC                    ~ ENDIF
+     131.  00:B4EC                      
+     132.  00:B4EC                      IF	3=3	;textos en portugues
+     133.  00:B4EC  56 49 44 41 53      texto_vidas:        	DB    'VIDAS'
+     134.  00:B4F1                      
+     135.  00:B4F1  45 4E 45 52 47 2E   texto_energia:        	DB    'ENERG.'
+     136.  00:B4F7                      
+     137.  00:B4F7  52 45 4C 49 51 2E   texto_reliquias:    	DB    'RELIQ.'
+     138.  00:B4FD                      
+     139.  00:B4FD  4E 49 56 45 4C      texto_nivel:        	DB    'NIVEL'
+     140.  00:B502                      
+     141.  00:B502                      texto_instruc:
+     142.  00:B502                      texto_instruc1:        	DB    'MATAM TODOS OS INIMIGOS PARA    '
+     142.  00:B502  4D 41 54 41 4D 20 54 4F 44 4F 53 20 4F 53 20 49 
+     142.  00:B512  4E 49 4D 49 47 4F 53 20 50 41 52 41 20 20 20 20 
+     143.  00:B522                      texto_instruc2:        	DB    'ATRAVESSAR OS PORTOES DAO A VIDA'
+     143.  00:B522  41 54 52 41 56 45 53 53 41 52 20 4F 53 20 50 4F 
+     143.  00:B532  52 54 4F 45 53 20 44 41 4F 20 41 20 56 49 44 41 
+     144.  00:B542                      texto_instruc3:        	DB    'PARA DEFENDER O SEU MESTRE      '
+     144.  00:B542  50 41 52 41 20 44 45 46 45 4E 44 45 52 20 4F 20 
+     144.  00:B552  53 45 55 20 4D 45 53 54 52 45 20 20 20 20 20 20 
+     145.  00:B562                      
+     146.  00:B562                      texto_entrefases:
+     147.  00:B562                      texto_entrefases1:    	DB    'ESPERA UM MOMENTO NAS ESCADAS '  ; 30 caracteres 
+     147.  00:B562  45 53 50 45 52 41 20 55 4D 20 4D 4F 4D 45 4E 54 
+     147.  00:B572  4F 20 4E 41 53 20 45 53 43 41 44 41 53 20 
+     148.  00:B580                      texto_entrefases2:    	DB    'ENQUANTO OS SEUS OLHOS SE     '    ; 30 caracteres
+     148.  00:B580  45 4E 51 55 41 4E 54 4F 20 4F 53 20 53 45 55 53 
+     148.  00:B590  20 4F 4C 48 4F 53 20 53 45 20 20 20 20 20 
+     149.  00:B59E                      texto_entrefases3:    	DB    'ADAPTAM A ESCURIDAO E AO      '    ; 30 caracteres
+     149.  00:B59E  41 44 41 50 54 41 4D 20 41 20 45 53 43 55 52 49 
+     149.  00:B5AE  44 41 4F 20 45 20 41 4F 20 20 20 20 20 20 
+     150.  00:B5BC                      texto_entrefases4:    	DB    'HORROR QUE O ESPERA.          '    ; 30 caracteres
+     150.  00:B5BC  48 4F 52 52 4F 52 20 51 55 45 20 4F 20 45 53 50 
+     150.  00:B5CC  45 52 41 2E 20 20 20 20 20 20 20 20 20 20 
+     151.  00:B5DA                      
+     152.  00:B5DA                      texto_iniciar:        	DB    '    PREMIR FOGO PARA INICIAR  ' ;30 caracteres+
+     152.  00:B5DA  20 20 20 20 50 52 45 4D 49 52 20 46 4F 47 4F 20 
+     152.  00:B5EA  50 41 52 41 20 49 4E 49 43 49 41 52 20 20 
+     153.  00:B5F8                      
+     154.  00:B5F8                      texto_vidamenos:    	DB    'UMA VIDA A MENOS'    ;16 caracteres +
+     154.  00:B5F8  55 4D 41 20 56 49 44 41 20 41 20 4D 45 4E 4F 53 
+     155.  00:B608                      
+     156.  00:B608                      texto_gameover:        	DB    'MORRESTE. '    ;10 caracteres+
+     156.  00:B608  4D 4F 52 52 45 53 54 45 2E 20 
+     157.  00:B612                      texto_gameover1A:    	DB    ' VIVERAS PARA SEMPRE COMO UM '   ;29 caracteres+
+     157.  00:B612  20 56 49 56 45 52 41 53 20 50 41 52 41 20 53 45 
+     157.  00:B622  4D 50 52 45 20 43 4F 4D 4F 20 55 4D 20 
+     158.  00:B62F                      texto_gameover1B:    	DB    '   ZOMBIE. SER ESCRAVO DE    '   ;29 caracteres+
+     158.  00:B62F  20 20 20 5A 4F 4D 42 49 45 2E 20 53 45 52 20 45 
+     158.  00:B63F  53 43 52 41 56 4F 20 44 45 20 20 20 20 
+     159.  00:B64C                      texto_gameover1C:    	DB    '   DRACULA SERA O TEU FIM.   ' 	;29 caracteres+
+     159.  00:B64C  20 20 20 44 52 41 43 55 4C 41 20 53 45 52 41 20 
+     159.  00:B65C  4F 20 54 45 55 20 46 49 4D 2E 20 20 20 
+     160.  00:B669                      
+     161.  00:B669                      texto_finalbueno:
+     162.  00:B669                      texto_finalbueno1:    	DB    'DEPOIS DE ACABAR COM O VAMPIRO  ';32 caracteres
+     162.  00:B669  44 45 50 4F 49 53 20 44 45 20 41 43 41 42 41 52 
+     162.  00:B679  20 43 4F 4D 20 4F 20 56 41 4D 50 49 52 4F 20 20 
+     163.  00:B689                      texto_finalbueno2:    	DB    'CHEFE A ENERGIA QUE MANTINHA O  ';32 caracteres
+     163.  00:B689  43 48 45 46 45 20 41 20 45 4E 45 52 47 49 41 20 
+     163.  00:B699  51 55 45 20 4D 41 4E 54 49 4E 48 41 20 4F 20 20 
+     164.  00:B6A9                      texto_finalbueno3:    	DB    'CASTELO E OS INIMIGOS JUNTOS DES';32 caracteres
+     164.  00:B6A9  43 41 53 54 45 4C 4F 20 45 20 4F 53 20 49 4E 49 
+     164.  00:B6B9  4D 49 47 4F 53 20 4A 55 4E 54 4F 53 20 44 45 53 
+     165.  00:B6C9                      texto_finalbueno4:    	DB    'APARECE E ENTERRA-OS PARA SEMPRE';32 caracteres
+     165.  00:B6C9  41 50 41 52 45 43 45 20 45 20 45 4E 54 45 52 52 
+     165.  00:B6D9  41 2D 4F 53 20 50 41 52 41 20 53 45 4D 50 52 45 
+     166.  00:B6E9                      texto_finalbueno5:    	DB    'ESTAS EXAUSTO APOS A VITORIA  EN';32 caracteres
+     166.  00:B6E9  45 53 54 41 53 20 45 58 41 55 53 54 4F 20 41 50 
+     166.  00:B6F9  4F 53 20 41 20 56 49 54 4F 52 49 41 20 20 45 4E 
+     167.  00:B709                      texto_finalbueno6:    	DB    'TREGAS A RAPARIGA AO SEU PAI E  ';32 caracteres
+     167.  00:B709  54 52 45 47 41 53 20 41 20 52 41 50 41 52 49 47 
+     167.  00:B719  41 20 41 4F 20 53 45 55 20 50 41 49 20 45 20 20 
+     168.  00:B729                      texto_finalbueno7:    	DB    'RECEBES A TUA MERECIDA RECOMPNSA';32 caracteres
+     168.  00:B729  52 45 43 45 42 45 53 20 41 20 54 55 41 20 4D 45 
+     168.  00:B739  52 45 43 49 44 41 20 52 45 43 4F 4D 50 4E 53 41 
+     169.  00:B749                      texto_finalbueno8:    	DB    'TORNASTE-TE UMA LENDA           ';32 caracteres
+     169.  00:B749  54 4F 52 4E 41 53 54 45 2D 54 45 20 55 4D 41 20 
+     169.  00:B759  4C 45 4E 44 41 20 20 20 20 20 20 20 20 20 20 20 
+     170.  00:B769                      
+     171.  00:B769                      texto_finalmalo
+     172.  00:B769                      texto_finalmalo1:    	DB    'NAO FOSTE SUFICIENTEMENTE       ';32 caracteres
+     172.  00:B769  4E 41 4F 20 46 4F 53 54 45 20 53 55 46 49 43 49 
+     172.  00:B779  45 4E 54 45 4D 45 4E 54 45 20 20 20 20 20 20 20 
+     173.  00:B789                      texto_finalmalo2:    	DB    'RAPIDO. DEPOIS DE ELIMINARES O  ';32 caracteres
+     173.  00:B789  52 41 50 49 44 4F 2E 20 44 45 50 4F 49 53 20 44 
+     173.  00:B799  45 20 45 4C 49 4D 49 4E 41 52 45 53 20 4F 20 20 
+     174.  00:B7A9                      texto_finalmalo3:    	DB    'VAMPIRO CHEFE A ENERGIA QUE     ';32 caracteres
+     174.  00:B7A9  56 41 4D 50 49 52 4F 20 43 48 45 46 45 20 41 20 
+     174.  00:B7B9  45 4E 45 52 47 49 41 20 51 55 45 20 20 20 20 20 
+     175.  00:B7C9                      texto_finalmalo4:    	DB    'MANTINHA O CASTELO E OS INIMIGOS';32 caracteres
+     175.  00:B7C9  4D 41 4E 54 49 4E 48 41 20 4F 20 43 41 53 54 45 
+     175.  00:B7D9  4C 4F 20 45 20 4F 53 20 49 4E 49 4D 49 47 4F 53 
+     176.  00:B7E9                      texto_finalmalo5:    	DB    'UNIDOS DESAPARECE. TU E A       ';32 caracteres
+     176.  00:B7E9  55 4E 49 44 4F 53 20 44 45 53 41 50 41 52 45 43 
+     176.  00:B7F9  45 2E 20 54 55 20 45 20 41 20 20 20 20 20 20 20 
+     177.  00:B809                      texto_finalmalo6:    	DB    'MARITZA FICAM ENTERRADOS DEBAIXO';32 caracteres
+     177.  00:B809  4D 41 52 49 54 5A 41 20 46 49 43 41 4D 20 45 4E 
+     177.  00:B819  54 45 52 52 41 44 4F 53 20 44 45 42 41 49 58 4F 
+     178.  00:B829                      texto_finalmalo7:    	DB    'DOS ESCOMBROS.                  ';32 caracteres
+     178.  00:B829  44 4F 53 20 45 53 43 4F 4D 42 52 4F 53 2E 20 20 
+     178.  00:B839  20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 
+     179.  00:B849                      texto_finalmalo8:   	DB    '                                ';32 caracteres
+     179.  00:B849  20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 
+     179.  00:B859  20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 
+     180.  00:B869                      
+     181.  00:B869                      texto_deaddracula:
+     182.  00:B869                      texto_deaddracula1:    	DB    'PARABENS. DERROTARAM O DRACULA  ';32 caracteres
+     182.  00:B869  50 41 52 41 42 45 4E 53 2E 20 44 45 52 52 4F 54 
+     182.  00:B879  41 52 41 4D 20 4F 20 44 52 41 43 55 4C 41 20 20 
+     183.  00:B889                      texto_deaddracula2:    	DB    'E SALVARAM A RAPARIGA. MAS ISTO ';32 caracteres
+     183.  00:B889  45 20 53 41 4C 56 41 52 41 4D 20 41 20 52 41 50 
+     183.  00:B899  41 52 49 47 41 2E 20 4D 41 53 20 49 53 54 4F 20 
+     184.  00:B8A9                      texto_deaddracula3:    	DB    'NAO E O FIM. O PODER DO VAMPIRO ';32 caracteres
+     184.  00:B8A9  4E 41 4F 20 45 20 4F 20 46 49 4D 2E 20 4F 20 50 
+     184.  00:B8B9  4F 44 45 52 20 44 4F 20 56 41 4D 50 49 52 4F 20 
+     185.  00:B8C9                      texto_deaddracula4:    	DB    'MANTEVE O CASTELO DE PE. TEM DE ';32 caracteres
+     185.  00:B8C9  4D 41 4E 54 45 56 45 20 4F 20 43 41 53 54 45 4C 
+     185.  00:B8D9  4F 20 44 45 20 50 45 2E 20 54 45 4D 20 44 45 20 
+     186.  00:B8E9                      texto_deaddracula5:    	DB    'ESCAPAR ANTES QUE ELE CAIA SOBRE';32 caracteres
+     186.  00:B8E9  45 53 43 41 50 41 52 20 41 4E 54 45 53 20 51 55 
+     186.  00:B8F9  45 20 45 4C 45 20 43 41 49 41 20 53 4F 42 52 45 
+     187.  00:B909                      texto_deaddracula6:    	DB    'AS VOSSAS CABECAS.              ';32 caracteres
+     187.  00:B909  41 53 20 56 4F 53 53 41 53 20 43 41 42 45 43 41 
+     187.  00:B919  53 2E 20 20 20 20 20 20 20 20 20 20 20 20 20 20 
+     188.  00:B929                      texto_deaddracula7:    	DB    '     ISTO AINDA NAO ACABOU.     ';32 caracteres
+     188.  00:B929  20 20 20 20 20 49 53 54 4F 20 41 49 4E 44 41 20 
+     188.  00:B939  4E 41 4F 20 41 43 41 42 4F 55 2E 20 20 20 20 20 
+     189.  00:B949                      texto_deaddracula8:    	DB    '                                ';32 caracteres
+     189.  00:B949  20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 
+     189.  00:B959  20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 
+     190.  00:B969                      
+     191.  00:B969                      texto_graciasporjugar:  DB    'OBRIGADO POR JOGAR'
+     191.  00:B969  4F 42 52 49 47 41 44 4F 20 50 4F 52 20 4A 4F 47 
+     191.  00:B979  41 52 
+     192.  00:B97B                      
+     193.  00:B97B                      ENDIF
+     194.  00:B97B                      
+     195.  00:B97B                      
+     196.  00:B97B                      ;NOMBRE DE ENEMIGOS
+     197.  00:B97B                      nombre_jefes:
+     198.  00:B97B                      nombre_jefe_lobo:		DB	'VERFARKAS'
+     198.  00:B97B  56 45 52 46 41 52 4B 41 53 
+     199.  00:B984                      nombre_jefe_murcielago:	DB	' DENEVER '
+     199.  00:B984  20 44 45 4E 45 56 45 52 20 
+     200.  00:B98D                      nombre_jefe_fantasma:	DB	' SZELLEM '
+     200.  00:B98D  20 53 5A 45 4C 4C 45 4D 20 
+     201.  00:B996                      nombre_jefe_zombi:		DB	'ELOHALOTT'
+     201.  00:B996  45 4C 4F 48 41 4C 4F 54 54 
+     202.  00:B99F                      nombre_jefe_caballero:	DB	'URIEMBER '
+     202.  00:B99F  55 52 49 45 4D 42 45 52 20 
+     203.  00:B9A8                      nombre_jefe_beholder:	DB	'SZEMLELO '
+     203.  00:B9A8  53 5A 45 4D 4C 45 4C 4F 20 
+     204.  00:B9B1                      nombre_jefe_dracula:	DB	'TANITVANY'
+     204.  00:B9B1  54 41 4E 49 54 56 41 4E 59 
+     205.  00:B9BA                      
+     206.  00:B9BA                      
+     207.  00:B9BA                      texto_autoria:		DB	'SEAMSOFT  2022' ; 14 caracteres
+     207.  00:B9BA  53 45 41 4D 53 4F 46 54 20 20 32 30 32 32 
+     208.  00:B9C8                      texto_iniciar_blanco:	DB	'                              '
+     208.  00:B9C8  20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 
+     208.  00:B9D8  20 20 20 20 20 20 20 20 20 20 20 20 20 20 
+     209.  00:B9E6                      
+     210.  00:B9E6                      
+     211.  00:B9E6                      ;;=====================================================
+     212.  00:B9E6                      ;;DEFINICIÓN DE SUBRUTINAS
+     213.  00:B9E6                      ;;=====================================================	
+     214.  00:B9E6                      
+     215.  00:B9E6                      
+     216.  00:B9E6                      ;;=====================================================
+     217.  00:B9E6                      ;;PINTA_PARTE_TEXTO_VIDA
+     218.  00:B9E6                      ;;=====================================================	
+     219.  00:B9E6                      ;~ BC - Block length
+     220.  00:B9E6                      ;~ DE - Start address of VRAM
+     221.  00:B9E6                      ;~ HL - Start address of memory
+     222.  00:B9E6                      ;~ LD			HL,texto_vidas		;guardo puntero al array a pintar (como psar por referencia)
+     223.  00:B9E6                      ;~ LD			BC, 5				;nº posiciones a pintar
+     224.  00:B9E6                      ;~ LD			DE, TILMAP + 577	;destino en vram (posición en pantalla 0 -> 768 -1
+     225.  00:B9E6                      pinta_texto_vida:
+     226.  00:B9E6  21 EC B4            		LD			HL, texto_vidas		;guardo puntero al array a pintar (como psar por referencia)
+     227.  00:B9E9  01 05 00            		LD			BC, 5				;nº posiciones a pintar
+     228.  00:B9EC  11 41 1A            		LD			DE, TILMAP + 577	;destino en vram
+     229.  00:B9EF  C3 5C 00            		JP			LDIRVM
+     230.  00:B9F2                      fin_pinta_texto_vida:
+     231.  00:B9F2                      
+     232.  00:B9F2                      
+     233.  00:B9F2                      pinta_texto_energia:
+     234.  00:B9F2  21 F1 B4            		LD			HL, texto_energia	;guardo puntero al array a pintar (como psar por referencia)
+     235.  00:B9F5  01 06 00            		LD			BC, 6				;nº posiciones a pintar
+     236.  00:B9F8  11 81 1A            		LD			DE, TILMAP + 641	;destino en vram
+     237.  00:B9FB  C3 5C 00            		JP			LDIRVM
+     238.  00:B9FE                      fin_pinta_texto_energia:
+     239.  00:B9FE                      
+     240.  00:B9FE                      
+     241.  00:B9FE                      pinta_texto_reliquias:
+     242.  00:B9FE  21 F7 B4            		LD			HL, texto_reliquias	;guardo puntero al array a pintar (como psar por referencia)
+     243.  00:BA01  01 06 00            		LD			BC, 6				;nº posiciones a pintar
+     244.  00:BA04  11 C1 1A            		LD			DE, TILMAP + 705	;destino en vram
+     245.  00:BA07  C3 5C 00            		JP			LDIRVM
+     246.  00:BA0A                      fin_pinta_texto_reliquias:
+     247.  00:BA0A                      
+     248.  00:BA0A                      
+     249.  00:BA0A                      pinta_texto_nivel:
+     250.  00:BA0A  21 FD B4            		LD			HL, texto_nivel		;guardo puntero al array a pintar (como psar por referencia)
+     251.  00:BA0D  01 05 00            		LD			BC, 5				;nº posiciones a pintar
+     252.  00:BA10  11 72 1A            		LD			DE, TILMAP + 626	;destino en vram
+     253.  00:BA13  C3 5C 00            		JP			LDIRVM
+     254.  00:BA16                      fin_pinta_texto_nivel:
+     255.  00:BA16                      
+     256.  00:BA16                      
+     257.  00:BA16                      pinta_texto_entrefases:
+     258.  00:BA16  21 62 B5            		LD			HL, texto_entrefases1;guardo puntero al array a pintar (como psar por referencia)
+     259.  00:BA19  01 1E 00            		LD			BC, 30				;nº posiciones a pintar
+     260.  00:BA1C  11 C0 18            		LD			DE, TILMAP + 192	;destino en vram
+     261.  00:BA1F  CD 5C 00            		CALL		LDIRVM
+     262.  00:BA22                      		
+     263.  00:BA22  21 80 B5            		LD			HL, texto_entrefases2;guardo puntero al array a pintar (como psar por referencia)
+     264.  00:BA25  01 1E 00            		LD			BC, 30				;nº posiciones a pintar
+     265.  00:BA28  11 00 19            		LD			DE, TILMAP + 256	;destino en vram
+     266.  00:BA2B  CD 5C 00            		CALL		LDIRVM
+     267.  00:BA2E                      		
+     268.  00:BA2E  21 9E B5            		LD			HL, texto_entrefases3;guardo puntero al array a pintar (como psar por referencia)
+     269.  00:BA31  01 1E 00            		LD			BC, 30				;nº posiciones a pintar
+     270.  00:BA34  11 40 19            		LD			DE, TILMAP + 320	;destino en vram
+     271.  00:BA37  CD 5C 00            		CALL		LDIRVM
+     272.  00:BA3A                      		
+     273.  00:BA3A  21 BC B5            		LD			HL, texto_entrefases4;guardo puntero al array a pintar (como psar por referencia)
+     274.  00:BA3D  01 1E 00            		LD			BC, 30				;nº posiciones a pintar
+     275.  00:BA40  11 80 19            		LD			DE, TILMAP + 384	;destino en vram
+     276.  00:BA43  C3 5C 00            		JP			LDIRVM
+     277.  00:BA46                      fin_pinta_texto_entrefases:
+     278.  00:BA46                      
+     279.  00:BA46                      
+     280.  00:BA46                      pinta_textos_inicio_disparo:
+     281.  00:BA46                      		;pinta texto pulsa disparo
+     282.  00:BA46  21 DA B5            		LD			HL, texto_iniciar	;guardo puntero al array a pintar (como psar por referencia)
+     283.  00:BA49  01 1E 00            		LD			BC, 30				;nº posiciones a pintar
+     284.  00:BA4C  11 00 1A            		LD			DE, TILMAP + 32 * 16;destino en vram
+     285.  00:BA4F  C3 5C 00            		JP			LDIRVM
+     286.  00:BA52                      fin_pinta_textos_inicio_disparo:
+     287.  00:BA52                      
+     288.  00:BA52                      
+     289.  00:BA52                      pinta_textos_inicio_disparo_blanco:
+     290.  00:BA52                      		;pinta texto blanco
+     291.  00:BA52  21 C8 B9            		LD			HL, texto_iniciar_blanco	;guardo puntero al array a pintar (como psar por referencia)
+     292.  00:BA55  01 1E 00            		LD			BC, 30				;nº posiciones a pintar
+     293.  00:BA58  11 00 1A            		LD			DE, TILMAP + 32 * 16;destino en vram
+     294.  00:BA5B  C3 5C 00            		JP			LDIRVM
+     295.  00:BA5E                      fin_pinta_textos_inicio_disparo_blanco:
+     296.  00:BA5E                      
+     297.  00:BA5E                      		
+     298.  00:BA5E                      pinta_textos_inicio_autoria:	
+     299.  00:BA5E                      		;pinta autoría
+     300.  00:BA5E  21 BA B9            		LD			HL, texto_autoria	;guardo puntero al array a pintar (como psar por referencia)
+     301.  00:BA61  01 0E 00            		LD			BC, 14				;nº posiciones a pintar
+     302.  00:BA64  11 E8 1A            		LD			DE, TILMAP + 32 * 23 + 8;destino en vram
+     303.  00:BA67  C3 5C 00            		JP			LDIRVM
+     304.  00:BA6A                      fin_pinta_textos_inicio_autoria:
+     305.  00:BA6A                      
+     306.  00:BA6A                      
+     307.  00:BA6A                      
+     308.  00:BA6A                      
+     309.  00:BA6A                      
+     310.  00:BA6A                      
+     311.  00:BA6A                      
+     312.  00:BA6A                      
+     313.  00:BA6A                      
+     314.  00:BA6A                      
+     315.  00:BA6A                      
+     316.  00:BA6A                      
+     317.  00:BA6A                      
+     318.  00:BA6A                      
+     319.  00:BA6A                      
+     320.  00:BA6A                      
+     321.  00:BA6A                      
+     322.  00:BA6A                      
+     323.  00:BA6A                      
+     222   00:BA6A                      	
+     223   00:BA6A                      	
+     224   00:BA6A                      ;;=====================================================
+     225   00:BA6A                      ;;DEFINICIÓN DE VARIABLES
+     226   00:BA6A                      ;;=====================================================		
+     227   00:BA6A                      inicializacion_variables:
+     228   00:BA6A  (051D)              	incbin	"variables.dat"
+     229   00:BF87                      fin_inicializacion_variables:
+     230   00:BF87                      
+     231   00:BF87                      
+     232   00:BF87                      
+     233   00:BF87                      ;nota: el powerup de armadura dura n habitaciones
+     234   00:BF87                      ;nota: el powerup de disparo dura n habitaciones
+     235   00:BF87                      ;IMPORTANTE... BUG EN HABITACIÓN FINALIZADA... SIGUEN SALIENDO ENEMIGOS
+     236   00:BF87                      
+     237   00:BF87                      
+     238   00:BF87                      ;END: (FIN CÓDIGO)
+     239   00:BF87                      
+     240   00:BF87                      
+     241   00:BF87                      ;INICIO ZONA DATOS (BANCO DE MEMORIA 3)
+     242   00:BF87  00 (121)            		DS	#C000 - $
 
     LABELS
 -------------------------------------------------
@@ -15685,9 +15747,9 @@ Errors: 0
 00:00000080   LIMPANTABA
 00:00000006 X BASEMAPY
 00:00000003 X BASEMAPX
-00:00000000   PROTANIVEL
-00:00000004   PROTAVIDAS
-00:00000006   PROTARELIQUIAS
+00:00000000 X PROTANIVEL
+00:00000003   PROTAVIDAS
+00:00000004 X PROTARELIQUIAS
 00:00000003   PROTAPOSMAPX
 00:00000000   PROTAPOSMAPY
 00:000000F8   PROTAENERGIA
@@ -16789,11 +16851,9 @@ Errors: 0
 00:00005848 X actualiza_valores_cienpies.asigna_valores_posicion_y
 00:00005853 X fin_actualiza_valores_cienpies
 00:00005854   mover_cienpies
-00:0000586E X fin_mover_cienpies
 00:0000586E   calcula_cienpies_escena
 00:0000588E   calcula_cienpies_escena.enemigo1_poner_escena2
 00:00005890   calcula_cienpies_escena.fin_enemigo1_poner_escena2
-00:00005893 X fin_calcula_cienpies_escena
 00:00005894   posiciones_arana_x
 00:000058A4   datos_arana
 00:000058B9   anade_enemigo_arana
@@ -17883,64 +17943,64 @@ Errors: 0
 00:0000B5F8   texto_vidamenos
 00:0000B608 X texto_gameover
 00:0000B612   texto_gameover1A
-00:0000B62E   texto_gameover1B
-00:0000B64B   texto_gameover1C
-00:0000B668   texto_finalbueno
-00:0000B668 X texto_finalbueno1
-00:0000B688 X texto_finalbueno2
-00:0000B6A8 X texto_finalbueno3
-00:0000B6C8 X texto_finalbueno4
-00:0000B6E8 X texto_finalbueno5
-00:0000B708 X texto_finalbueno6
-00:0000B728 X texto_finalbueno7
-00:0000B748 X texto_finalbueno8
-00:0000B768   texto_finalmalo
-00:0000B768 X texto_finalmalo1
-00:0000B788 X texto_finalmalo2
-00:0000B7A8 X texto_finalmalo3
-00:0000B7C8 X texto_finalmalo4
-00:0000B7E8 X texto_finalmalo5
-00:0000B808 X texto_finalmalo6
-00:0000B828 X texto_finalmalo7
-00:0000B848 X texto_finalmalo8
-00:0000B868   texto_deaddracula
-00:0000B868 X texto_deaddracula1
-00:0000B888 X texto_deaddracula2
-00:0000B8A8 X texto_deaddracula3
-00:0000B8C8 X texto_deaddracula4
-00:0000B8E8 X texto_deaddracula5
-00:0000B908 X texto_deaddracula6
-00:0000B928 X texto_deaddracula7
-00:0000B948 X texto_deaddracula8
-00:0000B968   texto_graciasporjugar
-00:0000B97A   nombre_jefes
-00:0000B97A X nombre_jefe_lobo
-00:0000B983 X nombre_jefe_murcielago
-00:0000B98C X nombre_jefe_fantasma
-00:0000B995 X nombre_jefe_zombi
-00:0000B99E X nombre_jefe_caballero
-00:0000B9A7 X nombre_jefe_beholder
-00:0000B9B0 X nombre_jefe_dracula
-00:0000B9B9   texto_autoria
-00:0000B9C7   texto_iniciar_blanco
-00:0000B9E5   pinta_texto_vida
-00:0000B9F1 X fin_pinta_texto_vida
-00:0000B9F1   pinta_texto_energia
-00:0000B9FD X fin_pinta_texto_energia
-00:0000B9FD   pinta_texto_reliquias
-00:0000BA09 X fin_pinta_texto_reliquias
-00:0000BA09   pinta_texto_nivel
-00:0000BA15 X fin_pinta_texto_nivel
-00:0000BA15   pinta_texto_entrefases
-00:0000BA45 X fin_pinta_texto_entrefases
-00:0000BA45   pinta_textos_inicio_disparo
-00:0000BA51 X fin_pinta_textos_inicio_disparo
-00:0000BA51   pinta_textos_inicio_disparo_blanco
-00:0000BA5D X fin_pinta_textos_inicio_disparo_blanco
-00:0000BA5D   pinta_textos_inicio_autoria
-00:0000BA69 X fin_pinta_textos_inicio_autoria
-00:0000BA69   inicializacion_variables
-00:0000BF86   fin_inicializacion_variables
+00:0000B62F   texto_gameover1B
+00:0000B64C   texto_gameover1C
+00:0000B669   texto_finalbueno
+00:0000B669 X texto_finalbueno1
+00:0000B689 X texto_finalbueno2
+00:0000B6A9 X texto_finalbueno3
+00:0000B6C9 X texto_finalbueno4
+00:0000B6E9 X texto_finalbueno5
+00:0000B709 X texto_finalbueno6
+00:0000B729 X texto_finalbueno7
+00:0000B749 X texto_finalbueno8
+00:0000B769   texto_finalmalo
+00:0000B769 X texto_finalmalo1
+00:0000B789 X texto_finalmalo2
+00:0000B7A9 X texto_finalmalo3
+00:0000B7C9 X texto_finalmalo4
+00:0000B7E9 X texto_finalmalo5
+00:0000B809 X texto_finalmalo6
+00:0000B829 X texto_finalmalo7
+00:0000B849 X texto_finalmalo8
+00:0000B869   texto_deaddracula
+00:0000B869 X texto_deaddracula1
+00:0000B889 X texto_deaddracula2
+00:0000B8A9 X texto_deaddracula3
+00:0000B8C9 X texto_deaddracula4
+00:0000B8E9 X texto_deaddracula5
+00:0000B909 X texto_deaddracula6
+00:0000B929 X texto_deaddracula7
+00:0000B949 X texto_deaddracula8
+00:0000B969   texto_graciasporjugar
+00:0000B97B   nombre_jefes
+00:0000B97B X nombre_jefe_lobo
+00:0000B984 X nombre_jefe_murcielago
+00:0000B98D X nombre_jefe_fantasma
+00:0000B996 X nombre_jefe_zombi
+00:0000B99F X nombre_jefe_caballero
+00:0000B9A8 X nombre_jefe_beholder
+00:0000B9B1 X nombre_jefe_dracula
+00:0000B9BA   texto_autoria
+00:0000B9C8   texto_iniciar_blanco
+00:0000B9E6   pinta_texto_vida
+00:0000B9F2 X fin_pinta_texto_vida
+00:0000B9F2   pinta_texto_energia
+00:0000B9FE X fin_pinta_texto_energia
+00:0000B9FE   pinta_texto_reliquias
+00:0000BA0A X fin_pinta_texto_reliquias
+00:0000BA0A   pinta_texto_nivel
+00:0000BA16 X fin_pinta_texto_nivel
+00:0000BA16   pinta_texto_entrefases
+00:0000BA46 X fin_pinta_texto_entrefases
+00:0000BA46   pinta_textos_inicio_disparo
+00:0000BA52 X fin_pinta_textos_inicio_disparo
+00:0000BA52   pinta_textos_inicio_disparo_blanco
+00:0000BA5E X fin_pinta_textos_inicio_disparo_blanco
+00:0000BA5E   pinta_textos_inicio_autoria
+00:0000BA6A X fin_pinta_textos_inicio_autoria
+00:0000BA6A   inicializacion_variables
+00:0000BF87   fin_inicializacion_variables
 
 
  Output: /home/paco/Documentos/proyectos/vampireslayer/test1/src/vs.out
