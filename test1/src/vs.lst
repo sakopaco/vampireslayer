@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.06.15 - 20:51:47]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.06.15 - 20:55:18]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/vs.asm
 Errors: 0
@@ -15233,205 +15233,205 @@ Errors: 0
       66.  00:B4E8                    ~ 
       67.  00:B4E8                    ~ ENDIF
       68.  00:B4E8                      
-      69.  00:B4E8                      IF	2=0 ;textos en inglés
-      70.  00:B4E8                    ~ texto_vidas:		DB	'LIVES'
-      71.  00:B4E8                    ~ 
-      72.  00:B4E8                    ~ texto_energia:		DB	'ENERGY'
-      73.  00:B4E8                    ~ 
-      74.  00:B4E8                    ~ texto_reliquias:	DB	'RELICS'
-      75.  00:B4E8                    ~ 
-      76.  00:B4E8                    ~ texto_nivel:		DB	'LEVEL'
-      77.  00:B4E8                    ~ 
-      78.  00:B4E8                    ~ texto_instruc:		
-      79.  00:B4E8                    ~ texto_instruc1:		DB	'KILL ALL THE ENEMIES TO PASS    '
-      80.  00:B4E8                    ~ texto_instruc2:		DB	'THROUGH THE GATES THEY WILL GIVE'
-      81.  00:B4E8                    ~ texto_instruc3:		DB	'THEIR LIFE TO DEFEND THEIR MASTR'
-      82.  00:B4E8                    ~ 
-      83.  00:B4E8                    ~ texto_entrefases:
-      84.  00:B4E8                    ~ texto_entrefases1:	DB	'  YOU WAIT FOR A MOMENT ON THE'	; 30 caracteres
-      85.  00:B4E8                    ~ texto_entrefases2:	DB  'STAIRS WHILE YOUR EYES ADJUST '	; 30 caracteres
-      86.  00:B4E8                    ~ texto_entrefases3:	DB  'TO THE DARKNESS AND THE HORROR'	; 30 caracteres
-      87.  00:B4E8                    ~ texto_entrefases4:	DB  'THAT AWAITS YOU.              '	; 30 caracteres
-      88.  00:B4E8                    ~ 
-      89.  00:B4E8                    ~ texto_iniciar:		DB	' PUSH TRIGER TO START THE GAME'
-      90.  00:B4E8                    ~ 
-      91.  00:B4E8                    ~ texto_vidamenos:	DB 	'WATCH YOUR LIVES'	;16 caracteres
-      92.  00:B4E8                    ~ 
-      93.  00:B4E8                    ~ texto_gameover:		DB	'GAME OVER '	;10 caracteres
-      94.  00:B4E8                    ~ texto_gameover1A:	DB	' YOU WILL LIVE FOREVER LIKE  '	;29 caracteres
-      95.  00:B4E8                    ~ texto_gameover1B:	DB	'A ZOMBI. BEING DRACULAS SLAVE'	;29 caracteres
-      96.  00:B4E8                    ~ texto_gameover1C:	DB	'        WILL BE YOUR END     ' ;29 caracteres
-      97.  00:B4E8                    ~ 
-      98.  00:B4E8                    ~ texto_finalbueno:
-      99.  00:B4E8                    ~ texto_finalbueno1:	DB	'AFTER FINISHING THE VAMPIRE     ';32 caracteres
-     100.  00:B4E8                    ~ texto_finalbueno2:	DB	'BOSS THE ENERGY THAT MAINTAINED ';32 caracteres
-     101.  00:B4E8                    ~ texto_finalbueno3:	DB	'THE CASTLE AND ENEMIES          ';32 caracteres
-     102.  00:B4E8                    ~ texto_finalbueno4:	DB	'DISAPPEARS AND BURIES THEM      ';32 caracteres
-     103.  00:B4E8                    ~ texto_finalbueno5:	DB	'FOREVER YOU ARE EXHAUSTED AFTER ';32 caracteres
-     104.  00:B4E8                    ~ texto_finalbueno6:	DB	'THE VICTORY. YOU GIVE THE GIRL  ';32 caracteres
-     105.  00:B4E8                    ~ texto_finalbueno7:	DB	'TO HER FATHER AND RECEIVE YOUR  ';32 caracteres
-     106.  00:B4E8                    ~ texto_finalbueno8:	DB	'DESERVED REWARD. YOU RE A LEGEND';32 caracteres
-     107.  00:B4E8                    ~ 
-     108.  00:B4E8                    ~ texto_finalmalo:
-     109.  00:B4E8                    ~ texto_finalmalo1:	DB	'                                ';32 caracteres
-     110.  00:B4E8                    ~ texto_finalmalo2:	DB	'YOU WERE NOT FAST ENOUGHT       ';32 caracteres
-     111.  00:B4E8                    ~ texto_finalmalo3:	DB	'AFTER FINISHING THE BOSS VAMPIRE';32 caracteres
-     112.  00:B4E8                    ~ texto_finalmalo4:	DB	'THE ENERGY THAT MAINTAINED THE  ';32 caracteres
-     113.  00:B4E8                    ~ texto_finalmalo5:	DB	'CASTLE AND ENEMIES DISAPPEARED  ';32 caracteres
-     114.  00:B4E8                    ~ texto_finalmalo6:	DB	'YOU AND MARITZA ARE BURIED DOWN ';32 caracteres
-     115.  00:B4E8                    ~ texto_finalmalo7:	DB	'UNDER TONS OF RUBBLE            ';32 caracteres
-     116.  00:B4E8                    ~ texto_finalmalo8:	DB	'                                ';32 caracteres
-     117.  00:B4E8                    ~ 
-     118.  00:B4E8                    ~ texto_deaddracula:
-     119.  00:B4E8                    ~ texto_deaddracula1:	DB	'CONGRATULATIONS. YOU BEAT       ';32 caracteres
-     120.  00:B4E8                    ~ texto_deaddracula2:	DB	'DRACULA AND YOU RESCUED THE     ';32 caracteres
-     121.  00:B4E8                    ~ texto_deaddracula3:	DB	'GIRL. BUT IT IS NOT THE END.    ';32 caracteres
-     122.  00:B4E8                    ~ texto_deaddracula4:	DB	'THE POWER OF VAMPIRE KEPT THE   ';32 caracteres
-     123.  00:B4E8                    ~ texto_deaddracula5:	DB	'CASTLE. YOU MUST ESCAPE BEFORE  ';32 caracteres
-     124.  00:B4E8                    ~ texto_deaddracula6:	DB	'IT COLLAPSES ON YOU HEADS       ';32 caracteres
-     125.  00:B4E8                    ~ texto_deaddracula7:	DB	'THIS IS NOT OVER YET.           ';32 caracteres
-     126.  00:B4E8                    ~ texto_deaddracula8:	DB	'                                ';32 caracteres
-     127.  00:B4E8                    ~ 
-     128.  00:B4E8                    ~ texto_graciasporjugar:	DB	'THANKS FOR PLAYING'
-     129.  00:B4E8                    ~ 
-     130.  00:B4E8                    ~ ENDIF
-     131.  00:B4E8                      
-     132.  00:B4E8                      IF	3=3	;textos en portugues
-     133.  00:B4E8  56 49 44 41 53      texto_vidas:        	DB    'VIDAS'
-     134.  00:B4ED                      
-     135.  00:B4ED  45 4E 45 52 47 2E   texto_energia:        	DB    'ENERG.'
-     136.  00:B4F3                      
-     137.  00:B4F3  52 45 4C 49 51 2E   texto_reliquias:    	DB    'RELIQ.'
-     138.  00:B4F9                      
-     139.  00:B4F9  4E 49 56 45 4C      texto_nivel:        	DB    'NIVEL'
-     140.  00:B4FE                      
-     141.  00:B4FE                      texto_instruc:
-     142.  00:B4FE                      texto_instruc1:        	DB    'MATAM TODOS OS INIMIGOS PARA    '
-     142.  00:B4FE  4D 41 54 41 4D 20 54 4F 44 4F 53 20 4F 53 20 49 
-     142.  00:B50E  4E 49 4D 49 47 4F 53 20 50 41 52 41 20 20 20 20 
-     143.  00:B51E                      texto_instruc2:        	DB    'ATRAVESSAR OS PORTOES DAO A VIDA'
-     143.  00:B51E  41 54 52 41 56 45 53 53 41 52 20 4F 53 20 50 4F 
-     143.  00:B52E  52 54 4F 45 53 20 44 41 4F 20 41 20 56 49 44 41 
-     144.  00:B53E                      texto_instruc3:        	DB    'PARA DEFENDER O SEU MESTRE      '
-     144.  00:B53E  50 41 52 41 20 44 45 46 45 4E 44 45 52 20 4F 20 
-     144.  00:B54E  53 45 55 20 4D 45 53 54 52 45 20 20 20 20 20 20 
-     145.  00:B55E                      
-     146.  00:B55E                      texto_entrefases:
-     147.  00:B55E                      texto_entrefases1:    	DB    'ESPERA UM MOMENTO NAS ESCADAS '  ; 30 caracteres 
-     147.  00:B55E  45 53 50 45 52 41 20 55 4D 20 4D 4F 4D 45 4E 54 
-     147.  00:B56E  4F 20 4E 41 53 20 45 53 43 41 44 41 53 20 
-     148.  00:B57C                      texto_entrefases2:    	DB    'ENQUANTO OS SEUS OLHOS SE     '    ; 30 caracteres
-     148.  00:B57C  45 4E 51 55 41 4E 54 4F 20 4F 53 20 53 45 55 53 
-     148.  00:B58C  20 4F 4C 48 4F 53 20 53 45 20 20 20 20 20 
-     149.  00:B59A                      texto_entrefases3:    	DB    'ADAPTAM A ESCURIDAO E AO      '    ; 30 caracteres
-     149.  00:B59A  41 44 41 50 54 41 4D 20 41 20 45 53 43 55 52 49 
-     149.  00:B5AA  44 41 4F 20 45 20 41 4F 20 20 20 20 20 20 
-     150.  00:B5B8                      texto_entrefases4:    	DB    'HORROR QUE O ESPERA.          '    ; 30 caracteres
-     150.  00:B5B8  48 4F 52 52 4F 52 20 51 55 45 20 4F 20 45 53 50 
-     150.  00:B5C8  45 52 41 2E 20 20 20 20 20 20 20 20 20 20 
-     151.  00:B5D6                      
-     152.  00:B5D6                      texto_iniciar:        	DB    '    PREMIR FOGO PARA INICIAR  ' ;30 caracteres+
-     152.  00:B5D6  20 20 20 20 50 52 45 4D 49 52 20 46 4F 47 4F 20 
-     152.  00:B5E6  50 41 52 41 20 49 4E 49 43 49 41 52 20 20 
-     153.  00:B5F4                      
-     154.  00:B5F4                      texto_vidamenos:    	DB    'UMA VIDA A MENOS'    ;16 caracteres +
-     154.  00:B5F4  55 4D 41 20 56 49 44 41 20 41 20 4D 45 4E 4F 53 
-     155.  00:B604                      
-     156.  00:B604                      texto_gameover:        	DB    'MORRESTE. '    ;10 caracteres+
-     156.  00:B604  4D 4F 52 52 45 53 54 45 2E 20 
-     157.  00:B60E                      texto_gameover1A:    	DB    ' VIVERAS PARA SEMPRE COMO UM '   ;29 caracteres+
-     157.  00:B60E  20 56 49 56 45 52 41 53 20 50 41 52 41 20 53 45 
-     157.  00:B61E  4D 50 52 45 20 43 4F 4D 4F 20 55 4D 20 
-     158.  00:B62B                      texto_gameover1B:    	DB    '   ZOMBIE. SER ESCRAVO DE    '   ;29 caracteres+
-     158.  00:B62B  20 20 20 5A 4F 4D 42 49 45 2E 20 53 45 52 20 45 
-     158.  00:B63B  53 43 52 41 56 4F 20 44 45 20 20 20 20 
-     159.  00:B648                      texto_gameover1C:    	DB    '   DRACULA SERA O TEU FIM.   ' 	;29 caracteres+
-     159.  00:B648  20 20 20 44 52 41 43 55 4C 41 20 53 45 52 41 20 
-     159.  00:B658  4F 20 54 45 55 20 46 49 4D 2E 20 20 20 
-     160.  00:B665                      
-     161.  00:B665                      texto_finalbueno:
-     162.  00:B665                      texto_finalbueno1:    	DB    'DEPOIS DE ACABAR COM O VAMPIRO  ';32 caracteres
-     162.  00:B665  44 45 50 4F 49 53 20 44 45 20 41 43 41 42 41 52 
-     162.  00:B675  20 43 4F 4D 20 4F 20 56 41 4D 50 49 52 4F 20 20 
-     163.  00:B685                      texto_finalbueno2:    	DB    'CHEFE A ENERGIA QUE MANTINHA O  ';32 caracteres
-     163.  00:B685  43 48 45 46 45 20 41 20 45 4E 45 52 47 49 41 20 
-     163.  00:B695  51 55 45 20 4D 41 4E 54 49 4E 48 41 20 4F 20 20 
-     164.  00:B6A5                      texto_finalbueno3:    	DB    'CASTELO E OS INIMIGOS JUNTOS DES';32 caracteres
-     164.  00:B6A5  43 41 53 54 45 4C 4F 20 45 20 4F 53 20 49 4E 49 
-     164.  00:B6B5  4D 49 47 4F 53 20 4A 55 4E 54 4F 53 20 44 45 53 
-     165.  00:B6C5                      texto_finalbueno4:    	DB    'APARECE E ENTERRA-OS PARA SEMPRE';32 caracteres
-     165.  00:B6C5  41 50 41 52 45 43 45 20 45 20 45 4E 54 45 52 52 
-     165.  00:B6D5  41 2D 4F 53 20 50 41 52 41 20 53 45 4D 50 52 45 
-     166.  00:B6E5                      texto_finalbueno5:    	DB    'ESTAS EXAUSTO APOS A VITORIA  EN';32 caracteres
-     166.  00:B6E5  45 53 54 41 53 20 45 58 41 55 53 54 4F 20 41 50 
-     166.  00:B6F5  4F 53 20 41 20 56 49 54 4F 52 49 41 20 20 45 4E 
-     167.  00:B705                      texto_finalbueno6:    	DB    'TREGAS A RAPARIGA AO SEU PAI E  ';32 caracteres
-     167.  00:B705  54 52 45 47 41 53 20 41 20 52 41 50 41 52 49 47 
-     167.  00:B715  41 20 41 4F 20 53 45 55 20 50 41 49 20 45 20 20 
-     168.  00:B725                      texto_finalbueno7:    	DB    'RECEBES A TUA MERECIDA RECOMPNSA';32 caracteres
-     168.  00:B725  52 45 43 45 42 45 53 20 41 20 54 55 41 20 4D 45 
-     168.  00:B735  52 45 43 49 44 41 20 52 45 43 4F 4D 50 4E 53 41 
-     169.  00:B745                      texto_finalbueno8:    	DB    'TORNASTE-TE UMA LENDA           ';32 caracteres
-     169.  00:B745  54 4F 52 4E 41 53 54 45 2D 54 45 20 55 4D 41 20 
-     169.  00:B755  4C 45 4E 44 41 20 20 20 20 20 20 20 20 20 20 20 
-     170.  00:B765                      
-     171.  00:B765                      texto_finalmalo
-     172.  00:B765                      texto_finalmalo1:    	DB    'NAO FOSTE SUFICIENTEMENTE       ';32 caracteres
-     172.  00:B765  4E 41 4F 20 46 4F 53 54 45 20 53 55 46 49 43 49 
-     172.  00:B775  45 4E 54 45 4D 45 4E 54 45 20 20 20 20 20 20 20 
-     173.  00:B785                      texto_finalmalo2:    	DB    'RAPIDO. DEPOIS DE ELIMINARES O  ';32 caracteres
-     173.  00:B785  52 41 50 49 44 4F 2E 20 44 45 50 4F 49 53 20 44 
-     173.  00:B795  45 20 45 4C 49 4D 49 4E 41 52 45 53 20 4F 20 20 
-     174.  00:B7A5                      texto_finalmalo3:    	DB    'VAMPIRO CHEFE A ENERGIA QUE     ';32 caracteres
-     174.  00:B7A5  56 41 4D 50 49 52 4F 20 43 48 45 46 45 20 41 20 
-     174.  00:B7B5  45 4E 45 52 47 49 41 20 51 55 45 20 20 20 20 20 
-     175.  00:B7C5                      texto_finalmalo4:    	DB    'MANTINHA O CASTELO E OS INIMIGOS';32 caracteres
-     175.  00:B7C5  4D 41 4E 54 49 4E 48 41 20 4F 20 43 41 53 54 45 
-     175.  00:B7D5  4C 4F 20 45 20 4F 53 20 49 4E 49 4D 49 47 4F 53 
-     176.  00:B7E5                      texto_finalmalo5:    	DB    'UNIDOS DESAPARECE. TU E A       ';32 caracteres
-     176.  00:B7E5  55 4E 49 44 4F 53 20 44 45 53 41 50 41 52 45 43 
-     176.  00:B7F5  45 2E 20 54 55 20 45 20 41 20 20 20 20 20 20 20 
-     177.  00:B805                      texto_finalmalo6:    	DB    'MARITZA FICAM ENTERRADOS DEBAIXO';32 caracteres
-     177.  00:B805  4D 41 52 49 54 5A 41 20 46 49 43 41 4D 20 45 4E 
-     177.  00:B815  54 45 52 52 41 44 4F 53 20 44 45 42 41 49 58 4F 
-     178.  00:B825                      texto_finalmalo7:    	DB    'DOS ESCOMBROS.                  ';32 caracteres
-     178.  00:B825  44 4F 53 20 45 53 43 4F 4D 42 52 4F 53 2E 20 20 
-     178.  00:B835  20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 
-     179.  00:B845                      texto_finalmalo8:   	DB    '                                ';32 caracteres
-     179.  00:B845  20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 
-     179.  00:B855  20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 
-     180.  00:B865                      
-     181.  00:B865                      texto_deaddracula:
-     182.  00:B865                      texto_deaddracula1:    	DB    'PARABENS. DERROTARAM O DRACULA  ';32 caracteres
-     182.  00:B865  50 41 52 41 42 45 4E 53 2E 20 44 45 52 52 4F 54 
-     182.  00:B875  41 52 41 4D 20 4F 20 44 52 41 43 55 4C 41 20 20 
-     183.  00:B885                      texto_deaddracula2:    	DB    'E SALVARAM A RAPARIGA. MAS ISTO ';32 caracteres
-     183.  00:B885  45 20 53 41 4C 56 41 52 41 4D 20 41 20 52 41 50 
-     183.  00:B895  41 52 49 47 41 2E 20 4D 41 53 20 49 53 54 4F 20 
-     184.  00:B8A5                      texto_deaddracula3:    	DB    'NAO E O FIM. O PODER DO VAMPIRO ';32 caracteres
-     184.  00:B8A5  4E 41 4F 20 45 20 4F 20 46 49 4D 2E 20 4F 20 50 
-     184.  00:B8B5  4F 44 45 52 20 44 4F 20 56 41 4D 50 49 52 4F 20 
-     185.  00:B8C5                      texto_deaddracula4:    	DB    'MANTEVE O CASTELO DE PE. TEM DE ';32 caracteres
-     185.  00:B8C5  4D 41 4E 54 45 56 45 20 4F 20 43 41 53 54 45 4C 
-     185.  00:B8D5  4F 20 44 45 20 50 45 2E 20 54 45 4D 20 44 45 20 
-     186.  00:B8E5                      texto_deaddracula5:    	DB    'ESCAPAR ANTES QUE ELE CAIA SOBRE';32 caracteres
-     186.  00:B8E5  45 53 43 41 50 41 52 20 41 4E 54 45 53 20 51 55 
-     186.  00:B8F5  45 20 45 4C 45 20 43 41 49 41 20 53 4F 42 52 45 
-     187.  00:B905                      texto_deaddracula6:    	DB    'AS VOSSAS CABECAS.              ';32 caracteres
-     187.  00:B905  41 53 20 56 4F 53 53 41 53 20 43 41 42 45 43 41 
-     187.  00:B915  53 2E 20 20 20 20 20 20 20 20 20 20 20 20 20 20 
-     188.  00:B925                      texto_deaddracula7:    	DB    '     ISTO AINDA NAO ACABOU.     ';32 caracteres
-     188.  00:B925  20 20 20 20 20 49 53 54 4F 20 41 49 4E 44 41 20 
-     188.  00:B935  4E 41 4F 20 41 43 41 42 4F 55 2E 20 20 20 20 20 
-     189.  00:B945                      texto_deaddracula8:    	DB    '                                ';32 caracteres
-     189.  00:B945  20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 
-     189.  00:B955  20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 
-     190.  00:B965                      
-     191.  00:B965                      texto_graciasporjugar:  DB    'OBRIGADO POR JOGAR'
-     191.  00:B965  4F 42 52 49 47 41 44 4F 20 50 4F 52 20 4A 4F 47 
-     191.  00:B975  41 52 
-     192.  00:B977                      
-     193.  00:B977                      ENDIF
+      69.  00:B4E8                      IF	2=2 ;textos en inglés
+      70.  00:B4E8  4C 49 56 45 53      texto_vidas:		DB	'LIVES'
+      71.  00:B4ED                      
+      72.  00:B4ED  45 4E 45 52 47 59   texto_energia:		DB	'ENERGY'
+      73.  00:B4F3                      
+      74.  00:B4F3  52 45 4C 49 43 53   texto_reliquias:	DB	'RELICS'
+      75.  00:B4F9                      
+      76.  00:B4F9  4C 45 56 45 4C      texto_nivel:		DB	'LEVEL'
+      77.  00:B4FE                      
+      78.  00:B4FE                      texto_instruc:		
+      79.  00:B4FE                      texto_instruc1:		DB	'KILL ALL THE ENEMIES TO PASS    '
+      79.  00:B4FE  4B 49 4C 4C 20 41 4C 4C 20 54 48 45 20 45 4E 45 
+      79.  00:B50E  4D 49 45 53 20 54 4F 20 50 41 53 53 20 20 20 20 
+      80.  00:B51E                      texto_instruc2:		DB	'THROUGH THE GATES THEY WILL GIVE'
+      80.  00:B51E  54 48 52 4F 55 47 48 20 54 48 45 20 47 41 54 45 
+      80.  00:B52E  53 20 54 48 45 59 20 57 49 4C 4C 20 47 49 56 45 
+      81.  00:B53E                      texto_instruc3:		DB	'THEIR LIFE TO DEFEND THEIR MASTR'
+      81.  00:B53E  54 48 45 49 52 20 4C 49 46 45 20 54 4F 20 44 45 
+      81.  00:B54E  46 45 4E 44 20 54 48 45 49 52 20 4D 41 53 54 52 
+      82.  00:B55E                      
+      83.  00:B55E                      texto_entrefases:
+      84.  00:B55E                      texto_entrefases1:	DB	'  YOU WAIT FOR A MOMENT ON THE'	; 30 caracteres
+      84.  00:B55E  20 20 59 4F 55 20 57 41 49 54 20 46 4F 52 20 41 
+      84.  00:B56E  20 4D 4F 4D 45 4E 54 20 4F 4E 20 54 48 45 
+      85.  00:B57C                      texto_entrefases2:	DB  'STAIRS WHILE YOUR EYES ADJUST '	; 30 caracteres
+      85.  00:B57C  53 54 41 49 52 53 20 57 48 49 4C 45 20 59 4F 55 
+      85.  00:B58C  52 20 45 59 45 53 20 41 44 4A 55 53 54 20 
+      86.  00:B59A                      texto_entrefases3:	DB  'TO THE DARKNESS AND THE HORROR'	; 30 caracteres
+      86.  00:B59A  54 4F 20 54 48 45 20 44 41 52 4B 4E 45 53 53 20 
+      86.  00:B5AA  41 4E 44 20 54 48 45 20 48 4F 52 52 4F 52 
+      87.  00:B5B8                      texto_entrefases4:	DB  'THAT AWAITS YOU.              '	; 30 caracteres
+      87.  00:B5B8  54 48 41 54 20 41 57 41 49 54 53 20 59 4F 55 2E 
+      87.  00:B5C8  20 20 20 20 20 20 20 20 20 20 20 20 20 20 
+      88.  00:B5D6                      
+      89.  00:B5D6                      texto_iniciar:		DB	' PUSH TRIGER TO START THE GAME'
+      89.  00:B5D6  20 50 55 53 48 20 54 52 49 47 45 52 20 54 4F 20 
+      89.  00:B5E6  53 54 41 52 54 20 54 48 45 20 47 41 4D 45 
+      90.  00:B5F4                      
+      91.  00:B5F4                      texto_vidamenos:	DB 	'WATCH YOUR LIVES'	;16 caracteres
+      91.  00:B5F4  57 41 54 43 48 20 59 4F 55 52 20 4C 49 56 45 53 
+      92.  00:B604                      
+      93.  00:B604                      texto_gameover:		DB	'GAME OVER '	;10 caracteres
+      93.  00:B604  47 41 4D 45 20 4F 56 45 52 20 
+      94.  00:B60E                      texto_gameover1A:	DB	' YOU WILL LIVE FOREVER LIKE  '	;29 caracteres
+      94.  00:B60E  20 59 4F 55 20 57 49 4C 4C 20 4C 49 56 45 20 46 
+      94.  00:B61E  4F 52 45 56 45 52 20 4C 49 4B 45 20 20 
+      95.  00:B62B                      texto_gameover1B:	DB	'A ZOMBI. BEING DRACULAS SLAVE'	;29 caracteres
+      95.  00:B62B  41 20 5A 4F 4D 42 49 2E 20 42 45 49 4E 47 20 44 
+      95.  00:B63B  52 41 43 55 4C 41 53 20 53 4C 41 56 45 
+      96.  00:B648                      texto_gameover1C:	DB	'        WILL BE YOUR END     ' ;29 caracteres
+      96.  00:B648  20 20 20 20 20 20 20 20 57 49 4C 4C 20 42 45 20 
+      96.  00:B658  59 4F 55 52 20 45 4E 44 20 20 20 20 20 
+      97.  00:B665                      
+      98.  00:B665                      texto_finalbueno:
+      99.  00:B665                      texto_finalbueno1:	DB	'AFTER FINISHING THE VAMPIRE     ';32 caracteres
+      99.  00:B665  41 46 54 45 52 20 46 49 4E 49 53 48 49 4E 47 20 
+      99.  00:B675  54 48 45 20 56 41 4D 50 49 52 45 20 20 20 20 20 
+     100.  00:B685                      texto_finalbueno2:	DB	'BOSS THE ENERGY THAT MAINTAINED ';32 caracteres
+     100.  00:B685  42 4F 53 53 20 54 48 45 20 45 4E 45 52 47 59 20 
+     100.  00:B695  54 48 41 54 20 4D 41 49 4E 54 41 49 4E 45 44 20 
+     101.  00:B6A5                      texto_finalbueno3:	DB	'THE CASTLE AND ENEMIES          ';32 caracteres
+     101.  00:B6A5  54 48 45 20 43 41 53 54 4C 45 20 41 4E 44 20 45 
+     101.  00:B6B5  4E 45 4D 49 45 53 20 20 20 20 20 20 20 20 20 20 
+     102.  00:B6C5                      texto_finalbueno4:	DB	'DISAPPEARS AND BURIES THEM      ';32 caracteres
+     102.  00:B6C5  44 49 53 41 50 50 45 41 52 53 20 41 4E 44 20 42 
+     102.  00:B6D5  55 52 49 45 53 20 54 48 45 4D 20 20 20 20 20 20 
+     103.  00:B6E5                      texto_finalbueno5:	DB	'FOREVER YOU ARE EXHAUSTED AFTER ';32 caracteres
+     103.  00:B6E5  46 4F 52 45 56 45 52 20 59 4F 55 20 41 52 45 20 
+     103.  00:B6F5  45 58 48 41 55 53 54 45 44 20 41 46 54 45 52 20 
+     104.  00:B705                      texto_finalbueno6:	DB	'THE VICTORY. YOU GIVE THE GIRL  ';32 caracteres
+     104.  00:B705  54 48 45 20 56 49 43 54 4F 52 59 2E 20 59 4F 55 
+     104.  00:B715  20 47 49 56 45 20 54 48 45 20 47 49 52 4C 20 20 
+     105.  00:B725                      texto_finalbueno7:	DB	'TO HER FATHER AND RECEIVE YOUR  ';32 caracteres
+     105.  00:B725  54 4F 20 48 45 52 20 46 41 54 48 45 52 20 41 4E 
+     105.  00:B735  44 20 52 45 43 45 49 56 45 20 59 4F 55 52 20 20 
+     106.  00:B745                      texto_finalbueno8:	DB	'DESERVED REWARD. YOU RE A LEGEND';32 caracteres
+     106.  00:B745  44 45 53 45 52 56 45 44 20 52 45 57 41 52 44 2E 
+     106.  00:B755  20 59 4F 55 20 52 45 20 41 20 4C 45 47 45 4E 44 
+     107.  00:B765                      
+     108.  00:B765                      texto_finalmalo:
+     109.  00:B765                      texto_finalmalo1:	DB	'                                ';32 caracteres
+     109.  00:B765  20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 
+     109.  00:B775  20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 
+     110.  00:B785                      texto_finalmalo2:	DB	'YOU WERE NOT FAST ENOUGHT       ';32 caracteres
+     110.  00:B785  59 4F 55 20 57 45 52 45 20 4E 4F 54 20 46 41 53 
+     110.  00:B795  54 20 45 4E 4F 55 47 48 54 20 20 20 20 20 20 20 
+     111.  00:B7A5                      texto_finalmalo3:	DB	'AFTER FINISHING THE BOSS VAMPIRE';32 caracteres
+     111.  00:B7A5  41 46 54 45 52 20 46 49 4E 49 53 48 49 4E 47 20 
+     111.  00:B7B5  54 48 45 20 42 4F 53 53 20 56 41 4D 50 49 52 45 
+     112.  00:B7C5                      texto_finalmalo4:	DB	'THE ENERGY THAT MAINTAINED THE  ';32 caracteres
+     112.  00:B7C5  54 48 45 20 45 4E 45 52 47 59 20 54 48 41 54 20 
+     112.  00:B7D5  4D 41 49 4E 54 41 49 4E 45 44 20 54 48 45 20 20 
+     113.  00:B7E5                      texto_finalmalo5:	DB	'CASTLE AND ENEMIES DISAPPEARED  ';32 caracteres
+     113.  00:B7E5  43 41 53 54 4C 45 20 41 4E 44 20 45 4E 45 4D 49 
+     113.  00:B7F5  45 53 20 44 49 53 41 50 50 45 41 52 45 44 20 20 
+     114.  00:B805                      texto_finalmalo6:	DB	'YOU AND MARITZA ARE BURIED DOWN ';32 caracteres
+     114.  00:B805  59 4F 55 20 41 4E 44 20 4D 41 52 49 54 5A 41 20 
+     114.  00:B815  41 52 45 20 42 55 52 49 45 44 20 44 4F 57 4E 20 
+     115.  00:B825                      texto_finalmalo7:	DB	'UNDER TONS OF RUBBLE            ';32 caracteres
+     115.  00:B825  55 4E 44 45 52 20 54 4F 4E 53 20 4F 46 20 52 55 
+     115.  00:B835  42 42 4C 45 20 20 20 20 20 20 20 20 20 20 20 20 
+     116.  00:B845                      texto_finalmalo8:	DB	'                                ';32 caracteres
+     116.  00:B845  20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 
+     116.  00:B855  20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 
+     117.  00:B865                      
+     118.  00:B865                      texto_deaddracula:
+     119.  00:B865                      texto_deaddracula1:	DB	'CONGRATULATIONS. YOU BEAT       ';32 caracteres
+     119.  00:B865  43 4F 4E 47 52 41 54 55 4C 41 54 49 4F 4E 53 2E 
+     119.  00:B875  20 59 4F 55 20 42 45 41 54 20 20 20 20 20 20 20 
+     120.  00:B885                      texto_deaddracula2:	DB	'DRACULA AND YOU RESCUED THE     ';32 caracteres
+     120.  00:B885  44 52 41 43 55 4C 41 20 41 4E 44 20 59 4F 55 20 
+     120.  00:B895  52 45 53 43 55 45 44 20 54 48 45 20 20 20 20 20 
+     121.  00:B8A5                      texto_deaddracula3:	DB	'GIRL. BUT IT IS NOT THE END.    ';32 caracteres
+     121.  00:B8A5  47 49 52 4C 2E 20 42 55 54 20 49 54 20 49 53 20 
+     121.  00:B8B5  4E 4F 54 20 54 48 45 20 45 4E 44 2E 20 20 20 20 
+     122.  00:B8C5                      texto_deaddracula4:	DB	'THE POWER OF VAMPIRE KEPT THE   ';32 caracteres
+     122.  00:B8C5  54 48 45 20 50 4F 57 45 52 20 4F 46 20 56 41 4D 
+     122.  00:B8D5  50 49 52 45 20 4B 45 50 54 20 54 48 45 20 20 20 
+     123.  00:B8E5                      texto_deaddracula5:	DB	'CASTLE. YOU MUST ESCAPE BEFORE  ';32 caracteres
+     123.  00:B8E5  43 41 53 54 4C 45 2E 20 59 4F 55 20 4D 55 53 54 
+     123.  00:B8F5  20 45 53 43 41 50 45 20 42 45 46 4F 52 45 20 20 
+     124.  00:B905                      texto_deaddracula6:	DB	'IT COLLAPSES ON YOU HEADS       ';32 caracteres
+     124.  00:B905  49 54 20 43 4F 4C 4C 41 50 53 45 53 20 4F 4E 20 
+     124.  00:B915  59 4F 55 20 48 45 41 44 53 20 20 20 20 20 20 20 
+     125.  00:B925                      texto_deaddracula7:	DB	'THIS IS NOT OVER YET.           ';32 caracteres
+     125.  00:B925  54 48 49 53 20 49 53 20 4E 4F 54 20 4F 56 45 52 
+     125.  00:B935  20 59 45 54 2E 20 20 20 20 20 20 20 20 20 20 20 
+     126.  00:B945                      texto_deaddracula8:	DB	'                                ';32 caracteres
+     126.  00:B945  20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 
+     126.  00:B955  20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 
+     127.  00:B965                      
+     128.  00:B965                      texto_graciasporjugar:	DB	'THANKS FOR PLAYING'
+     128.  00:B965  54 48 41 4E 4B 53 20 46 4F 52 20 50 4C 41 59 49 
+     128.  00:B975  4E 47 
+     129.  00:B977                      
+     130.  00:B977                      ENDIF
+     131.  00:B977                      
+     132.  00:B977                      IF	3=0	;textos en portugues
+     133.  00:B977                    ~ texto_vidas:        	DB    'VIDAS'
+     134.  00:B977                    ~ 
+     135.  00:B977                    ~ texto_energia:        	DB    'ENERG.'
+     136.  00:B977                    ~ 
+     137.  00:B977                    ~ texto_reliquias:    	DB    'RELIQ.'
+     138.  00:B977                    ~ 
+     139.  00:B977                    ~ texto_nivel:        	DB    'NIVEL'
+     140.  00:B977                    ~ 
+     141.  00:B977                    ~ texto_instruc:
+     142.  00:B977                    ~ texto_instruc1:        	DB    'MATAM TODOS OS INIMIGOS PARA    '
+     143.  00:B977                    ~ texto_instruc2:        	DB    'ATRAVESSAR OS PORTOES DAO A VIDA'
+     144.  00:B977                    ~ texto_instruc3:        	DB    'PARA DEFENDER O SEU MESTRE      '
+     145.  00:B977                    ~ 
+     146.  00:B977                    ~ texto_entrefases:
+     147.  00:B977                    ~ texto_entrefases1:    	DB    'ESPERA UM MOMENTO NAS ESCADAS '  ; 30 caracteres 
+     148.  00:B977                    ~ texto_entrefases2:    	DB    'ENQUANTO OS SEUS OLHOS SE     '    ; 30 caracteres
+     149.  00:B977                    ~ texto_entrefases3:    	DB    'ADAPTAM A ESCURIDAO E AO      '    ; 30 caracteres
+     150.  00:B977                    ~ texto_entrefases4:    	DB    'HORROR QUE O ESPERA.          '    ; 30 caracteres
+     151.  00:B977                    ~ 
+     152.  00:B977                    ~ texto_iniciar:        	DB    '    PREMIR FOGO PARA INICIAR  ' ;30 caracteres+
+     153.  00:B977                    ~ 
+     154.  00:B977                    ~ texto_vidamenos:    	DB    'UMA VIDA A MENOS'    ;16 caracteres +
+     155.  00:B977                    ~ 
+     156.  00:B977                    ~ texto_gameover:        	DB    'MORRESTE. '    ;10 caracteres+
+     157.  00:B977                    ~ texto_gameover1A:    	DB    ' VIVERAS PARA SEMPRE COMO UM '   ;29 caracteres+
+     158.  00:B977                    ~ texto_gameover1B:    	DB    '   ZOMBIE. SER ESCRAVO DE    '   ;29 caracteres+
+     159.  00:B977                    ~ texto_gameover1C:    	DB    '   DRACULA SERA O TEU FIM.   ' 	;29 caracteres+
+     160.  00:B977                    ~ 
+     161.  00:B977                    ~ texto_finalbueno:
+     162.  00:B977                    ~ texto_finalbueno1:    	DB    'DEPOIS DE ACABAR COM O VAMPIRO  ';32 caracteres
+     163.  00:B977                    ~ texto_finalbueno2:    	DB    'CHEFE A ENERGIA QUE MANTINHA O  ';32 caracteres
+     164.  00:B977                    ~ texto_finalbueno3:    	DB    'CASTELO E OS INIMIGOS JUNTOS DES';32 caracteres
+     165.  00:B977                    ~ texto_finalbueno4:    	DB    'APARECE E ENTERRA-OS PARA SEMPRE';32 caracteres
+     166.  00:B977                    ~ texto_finalbueno5:    	DB    'ESTAS EXAUSTO APOS A VITORIA  EN';32 caracteres
+     167.  00:B977                    ~ texto_finalbueno6:    	DB    'TREGAS A RAPARIGA AO SEU PAI E  ';32 caracteres
+     168.  00:B977                    ~ texto_finalbueno7:    	DB    'RECEBES A TUA MERECIDA RECOMPNSA';32 caracteres
+     169.  00:B977                    ~ texto_finalbueno8:    	DB    'TORNASTE-TE UMA LENDA           ';32 caracteres
+     170.  00:B977                    ~ 
+     171.  00:B977                    ~ texto_finalmalo
+     172.  00:B977                    ~ texto_finalmalo1:    	DB    'NAO FOSTE SUFICIENTEMENTE       ';32 caracteres
+     173.  00:B977                    ~ texto_finalmalo2:    	DB    'RAPIDO. DEPOIS DE ELIMINARES O  ';32 caracteres
+     174.  00:B977                    ~ texto_finalmalo3:    	DB    'VAMPIRO CHEFE A ENERGIA QUE     ';32 caracteres
+     175.  00:B977                    ~ texto_finalmalo4:    	DB    'MANTINHA O CASTELO E OS INIMIGOS';32 caracteres
+     176.  00:B977                    ~ texto_finalmalo5:    	DB    'UNIDOS DESAPARECE. TU E A       ';32 caracteres
+     177.  00:B977                    ~ texto_finalmalo6:    	DB    'MARITZA FICAM ENTERRADOS DEBAIXO';32 caracteres
+     178.  00:B977                    ~ texto_finalmalo7:    	DB    'DOS ESCOMBROS.                  ';32 caracteres
+     179.  00:B977                    ~ texto_finalmalo8:   	DB    '                                ';32 caracteres
+     180.  00:B977                    ~ 
+     181.  00:B977                    ~ texto_deaddracula:
+     182.  00:B977                    ~ texto_deaddracula1:    	DB    'PARABENS. DERROTARAM O DRACULA  ';32 caracteres
+     183.  00:B977                    ~ texto_deaddracula2:    	DB    'E SALVARAM A RAPARIGA. MAS ISTO ';32 caracteres
+     184.  00:B977                    ~ texto_deaddracula3:    	DB    'NAO E O FIM. O PODER DO VAMPIRO ';32 caracteres
+     185.  00:B977                    ~ texto_deaddracula4:    	DB    'MANTEVE O CASTELO DE PE. TEM DE ';32 caracteres
+     186.  00:B977                    ~ texto_deaddracula5:    	DB    'ESCAPAR ANTES QUE ELE CAIA SOBRE';32 caracteres
+     187.  00:B977                    ~ texto_deaddracula6:    	DB    'AS VOSSAS CABECAS.              ';32 caracteres
+     188.  00:B977                    ~ texto_deaddracula7:    	DB    '     ISTO AINDA NAO ACABOU.     ';32 caracteres
+     189.  00:B977                    ~ texto_deaddracula8:    	DB    '                                ';32 caracteres
+     190.  00:B977                    ~ 
+     191.  00:B977                    ~ texto_graciasporjugar:  DB    'OBRIGADO POR JOGAR'
+     192.  00:B977                    ~ 
+     193.  00:B977                    ~ ENDIF
      194.  00:B977                      
      195.  00:B977                      
      196.  00:B977                      ;NOMBRE DE ENEMIGOS

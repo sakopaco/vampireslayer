@@ -66,7 +66,7 @@ texto_graciasporjugar:	DB	'GRACIAS POR JUGAR '
 
 ENDIF
 
-IF	2=0 ;textos en inglés
+IF	2=2 ;textos en inglés
 texto_vidas:		DB	'LIVES'
 
 texto_energia:		DB	'ENERGY'
@@ -129,7 +129,7 @@ texto_graciasporjugar:	DB	'THANKS FOR PLAYING'
 
 ENDIF
 
-IF	3=3	;textos en portugues
+IF	3=0	;textos en portugues
 texto_vidas:        	DB    'VIDAS'
 
 texto_energia:        	DB    'ENERG.'
