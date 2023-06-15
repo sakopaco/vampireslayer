@@ -39,7 +39,7 @@ anade_enemigo_fantasma:
 		LD			HL, datos_fantasma
 		LD			BC, ESTRUCTURA_ENEMIGO
 		LDIR
-fin_anade_enemigo_fantasma:
+;fin_anade_enemigo_fantasma:
 		RET
 
 
@@ -50,8 +50,8 @@ fin_anade_enemigo_fantasma:
 ; entrada:	IX que equivaldrá a qué nº de enemigo estamos inicializando (por ejemplo enemigo1)
 ; salida: 	-
 ; toca:		-
-actualiza_valores_fantasma:
-fin_actualiza_valores_fantasma:
+;actualiza_valores_fantasma:
+;fin_actualiza_valores_fantasma:
 		
 		
 ;;=====================================================
@@ -84,7 +84,7 @@ mover_fantasma:
 		;colorea fantasma
 		LD			(IY + 3), FANTASMA_COLOR
 		LD			(IY + 7), FANTASMA_COLOR
-fin_mover_fantasma:
+;fin_mover_fantasma:
 		RET
 
 
@@ -116,7 +116,7 @@ calcula_fantasma_escena:
 .escena2:
 				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), FANTASMA_SPRITE1B
 				RET	
-fin_calcula_fantasma_escena:
+;fin_calcula_fantasma_escena:
 
 
 ;;=====================================================
@@ -158,7 +158,7 @@ calcula_fantasma_posyx:
 		RET
 .resetea_posicion:
 		LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), 00000001b
-fin_calcula_fantasma_posyx:
+;fin_calcula_fantasma_posyx:
 		RET
 
 
@@ -178,5 +178,5 @@ verifica_siguiente_posicion_fantasma:
 			LD			(IX + ESTRUCTURA_ENEMIGO.pasos), FANTASMA_LIM_PASOS
 			;paso a la siguiente posición
 			RLC			(IX + ESTRUCTURA_ENEMIGO.direccionx)
-fin_verifica_siguiente_posicion_fantasma:
+;fin_verifica_siguiente_posicion_fantasma:
 			RET

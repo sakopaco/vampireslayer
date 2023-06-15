@@ -1,7 +1,9 @@
 BUGS:
 
 TODO A:
-* revisar mapas voy por nivel 2
+* subir fantasma bajo 10 px
+
+* revisar mapas voy por nivel 4
 * bajar daño enemigos gordos (no jefes)
 
 - poner página extra con cuenta en itchio y github

@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.06.14 - 21:12:44]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.06.15 - 20:06:27]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/vs.asm
 Errors: 0
@@ -287,7 +287,7 @@ Errors: 0
      279.  00:4000  (00:0000)           ESQUELETO_POSX: equ 00000000h
      280.  00:4000  (00:0060)           ESQUELETO_POSY: equ 00000060h
      281.  00:4000  (00:0010)           ESQUELETO_VELESCENA: equ 00000010h
-     282.  00:4000  (00:0005)           ESQUELETO_DANO: equ 00000005h
+     282.  00:4000  (00:0004)           ESQUELETO_DANO: equ 00000004h
      283.  00:4000  (00:0041)           ESQUELETO_ENERGIA: equ 00000041h
      284.  00:4000  (00:0008)           TIPOZOMBI: equ 00000008h
      285.  00:4000  (00:0008)           ZOMBI_COLOR_A: equ 00000008h
@@ -306,7 +306,7 @@ Errors: 0
      298.  00:4000  (00:0040)           ZOMBI_POSY: equ 00000040h
      299.  00:4000  (00:0096)           ZOMBI_PASOS: equ 00000096h
      300.  00:4000  (00:0010)           ZOMBI_VELESCENA: equ 00000010h
-     301.  00:4000  (00:0005)           ZOMBI_DANO: equ 00000005h
+     301.  00:4000  (00:0004)           ZOMBI_DANO: equ 00000004h
      302.  00:4000  (00:0046)           ZOMBI_ENERGIA: equ 00000046h
      303.  00:4000  (00:000F)           TIPOJEFEMURCIELAGO: equ 0000000Fh
      304.  00:4000  (00:0001)           JEFEMURCIELAGO_COLOR: equ 00000001h
@@ -338,11 +338,11 @@ Errors: 0
      330.  00:4000  (00:00A0)           FANTASMA_X2: equ 000000A0h
      331.  00:4000  (00:0018)           FANTASMA_Y2: equ 00000018h
      332.  00:4000  (00:0028)           FANTASMA_X3: equ 00000028h
-     333.  00:4000  (00:0040)           FANTASMA_Y3: equ 00000040h
+     333.  00:4000  (00:0036)           FANTASMA_Y3: equ 00000036h
      334.  00:4000  (00:00B8)           FANTASMA_X4: equ 000000B8h
-     335.  00:4000  (00:0040)           FANTASMA_Y4: equ 00000040h
+     335.  00:4000  (00:0036)           FANTASMA_Y4: equ 00000036h
      336.  00:4000  (00:0010)           FANTASMA_VELESCENA: equ 00000010h
-     337.  00:4000  (00:0005)           FANTASMA_DANO: equ 00000005h
+     337.  00:4000  (00:0004)           FANTASMA_DANO: equ 00000004h
      338.  00:4000  (00:004B)           FANTASMA_ENERGIA: equ 0000004Bh
      339.  00:4000  (00:0010)           TIPOJEFEFANTASMA: equ 00000010h
      340.  00:4000  (00:000E)           JEFEFANTASMA_COLOR: equ 0000000Eh
@@ -390,7 +390,7 @@ Errors: 0
      382.  00:4000  (00:00C0)           CABALLERO_POSXINI: equ 000000C0h
      383.  00:4000  (00:0090)           CABALLERO_PASOS: equ 00000090h
      384.  00:4000  (00:0010)           CABALLERO_VELESCENA: equ 00000010h
-     385.  00:4000  (00:0005)           CABALLERO_DANO: equ 00000005h
+     385.  00:4000  (00:0004)           CABALLERO_DANO: equ 00000004h
      386.  00:4000  (00:0050)           CABALLERO_ENERGIA: equ 00000050h
      387.  00:4000  (00:0011)           TIPOJEFEZOMBI: equ 00000011h
      388.  00:4000  (00:0006)           JEFEZOMBI_COLOR_A: equ 00000006h
@@ -443,7 +443,7 @@ Errors: 0
      435.  00:4000  (00:000F)           FUEGO_POS4X: equ 0000000Fh
      436.  00:4000  (00:004F)           FUEGO_POS4Y: equ 0000004Fh
      437.  00:4000  (00:0020)           FUEGO_VELESCENA: equ 00000020h
-     438.  00:4000  (00:0005)           FUEGO_DANO: equ 00000005h
+     438.  00:4000  (00:0004)           FUEGO_DANO: equ 00000004h
      439.  00:4000  (00:0055)           FUEGO_ENERGIA: equ 00000055h
      440.  00:4000  (00:0012)           TIPOJEFECABALLERO: equ 00000012h
      441.  00:4000  (00:0001)           JCABALLERO_COLOR: equ 00000001h
@@ -893,7 +893,7 @@ Errors: 0
      144   00:4098                      		;ubico al prota dentro del nivel para obtener luego las habitaciones y enemigos que aparecerán
      145   00:4098                      		;será igual la posición inicial en todos los niveles
      146   00:4098                      	
-     147   00:4098  3E 02               		LD		 A, 2;PROTANIVEL
+     147   00:4098  3E 04               		LD		 A, 4;PROTANIVEL
      148   00:409A  32 00 C0            		LD		(prota_nivel), A
      149   00:409D                      
      150   00:409D  3E 00               		LD		 A, PROTAPOSMAPY
@@ -6812,7 +6812,7 @@ Errors: 0
       19:  00:5CD3  64                  			DB		ESQUELETO_SPRITE2A			;der_arriba
       20:  00:5CD4  68                  			DB		ESQUELETO_SPRITE3A			;izq abajo
       21:  00:5CD5  6C                  			DB		ESQUELETO_SPRITE4A			;der_abajo
-      22:  00:5CD6  05                  			DB		ESQUELETO_DANO 				;dano
+      22:  00:5CD6  04                  			DB		ESQUELETO_DANO 				;dano
       23:  00:5CD7  19 79               			DW		check_colision_enemigo16x32	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
       24:  00:5CD9                      
       25:  00:5CD9                      
@@ -6958,7 +6958,7 @@ Errors: 0
       19:  00:5D62  84                  			DB		ZOMBI_SPRITE2A				;der_arriba
       20:  00:5D63  88                  			DB		ZOMBI_SPRITE3A				;izq abajo
       21:  00:5D64  8C                  			DB		ZOMBI_SPRITE4A				;der_abajo
-      22:  00:5D65  05                  			DB		ZOMBI_DANO 					;dano
+      22:  00:5D65  04                  			DB		ZOMBI_DANO 					;dano
       23:  00:5D66  19 79               			DW		check_colision_enemigo16x32	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
       24:  00:5D68                      
       25:  00:5D68                      
@@ -7370,7 +7370,7 @@ Errors: 0
       19:  00:5F80  A4                  			DB		FANTASMA_SPRITE2A			;der_arriba
       20:  00:5F81  A8                  			DB		FANTASMA_SPRITE1B			;izq abajo
       21:  00:5F82  AC                  			DB		FANTASMA_SPRITE2B			;der_abajo
-      22:  00:5F83  05                  			DB		FANTASMA_DANO 				;dano
+      22:  00:5F83  04                  			DB		FANTASMA_DANO 				;dano
       23:  00:5F84  50 79               			DW		check_colision_enemigo32x16		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
       24:  00:5F86                      
       25:  00:5F86                      
@@ -7390,7 +7390,7 @@ Errors: 0
       39:  00:5F86  21 71 5F            		LD			HL, datos_fantasma
       40:  00:5F89  01 15 00            		LD			BC, ESTRUCTURA_ENEMIGO
       41:  00:5F8C  ED B0               		LDIR
-      42:  00:5F8E                      fin_anade_enemigo_fantasma:
+      42:  00:5F8E                      ;fin_anade_enemigo_fantasma:
       43:  00:5F8E  C9                  		RET
       44:  00:5F8F                      
       45:  00:5F8F                      
@@ -7401,8 +7401,8 @@ Errors: 0
       50:  00:5F8F                      ; entrada:	IX que equivaldrá a qué nº de enemigo estamos inicializando (por ejemplo enemigo1)
       51:  00:5F8F                      ; salida: 	-
       52:  00:5F8F                      ; toca:		-
-      53:  00:5F8F                      actualiza_valores_fantasma:
-      54:  00:5F8F                      fin_actualiza_valores_fantasma:
+      53:  00:5F8F                      ;actualiza_valores_fantasma:
+      54:  00:5F8F                      ;fin_actualiza_valores_fantasma:
       55:  00:5F8F                      		
       56:  00:5F8F                      		
       57:  00:5F8F                      ;;=====================================================
@@ -7435,7 +7435,7 @@ Errors: 0
       84:  00:5FB7                      		;colorea fantasma
       85:  00:5FB7  FD 36 03 0F         		LD			(IY + 3), FANTASMA_COLOR
       86:  00:5FBB  FD 36 07 0F         		LD			(IY + 7), FANTASMA_COLOR
-      87:  00:5FBF                      fin_mover_fantasma:
+      87:  00:5FBF                      ;fin_mover_fantasma:
       88:  00:5FBF  C9                  		RET
       89:  00:5FC0                      
       90:  00:5FC0                      
@@ -7467,7 +7467,7 @@ Errors: 0
      116:  00:5FE1                      .escena2:
      117:  00:5FE1  DD 36 0E A8         				LD			(IX + ESTRUCTURA_ENEMIGO.sprite_a), FANTASMA_SPRITE1B
      118:  00:5FE5  C9                  				RET	
-     119:  00:5FE6                      fin_calcula_fantasma_escena:
+     119:  00:5FE6                      ;fin_calcula_fantasma_escena:
      120:  00:5FE6                      
      121:  00:5FE6                      
      122:  00:5FE6                      ;;=====================================================
@@ -7496,7 +7496,7 @@ Errors: 0
      145:  00:6005  78                  		LD			 A, B
      146:  00:6006  E6 04               		AND			00000100b
      147:  00:6008  28 09               		JR			 Z, .mira_posicion3
-     148:  00:600A  DD 36 05 40         		LD			(IX + ESTRUCTURA_ENEMIGO.posy), FANTASMA_Y3
+     148:  00:600A  DD 36 05 36         		LD			(IX + ESTRUCTURA_ENEMIGO.posy), FANTASMA_Y3
      149:  00:600E  DD 36 04 28         		LD			(IX + ESTRUCTURA_ENEMIGO.posx), FANTASMA_X3
      150:  00:6012  C9                  		RET
      151:  00:6013                      		
@@ -7504,12 +7504,12 @@ Errors: 0
      153:  00:6013  78                  		LD			 A, B
      154:  00:6014  E6 08               		AND			00001000b
      155:  00:6016  28 09               		JR			 Z, .resetea_posicion
-     156:  00:6018  DD 36 05 40         		LD			(IX + ESTRUCTURA_ENEMIGO.posy), FANTASMA_Y4
+     156:  00:6018  DD 36 05 36         		LD			(IX + ESTRUCTURA_ENEMIGO.posy), FANTASMA_Y4
      157:  00:601C  DD 36 04 B8         		LD			(IX + ESTRUCTURA_ENEMIGO.posx), FANTASMA_X4
      158:  00:6020  C9                  		RET
      159:  00:6021                      .resetea_posicion:
      160:  00:6021  DD 36 08 01         		LD			(IX + ESTRUCTURA_ENEMIGO.direccionx), 00000001b
-     161:  00:6025                      fin_calcula_fantasma_posyx:
+     161:  00:6025                      ;fin_calcula_fantasma_posyx:
      162:  00:6025  C9                  		RET
      163:  00:6026                      
      164:  00:6026                      
@@ -7529,7 +7529,7 @@ Errors: 0
      178:  00:6031  DD 36 0A 64         			LD			(IX + ESTRUCTURA_ENEMIGO.pasos), FANTASMA_LIM_PASOS
      179:  00:6035                      			;paso a la siguiente posición
      180:  00:6035  DD CB 08 06         			RLC			(IX + ESTRUCTURA_ENEMIGO.direccionx)
-     181:  00:6039                      fin_verifica_siguiente_posicion_fantasma:
+     181:  00:6039                      ;fin_verifica_siguiente_posicion_fantasma:
      182:  00:6039  C9                  			RET
       29.  00:603A                      include "subr_enemigo_jefefantasma.asm"
        1:  00:603A                      ;;=====================================================
@@ -7789,7 +7789,7 @@ Errors: 0
       19:  00:61A0  44                  			DB		CABALLERO_SPRITE2A			;der_arriba
       20:  00:61A1  48                  			DB		CABALLERO_SPRITE3A			;izq abajo
       21:  00:61A2  4C                  			DB		CABALLERO_SPRITE4A			;der_abajo
-      22:  00:61A3  05                  			DB		CABALLERO_DANO 				;dano
+      22:  00:61A3  04                  			DB		CABALLERO_DANO 				;dano
       23:  00:61A4  19 79               			DW		check_colision_enemigo16x32	;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
       24:  00:61A6                      
       25:  00:61A6                      
@@ -8151,7 +8151,7 @@ Errors: 0
       19:  00:6369  B4                  			DB		FUEGO_SPRITE2A			;izq abajo
       20:  00:636A  B8                  			DB		FUEGO_SPRITE1B			;der_arriba
       21:  00:636B  BC                  			DB		FUEGO_SPRITE2B			;der_abajo
-      22:  00:636C  05                  			DB		FUEGO_DANO 				;dano
+      22:  00:636C  04                  			DB		FUEGO_DANO 				;dano
       23:  00:636D  19 79               			DW		check_colision_enemigo16x32		;(ptr_mover) puntero a subrutina que moverá el enemigo según el tipo de enemigo (se pasa al inicializar)
       24:  00:636F                      
       25:  00:636F                      
@@ -15880,7 +15880,7 @@ Errors: 0
 00:00000000   ESQUELETO_POSX
 00:00000060   ESQUELETO_POSY
 00:00000010   ESQUELETO_VELESCENA
-00:00000005   ESQUELETO_DANO
+00:00000004   ESQUELETO_DANO
 00:00000041   ESQUELETO_ENERGIA
 00:00000008   TIPOZOMBI
 00:00000008   ZOMBI_COLOR_A
@@ -15899,7 +15899,7 @@ Errors: 0
 00:00000040   ZOMBI_POSY
 00:00000096   ZOMBI_PASOS
 00:00000010 X ZOMBI_VELESCENA
-00:00000005   ZOMBI_DANO
+00:00000004   ZOMBI_DANO
 00:00000046   ZOMBI_ENERGIA
 00:0000000F   TIPOJEFEMURCIELAGO
 00:00000001   JEFEMURCIELAGO_COLOR
@@ -15931,11 +15931,11 @@ Errors: 0
 00:000000A0   FANTASMA_X2
 00:00000018   FANTASMA_Y2
 00:00000028   FANTASMA_X3
-00:00000040   FANTASMA_Y3
+00:00000036   FANTASMA_Y3
 00:000000B8   FANTASMA_X4
-00:00000040   FANTASMA_Y4
+00:00000036   FANTASMA_Y4
 00:00000010   FANTASMA_VELESCENA
-00:00000005   FANTASMA_DANO
+00:00000004   FANTASMA_DANO
 00:0000004B   FANTASMA_ENERGIA
 00:00000010   TIPOJEFEFANTASMA
 00:0000000E   JEFEFANTASMA_COLOR
@@ -15983,7 +15983,7 @@ Errors: 0
 00:000000C0   CABALLERO_POSXINI
 00:00000090   CABALLERO_PASOS
 00:00000010   CABALLERO_VELESCENA
-00:00000005   CABALLERO_DANO
+00:00000004   CABALLERO_DANO
 00:00000050   CABALLERO_ENERGIA
 00:00000011   TIPOJEFEZOMBI
 00:00000006   JEFEZOMBI_COLOR_A
@@ -16036,7 +16036,7 @@ Errors: 0
 00:0000000F X FUEGO_POS4X
 00:0000004F X FUEGO_POS4Y
 00:00000020   FUEGO_VELESCENA
-00:00000005   FUEGO_DANO
+00:00000004   FUEGO_DANO
 00:00000055   FUEGO_ENERGIA
 00:00000012   TIPOJEFECABALLERO
 00:00000001   JCABALLERO_COLOR
@@ -17023,26 +17023,19 @@ Errors: 0
 00:00005F70 X fin_calcula_jefemurcielago_incrementox
 00:00005F71   datos_fantasma
 00:00005F86   anade_enemigo_fantasma
-00:00005F8E X fin_anade_enemigo_fantasma
-00:00005F8F X actualiza_valores_fantasma
-00:00005F8F X fin_actualiza_valores_fantasma
 00:00005F8F   mover_fantasma
-00:00005FBF X fin_mover_fantasma
 00:00005FC0   calcula_fantasma_escena
 00:00005FDC X calcula_fantasma_escena.escena1
 00:00005FE1   calcula_fantasma_escena.escena2
-00:00005FE6 X fin_calcula_fantasma_escena
 00:00005FE6   calcula_fantasma_posyx
 00:00005FE9 X calcula_fantasma_posyx.mira_posicion0
 00:00005FF7   calcula_fantasma_posyx.mira_posicion1
 00:00006005   calcula_fantasma_posyx.mira_posicion2
 00:00006013   calcula_fantasma_posyx.mira_posicion3
 00:00006021   calcula_fantasma_posyx.resetea_posicion
-00:00006025 X fin_calcula_fantasma_posyx
 00:00006026   verifica_siguiente_posicion_fantasma
 00:0000602D X verifica_siguiente_posicion_fantasma.no_modifica_posicion_fantasma
 00:00006031   verifica_siguiente_posicion_fantasma.modifica_posicion_fantasma
-00:00006039 X fin_verifica_siguiente_posicion_fantasma
 00:0000603A   datos_jefefantasma
 00:0000604F   anade_enemigo_jefefantasma
 00:00006057 X fin_anade_enemigo_jefefantasma
