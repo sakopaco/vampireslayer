@@ -112,7 +112,7 @@ mover_jefelobo:
 		LD			(IY + 7),  JEFELOBO_COLOR
 		LD			(IY + 11), JEFELOBO_COLOR
 		LD			(IY + 15), JEFELOBO_COLOR
-fin_mover_jefelobo:
+;fin_mover_jefelobo:
 		RET
 
 

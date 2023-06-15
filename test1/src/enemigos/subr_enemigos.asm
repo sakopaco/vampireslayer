@@ -2569,15 +2569,12 @@ accion_enemigo_muerto4:
 			LD			(IY + 8),  	BORRASPRITE
 			LD			(IY + 12), 	BORRASPRITE
 
-.elimino_enemigo:
-			XOR			 A
-			CALL		play_musica
-			
+.elimino_enemigo:			
 			;marco enemigo como muerto para saltarlo incluso al examinar
 			LD			(IX), 0
 			
 			JP			decrementa_contador_enemigos
-fin_accion_enemigo_muerto4:
+;fin_accion_enemigo_muerto4:
 
 
 ;;=====================================================
