@@ -129,7 +129,7 @@ inicializa_variables_prota:
 		LD		 A, PROTAVIDAS
 		LD		(prota_vidas),A
 
-		LD		 A, 8;PROTARELIQUIAS
+		LD		 A, PROTARELIQUIAS
 		LD		(prota_reliquias), A
 
 		LD		 A, PROTAENERGIA			

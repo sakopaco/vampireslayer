@@ -70,7 +70,7 @@ inicializa_niveles:
 		LD			IX, habitaciones_nivel6
 		INC			IX						;el puntero IX apuntará siempre al byte de las ayudas		
 		JP 			resetea_habitaciones_enemigos_nivel
-fin_iniciliza_niveles:
+;fin_iniciliza_niveles:
 
 
 resetea_habitaciones_enemigos_nivel:
@@ -83,7 +83,7 @@ resetea_habitaciones_enemigos_nivel:
 [2]		INC			HL		;pongo puntero en la siguiente habitación (2 saltos)
 [2]		INC			IX		;pongo puntero en la siguiente habitación (2 saltos)
 		DJNZ		.inicia_nivel
-fin_resetea_habitaciones_enemigos_nivel:
+;fin_resetea_habitaciones_enemigos_nivel:
 		RET
 
 
@@ -252,9 +252,8 @@ terminada_habitacion_recorrida:
 			LD			 A, ISHABTERMIN			;1 => cierto habitación terminada
 			LD			(habitacion_terminada), A
 		
-			CALL		pinta_parte_superior_pantalla
+			JP			pinta_parte_superior_pantalla
 ;fin_terminada_habitacion_recorrida
-			RET
 
 
 ;;=====================================================
@@ -342,7 +341,7 @@ entra_habitacion:
 			LD			(contador_ayuda_ballesta), A
 			RET			NZ
 				JP			resetea_ballesta				;si contador_ayuda_ballesta=0 vuelvo a poner la ballesta por defecto
-fin_entra_habitacion:
+;fin_entra_habitacion:
 
 
 ;;=====================================================
@@ -357,12 +356,12 @@ pinta_heroe_mapa:
 		LD			 A, TILEPROTAM
 		LD			(elemento_pintar_mapa), A
 		JP			posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.posx y posy
-fin_pinta_heroe_mapa:
+;fin_pinta_heroe_mapa:
 pinta_blanco_mapa:
 		LD			 A, TILEGRISM
 		LD			(elemento_pintar_mapa), A
 		JP			posiciona_en_mapa		;se le pasa elemento_pintar_mapa (tile del prota) está el prota y prota.posx y posy
-fin_pinta_blanco_mapa:
+;fin_pinta_blanco_mapa:
 	
 
 ;;=====================================================
@@ -380,7 +379,7 @@ cambio_nivel:
 		CALL 		carga_patrones_sprites_nivel
 	
 		JP			borra_mapa	
-fin_cambio_nivel:
+;fin_cambio_nivel:
 
 
 ;;=====================================================
@@ -408,7 +407,7 @@ check_colisiones_objetos:
 .habitacion_no_terminada:	;pantalla limpia? NO
 		;recorre enemigos
 		JP			check_colisiones_enemigos
-fin_check_colisiones_objetos:	
+;fin_check_colisiones_objetos:	
 
 
 ;;=====================================================
@@ -455,7 +454,7 @@ accion_mata_dracula:
 		CALL		resetea_tiempo
 		
 		JP			entra_habitacion
-fin_accion_mata_dracula:
+;fin_accion_mata_dracula:
 
 
 ;;=====================================================
@@ -481,7 +480,7 @@ mira_si_esta_juego_terminado:
 			LD			 A, 1
 			LD			(tipo_gameover), A
 			JP			game_over
-fin_mira_si_esta_juego_terminado:
+;fin_mira_si_esta_juego_terminado:
 
 
 ;;=====================================================
@@ -632,7 +631,7 @@ game_over:
 [7]			CALL	espera_estandar
 
 			JP			inicio_juego
-fin_game_over:
+;fin_game_over:
 
 
 ;;=====================================================
@@ -654,7 +653,7 @@ borra_prota_pantalla_fin:
 			LD			(byteaux2), A			;nº de columnas
 
 			JP			pinta_array
-fin_borra_prota_pantalla_fin:
+;fin_borra_prota_pantalla_fin:
 
 
 ;;=====================================================
@@ -662,20 +661,23 @@ fin_borra_prota_pantalla_fin:
 ;;=====================================================	
 ; función: incrementa el hearbeat para el movimiento (escena) de los distintos enemigos
 actualiza_heartbeat:
-		LD			 B, 14	;se han definido 14 escena de enemigos distintas + uno genérico para jefes
-		LD			HL, heartbeat_enemigos
+			LD			 B, 14	;se han definido 14 escena de enemigos distintas + uno genérico para jefes
+			LD			HL, heartbeat_enemigos
 .loop_heartbeat:	
 					INC			(HL)
 					INC			HL
-		DJNZ		.loop_heartbeat
-fin_actualiza_heartbeat:
+			DJNZ		.loop_heartbeat
+;fin_actualiza_heartbeat:
 			RET
 			
 
 ;;=====================================================
 ;;ACTUALIZA_CRONOMETRO_SALIDA
 ;;=====================================================	
-; función: inc
+; función:  si drácula no está muerto nada
+;			si drácula está muerto incrementa un contador de tiempo que se puso a 0 al matar a drácula
+;			si el minutero llega a 2 la partida acaba con final malo ya que no saliste del castillo
+;				a tiempo (antes de que se derrumbara)
 actualiza_cronometro_salida:
 		LD			 A, (dracula_muerto)
 		OR			 A
@@ -685,7 +687,8 @@ actualiza_cronometro_salida:
 		CP			TIEMPO_LIMITE_SALIR_CAS
 		RET			NZ
 		;gameover (tipo 2: matas a drácula pero no te da tiepo a salir en 2 minutos)
-		LD			(tipo_gameover), A ;A = 2 que ya lo tenemos en minutos entrada para funcion game over
+		LD			 A, 2
+		LD			(tipo_gameover), A
 		JP			game_over
-fin_actualiza_cronometro_salida:	
+;fin_actualiza_cronometro_salida:	
 

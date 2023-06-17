@@ -405,9 +405,7 @@ inicializa_enemigos_fase0_nivel0:
 		LD			(enemiesleft), A
 		
 		LD			DE, enemigo1
-		CALL		anade_enemigo_cienpies
-		LD			IX, enemigo1
-		JP			actualiza_valores_cienpies
+		JP			anade_enemigo_lobo
 fin_inicializa_enemigos_fase0_nivel0:
 
 inicializa_enemigos_fase0_nivel1:
@@ -557,7 +555,7 @@ inicializa_enemigos_fase1_nivel0:
 		LD			(enemiesleft), A
 		
 		LD			DE, enemigo1
-		JP			anade_enemigo_serpiente
+		JP			anade_enemigo_esqueleto
 fin_inicializa_enemigos_fase1_nivel0:
 
 inicializa_enemigos_fase1_nivel1:
@@ -703,7 +701,7 @@ inicializa_enemigos_fase2_nivel0:
 		LD			(enemiesleft), A
 		
 		LD			DE, enemigo1
-		JP			anade_enemigo_serpiente
+		JP			anade_enemigo_fantasma
 fin_inicializa_enemigos_fase2_nivel0:
 
 inicializa_enemigos_fase2_nivel1:
@@ -834,7 +832,7 @@ inicializa_enemigos_fase3_nivel0:
 		LD			(enemiesleft), A
 		
 		LD			DE, enemigo1
-		JP			anade_enemigo_serpiente
+		JP			anade_enemigo_caballero
 fin_inicializa_enemigos_fase3_nivel0:
 
 inicializa_enemigos_fase3_nivel1:
@@ -974,7 +972,7 @@ inicializa_enemigos_fase4_nivel0:
 		LD			(enemiesleft), A
 		
 		LD			DE, enemigo1
-		JP			anade_enemigo_murcielago
+		JP			anade_enemigo_fuego
 fin_inicializa_enemigos_fase4_nivel0:
 
 inicializa_enemigos_fase4_nivel1:
