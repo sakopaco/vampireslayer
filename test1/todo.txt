@@ -1,6 +1,4 @@
 BUGS:
-* !!! bug que ahora no aparece el texto entre fases de que espera a que tus ojos se acostumbren !!!
-* aumentar tiempo salida ¿?¿?¿?
 
 TODO A:
 - volver a jugar partida con nueva configuración (el tiempo para salir del castillo con vida parece corto)

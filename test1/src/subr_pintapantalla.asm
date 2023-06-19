@@ -977,12 +977,12 @@ flip_calavera_esqueletos:
 ;;=====================================================	
 ; función: 	pone un texto cada vex que se sube o baja de nivel en el castillo
 cambio_nivel_entrefases:
-			;paro la musica que se estuviera reproduciendo
-			XOR			 A
-			CALL		play_musica
-			
 			CALL		DISSCR
-			
+
+			;paro la musica que se estuviera reproduciendo
+			XOR			 A; paro música
+			CALL		play_musica
+					
 			;si no se ha matado aun a drácula cuando se cambia de fase se restablece energía
 			LD			 A, (dracula_muerto)
 			OR			 A
@@ -1017,12 +1017,13 @@ cambio_nivel_entrefases:
 			LD			HL, tiles_mapa_entrefases
 			LD			DE, TILMAP
 			CALL		depack_VRAM
-			
+
 			CALL		pinta_texto_entrefases
 			
-			CALL		DISSCR
+			CALL		ENASCR
 			
-			JP			espera_estandar
+[2]			CALL		espera_estandar
+			RET
 ;fin_cabio_nivel_entrefases:
 
 
