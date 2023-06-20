@@ -3,7 +3,7 @@
 ;;=====================================================
 
 ;1=1 versión en español y 2=2 verión en inglés y 3 = 3 versión portugues
-IF	1=1	;textos en español
+IF	1=0	;textos en español
 texto_vidas:		DB	'VIDAS'
 
 texto_energia:		DB	'ENERG.'
@@ -129,7 +129,7 @@ texto_graciasporjugar:	DB	'THANKS FOR PLAYING'
 
 ENDIF
 
-IF	3=0	;textos en portugues
+IF	3=3	;textos en portugues
 texto_vidas:        	DB    'VIDAS'
 
 texto_energia:        	DB    'ENERG.'

@@ -1,4 +1,4 @@
-Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.06.20 - 09:33:16]
+Sjasm Z80 Assembler v0.42c - www.xl2s.tk             [2023.06.20 - 22:42:01]
 
 /home/paco/Documentos/proyectos/vampireslayer/test1/src/variables.asm
 Errors: 0
@@ -272,7 +272,7 @@ Errors: 0
       17.  00:C000  (00:0010)           SPRI_ENEM_MUERTE1A 		equ		16
       18.  00:C000  (00:0014)           SPRI_BLANCO		 		equ		20
       19.  00:C000  (00:0064)           TIEMPO_ESPERA_VISCERA   equ		100
-      20.  00:C000  (00:0002)           TIEMPO_LIMITE_SALIR_CAS equ	    #02; dos minutos
+      20.  00:C000  (00:0003)           TIEMPO_LIMITE_SALIR_CAS equ	    3	; equivale a dos minutos
       21.  00:C000                      
       22.  00:C000                      ;;ETIQUETAS/CONSTANTES CIENPIES
       23.  00:C000  (00:0002)           TIPOCIEMPIES			equ		2
@@ -1396,7 +1396,7 @@ Errors: 0
 00:00000010 X SPRI_ENEM_MUERTE1A
 00:00000014 X SPRI_BLANCO
 00:00000064 X TIEMPO_ESPERA_VISCERA
-00:00000002 X TIEMPO_LIMITE_SALIR_CAS
+00:00000003 X TIEMPO_LIMITE_SALIR_CAS
 00:00000002 X TIPOCIEMPIES
 00:0000000C X CIENPIES_COLOR
 00:00000018 X CIENPIES_SPRITE1A

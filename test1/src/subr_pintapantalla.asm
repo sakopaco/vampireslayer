@@ -146,8 +146,7 @@ muestra_instrucciones:
 			
 			CALL		ENASCR
 			
-[2]			CALL		espera_estandar
-
+			CALL		espera_estandar
 			RET
 ;fin_muestra_instrucciones:
 

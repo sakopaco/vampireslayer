@@ -1,12 +1,13 @@
 BUGS:
 
-TODO A:
-- volver a jugar partida con nueva configuración (el tiempo para salir del castillo con vida parece corto)
 
+TODO A:
+- facilitar un poco el juego (alguna vida + extra y plantas y oraciones)
 
 - poner página extra con cuenta en itchio y github
 - poner mapas con la documentación
 
 TODO B (deseable):
+- final extendido
 
 

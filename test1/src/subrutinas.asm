@@ -492,6 +492,10 @@ game_over:
 			;apago pantalla
 			CALL		DISSCR
 			
+			;pongo la música del gameover
+			LD			 A, MUSICAGAMEOVER
+			CALL		play_musica
+			
 			;limpia la pantalla
 			CALL		limpia_pantalla_completa
 
@@ -623,10 +627,6 @@ game_over:
 .fin_examina_final:
 			;apago pantalla
 			CALL		ENASCR
-			
-			;pongo la música del gameover
-			LD			 A, MUSICAGAMEOVER
-			CALL		play_musica
 				
 [7]			CALL	espera_estandar
 
