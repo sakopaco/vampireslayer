@@ -2482,7 +2482,7 @@ mata_enemigo:
 		LD			(IX + ESTRUCTURA_ENEMIGO.ptr_mover + 1), H
 		
 		;sonido muerte enemigo
-		LD			 A, 2
+		LD			 A, SONIDOMUERTE
 		LD			 C, 1
 		CALL		ayFX_INIT
 		

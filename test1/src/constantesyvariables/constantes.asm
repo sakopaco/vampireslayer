@@ -217,9 +217,9 @@ NOQUEDANVIDAS		equ		0
 FINBUENO			equ		1
 
 ;;CONTANTES PARA SONIDO
-SONIDORELIQUIA		equ		5
+SONIDORELIQUIA		equ		5			;también valdrá para bomba
 SONIDOINICIO		equ		4
-SONIDOBOMBA			equ		2
+SONIDOMUERTE		equ		2
 SONIDODISPARO		equ		1
 
 ;SINMUSICA			equ		0			;mejor uso un XOR A que es igual y mas rápido

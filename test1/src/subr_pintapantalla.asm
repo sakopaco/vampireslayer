@@ -595,7 +595,7 @@ efecto_imagen_tira_coge_reliquia:
 		LD			HL, color_bomba1   ;color_bomba2
 		CALL		color_pantalla
 	
-		LD			BC, 60000
+		LD			BC, 65000
 		CALL		retardo16bits
 	
 		JP			color_pantalla_negro

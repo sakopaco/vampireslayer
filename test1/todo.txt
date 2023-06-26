@@ -11,3 +11,34 @@ TODO B (deseable):
 - final extendido
 
 
+
+		;sonido dispara ayuda
+		LD			 A, SONIDORELIQUIA
+		LD			 C, 1
+		CALL		ayFX_INIT
+
+
+;;=====================================================
+;;RENDER_SPRITES // ACTUALIZA_ARRAY_SPRITES_VRAM
+;;=====================================================	
+; función: 	copia el array con los valores de los sprites (pos, color, plano) en VRAM
+; entrada: 	-
+; salida: 	-
+; toca: 	todos los registros. Como me interesa la velocidad, si necesito copiar de algo lo hago fuera
+render_sprites:
+
+;ññññññ
+
+
+	;volcando el array con toda la info de los sprites a la zona de atributos de sprites
+	LD			HL, array_sprites
+	LD			DE, SPRART
+	LD			BC, 4 * 4			;32 sprites x 4 bytes controlando el sprite (Y, X, plano, color)
+	CALL		LDIRVM
+
+	LD			HL, array_sprites_enem
+	LD			DE, SPRART + 8
+	LD			BC, 4 * 28			;32 sprites x 4 bytes controlando el sprite (Y, X, plano, color)
+	JP			LDIRVM
+;fin_actualiza_array_sprites_vram:
+

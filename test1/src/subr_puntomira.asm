@@ -74,12 +74,13 @@ accion_boton2:
 			DEC			 A
 			LD			(prota_reliquias), A
 	
-			LD			 A, SONIDOBOMBA		;2
+			LD			 A, SONIDORELIQUIA; también valdrá para bomba
+			LD			 C, 1
 			CALL		ayFX_INIT
-	
-			CALL		efecto_enemigos_tira_reliquia
 			
 			CALL 		efecto_imagen_tira_coge_reliquia
+	
+			CALL		efecto_enemigos_tira_reliquia
 	
 			JP			pinta_reliquias
 ;fin_accion_boton2:

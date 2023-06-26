@@ -331,18 +331,38 @@ fin_carga_patrones_sprites_nivel6_nivel6:
 ; salida: 	-
 ; toca: 	todos los registros. Como me interesa la velocidad, si necesito copiar de algo lo hago fuera
 render_sprites:
+		;~ CALL		RDVDP
+		;~ AND			01000000b
+		
+		;~ CALL		NZ, test_OK
+		
+		CALL		volcado_normal
+		
+		RET
+		
+
+;ññññññ
+
+
+
+;fin_actualiza_array_sprites_vram:
+
+volcado_normal:
 	;volcando el array con toda la info de los sprites a la zona de atributos de sprites
 	LD			HL, array_sprites
 	LD			DE, SPRART
-	LD			BC, 4 * 4			;32 sprites x 4 bytes controlando el sprite (Y, X, plano, color)
-	CALL		LDIRVM
-
-	LD			HL, array_sprites_enem
-	LD			DE, SPRART + 8
-	LD			BC, 4 * 28			;32 sprites x 4 bytes controlando el sprite (Y, X, plano, color)
+	LD			BC, 4 * 32			;32 sprites x 4 bytes controlando el sprite (Y, X, plano, color)
 	JP			LDIRVM
-fin_actualiza_array_sprites_vram:
 
+;~ volcado_alternativo:
+	;~ LD			 A, (heartbeat_general)
+	
+	;~ LD			HL, array_sprites_enem
+	;~ LD			DE, SPRART
+	;~ LD			BC, 4 * 28			;32 sprites x 4 bytes controlando el sprite (Y, X, plano, color)
+	;~ CALL		LDIRVM
+
+	
 
 ;;=====================================================
 ;;VUELCA_RESULTADO_PUNTOMIRA_ARRAY

@@ -339,18 +339,21 @@ check_colision_ayudas:
 	OR		 A							;está activa la ayuda de pantalla?
 	JP		 Z, fin_check_colision_ayudas
 	;SI
-		CALL	check_colision_ayuda	;aquí ya es cosa de ver colisiones prota/puerta_izquierda
+		CALL		check_colision_ayuda	;aquí ya es cosa de ver colisiones prota/puerta_izquierda
 		;recibe valor A
-		OR		 0						;hubo colisión?
-		RET		 Z						;no hubo colisión por lo que sale
+		OR		 	0						;hubo colisión?
+		RET		 	Z						;no hubo colisión por lo que sale
 		
 		;hubo colisión
-		CALL	efecto_imagen_tira_coge_reliquia
+		CALL		efecto_imagen_tira_coge_reliquia
 
 		;sonido dispara ayuda
 		LD			 A, SONIDORELIQUIA
 		LD			 C, 1
 		CALL		ayFX_INIT
+		;para que se escuche mejor el sonido de coger la reliquia
+		LD			BC, 65000
+		CALL		retardo16bits
 		
 		;EJECUTA ACCIÓN Y SALE DE LA RUTINA	
 		LD		HL, fin_check_colision_ayudas ;se guarda dónde volver
