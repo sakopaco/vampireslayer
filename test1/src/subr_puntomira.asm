@@ -79,7 +79,7 @@ accion_boton2:
 	
 			CALL		efecto_enemigos_tira_reliquia
 			
-			CALL 		efecto_imagen_tira_reliquia
+			CALL 		efecto_imagen_tira_coge_reliquia
 	
 			JP			pinta_reliquias
 ;fin_accion_boton2:

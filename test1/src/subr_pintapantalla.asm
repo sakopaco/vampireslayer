@@ -2,7 +2,7 @@
 ;;CONTANTES PANTALLAS
 ;;=====================================================
 ;colores base de la pantalla
-color_base:					DB		COLNEGRO,COLNEGRO,COLNEGRO
+;color_base:					DB		COLNEGRO,COLNEGRO,COLNEGRO
 
 ;colores de pantalla cuando se tira bomba
 color_bomba1:				DB		COLROJO,COLROJO,COLROJO
@@ -66,24 +66,24 @@ color_pantalla:
 ; salida: -
 ; toca: si no son todos los regristros, casi todos
 sub_preparapantalla:
-;elimina_clic
+	;elimina_clic
 	XOR		 A
 	LD		(CLIKSW),A
 
-;cls_pantalla
+	;cls_pantalla
 	XOR		 A
 	CALL 	CLS
 
 	;toca A y direcciones #F3E9/#F3EA/#F3EB, poner en HL array con 3 valores
-	LD		HL, color_base
-	CALL	color_pantalla
-	
+	;actualiza colores a negro
+	CALL	color_pantalla_negro
+
 	;cambiamos a SCREEN 2,2 del BASIC
-;screen2
+	;screen2
 	LD		 A, 2
 	CALL	CHGMOD			;selecciona screen 2
 
-;sprites_16_16
+	;sprites_16_16
 	LD		 A, (RG1SAV)
 	OR		00000010b		;fuerza sprites de 16x16
 	LD		(RG1SAV), A		;no lo guardamos en la copia de variables del sistema
@@ -91,6 +91,19 @@ sub_preparapantalla:
 	LD		 C, 1
 	JP		WRTVDP			;opción alternativa de escribir las tres lineas siguientes
 ;fin_sub_preparapantalla:
+	
+
+;;=====================================================
+;;COLOR_PANTALLA_NEGRO
+;;=====================================================	
+; función:  setea a negro gackground, foreground y fuente
+color_pantalla_negro:
+		XOR		 A
+		LD		(FORCLR), A
+		LD		(BAKCLR), A
+		LD		(BDRCLR), A
+		JP		CHGCLR
+fin_color_pantalla_negro
 	
 
 ;;=====================================================
@@ -578,35 +591,15 @@ posiciona_en_mapa:
 ; entrada: 	actualiza_reliquias_sn
 ; salida: 	-
 ; toca: 	todo
-efecto_imagen_tira_reliquia:
+efecto_imagen_tira_coge_reliquia:
 		LD			HL, color_bomba1   ;color_bomba2
 		CALL		color_pantalla
 	
 		LD			BC, 60000
 		CALL		retardo16bits
 	
-		LD			HL, color_base
-		JP			color_pantalla
-;fin_efecto_imagen_tira_reliquia:
-
-
-;;=====================================================
-;;EFECTO_IMAGEN_COGE_RELIQUIA
-;;=====================================================	
-; función: 	hace que el fondo de la pantalla parpadee
-; entrada: 	actualiza_reliquias_sn
-; salida: 	-
-; toca: 	todo
-efecto_imagen_coge_reliquia:
-		LD			HL, color_ayuda     ;color_ayuda
-		CALL		color_pantalla
-	
-		LD			BC, 4000
-		CALL		retardo16bits
-	
-		LD			HL, color_base
-		JP			color_pantalla
-;fin_efecto_imagen_coge_reliquia:
+		JP			color_pantalla_negro
+;fin_efecto_imagen_tira_coge_reliquia:
 
 
 ;;=====================================================

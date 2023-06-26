@@ -345,7 +345,7 @@ check_colision_ayudas:
 		RET		 Z						;no hubo colisión por lo que sale
 		
 		;hubo colisión
-		CALL	efecto_imagen_coge_reliquia
+		CALL	efecto_imagen_tira_coge_reliquia
 
 		;sonido dispara ayuda
 		LD			 A, SONIDORELIQUIA
