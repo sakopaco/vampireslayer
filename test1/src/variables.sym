@@ -631,6 +631,8 @@ enemigo5: equ 0000C094h
 enemigo6: equ 0000C0A9h
 array_sprites: equ 0000C0BEh
 array_sprites_pm: equ 0000C0BEh
+posicion1_array_sprites: equ 0000C0C2h
+array_sprites_pm_sprite2: equ 0000C0C2h
 array_sprites_enem: equ 0000C0C6h
 array_sprites_aux: equ 0000C13Eh
 hay_ayudas_en_pantalla: equ 0000C142h

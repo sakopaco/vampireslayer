@@ -78,7 +78,9 @@ enemigo6:					DS		ESTRUCTURA_ENEMIGO
 ;;SPRITES GENERAL (PROTA +  ENEMIGOS)
 ;array de 4 bytes x 32 sprites posibles en pantalla que sobreescribirá la tabla de sprites actualizando VRAM
 array_sprites:
-array_sprites_pm:			DS		 2 * 4		;el punto de mira siempre tiene 2 sprites
+array_sprites_pm:			DS		 1 * 4		;el punto de mira siempre tiene 2 sprites
+posicion1_array_sprites:
+array_sprites_pm_sprite2:	DS		 1 * 4		;el punto de mira siempre tiene 2 sprites
 array_sprites_enem:			DS		30 * 4		;resto de sprites
 array_sprites_aux:			DS		 1 * 4	
 

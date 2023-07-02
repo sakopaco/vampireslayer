@@ -336,16 +336,15 @@ render_sprites:
 		
 		;~ CALL		NZ, test_OK
 		
+		LD			 A, R
+		AND			00000001b
+		JP			NZ, .realiza_volcado_alternativo 
+.realiza_volcado_normal:
 		CALL		volcado_normal
-		
 		RET
-		
-
-;ññññññ
-
-
-
-;fin_actualiza_array_sprites_vram:
+.realiza_volcado_alternativo:		
+		JP			volcado_alternativo
+;fin_render_sprites		
 
 volcado_normal:
 	;volcando el array con toda la info de los sprites a la zona de atributos de sprites
@@ -353,15 +352,38 @@ volcado_normal:
 	LD			DE, SPRART
 	LD			BC, 4 * 32			;32 sprites x 4 bytes controlando el sprite (Y, X, plano, color)
 	JP			LDIRVM
+fin_volcado_normal:
 
-;~ volcado_alternativo:
-	;~ LD			 A, (heartbeat_general)
+volcado_alternativo:
+	;copio primer sprite en aux
+	LD			HL, array_sprites_aux
 	
-	;~ LD			HL, array_sprites_enem
-	;~ LD			DE, SPRART
-	;~ LD			BC, 4 * 28			;32 sprites x 4 bytes controlando el sprite (Y, X, plano, color)
-	;~ CALL		LDIRVM
-
+	;PUSH		IX
+	LD			IX, array_sprites
+	LD			 A, (IX)
+	LD			(HL), A
+	INC 		HL
+	LD			 A, (IX + 1)
+	LD			(HL), A
+	INC 		HL
+	LD			 A, (IX + 2)
+	LD			(HL), A
+	INC 		HL
+	LD			 A, (IX + 3)
+	LD			(HL), A
+	;POP			IX
+	
+	;renderizo los 31 primeros sprites (tengan contenido o no) en las 31 primeras posiciones
+	LD			HL, array_sprites_pm_sprite2
+	LD			DE, SPRART
+	LD			BC, 4 * 31			;32 sprites x 4 bytes controlando el sprite (Y, X, plano, color)
+	CALL		LDIRVM
+	;el sprite aux lo renderizo en la posición 32
+	LD			HL, array_sprites_aux
+	LD			DE, SPRART + 248
+	LD			BC, 4 			;32 sprites x 4 bytes controlando el sprite (Y, X, plano, color)
+	JP			LDIRVM
+;fin_volcado_alternativo
 	
 
 ;;=====================================================
