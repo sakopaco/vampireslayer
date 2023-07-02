@@ -331,19 +331,19 @@ fin_carga_patrones_sprites_nivel6_nivel6:
 ; salida: 	-
 ; toca: 	todos los registros. Como me interesa la velocidad, si necesito copiar de algo lo hago fuera
 render_sprites:
-		;~ CALL		RDVDP
-		;~ AND			01000000b
-		
-		;~ CALL		NZ, test_OK
+		;esto sería lo ideal pero no me funciona
+		;el bit 6 del registro de estado del VDP indica si se oculta sptite por haber 5 en linea
+		;~ CALL		RDVDP  		;se examina el registro de estado de VDP
+		;~ AND		01000000b 	;se examina el bit 6
 		
 		LD			 A, R
 		AND			00000001b
-		JP			NZ, .realiza_volcado_alternativo 
-.realiza_volcado_normal:
-		CALL		volcado_normal
+		JP			NZ, .realiza_volcado_normal
+.realiza_volcado_alternativo:
+		CALL		volcado_alternativo
 		RET
-.realiza_volcado_alternativo:		
-		JP			volcado_alternativo
+.realiza_volcado_normal:		
+		JP			volcado_normal
 ;fin_render_sprites		
 
 volcado_normal:
@@ -358,7 +358,11 @@ volcado_alternativo:
 	;copio primer sprite en aux
 	LD			HL, array_sprites_aux
 	
+	;nota: sé que existe LDIR pero por lo que veo hace incrementos de DE, HL y decrementos de HL
+	;por lo que no creo que sea más rápido en este caso concreto y tampoco creo que 
+	;me ahorrase tanto código (más aún cuando está todo terminado y no necesito ahorrar ya)
 	;PUSH		IX
+	;PUSH		AF
 	LD			IX, array_sprites
 	LD			 A, (IX)
 	LD			(HL), A
@@ -371,13 +375,15 @@ volcado_alternativo:
 	INC 		HL
 	LD			 A, (IX + 3)
 	LD			(HL), A
-	;POP			IX
+	;POP		AF
+	;POP		IX
 	
 	;renderizo los 31 primeros sprites (tengan contenido o no) en las 31 primeras posiciones
 	LD			HL, array_sprites_pm_sprite2
 	LD			DE, SPRART
 	LD			BC, 4 * 31			;32 sprites x 4 bytes controlando el sprite (Y, X, plano, color)
 	CALL		LDIRVM
+	
 	;el sprite aux lo renderizo en la posición 32
 	LD			HL, array_sprites_aux
 	LD			DE, SPRART + 248

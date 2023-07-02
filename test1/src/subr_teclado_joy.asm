@@ -19,7 +19,7 @@ mueve_arriba:
 	
 .no_decrementa_y:
 	POP			AF
-fin_mueve_arriba:
+;fin_mueve_arriba:
 	RET
 
 
@@ -41,7 +41,7 @@ mueve_derecha:
 	
 .no_incrementa_x:
 	POP			AF
-fin_mueve_derecha:
+;fin_mueve_derecha:
 	RET
 
 
@@ -63,7 +63,7 @@ mueve_abajo:
 	
 .no_incrementa_y:
 	POP			AF
-fin_mueve_abajo:
+;fin_mueve_abajo:
 	RET
 	
 	
@@ -85,7 +85,7 @@ mueve_izquierda:
 	
 .no_decrementa_x:
 	POP			AF
-fin_mueve_izquierda:
+;fin_mueve_izquierda:
 	RET
 
 
@@ -121,7 +121,7 @@ mira_disparo:
 	RET		 NC ; no se ha pulsado shift o boton 2?
 	;si se ha pulsado
 	JP			accion_boton2
-fin_mira_disparo:
+;fin_mira_disparo:
 
 
 ;;============================================================
